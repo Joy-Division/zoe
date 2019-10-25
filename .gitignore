@@ -1,0 +1,36 @@
+# Project Config
+#-------------------------
+.vscode
+.vs
+
+# PS2 Binaries
+#-------------------------
+*.[Oo]
+*.[Aa]
+*.[Ee][Ll][Ff]
+*.[Ee][Rr][Xx]
+*.[Ii][Rr][Xx]
+*.[Ii][Mm][Gg]
+*.[Mm][Aa][Pp]
+PathDefs
+
+# IDA Database
+#-------------------------
+*.i64
+*.id[0-9]
+*.idb
+*.nam
+*.til
+
+# Excludes
+#-------------------------
+backup/
+disasm/*/*
+disasm/*/objdump
+work/cdrom.img/*
+
+# Includes
+#-------------------------
+!disasm/*/.md5sum
+!work/cdrom.img/
+!work/cdrom.img/.gitkeep

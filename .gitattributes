@@ -1,1 +1,3 @@
 * -text
+work/module/*/*.h linguist-language=C
+work/module/*/*/*.h linguist-language=C
