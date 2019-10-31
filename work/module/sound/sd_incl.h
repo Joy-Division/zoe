@@ -147,34 +147,34 @@ struct SOUND_W {
 	/*
 	 * for PlayStation 2
 	 */
-	u_int	unkD4;
-	u_char	unkD8;
+	u_int   unkD4;
+	u_char  unkD8;
 	u_char  unkD9; // padding?
 	u_char  unkDA; // padding?
 	u_char  unkDB; // padding?
 	void   *unkDC;
-	u_char	unkE0;
-	u_char	unkE1;
+	u_char  unkE0;
+	u_char  unkE1;
 	u_char  unkE2; // padding?
 	u_char  unkE3; // padding?
-	u_int	unkE4;
-	u_char	unkE8;
-	u_char	unkE9;
-	u_char	unkEA;
-	u_char	unkEB;
-	u_char	unkEC;
-	u_char	unkED;
-	u_char	unkEE;
-	u_char	unkEF;
-	u_char	unkF0;
-	u_char	unkF1;
-	u_char	unkF2;
-	u_char	unkF3;
-	u_char	unkF4;
-	u_char	unkF5;
-	u_char	unkF6;
-	u_char	unkF7;
-	u_char	unkF8;
+	u_int   unkE4;
+	u_char  unkE8;
+	u_char  unkE9;
+	u_char  unkEA;
+	u_char  unkEB;
+	u_char  unkEC;
+	u_char  unkED;
+	u_char  unkEE;
+	u_char  unkEF;
+	u_char  unkF0;
+	u_char  unkF1;
+	u_char  unkF2;
+	u_char  unkF3;
+	u_char  unkF4;
+	u_char  unkF5;
+	u_char  unkF6;
+	u_char  unkF7;
+	u_char  unkF8;
 	u_char  unkF9; // padding?
 	u_char  unkFA; // padding?
 	u_char  unkFB; // padding?
@@ -183,12 +183,12 @@ struct SOUND_W {
 // these struct definitions were not part of the PSX source as far as i can tell
 // the definition of this is definitely bad though, causes problems in mno_set
 struct unkstr24 {
-	u_int unk00;
-	u_int unk04;
-	u_int unk08;
-	u_int unk0C;
+	u_int   unk00;
+	u_int   unk04;
+	u_int   unk08;
+	u_int   unk0C;
 	u_char *unk10;
-	u_int unk14;
+	u_int   unk14;
 };
 // same here
 struct unkstr16 {

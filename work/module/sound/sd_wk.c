@@ -15,7 +15,7 @@
 // blank_data (appears to be the same as "dummy_data" except first and last sampleset)
 
 /* 2KB of silent VAG ADPCM */
-u_char dummy_data[0x800] = {
+u_char dummy_data[2048] = {
 	0x0C,0x02,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,
 	0x0C,0x02,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,
 	0x0C,0x02,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,
@@ -269,7 +269,7 @@ u_int sd_code_read;
 u_int sng_pause_fg;
 
 struct unkstr24 mem_str_w[12];
-u_char mem_str_buf[0xA0000];
+u_char mem_str_buf[0x000A0000];
 u_int fg_rev_set[44];
 int sd_sng_code_buf[16];
 u_int drum_tbl[0x100];
@@ -282,12 +282,18 @@ struct unkstr16 mix_fader[32];
 char path_name[0x80];
 u_int pak_header[512];
 struct unkstr24 ee_addr[2];
-u_char sng_data[0x20000];
+u_char sng_data[0x00020000];
 u_char se_data_area[0x4800];
 u_char str_header[0x8800];
 u_int str_read_status[8];
-u_char eeload2_buf[0x10000];
+u_char eeload2_buf[0x00010000];
 u_int str2_read_status[2][8];
-u_short lnr16_buf[0x800];
+u_short lnr16_buf[0x0800];
 u_int lnr8_read_status[32];
 u_char lnr8_buf[0x8000];
+
+/*---------------------------------------------------------------------------*
+ * END OF FILE
+ *---------------------------------------------------------------------------*/
+/* -*- indent-tabs-mode: t; tab-width: 4; mode: c; -*- */
+/* vim: set noet ts=4 sw=4 ft=c ff=dos fenc=euc-jp : */

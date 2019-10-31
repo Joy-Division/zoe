@@ -62,7 +62,7 @@ void tie_set( void )
 	sptr->ngc = sptr->ngs;
 	temp1 = ((sptr->ngg * sptr->ngc) / 100);
 	
-	if (!temp1) temp1 = 1;
+	if( !temp1 ) temp1 = 1;
 	sptr->ngo = temp1;
 }
 
@@ -122,14 +122,14 @@ void pan_move( void )
 	sptr->panm = temp1 << 8;
 	temp2 = temp1 - sptr->panf;
 	
-	if (temp2 < 0){
+	if( temp2 < 0 ){
 		sptr->panad = -(((-temp2) << 8) / mdata2);
-		if (sptr->panad < -0x7F0)
-			sptr->panad = -0x7F0;
+		if( sptr->panad < -0x07F0)
+			sptr->panad = -0x07F0;
 	} else {
 		sptr->panad = (temp2 << 8) / mdata2;
-		if (sptr->panad > 0x7F0)
-			sptr->panad = 0x7F0;
+		if( sptr->panad > 0x07F0)
+			sptr->panad = 0x07F0;
 	}
 }
 
@@ -140,8 +140,8 @@ void vib_set( void )
 	sptr->vibhs = mdata2;
 	sptr->vibcad = mdata2;
 	
-	if (sptr->vibcad < 0x40){
-		if (sptr->vibcad < 0x20){
+	if( sptr->vibcad < 64 ){
+		if( sptr->vibcad < 32 ){
 			sptr->vib_tc_ofst = 1;
 			sptr->vibcad = sptr->vibcad << 3;
 		} else {
@@ -149,13 +149,13 @@ void vib_set( void )
 			sptr->vibcad = sptr->vibcad << 2;
 		}
 	} else {
-		if (sptr->vibcad >= 0){
+		if( sptr->vibcad >= 0 ){
 			sptr->vib_tc_ofst = 4;
 			sptr->vibcad = sptr->vibcad << 1;
-		} else if (((u_char)sptr->vibcad) != 0xFF){
+		} else if( ((u_char)sptr->vibcad) != 0xFF ){
 			sptr->vib_tc_ofst = 8;
 		} else {
-			sptr->vib_tc_ofst = 0x10;
+			sptr->vib_tc_ofst = 16;
 		}
 	}
 	sptr->vibd = mdata4 << 8;
@@ -188,15 +188,15 @@ void lp1_start( void )
 
 void lp1_end( void )
 {
-	if (mtrack < 0x20){
-		if (skip_intro_loop && !mdata2){
+	if( mtrack < 32 ){
+		if( skip_intro_loop && !mdata2 ){
 			sptr->lp1_vol = 0;
 			sptr->lp1_freq = 0;
 			skip_intro_loop++;
 			return;
 		}
 	} else {
-		if (stop_jouchuu_se && !mdata2){
+		if( stop_jouchuu_se && !mdata2 ){
 			sptr->lp1_vol = 0;
 			sptr->lp1_freq = 0;
 			stop_jouchuu_se++;
@@ -204,7 +204,7 @@ void lp1_end( void )
 		}
 	}
 	
-	if (((++sptr->lp1_cnt) & 0xFF) != mdata2 || !mdata2){
+	if( ((++sptr->lp1_cnt) & 0xFF) != mdata2 || !mdata2 ){
 		sptr->lp1_vol += (char)mdata3;
 		sptr->lp1_freq += (char)mdata4 << 3;
 		mptr = sptr->lp1_addr;
@@ -223,7 +223,7 @@ void lp2_start( void )
 
 void lp2_end( void )
 {
-	if (((++sptr->lp2_cnt) & 0xFF) != mdata2 || !mdata2){
+	if( ((++sptr->lp2_cnt) & 0xFF) != mdata2 || !mdata2 ){
 		sptr->lp2_vol += (char)mdata3;
 		sptr->lp2_freq += (char)mdata4 << 3;
 		mptr = sptr->lp2_addr;
@@ -237,10 +237,11 @@ void l3s_set( void )
 
 void l3e_set( void )
 {
-	if (sptr->lp3_addr)
+	if( sptr->lp3_addr ){
 		mptr = sptr->lp3_addr;
-	else
+	} else {
 		block_end();
+	}
 }
 
 void tempo_set( void )
@@ -259,22 +260,22 @@ void tempo_move( void )
 	sptr->tmpw = sptr->tmp << 8;
 	temp = (sptr->tmpm - sptr->tmp);
 	
-	if (temp < 0){
-		if (temp < -127)
+	if( temp < 0 ){
+		if( temp < -127 )
 			temp = -127;
 		
 		sptr->tmpad = (-temp << 8) / sptr->tmpc;
 		
-		if (sptr->tmpad < -0x7F0)
-			sptr->tmpad = -0x7F0;
+		if( sptr->tmpad < -0x07F0 )
+			sptr->tmpad = -0x07F0;
 	} else {
-		if (temp > 127)
+		if( temp > 127 )
 			temp = 127;
 		
 		sptr->tmpad = (temp << 8) / sptr->tmpc;
 		
-		if (sptr->tmpad > 0x7F0)
-			sptr->tmpad = 0x7F0;
+		if( sptr->tmpad > 0x07F0 )
+			sptr->tmpad = 0x07F0;
 	}
 }
 
@@ -305,14 +306,14 @@ void vol_move( void )
 	temp = mdata3 << 8;
 	temp -= sptr->pvod;
 	
-	if (temp < 0){
+	if( temp < 0 ){
 		sptr->pvoad = -temp / sptr->pvoc;
-		if (sptr->pvoad < -0x7F0)
-			sptr->pvoad = -0x7F0;
+		if( sptr->pvoad < -0x07F0 )
+			sptr->pvoad = -0x07F0;
 	} else {
 		sptr->pvoad = temp / sptr->pvoc;
-		if (sptr->pvoad > 0x7F0)
-			sptr->pvoad = 0x7F0;
+		if( sptr->pvoad > 0x07F0 )
+			sptr->pvoad = 0x07F0;
 	}
 }
 
@@ -321,7 +322,7 @@ void por_set( void )
 	sptr->swshc = 0;
 	sptr->swsc = mdata2;
 	
-	if (!mdata2) sptr->swsk = 0;
+	if( !mdata2 ) sptr->swsk = 0;
 	else sptr->swsk = 1;
 }
 
@@ -355,8 +356,8 @@ void echo_set2( void )
 
 void eon_set( void )
 {
-	if (mtrack >= 0x20 && mtrack < 0x2C){
-		if (se_playing[mtrack-0x20].kind == 0 || fg_rev_set[mtrack]){
+	if( mtrack >= 32 && mtrack < 44 ){
+		if( se_playing[mtrack-32].kind == 0 || fg_rev_set[mtrack] ){
 			rev_on_bit[1] |= keyd[1];
 			rev_bit_data[1] |= keyd[1];
 		}
@@ -370,8 +371,8 @@ void eon_set( void )
 
 void eof_set( void )
 {
-	if (mtrack >= 0x20 && mtrack < 0x2C){
-		if (se_playing[mtrack-0x20].kind == 0 || fg_rev_set[mtrack]){
+	if( mtrack >= 32 && mtrack < 44 ){
+		if( se_playing[mtrack-32].kind == 0 || fg_rev_set[mtrack] ){
 			rev_off_bit[1] |= keyd[1];
 			rev_bit_data[1] &= ~keyd[1];
 		}
@@ -391,7 +392,7 @@ void kakko_start( void )
 
 void kakko_end( void )
 {
-	switch (sptr->kakfg){
+	switch( sptr->kakfg ){
 	case 0:
 		sptr->kakfg++;
 		break;
@@ -409,7 +410,7 @@ void kakko_end( void )
 
 void env_set( void )
 {
-	if (mdata2){
+	if( mdata2 ){
 		spu_tr_wk[mtrack].a_mode = 0x8000;
 	} else {
 		spu_tr_wk[mtrack].a_mode = 0;
@@ -417,7 +418,7 @@ void env_set( void )
 	
 	spu_tr_wk[mtrack].env1_fg = 1;
 	
-	switch (mdata3){
+	switch( mdata3 ){
 	case 0:  spu_tr_wk[mtrack].s_mode = 0x4000; break;
 	case 1:  spu_tr_wk[mtrack].s_mode = 0xC000; break;
 	case 2:  spu_tr_wk[mtrack].s_mode = 0x0000; break;
@@ -426,8 +427,8 @@ void env_set( void )
 	
 	spu_tr_wk[mtrack].env2_fg = 1;
 	
-	if (mdata4){
-		spu_tr_wk[mtrack].r_mode = 0x20;
+	if( mdata4 ){
+		spu_tr_wk[mtrack].r_mode = 32;
 	} else {
 		spu_tr_wk[mtrack].r_mode = 0;
 	}
@@ -439,8 +440,8 @@ void ads_set( void )
 {
 	spu_tr_wk[mtrack].a_mode = 0;
 	spu_tr_wk[mtrack].ar = 0x7F - (mdata2 & 0x7F);
-	spu_tr_wk[mtrack].dr = 0xF - (mdata3 & 0xF);
-	spu_tr_wk[mtrack].sl = mdata4 & 0xF;
+	spu_tr_wk[mtrack].dr = 0x0F - (mdata3 & 0x0F);
+	spu_tr_wk[mtrack].sl = mdata4 & 0x0F;
 	spu_tr_wk[mtrack].env1_fg = 1;
 }
 
@@ -502,20 +503,20 @@ void vol_i_move( void )
 	work->pvom = mdata4;
 	temp2 = mdata4 << 8;
 	temp2 -= work->pvod;
-	if (temp2 < 0){
+	if( temp2 < 0 ){
 		work->pvoad = -(-temp2 / work->pvoc);
-		if (work->pvoad < -0x7F0)
-			work->pvoad = -0x7F0;
+		if( work->pvoad < -0x07F0 )
+			work->pvoad = -0x07F0;
 	} else {
 		work->pvoad = temp2 / work->pvoc;
-		if (work->pvoad > 0x7F0)
-			work->pvoad = 0x7F0;
+		if( work->pvoad > 0x07F0 )
+			work->pvoad = 0x07F0;
 	}
 }
 
 void at1_set( void )
 {
-	if (sptr->unkE4 == auto_env_pos || sptr->unkE4 == auto_phase_fg){
+	if( sptr->unkE4 == auto_env_pos || sptr->unkE4 == auto_phase_fg ){
 		// not sure about this, will have to wait until struct is identified
 		mix_fader[mtrack].unk08 = mdata2 + (mdata2 << 8);
 		mix_fader[mtrack].unk04 = mix_fader[mtrack].unk08;
@@ -526,7 +527,7 @@ void at1_set( void )
 	sptr->unkF1 = mdata3;
 	sptr->unkE8 = mdata4;
 	
-	if (sptr->unkE8 == 1){
+	if( sptr->unkE8 == 1 ){
 		sptr->unkEA = mdata2;
 		sptr->unkF2 = 0;
 		sptr->unkEB = mdata2;
@@ -561,7 +562,7 @@ void at1_set( void )
 
 void at2_set( void )
 {
-	if (sptr->unkE8 == 1){
+	if( sptr->unkE8 == 1 ){
 		sptr->unkEA = mdata2;
 		sptr->unkF2 = mdata3;
 		sptr->unkEB = mdata2;
@@ -596,7 +597,7 @@ void at2_set( void )
 
 void at3_set( void )
 {
-	if (sptr->unkE8){
+	if( sptr->unkE8 ){
 		sptr->unkEB = mdata2;
 		sptr->unkF3 = mdata3;
 		sptr->unkEC = mdata2;
@@ -627,7 +628,7 @@ void at3_set( void )
 
 void at4_set( void )
 {
-	if (sptr->unkE8){
+	if( sptr->unkE8 ){
 		sptr->unkEC = mdata2;
 		sptr->unkF4 = mdata3;
 		sptr->unkED = mdata2;
@@ -654,7 +655,7 @@ void at4_set( void )
 
 void at5_set( void )
 {
-	if (sptr->unkE8 == 1){
+	if( sptr->unkE8 == 1 ){
 		sptr->unkED = mdata2;
 		sptr->unkF5 = mdata3;
 		sptr->unkEE = mdata2;
@@ -677,7 +678,7 @@ void at5_set( void )
 
 void at6_set( void )
 {
-	if (sptr->unkE8 == 1){
+	if( sptr->unkE8 == 1 ){
 		sptr->unkEE = mdata2;
 		sptr->unkF6 = mdata3;
 		sptr->unkEF = mdata2;
@@ -696,7 +697,7 @@ void at6_set( void )
 
 void at7_set( void )
 {
-	if (sptr->unkE8 == 1){
+	if( sptr->unkE8 == 1 ){
 		sptr->unkEF = mdata2;
 		sptr->unkF7 = mdata3;
 		sptr->unkF0 = mdata2;
@@ -718,9 +719,9 @@ void at8_set( void )
 // NOMATCH: see inside
 void mno_set( void )
 {
-	if (mtrack >= 0x20){
+	if( mtrack >= 32 ){
 	// this array access is only a placeholder, mem_str_w appears to be a struct (same addition problem as in eon_set as well)
-		mem_str_w[mtrack-0x20].unk0C = sptr->snos = mdata2+0x100;
+		mem_str_w[mtrack-32].unk0C = sptr->snos = mdata2+256;
 		keyoff();
 		tone_set( sptr->snos );
 	}
@@ -728,7 +729,7 @@ void mno_set( void )
 
 void flg_set( void )
 {
-	switch (mdata2){
+	switch( mdata2 ){
 	case 0: fg_syukan_off[mtrack] = mdata3; break;
 	case 1: fg_rev_set[mtrack] = mdata3; break;
 	}
