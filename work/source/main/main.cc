@@ -16,20 +16,19 @@
 
 #define IN_MAIN_CC // for GV_InitSystem()
 
-#include "zoe_libs.h"
-//#include "../../module/mts/mts.h"
-//#include "../include/libdg.h"
-//#include "../include/libdm.h"
-//#include "../include/libev.h"
-//#include "../include/libfs.h"
-//#include "../include/libgv.h"
-//#include "../include/libhzd.h"
-//#include "../include/libmcard.h"
-//#include "../include/libscn.h"
-//#include "../include/libsd.h"
-//#include "../include/libstrm.h"
-//#include "../include/libtrg.h"
-//#include "../include/carl.h"
+#include "../../module/mts/mts.h"
+#include "../include/libdg.h"
+#include "../include/libdm.h"
+#include "../include/libev.h"
+#include "../include/libfs.h"
+#include "../include/libgv.h"
+#include "../include/libhzd.h"
+#include "../include/libmcard.h"
+#include "../include/libscn.h"
+#include "../include/libsd.h"
+#include "../include/libstrm.h"
+#include "../include/libtrg.h"
+#include "../include/carl.h"
 
 /*---------------------------------------------------------------------------*/
 
