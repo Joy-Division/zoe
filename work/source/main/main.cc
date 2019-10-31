@@ -75,10 +75,10 @@ static void SifLoad()
 #endif
 	sceSifInitRpc( 0 );
 	
-	for ( int i=8 ; i >= 0 ; i-- ){
+	for( int i=8 ; i >= 0 ; i-- ){
 		printf( "Load module %s\n", irx_list[i] );
 		
-		if ( sceSifLoadModule( irx_list[i], 0, NULL ) < 0 ){
+		if( sceSifLoadModule( irx_list[i], 0, NULL ) < 0 ){
 			printf( "Can't load module %s\n", irx_list[i] );
 			exit( 0 );
 		}
@@ -103,9 +103,9 @@ static void ResetIOP()
 	printf( "IopReplaceModule %s\n", IopReplaceModule );
 #endif
 	
-	if ( ReplaceImageFlag ){
-		while ( !sceSifRebootIop( IopReplaceModule ) );
-		while ( !sceSifSyncIop() );
+	if( ReplaceImageFlag ){
+		while( !sceSifRebootIop( IopReplaceModule ) );
+		while( !sceSifSyncIop() );
 	}
 	
 	sceSifInitRpc( 0 );
@@ -215,7 +215,7 @@ int DisableCache(int);
 	NewDebugMode();
 #endif
 	
-	while (1){
+	while( 1 ){
 		GV_ACTOR::Execute();
 	}
 }
