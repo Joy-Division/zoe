@@ -38,7 +38,7 @@
  * Configuration Definitions
  *---------------------------------------------------------------------------*/
 
-#if ( ZOE_JPN )
+#if (ZOE_JPN)
 // dummy_printf() is defined in include/orgtype.h according to .mdebug
 void dummy_printf( const char *fmt, ... );
 

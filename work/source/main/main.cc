@@ -39,7 +39,7 @@ extern void NewDebugMode(); /* dbgmode.cc */
 
 /*---------------------------------------------------------------------------*/
 
-#if ( ZOE_DEMO_OCT2000 )
+#if (ZOE_DEMO_OCT2000)
 #define CDVD_MODE  SCECdCD
 #else
 #define CDVD_MODE  SCECdDVD
@@ -68,7 +68,7 @@ static void SifLoad()
 		"cdrom0:\\MODULES\\NOUSBFS.IRX;1",
 		"cdrom0:\\MODULES\\IOP_MAIN.IRX;1"
 	};
-#if ( ZOE_JPN )
+#if (ZOE_JPN)
 	//
 	// TODO: decompile
 	//
@@ -99,7 +99,7 @@ static void ResetIOP()
 	sceCdInit( SCECdINIT );
 	sceCdMmode( CDVD_MODE );
 	
-#if ( ZOE_DEMO_OCT2000 )
+#if (ZOE_DEMO_OCT2000)
 	printf( "IopReplaceModule %s\n", IopReplaceModule );
 #endif
 	
@@ -162,7 +162,7 @@ int DisableCache(int);
 	
 	sd_init();
 	
-#if ( ZOE_DEMO_OCT2000 )
+#if (ZOE_DEMO_OCT2000)
 	DEBUG_InitException(
 		(((0x00010000+(s16)0x8000)
 		+ (0x00200000+(s16)0x8000)) - 16) );
@@ -203,7 +203,7 @@ int DisableCache(int);
 	
 	STRM_LoadPcmDir();
 	
-#if ( ZOE_DEMO_OCT2000 )
+#if (ZOE_DEMO_OCT2000)
 	NewInitLoad( "init", 0 );
 #else // TODO: Known for ZOE_JPN, check others
 	CR_SetStageLoad( "title", 1, "font.pak", 0 );
@@ -211,7 +211,7 @@ int DisableCache(int);
 	
 	NewStartStage();
 	
-#if ( ZOE_DEMO_OCT2000 )
+#if (ZOE_DEMO_OCT2000)
 	NewDebugMode();
 #endif
 	
