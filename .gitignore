@@ -31,6 +31,6 @@ work/cdrom.img/*
 
 # Includes
 #-------------------------
+!.gitkeep
 !disasm/*/.md5sum
 !work/cdrom.img/
-!work/cdrom.img/.gitkeep
