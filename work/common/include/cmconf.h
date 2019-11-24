@@ -1,5 +1,5 @@
 /*
- *【CM Library】by J.Ingram
+ *【 LibCM 】by J.Ingram
  * Configuration Include
  */
 #ifndef INC_CMCONF_H
@@ -10,30 +10,24 @@
  *---------------------------------------------------------------------------*/
 #if defined( __GNUC__ )
 
-/*
- * 128-bit Floating Point
- */
+/* 128-bit Floating Point */
 #if defined( __i686__ )\
  || defined( __x86_64__ )
-#define HASTYPE_FLOAT128
+#define HASTYPE_FLOAT128 (1)
 #endif /* (ARCH) */
 
-/*
- * 96-bit Floating Point
- */
+/* 96-bit Floating Point */
 #if defined( __i686__ )
-#define HASTYPE_FLOAT96
+#define HASTYPE_FLOAT96 (1)
 #endif /* (ARCH) */
 
-/*
- * 128-bit Integer
- */
+/* 128-bit Integer */
 #if defined( __x86_64__ )\
  || defined( __ee__ )  /* PS2 Emotion Engine */\
  || defined( __psp__ ) /* PSP Allegrex       */\
  || defined( __PPU__ ) /* PS3 Cell/B.E. PPU  */\
  || defined( __SPU__ ) /* PS3 Cell/B.E. SPU  */
-#define HASTYPE_INT128
+#define HASTYPE_INT128 (1)
 #endif /* (ARCH) */
 
 #endif /* __GNUC__ */
@@ -42,20 +36,22 @@
  * Conflict Check
  *---------------------------------------------------------------------------*/
 
-/*
- * PlayStation Portable Programmer Tool
- * Runtime Library & Toolchain
- */
+/*-----------------------------------------*/
+/* Sony Computer Entertainment Inc.        */
+/* PSP(TM) Programmer Tool Runtime Library */
+/*-----------------------------------------*/
 #if defined( __psp__ )
 
-/* check if psptypes.h is included
-   without suppressed typdefs */
+/*
+ * Check if psptypes.h has been included without suppressing typedefs
+ * that conflict with cmtypes.h. Halt the build process if so.
+ */
 #if defined( _SCE_PSPTYPES_H )\
  && !defined( SCE_PSPTYPES_SUPPRESS_ADDITIONAL_DEFINE )
 #error "psptypes.h was included before conflict suppression!!"
 #endif
 
-/* for conflicting typedefs in cmtypes.h */
+/* Suppress typedefs conflicting with cmtypes.h */
 #ifndef SCE_PSPTYPES_SUPPRESS_ADDITIONAL_DEFINE
 #define SCE_PSPTYPES_SUPPRESS_ADDITIONAL_DEFINE
 #endif

@@ -1,5 +1,5 @@
 /*
- *【CM Library】by J.Ingram
+ *【 LibCM 】by J.Ingram
  * Common Type Definitions
  */
 #ifndef INC_CMTYPES_H
@@ -174,10 +174,10 @@ typedef union union64 {
 } union64;
 
 typedef union union128 {
-#if defined( HASTYPE_INT128 )
+#ifdef HASTYPE_INT128
 	s_int128 s128;
 	u_int128 u128;
-#endif /* HASTYPE_INT128 */
+#endif
 	s_int64  s64[2];
 	u_int64  u64[2];
 	s_int32  s32[4];
@@ -188,9 +188,9 @@ typedef union union128 {
 	u_int8   u8[16];
 	float32  f32[4];
 	float64  f64[2];
-#if defined( HASTYPE_FLOAT128 )
+#ifdef HASTYPE_FLOAT128
 	float128 f128;
-#endif /* HASTYPE_FLOAT128 */
+#endif
 } union128;
 
 /*---------------------------------------------------------------------------*/
