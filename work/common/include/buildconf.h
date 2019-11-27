@@ -11,8 +11,9 @@
      + BUILD_SLPM61002 \
      + BUILD_PCPX96611 \
      + BUILD_SCUS_DEMO \
-     + BUILD_SCED_DEMO ) != 1 )
-#error "Config flag error!! 0 or >1 flags were defined."
+     + BUILD_SCED_DEMO \
+     + BUILD_NEW ) != 1 )
+#error "ERROR: 0 or >1 config flags defined."
 #endif
 
 /*---------------------------------------------------------------------------*
