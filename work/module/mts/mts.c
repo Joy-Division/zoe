@@ -5,7 +5,7 @@
 #include "global.h"
 #include "mts.h"
 
-#if ( ZOE_DEMO_OCT2000 )
+#if (ZOE_DEMO_OCT2000)
 char MTS_SIG[] = "MTS.KCEJ($Date: 2000/07/31 06:54:23 $)\n"; //! RCS keyword
 #endif
 
