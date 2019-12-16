@@ -33,4 +33,4 @@
 #endif /* END OF FILE */
 /*---------------------------------------------------------------------------*/
 /* -*- indent-tabs-mode: t; tab-width: 4; mode: c; -*- */
-/* vim: set noet ts=4 sw=4 ft=c ff=dos fenc=utf-8 : */
+/* vim: set noet ts=4 sw=4 ft=c ff=unix fenc=utf-8 : */
