@@ -1,4 +1,4 @@
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 main/main.cc
 	SifLoad(void)
 	ResetIOP(void)
@@ -6,27 +6,27 @@ main/main.cc
 	gcc2_compiled.
 	__gnu_compiled_cplusplus
 	ReplaceImageFlag
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 include/libgv.h
 	GV_InitSystem(void)
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 include/orgtype.h
 	dummy_printf(char *,...)
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 /tmp/cc1mKfxR.c
 	reg_frame
 	dereg_frame
 	__gnu_compiled_c
 	frame_table
 	ob.3
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 /usr/local/sce/ee/lib/crt0.s
 	_start
 	_exit
 	_root
 	zerobss
 	_args
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 game.cc
 	GAME::Init(void)
 	GAME::CurrentDifficulty(void)
@@ -86,11 +86,11 @@ game.cc
 	ScnSaveRescueRank(void)
 	GAME::CheckHiddenCommand(void)
 	_GLOBAL_$I$_matEffDemoCnt
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 ../include/libscn.h
 	SCN_SYSTEM::SetValNumber(int)
 	SCN_THREAD::SetValNumber(int)
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 scnfunc.cc
 	ScnPutString(void)
 	ScnPutNumber(void)
@@ -113,20 +113,20 @@ scnfunc.cc
 	ScnPad2Release(void)
 	ScnMessage(void)
 	ScnDebugPrint(void)
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 ../include/orgtype.h
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 pause.cc
 	NewPause(void)
 	__5pause
 	_$_5pause
 	pause::Act(void)
 	__tf5pause
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 ../include/libdg.h
 	DG_SetMatCamMain(ALG_MATRIX *)
 	DG_CAMERA::SetMat(ALG_MATRIX *)
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 grdrip.cc
 	NewGuardRipple(FRM_OBJECT *)
 	__6grdripP10FRM_OBJECT
@@ -135,7 +135,7 @@ grdrip.cc
 	__tf6grdrip
 	pszRippleTex.1356
 	u8RippleTex.1357
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 dasheff.cc
 	NewDashEffect(FRM_OBJECT *)
 	__7dasheffP10FRM_OBJECT
@@ -143,14 +143,14 @@ dasheff.cc
 	dasheff::Act(void)
 	__tf7dasheff
 	u8AuraTex.1356
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 jehlit.cc
 	NewJehutyLightEffect(FRM_OBJECT *)
 	__6jehlitP10FRM_OBJECT
 	_$_6jehlit
 	jehlit::Act(void)
 	__tf6jehlit
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 jehvern.cc
 	NewJehutyVernierEffect(FRM_OBJECT *)
 	__7jehvernP10FRM_OBJECT
@@ -163,17 +163,17 @@ jehvern.cc
 	_$tmp_1.1365
 	_$_9DG_OBJPTR
 	_$_8DG_LIGHT
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 ../include/libgv.h
 	__builtin_delete
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 jehaim.cc
 	NewJehutyAimEffect(FRM_OBJECT *)
 	__6jehaimP10FRM_OBJECT
 	_$_6jehaim
 	jehaim::Act(void)
 	__tf6jehaim
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 lineeff.cc
 	NewJehutyLineEffect(FRM_OBJECT *, unsigned short, unsigned char)
 	NewNeith1LineEffect(FRM_OBJECT *, unsigned short, unsigned char)
@@ -185,21 +185,21 @@ lineeff.cc
 	ltbJehuty
 	ltbNeith1
 	ltbMummy
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 stream.cc
 	NewStream(void)
 	__6stream
 	_$_6stream
 	stream::Act(void)
 	__tf6stream
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 delay.cc
 	ScnDelay(void)
 	__5delayUiUi
 	_$_5delay
 	delay::Act(void)
 	__tf5delay
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 scnact.cc
 	ScnActor(void)
 	ScnDestroyActor(void)
@@ -207,7 +207,7 @@ scnact.cc
 	scnact::Act(void)
 	__tf6scnact
 	_$_6scnact
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 vsman.cc
 	ScnVersusManager(void)
 	__5vsmanUiUiUi
@@ -216,7 +216,7 @@ vsman.cc
 	__tf5vsman
 	DG_CAMERA::InitMat(ALG_MATRIX *)
 	_$_9DG_CAMERA
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 vibdata.cc
 	PlayVibration(unsigned char, unsigned char)
 	vibDamage1
@@ -226,21 +226,21 @@ vibdata.cc
 	vibCross
 	vibPush
 	pvibData
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 scntrg.cc
 	ScnTarget(void)
 	__6scntrgUiP10ALG_VECTOR
 	_$_6scntrg
 	scntrg::Act(void)
 	__tf6scntrg
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 shman.cc
 	ScnShaftManager(void)
 	__5shman
 	_$_5shman
 	shman::Act(void)
 	__tf5shman
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 ada.cc
 	ADA_SetTrig(unsigned int)
 	ScnSetAdaTrig(void)
@@ -264,14 +264,14 @@ ada.cc
 	pszRescue.1405
 	pszAway.1406
 	pszBreak.1407
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 trap.cc
 	ScnTrap(void)
 	__4trapUiUcP8EV_EVENTP10ALG_VECTORT4
 	_$_4trap
 	trap::Act(void)
 	__tf4trap
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 horizn.cc
 	NewHorizon(void)
 	__6horizn
@@ -289,10 +289,10 @@ horizn.cc
 	ppol
 	pvert
 	nvert
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 setfog.cc
 	CR_SetFog(void)
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 advsmoke.cc
 	NewAdvancedSmoke(ALG_VECTOR *, ALG_VECTOR *, ALG_VECTOR *, int, float, EFF_FIELD *, float, float)
 	NewAdvancedSmoke(DG_OBJ_QUE *, ALG_VECTOR *, ALG_VECTOR *, ALG_VECTOR *, int, float, EFF_FIELD *, float, float)
@@ -302,22 +302,22 @@ advsmoke.cc
 	_$_8advsmoke
 	advsmoke::Act(void)
 	__tf8advsmoke
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 ../include/libeff.h
 	EFF_FIELD::DeleteProcess(void)
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 edge.cc
 	CalcUV(float *, ALG_VECTOR *)
 	__7CR_EDGEP10ALG_MATRIXP10ALG_VECTOR
 	_$_7CR_EDGE
 	CR_EDGE::Act(void)
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 ../include/carl.h
 	CR_EDGE::Visible(void)
 	CR_EDGE::Invisible(void)
 	__tf7CR_EDGE
 	DG_OBJ_QUE::Reset(void)
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 risngsmk.cc
 	NewRisingSmoke(void)
 	NewRisingSmoke(ALG_VECTOR *, float, int)
@@ -327,17 +327,17 @@ risngsmk.cc
 	risingsmoke::Act(void)
 	__tf11risingsmoke
 	ftabLife
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 camdepth.cc
 	NewAtmosphere(void)
 	__5atmosiPfT2
 	_$_5atmos
 	atmos::Act(void)
 	__tf5atmos
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 scneff.cc
 	ScnDemoImpact(void)
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 bgsphere.cc
 	NewBgSphere(void)
 	__8bgsphere
@@ -426,7 +426,7 @@ bgsphere.cc
 	frame_motion
 	file.1439
 	no_conv_tbl
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 scnutil.cc
 	ScnGetPlayerArm(void)
 	ScnGetPlayerLot(void)
@@ -442,7 +442,7 @@ scnutil.cc
 	ScnGetLanguage(void)
 	__tf11SOUNDSTREAM
 	_$_11SOUNDSTREAM
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 tempdemo.cc
 	__8tempdemoPcP10SCN_THREAD
 	_$_8tempdemo
@@ -453,14 +453,14 @@ tempdemo.cc
 	ScnGenocide(void)
 	__tf8tempdemo
 	pTempDemo
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 object.cc
 	ScnTempObject(void)
 	__7tempobjP10ALG_VECTORfUi
 	_$_7tempobj
 	tempobj::Act(void)
 	__tf7tempobj
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 softreset.cc
 	__9softreset
 	_$_9softreset
@@ -468,7 +468,7 @@ softreset.cc
 	ScnSoftReset(void)
 	__tf9softreset
 	pSoftReset
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 highstage.cc
 	__9highstageP8SCN_DATAT1T1
 	highstage::Act(void)
@@ -479,18 +479,18 @@ highstage.cc
 	ScnEndHSStageLoop(void)
 	__tf9highstage
 	bLoopEnd
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 ../include/libhzd.h
 	_$_15HZD_OFFSET_TREE
 	HZD_OFFSET_TREE::CalcInv(void)
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 highblock.cc
 	__9highblockP10ALG_MATRIXP10ALG_VECTORUc
 	_$_9highblock
 	highblock::Act(void)
 	NewHighSpeedBlock(ALG_MATRIX *, ALG_VECTOR *, unsigned char)
 	__tf9highblock
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 vibration.cc
 	__12CR_VIBRATIONP18_CR_VIBRATION_DATAi
 	_$_12CR_VIBRATION
@@ -499,7 +499,7 @@ vibration.cc
 	CR_VIBRATION::UpdateIndex(void)
 	CR_VIBRATION::Act(void)
 	__tf12CR_VIBRATION
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 water.cc
 	Callback0(sceGsFrame *, DAT128 *)
 	Callback2(sceGsFrame *, DAT128 *)
@@ -513,7 +513,7 @@ water.cc
 	waterside::Act(void)
 	__tf9waterside
 	__tf5water
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 copyframe.cc
 	__9copyframe
 	_$_9copyframe
@@ -523,14 +523,14 @@ copyframe.cc
 	__tf9copyframe
 	nAlive
 	pCopy
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 stealth.cc
 	NewStealthModel(FRM_OBJECT *, DG_OBJ *, ALG_VECTOR *)
 	__7stealthP10FRM_OBJECTP6DG_OBJP10ALG_VECTOR
 	_$_7stealth
 	stealth::Act(void)
 	__tf7stealth
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 window.cc
 	CallbackSet(CR_WINDOW *, DAT128 *)
 	CallbackClear(CR_WINDOW *, DAT128 *)
@@ -552,7 +552,7 @@ window.cc
 	CR_WINDOW::SetScissor(DAT128 *)
 	CR_WINDOW::ResetScissor(DAT128 *)
 	CR_WINDOW::SetCursor(int, int)
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 win3d.cc
 	Callback0(CR_3DWINDOW *, DAT128 *)
 	Callback1(CR_3DWINDOW *, DAT128 *)
@@ -561,7 +561,7 @@ win3d.cc
 	CR_3DWINDOW::Init(int, int, int, int)
 	CR_3DWINDOW::SetPosition(int, int)
 	CR_3DWINDOW::SetArea(int, int)
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 map.cc
 	NewDisplayMap(void)
 	__3map
@@ -575,21 +575,21 @@ map.cc
 	player_anim_pattern
 	STG_MDL
 	PARTY_ITEM_ICON
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 rotstage.cc
 	ScnRotateStage(void)
 	__8rotstageiP10ALG_VECTORf
 	_$_8rotstage
 	rotstage::Act(void)
 	__tf8rotstage
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 tmpstage.cc
 	tmpstage::Act(void)
 	__8tmpstagePc
 	_$_8tmpstage
 	ScnDemoStage(void)
 	__tf8tmpstage
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 cderror.cc
 	NewReadError(void)
 	DeleteReadError(void)
@@ -598,7 +598,7 @@ cderror.cc
 	cderror::Act(void)
 	__tf7cderror
 	pChara
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 stgsub.cc
 	ScnStageSub(void)
 	EndStageSub(void)
@@ -607,16 +607,16 @@ stgsub.cc
 	stgsub::Act(void)
 	stgsub::End(void)
 	__tf6stgsub
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 base.cc
 	__11AN_ANNOUNCE
 	_$_11AN_ANNOUNCE
 	AN_ANNOUNCE::AppearItem(TRG_OBJECT *)
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 announce.h
 	AN_ANNOUNCE::AppearItem(TRG_OBJECT *)
 	__tf11AN_ANNOUNCE
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 playvoice.cc
 	__12AN_PLAYVOICEP8EV_EVENT
 	_$_12AN_PLAYVOICE
@@ -625,12 +625,12 @@ playvoice.cc
 	AN_PLAYVOICE::SetUserData(EV_EVENT *, unsigned short, unsigned char,...)
 	NewPlayVoice(EV_EVENT *)
 	__tf12AN_PLAYVOICE
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 ../include/libev.h
 	EV_JOB::WakeupJob(EV_EVENT *)
 	EV_JOB::SuspendJob(EV_EVENT *)
 	__tf6EV_JOB
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 eneman.cc
 	ScnEnemyManager(void)
 	__11ENE_MANAGER
@@ -646,7 +646,7 @@ eneman.cc
 	ScnForceEscape(void)
 	ScnSetLockOn(void)
 	_GLOBAL_$I$_11ENE_MANAGER$entry
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 ../include/libene.h
 	ENE_MANAGER::SetNoEnemy(void)
 	ENE_MANAGER::KeepEnd(void)
@@ -657,7 +657,7 @@ eneman.cc
 	ENE_MANAGER::Escape(void)
 	ENE_MANAGER::Encount(void)
 	__tf11ENE_MANAGER
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 party.cc
 	ScnParty(void)
 	__9ENE_PARTYUiUcUiUcPUiP10ALG_VECTORPUcT7T7UcfUcT6
@@ -669,11 +669,11 @@ party.cc
 	_$_10ENE_MEMBER
 	HZD_GRAVITY::Inverse(ALG_VECTOR *, ALG_VECTOR *)
 	HZD_GRAVITY::GetComp(ALG_MATRIX *, ALG_VECTOR *)
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 enemy.cc
 	ENE_OBJECT::Init(FRM_OBJECT *)
 	ENE_OBJECT::SetPad(void)
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 enerap.cc
 	FreeMove(ENE_OBJECT *)
 	FieldMove(ENE_OBJECT *)
@@ -726,7 +726,7 @@ enerap.cc
 	u8ArmsInt2
 	u8EvadeTime
 	EVADE_DIR_TBL
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 enemum.cc
 	ENE_OBJECT::InitMummy(void)
 	ENE_OBJECT::ThinkMummy(void)
@@ -758,7 +758,7 @@ enemum.cc
 	u16CannonTime
 	u8GuardProbF
 	u8GuardProbN
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 enecyc.cc
 	ENE_OBJECT::InitCyclops(void)
 	GetAimPad(ENE_OBJECT *, ALG_VECTOR *, ALG_VECTOR *, float)
@@ -790,7 +790,7 @@ enecyc.cc
 	u16SupTimeMin
 	u16ASupTimeMax
 	u8CountArmsProb
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 enenei1.cc
 	NeithPSS(ENE_OBJECT *)
 	ENE_OBJECT::InitNeith1(void)
@@ -804,11 +804,11 @@ enenei1.cc
 	ActFactry(ENE_OBJECT *)
 	ActQuit(ENE_OBJECT *)
 	ENE_OBJECT::ThinkNeith1(void)
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 enenei2.cc
 	ENE_OBJECT::InitNeith2(void)
 	ENE_OBJECT::ThinkNeith2(void)
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 enejeh.cc
 	StateMove(ENE_OBJECT *)
 	StateDash(ENE_OBJECT *)
@@ -824,7 +824,7 @@ enejeh.cc
 	attack_rate_s
 	chenge_wait
 	arm_res_rate
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 frmcmd.cc
 	FRM_COMMAND::Init(FRM_OBJECT *)
 	FRM_COMMAND::Execute(void)
@@ -832,7 +832,7 @@ frmcmd.cc
 	FRM_COMMAND::InitPhase(unsigned char)
 	FRM_COMMAND::Set(unsigned char)
 	FRM_COMMAND::Reset(unsigned char)
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 frame.cc
 	NewFrame(unsigned int, ALG_MATRIX *, unsigned char, unsigned char, unsigned char, unsigned char, int, unsigned int)
 	ScnFrame(void)
@@ -847,7 +847,7 @@ frame.cc
 	pszModel.1371
 	pszStModel.1372
 	pszMotion.1373
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 ../include/libfrm.h
 	FRM_OBJECT::DoHeld(void)
 	FRM_OBJECT::DoAction(void)
@@ -856,10 +856,10 @@ frame.cc
 	FRM_CAMERA::Move(ALG_MATRIX *)
 	__10ENE_OBJECT
 	_$_10ENE_OBJECT
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 ../include/libmt.h
 	_$_9MT_MOTPTR
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 getsta.cc
 	FRM_OBJECT::GetState(void)
 	FRM_OBJECT::GetPosData(void)
@@ -867,21 +867,21 @@ getsta.cc
 	FRM_OBJECT::SearchLab(void)
 	FRM_OBJECT::GetPadData(void)
 	FRM_OBJECT::SetPad(void)
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 setpos.cc
 	FRM_OBJECT::SetPosition(void)
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 setscr.cc
 	FRM_OBJECT::SetScreen(void)
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 chlock.cc
 	FRM_OBJECT::CheckLockOn(void)
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 chhzd.cc
 	FRM_OBJECT::CheckHazard(void)
 	FRM_OBJECT::CheckHazardBack(float, float)
 	FRM_OBJECT::CalcHazardAng(ALG_VECTOR *, ALG_VECTOR *, float)
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 settrg.cc
 	FRM_OBJECT::SetTarget(void)
 	FRM_OBJECT::ResetTrg(void)
@@ -889,15 +889,15 @@ settrg.cc
 	FRM_OBJECT::ResetArms(void)
 	FRM_OBJECT::SetGuard(void)
 	FRM_OBJECT::ResetGuard(void)
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 setmdl.cc
 	FRM_OBJECT::SetModel(void)
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 frmcam.cc
 	__10FRM_CAMERAfffffffff
 	FRM_CAMERA::Set(FRM_CAMERA *)
 	FRM_CAMERA::Calc(ALG_MATRIX *, ALG_MATRIX *)
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 doctrl.cc
 	FRM_OBJECT::DoControl(void)
 	FRM_OBJECT::TurnFrame(void)
@@ -911,7 +911,7 @@ doctrl.cc
 	FRM_OBJECT::MoveVec(ALG_VECTOR *, float, float)
 	FRM_OBJECT::ResetMatrix(ALG_MATRIX *)
 	FRM_OBJECT::PlayVibration(unsigned char)
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 setcam.cc
 	FRM_OBJECT::SetCamera(void)
 	FRM_OBJECT::CalcRotCam(void)
@@ -919,117 +919,117 @@ setcam.cc
 	FRM_OBJECT::CalcHzdCam(void)
 	FRM_OBJECT::SwitchCamera(unsigned char)
 	_GLOBAL_$I$fcmNormal
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 dodash.cc
 	FRM_OBJECT::DoDash(void)
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 ../include/libsd.h
 	SD_Play3DSoundMiddle(unsigned short, ALG_VECTOR *)
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 dodmg.cc
 	FRM_OBJECT::DoDamage(void)
 	FRM_OBJECT::CheckDamage(void)
 	FRM_OBJECT::GetDamage(float)
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 doguard.cc
 	FRM_OBJECT::DoGuard(void)
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 docross.cc
 	FRM_OBJECT::DoCross(void)
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 doarms.cc
 	FRM_OBJECT::DoArms(void)
 	FRM_OBJECT::CheckCross(void)
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 doblast.cc
 	FRM_OBJECT::DoBlast(void)
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 dohold.cc
 	FRM_OBJECT::DoHold(void)
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 dobump.cc
 	FRM_OBJECT::DoBump(void)
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 frmnode.cc
 	FRM_OBJECT::NodeMdl(unsigned char)
 	FRM_OBJECT::NodeMat(unsigned char)
 	DG_OBJ::CalcMdlWorld(int)
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 custom.cc
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 rescue.cc
 	NewRescueRate(void)
 	__10RescueRate
 	_$_10RescueRate
 	RescueRate::Act(void)
 	__tf10RescueRate
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 rapbld.cc
 	NewRaptorBladeEffect(FRM_OBJECT *)
 	__6rapbldP10FRM_OBJECT
 	_$_6rapbld
 	rapbld::Act(void)
 	__tf6rapbld
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 gndeff.cc
 	NewGroundEffect(FRM_OBJECT *)
 	__6gndeffP10FRM_OBJECT
 	_$_6gndeff
 	gndeff::Act(void)
 	__tf6gndeff
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 gndspark.cc
 	NewGndSpark(FRM_OBJECT *, ALG_VECTOR *, float)
 	__8gndsparkP10FRM_OBJECTP10ALG_VECTORf
 	_$_8gndspark
 	gndspark::Act(void)
 	__tf8gndspark
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 rapbldline.cc
 	NewRapBldLine(FRM_OBJECT *)
 	__10rapbldlineP10FRM_OBJECT
 	_$_10rapbldline
 	rapbldline::Act(void)
 	__tf10rapbldline
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 gndline.cc
 	NewGndLine(FRM_OBJECT *)
 	__7gndlineP10FRM_OBJECT
 	_$_7gndline
 	gndline::Act(void)
 	__tf7gndline
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 steam.cc
 	NewSteam(char *, int, ALG_MATRIX *, float, int *, float)
 	__5steamPciP10ALG_MATRIXfPif
 	_$_5steam
 	steam::Act(void)
 	__tf5steam
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 ../include/libalg.h
 	ALG_MATRIX::Rotate(float, float, float)
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 wtrpillar.cc
 	NewWtrPillar(ALG_VECTOR *, float, float)
 	__9wtrpillarP10ALG_VECTORff
 	_$_9wtrpillar
 	wtrpillar::Act(void)
 	__tf9wtrpillar
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 shadow.cc
 	NewShadow(FRM_OBJECT *)
 	__6shadowP10FRM_OBJECT
 	_$_6shadow
 	shadow::Act(void)
 	__tf6shadow
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 ring_particle.cc
 	NewRingParticle(char *, int, ALG_MATRIX *, float, float, float, float, float, unsigned short, unsigned short, int *)
 	__13ring_particlePciP10ALG_MATRIXfffffUsUsPi
 	_$_13ring_particle
 	ring_particle::Act(void)
 	__tf13ring_particle
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 tyrnt_vulcan.cc
 	NewTyrantVulcan(ALG_MATRIX *)
 	__13tyrant_vulcanP10ALG_MATRIX
@@ -1038,7 +1038,7 @@ tyrnt_vulcan.cc
 	tyrant_vulcan::CheckHzd(void)
 	tyrant_vulcan::CheckDmg(void)
 	__tf13tyrant_vulcan
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 tyrant.cc
 	ScnTyrant(void)
 	ScnTyrantFirst(void)
@@ -1068,28 +1068,28 @@ tyrant.cc
 	u8TyrantFlag
 	tyrant.h
 	__tf6TYRANT
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 tyrnt_probe.cc
 	NewTyrantProbe(TYRANT *, ALG_VECTOR *, unsigned char *)
 	__12tyrant_probeP6TYRANTP10ALG_VECTORPUc
 	_$_12tyrant_probe
 	tyrant_probe::Act(void)
 	__tf12tyrant_probe
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 tyrnt_charge.cc
 	NewTyrantCharge(TYRANT *, char *, int, unsigned short, unsigned short, int *)
 	__13tyrant_chargeP6TYRANTPciUsUsPi
 	_$_13tyrant_charge
 	tyrant_charge::Act(void)
 	__tf13tyrant_charge
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 tyrnt_megalsr.cc
 	NewTyrantMegaLaser(ALG_MATRIX *)
 	__16tyrant_megalaserP10ALG_MATRIX
 	_$_16tyrant_megalaser
 	tyrant_megalaser::Act(void)
 	__tf16tyrant_megalaser
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 tyrnt_missile.cc
 	NewTyrantMissile(TYRANT *, ALG_MATRIX *)
 	__14tyrant_missileP6TYRANTP10ALG_MATRIX
@@ -1101,28 +1101,28 @@ tyrnt_missile.cc
 	tyrant_missile::CheckHzd(void)
 	tyrant_missile::CheckDmg(void)
 	__tf14tyrant_missile
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 ring_effect.cc
 	NewRingEffect(FRM_OBJECT *)
 	__11ring_effectP10FRM_OBJECT
 	_$_11ring_effect
 	ring_effect::Act(void)
 	__tf11ring_effect
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 tyrnt_msl_smoke.cc
 	NewTyrantMslSmoke(ALG_MATRIX *, int *, unsigned char, char *)
 	__15tyrnt_msl_smokeP10ALG_MATRIXPiUcPc
 	_$_15tyrnt_msl_smoke
 	tyrnt_msl_smoke::Act(void)
 	__tf15tyrnt_msl_smoke
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 tyrnt_vul_effect.cc
 	NewVulcanEffect(ALG_VECTOR *)
 	__20tyrant_vulcan_effectP10ALG_VECTOR
 	_$_20tyrant_vulcan_effect
 	tyrant_vulcan_effect::Act(void)
 	__tf20tyrant_vulcan_effect
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 tyrnt_laser.cc
 	NewTyrantLaser(TYRANT *, ALG_MATRIX *)
 	__12tyrant_laserP6TYRANTP10ALG_MATRIX
@@ -1131,7 +1131,7 @@ tyrnt_laser.cc
 	tyrant_laser::CheckHzd(void)
 	tyrant_laser::CheckDmg(void)
 	__tf12tyrant_laser
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 tyrnt_laser2.cc
 	NewTyrantLaser2(TYRANT *, ALG_MATRIX *)
 	__13tyrant_laser2P6TYRANTP10ALG_MATRIX
@@ -1140,14 +1140,14 @@ tyrnt_laser2.cc
 	tyrant_laser2::CheckHzd(void)
 	tyrant_laser2::CheckDmg(void)
 	__tf13tyrant_laser2
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 jehbld.cc
 	NewJehutyBladeEffect(FRM_OBJECT *)
 	__6jehbldP10FRM_OBJECT
 	_$_6jehbld
 	jehbld::Act(void)
 	__tf6jehbld
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 jehbldline.cc
 	NewJehBldLine(FRM_OBJECT *)
 	__10jehbldlineP10FRM_OBJECT
@@ -1161,14 +1161,14 @@ jehbldline.cc
 	JehDBld1
 	JehDBld2
 	JehBBld
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 cycfist.cc
 	NewCyclopsFist(FRM_OBJECT *)
 	__7cycfistP10FRM_OBJECT
 	_$_7cycfist
 	cycfist::Act(void)
 	__tf7cycfist
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 jehbldline2.cc
 	NewJehBldLine2(FRM_OBJECT *)
 	__11jehbldline2P10FRM_OBJECT
@@ -1176,28 +1176,28 @@ jehbldline2.cc
 	jehbldline2::Act(void)
 	__tf11jehbldline2
 	JehDBld
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 tyrnt_megalsr2.cc
 	NewTyrantMegaLaser2(ALG_VECTOR *)
 	__17tyrant_megalaser2P10ALG_VECTOR
 	_$_17tyrant_megalaser2
 	tyrant_megalaser2::Act(void)
 	__tf17tyrant_megalaser2
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 cycfisteff.cc
 	NewCycFistEff(FRM_OBJECT *)
 	__10cycfisteffP10FRM_OBJECT
 	_$_10cycfisteff
 	cycfisteff::Act(void)
 	__tf10cycfisteff
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 jeh_barms_eff.cc
 	NewJehBArmsEffect(FRM_OBJECT *)
 	__13jeh_barms_effP10FRM_OBJECT
 	_$_13jeh_barms_eff
 	jeh_barms_eff::Act(void)
 	__tf13jeh_barms_eff
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 windeff.cc
 	NewWindEffect(FRM_OBJECT *, ALG_VECTOR *)
 	__7windeffP10FRM_OBJECTP10ALG_VECTOR
@@ -1208,28 +1208,28 @@ windeff.cc
 	fWindTbl2
 	fAlphaTbl1
 	fAlphaTbl2
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 cannonline.cc
 	NewCannonLine(FRM_OBJECT *, ALG_VECTOR *, float)
 	__10cannonlineP10FRM_OBJECTP10ALG_VECTORf
 	_$_10cannonline
 	cannonline::Act(void)
 	__tf10cannonline
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 cannonspark.cc
 	NewCannonSpark(ALG_VECTOR *, float, int)
 	__11cannonsparkP10ALG_VECTORfi
 	_$_11cannonspark
 	cannonspark::Act(void)
 	__tf11cannonspark
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 tyrnt_ripple.cc
 	NewTyrantRipple(TYRANT *)
 	__13tyrant_rippleP6TYRANT
 	_$_13tyrant_ripple
 	tyrant_ripple::Act(void)
 	__tf13tyrant_ripple
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 tyrnt_flashlsr.cc
 	NewTyrantFlashLaser(TYRANT *)
 	__17tyrant_flashlaserP6TYRANT
@@ -1237,7 +1237,7 @@ tyrnt_flashlsr.cc
 	tyrant_flashlaser::Act(void)
 	tyrant_flashlaser::CheckHzd(void)
 	__tf17tyrant_flashlaser
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 stgsmoke.cc
 	NewStageSmoke(ALG_VECTOR *, float, ALG_VECTOR *, ALG_VECTOR *, float, float, unsigned char, unsigned short, unsigned short, EFF_FIELD *)
 	NewStageSmoke(void)
@@ -1245,14 +1245,14 @@ stgsmoke.cc
 	_$_11stage_smoke
 	stage_smoke::Act(void)
 	__tf11stage_smoke
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 hole.cc
 	NewHole(ALG_VECTOR *)
 	__4holeP10ALG_VECTOR
 	_$_4hole
 	hole::Act(void)
 	__tf4hole
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 grdeff.cc
 	NewGuardEffect(FRM_OBJECT *)
 	__6grdeffP10FRM_OBJECT
@@ -1261,7 +1261,7 @@ grdeff.cc
 	__tf6grdeff
 	pszGuardTex.1356
 	u8GuardTex.1357
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 glb_mark.cc
 	ScnGlbMark(void)
 	__7GlbMarkUsUsfUiUi
@@ -1270,7 +1270,7 @@ glb_mark.cc
 	__tf7GlbMark
 	PRE_DIST
 	PRESS_OFFSET
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 map_radar.cc
 	NewMapRadar(FRM_OBJECT *)
 	__8MapRadarP10FRM_OBJECT
@@ -1279,49 +1279,49 @@ map_radar.cc
 	MapRadar::MakeMapBox(void)
 	MapRadar::DebugRGBA(void)
 	__tf8MapRadar
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 tyrnt_locklsr.cc
 	NewTyrantLockLaser(TYRANT *)
 	__16tyrant_locklaserP6TYRANT
 	_$_16tyrant_locklaser
 	tyrant_locklaser::Act(void)
 	__tf16tyrant_locklaser
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 party_circle.cc
 	NewPartyRader(void)
 	__12party_circle
 	_$_12party_circle
 	party_circle::Act(void)
 	__tf12party_circle
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 dest_rader.cc
 	NewDestRader(ALG_VECTOR *)
 	__10dest_raderP10ALG_VECTOR
 	_$_10dest_rader
 	dest_rader::Act(void)
 	__tf10dest_rader
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 mn_pause.cc
 	NewDisplayPause(int)
 	__8mn_pausei
 	_$_8mn_pause
 	mn_pause::Act(void)
 	__tf8mn_pause
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 item_pointer.cc
 	NewItemPointer(FRM_OBJECT *, unsigned short)
 	__12item_pointerP10FRM_OBJECTUs
 	_$_12item_pointer
 	item_pointer::Act(void)
 	__tf12item_pointer
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 wave.cc
 	NewWave(FRM_OBJECT *)
 	__4waveP10FRM_OBJECT
 	_$_4wave
 	wave::Act(void)
 	__tf4wave
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 func_window.cc
 	InitWindow(CR_WINDOW *, float, float, float, float, float *, float *, float *, float *)
 	InitFont(DG_OBJ_FONT *, unsigned char, char *, float)
@@ -1332,7 +1332,7 @@ func_window.cc
 	CR_WINDOW::AnmClose(float *, float *, float, float)
 	CR_3DWINDOW::AnmClose(float *, float *, float, float)
 	FontScroll(DG_OBJ_FONT *, unsigned char, float, float *, float *, float)
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 get_prog.cc
 	NewGetProgram(unsigned char, unsigned char *, unsigned int)
 	__10GetProgramUcPUcUi
@@ -1340,14 +1340,14 @@ get_prog.cc
 	GetProgram::Act(void)
 	__tf10GetProgram
 	PROG_NAME
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 get_itembox.cc
 	NewGetItemBox(unsigned char, unsigned char *)
 	__10GetItemBoxUcPUc
 	_$_10GetItemBox
 	GetItemBox::Act(void)
 	__tf10GetItemBox
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 get_item.cc
 	NewGetItem(unsigned char, unsigned int)
 	__7GetItemUcUi
@@ -1357,7 +1357,7 @@ get_item.cc
 	GetItem::ActWnd(void)
 	__tf7GetItem
 	_bDraw
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 menu.cc
 	NewMenu(void)
 	__4menu
@@ -1387,17 +1387,17 @@ menu.cc
 	menu::ActSave(void)
 	menu::ActSpecials(void)
 	__tf4menu
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 ../include/actor.h
 	GAME::CallLeaveAreaProc(void)
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 lockon.cc
 	NewLockonCursor(FRM_OBJECT *, unsigned short, unsigned char)
 	__12LockonCursorP10FRM_OBJECTUsUc
 	_$_12LockonCursor
 	LockonCursor::Act(void)
 	__tf12LockonCursor
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 item_cur.cc
 	NewItemCursor(FRM_OBJECT *, unsigned short, unsigned char)
 	__10ItemCursorP10FRM_OBJECTUsUc
@@ -1405,21 +1405,21 @@ item_cur.cc
 	ItemCursor::Act(void)
 	__tf10ItemCursor
 	cur_tbl
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 lockable.cc
 	NewLockableCursor(FRM_OBJECT *, unsigned short, unsigned char)
 	__14LockableCursorP10FRM_OBJECTUsUc
 	_$_14LockableCursor
 	LockableCursor::Act(void)
 	__tf14LockableCursor
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 target.cc
 	NewTargetCursor(FRM_OBJECT *, unsigned short, unsigned char)
 	__12TargetCursorP10FRM_OBJECTUsUc
 	_$_12TargetCursor
 	TargetCursor::Act(void)
 	__tf12TargetCursor
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 party_cur.cc
 	NewPartyCircle(FRM_OBJECT *)
 	__8PartyCurP10FRM_OBJECT
@@ -1428,7 +1428,7 @@ party_cur.cc
 	GLOBAL_$I$NewPartyCircle(FRM_OBJECT *)
 	__tf8PartyCur
 	PARTY_DIST
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 party_lockcur.cc
 	NewPartyLockCursor(FRM_OBJECT *, unsigned short, unsigned char)
 	__15PartyLockCursorP10FRM_OBJECTUsUc
@@ -1438,7 +1438,7 @@ party_lockcur.cc
 	__tf15PartyLockCursor
 	cur_tbl2
 	SAERCH_DIST
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 party_trg_cur.cc
 	NewPartyTrgCursor(FRM_OBJECT *, unsigned short)
 	__14PartyTrgCursorP10FRM_OBJECTUs
@@ -1446,7 +1446,7 @@ party_trg_cur.cc
 	PartyTrgCursor::Act(void)
 	GLOBAL_$I$NewPartyTrgCursor(FRM_OBJECT *, unsigned short)
 	__tf14PartyTrgCursor
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 party_frame.cc
 	NewPartyFrame(FRM_OBJECT *, unsigned short)
 	__10PartyFrameP10FRM_OBJECTUs
@@ -1455,7 +1455,7 @@ party_frame.cc
 	PartyFrame::UpdateNameTex(unsigned char)
 	__tf10PartyFrame
 	TBL_TEX
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 monitor.cc
 	ScnServerFlagOff(void)
 	ScnSetBossBattle(void)
@@ -1467,21 +1467,21 @@ monitor.cc
 	_$_7Monitor
 	Monitor::Act(void)
 	__tf7Monitor
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 gauge.cc
 	NewGauge(FRM_OBJECT *)
 	__5GuageP10FRM_OBJECT
 	_$_5Guage
 	Guage::Act(void)
 	__tf5Guage
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 site.cc
 	NewSite(FRM_OBJECT *)
 	__4siteP10FRM_OBJECT
 	_$_4site
 	site::Act(void)
 	__tf4site
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 jog_wep_cus.cc
 	NewJogWepCus(FRM_OBJECT *)
 	__9JogWepCusP10FRM_OBJECT
@@ -1492,7 +1492,7 @@ jog_wep_cus.cc
 	__tf9JogWepCus
 	JOG_TBL_TEX
 	JOG_TBL_ICON
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 escape_view.cc
 	NewEscapeView(void)
 	__10EscapeView
@@ -1507,20 +1507,20 @@ escape_view.cc
 	Window::MakeNormWnd(void)
 	Window::MakeEmergWnd(void)
 	__tf6Window
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 navigate.cc
 	NewNavigate(FRM_OBJECT *, ALG_VECTOR)
 	__8navigateP10FRM_OBJECTG10ALG_VECTOR
 	_$_8navigate
 	navigate::Act(void)
 	__tf8navigate
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 make_backbox.cc
 	MakeBackBox(DG_OBJ_POLYGON *, DG_VERTEX *, float, float, float, float)
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 waterhzd.cc
 	JudgeWaterHazard(ALG_VECTOR *)
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 dust_smoke.cc
 	NewDustsmokeEffect(FRM_OBJECT *)
 	__10dust_smokeP10FRM_OBJECT
@@ -1529,35 +1529,35 @@ dust_smoke.cc
 	dust_smoke::StoreParticle(void)
 	dust_smoke::Act(void)
 	__tf10dust_smoke
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 scrtch_wtr.cc
 	NewScratchWater(FRM_OBJECT *)
 	__13scratch_waterP10FRM_OBJECT
 	_$_13scratch_water
 	scratch_water::Act(void)
 	__tf13scratch_water
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 water_ripple.cc
 	NewWaterRipple(ALG_VECTOR *, float, float, unsigned short)
 	__12water_rippleP10ALG_VECTORffUs
 	_$_12water_ripple
 	water_ripple::Act(void)
 	__tf12water_ripple
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 water_fog.cc
 	NewWaterFog(ALG_VECTOR *, float)
 	__9water_fogP10ALG_VECTORf
 	_$_9water_fog
 	water_fog::Act(void)
 	__tf9water_fog
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 cannonspark2.cc
 	NewCannonSpark2(ALG_VECTOR *, int)
 	__12cannonspark2P10ALG_VECTORi
 	_$_12cannonspark2
 	cannonspark2::Act(void)
 	__tf12cannonspark2
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 probe.cc
 	NewProbe(TYRANT *, ALG_MATRIX *)
 	__5probeP6TYRANTP10ALG_MATRIX
@@ -1571,28 +1571,28 @@ probe.cc
 	probe::CageBreakInit(void)
 	probe::ActCageBreak(void)
 	__tf5probe
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 spread.cc
 	NewSpreadParticle(ALG_MATRIX *)
 	__6spreadP10ALG_MATRIX
 	_$_6spread
 	spread::Act(void)
 	__tf6spread
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 reduction.cc
 	NewReduction(ALG_MATRIX *)
 	__9reductionP10ALG_MATRIX
 	_$_9reduction
 	reduction::Act(void)
 	__tf9reduction
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 missile_exp.cc
 	NewMissileExp(ALG_MATRIX *)
 	__11missile_expP10ALG_MATRIX
 	_$_11missile_exp
 	missile_exp::Act(void)
 	__tf11missile_exp
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 glb_map.cc
 	NewGlobalMap(void)
 	__7glb_map
@@ -1603,14 +1603,14 @@ glb_map.cc
 	glb_map::PadLockInit(void)
 	glb_map::StageInit(void)
 	__tf7glb_map
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 tyrnt_mainlsr.cc
 	NewTyrantMainLaser(TYRANT *)
 	__16tyrant_mainlaserP6TYRANT
 	_$_16tyrant_mainlaser
 	tyrant_mainlaser::Act(void)
 	__tf16tyrant_mainlaser
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 save_window.cc
 	NewSaveWindow(int *)
 	__11save_windowPi
@@ -1623,35 +1623,35 @@ save_window.cc
 	save_window::MakePlaytimeStr2(char *, FILEINFO *)
 	__tf11save_window
 	INIT_STRINGS
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 nebula_cursor.cc
 	NewNebulaLockCursor(void)
 	__13nebula_cursor
 	_$_13nebula_cursor
 	nebula_cursor::Act(void)
 	__tf13nebula_cursor
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 stealth_cursor.cc
 	NewStealthCursor(FRM_OBJECT *, unsigned short)
 	__14stealth_cursorP10FRM_OBJECTUs
 	_$_14stealth_cursor
 	stealth_cursor::Act(void)
 	__tf14stealth_cursor
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 tyrnt_demolsr.cc
 	NewTyrantDemoLaser(void)
 	__16tyrant_demolaser
 	_$_16tyrant_demolaser
 	tyrant_demolaser::Act(void)
 	__tf16tyrant_demolaser
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 lockon_cursor.cc
 	NewLockon(FRM_OBJECT *)
 	__6LockonP10FRM_OBJECT
 	_$_6Lockon
 	Lockon::Act(void)
 	__tf6Lockon
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 bomb.cc
 	__4BombP10ALG_MATRIXP10ALG_VECTORPiUiUiiiii
 	_$_4Bomb
@@ -1661,10 +1661,10 @@ bomb.cc
 	Bomb::Hit(void)
 	Bomb::Reduction(void)
 	Bomb::ColorChange(void)
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 bomb.h
 	__tf4Bomb
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 baggage.cc
 	__7BaggageP10ALG_MATRIXP10ALG_VECTORPiUiUiiii
 	_$_7Baggage
@@ -1672,42 +1672,42 @@ baggage.cc
 	Baggage::Act(void)
 	Baggage::Hit(void)
 	__tf7Baggage
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 bomber.cc
 	__6BomberP10ALG_VECTORi
 	_$_6Bomber
 	NewBomber(ALG_VECTOR *, int)
 	Bomber::Act(void)
 	__tf6Bomber
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 bomb_ctrl.cc
 	ScnBomb(void)
 	__9bomb_ctrlUiP10ALG_MATRIXUsUsUiUiUi
 	_$_9bomb_ctrl
 	bomb_ctrl::Act(void)
 	__tf9bomb_ctrl
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 suitcasepiece.cc
 	__13SuitcasePieceP10ALG_VECTORi
 	_$_13SuitcasePiece
 	NewSuitcasePiece(ALG_VECTOR *, int)
 	SuitcasePiece::Act(void)
 	__tf13SuitcasePiece
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 neith_cursor.cc
 	NewNeithCursor(ALG_VECTOR *)
 	__12neith_cursorP10ALG_VECTOR
 	_$_12neith_cursor
 	neith_cursor::Act(void)
 	__tf12neith_cursor
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 bomb_exp.cc
 	NewBombExp(ALG_MATRIX *)
 	__8bomb_expP10ALG_MATRIX
 	_$_8bomb_exp
 	bomb_exp::Act(void)
 	__tf8bomb_exp
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 virus_view.cc
 	NewVirusView(void)
 	__10virus_view
@@ -1715,21 +1715,21 @@ virus_view.cc
 	GetMaskBit(unsigned char)
 	virus_view::Act(void)
 	__tf10virus_view
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 vs_monitor.cc
 	ScnVSMonitor(void)
 	__10vs_monitorUiUi
 	_$_10vs_monitor
 	vs_monitor::Act(void)
 	__tf10vs_monitor
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 vs_cursor.cc
 	NewVSCursor(unsigned int, unsigned int)
 	__9VS_CursorUiUi
 	_$_9VS_Cursor
 	VS_Cursor::Act(void)
 	__tf9VS_Cursor
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 rescue_window.cc
 	ScnRescueWindowBreak(void)
 	ScnRescueWindowRescue(void)
@@ -1742,14 +1742,14 @@ rescue_window.cc
 	rescue_window::ActReceive(void)
 	rescue_window::SetRate(char *, float)
 	__tf13rescue_window
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 stgsmoke2.cc
 	NewStageSmoke2(int *, ALG_VECTOR *, float, ALG_VECTOR *, ALG_VECTOR *, float, float, unsigned char, unsigned short, unsigned short, EFF_FIELD *)
 	__12stage_smoke2PiP10ALG_VECTORfT2T2ffUcUsUsP9EFF_FIELD
 	_$_12stage_smoke2
 	stage_smoke2::Act(void)
 	__tf12stage_smoke2
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 bindtail.cc
 	NewBindTail(unsigned short)
 	__11BindTailEffUs
@@ -1758,14 +1758,14 @@ bindtail.cc
 	BindTailEff::BindInit(void)
 	BindTailEff::BindAct(void)
 	__tf11BindTailEff
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 boss_steam.cc
 	NewBossSteam(ALG_MATRIX *)
 	__10boss_steamP10ALG_MATRIX
 	_$_10boss_steam
 	boss_steam::Act(void)
 	__tf10boss_steam
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 save_window2.cc
 	ScnSaveWindow2(void)
 	__12save_window2Ui
@@ -1777,94 +1777,94 @@ save_window2.cc
 	save_window2::MakeDateString(char *, FILEINFO *)
 	save_window2::MakePlaytimeStr2(char *, FILEINFO *)
 	__tf12save_window2
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 fail_window.cc
 	ScnFailWindow(void)
 	__11fail_windowi
 	_$_11fail_window
 	fail_window::Act(void)
 	__tf11fail_window
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 helpcall.cc
 	NewHelpCall(void)
 	__8helpcall
 	_$_8helpcall
 	helpcall::Act(void)
 	__tf8helpcall
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 damagespark.cc
 	NewDamageSpark(ALG_VECTOR *, int)
 	__11damagesparkP10ALG_VECTORi
 	_$_11damagespark
 	damagespark::Act(void)
 	__tf11damagespark
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 dojehshot.cc
 	FRM_OBJECT::DoJehShot(void)
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 dojehlaser.cc
 	FRM_OBJECT::DoJehLaser(void)
 	TBL_LASER_ROT_Z
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 dojehcan.cc
 	FRM_OBJECT::DoJehCannon(void)
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 dojavelin.cc
 	FRM_OBJECT::DoJavelin(void)
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 dogeyser.cc
 	FRM_OBJECT::DoGeyser(void)
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 dobounder.cc
 	FRM_OBJECT::DoBounder(void)
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 dophalanx.cc
 	FRM_OBJECT::DoPhalanx(void)
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 dohalberd.cc
 	FRM_OBJECT::DoHalberd(void)
 	HalTurnRot_TBL
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 docomet.cc
 	FRM_OBJECT::DoComet(void)
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 dogauntlet.cc
 	FRM_OBJECT::DoGauntlet(void)
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 dodecoy.cc
 	FRM_OBJECT::DoDecoy(void)
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 dosniper.cc
 	FRM_OBJECT::DoSniper(void)
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 doflyshot.cc
 	FRM_OBJECT::DoFlySqrShot(void)
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 doflydshot.cc
 	FRM_OBJECT::DoFlySqrDShot(void)
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 doflybshot.cc
 	FRM_OBJECT::DoFlySqrBShot(void)
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 domumshell.cc
 	FRM_OBJECT::DoMumShell(void)
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 dorebshot.cc
 	FRM_OBJECT::DoRebSqrShot(void)
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 dorebdshot.cc
 	FRM_OBJECT::DoRebSqrDShot(void)
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 dorebbshot.cc
 	FRM_OBJECT::DoRebSqrBShot(void)
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 jehshot.cc
 	NewJehShot(FRM_OBJECT *, float *)
 	__7JehShotP10FRM_OBJECTPf
 	_$_7JehShot
 	JehShot::Act(void)
 	__tf7JehShot
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 jehlaser.cc
 	NewJehLaser(FRM_OBJECT *, unsigned short, float, unsigned char, float *)
 	__8JehLaserP10FRM_OBJECTUsfUcPf
@@ -1872,7 +1872,7 @@ jehlaser.cc
 	JehLaser::Act(void)
 	JehLaser::Homing(void)
 	__tf8JehLaser
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 jehcannon.cc
 	NewJehCannon(FRM_OBJECT *, float *, unsigned char)
 	__9JehCannonP10FRM_OBJECTPfUc
@@ -1907,7 +1907,7 @@ jehcannon.cc
 	Tbl_HandAlpha
 	VEC_LEVEL2
 	VEC_STORE
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 javelin.cc
 	NewJavelin(FRM_OBJECT *, float *)
 	__7JavelinP10FRM_OBJECTPf
@@ -1918,7 +1918,7 @@ javelin.cc
 	Javelin::RecordEffectInit(void)
 	Javelin::RecordEffectAct(void)
 	__tf7Javelin
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 geyser.cc
 	NewGeyser(FRM_OBJECT *, float *)
 	__6GeyserP10FRM_OBJECTPf
@@ -1934,7 +1934,7 @@ geyser.cc
 	Geyser::SparkInit(void)
 	Geyser::SparkAct(void)
 	__tf6Geyser
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 bounder.cc
 	NewBounder(FRM_OBJECT *, float *)
 	__7BounderP10FRM_OBJECTPf
@@ -1949,7 +1949,7 @@ bounder.cc
 	Bounder::ParticleInit(void)
 	Bounder::ParticleAct(void)
 	__tf7Bounder
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 phalanx.cc
 	NewPhalanx(FRM_OBJECT *, float *, int, unsigned char)
 	__7PhalanxP10FRM_OBJECTPfiUc
@@ -1959,7 +1959,7 @@ phalanx.cc
 	GLOBAL_$I$NewPhalanx(FRM_OBJECT *, float *, int, unsigned char)
 	__tf7Phalanx
 	VEC_JEH_OFFSET
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 halberd.cc
 	NewHalberd(FRM_OBJECT *, float *, unsigned char)
 	__7HalberdP10FRM_OBJECTPfUc
@@ -1975,7 +1975,7 @@ halberd.cc
 	Halberd::BombAct(void)
 	GLOBAL_$I$NewHalberd(FRM_OBJECT *, float *, unsigned char)
 	__tf7Halberd
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 jehcomet.cc
 	NewJehComet(FRM_OBJECT *, float *)
 	__8JehCometP10FRM_OBJECTPf
@@ -1991,7 +1991,7 @@ jehcomet.cc
 	JehComet::WearEffAct(void)
 	GLOBAL_$I$NewJehComet(FRM_OBJECT *, float *)
 	__tf8JehComet
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 mumcomet.cc
 	NewMumComet(FRM_OBJECT *, float *)
 	__8MumCometP10FRM_OBJECTPf
@@ -2004,14 +2004,14 @@ mumcomet.cc
 	MumComet::WearEffInit(void)
 	MumComet::WearEffAct(void)
 	__tf8MumComet
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 gauntlet.cc
 	NewGauntlet(FRM_OBJECT *, float *)
 	__8GauntletP10FRM_OBJECTPf
 	_$_8Gauntlet
 	Gauntlet::Act(void)
 	__tf8Gauntlet
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 sniper.cc
 	NewSniperRifle(FRM_OBJECT *, float *)
 	__6SniperP10FRM_OBJECTPf
@@ -2021,7 +2021,7 @@ sniper.cc
 	GLOBAL_$I$NewSniperRifle(FRM_OBJECT *, float *)
 	__tf6Sniper
 	VEC_GUN_OFFSET
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 mummy.cc
 	NewMummy(FRM_OBJECT *)
 	__10MummyShellP10FRM_OBJECT
@@ -2030,7 +2030,7 @@ mummy.cc
 	MummyShell::BallInit(void)
 	MummyShell::BallAct(void)
 	__tf10MummyShell
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 decoy.cc
 	NewDecoy(FRM_OBJECT *, float *)
 	__5DecoyP10FRM_OBJECTPf
@@ -2038,14 +2038,14 @@ decoy.cc
 	Decoy::Act(void)
 	Decoy::SetResource(void)
 	__tf5Decoy
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 shot.cc
 	NewShot(ALG_MATRIX *, TRG_OBJECT *)
 	__4ShotP10ALG_MATRIXP10TRG_OBJECT
 	_$_4Shot
 	Shot::Act(void)
 	__tf4Shot
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 shot_flash.cc
 	NewShotFlash(FRM_OBJECT *, float, float)
 	__9ShotFlashP10FRM_OBJECTff
@@ -2053,14 +2053,14 @@ shot_flash.cc
 	ShotFlash::Act(void)
 	GLOBAL_$I$NewShotFlash(FRM_OBJECT *, float, float)
 	__tf9ShotFlash
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 jehlsr_flash.cc
 	NewJehLaserFlash(FRM_OBJECT *, unsigned char)
 	__11JehLsrFlashP10FRM_OBJECTUc
 	_$_11JehLsrFlash
 	JehLsrFlash::Act(void)
 	__tf11JehLsrFlash
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 cannon_flash.cc
 	NewCannonFlash(FRM_OBJECT *)
 	__10CanonFlashP10FRM_OBJECT
@@ -2069,7 +2069,7 @@ cannon_flash.cc
 	CanonFlash::NodeLightInit(void)
 	CanonFlash::NodeLightAct(void)
 	__tf10CanonFlash
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 jeh_rapsmn.cc
 	NewJehRapSammon(FRM_OBJECT *)
 	__12JehRapSammonP10FRM_OBJECT
@@ -2078,7 +2078,7 @@ jeh_rapsmn.cc
 	JehRapSammon::RightHandEffInit(void)
 	JehRapSammon::RightHandEffAct(void)
 	__tf12JehRapSammon
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 jeh_mumcan.cc
 	NewJehMumcan(FRM_OBJECT *)
 	__12JehMumCannonP10FRM_OBJECT
@@ -2087,7 +2087,7 @@ jeh_mumcan.cc
 	GLOBAL_$I$NewJehMumcan(FRM_OBJECT *)
 	__tf12JehMumCannon
 	VEC_MUMCAN_OFFSET
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 jeh_ussfgun.cc
 	NewJehUssfGun(FRM_OBJECT *)
 	__10JehUssfGunP10FRM_OBJECT
@@ -2095,14 +2095,14 @@ jeh_ussfgun.cc
 	JehUssfGun::Act(void)
 	GLOBAL_$I$NewJehUssfGun(FRM_OBJECT *)
 	__tf10JehUssfGun
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 mumshot_flash.cc
 	NewMumShotFlash(FRM_OBJECT *)
 	__12MumShotFlashP10FRM_OBJECT
 	_$_12MumShotFlash
 	MumShotFlash::Act(void)
 	__tf12MumShotFlash
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 mumshot_warn.cc
 	NewMumShotWarn(FRM_OBJECT *)
 	__11MumShotWarnP10FRM_OBJECT
@@ -2119,7 +2119,7 @@ mumshot_warn.cc
 	MumShotWarn::FlareEffDestroy(void)
 	GLOBAL_$I$NewMumShotWarn(FRM_OBJECT *)
 	__tf11MumShotWarn
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 mumburst_flash.cc
 	NewMumBurstFlash(FRM_OBJECT *)
 	__13MumBurstFlashP10FRM_OBJECT
@@ -2130,14 +2130,14 @@ mumburst_flash.cc
 	MumBurstFlash::CoreInit(void)
 	MumBurstFlash::CoreAct(void)
 	__tf13MumBurstFlash
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 capture.cc
 	NewCaptureEff(FRM_OBJECT *)
 	__10CaptureEffP10FRM_OBJECT
 	_$_10CaptureEff
 	CaptureEff::Act(void)
 	__tf10CaptureEff
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 jehholdeff.cc
 	NewJehHoldEffect(FRM_OBJECT *)
 	__10JehHoldEffP10FRM_OBJECT
@@ -2156,7 +2156,7 @@ jehholdeff.cc
 	Tbl_LeftAlpha
 	Tbl_HeldSizeAct
 	Tbl_HeldAlpha
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 rapholdeff.cc
 	NewRapHoldEffect(FRM_OBJECT *)
 	__10RapHoldEffP10FRM_OBJECT
@@ -2171,7 +2171,7 @@ rapholdeff.cc
 	RapHoldEff::HeldEffInit(void)
 	RapHoldEff::HeldEffAct(void)
 	__tf10RapHoldEff
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 cycholdeff.cc
 	NewCycHoldEffect(FRM_OBJECT *)
 	__10CycHoldEffP10FRM_OBJECT
@@ -2186,7 +2186,7 @@ cycholdeff.cc
 	CycHoldEff::HeldEffInit(void)
 	CycHoldEff::HeldEffAct(void)
 	__tf10CycHoldEff
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 neiholdeff.cc
 	NewNeithHoldEffect(FRM_OBJECT *)
 	__12NeithHoldEffP10FRM_OBJECT
@@ -2201,7 +2201,7 @@ neiholdeff.cc
 	NeithHoldEff::HeldEffInit(void)
 	NeithHoldEff::HeldEffAct(void)
 	__tf12NeithHoldEff
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 nei2holdeff.cc
 	NewNeith2HoldEffect(FRM_OBJECT *)
 	__18RebornNeithHoldEffP10FRM_OBJECT
@@ -2216,7 +2216,7 @@ nei2holdeff.cc
 	RebornNeithHoldEff::HeldEffInit(void)
 	RebornNeithHoldEff::HeldEffAct(void)
 	__tf18RebornNeithHoldEff
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 saveeff.cc
 	NewSaveEffect(FRM_OBJECT *)
 	__7saveeffP10FRM_OBJECT
@@ -2227,7 +2227,7 @@ saveeff.cc
 	__tf7saveeff
 	pszSaveTex.1356
 	pszSparkTex.1363
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 holdaura.cc
 	NewHoldAuraEffect(FRM_OBJECT *)
 	__8HoldAuraP10FRM_OBJECT
@@ -2238,7 +2238,7 @@ holdaura.cc
 	__tf8HoldAura
 	MumNodeTbl
 	Neith1NodeTbl
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 aura.cc
 	NewAura(FRM_OBJECT *)
 	__4AuraP10FRM_OBJECT
@@ -2247,21 +2247,21 @@ aura.cc
 	Aura::AuraInit(void)
 	Aura::AuraAct(void)
 	__tf4Aura
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 gndsmoke.cc
 	NewGndSmoke(char *, int, ALG_VECTOR *, ALG_VECTOR *, unsigned short, float, float, float, float)
 	__8GndSmokePciP10ALG_VECTORT3Usffff
 	_$_8GndSmoke
 	GndSmoke::Act(void)
 	__tf8GndSmoke
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 cartblast.cc
 	NewCartBlast(ALG_VECTOR *)
 	__9CartBlastP10ALG_VECTOR
 	_$_9CartBlast
 	CartBlast::Act(void)
 	__tf9CartBlast
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 bigbang.cc
 	NewBigBang(ALG_VECTOR *, unsigned char, unsigned char)
 	__7BigBangP10ALG_VECTORUcUc
@@ -2270,21 +2270,21 @@ bigbang.cc
 	BigBang::CoreInit(void)
 	BigBang::CoreAct(void)
 	__tf7BigBang
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 shot_blast.cc
 	NewShotBlast(ALG_MATRIX *, unsigned char)
 	__9ShotBlastP10ALG_MATRIXUc
 	_$_9ShotBlast
 	ShotBlast::Act(void)
 	__tf9ShotBlast
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 gauntlet_blast.cc
 	NewGauntletBlast(FRM_OBJECT *, ALG_MATRIX *)
 	__13GauntletBlastP10FRM_OBJECTP10ALG_MATRIX
 	_$_13GauntletBlast
 	GauntletBlast::Act(void)
 	__tf13GauntletBlast
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 firecracker.cc
 	NewFireCracker(ALG_VECTOR *, TRG_OBJECT *, float)
 	__11FireCrackerP10ALG_VECTORP10TRG_OBJECTf
@@ -2294,14 +2294,14 @@ firecracker.cc
 	FireCracker::BombAct(void)
 	__tf11FireCracker
 	BOMB_SIZE_TBL
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 highfire.cc
 	NewHighFire(ALG_VECTOR *, float, char *, int, char *, int, DG_OBJ_QUE *)
 	__8HighFireP10ALG_VECTORfPciT3iP10DG_OBJ_QUE
 	_$_8HighFire
 	HighFire::Act(void)
 	__tf8HighFire
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 ringhfire.cc
 	ScnRingHFire(void)
 	NewRingHFire(ALG_VECTOR *, ALG_VECTOR *, unsigned short, unsigned short, float, char *, int, char *, int)
@@ -2309,56 +2309,56 @@ ringhfire.cc
 	_$_12RingHighFire
 	RingHighFire::Act(void)
 	__tf12RingHighFire
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 apdhfire.cc
 	NewAppendHFire(int *, ALG_MATRIX *, ALG_VECTOR *, unsigned short, unsigned short, float, char *, int, char *, int)
 	__14AppendHighFirePiP10ALG_MATRIXP10ALG_VECTORUsUsfPciT7i
 	_$_14AppendHighFire
 	AppendHighFire::Act(void)
 	__tf14AppendHighFire
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 ringeff.cc
 	NewRingEffect(ALG_MATRIX *, int *, float, float, float, float *, int, char *, int, float, DG_OBJ_QUE *, unsigned char)
 	__10RingEffectP10ALG_MATRIXPifffPfiPcifP10DG_OBJ_QUEUc
 	_$_10RingEffect
 	RingEffect::Act(void)
 	__tf10RingEffect
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 rapvern.cc
 	NewRaptorVernierEffect(FRM_OBJECT *)
 	__7rapvernP10FRM_OBJECT
 	_$_7rapvern
 	rapvern::Act(void)
 	__tf7rapvern
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 mumcan.cc
 	NewMummyCannonEffect(FRM_OBJECT *)
 	__6mumcanP10FRM_OBJECT
 	_$_6mumcan
 	mumcan::Act(void)
 	__tf6mumcan
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 backlight.cc
 	NewBackLight(ALG_VECTOR *, unsigned short, unsigned short)
 	__9BackLightP10ALG_VECTORUsUs
 	_$_9BackLight
 	BackLight::Act(void)
 	__tf9BackLight
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 thunder.cc
 	NewThunder(unsigned short, ALG_VECTOR *, ALG_VECTOR *, char *, int, int)
 	__7ThunderUsP10ALG_VECTORT2Pcii
 	_$_7Thunder
 	Thunder::Act(void)
 	__tf7Thunder
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 partyshot.cc
 	NewPartyShot(unsigned char, ALG_MATRIX *)
 	__9PartyShotUcP10ALG_MATRIX
 	_$_9PartyShot
 	PartyShot::Act(void)
 	__tf9PartyShot
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 monitor_eff.cc
 	ScnTestBlur(void)
 	MONITOR_EFF::CallNoiseBlur(unsigned short)
@@ -2377,17 +2377,17 @@ monitor_eff.cc
 	MONITOR_EFF::HalfInit(void)
 	MONITOR_EFF::UpdateBlur(void)
 	MONITOR_EFF::InitBlur(void)
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 ../include/okuta.h
 	__tf11MONITOR_EFF
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 mumdasheff.cc
 	NewMumDashEffect(FRM_OBJECT *)
 	__10MumDashEffP10FRM_OBJECT
 	_$_10MumDashEff
 	MumDashEff::Act(void)
 	__tf10MumDashEff
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 mumgrdeff.cc
 	NewMumGuardEffect(FRM_OBJECT *)
 	__9MumGrdEffP10FRM_OBJECT
@@ -2395,21 +2395,21 @@ mumgrdeff.cc
 	MumGrdEff::Act(void)
 	__tf9MumGrdEff
 	Tbl_Rad
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 mumshdeff.cc
 	NewMumShoulderEffect(FRM_OBJECT *)
 	__9MumSldEffP10FRM_OBJECT
 	_$_9MumSldEff
 	MumSldEff::Act(void)
 	__tf9MumSldEff
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 flip.cc
 	NewFlip(ALG_MATRIX *, float, int)
 	__7tmpFlipP10ALG_MATRIXfi
 	_$_7tmpFlip
 	tmpFlip::Act(void)
 	__tf7tmpFlip
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 tempest1.cc
 	ScnTempest1(void)
 	__8Tempest1UiP10ALG_MATRIXUiPfUs
@@ -2446,7 +2446,7 @@ tempest1.cc
 	nShinNode
 	nFootNode
 	fBeamTbl
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 tempest2.cc
 	ScnTempest2(void)
 	__8Tempest2UiP10ALG_MATRIXUiPfUs
@@ -2485,7 +2485,7 @@ tempest2.cc
 	nWispNode
 	WISP_APPEAR_TBL
 	TMPST_VERN_NAME.1383
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 dmtmpfire.cc
 	NewDemoTmpFire(ALG_MATRIX *, DG_OBJ_QUE *)
 	__11DemoTmpFireP10ALG_MATRIXP10DG_OBJ_QUE
@@ -2495,28 +2495,28 @@ dmtmpfire.cc
 	DemoTmpFire::Update(void)
 	DemoTmpFire::Dest(void)
 	__tf11DemoTmpFire
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 tmpairwave.cc
 	NewTmpAirWave(ALG_MATRIX *)
 	__10TmpAirWaveP10ALG_MATRIX
 	_$_10TmpAirWave
 	TmpAirWave::Act(void)
 	__tf10TmpAirWave
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 tmpbeam.cc
 	NewTmpBeam(ALG_MATRIX *, ALG_VECTOR *, unsigned short, unsigned short, float)
 	__7tmpbeamP10ALG_MATRIXP10ALG_VECTORUsUsf
 	_$_7tmpbeam
 	tmpbeam::Act(void)
 	__tf7tmpbeam
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 tmpshot.cc
 	NewTmpShot(ALG_MATRIX *, ALG_MATRIX *, ALG_MATRIX *, int *, unsigned short, unsigned short, unsigned short)
 	__7tmpshotP10ALG_MATRIXT1T1PiUsUsUs
 	_$_7tmpshot
 	tmpshot::Act(void)
 	__tf7tmpshot
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 tempmeteor.cc
 	NewTempestMeteor(ALG_MATRIX *, ALG_VECTOR *, int)
 	__13TempestMeteorP10ALG_MATRIXP10ALG_VECTORi
@@ -2526,7 +2526,7 @@ tempmeteor.cc
 	TempestMeteor::RecordEffectAct(void)
 	TempestMeteor::Horming(void)
 	__tf13TempestMeteor
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 tmpstrike.cc
 	STR_DAT::Init_Que(char *, int, ALG_VECTOR *, float, float, unsigned char, DG_OBJ_QUE *)
 	STR_DAT::Update(void)
@@ -2536,14 +2536,14 @@ tmpstrike.cc
 	_$_6tmpstr
 	tmpstr::Act(void)
 	__tf6tmpstr
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 tmpfirewall.cc
 	NewTmpFireWall(ALG_VECTOR *)
 	__15TempestFireWallP10ALG_VECTOR
 	_$_15TempestFireWall
 	TempestFireWall::Act(void)
 	__tf15TempestFireWall
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 burning.cc
 	NewBurning(FRM_OBJECT *)
 	__7burningP10FRM_OBJECT
@@ -2551,14 +2551,14 @@ burning.cc
 	burning::Act(void)
 	__tf7burning
 	TBL_NODE_BURN
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 tmpRanding.cc
 	NewTmpRanding(ALG_MATRIX *)
 	__10tmprandingP10ALG_MATRIX
 	_$_10tmpranding
 	tmpranding::Act(void)
 	__tf10tmpranding
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 BlowImpact.cc
 	IMP_DAT::Init_Que(ALG_MATRIX *, float, float, unsigned char, DG_OBJ_QUE *)
 	IMP_DAT::Update(void)
@@ -2568,7 +2568,7 @@ BlowImpact.cc
 	_$_10BlowImpact
 	BlowImpact::Act(void)
 	__tf10BlowImpact
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 neivern.cc
 	NewNeithVernierEffect(FRM_OBJECT *)
 	__7neivernP10FRM_OBJECT
@@ -2580,14 +2580,14 @@ neivern.cc
 	_$tmp_0.1364
 	vecHeight.1365
 	_$tmp_1.1366
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 flysqr_swd.cc
 	NewFlySqrSword(FRM_OBJECT *)
 	__10FLYSQR_SWDP10FRM_OBJECT
 	_$_10FLYSQR_SWD
 	FLYSQR_SWD::Act(void)
 	__tf10FLYSQR_SWD
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 flysqr_exc.cc
 	NewFlySqrExcursion(FRM_OBJECT *, ALG_MATRIX *, int *, unsigned short)
 	__16FlySqr_ExcursionP10FRM_OBJECTP10ALG_MATRIXPiUs
@@ -2596,7 +2596,7 @@ flysqr_exc.cc
 	FlySqr_Excursion::ExcursionInit(void)
 	FlySqr_Excursion::ExcursionAct(void)
 	__tf16FlySqr_Excursion
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 flyshot.cc
 	NewFlySqrShot(FRM_OBJECT *, float *, unsigned char, unsigned char)
 	__10FlySqrShotP10FRM_OBJECTPfUcUc
@@ -2605,7 +2605,7 @@ flyshot.cc
 	FlySqrShot::RecordEffectInit(void)
 	FlySqrShot::RecordEffectAct(void)
 	__tf10FlySqrShot
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 flydshot.cc
 	NewFlySqrDashShot(FRM_OBJECT *, float *)
 	__14FlySqrDashShotP10FRM_OBJECTPf
@@ -2617,7 +2617,7 @@ flydshot.cc
 	FlySqrDashShot::RecordEffectInit(void)
 	FlySqrDashShot::RecordEffectAct(void)
 	__tf14FlySqrDashShot
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 flybshot.cc
 	NewFlySqrBurstShot(FRM_OBJECT *, float *)
 	__15FlySqrBurstShotP10FRM_OBJECTPf
@@ -2628,21 +2628,21 @@ flybshot.cc
 	FlySqrBurstShot::BallInit(void)
 	FlySqrBurstShot::BallAct(void)
 	__tf15FlySqrBurstShot
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 neithbind.cc
 	NewNeithBind(FRM_OBJECT *)
 	__9NeithBindP10FRM_OBJECT
 	_$_9NeithBind
 	NeithBind::Act(void)
 	__tf9NeithBind
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 flybshot_flash.cc
 	NewFlyBShotFlash(FRM_OBJECT *)
 	__13FlyBShotFlashP10FRM_OBJECT
 	_$_13FlyBShotFlash
 	FlyBShotFlash::Act(void)
 	__tf13FlyBShotFlash
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 reborn_flysqr.cc
 	NewRebNeiFlySqr(FRM_OBJECT *)
 	__12RebNeiFlySqrP10FRM_OBJECT
@@ -2651,14 +2651,14 @@ reborn_flysqr.cc
 	RebNeiFlySqr::CalcFlyPos(void)
 	__tf12RebNeiFlySqr
 	TBL_NAME.1356
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 nei2aura.cc
 	NewNeith2Aura(FRM_OBJECT *)
 	__10Neith2AuraP10FRM_OBJECT
 	_$_10Neith2Aura
 	Neith2Aura::Act(void)
 	__tf10Neith2Aura
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 rebsqrdshot.cc
 	NewRebSqrDashShot(FRM_OBJECT *, float *)
 	__14RebSqrDashShotP10FRM_OBJECTPf
@@ -2670,7 +2670,7 @@ rebsqrdshot.cc
 	RebSqrDashShot::RecordEffectInit(void)
 	RebSqrDashShot::RecordEffectAct(void)
 	__tf14RebSqrDashShot
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 reblaser.cc
 	NewRebLaser(FRM_OBJECT *, float *, ALG_MATRIX *)
 	__14RebFlySqrLaserP10FRM_OBJECTPfP10ALG_MATRIX
@@ -2687,7 +2687,7 @@ reblaser.cc
 	_$tmp_0.1369
 	vecHeight.1370
 	_$tmp_1.1371
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 rebcannon.cc
 	NewRebSqrCannon(FRM_OBJECT *, float *, unsigned char)
 	__15RebFlySqrCannonP10FRM_OBJECTPfUc
@@ -2705,7 +2705,7 @@ rebcannon.cc
 	RebFlySqrCannon::RingRecordInit(void)
 	RebFlySqrCannon::RingRecordAct(void)
 	__tf15RebFlySqrCannon
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 rebbomb.cc
 	NewRebBomb(ALG_VECTOR *)
 	__7RebBombP10ALG_VECTOR
@@ -2714,7 +2714,7 @@ rebbomb.cc
 	RebBomb::BombInit(void)
 	RebBomb::BombAct(void)
 	__tf7RebBomb
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 anubis.cc
 	ScnAnubis(void)
 	__6AnubisUiP10ALG_MATRIXUiUci
@@ -2737,42 +2737,42 @@ anubis.cc
 	TBL_ANUBIS_NODE
 	TBL_WARP_POINT
 	ANUBIS_VOICE
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 spectrum.cc
 	NewSpectrum(char *, ALG_MATRIX *, DG_OBJ *)
 	__8SpectrumPcP10ALG_MATRIXT2i
 	_$_8Spectrum
 	Spectrum::Act(void)
 	__tf8Spectrum
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 anbscrash.cc
 	NewAnubisCrashEffect(ALG_MATRIX *)
 	__17AnubisCrashEffectP10ALG_MATRIX
 	_$_17AnubisCrashEffect
 	AnubisCrashEffect::Act(void)
 	__tf17AnubisCrashEffect
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 anbsbind.cc
 	NewAnubisBind(FRM_OBJECT *)
 	__10AnubisBindP10FRM_OBJECT
 	_$_10AnubisBind
 	AnubisBind::Act(void)
 	__tf10AnubisBind
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 resonance.cc
 	ScnResonance(void)
 	__9ResonanceUi
 	_$_9Resonance
 	Resonance::Act(void)
 	__tf9Resonance
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 anbsburst.cc
 	NewAnubisBurst(int *, ALG_MATRIX *)
 	__11AnubisBurstPiP10ALG_MATRIX
 	_$_11AnubisBurst
 	AnubisBurst::Act(void)
 	__tf11AnubisBurst
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 anbsaura.cc
 	NewAnubisAura(int *, DG_OBJ *)
 	__8AnbsAuraPiP6DG_OBJ
@@ -2781,21 +2781,21 @@ anbsaura.cc
 	AnbsAura::AuraInit(void)
 	AnbsAura::AuraAct(void)
 	__tf8AnbsAura
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 anbsrod.cc
 	NewAnubisRodEffect(ALG_MATRIX *, int *, unsigned short, ALG_VECTOR *)
 	__15AnubisRodEffectP10ALG_MATRIXPiUsP10ALG_VECTOR
 	_$_15AnubisRodEffect
 	AnubisRodEffect::Act(void)
 	__tf15AnubisRodEffect
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 dmanbsline.cc
 	ScnDmAnbsLine(void)
 	__12DM_ANBS_LINE
 	_$_12DM_ANBS_LINE
 	DM_ANBS_LINE::Act(void)
 	__tf12DM_ANBS_LINE
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 dmanbsvern.cc
 	ScnDmAnbsVern(void)
 	NewAnubisVern(int *, DG_OBJ *)
@@ -2809,7 +2809,7 @@ dmanbsvern.cc
 	_$tmp_0.1367
 	vecHeight.1368
 	_$tmp_1.1369
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 dmanbsaura.cc
 	ScnDmAnbsAura(void)
 	__12DM_ANBS_AURAUi
@@ -2818,7 +2818,7 @@ dmanbsaura.cc
 	DM_ANBS_AURA::AuraInit(void)
 	DM_ANBS_AURA::AuraAct(void)
 	__tf12DM_ANBS_AURA
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 vrmng.cc
 	VR_MANAGER::SetPrevLotID(unsigned short)
 	VR_MANAGER::SetVRCurMenu(unsigned char)
@@ -2872,10 +2872,10 @@ vrmng.cc
 	ScnInitVRMan(void)
 	VR_MANAGER::InitVRMan(void)
 	ScnVRResetPssQueue(void)
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 vr.h
 	__tf10VR_MANAGER
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 vrmenu.cc
 	ScnVRMenu(void)
 	__6VRMenuUcPUiUcPPcT4PUcT6
@@ -2893,7 +2893,7 @@ vrmenu.cc
 	VR_MODE_SIZE
 	VR_END_SIZE
 	ICON_SIZE
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 vrmove.cc
 	ScnVRMove(void)
 	__6VRMoveUiiPUs
@@ -2904,7 +2904,7 @@ vrmove.cc
 	__tf6VRMove
 	TBL_MOVE_LR
 	TBL_MOVE_UD
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 vrdash.cc
 	ScnVRDash(void)
 	__6VRDashUiiPUs
@@ -2913,7 +2913,7 @@ vrdash.cc
 	VRDash::DemoAct(void)
 	VRDash::TrialAct(void)
 	__tf6VRDash
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 vratc.cc
 	ScnVRAttack(void)
 	__5VRAtcUiiPUs
@@ -2922,7 +2922,7 @@ vratc.cc
 	VRAtc::DemoAct(void)
 	VRAtc::TrialAct(void)
 	__tf5VRAtc
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 vrdatc.cc
 	ScnVRDashAtc(void)
 	__6VRDAtcUiiPUs
@@ -2931,7 +2931,7 @@ vrdatc.cc
 	VRDAtc::DemoAct(void)
 	VRDAtc::TrialAct(void)
 	__tf6VRDAtc
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 vrbatc.cc
 	ScnVRBurstAtc(void)
 	__10VRBurstAtcUiiPUs
@@ -2940,7 +2940,7 @@ vrbatc.cc
 	VRBurstAtc::DemoAct(void)
 	VRBurstAtc::TrialAct(void)
 	__tf10VRBurstAtc
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 vrguard.cc
 	ScnVRGuard(void)
 	__7VRGuardUiiPUs
@@ -2949,7 +2949,7 @@ vrguard.cc
 	VRGuard::DemoAct(void)
 	VRGuard::TrialAct(void)
 	__tf7VRGuard
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 vrhold.cc
 	ScnVRHold(void)
 	__6VRHoldUiiPUs
@@ -2958,7 +2958,7 @@ vrhold.cc
 	VRHold::DemoAct(void)
 	VRHold::TrialAct(void)
 	__tf6VRHold
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 vrlock.cc
 	ScnVRLock(void)
 	__6VRLockUiiPUs
@@ -2967,7 +2967,7 @@ vrlock.cc
 	VRLock::DemoAct(void)
 	VRLock::TrialAct(void)
 	__tf6VRLock
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 vresc.cc
 	ScnVREscape(void)
 	__8VREscapeUiiPUs
@@ -2976,7 +2976,7 @@ vresc.cc
 	VREscape::DemoAct(void)
 	VREscape::TrialAct(void)
 	__tf8VREscape
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 vrcam.cc
 	ScnVRCamera(void)
 	__8VRCameraUiiPUs
@@ -2985,14 +2985,14 @@ vrcam.cc
 	VRCamera::DemoAct(void)
 	VRCamera::TrialAct(void)
 	__tf8VRCamera
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 vrannounce.cc
 	ScnVRPhaseEndAnnounce(void)
 	__10VrAnnounceUi
 	_$_10VrAnnounce
 	VrAnnounce::Act(void)
 	__tf10VrAnnounce
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 itembox.cc
 	ScnItemBox(void)
 	__7itemboxUiP10ALG_MATRIXUcUiUcPUc
@@ -3003,7 +3003,7 @@ itembox.cc
 	itembox::RecallAct(void)
 	itembox::CamCheck(void)
 	__tf7itembox
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 terminal.cc
 	ScnServer(void)
 	__8terminalUiP10ALG_MATRIXUiUiUcPUcUcT6
@@ -3014,7 +3014,7 @@ terminal.cc
 	terminal::CamCheck(void)
 	__tf8terminal
 	TBL_PASS_NAME
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 porter.cc
 	ScnPorter(void)
 	__6PorterUiUcUcfUiP10ALG_VECTORUc
@@ -3025,7 +3025,7 @@ porter.cc
 	__tf6Porter
 	MAT_IMPACT1
 	MAT_IMPACT2
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 e_field.cc
 	ScnEPS(void)
 	__11EnergyFieldUiP10ALG_VECTORfT2Ui
@@ -3035,7 +3035,7 @@ e_field.cc
 	EnergyField::DisappearMode(void)
 	EnergyField::CalcPlayRap(void)
 	__tf11EnergyField
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 soul.cc
 	NewSoulEffect(ALG_MATRIX *, ALG_VECTOR *, unsigned short, unsigned char, int, unsigned char)
 	__10SoulEffectP10ALG_MATRIXP10ALG_VECTORUsUciUc
@@ -3044,7 +3044,7 @@ soul.cc
 	SoulEffect::RecordEffectInit(void)
 	SoulEffect::RecordEffectAct(void)
 	__tf10SoulEffect
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 materialize.cc
 	NewMaterialize(ALG_VECTOR *, int)
 	__11MaterializeP10ALG_VECTORi
@@ -3060,7 +3060,7 @@ materialize.cc
 	AlphaClear::Act(void)
 	__tf10AlphaClear
 	__tf11Materialize
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 gameover.cc
 	ScnSetBossType(void)
 	SetBossType(unsigned char)
@@ -3093,7 +3093,7 @@ gameover.cc
 	BADFONT_TBL
 	TBL_FLOW_NAME.1425
 	__tf8GAMEOVER
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 cockpit.cc
 	ScnCockpitStart(void)
 	ScnCockpitEnd(void)
@@ -3107,7 +3107,7 @@ cockpit.cc
 	Cockpit::CheckMessage(void)
 	Cockpit::CameraAct(void)
 	__tf7Cockpit
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 ckpcomm.cc
 	NewCkpCommWindow(int *, ALG_VECTOR *, unsigned char *, float *)
 	__13CkpCommWindowPiP10ALG_VECTORPUcPf
@@ -3126,7 +3126,7 @@ ckpcomm.cc
 	COMM_WINTBL
 	COMM_STRTBL
 	COMM_ST
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 ckpnavi.cc
 	NewCkpNaviWindow(int *, unsigned char *)
 	__7ckpnaviPiPUc
@@ -3137,7 +3137,7 @@ ckpnavi.cc
 	ckpnavi::NaviWindowInit(void)
 	ckpnavi::NaviWindowAct(void)
 	__tf7ckpnavi
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 ckpindicator.cc
 	NewCkpIndicator(int *, ALG_VECTOR *, unsigned char *)
 	__12ckpindicatorPiP10ALG_VECTORPUc
@@ -3146,7 +3146,7 @@ ckpindicator.cc
 	ckpindicator::IndicatorInit(void)
 	ckpindicator::IndicatorAct(void)
 	__tf12ckpindicator
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 ckpflowline.cc
 	NewCkpFlowLine(int *, ALG_VECTOR *, unsigned char *)
 	__11ckpflowlinePiP10ALG_VECTORPUc
@@ -3156,7 +3156,7 @@ ckpflowline.cc
 	ckpflowline::FlowlineAct(void)
 	__tf11ckpflowline
 	FLOW_POS_TBL
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 ckppanel.cc
 	NewCkpAdaPanel(int *, ALG_VECTOR *, unsigned char *, float *)
 	__9ckpcirclePiP10ALG_VECTORPUcPf
@@ -3168,7 +3168,7 @@ ckppanel.cc
 	TBL_CIRCLE
 	TBL_CIRCLE_T
 	TBL_CIRCLE_ALPHA
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 fade.cc
 	NewFade(unsigned char, unsigned char, unsigned short, unsigned short, unsigned char)
 	ScnMonitorFadeIn(void)
@@ -3177,7 +3177,7 @@ fade.cc
 	_$_4Fade
 	Fade::Act(void)
 	__tf4Fade
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 eneshutter.cc
 	NewEnergyShutter(ALG_VECTOR *, unsigned char)
 	ScnEnergyShutter(void)
@@ -3193,14 +3193,14 @@ eneshutter.cc
 	EnergyShutter::CalcEvadeFrame(FRM_OBJECT *)
 	EnergyShutter::SetMode(unsigned char)
 	__tf13EnergyShutter
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 ca1shutter.cc
 	ScnCa1Shutter(void)
 	__10CA1ShutterUiP10ALG_MATRIXfff
 	_$_10CA1Shutter
 	CA1Shutter::Act(void)
 	__tf10CA1Shutter
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 stealthtrg.cc
 	ScnStealthTrg(void)
 	__10stealthtrgUiUiP10ALG_MATRIXG10ALG_VECTORfi
@@ -3209,21 +3209,21 @@ stealthtrg.cc
 	stealthtrg::ReactEffectMt1(ALG_VECTOR *)
 	stealthtrg::ReactEffectRb1(ALG_VECTOR *)
 	__tf10stealthtrg
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 chap.cc
 	NewChapEffect(int *, ALG_MATRIX *, ALG_VECTOR, char *)
 	__10ChapEffectPiP10ALG_MATRIXG10ALG_VECTORPc
 	_$_10ChapEffect
 	ChapEffect::Act(void)
 	__tf10ChapEffect
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 recover.cc
 	ScnAdaRecover(void)
 	__10AdaRecoverUsUsUsUs
 	_$_10AdaRecover
 	AdaRecover::Act(void)
 	__tf10AdaRecover
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 badend.cc
 	ScnBadEnd(void)
 	__6BadEnd
@@ -3231,7 +3231,7 @@ badend.cc
 	BadEnd::Act(void)
 	BadEnd::SetMode(unsigned char)
 	__tf6BadEnd
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 flowline.cc
 	NewFlowLineEffect(unsigned char, int *, DG_OBJ *, unsigned short, unsigned char)
 	__14FlowLineEffectUcPiP6DG_OBJP10ALG_VECTORf
@@ -3241,7 +3241,7 @@ flowline.cc
 	ltbTempest
 	ltbTyrant
 	ltbAnubis
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 bossgauge.cc
 	BossGauge::SetArmor(float)
 	BossGauge::Armor(void)
@@ -3253,14 +3253,14 @@ bossgauge.cc
 	__tf9BossGauge
 	NAME_OFFSET
 	TBL_NAME_TEX.1365
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 bombscan.cc
 	ScnBombScan(void)
 	__8BombScanUs
 	_$_8BombScan
 	BombScan::Act(void)
 	__tf8BombScan
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 bombfade.cc
 	ScnBombFade(void)
 	NewBombFade(unsigned char, unsigned short, unsigned int, ALG_VECTOR *)
@@ -3268,7 +3268,7 @@ bombfade.cc
 	_$_8BombFade
 	BombFade::Act(void)
 	__tf8BombFade
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 func.cc
 	SetPoly2(DG_VERTEX *, DG_OBJ_POLYGON *, char *, ALG_MATRIX *, float *, float *, unsigned int, unsigned int)
 	SetPoly2Db(DG_VERTEX *, DG_VERTEX *, DG_OBJ_POLYGON *, char *, ALG_MATRIX *, float *, float *, unsigned int, unsigned int)
@@ -3277,13 +3277,13 @@ func.cc
 	Number_to_Exp(int)
 	GetFrmAimPad(FRM_OBJECT *, ALG_VECTOR *, ALG_VECTOR *, float, float)
 	RefFrmPadData(FRM_OBJECT *, ALG_VECTOR *)
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 useful.cc
 	DbgDrawMatrix(ALG_MATRIX *, float)
 	CheckHzdBox(ALG_MATRIX *, float)
 	Horming(ALG_MATRIX *, unsigned short, float *, float *, float *, float *)
 	ScnDumpActTime(void)
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 kanji.cc
 	ScnKanji(void)
 	NewKanji(unsigned int, unsigned short, float, float, char *, unsigned short)
@@ -3291,16 +3291,16 @@ kanji.cc
 	_$_5Kanji
 	Kanji::Act(void)
 	__tf5Kanji
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 dg_func.cc
 	SetPolygon4Db(DG_VERTEX *, DG_VERTEX *, DG_OBJ_POLYGON *, char *, ALG_MATRIX, unsigned short, unsigned int)
 	ResetTexture(char *, DG_OBJ_POLYGON *, unsigned char, unsigned char, unsigned char, float *, float *)
 	DebugPrintX(int, int, unsigned int, unsigned char)
 	GetTextureSize(char *, float *, float *, float *, float *)
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 alg_func.cc
 	InnerCheck(ALG_VECTOR, ALG_VECTOR, ALG_VECTOR, float)
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 chgbgm.cc
 	NewChangeBgm(unsigned int)
 	ScnChangeBgm(void)
@@ -3308,7 +3308,7 @@ chgbgm.cc
 	_$_9ChangeBgm
 	ChangeBgm::Act(void)
 	__tf9ChangeBgm
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 my.cc
 	ScnGetpplnPos(void)
 	GetpplnPos(HZD_PLANE *, ALG_VECTOR *, unsigned char)
@@ -3329,7 +3329,7 @@ my.cc
 	STAGE_CODE
 	SCN_SYSTEM::SetValFloat(float)
 	SCN_THREAD::SetValFloat(float)
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 Null_Pos_Get.cc
 	NewNull_Pos_Get(void)
 	__12Null_Pos_GetPcP8SCN_DATA
@@ -3338,7 +3338,7 @@ Null_Pos_Get.cc
 	Null_Pos_Get::AlreadyBreak(void)
 	Null_Pos_Get::Erase(ALG_VECTOR *, float, unsigned int, unsigned int)
 	__tf12Null_Pos_Get
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 model_break.cc
 	NewModel_Break(HZD_PLANE *, unsigned char, unsigned char, int, int)
 	ScnSetDestroyObj(void)
@@ -3353,7 +3353,7 @@ model_break.cc
 	Pos
 	FPos
 	ShaftPos
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 Flit.cc
 	FLIT_DAT::Init_Que(ALG_VECTOR *, unsigned int, float)
 	FLIT_DAT::NullEff(void)
@@ -3365,7 +3365,7 @@ Flit.cc
 	flit::TypeB(void)
 	__tf4flit
 	__builtin_vec_delete
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 Plit.cc
 	PLIT_DAT::Init_Que(ALG_VECTOR *, unsigned int, float)
 	PLIT_W::UpData(void)
@@ -3379,14 +3379,14 @@ Plit.cc
 	__tf4plit
 	PLIT_DAT::Deque(void)
 	PLIT_DAT::UpData(void)
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 beamlit.cc
 	NewBeamLight(ALG_VECTOR *, unsigned int, float)
 	__7beamlitP10ALG_VECTORUif
 	_$_7beamlit
 	beamlit::Act(void)
 	__tf7beamlit
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 CableBreak.cc
 	NewCableBreak(_DEF_POS *, unsigned short)
 	__10cablebreakP8_DEF_POSUs
@@ -3394,14 +3394,14 @@ CableBreak.cc
 	cablebreak::Act(void)
 	__tf10cablebreak
 	SD_Play3DSoundShort(unsigned short, ALG_VECTOR *)
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 PipeBreak.cc
 	NewPipeBreak(_DEF_POS *, unsigned short)
 	__9pipebreakP8_DEF_POSUs
 	_$_9pipebreak
 	pipebreak::Act(void)
 	__tf9pipebreak
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 scnNullEff.cc
 	ScnNullEff(void)
 	NewNullEff(ALG_VECTOR *, float, unsigned short)
@@ -3410,7 +3410,7 @@ scnNullEff.cc
 	scnnulleff::Act(void)
 	_GLOBAL_$I$_vecNullEff
 	__tf10scnnulleff
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 scnRadarEff.cc
 	ScnRadarEff(void)
 	__11scnradareffUiP10ALG_VECTOR
@@ -3422,14 +3422,14 @@ scnRadarEff.cc
 	scnradarwatch::Act(void)
 	__tf13scnradarwatch
 	__tf11scnradareff
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 vrEffbg.cc
 	ScnVREffBG(void)
 	__7vreffbg
 	_$_7vreffbg
 	vreffbg::Act(void)
 	__tf7vreffbg
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 vrEffgrnd.cc
 	ScnVREffGround(void)
 	__9vreffgrnd
@@ -3437,7 +3437,7 @@ vrEffgrnd.cc
 	vreffgrnd::Act(void)
 	__tf9vreffgrnd
 	START_POSXZ
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 vrbeehive.cc
 	NewVRBeeHive(ALG_VECTOR *, unsigned char, unsigned char)
 	__9vrbeehiveP10ALG_VECTORUcUc
@@ -3447,14 +3447,14 @@ vrbeehive.cc
 	ADB_INIT
 	ADB_AS
 	ADB_MAX
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 vrbeehive2.cc
 	NewVRBeeHive2(ALG_VECTOR *)
 	__10vrbeehive2P10ALG_VECTOR
 	_$_10vrbeehive2
 	vrbeehive2::Act(void)
 	__tf10vrbeehive2
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 stageLimitEff.cc
 	ScnStageLimitEff(void)
 	ScnVSStageLimitEff(void)
@@ -3463,7 +3463,7 @@ stageLimitEff.cc
 	stagelimiteff::Act(void)
 	stagelimiteff::UpdateMatrix(void)
 	__tf13stagelimiteff
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 SleLine.cc
 	NewSleLine(ALG_VECTOR *, ALG_MATRIX *, int *)
 	__7slelineP10ALG_VECTORP10ALG_MATRIXPi
@@ -3483,7 +3483,7 @@ SleLine.cc
 	__tf15scnbsrunninglit
 	__tf15newbsrunninglit
 	POS_XY
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 bsFlowLine.cc
 	NewBsFlowLine(unsigned char)
 	__13newbsflowlineUc
@@ -3495,7 +3495,7 @@ bsFlowLine.cc
 	scnbsflowline::Act(void)
 	__tf13scnbsflowline
 	__tf13newbsflowline
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 fa2WindRot.cc
 	Scnfa2WingRot(void)
 	__10fa2windrotif
@@ -3503,7 +3503,7 @@ fa2WindRot.cc
 	fa2windrot::Act(void)
 	__tf10fa2windrot
 	WING_ID
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 ca1FlowLine.cc
 	NewCa1FlowLine(unsigned char)
 	__14newca1flowlineUc
@@ -3530,14 +3530,14 @@ ca1FlowLine.cc
 	fSpd
 	fSpdY
 	u16LC
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 programHzd.cc
 	NewProgramHzd(ALG_VECTOR *, float)
 	__10programHzdP10ALG_VECTORf
 	_$_10programHzd
 	programHzd::Act(void)
 	__tf10programHzd
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 rMotorRot.cc
 	ScnRA1MotorRot(void)
 	ScnRB1MotorRot(void)
@@ -3545,21 +3545,21 @@ rMotorRot.cc
 	_$_9rmotorrot
 	rmotorrot::Act(void)
 	__tf9rmotorrot
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 ca1EngTree.cc
 	ScnCa1EngTree(void)
 	__10ca1engtree
 	_$_10ca1engtree
 	ca1engtree::Act(void)
 	__tf10ca1engtree
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 tst_flash.cc
 	ScnFlash(void)
 	__9tst_flashP10ALG_VECTORPfPUiPc
 	_$_9tst_flash
 	tst_flash::Act(void)
 	__tf9tst_flash
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 BurnSmoke.cc
 	NewBurnSmoke(ALG_MATRIX *, int *, int *)
 	__9burnsmokeP10ALG_MATRIXPiT2
@@ -3567,7 +3567,7 @@ BurnSmoke.cc
 	burnsmoke::Act(void)
 	burnsmoke::Sprite_Bear(DG_VERTEX *, unsigned char)
 	__tf9burnsmoke
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 tst_hahen_3.cc
 	ScnHahen_3(void)
 	NewHahen(char *, unsigned short, float, float, float, float, unsigned char)
@@ -3577,7 +3577,7 @@ tst_hahen_3.cc
 	tst_hahen_3::Act(void)
 	__tf11tst_hahen_3
 	P_SET
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 scnDustDebri.cc
 	ScnDust(void)
 	ScnDebri(void)
@@ -3589,7 +3589,7 @@ scnDustDebri.cc
 	TYPE_A
 	TYPE_B
 	TYPE_C
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 scnSpark.cc
 	ScnSpark(void)
 	__8scnSparkP10ALG_MATRIXP10ALG_VECTORPfPUissPc
@@ -3599,7 +3599,7 @@ scnSpark.cc
 	__tf8scnSpark
 	TYPE_D
 	TYPE_E
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 scnEffSound.cc
 	ScnEffSound(void)
 	NewEffSound(unsigned short, unsigned short)
@@ -3607,21 +3607,21 @@ scnEffSound.cc
 	_$_11scneffsound
 	scneffsound::Act(void)
 	__tf11scneffsound
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 scnModelSwap.cc
 	ScnModelSwap(void)
 	__12scnmodelswapUi
 	_$_12scnmodelswap
 	scnmodelswap::Act(void)
 	__tf12scnmodelswap
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 scnBrosBreak.cc
 	ScnBrosBreak(void)
 	__12scnbrosbreakUsUsUc
 	_$_12scnbrosbreak
 	scnbrosbreak::Act(void)
 	__tf12scnbrosbreak
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 scnExplosion.cc
 	ScnExplosion(void)
 	RandingSmoke(ALG_MATRIX *, float)
@@ -3642,7 +3642,7 @@ scnExplosion.cc
 	TYPE_I
 	TYPE_J
 	TYPE_K
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 scnFrmBreak.cc
 	ScnFrmBreak(void)
 	__11scnfrmbreakPfPUi
@@ -3651,7 +3651,7 @@ scnFrmBreak.cc
 	__tf11scnfrmbreak
 	BRK_NODE
 	BN_NUM
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 scnNeith1Break.cc
 	ScnNeith1Break(void)
 	__14scnneith1break
@@ -3666,7 +3666,7 @@ scnNeith1Break.cc
 	RELPOS_XY
 	GO_EFF
 	END_EFF
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 scnPrtclExp.cc
 	ScnPrtclExp(void)
 	__12scnprtcelExpPcUcT1UcUs
@@ -3675,7 +3675,7 @@ scnPrtclExp.cc
 	scnprtcelExp::Init(void)
 	scnprtcelExp::Act(void)
 	__tf12scnprtcelExp
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 scnPrtclExp_2.cc
 	ScnPrtclExp_2(void)
 	NewPrtclExp_2(char *, unsigned char, char *, unsigned char, unsigned short, ALG_VECTOR *, ALG_VECTOR *)
@@ -3695,7 +3695,7 @@ scnPrtclExp_2.cc
 	scnshockwave::Sprite_Bear(DG_VERTEX *, DG_VERTEX *, unsigned char)
 	scnshockwave::Update(DG_VERTEX *, DG_VERTEX *, unsigned char)
 	__tf12scnshockwave
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 scnfire.cc
 	SetFNode(HZD_TREE_NODE *)
 	ScnFire(void)
@@ -3728,7 +3728,7 @@ scnfire.cc
 	vecInit_Y
 	vecInit_Z
 	POS
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 scnMotorBomb.cc
 	ScnMotorBomb(void)
 	__9motorbombP10ALG_MATRIXP10ALG_VECTORUs
@@ -3739,21 +3739,21 @@ scnMotorBomb.cc
 	motbomb::Act(void)
 	__tf7motbomb
 	__tf9motorbomb
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 scnObjct.cc
 	ScnRaptorBK(void)
 	__11scnrapbreakUi
 	_$_11scnrapbreak
 	scnrapbreak::Act(void)
 	__tf11scnrapbreak
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 scnPosJudge.cc
 	ScnPosJudge(void)
 	__11scnposjudgeP10ALG_VECTORfUiUii
 	_$_11scnposjudge
 	scnposjudge::Act(void)
 	__tf11scnposjudge
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 scnBrkWatch.cc
 	ScnBrkWatch(void)
 	__11scnbrkwatchP10ALG_VECTORUi
@@ -3761,7 +3761,7 @@ scnBrkWatch.cc
 	scnbrkwatch::Act(void)
 	scnbrkwatch::SearchHzdTreeNode(HZD_TREE_NODE *)
 	__tf11scnbrkwatch
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 scnShutter.cc
 	ScnRShutter(void)
 	ScnFShutter(void)
@@ -3777,7 +3777,7 @@ scnShutter.cc
 	Hight_ADD
 	SE_CLOSE
 	SE_OPEN
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 scnEps.cc
 	ScnEPSEffect(void)
 	__6scnespUiUci
@@ -3789,7 +3789,7 @@ scnEps.cc
 	__tf6scnesp
 	fPos
 	fRot
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 scnEpsEff.cc
 	ScnEpsEff(ALG_MATRIX *, ALG_VECTOR *, unsigned char, int *)
 	__9scnepseffP10ALG_MATRIXP10ALG_VECTORUcPi
@@ -3808,11 +3808,11 @@ scnEpsEff.cc
 	MAX_RANGE
 	MIN_RANGE
 	SUB_PARM
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 scnBadEnding.cc
 	ScnBadEnding(void)
 	KEY_STAGE
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 scnShaftD.cc
 	ScnShaftD(void)
 	__9scnshaftdUi
@@ -3829,7 +3829,7 @@ scnShaftD.cc
 	__tf9scnshaftd
 	POS_X
 	POS_Z
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 scnBSWallBreak.cc
 	ScnBSWallBreak(void)
 	__14scnbswallbreakUi
@@ -3837,21 +3837,21 @@ scnBSWallBreak.cc
 	scnbswallbreak::Act(void)
 	__tf14scnbswallbreak
 	u16Num
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 scnRGeneWatch.cc
 	ScnRGeneWatch(void)
 	__13scnrgenewatchUi
 	_$_13scnrgenewatch
 	scnrgenewatch::Act(void)
 	__tf13scnrgenewatch
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 scnBSShutter.cc
 	ScnBSShutter(void)
 	__12scnbsshutterUi
 	_$_12scnbsshutter
 	scnbsshutter::Act(void)
 	__tf12scnbsshutter
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 GlbEff.cc
 	ScnGlbExp(void)
 	NewGlbExp(ALG_MATRIX *)
@@ -3874,14 +3874,14 @@ GlbEff.cc
 	__tf8blast_gl
 	__tf6glbexp
 	STAGE_POS
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 armblast.cc
 	NewArmBlast(FRM_OBJECT *, unsigned char)
 	__8armblastP10FRM_OBJECTUc
 	_$_8armblast
 	armblast::Act(void)
 	__tf8armblast
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 bumpblast.cc
 	MY_SMOKE_FIELD2::FieldFunc(ALG_VECTOR *, ALG_VECTOR *)
 	NewBumpBlast(FRM_OBJECT *)
@@ -3892,21 +3892,21 @@ bumpblast.cc
 	__15MY_SMOKE_FIELD2
 	__tf15MY_SMOKE_FIELD2
 	__tf9EFF_FIELD
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 blast_One.cc
 	NewBlast_One(ALG_VECTOR *, ALG_VECTOR *, char *)
 	__9blast_oneP10ALG_VECTORT1Pc
 	_$_9blast_one
 	blast_one::Act(void)
 	__tf9blast_one
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 backblast.cc
 	NewBackBlast(ALG_VECTOR *)
 	__9backblastP10ALG_VECTOR
 	_$_9backblast
 	backblast::Act(void)
 	__tf9backblast
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 EffectParts.cc
 	NewCrossBack(FRM_OBJECT *)
 	NewPushBack(FRM_OBJECT *)
@@ -3919,7 +3919,7 @@ EffectParts.cc
 	scnradarbomb::Act(void)
 	NewNeithBomb(ALG_MATRIX *)
 	__tf12scnradarbomb
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 scnRescueBreak.cc
 	HELP_BREAK::Init(ALG_VECTOR *)
 	HELP_BREAK::InitNode(HZD_TREE_NODE *)
@@ -3943,25 +3943,25 @@ scnRescueBreak.cc
 	RSC_B::SetNowPts(float)
 	RSC_B::SetAllPts(float)
 	__tf5RSC_B
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 RscFieldEff.cc
 	NewRscFieldEff(HZD_TREE_NODE *, int *)
 	__11rscfieldeffP13HZD_TREE_NODEPi
 	_$_11rscfieldeff
 	rscfieldeff::Act(void)
 	__tf11rscfieldeff
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 Break_Data.cc
 	BRK_DAT::Check_Low(float)
 	DemoFa1Crash(void)
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 BreakObj.cc
 	NewBreakObj(ALG_MATRIX *, char *, ALG_MATRIX *, ALG_VECTOR *)
 	__8breakobjP10ALG_MATRIXPcT1P10ALG_VECTOR
 	_$_8breakobj
 	breakobj::Act(void)
 	__tf8breakobj
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 ObjPHang.cc
 	ScnObjPHang(void)
 	__11scnobjphang
@@ -3972,7 +3972,7 @@ ObjPHang.cc
 	scnobjphang::FLAG_2_INPUT(void)
 	scnobjphang::FLAG_1_INPUT(void)
 	__tf11scnobjphang
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 TreeObj_A.cc
 	TREE_A_DAT::Init_Que(ALG_VECTOR *, float, unsigned short)
 	TREE_A_DAT::UpDate(ALG_VECTOR *, FOG_RANGE *)
@@ -3983,7 +3983,7 @@ TreeObj_A.cc
 	treeobj_a::Act(void)
 	__tf9treeobj_a
 	__10TREE_A_DAT
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 TreeObj_B.cc
 	TREE_B_DAT::Init_Que(ALG_VECTOR *, float, unsigned short)
 	TREE_B_DAT::UpDate(ALG_VECTOR *, FOG_RANGE *)
@@ -3994,7 +3994,7 @@ TreeObj_B.cc
 	treeobj_b::Act(void)
 	__tf9treeobj_b
 	__10TREE_B_DAT
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 TreeObj_C.cc
 	TREE_C_DAT::Init_Que(ALG_VECTOR *, float, unsigned short)
 	TREE_C_DAT::UpDate(FOG_RANGE *)
@@ -4004,14 +4004,14 @@ TreeObj_C.cc
 	_$_9treeobj_c
 	treeobj_c::Act(void)
 	__tf9treeobj_c
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 scnBlur.cc
 	ScnBlur(void)
 	__7scnblurUsUsfP10ALG_VECTOR
 	_$_7scnblur
 	scnblur::Act(void)
 	__tf7scnblur
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 brk_FA1Tekkotu.cc
 	Brk_FA1Tekkotu_1(void)
 	Brk_FA1Tekkotu_2(void)
@@ -4020,7 +4020,7 @@ brk_FA1Tekkotu.cc
 	brk_fa1tekkotu::Act(void)
 	__tf14brk_fa1tekkotu
 	PARTS_NUM
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 brk_FA1AllHanger.cc
 	Brk_FA1Hanger_1(void)
 	Brk_FA1Hanger_2(void)
@@ -4031,14 +4031,14 @@ brk_FA1AllHanger.cc
 	brk_fa1allhanger::Act(void)
 	__tf16brk_fa1allhanger
 	u8Num
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 brk_S02ITHead.cc
 	Brk_S02ITHead(void)
 	__13brk_s02itheadP10ALG_MATRIXUcPc
 	_$_13brk_s02ithead
 	brk_s02ithead::Act(void)
 	__tf13brk_s02ithead
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 brk_S02ITBase.cc
 	Brk_S02ITBase(void)
 	__13brk_s02itbaseP10ALG_MATRIXPcT2
@@ -4046,7 +4046,7 @@ brk_S02ITBase.cc
 	brk_s02itbase::Init(void)
 	brk_s02itbase::Act(void)
 	__tf13brk_s02itbase
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 brk_FAsouko.cc
 	Brk_FASouko(void)
 	__11brk_fasoukoP10ALG_MATRIXUsUcPc
@@ -4055,7 +4055,7 @@ brk_FAsouko.cc
 	__tf11brk_fasouko
 	LEFT_SIDER
 	RIGHT_SIDER
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 brk_FATank_2.cc
 	Brk_FATank_2(void)
 	__12brk_fatank_2P10ALG_MATRIXUsPc
@@ -4063,56 +4063,56 @@ brk_FATank_2.cc
 	brk_fatank_2::Act(void)
 	__tf12brk_fatank_2
 	TANK_NULL
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 brk_FABillBase.cc
 	Brk_FABillBase(void)
 	__14brk_fabillbaseP10ALG_MATRIXUsPc
 	_$_14brk_fabillbase
 	brk_fabillbase::Act(void)
 	__tf14brk_fabillbase
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 brk_FABillBill.cc
 	Brk_FABillBill(void)
 	__14brk_fabillbillP10ALG_MATRIXUsPc
 	_$_14brk_fabillbill
 	brk_fabillbill::Act(void)
 	__tf14brk_fabillbill
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 brk_FAF_Wing.cc
 	Brk_FAF_Wing(void)
 	__12brk_faf_wingP10ALG_MATRIXUsPc
 	_$_12brk_faf_wing
 	brk_faf_wing::Act(void)
 	__tf12brk_faf_wing
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 brk_FAF_Pillar.cc
 	Brk_FAF_Pillar(void)
 	__14brk_faf_pillarP10ALG_MATRIXUsPc
 	_$_14brk_faf_pillar
 	brk_faf_pillar::Act(void)
 	__tf14brk_faf_pillar
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 brkFAKRBase.cc
 	BrkFAKRBase(void)
 	__11brkfakrbasePcT1T1
 	_$_11brkfakrbase
 	brkfakrbase::Act(void)
 	__tf11brkfakrbase
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 brkFAKRArm.cc
 	BrkFAKRArm(void)
 	__10brkfakrarmPcT1
 	_$_10brkfakrarm
 	brkfakrarm::Act(void)
 	__tf10brkfakrarm
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 brkFAKRHand.cc
 	BrkFAKRHand(void)
 	__11brkfakrhandPc
 	_$_11brkfakrhand
 	brkfakrhand::Act(void)
 	__tf11brkfakrhand
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 brk_car.cc
 	ScnBrkCar(void)
 	__7brk_carPcUsUs
@@ -4120,7 +4120,7 @@ brk_car.cc
 	brk_car::Act(void)
 	brk_car::HCheck(ALG_VECTOR *)
 	__tf7brk_car
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 brk_FBAllBreak.cc
 	Brk_FBSoukoA(void)
 	Brk_FBSoukoB(void)
@@ -4133,21 +4133,21 @@ brk_FBAllBreak.cc
 	_$_14brk_fballbreak
 	brk_fballbreak::Act(void)
 	__tf14brk_fballbreak
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 brk_TAMansion.cc
 	Brk_TAMansion(void)
 	__13brk_tamansionP10ALG_MATRIXUsPc
 	_$_13brk_tamansion
 	brk_tamansion::Act(void)
 	__tf13brk_tamansion
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 brk_TAHodokyo.cc
 	Brk_TAHodokyo(void)
 	__13brk_tahodokyoP10ALG_MATRIXUsPc
 	_$_13brk_tahodokyo
 	brk_tahodokyo::Act(void)
 	__tf13brk_tahodokyo
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 brk_TAZosan.cc
 	MY_SMOKE_FIELD::FieldFunc(ALG_VECTOR *, ALG_VECTOR *)
 	Brk_TAZosan(void)
@@ -4158,63 +4158,63 @@ brk_TAZosan.cc
 	__tf11brk_tazosan
 	__14MY_SMOKE_FIELD
 	__tf14MY_SMOKE_FIELD
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 brk_TAUbl.cc
 	Brk_TAUbl(void)
 	__9brk_taublP10ALG_MATRIXUsPc
 	_$_9brk_taubl
 	brk_taubl::Act(void)
 	__tf9brk_taubl
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 brk_TASingo.cc
 	Brk_TAShingo(void)
 	__12brk_tashingoP10ALG_MATRIXUsPc
 	_$_12brk_tashingo
 	brk_tashingo::Act(void)
 	__tf12brk_tashingo
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 brkTCpiramid.cc
 	BrkTCpiramid(void)
 	__12brktcpiramidP10ALG_MATRIXUsUsPc
 	_$_12brktcpiramid
 	brktcpiramid::Act(void)
 	__tf12brktcpiramid
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 brkTCspira.cc
 	BrkTCspira(void)
 	__10brktcspiraP10ALG_MATRIXUsUsPc
 	_$_10brktcspira
 	brktcspira::Act(void)
 	__tf10brktcspira
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 brkTCcbld.cc
 	BrkTCcbld(void)
 	__9brktccbldP10ALG_MATRIXUsUsPc
 	_$_9brktccbld
 	brktccbld::Act(void)
 	__tf9brktccbld
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 brkTCmaru.cc
 	BrkTCmaru(void)
 	__9brktcmaruP10ALG_MATRIXUsUsPc
 	_$_9brktcmaru
 	brktcmaru::Act(void)
 	__tf9brktcmaru
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 brk_TAKyoukai.cc
 	Brk_TAKyoukai(void)
 	__13brk_takyoukaiP10ALG_MATRIXUsPc
 	_$_13brk_takyoukai
 	brk_takyoukai::Act(void)
 	__tf13brk_takyoukai
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 brk_S13Bridge.cc
 	Brk_S13Bridge(void)
 	__13brk_s13bridgePcP10ALG_MATRIXP10ALG_VECTORUsUc
 	_$_13brk_s13bridge
 	brk_s13bridge::Act(void)
 	__tf13brk_s13bridge
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 brk_S13RockWall.cc
 	Brk_S13RockWall(void)
 	__15brk_s13rockwallP10ALG_MATRIXP10ALG_VECTORUsUsUsUcPc
@@ -4225,24 +4225,24 @@ brk_S13RockWall.cc
 	TYPE_MAX
 	TYPE_MIN
 	TYPE_NUM
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 brk_S13RockHahen.cc
 	Brk_S13RockHahen(void)
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 brk_PKWallObj.cc
 	Brk_PKWallObj(void)
 	__13brk_pkwallpbjP10ALG_MATRIXUsPc
 	_$_13brk_pkwallpbj
 	brk_pkwallpbj::Act(void)
 	__tf13brk_pkwallpbj
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 brk_PKBoxObj.cc
 	Brk_PKBoxObj(void)
 	__12brk_pkboxobjP10ALG_MATRIXUsPc
 	_$_12brk_pkboxobj
 	brk_pkboxobj::Act(void)
 	__tf12brk_pkboxobj
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 brk_STKontena.cc
 	Brk_STKontena(void)
 	New_STKontena(ALG_MATRIX *, unsigned short, char *)
@@ -4250,7 +4250,7 @@ brk_STKontena.cc
 	_$_13brk_stkontena
 	brk_stkontena::Act(void)
 	__tf13brk_stkontena
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 scnMoveKontena.cc
 	ScnMoveKontena(void)
 	__14scnmovekontenaP10ALG_VECTORPUcPf
@@ -4263,28 +4263,28 @@ scnMoveKontena.cc
 	movekontena::ADD_CheckPos(unsigned char, float *)
 	__tf11movekontena
 	__tf14scnmovekontena
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 brk_CBGlass.cc
 	Brk_CBGlass(void)
 	__11brk_cbglassP10ALG_MATRIXP10ALG_VECTORffUs
 	_$_11brk_cbglass
 	brk_cbglass::Act(void)
 	__tf11brk_cbglass
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 brk_CAShaft.cc
 	Brk_CAShaft(void)
 	__11brk_cashaftP10ALG_MATRIXUsPc
 	_$_11brk_cashaft
 	brk_cashaft::Act(void)
 	__tf11brk_cashaft
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 brk_RBWall.cc
 	Brk_RBWall(void)
 	__10brk_rbwallP10ALG_MATRIXUsPc
 	_$_10brk_rbwall
 	brk_rbwall::Act(void)
 	__tf10brk_rbwall
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 scnHindD.cc
 	NewHindPts(void)
 	GetHindMaxPts(void)
@@ -4308,7 +4308,7 @@ scnHindD.cc
 	__tf16scnseteventhindd
 	__tf8scnhindd
 	HindPos
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 BlackMask.cc
 	ScnBlackMask(void)
 	ScnBlackMaskDest(void)
@@ -4324,7 +4324,7 @@ BlackMask.cc
 	blackmask::SetSTATE(int)
 	blackmask::Dest(unsigned int)
 	__tf9blackmask
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 dmDisplay.cc
 	DM_Display(void)
 	__9dmdisplayUi
@@ -4334,7 +4334,7 @@ dmDisplay.cc
 	dmdisplay::InitLine(void)
 	dmdisplay::InitFrame(void)
 	__tf9dmdisplay
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 dmD02_1_spark.cc
 	DM_D02_1_Spark(void)
 	__13dmd02_1_spark
@@ -4343,14 +4343,14 @@ dmD02_1_spark.cc
 	__tf13dmd02_1_spark
 	NUM_BOX
 	u16Delay
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 dmD02_1_steam.cc
 	DM_D02_1_Steam(void)
 	__13dmd02_1_steam
 	_$_13dmd02_1_steam
 	dmd02_1_steam::Act(void)
 	__tf13dmd02_1_steam
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 dmD02_1_smog.cc
 	DM_D02_1_Smog(void)
 	DM_D02_1_Smog_2(void)
@@ -4361,14 +4361,14 @@ dmD02_1_smog.cc
 	_$_12dmd02_1_smog
 	dmd02_1_smog::Act(void)
 	__tf12dmd02_1_smog
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 dmD02_1_landsmoke.cc
 	DM_D02_1_LandSmoke(void)
 	__17dmd02_1_landsmoke
 	_$_17dmd02_1_landsmoke
 	dmd02_1_landsmoke::Act(void)
 	__tf17dmd02_1_landsmoke
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 dmD02_1_dast.cc
 	DM_D02_1_Dast_1(void)
 	DM_D02_1_Dast_2(void)
@@ -4384,7 +4384,7 @@ dmD02_1_dast.cc
 	DM_TB0456_Cus(void)
 	DM_RB0474_Cus(void)
 	__tf13dmtb0456_smog
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 dmVrn.cc
 	__12dm_fa2vrnlegP8DM_FRAME
 	_$_12dm_fa2vrnleg
@@ -4430,42 +4430,42 @@ dmVrn.cc
 	__tf12dm_pkrap_lit
 	__tf12dm_stnei_spk
 	__tf12dm_fa2vrnleg
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 dmST0646_MangaLine.cc
 	DM_ST0646_MangaLine(void)
 	__18dmst0646_mangalineP10ALG_MATRIXUc
 	_$_18dmst0646_mangaline
 	dmst0646_mangaline::Act(void)
 	__tf18dmst0646_mangaline
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 dmST0646_smog.cc
 	DM_ST0646_smog(void)
 	__13dmst0646_smogP10ALG_MATRIXUc
 	_$_13dmst0646_smog
 	dmst0646_smog::Act(void)
 	__tf13dmst0646_smog
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 dmST0646_Oil.cc
 	DM_ST0646_Oil(void)
 	__12dmst0646_oil
 	_$_12dmst0646_oil
 	dmst0646_oil::Act(void)
 	__tf12dmst0646_oil
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 dmSH0704_Lfloar.cc
 	DM_SH0704_Lfloar(void)
 	__15dmsh0704_lfloarP10ALG_MATRIX
 	_$_15dmsh0704_lfloar
 	dmsh0704_lfloar::Act(void)
 	__tf15dmsh0704_lfloar
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 dmSH0704_MangaLine.cc
 	DM_SH0704_MangaLine(void)
 	__18dmsh0704_mangalineP10ALG_MATRIXUc
 	_$_18dmsh0704_mangaline
 	dmsh0704_mangaline::Act(void)
 	__tf18dmsh0704_mangaline
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 dmBSPolyDemoEff.cc
 	BSNeiSpk(DM_FRAME *, unsigned short, void *)
 	DM_BS0714_Spk(void)
@@ -4501,7 +4501,7 @@ dmBSPolyDemoEff.cc
 	__tf13dm_bs0732_lsr
 	__tf13dm_bs0732_fsh
 	__tf13dm_bs0714_obj
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 dmBSNeiBurn.cc
 	NewdmBSNeiBurn(ALG_MATRIX *, float)
 	__11dmbsneiburnP10ALG_MATRIXf
@@ -4513,7 +4513,7 @@ dmBSNeiBurn.cc
 	dmbsneiprt::Act(void)
 	__tf10dmbsneiprt
 	__tf11dmbsneiburn
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 stage.cc
 	stage::Act(void)
 	__5stagePcT1T1
@@ -4525,7 +4525,7 @@ stage.cc
 	NewMT1Stage(void)
 	__tf8mt1stage
 	__tf5stage
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 areatrap.cc
 	__13AREA_TRAP_MAN
 	_$_13AREA_TRAP_MAN
@@ -4537,31 +4537,31 @@ areatrap.cc
 	Check_AreaTrap(ALG_VECTOR *)
 	__tf13AREA_TRAP_MAN
 	pMan
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 posdata.cc
 	Load_Posdata(char *, char *)
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 continue.cc
 	__10DoContinue
 	_$_10DoContinue
 	DoContinue::Act(void)
 	NewContinue(void)
 	__tf10DoContinue
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 exit.cc
 	__6DoExit
 	_$_6DoExit
 	DoExit::Act(void)
 	NewExit(void)
 	__tf6DoExit
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 view_flow.cc
 	NewViewerFlow(DG_MDL *, DG_MDL *, ALG_VECTOR *, float, int)
 	__8viewflowP6DG_MDLT1P10ALG_VECTORfi
 	_$_8viewflow
 	viewflow::Act(void)
 	__tf8viewflow
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 nebula.cc
 	ScnNebula(void)
 	__6NebulaPcT1iUifff
@@ -4569,10 +4569,10 @@ nebula.cc
 	Nebula::Act(void)
 	nebula.h
 	__tf6Nebula
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 nebula_init.cc
 	Nebula::Initialize(int, float, float, float)
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 nebula_act.cc
 	Nebula::Set_Position(void)
 	Nebula::Set_Color(void)
@@ -4581,7 +4581,7 @@ nebula_act.cc
 	Nebula::GetDamage2(void)
 	Nebula::SubWeaponCheck(int *)
 	Nebula::DecSECounterTable(void)
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 nebula_child.cc
 	NewNebulaFannel(ALG_VECTOR *, int)
 	__12NebulaFannelP10ALG_VECTORi
@@ -4593,10 +4593,10 @@ nebula_child.cc
 	FannelLaser::Act(void)
 	__tf11FannelLaser
 	__tf12NebulaFannel
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 nebula_think.cc
 	Nebula::Think(void)
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 nebula_laser1.cc
 	__10MultiLaserP10ALG_MATRIXP10ALG_VECTOR
 	_$_10MultiLaser
@@ -4604,21 +4604,21 @@ nebula_laser1.cc
 	MultiLaser::Act(void)
 	MultiLaser::CheckHzd(ALG_VECTOR *)
 	__tf10MultiLaser
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 nebula_laser2.cc
 	__10TAITOLaserP10ALG_MATRIXffi
 	_$_10TAITOLaser
 	NewTAITOLaser(ALG_MATRIX *, float, float, int)
 	TAITOLaser::Act(void)
 	__tf10TAITOLaser
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 nebula_m_missile.cc
 	__12MicroMissileP10ALG_MATRIX
 	_$_12MicroMissile
 	NewMicroMissile(ALG_MATRIX *)
 	MicroMissile::Act(void)
 	__tf12MicroMissile
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 nebula_multi_missile.cc
 	__13MotherMissileP10ALG_VECTOR
 	_$_13MotherMissile
@@ -4626,14 +4626,14 @@ nebula_multi_missile.cc
 	MotherMissile::Act(void)
 	__tf13MotherMissile
 	DG_FreeObj(DG_OBJPTR &)
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 nebula_hss_missile.cc
 	__16HighSpeedMissileP10ALG_MATRIXf
 	_$_16HighSpeedMissile
 	NewHighSpeedMissile(ALG_MATRIX *, float)
 	HighSpeedMissile::Act(void)
 	__tf16HighSpeedMissile
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 nebula_1st_form.cc
 	Nebula::Think_1st_Form(void)
 	Nebula::Atk1stWideShot(void)
@@ -4643,7 +4643,7 @@ nebula_1st_form.cc
 	Nebula::Atk1stRotateRemove(void)
 	nebula_1st_form_atk_table
 	ring_tbl
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 nebula_2nd_form.cc
 	Nebula::Think_2nd_Form(void)
 	Nebula::AtkFeildIn(void)
@@ -4662,28 +4662,28 @@ nebula_2nd_form.cc
 	Nebula::AtkSearchJefty2(void)
 	arm_list_l
 	arm_list_r
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 nebula_homing_missile.cc
 	__13HomingMissileP10ALG_VECTORffiT1i
 	_$_13HomingMissile
 	NewHomingMissile(ALG_VECTOR *, float, float, int, ALG_VECTOR *, int)
 	HomingMissile::Act(void)
 	__tf13HomingMissile
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 nebula_aamm_mother.cc
 	__11AAMM_MotherP10ALG_VECTORT1i
 	_$_11AAMM_Mother
 	NewAAMM_Mother(ALG_VECTOR *, ALG_VECTOR *, int)
 	AAMM_Mother::Act(void)
 	__tf11AAMM_Mother
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 nebula_aamm_child.cc
 	__10AAMM_ChildP10ALG_MATRIXPcf
 	_$_10AAMM_Child
 	NewAAMM_Child(ALG_MATRIX *, char *, float)
 	AAMM_Child::Act(void)
 	__tf10AAMM_Child
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 nebula_split_missile.cc
 	__12SplitMissileP10ALG_MATRIXPfiPi
 	_$_12SplitMissile
@@ -4695,42 +4695,42 @@ nebula_split_missile.cc
 	S_Missile::Act(void)
 	__tf9S_Missile
 	__tf12SplitMissile
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 nebula_high_laser.cc
 	__14HighpowerLaserP10ALG_VECTORiG10ALG_VECTORPi
 	_$_14HighpowerLaser
 	NewHighpowerLaser(ALG_VECTOR *, int, ALG_VECTOR, int *)
 	HighpowerLaser::Act(void)
 	__tf14HighpowerLaser
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 nebula_split_bullet.cc
 	__11SplitCannonP10ALG_VECTORii
 	_$_11SplitCannon
 	NewSplitCannon(ALG_VECTOR *, int, int)
 	SplitCannon::Act(void)
 	__tf11SplitCannon
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 nebula_ball.cc
 	__8FireWaitP10ALG_MATRIXiiif
 	_$_8FireWait
 	NewFireWait(ALG_MATRIX *, int, int, int, float)
 	FireWait::Act(void)
 	__tf8FireWait
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 nebula_black_cannon.cc
 	__10CannonBallP10ALG_VECTORii
 	_$_10CannonBall
 	NewCannonBall(ALG_VECTOR *, int, int)
 	CannonBall::Act(void)
 	__tf10CannonBall
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 nebula_spread.cc
 	NewNebulaSpreadParticle(ALG_MATRIX *, int, float, int)
 	__12NebulaspreadP10ALG_MATRIXifi
 	_$_12Nebulaspread
 	Nebulaspread::Act(void)
 	__tf12Nebulaspread
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 nebula_effect.cc
 	Nebula::HandBular(void)
 	Nebula::SlasterBular(void)
@@ -4749,7 +4749,7 @@ nebula_effect.cc
 	slaster_anim_pattern
 	eye_anim_pattern
 	blink
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 nebula_consed_effect.cc
 	__5CHARAP10ALG_MATRIXiiiif
 	_$_5CHARA
@@ -4761,14 +4761,14 @@ nebula_consed_effect.cc
 	HPL_Particle::Act(void)
 	__tf12HPL_Particle
 	__tf5CHARA
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 nebula_white_consend.cc
 	__12WhiteCensendP10ALG_MATRIXi
 	_$_12WhiteCensend
 	NewWhiteConsend(ALG_MATRIX *, int)
 	WhiteCensend::Act(void)
 	__tf12WhiteCensend
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 nebula_demo.cc
 	Nebula::Think_DEMO(void)
 	nebula_laser_demo.cc
@@ -4782,20 +4782,20 @@ nebula_demo.cc
 	HPL_Demo::Act(void)
 	__tf8HPL_Demo
 	__tf15NebulaLaserDemo
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 nebula_destroy.cc
 	Nebula::DemoDeathNebula(void)
 	Nebula::ExitCockpit(void)
 	laser_ang
 	laser_pos
 	arm_parze_no
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 nebula_entry.cc
 	Nebula::DemoEntryNebula(void)
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 nebula_change_form.cc
 	Nebula::DemoChangeForm(void)
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 load_anim.cc
 	__8LoadAnimPii
 	_$_8LoadAnim
@@ -4804,7 +4804,7 @@ load_anim.cc
 	ScnLoadFlagOn(void)
 	__tf8LoadAnim
 	LoadFlag
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 nebula_appearance_fannel.cc
 	__16AppearanceFannelG10ALG_VECTORT1T1T1iffii
 	_$_16AppearanceFannel
@@ -4812,37 +4812,37 @@ nebula_appearance_fannel.cc
 	AppearanceFannel::TableControl(int)
 	NewAppearanceFannel(ALG_VECTOR, ALG_VECTOR, ALG_VECTOR, ALG_VECTOR, int, float, float, int, int)
 	__tf16AppearanceFannel
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 nebula_slaster_particle.cc
 	__15SlasterParticleP10ALG_MATRIX
 	_$_15SlasterParticle
 	SlasterParticle::Act(void)
 	NewSlasterParticle(ALG_MATRIX *)
 	__tf15SlasterParticle
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 nebula_steam.cc
 	NewNebulaSteam(ALG_MATRIX *)
 	__11NebulaSteamP10ALG_MATRIX
 	_$_11NebulaSteam
 	NebulaSteam::Act(void)
 	__tf11NebulaSteam
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 nebula_caution.cc
 	NewNebulaCaution(int *)
 	__13NebulaCautionPi
 	_$_13NebulaCaution
 	NebulaCaution::Act(void)
 	__tf13NebulaCaution
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 nebula_end_effect.cc
 	Nebula::EndEffect(void)
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 nebula_1st_end.cc
 	Nebula::End1stForm(void)
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 nebula_2nd_end.cc
 	Nebula::End2ndForm(void)
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 cloud.cc
 	ScnCloudEffect(void)
 	ScnCloudEffect2(void)
@@ -4858,7 +4858,7 @@ cloud.cc
 	cloud::CalcRGBA(DG_VERTEX *, float)
 	cloud::CalcDis(float, float)
 	__tf5cloud
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 falls.cc
 	ScnFallsEffect(void)
 	falls::CalcVerts(DG_OBJ_POLYGON *, float, float)
@@ -4866,7 +4866,7 @@ falls.cc
 	_$_5falls
 	falls::Act(void)
 	__tf5falls
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 disp2d.cc
 	__6DISP2D
 	_$_6DISP2D
@@ -4900,11 +4900,11 @@ disp2d.cc
 	DISP2D::MoveY(int, float)
 	DISP2D::GetX(int)
 	DISP2D::GetY(int)
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 decvag.cc
 	decode_vag
 	rlc.1353
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 decstrm.cc
 	GetVolume
 	GetVolumeI
@@ -4917,10 +4917,10 @@ decstrm.cc
 	_$_13decode_stream
 	decode_stream::Act(void)
 	pactor
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 decstrm.h
 	__tf13decode_stream
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 mt1clip.cc
 	MT1_Clip
 	obj_index.1353
@@ -4948,7 +4948,7 @@ mt1clip.cc
 	bound_null114.1378
 	bound_null115.1379
 	bound_arrays.1381
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 staffroll.cc
 	NewStaffRoll(void)
 	__9StaffRollUi
@@ -4964,7 +4964,7 @@ staffroll.cc
 	StaffRoll::Act(void)
 	__tf9StaffRoll
 	map_staffroll
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 save_sysfile.cc
 	NewSaveSystemFile(void)
 	__14SaveSystemFileUi
@@ -4997,7 +4997,7 @@ save_sysfile.cc
 	strs_coord.1359
 	str_slot_coord.1360
 	str_yesno_coord.1361
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 title.cc
 	NewTitle(void)
 	__5titleiUiUiUiUii
@@ -5021,14 +5021,14 @@ title.cc
 	title::phase_zoe(void)
 	title::phase_intro(void)
 	title::Act_Intro(void)
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 title.h
 	__tf5title
 title_init.cc
 	title::Initialize_Texture(void)
 	title::Dequeue_Texture(void)
 	title::Initialize_Intro(void)
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 title_func.cc
 	TitleSetSprite(DG_OBJ_POLYGON *, DG_VERTEX *, DG_VERTEX *, char *, float *, float *, float, float, float, float, float, unsigned int)
 	TitleSetPolygon(DG_OBJ_POLYGON *, DG_VERTEX *, DG_VERTEX *, char *, float *, float *, float, float, float, float, float, unsigned int)
@@ -5049,7 +5049,7 @@ title_func.cc
 	TitleSetY(DG_OBJ_POLYGON *, float)
 	TitleMoveY(DG_OBJ_POLYGON *, float)
 	TitleGetY(DG_OBJ_POLYGON *)
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 title_sub.cc
 	title::zoe_init(void)
 	title::zoe_end(void)
@@ -5099,7 +5099,7 @@ title_sub.cc
 	TITLE_BALL_VEC.1402
 	_$tmp_0.1403
 	yarray.1476
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 newgame.cc
 	title::phase_newgame(void)
 	title::newgame_select(void)
@@ -5117,7 +5117,7 @@ newgame.cc
 	str_language.1364
 	difficulty_x_coord
 	difficulty_y_coord
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 loadgame.cc
 	NewLoadGame(void)
 	__14TitleLDControlUiUii
@@ -5156,12 +5156,12 @@ loadgame.cc
 	ldlines_y_coord
 	memcard_tex.1425
 	memcard_x_coord
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 loadgame.h
 	__5$_284
 	_$_5$_284
 	__tf14TitleLDControl
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 loadgame_sub.cc
 	TitleLDControl::memfile_init(void)
 	TitleLDControl::memfile_emptybox_firstset(int)
@@ -5218,7 +5218,7 @@ loadgame_sub.cc
 	memfile_cursor_corner_y_coord
 	memfile_cursor_corner_x_coord
 	str_messages
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 optscreen.cc
 	title::phase_optscreen(void)
 	title::optscreen_select(void)
@@ -5258,7 +5258,7 @@ optscreen.cc
 	optlines_y_coord
 	optitems_cursor_y_coord
 	optitems_cursor_x_coord
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 vsscr_sub.cc
 	TitleVSControl::chara_name_face_binit(void)
 	TitleVSControl::chara_name_face_bend(void)
@@ -5312,7 +5312,7 @@ vsscr_sub.cc
 	stage_name_tex.1462
 	level_gage_y_coord
 	level_gage_x_coord
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 vsscreen.cc
 	NewVSScreen(void)
 	__14TitleVSControlUiUii
@@ -5346,10 +5346,10 @@ vsscreen.cc
 	TitleVSControl::player_1p2pcom_cursor_move(void)
 	TitleVSControl::player_1p2pcom_cursor_act(void)
 	Work_TitleVSScreen
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 vsscreen.h
 	__tf14TitleVSControl
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 ttl_bgfade.cc
 	NewTitleFadeControl(void)
 	DestoryTitleFadeControl(void)
@@ -5378,7 +5378,7 @@ ttl_bgfade.cc
 	Work_TitleBgControl
 	title_bgpic
 	tex_filename.1389
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 disp_result.cc
 	NewDispResult(void)
 	__10DispResultUiUiUiUiUi
@@ -5407,7 +5407,7 @@ disp_result.cc
 	rank_start.1369
 	result_title_y_coord
 	result_y_coord
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 hidden_command.cc
 	NewHiddenCommand(void)
 	ResetHiddenCommnad(void)
@@ -5427,7 +5427,7 @@ hidden_command.cc
 	omake_e_command
 	hidden_commands
 	HiddenCommadDaemon
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 omake.cc
 	NewDispOmake(void)
 	__9DispOmakeiUi
@@ -5440,7 +5440,7 @@ omake.cc
 	DispOmake::step_up(void)
 	__tf9DispOmake
 	pic_name.1362
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 title_konami.cc
 	NewTitleKONAMIControl(void)
 	DestoryTitleKONAMIControl(void)
@@ -5456,66 +5456,66 @@ title_konami.cc
 	TitleKONAMIControl::phase_kcej(void)
 	__tf18TitleKONAMIControl
 	Work_TitleKONAMIControl
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 lightn.cc
 	NewLightning(char *, unsigned char, ALG_VECTOR *, ALG_VECTOR *, unsigned char, FRM_OBJECT *, int *)
 	__6lightnPcUcP10ALG_VECTORT3UcP10FRM_OBJECTPi
 	_$_6lightn
 	lightn::Act(void)
 	__tf6lightn
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 impact.cc
 	NewImpact(char *, ALG_MATRIX *, float, unsigned char)
 	__6impactPcP10ALG_MATRIXfUc
 	_$_6impact
 	impact::Act(void)
 	__tf6impact
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 strike.cc
 	NewStrike(char *, ALG_VECTOR *, float, unsigned char)
 	__6strikePcP10ALG_VECTORfUc
 	_$_6strike
 	strike::Act(void)
 	__tf6strike
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 util.cc
 	EFF_CalcVisibleVector(ALG_VECTOR *, ALG_VECTOR *, ALG_VECTOR *, float)
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 dust.cc
 	NewDust(char *, int, ALG_VECTOR *, float, float, float, unsigned short, unsigned short)
 	__4dustPciP10ALG_VECTORfffUsUs
 	_$_4dust
 	dust::Act(void)
 	__tf4dust
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 spark.cc
 	NewSpark(char *, int, ALG_VECTOR *, ALG_VECTOR *, float, unsigned short, unsigned short)
 	__5sparkPciP10ALG_VECTORT3fUsUs
 	_$_5spark
 	spark::Act(void)
 	__tf5spark
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 debri.cc
 	NewDebri(char *, int, ALG_VECTOR *, float, float, float, unsigned short, unsigned short)
 	__5debriPciP10ALG_VECTORfffUsUs
 	_$_5debri
 	debri::Act(void)
 	__tf5debri
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 blast.cc
 	NewBlast(ALG_VECTOR *, FRM_OBJECT *, char *, unsigned char, float, unsigned char, float, unsigned char, DG_OBJ_QUE *)
 	__5blastP10ALG_VECTORP10FRM_OBJECTPcUcfUcfUcP10DG_OBJ_QUE
 	_$_5blast
 	blast::Act(void)
 	__tf5blast
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 impact_color.cc
 	NewImpactColor(char *, ALG_MATRIX *, float, unsigned char, ALG_VECTOR)
 	__11impactColorPcP10ALG_MATRIXfUcG10ALG_VECTOR
 	_$_11impactColor
 	impactColor::Act(void)
 	__tf11impactColor
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 ringbuf.cc
 	STRM_RING_BUFFER::Init(void *, int)
 	STRM_RING_BUFFER::GetFree(STRM_RING_AREA *)
@@ -5538,7 +5538,7 @@ ringbuf.cc
 	STRM_SetExceptionMode(void)
 	u8Error
 	bException
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 streamcd.cc
 	STRM_LoadPcmDir(void)
 	__13STRM_STREAMERP16STRM_RING_BUFFERPc
@@ -5548,7 +5548,7 @@ streamcd.cc
 	__tf13STRM_STREAMER
 	pdirVox1
 	pcurStreamer
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 mpeg2.cc
 	videoCallback(sceMpeg *, sceMpegCbDataStr *, STRM_PLAYMPEG *)
 	stopDma(sceMpeg *, sceMpegCbData *, STRM_PLAYMPEG *)
@@ -5578,10 +5578,10 @@ mpeg2.cc
 	STRM_InitPlayMpeg(void)
 	bPop
 	pPlayMpg
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 private.h
 	__tf13STRM_PLAYMPEG
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 jimaku.cc
 	_$_15STRM_PLAYJIMAKU
 	STRM_PLAYJIMAKU::Update(int)
@@ -5593,7 +5593,7 @@ jimaku.cc
 	__tf15STRM_PLAYJIMAKU
 	curSpeaker
 	bCaptionFlag
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 pcm.cc
 	__12STRM_PLAYPCM
 	_$_12STRM_PLAYPCM
@@ -5605,7 +5605,7 @@ pcm.cc
 	STRM_InitPlayPcm(void)
 	pDec
 	__tf12STRM_PLAYPCM
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 pssman.cc
 	dataCallback(sceMpeg *, sceMpegCbDataStr *, STRM_DATACONSUMER *)
 	__6pssmanPcUiP10SCN_THREADUiP8EV_EVENT
@@ -5646,19 +5646,19 @@ pssman.cc
 	nRunning
 	pBuf1
 	pBuf2
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 ../include/libstrm.h
 	STRM_DATACONSUMER::SetFunc(int, STRM_DATACONSUMER *(*)(sceMpeg *))
 	__tf17STRM_DATACONSUMER
 	SCN_DATA::SetNumber(int)
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 regact.cc
 	STRM_ResetDemoActorList(void)
 	STRM_RegistorDemoActor(void)
 	STRM_GetDemoActor(char *)
 	nActor
 	dmactr
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 evd.cc
 	EV_EVENTLIST::Insert(EV_EVENTLIST *)
 	EV_EVENTLIST::Delete(void)
@@ -5682,10 +5682,10 @@ evd.cc
 	work.330
 	_$tmp_0.331
 	pDaemon
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 libev.h
 	EV_JOB::StopJob(EV_EVENT *)
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 situman.cc
 	__10EV_SIT_MAN
 	_$_10EV_SIT_MAN
@@ -5709,7 +5709,7 @@ situman.cc
 	EV_SIT_MAN::GLOBAL_$I$(void)
 	__tf10EV_SIT_MAN
 	GETNEAR_DIST2
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 multitrack.cc
 	__10multitrack
 	multitrack::Reset(void)
@@ -5728,7 +5728,7 @@ multitrack.cc
 	pMultiTrack
 	fBtmHeight
 	fTopHeight
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 syscmd.cc
 	SCN_SYSTEM::InitSystem(unsigned short, unsigned short, unsigned short)
 	SCN_SYSTEM::EndSystem(void)
@@ -5761,18 +5761,18 @@ syscmd.cc
 	SCN_THREAD::GetArgData(unsigned char)
 	SCN_THREAD::Init(SCN_STACK *, unsigned short)
 	SCN_SYSTEM::SearchEmptyThread(void)
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 scncmd.cc
 	SCN_SYSTEM::CallProc(unsigned int)
 	SCN_THREAD::CallProc(unsigned int)
 	SCN_THREAD::Execute(void)
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 link.cc
 	SCN_InitCode(void *, char *)
 	SCN_SetBinary(void *, char *)
 	SCN_SYSTEM::ResetExFunc(void)
 	pInitExFunc
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 dmman.cc
 	__10DM_MANAGERP15_DEF_DM_MANAGER
 	_$_10DM_MANAGER
@@ -5789,7 +5789,7 @@ dmman.cc
 	DM_MANAGER::GetObject(int)
 	ScnRefineDMFramePosition(void)
 	pFrm
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 dat.cc
 	DM_DATA::Que(DM_STRPACK *)
 	DM_DATA::SetValidQue(unsigned short)
@@ -5800,12 +5800,12 @@ dat.cc
 	DM_CAMERA::Update(unsigned short)
 	DM_LIGHT::Update(unsigned short)
 	DM_LIGHT::End(void)
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 shape.cc
 	DM_AddShapeTag(DM_SHAPE *, DG_MDL *, DAT128 *)
 	GLOBAL_$I$DM_AddShapeTag(DM_SHAPE *, DG_MDL *, DAT128 *)
 	tabCycle
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 memstrm.cc
 	memstrm::Act(void)
 	__7memstrmPcUiUiUi
@@ -5813,7 +5813,7 @@ memstrm.cc
 	NewDemoStream(void)
 	NewDemoStreamTmp(void)
 	__tf7memstrm
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 recplayframe.cc
 	__9motionactP11DM_RECFRAME
 	motionact::Act(void)
@@ -5829,17 +5829,17 @@ recplayframe.cc
 	DM_RECFRAME::ActMotion(void)
 	ScnSendTargetID(void)
 	__tf9motionact
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 ../include/libdm.h
 	__tf11DM_RECFRAME
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 pdcam.cc
 	DM_PRDEMO_CAMERA::SetPlayData(int)
 	DM_PRDEMO_CAMERA::Calc(int)
 	DM_PRDEMO_CAMERA::UpdateCamera(int)
 	DM_PRDEMO_CAMERA::GetMatrix(ALG_MATRIX *)
 	DM_PRDEMO_CAMERA::GetInterpMatrix(DM_PRDEMO_CAMERA_RECDATA *, DM_PRDEMO_CAMERA *, DM_PRDEMO_CAMERA *, DM_PRDEMO_CAMERA *, float)
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 dmfrm.cc
 	__8DM_FRAMEPcUcP10ALG_MATRIXT3
 	__8DM_FRAMEUiP10ALG_MATRIXUcUcUcUciUiUc
@@ -5849,12 +5849,12 @@ dmfrm.cc
 	DM_FRAME::Update(unsigned short)
 	DM_FRAME::SetPad(void)
 	DM_FRAME::SetScreen(void)
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 libdm.h
 	DM_FRAME::Player(void)
 	DM_FRAME::SetModulateFunc(void (*)(DM_FRAME *, unsigned short, void *), void *)
 	__tf8DM_FRAME
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 polydstrm.cc
 	__11DM_POLYDEMO
 	_$_11DM_POLYDEMO
@@ -5862,7 +5862,7 @@ polydstrm.cc
 	NewPolyDemo(sceMpeg *)
 	DM_InitPolyDemo(void)
 	__tf11DM_POLYDEMO
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 scnstrm.cc
 	_$_13DM_SCN_STREAM
 	DM_SCN_STREAM::Update(int)
@@ -5874,7 +5874,7 @@ scnstrm.cc
 	DM_GetCmdTable(void)
 	__13DM_SCN_STREAM
 	__tf13DM_SCN_STREAM
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 dmxstrm.cc
 	__10DM_DMXSTRM
 	_$_10DM_DMXSTRM
@@ -5882,7 +5882,7 @@ dmxstrm.cc
 	NewDmxStream(sceMpeg *)
 	DM_InitDmxStream(void)
 	__tf10DM_DMXSTRM
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 motman.cc
 	MT_MOTION::Init(DG_OBJ *, MT_TABLE *, int)
 	MT_MOTION::Stop(void)
@@ -5913,7 +5913,7 @@ motman.cc
 	TRG_OBJECT::PushVecSph(ALG_VECTOR *)
 	TRG_OBJECT::PushVecBox(ALG_VECTOR *)
 	TRG_OBJECT::PushVector(ALG_VECTOR *)
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 trgd.cc
 	TRG_OBJECT::StartDaemon(void)
 	__10TRG_DAEMON
@@ -5922,9 +5922,9 @@ trgd.cc
 	_$_10TRG_DAEMON
 	work.435
 	_$tmp_0.436
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 trgdbg.cc
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 hzdd.cc
 	LinkAddrRccrsvBreak(HZD_TREE_NODE *, int, int)
 	LinkAddrRccrsv(HZD_TREE_NODE *, int)
@@ -5947,7 +5947,7 @@ hzdd.cc
 	HZD_LocalBreakList(unsigned int)
 	HZD_ChangeBreak(void)
 	HZD_Break
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 online.cc
 	make_minimax(_HZD_MINIMAX *, _HZD_LINE_SEG *)
 	ChkPlnClsn(HZD_TREE_NODE *)
@@ -5963,16 +5963,16 @@ online.cc
 	fcurDistMin
 	u16curIgnoreFlag
 	pcurMinimax
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 minimax.cc
 	HZD_MinimaxTest(HZD_PLANE *)
 	HZD_NodeMinimaxClip(HZD_TREE_NODE *)
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 include.cc
 	sub_square(float *, float *, float, float)
 	sub_triangle(float *, float *, float, float)
 	HZD_IncludePlanePoint(HZD_PLANE *, ALG_VECTOR *)
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 sphere.cc
 	HZD_GetMaxDistBuf(_HZD_RETURNBUF *)
 	HZD_CalcCos(ALG_VECTOR *, ALG_VECTOR *)
@@ -5990,7 +5990,7 @@ sphere.cc
 	HZD_PushVector(ALG_VECTOR *)
 	pSpdWork
 	pcurSphere
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 capsule.cc
 	make_minimax(_HZD_MINIMAX *, _HZD_CAPSULE *)
 	HZD_HazardCheckWithFlag(_HZD_CAPSULE *, unsigned int)
@@ -5999,14 +5999,14 @@ capsule.cc
 	CalcSegment2Point(_HZD_CAPSULE *, ALG_VECTOR *, _HZD_RETURNBUF *)
 	HZD_ColisionCapsulePlane(HZD_PLANE *, _HZD_CAPSULE *, _HZD_RETURNBUF *)
 	pcurCapsule
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 break.cc
 	HZD_PLANE::AddDamage(int)
 	HZD_PLANE::ChangeModel(void)
 	HZD_TREE_NODE::ChangeBreakModel(void)
 	HZD_PLANE::CheckChain(void)
 	HZD_TREE_NODE::CheckChainNode(void)
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 status.cc
 	__9HZD_BREAK
 	HZD_BREAK::Reset(void)
@@ -6037,7 +6037,7 @@ status.cc
 	HZD_BREAK_STATUS::GetStatus(unsigned int)
 	HZD_BREAK_STATUS::GetPtr(unsigned int)
 	HZD_BREAK_STATUS::Dump(void)
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 gfield.cc
 	HZD_G_DIR::GetComp(ALG_MATRIX *, ALG_VECTOR *)
 	HZD_G_DIR::Init(void)
@@ -6056,10 +6056,10 @@ gfield.cc
 	ScnSetRotGravity(void)
 	grav.699
 	_$tmp_0.700
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 libhzd.h
 	HZD_GRAVITY::SetComp(unsigned char, ALG_MATRIX *)
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 limit.cc
 	HZD_AXIS_LIMIT::LimitRate(float)
 	HZD_AXIS_LIMIT::GetDist(float)
@@ -6086,7 +6086,7 @@ limit.cc
 	ScnSetGravitySpeed(void)
 	pLimit
 	limit.861
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 dgd.cc
 	VSyncThread(void *)
 	DG_DAEMON1::Act(void)
@@ -6111,7 +6111,7 @@ dgd.cc
 	_$tmp_0.610
 	work2.617
 	_$tmp_1.618
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 prim.cc
 	DG_PRIMPACKET::StartPrim(DAT128 *, unsigned int, ALG_MATRIX *)
 	DG_PRIMPACKET::AddXYZ(float, float, float)
@@ -6144,7 +6144,7 @@ prim.cc
 	packetFrameCopy
 	zTex
 	scrachTex
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 dma_ctrl.cc
 	DG_SyncScrpadDma(void)
 	DG_FRAME::CallbackFunc(void)
@@ -6167,7 +6167,7 @@ dma_ctrl.cc
 	fromSprDma
 	use_buffer
 	scrpad_buffer
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 chanl.cc
 	dummy(void *)
 	InitChanlQue(DG_CHANL *)
@@ -6194,11 +6194,11 @@ chanl.cc
 	_trans_msk
 	_effect_env
 	_2d_test
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 libdg.h
 	_$_8DG_CHANL
 	__8DG_CHANL
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 mkpk.cc
 	SetGlobalEnvelopeTag(DG_MDL *, DAT128 *)
 	MakePacketReccursive(DG_MDL *)
@@ -6214,7 +6214,7 @@ mkpk.cc
 	nWrite
 	ppkMdl
 	ppkObj
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 camera.cc
 	DG_CAMERA::SetScreen(void)
 	DG_CAMERA::Init(void)
@@ -6229,7 +6229,7 @@ camera.cc
 	DG_CAMERA::UpdateMat(void)
 	DG_CAMERA::SetScrpadEnv(void)
 	DG_CAMERA::SendVu1Env(DAT128 *)
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 obj.cc
 	DG_DefaultShapeFunc(void *, DG_MDL *, DAT128 *)
 	DG_MakeObj(_DEF_OBJ *)
@@ -6249,7 +6249,7 @@ obj.cc
 	DG_MDL::MoveStageLL2Local(ALG_MATRIX *)
 	DG_OBJPTR::Destroy(void)
 	_GLOBAL_$I$DG_Vu1ShapeV
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 light.cc
 	DG_SetDefaultLight(void)
 	__tcf_2
@@ -6291,9 +6291,9 @@ light.cc
 	litDir.699
 	_$tmp_3.700
 	pdlitCurrentStage
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 dgdebug.cc
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 texture.cc
 	DG_InitTexture(void)
 	DG_LoadTexture(_DEF_TEXLIST *, char *)
@@ -6313,7 +6313,7 @@ texture.cc
 	bufTex
 	bufClut
 	pcurTlst
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 bound.cc
 	MakeBoundVerts(float *, ALG_VECTOR *)
 	MakeBoundVertsStage(float *, ALG_VECTOR *)
@@ -6322,14 +6322,14 @@ bound.cc
 	DG_BoundCheck(DG_OBJ *)
 	DG_BoundCheck(DG_OBJ_POLYGON *)
 	DG_BoundCheck(DG_OBJ_QUE *)
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 sort.cc
 	DG_InitOtag(void)
 	DG_InstallOtag(DG_MDL *)
 	DG_OBJINFO::InstallOtag(void)
 	DG_WriteList(void)
 	pswork
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 debugprim.cc
 	DG_DBG::Act(void)
 	ActDraw(DG_DBG *, DAT128 *)
@@ -6347,7 +6347,7 @@ debugprim.cc
 	DG_DbgDrawSqure(ALG_VECTOR *, ALG_VECTOR *, ALG_VECTOR *, ALG_VECTOR *, unsigned int, unsigned int, unsigned int, unsigned int)
 	__tf6DG_DBG
 	_pwork
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 addtag.cc
 	setStripenv(_TAG_STRIPENV **, int, int, unsigned int, unsigned int)
 	setTexture(_TAG_TEXTURE **, _DEF_CLUT *, unsigned short)
@@ -6394,7 +6394,7 @@ addtag.cc
 	tagEfldExec
 	tagRetcode
 	mtrIgnoreLight
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 vmem.cc
 	SearchMemUnit(unsigned short)
 	SearchFragment(unsigned short)
@@ -6409,14 +6409,14 @@ vmem.cc
 	DG_AllocNonResidentBlock(unsigned short)
 	u16sizeNonResident
 	u16addrNonResident
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 callback.cc
 	DG_OBJ_CALLBACK::Draw(void)
 	DG_TransCallback(DG_OBJ_CALLBACK *)
 	DG_TransCallback2D(DG_OBJ_CALLBACK *)
 	DG_DrawCallbackTrans(DG_OBJ_CALLBACK *)
 	DG_TransCallbackQue(DG_OBJ_CALLBACK *, unsigned short)
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 preshade.cc
 	PreshadeStrip(_DEF_STRIP *, ALG_MATRIX *)
 	PreshadeMdl(_DEF_MDL *, ALG_MATRIX *)
@@ -6425,7 +6425,7 @@ preshade.cc
 	DG_LIGHT::GLOBAL_$I$PreshadeObj(_DEF_OBJ *)
 	vecMtrDiffuse
 	pcurobj
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 polygon.cc
 	DG_InitPolygonPacket(void)
 	DG_OBJ_POLYGON::Draw(void)
@@ -6457,25 +6457,25 @@ polygon.cc
 	__tf19DG_MDL_FLOWLINEDATA
 	DG_MDL_SPECIALDATA::PreAct(DG_MDL *)
 	__tf18DG_MDL_SPECIALDATA
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 envmap.cc
 	DG_MDL_ENVMAPDATA::SetMdlParam(DAT128 *, DG_MDL *)
 	DG_MDL_ENVMAPDATA::SetMdlData(DAT128 *, DG_MDL *)
 	__17DG_MDL_ENVMAPDATA
 	__tf17DG_MDL_ENVMAPDATA
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 flowenv.cc
 	DG_MDL_FLOWENVDATA::SetMdlParam(DAT128 *, DG_MDL *)
 	DG_MDL_FLOWENVDATA::SetMdlData(DAT128 *, DG_MDL *)
 	__18DG_MDL_FLOWENVDATA
 	__tf18DG_MDL_FLOWENVDATA
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 refrmap.cc
 	DG_MDL_REFRACTDATA::SetMdlParam(DAT128 *, DG_MDL *)
 	DG_MDL_REFRACTDATA::SetMdlData(DAT128 *, DG_MDL *)
 	__18DG_MDL_REFRACTDATA
 	__tf18DG_MDL_REFRACTDATA
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 algcc.cc
 	DG_SetCurrentMatrix(ALG_MATRIX *)
 	DG_GetCurrentMatrix(ALG_MATRIX *)
@@ -6491,9 +6491,9 @@ algcc.cc
 	DG_SetMatInv(ALG_MATRIX *)
 	DG_CalcMatInv(ALG_MATRIX *)
 	DG_CaptureDisplayImage(void)
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 dbfont2.cc
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 que.cc
 	dummy(void *, unsigned short)
 	DG_OBJ_QUE::Draw(void)
@@ -6503,7 +6503,7 @@ que.cc
 	DG_OBJ_QUE::Queue(void *)
 	DG_OBJ_QUE::Dequeue(void *)
 	QueFunc
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 font.cc
 	DG_OBJ_FONT::Print2(char *)
 	DG_OBJ_FONT::Print(char *)
@@ -6522,13 +6522,13 @@ font.cc
 	DG_InitFont(void)
 	pTable
 	texFnt
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 efield.cc
 	DG_MDL_EFIELDDATA::SetMdlParam(DAT128 *, DG_MDL *)
 	DG_MDL_EFIELDDATA::SetMdlData(DAT128 *, DG_MDL *)
 	__17DG_MDL_EFIELDDATA
 	__tf17DG_MDL_EFIELDDATA
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 vector.cc
 	ALG_VECTOR::RelPos(ALG_MATRIX *)
 	ALG_VECTOR::AbsPos(ALG_MATRIX *)
@@ -6536,7 +6536,7 @@ vector.cc
 	ALG_VECTOR::AbsVec(ALG_MATRIX *)
 	ALG_VECTOR::RelZ(ALG_MATRIX *)
 	_GLOBAL_$I$UNIT_X_VEC
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 matrix.cc
 	__10ALG_MATRIXffffffffffffffff
 	ALG_MATRIX::_as(float)
@@ -6564,21 +6564,21 @@ matrix.cc
 	ALG_MATRIX::SetFreeY(ALG_VECTOR *, float)
 	ALG_MATRIX::SetFreeZ(ALG_VECTOR *, float)
 	ALG_MATRIX::Line(ALG_VECTOR *, ALG_VECTOR *, ALG_VECTOR *)
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 quater.cc
 	ALG_QUATER::Convert(ALG_MATRIX *)
 	ALG_QUATER::Norm(void)
 	ALG_QUATER::Slerp(ALG_QUATER *, float)
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 math.cc
 	ALG_Sin(float)
 	ALG_Cos(float)
 	ALG_Atan2(float, float)
 	ALG_Hermite(float, float, float, float, float)
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 fsd.cc
 	FS_StartDaemon(void)
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 cache.cc
 	FS_CACHE::Find(unsigned int)
 	FS_CACHE::Shift(FS_CACHEMEMBER *)
@@ -6597,11 +6597,11 @@ cache.cc
 	mbNonRsdnt
 	chResident
 	mbResident
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 vu0man.cc
 	FS_UploadVu0Program(void *)
 	pcurProgDma
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 loader.cc
 	FS_ChangeDirectory(char *)
 	ExtKey(char *)
@@ -6625,7 +6625,7 @@ loader.cc
 	pLoader
 	work.522
 	_$tmp_0.523
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 loadercd.cc
 	__9FS_LOADER
 	FS_LOADER::InitStageLoad(void)
@@ -6644,7 +6644,7 @@ loadercd.cc
 	__tf9FS_LOADER
 	_$_9FS_LOADER
 	hdr
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 cdvd.cc
 	LinkRccrsv(FS_CDDIR *)
 	FS_CdLoadDirInfo(char *, int)
@@ -6658,11 +6658,11 @@ cdvd.cc
 	FS_LOAD_CDFILE::CheckEnd(void)
 	pCddir
 	FS_SctDatFile
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 libfs.h
 	__tf14FS_LOAD_CDFILE
 	_$_14FS_LOAD_CDFILE
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 actor.cc
 	__8GV_ACTORUcUcUc
 	_$_8GV_ACTOR
@@ -6673,7 +6673,7 @@ actor.cc
 	GV_ACTOR::Kill(unsigned char)
 	GV_ACTOR::KillExec(void)
 	GV_ACTOR::Kill2(void)
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 libgv.h
 	GV_ACTOR::Time(void)
 	GV_ACTOR::NextCancelPauseAtt(void)
@@ -6688,9 +6688,9 @@ libgv.h
 	GV_ACTOR::Destroy(void)
 	GV_ACTOR::SetActor(void)
 	__tf8GV_ACTOR
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 orgtype.h
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 gvd.cc
 	GV_ACTOR::StartDaemon(void)
 	__9GV_DAEMON
@@ -6699,7 +6699,7 @@ gvd.cc
 	_$_9GV_DAEMON
 	work.129
 	_$tmp_0.130
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 memory.cc
 	GV_MEMORY::InitSystem(void)
 	GV_MEMORY::Alloc(unsigned int)
@@ -6714,7 +6714,7 @@ memory.cc
 	GV_MEMORY::CheckSync(void)
 	GV_MEMORY::CheckMaxFreeSize(void)
 	GV_MEMORY::CheckMemoryLack(void)
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 message.cc
 	__10GV_MESSAGEUi
 	_$_10GV_MESSAGE
@@ -6728,7 +6728,7 @@ message.cc
 	GV_MESSAGE::GetString(unsigned char)
 	GV_MESSAGE::Update(void)
 	GV_MESSAGE::Receive(unsigned int)
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 pad.cc
 	GV_PAD::InitPad(void)
 	GV_PAD::Read(int)
@@ -6737,14 +6737,14 @@ pad.cc
 	GV_PAD::SetAct(int, unsigned char)
 	tabPress2Pad
 	act_align.1356
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 sound.cc
 	SD_Play3DSound(unsigned short, ALG_VECTOR *, float, unsigned char)
 	SD_Mute3DSound(void)
 	SD_MuteOff3DSound(void)
 	SD_Play2DSound(unsigned short, unsigned char, unsigned char)
 	bMute
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 mcd2.cc
 	MC_StartDaemon(void)
 	__9MC_DAEMON
@@ -6788,11 +6788,11 @@ mcd2.cc
 	_$tmp_0.1354
 	work2.1358
 	_$tmp_1.1359
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 ../include/libmcard.h
 	__tf10MC_DAEMON2
 	__tf9MC_DAEMON
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 mcd2_low.cc
 	MC_DAEMON::LoadStepStart(int, char *, void *, int)
 	MC_DAEMON::SaveStepStart(int, char *, void *, int)
@@ -6813,7 +6813,7 @@ mcd2_low.cc
 	MC_DAEMON::FormatStep(void)
 	MC_DAEMON::CheckInfoStep(void)
 	MC_DAEMON::GetInfoStep(void)
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 datafile.cc
 	MC_DAEMON::InitSaveLoadData(void)
 	MC_SetContinuePoint(void)
@@ -6824,7 +6824,7 @@ datafile.cc
 	MC_DAEMON::SetLoadData(void)
 	SCN_SYSTEM::GetGlobalData(char *)
 	SCN_SYSTEM::SetGlobalData(char *)
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 icon2.cc
 	MC_LoadIconData(char *, char *)
 	MC_DAEMON::InitIconData(char *)
@@ -6833,7 +6833,7 @@ icon2.cc
 	lightdir
 	lightcol
 	ambient
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 interface.cc
 	MC_CheckCard(void)
 	MC_LoadFile(int, int)
@@ -6860,7 +6860,7 @@ interface.cc
 	GetStoryTitle(int)
 	stagename.1416
 	story_title.1420
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 options.cc
 	SetDefaultOption
 	SetVibrationFlag
@@ -6901,15 +6901,15 @@ options.cc
 	play_time
 	start
 	month_day.1425
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 sjis.cc
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 sd_ee.c
 	sd_init
 	sd_set_cli
 	sd_status
 	status
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 cdbios_ee.c
 	cdbios_callback
 	cdbios_init
@@ -6925,7 +6925,7 @@ cdbios_ee.c
 	send_iop
 	work
 	nocache_work
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 libmain.c
 	sif_set_callback_func
 	sif_send_packet_and_data
@@ -6940,7 +6940,7 @@ libmain.c
 	cmdpacket
 	icmdpacket
 	init_flag
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 rvman.c
 	rv_man_callback
 	sif_init_rv_man
@@ -6952,13 +6952,13 @@ rvman.c
 	sif_get_mem
 	SIF_RV_Queue
 	SIF_RV_Queue_id
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 exception.c
 	MTS_SetPrintFunc
 	cprintf
 	printf
 	excep_printf
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 graphdev.c
 sceGsResetGraph
 sceGsGetGParam
@@ -6977,7 +6977,7 @@ sceGsSetHalfOffset
 sceGsSetDefDrawEnv2
 sceGsSetHalfOffset2
 sceGszbufaddr
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 libdma.c
 memclr
 sceDmaGetChan
@@ -7004,7 +7004,7 @@ isclr
 ststbl
 stdtbl
 mfdtbl
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 devvu0.c
 sceDevVu0CheckBusy
 sceDevVu0Reset
@@ -7019,7 +7019,7 @@ sceDevVu0Exec
 sceDevVu0GetTpc
 sceDevVu0GetCnd
 sceDevVu0PutCnd
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 devvu1.c
 sceVuCheckBusy
 sceVu0MemWriteQ
@@ -7036,7 +7036,7 @@ sceDevVu1Exec
 sceDevVu1GetTpc
 sceDevVu1GetCnd
 sceDevVu1PutCnd
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 devvif0.c
 sceDevVif0Reset
 sceDevVif0Pause
@@ -7046,7 +7046,7 @@ sceDevVif0GetErr
 sceDevVif0Sync
 sceDevVif0GetCnd
 sceDevVif0PutFifo
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 devvif1.c
 sceDevVif1Reset
 sceDevVif1Pause
@@ -7057,7 +7057,7 @@ sceDevVif1Sync
 sceDevVif1GetCnd
 sceDevVif1PutFifo
 sceDevVif1GetFifo
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 libvifpk.c
 sceVif1PkInit
 sceVif1PkReset
@@ -7074,7 +7074,7 @@ sceVif1PkAddGsAD
 sceVif1PkOpenDirectHLCode
 sceVif1PkCloseDirectHLCode
 sceVif1PkAddGsPacked
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 libvu0.c
 sceVu0ApplyMatrix
 sceVu0MulMatrix
@@ -7137,12 +7137,12 @@ _rotTP
 loop_clip_all
 end_clip_all
 init_vif_regs.126
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 libipu.c
 sceIpuStopDMA
 sceIpuRestartDMA
 sceIpuSync
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 ../eecdvd.c
 sceCdCallback
 cd_callback
@@ -7234,7 +7234,7 @@ icmdrdata
 cddr1
 cdbk
 cddr2
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 libscf.c
 GetRomName
 IsT10K
@@ -7257,7 +7257,7 @@ subhour
 AdjustTime
 sceScfGetGMTfromRTC
 sceScfGetLocalTimefromRTC
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 pack.c
 _type2id
 _id2type
@@ -7269,7 +7269,7 @@ _system_header
 _PES_packet
 _strmap
 ES_DSM_trick_mode_add_copy_CRC.39
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 mpeg.c
 sceMpegInit
 sceMpegCreate
@@ -7306,7 +7306,7 @@ _decodeOrSkipFrame
 _decodeOrSkip
 _decodeOrSkipField
 _sceMpegFlush
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 init.c
 _initSeqAgain
 _lastFrame
@@ -7330,13 +7330,13 @@ _pictureTemporalScalableExtension
 _buffbase
 _sprtagdata
 _bstag
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 defhandler.c
 _defStopDMA
 _defRestartDMA
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 var.c
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 mpc.c
 _motionComp0
 _getAllRefs
@@ -7415,13 +7415,13 @@ _isDirty
 ext_func.183
 tempRefWrap.193
 tempRefOld.194
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 csc.c
 _doCSC
 _ch3dmaCSC
 _doCSC2
 _csc_storeRefImage
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 bit.c
 _sysbitInit
 _sysbitNext
@@ -7430,12 +7430,12 @@ _sysbitGet
 _sysbitMarker
 _sysbitJump
 _sysbitPtr
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 ipuinit.c
 sceIpuInit
 iqval
 vqval
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 ../libmc.c
 sceMcInit
 _lmcGetClientPtr
@@ -7472,7 +7472,7 @@ freeAddr
 formAddr
 currentDir
 buffFileInfo
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 ../../../../../src/newlib/libm/math/s_cos.c
 @stabs
 /usr/local/sce/ee/gcc/build/ee/newlib/libm/math/
@@ -7538,11 +7538,11 @@ gh_u:r75
 $LBB3
 $LBE3
 $LBE2
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 ../../../../../src/newlib/libm/math/s_sin.c
 sin
 sin:F13
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 ../../../../../src/newlib/libm/math/sf_floor.c
 huge:S12
 floorf
@@ -7559,7 +7559,7 @@ i:r21
 $LBB4
 $LBE4
 huge
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 ../../../../../src/newlib/libm/math/wf_hypot.c
 hypotf
 $LM20
@@ -7573,7 +7573,7 @@ hypotf:F12
 y:P12
 z:r12
 exc:73
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 ../../../../../src/newlib/libm/math/e_rem_pio2.c
 two_over_pi:S80=ar1;0;-1;20
 npio2_hw:S81=ar1;0;-1;20
@@ -7694,7 +7694,7 @@ pio2_2
 pio2_2t
 pio2_3
 pio2_3t
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 ../../../../../src/newlib/libm/math/ef_hypot.c
 __ieee754_hypotf
 __ieee754_hypotf:F12
@@ -7720,7 +7720,7 @@ $LBB14
 $LBE14
 $LBB15
 $LBE15
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 ../../../../../src/newlib/libm/math/ef_sqrt.c
 one:S12
 tiny:S12
@@ -7733,7 +7733,7 @@ m:r20
 t:r20
 one
 tiny
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 ../../../../../src/newlib/libm/math/k_cos.c
 one:S13
 C1:S13
@@ -7753,7 +7753,7 @@ C3
 C4
 C5
 C6
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 ../../../../../src/newlib/libm/math/k_rem_pio2.c
 init_jk:S80=ar1;0;-1;1
 PIo2:S81=ar1;0;-1;13
@@ -7851,7 +7851,7 @@ q:87=ar1;0;19;13
 init_jk
 PIo2
 twon24
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 ../../../../../src/newlib/libm/math/k_sin.c
 S1:S13
 S2:S13
@@ -7869,12 +7869,12 @@ S3
 S4
 S5
 S6
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 ../../../../../src/newlib/libm/math/s_fabs.c
 fabs
 fabs:F13
 high:r21
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 ../../../../../src/newlib/libm/math/s_floor.c
 huge:S13
 floor
@@ -7883,19 +7883,19 @@ i1:r20
 j:r21
 ew_u:r75
 iw_u:r75
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 ../../../../../src/newlib/libm/math/s_infconst.c
 __infinity:G71
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 ../../../../../src/newlib/libm/common/s_lib_ver.c
 /usr/local/sce/ee/gcc/build/ee/newlib/libm/common/
 __fdlib_version:G74
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 ../../../../../src/newlib/libm/common/s_matherr.c
 matherr
 matherr:F1
 x:P80=*73
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 ../../../../../src/newlib/libm/common/s_scalbn.c
 two54:S13
 twom54:S13
@@ -7905,17 +7905,17 @@ scalbn:F13
 n:P1
 two54
 twom54
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 ../../../../../src/newlib/libm/common/sf_finite.c
 finitef
 finitef:F1
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 ../../../../../src/newlib/libm/common/s_copysign.c
 copysign
 copysign:F13
 hx:r21
 hy:r21
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 libpad.c
 _send_to_iop
 scePadInit
@@ -7953,7 +7953,7 @@ padsif
 buffer
 PadStateStr
 ReqStateStr
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 ../../../../../src/newlib/libc/stdlib/assert.c
 /usr/local/sce/ee/gcc/build/ee/newlib/libc/stdlib/
 wchar_t:t23=1
@@ -7978,7 +7978,7 @@ __assert:F19
 file:P57
 line:P1
 failedexpr:P57
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 ../../../../../src/newlib/libc/stdlib/atexit.c
 ptrdiff_t:t20=1
 size_t:t21=4
@@ -8005,14 +8005,14 @@ atexit
 atexit:F1
 fn:P40
 p:r38
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 ../../../../../src/newlib/libc/errno/errno.c
 /usr/local/sce/ee/gcc/build/ee/newlib/libc/errno/
 _off_t:t71=3
 _ssize_t:t72=3
 __errno
 __errno:F73=*1
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 ../../../../../src/newlib/libc/stdlib/exit.c
 ptrdiff_t:t76=1
 wint_t:t77=4
@@ -8044,7 +8044,7 @@ exit:F19
 code:P1
 p:r36
 n:r1
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 ../../../../../src/newlib/libc/stdio/fiprintf.c
 /usr/local/sce/ee/gcc/build/ee/newlib/libc/stdio/
 __gnuc_va_list:t23=24=*2
@@ -8067,13 +8067,13 @@ fiprintf
 fiprintf:F1
 fp:P76=*73
 fmt:P58
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 ../../../../../src/newlib/libc/reent/impure.c
 /usr/local/sce/ee/gcc/build/ee/newlib/libc/reent/
 impure_data:S54
 _impure_ptr:G53
 impure_data
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 ../../../../../src/newlib/libc/stdlib/malloc.c
 wchar_t:t73=1
 mallinfo:T78=s40arena:1,0,32;ordblks:1,32,32;smblks:1,64,32;hblks:1,96,32;hblkhd:1,128,32;usmblks:1,160,32;fsmblks:1,192,32;uordblks:1,224,32;fordblks:1,256,32;keepcost:1,288,32;;
@@ -8083,7 +8083,7 @@ nbytes:P22
 free
 free:F19
 aptr:P42
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 ../../../../../src/newlib/libc/stdlib/mallocr.c
 __gnuc_va_list:t26=27=*2
 clock_t:t28=5
@@ -8230,7 +8230,7 @@ fwd:r104
 bck:r104
 q:r105
 nb:r21
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 ../../../../../../src/newlib/libc/machine/r5900/memcpy.S
 memcpy
 $L2
@@ -8239,13 +8239,13 @@ $L5
 $L9
 $L12
 $L13
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 ../../../../../../src/newlib/libc/machine/r5900/memset.S
 memset
 $L31
 $L16
 $L19
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 ../../../../../src/newlib/libc/stdlib/mlock.c
 mallinfo:T71=s40arena:1,0,32;ordblks:1,32,32;smblks:1,64,32;hblks:1,96,32;hblkhd:1,128,32;usmblks:1,160,32;fsmblks:1,192,32;uordblks:1,224,32;fordblks:1,256,32;keepcost:1,288,32;;
 __malloc_lock
@@ -8253,7 +8253,7 @@ __malloc_lock:F19
 ptr:P53
 __malloc_unlock
 __malloc_unlock:F19
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 ../../../../../src/newlib/libc/stdlib/rand.c
 _off_t:t76=3
 _ssize_t:t77=3
@@ -8262,14 +8262,14 @@ srand:F19
 seed:P4
 rand
 rand:F1
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 ../../../../../src/newlib/libc/string/rindex.c
 /usr/local/sce/ee/gcc/build/ee/newlib/libc/string/
 rindex
 rindex:F60
 s:P56
 c:P1
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 ../../../../../src/newlib/libc/reent/sbrkr.c
 ptrdiff_t:t73=1
 wchar_t:t74=1
@@ -8300,7 +8300,7 @@ _sbrk_r:F42
 incr:P22
 ret:r60
 errno:G1
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 ../../../../../src/newlib/libc/stdio/sprintf.c
 ptrdiff_t:t78=1
 wchar_t:t79=1
@@ -8333,54 +8333,54 @@ str:P24
 f:73
 sprintf
 sprintf:F1
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 ../../../../../../src/newlib/libc/machine/r5900/strcat.S
 strcat
 $L15
 $L3
 $L14
 $L4
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 ../../../../../../src/newlib/libc/machine/r5900/strcmp.S
 strcmp
 $L18
 $L21
 $L6
 $L22
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 ../../../../../../src/newlib/libc/machine/r5900/strcpy.S
 strcpy
 $L7
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 ../../../../../../src/newlib/libc/machine/r5900/strlen.S
 strlen
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 ../../../../../../src/newlib/libc/machine/r5900/strncmp.S
 strncmp
 $L34
 $L23
 $L24
 $L30
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 ../../../../../../src/newlib/libc/machine/r5900/strncpy.S
 strncpy
 $L17
 $L39
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 ../../../../../src/newlib/libc/string/strrchr.c
 strrchr
 strrchr:F60
 i:P1
 last:r56
 c:r2
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 ../../../../../src/newlib/libc/string/strstr.c
 strstr
 strstr:F60
 searchee:P56
 lookfor:P56
 i:r22
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 ../../../../../src/newlib/libc/stdio/vfprintf.c
 div_t:t75=76=s8quot:1,0,32;rem:1,32,32;;
 ldiv_t:t77=78=s16quot:3,0,64;rem:3,64,64;;
@@ -8664,7 +8664,7 @@ exp:P1
 fmtch:P1
 t:r24
 expbuf:141=ar1;0;307;2
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 ../../../../../src/newlib/libc/stdio/wsetup.c
 :T79=e__no_type_class:-1,__void_type_class:0,__integer_type_class:1,__char_type_class:2,__enumeral_type_class:3,__boolean_type_class:4,__pointer_type_class:5,__reference_type_class:6,__offset_type_class:7,__real_type_class:8,__complex_type_class:9,__function_type_class:10,__method_type_class:11,__record_type_class:12,__union_type_class:13,__array_type_class:14,__string_type_class:15,__set_type_class:16,__file_type_class:17,__lang_type_class:18,;
 va_list:t80=23
@@ -8673,7 +8673,7 @@ _ssize_t:t82=3
 __swsetup
 __swsetup:F1
 fp:P107=*73
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 ../../../../../src/newlib/libc/stdlib/abort.c
 sigset_t:t76=5
 sigaction:T77=s24sa_handler:69,0,32;sa_mask:76,64,64;sa_flags:1,128,32;;
@@ -8681,7 +8681,7 @@ sig_atomic_t:t78=1
 _sig_func_ptr:t79=69
 abort
 abort:F19
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 ../../../../../src/newlib/libc/stdlib/dtoa.c
 __ieee_double_shape_type:t78=79=u16value:13,0,64;number:80=s8fraction1:4,0,32;fraction0:4,32,20;exponent:4,52,11;sign:4,63,1;;,0,64;nan:81=s8function1:4,0,32;function0:4,32,19;quiet:4,51,1;exponent:4,52,11;sign:4,63,1;;,0,64;parts:82=s16lsw:5,0,64;msw:5,64,64;;,0,128;aslong:83=ar1;0;1;3,0,128;;
 __ieee_float_shape_type:t84=85=u8value:12,0,32;number:86=s4fraction0:4,0,7;fraction1:4,7,16;exponent:4,23,8;sign:4,31,1;;,0,32;nan:87=s4function1:4,0,16;function0:4,16,6;quiet:4,22,1;exponent:4,23,8;sign:4,31,1;;,0,32;p1:3,0,64;;
@@ -8860,14 +8860,14 @@ mhi:97
 S:97
 ds:r13
 s:r61
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 ../../../../../src/newlib/libc/stdio/fflush.c
 fflush
 fflush:F1
 fp:P103=*73
 p:r42
 t:r1
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 ../../../../../src/newlib/libc/stdio/findfp.c
 std
 std:f19
@@ -8904,7 +8904,7 @@ pad:P21
 top_size:r3
 extra:r3
 current_brk:r27
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 ../../../../../src/newlib/libc/stdio/fvwrite.c
 __siov:T103=s8iov_base:104=*19,0,32;iov_len:22,32,32;;
 __suio:T105=s12uio_iov:106=*103,0,32;uio_iovcnt:1,32,32;uio_resid:1,64,32;;
@@ -8919,13 +8919,13 @@ s:r1
 nl:r24
 nlknown:r1
 nldist:r1
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 ../../../../../src/newlib/libc/stdio/fwalk.c
 _fwalk
 _fwalk:F1
 function:P107=*108=f1
 fp:r109=*73
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 ../../../../../src/newlib/libc/locale/locale.c
 /usr/local/sce/ee/gcc/build/ee/newlib/libc/locale/
 lconv:T22=s48decimal_point:23=*2,0,32;thousands_sep:23,32,32;grouping:23,64,32;int_curr_symbol:23,96,32;currency_symbol:23,128,32;mon_decimal_point:23,160,32;mon_thousands_sep:23,192,32;mon_grouping:23,224,32;positive_sign:23,256,32;negative_sign:23,288,32;int_frac_digits:2,320,8;frac_digits:2,328,8;p_cs_precedes:2,336,8;p_sep_by_space:2,344,8;n_cs_precedes:2,352,8;n_sep_by_space:2,360,8;p_sign_posn:2,368,8;n_sign_posn:2,376,8;;
@@ -8951,7 +8951,7 @@ localeconv:F76
 lconv
 lc_ctype.3
 last_lc_ctype.4
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 ../../../../../src/newlib/libc/stdio/makebuf.c
 ptrdiff_t:t79=1
 stat:T103=s104st_dev:90,0,16;st_ino:89,16,16;st_mode:97,32,32;st_nlink:98,64,16;st_uid:92,80,16;st_gid:93,96,16;st_rdev:90,112,16;st_size:91,128,64;st_atime:26,192,64;st_spare1:3,256,64;st_mtime:26,320,64;st_spare2:3,384,64;st_ctime:26,448,64;st_spare3:3,512,64;st_blksize:3,576,64;st_blocks:3,640,64;st_spare4:104=ar1;0;1;3,704,128;;
@@ -8966,7 +8966,7 @@ size:r22
 couldbetty:r22
 p:r44
 st:103
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 ../../../../../src/newlib/libc/stdlib/mbtowc_r.c
 lconv:T76=s48decimal_point:61,0,32;thousands_sep:61,32,32;grouping:61,64,32;int_curr_symbol:61,96,32;currency_symbol:61,128,32;mon_decimal_point:61,160,32;mon_thousands_sep:61,192,32;mon_grouping:61,224,32;positive_sign:61,256,32;negative_sign:61,288,32;int_frac_digits:2,320,8;frac_digits:2,328,8;p_cs_precedes:2,336,8;p_sep_by_space:2,344,8;n_cs_precedes:2,352,8;n_sep_by_space:2,360,8;p_sign_posn:2,368,8;n_sign_posn:2,376,8;;
 _mbtowc_r
@@ -8977,16 +8977,16 @@ s:P57
 n:P22
 state:P78=*1
 dummy:23
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 ../../../../../../src/newlib/libc/machine/r5900/memchr.S
 memchr
 $L10
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 ../../../../../../src/newlib/libc/machine/r5900/memmove.S
 memmove
 $L29
 $L11
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 ../../../../../src/newlib/libc/stdlib/mprec.c
 _Balloc
 _Balloc:F97=*96
@@ -9084,15 +9084,15 @@ dig:P1
 $LBB17
 $LBE17
 p05.27
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 ../../../../../src/newlib/libm/math/s_isinf.c
 isinf
 isinf:F1
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 ../../../../../src/newlib/libm/math/s_isnan.c
 isnan
 isnan:F1
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 ../../../../../src/newlib/libc/signal/signal.c
 /usr/local/sce/ee/gcc/build/ee/newlib/libc/signal/
 sigset_t:t71=5
@@ -9126,14 +9126,14 @@ _init_signal
 _init_signal:F1
 __sigtramp
 __sigtramp:F1
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 ../../../../../src/newlib/libc/reent/signalr.c
 _kill_r
 _kill_r:F1
 pid:P1
 _getpid_r
 _getpid_r:F1
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 ../../../../../src/newlib/libc/stdio/stdio.c
 ptrdiff_t:t74=1
 wchar_t:t75=1
@@ -9180,7 +9180,7 @@ whence:P1
 ret:r87
 __sclose
 __sclose:F1
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 ../../../../../src/newlib/libc/reent/writer.c
 _write_r
 _write_r:F72
@@ -9196,27 +9196,27 @@ csz:r21
 mem:r47
 mzsz:r21
 mz:r106=*21
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 ../../../../../src/newlib/libc/reent/closer.c
 _close_r
 _close_r:F1
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 ../../../../../src/newlib/libc/reent/fstatr.c
 _fstat_r
 _fstat_r:F1
 pstat:P98=*99=xsstat:
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 ../../../../../src/newlib/libc/reent/lseekr.c
 _lseek_r
 _lseek_r:F71
 pos:P86
 ret:r86
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 ../../../../../src/newlib/libc/reent/readr.c
 _read_r
 _read_r:F72
 buf:P42
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 ../../src/gcc/libgcc2.c
 /usr/local/sce/ee/gcc/build/gcc/
 cmp_type:T20=eCMP_SI:0,CMP_DI:1,CMP_SF:2,CMP_DF:3,CMP_MAX:4,;
@@ -9371,7 +9371,7 @@ __umoddi3
 __umoddi3:F42
 u:P42
 v:P42
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 dp-bit.c
 SFtype:t20=12
 DFtype:t21=13
@@ -9433,7 +9433,7 @@ dptofp
 dptofp:F20
 arg_a:p21
 thenan.3
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 ../../src/gcc/cp/exception.cc
 __int128_t:t12=r1;000000000000000000000000;0377777777777777777777777777777777;
 __uint128_t:t13=r1;000000000000000000000000;0377777777777777777777777777777777;
@@ -9514,7 +9514,7 @@ q:r104
 __uncatch_exception
 __uncatch_exception:F22
 __check_eh_spec
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 include/exception
 __check_eh_spec:F22
 spec:P105=*106=*22
@@ -9579,7 +9579,7 @@ $LBE46
 $LBE45
 $LBE43
 __throw_bad_cast
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 include/typeinfo
 __throw_bad_cast:F22
 $LBB47
@@ -9715,7 +9715,7 @@ __tf9exception
 __tf9exception:F107
 __unexpected_func
 __EXCEPTION_TABLE__
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 fp-bit.c
 fractype:t28=26
 halffractype:t29=25
@@ -9753,7 +9753,7 @@ frac:P26
 fptodp
 fptodp:F21
 arg_a:p20
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 ../../src/gcc/frame.c
 dwarf_tag:T32=eDW_TAG_padding:0,DW_TAG_array_type:1,DW_TAG_class_type:2,DW_TAG_entry_point:3,DW_TAG_enumeration_type:4,DW_TAG_formal_parameter:5,DW_TAG_imported_declaration:8,DW_TAG_label:10,DW_TAG_lexical_block:11,DW_TAG_member:13,DW_TAG_pointer_type:15,DW_TAG_reference_type:16,DW_TAG_compile_unit:17,DW_TAG_string_type:18,DW_TAG_structure_type:19,DW_TAG_subroutine_type:21,DW_TAG_typedef:22,DW_TAG_union_type:23,DW_TAG_unspecified_parameters:24,DW_TAG_variant:25,DW_TAG_common_block:26,DW_TAG_common_inclusion:27,DW_TAG_inheritance:28,DW_TAG_inlined_subroutine:29,DW_TAG_module:30,DW_TAG_ptr_to_member_type:31,DW_TAG_set_type:32,DW_TAG_subrange_type:33,DW_TAG_with_stmt:34,DW_TAG_access_declaration:35,DW_TAG_base_type:36,DW_TAG_catch_block:37,DW_TAG_const_type:38,DW_TAG_constant:39,DW_TAG_enumerator:40,DW_TAG_file_type:41,DW_TAG_friend:42,DW_TAG_namelist:43,DW_TAG_namelist_item:44,\
 DW_TAG_packed_type:45,DW_TAG_subprogram:46,DW_TAG_template_type_param:47,DW_TAG_template_value_param:48,DW_TAG_thrown_type:49,DW_TAG_try_block:50,DW_TAG_variant_part:51,DW_TAG_variable:52,DW_TAG_volatile_type:53,DW_TAG_MIPS_loop:16513,DW_TAG_format_label:16641,DW_TAG_function_template:16642,DW_TAG_class_template:16643,;
@@ -9890,7 +9890,7 @@ this:P95=*33
 arg:P96=
 this:r95
 __rtti_class
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 ../../src/gcc/cp/tinfo.h
 __rtti_class:F22
 addr:P25
@@ -9991,7 +9991,7 @@ __9type_infoPCc:F39
 __ti9type_info:G103=ar1;0;7;11
 __tf9type_info
 __tf9type_info:F96
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 ../../src/gcc/cp/tinfo2.cc
 __user_type_info:T33=s8!1,020,34=xstype_info:;__as::35=##36=
 __user_type_info:Tt33
@@ -10062,7 +10062,7 @@ to:P126
 address:P25
 sub:P126
 __tfv
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 include/new
 __tfv:F71
 __tfx
@@ -10457,7 +10457,7 @@ __tiUx:G130
 __tiUs:G130
 __tiUc:G130
 __tiSc:G130
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 klib.s
 RFU000_FullReset
 ResetEE
@@ -10596,9 +10596,9 @@ Deci2Call
 PSMode
 MachineType
 GetMemorySize
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 version.h
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 ../include/syscall.h
 glue.c
 VSync
@@ -10620,7 +10620,7 @@ putnum
 get_mem_info
 ttyinit
 heap_ptr.27
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 cache.c
 _sceSDC
 SyncDCache
@@ -10628,7 +10628,7 @@ iSyncDCache
 _sceIDC
 InvalidDCache
 iInvalidDCache
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 intr.c
 DisableIntc
 EnableIntc
@@ -10642,7 +10642,7 @@ iEnableDmac
 iDisableDmac
 iSetAlarm
 iReleaseAlarm
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 thread.c
 topThread
 InitThread
@@ -10652,7 +10652,7 @@ topId
 topSema
 stack.6
 topArg
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 tty.c
 QueueInit
 QueuePeekWriteDone
@@ -10665,7 +10665,7 @@ q.3
 tinfo
 wbuf
 rbuf
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 kprintf.c
 kputchar
 deci2Putchar
@@ -10679,7 +10679,7 @@ scePrintf
 count
 linebuf
 _putchar
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 sifcmd.c
 _set_sreg
 _change_addr
@@ -10709,7 +10709,7 @@ last
 eight
 loop1
 loop8
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 sifrpc.c
 sceSifInitRpc
 sceSifExitRpc
@@ -10737,7 +10737,7 @@ _sceSifInitCheck
 _packet_buffer
 _free_buffer
 _free_buffer2
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 filestub.c
 new_iob
 get_iob
@@ -10758,7 +10758,7 @@ _rcv_data
 _intr_data
 _fsversion
 _send_data
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 eeloadfile.c
 _lf_bind
 _lf_version
@@ -10775,14 +10775,14 @@ _bind_check
 cd
 _senddata
 _lfversion
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 iopreset.c
 sceSifResetIop
 sceSifIsAliveIop
 sceSifSyncIop
 sceSifRebootIop
 rdata
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 deci2.c
 sceDeci2Open
 sceDeci2Close
@@ -10802,7 +10802,7 @@ __fixunsdfdi:F41
 a:P44
 __moddi3
 __moddi3:F41
-/*----------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 ../../../../../../src/newlib/libc/machine/r5900/memcmp.S
 memcmp
 
