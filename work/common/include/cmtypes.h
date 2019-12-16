@@ -12,9 +12,9 @@
 #define CM_TYPE_INT32  int
 #define CM_TYPE_INT64  long long
 
-/*---------------------------------------------------------------------------*
- * Common Types w/ Unspecified Sign
- *---------------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
+/* Common Types w/ Unspecified Sign                                          */
+/*---------------------------------------------------------------------------*/
 #ifndef byte
 #define byte     CM_TYPE_INT8
 #endif
@@ -48,9 +48,9 @@
 #define long64   CM_TYPE_INT64
 #endif
 
-/*---------------------------------------------------------------------------*
- * Common Types w/ Unspecified Width
- *---------------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
+/* Common Types w/ Unspecified Width                                         */
+/*---------------------------------------------------------------------------*/
 typedef   signed char       schar,  s_char;
 typedef unsigned char       uchar,  u_char;
 typedef   signed short      sshort, s_short;
@@ -62,9 +62,9 @@ typedef unsigned long       ulong,  u_long;
 typedef   signed long long  sllong, s_llong;
 typedef unsigned long long  ullong, u_llong;
 
-/*---------------------------------------------------------------------------*
- * Common Types w/ Specified Width
- *---------------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
+/* Common Types w/ Specified Width                                           */
+/*---------------------------------------------------------------------------*/
 typedef   signed CM_TYPE_INT8   sbyte,  s_byte;
 typedef unsigned CM_TYPE_INT8   ubyte,  u_byte;
 
@@ -117,9 +117,9 @@ typedef unsigned int u128      __attribute__((mode(TI)));
 #endif /* HASTYPE_INT128 */
 #endif /* __GNUC__ */
 
-/*---------------------------------------------------------------------------*
- * Fake Boolean Types
- *---------------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
+/* Fake Boolean Types                                                        */
+/*---------------------------------------------------------------------------*/
 #ifndef bool8
 #define bool8  CM_TYPE_INT8
 #endif
@@ -140,9 +140,9 @@ typedef unsigned int u128      __attribute__((mode(TI)));
 #define FALSE (0)
 #endif
 
-/*---------------------------------------------------------------------------*
- * Generic Union Types
- *---------------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
+/* Generic Union Types                                                       */
+/*---------------------------------------------------------------------------*/
 typedef union union16 {
 	s_int16 s16;
 	u_int16 u16;
@@ -197,4 +197,4 @@ typedef union union128 {
 #endif /* END OF FILE */
 /*---------------------------------------------------------------------------*/
 /* -*- indent-tabs-mode: t; tab-width: 4; mode: c; -*- */
-/* vim: set noet ts=4 sw=4 ft=c ff=dos fenc=utf-8 : */
+/* vim: set noet ts=4 sw=4 ft=c ff=unix fenc=utf-8 : */
