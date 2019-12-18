@@ -6,19 +6,30 @@
 #define INC_CMCONF_H
 
 /*---------------------------------------------------------------------------*/
-/* Type Availability for GNU C                                               */
+/* Data Type Width Specification w/ C Primitives                             */
+/*---------------------------------------------------------------------------*/
+#define CM_TYPE_INT8   char
+#define CM_TYPE_INT16  short
+#define CM_TYPE_INT32  int
+#define CM_TYPE_INT64  long long
+
+#define CM_TYPE_FLOAT32  float
+#define CM_TYPE_FLOAT64  double
+
+/*---------------------------------------------------------------------------*/
+/* Data Type Availability for GNU C                                          */
 /*---------------------------------------------------------------------------*/
 #if defined( __GNUC__ )
 
 /* 128-bit Floating Point */
 #if defined( __i686__ )\
  || defined( __x86_64__ )
-#define HASTYPE_FLOAT128 (1)
+#define CM_HAVE_FLOAT128 (1)
 #endif /* (ARCH) */
 
 /* 96-bit Floating Point */
 #if defined( __i686__ )
-#define HASTYPE_FLOAT96 (1)
+#define CM_HAVE_FLOAT96 (1)
 #endif /* (ARCH) */
 
 /* 128-bit Integer */
@@ -27,7 +38,7 @@
  || defined( __psp__ )   /* (PSP) Allegrex       */\
  || defined( __PPU__ )   /* (PS3) Cell/B.E. PPU  */\
  || defined( __SPU__ )   /* (PS3) Cell/B.E. SPU  */
-#define HASTYPE_INT128 (1)
+#define CM_HAVE_INT128 (1)
 #endif /* (ARCH) */
 
 #endif /* __GNUC__ */

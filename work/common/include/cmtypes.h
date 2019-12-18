@@ -7,11 +7,6 @@
 
 #include "cmconf.h"
 
-#define CM_TYPE_INT8   char
-#define CM_TYPE_INT16  short
-#define CM_TYPE_INT32  int
-#define CM_TYPE_INT64  long long
-
 /*---------------------------------------------------------------------------*/
 /* Common Types w/ Unspecified Sign                                          */
 /*---------------------------------------------------------------------------*/
@@ -86,24 +81,24 @@ typedef unsigned CM_TYPE_INT32  ulong32,  u_long32;
 typedef   signed CM_TYPE_INT64  slong64,  s_long64;
 typedef unsigned CM_TYPE_INT64  ulong64,  u_long64;
 
-typedef float   float32, f32;
-typedef double  float64, f64;
+typedef CM_TYPE_FLOAT32  float32, f32;
+typedef CM_TYPE_FLOAT64  float64, f64;
 
 #if defined( __GNUC__ )
-#if defined( HASTYPE_FLOAT128 )
+#if defined( CM_HAVE_FLOAT128 )
 typedef float float128 __attribute__((mode(TF)));
 typedef float f128     __attribute__((mode(TF)));
-#endif /* HASTYPE_FLOAT128 */
-#if defined( HASTYPE_FLOAT96 )
+#endif /* CM_HAVE_FLOAT128 */
+#if defined( CM_HAVE_FLOAT96 )
 typedef float float96  __attribute__((mode(XF)));
 typedef float f96      __attribute__((mode(XF)));
-#endif /* HASTYPE_FLOAT96 */
+#endif /* CM_HAVE_FLOAT96 */
 #endif /* __GNUC__ */
 
 #if defined( __GNUC__ )
-#if defined( HASTYPE_INT128 )
-typedef          int int128    __attribute__((mode(TI)));
-typedef          int long128   __attribute__((mode(TI)));
+#if defined( CM_HAVE_INT128 )
+typedef /******/ int int128    __attribute__((mode(TI)));
+typedef /******/ int long128   __attribute__((mode(TI)));
 typedef   signed int sint128   __attribute__((mode(TI)));
 typedef unsigned int uint128   __attribute__((mode(TI)));
 typedef   signed int slong128  __attribute__((mode(TI)));
@@ -114,7 +109,7 @@ typedef   signed int s_long128 __attribute__((mode(TI)));
 typedef unsigned int u_long128 __attribute__((mode(TI)));
 typedef   signed int s128      __attribute__((mode(TI)));
 typedef unsigned int u128      __attribute__((mode(TI)));
-#endif /* HASTYPE_INT128 */
+#endif /* CM_HAVE_INT128 */
 #endif /* __GNUC__ */
 
 /*---------------------------------------------------------------------------*/
@@ -174,7 +169,7 @@ typedef union union64 {
 } union64;
 
 typedef union union128 {
-#ifdef HASTYPE_INT128
+#ifdef CM_HAVE_INT128
 	s_int128 s128;
 	u_int128 u128;
 #endif
@@ -188,7 +183,7 @@ typedef union union128 {
 	u_int8   u8[16];
 	float32  f32[4];
 	float64  f64[2];
-#ifdef HASTYPE_FLOAT128
+#ifdef CM_HAVE_FLOAT128
 	float128 f128;
 #endif
 } union128;
