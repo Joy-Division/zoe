@@ -124,11 +124,11 @@ void pan_move( void )
 	
 	if( temp2 < 0 ){
 		sptr->panad = -(((-temp2) << 8) / mdata2);
-		if( sptr->panad < -0x07F0)
+		if( sptr->panad < -0x07F0 )
 			sptr->panad = -0x07F0;
 	} else {
 		sptr->panad = (temp2 << 8) / mdata2;
-		if( sptr->panad > 0x07F0)
+		if( sptr->panad > 0x07F0 )
 			sptr->panad = 0x07F0;
 	}
 }
@@ -720,7 +720,8 @@ void at8_set( void )
 void mno_set( void )
 {
 	if( mtrack >= 32 ){
-	// this array access is only a placeholder, mem_str_w appears to be a struct (same addition problem as in eon_set as well)
+		// this array access is only a placeholder, mem_str_w appears to be a struct
+		// (same addition problem as in eon_set as well)
 		mem_str_w[mtrack-32].unk0C = sptr->snos = mdata2+256;
 		keyoff();
 		tone_set( sptr->snos );

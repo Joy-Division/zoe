@@ -14,13 +14,13 @@ extern "C" {
 /* (sd_ee.c) */
 int sd_init( void );
 
-#if 0 // TODO
-sd_set_cli
-sd_status
+#if (0) // TODO
+sd_set_cli();
+sd_status();
 #endif
 
 #ifdef __cplusplus
-} /* extern "C" */
+}
 #endif
 
 #endif /* END OF FILE */
