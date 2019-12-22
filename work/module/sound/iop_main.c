@@ -8,8 +8,9 @@
 #include <kernel.h>
 #include "sd_incl.h"
 
-// TODO: from jsifman, replace once decompiled
-extern u_int sif_send_mem( u_int *, u_int *, u_int );
+static int com_queue[140];
+
+ModuleInfo Module = { "SOUND", 0x0101 };
 
 void sd_set_status( void )
 {
@@ -71,11 +72,11 @@ void sd_set_status( void )
 	com_queue[135] = str2_play_counter[0];
 	com_queue[136] = str2_play_counter[1];
 	// these two assignments have register mismatches for the seccond summand
-	com_queue[137] = (ee_addr[3] << 16) + ee_addr[4];
-	com_queue[138] = (ee_addr[9] << 16) + ee_addr[10];
+	com_queue[137] = (ee_addr[0].unk0C << 16) + (int)ee_addr[0].unk10;
+	com_queue[138] = (ee_addr[1].unk0C << 16) + (int)ee_addr[1].unk10;
 }
 
-void sd_set_status( void )
+void sd_send_status( void )
 {
 	int *que = com_queue;
 	
@@ -86,23 +87,19 @@ void sd_set_status( void )
 	}
 }
 
-// TODO
-void sif_callback_func( int *a0, int *a1 )
+void sif_callback_func( struct unkstr24 *a0, int *a1 )
 {
 	int *temp = a1;
 	
-	if( !a0[3] ){
-		temp[139] = a0[4];
+	if( !a0->unk0C ){
+		temp[139] = (int)a0[0].unk10;
 	} else {
-		// BLOCK FOR 4CC
-	// STRUCT ACCESS?
-		// BELOW IS 500 ALL AFTER IS OK
+		temp[temp[129]*2] = a0[0].unk0C;
 		temp[129] = ((temp[129]+1) / 64) * 63;
 		iWakeupThread( temp[130] );
 	}
 }
 
-// TODO
 void SdSet( void )
 {
 	int temp;
@@ -111,9 +108,7 @@ void SdSet( void )
 	while( 1 ){
 		SleepThread();
 		if( que[128] != que[129] ){
-			// CODE BLOCK STARTING AT 5B0
-		// STRUCT ACCESS?
-			// BELOW IS 5E0 ALL BELOW IS OK
+            temp = que[que[129]*2];
 			que[128] = ((que[128]+1) / 64) * 63;
 			sd_set( temp );
 		}
@@ -121,7 +116,7 @@ void SdSet( void )
 	ExitThread();
 }
 
-void RecieveInit( int a0 )
+void ReceiveInit( int a0 )
 {
 	int *que = com_queue;
 	
@@ -129,7 +124,7 @@ void RecieveInit( int a0 )
 	que[128] = que[129];
 	que[130] = a0;
 	
-	sif_set_callback_func( 1, sif_callback_func, com_queue );
+	sif_set_callback_func( 1, (void (*)(void *, int *))sif_callback_func, com_queue );
 	
 	que[139] = 0;
 }
@@ -190,7 +185,7 @@ int createThread( void )
 	id_SdSet = CreateThread( temp3 );
 	if( 0 >= id_SdSet ){};
 	StartThread( id_SdSet, 0 );
-	RecieveInt( id_SdSet );
+	ReceiveInit( id_SdSet );
 
 	temp = 0x02000000;
 	temp3 = SdInt;

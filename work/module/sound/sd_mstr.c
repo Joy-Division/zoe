@@ -82,7 +82,7 @@ int MemSpuTransWithNoLoop( u_int a0 )
 		if( temp3 >= 0x1000 ){
 			break;
 		}
-		if( temp3 & 0x0800 == temp4->unk14 ){
+		if( (temp3 & 0x0800) == temp4->unk14 ){
 			temp2 = 1;
 			if( temp3 >= 0x0800 ){
 				sceSdVoiceTrans( 0, 0, temp4->unk10, (u_char *)(a0*0x1000+0x9020), 0x0800 );

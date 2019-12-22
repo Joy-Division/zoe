@@ -9,6 +9,41 @@
 #include <libsd.h>
 #include "sd_incl.h"
 
+unsigned int spu_str2_start_ptr_r[2];
+unsigned int str2_iop_load_set[2];
+unsigned int str2_wait_fg[2];
+unsigned int str2_first_load[2];
+unsigned int spu_str2_start_ptr_l[2];
+unsigned int str2_off_ctr[2];
+int str2_fp[2];
+unsigned int str2_mono_fg[2];
+unsigned short str2_volume[2];
+unsigned int str2_l_r_fg[2];
+unsigned int spu_str2_idx[2];
+unsigned int str2_load_code[2];
+unsigned int ee2_buf_idx[2];
+unsigned int str2_play_offset[2];
+unsigned int str2_stop_fg[2];
+short str2_pitch[2];
+unsigned int str2_unload_size[2];
+unsigned int str2_mono_offset[2];
+unsigned int str2_unplay_size[2];
+unsigned int str2_next_idx[2];
+unsigned int mute2_l_r_fg[2];
+unsigned int str2_play_counter[2];
+unsigned int str2_keyoffs;
+unsigned int str2_mute_fg[2];
+unsigned int str2_counter[2];
+unsigned int str2_status[2];
+unsigned char *str2_trans_buf[2];
+unsigned int str2_play_idx[2];
+unsigned int str2_read_disable[2];
+
+
+u_char eeload2_buf[0x00010000];
+u_int str2_read_status[2][8];
+
+
 void str2_tr_off( u_int a0 )
 {
 	if( !a0 ){
@@ -42,7 +77,7 @@ int StartEEStream( u_int a0 )
 	str2_unplay_size[a0] = str2_unload_size[a0] = ee_addr[a0].unk14;
 	str2_volume[a0] = 0x7F;
 	ee2_buf_idx[a0] = 0;
-	temp = EERead( str2_fp[a0], a0*0x8000+eeload2_buf+ee2_buf_idx[a0]*0x4000, ee2_buf_idx[a0], 0x4000 );
+	temp = EERead( str2_fp[a0], (uint *)(a0*0x8000+eeload2_buf+ee2_buf_idx[a0]*0x4000), ee2_buf_idx[a0], 0x4000 );
 	
 	for( i = 0 ; i < 4 ; i++ ){
 		str2_read_status[a0][ee2_buf_idx[a0]+i] = 1;
@@ -81,21 +116,21 @@ void StrEELoad( u_int a0 )
 				WaitVblankEnd();
 				
 				if( str2_unload_size[a0] > 0x4000 ){
-					temp = EERead( str2_fp[a0], a0*0x8000+eeload2_buf+ee2_buf_idx[a0]*0x4000, ee2_buf_idx[a0], 0x4000 );
+					temp = EERead( str2_fp[a0], (uint *)(a0*0x8000+eeload2_buf+ee2_buf_idx[a0]*0x4000), ee2_buf_idx[a0], 0x4000 );
 					if( temp ){
 						for( j = 0 ; j < 4 ; j++ ){
 							str2_read_status[a0][ee2_buf_idx[a0]+j] = 1;
 						}
-						ee2_buf_idx[a0] = ee2_buf_idx[a0]+1 & 1;
+						ee2_buf_idx[a0] = (ee2_buf_idx[a0]+1) & 1;
 						str2_unload_size[a0] -= 0x4000;
 					}
 				} else {
-					temp = EERead( str2_fp[a0], a0*0x8000+eeload2_buf+ee2_buf_idx[a0]*0x4000, ee2_buf_idx[a0], 0x4000 );
+					temp = EERead( str2_fp[a0], (uint *)(a0*0x8000+eeload2_buf+ee2_buf_idx[a0]*0x4000), ee2_buf_idx[a0], 0x4000 );
 					if( temp ){
 						for( j = 0 ; j < 4 ; j++ ){
 							str2_read_status[a0][ee2_buf_idx[a0]+j] = 1;
 						}
-						ee2_buf_idx[a0] = ee2_buf_idx[a0]+1 & 1;
+						ee2_buf_idx[a0] = (ee2_buf_idx[a0]+1) & 1;
 						str2_unload_size[a0] = 0;
 					}
 					break;

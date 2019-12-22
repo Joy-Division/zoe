@@ -9,6 +9,35 @@
 #include <libsd.h>
 #include "sd_incl.h"
 
+unsigned int lnr8_read_idx;
+unsigned short lnr_volume;
+unsigned int lnr8_play_ofst;
+unsigned int lnr8_load_code;
+unsigned int lnr_keyoffs;
+unsigned int lnr8_first_load;
+unsigned short lnr_val[2];
+unsigned char *lnr8_trans_buf;
+unsigned int lnr8_play_idx;
+unsigned int lnr16_next_ofst;
+unsigned int lnr8_unload_size;
+int lnr8_off_ctr;
+unsigned int lnr8_fade_vol;
+int lnr8_fp;
+unsigned int lnr8_wave_size;
+unsigned int lnr8_unplay_size;
+unsigned int lnr8_stop_fg;
+unsigned int spu_lnr16_idx;
+unsigned int lnr8_read_disable;
+unsigned int lnr8_counter;
+unsigned int lnr8_status;
+
+
+
+u_short lnr16_buf[0x0800];
+u_int lnr8_read_status[32];
+u_char lnr8_buf[0x8000];
+
+
 void lnr_tr_off( void )
 {
 	lnr_keyoffs = 1;
@@ -18,7 +47,7 @@ void lnr_spuwr( void )
 {
 	if( lnr_keyoffs ){
 		sceSdBlockTrans( 1, 2, 0, 0 );
-		sceSdSetProgram( 0x0F81, 0 );
+		sceSdSetParam( 0x0F81, 0 );
 		sceSdSetParam( 0x1081, 0 );
 		lnr_keyoffs = 0;
 	}
@@ -41,7 +70,7 @@ int StartLnrEEStream( void )
 	lnr8_wave_size = lnr8_unplay_size = lnr8_unload_size = ee_addr[24].unk14;
 	lnr_volume = 0x7F;
 	lnr8_read_idx = 0;
-	temp = EERead( lnr8_fp, lnr8_buf+lnr8_read_idx*0x4000, lnr8_read_idx, 0x4000 );
+	temp = EERead( lnr8_fp, (u_int *)(lnr8_buf+lnr8_read_idx*0x4000), lnr8_read_idx, 0x4000 );
 	
 	for( i = 0 ; i < 16 ; i++ ){
 		lnr8_read_status[lnr8_read_idx*16+i] = 1;
@@ -56,13 +85,13 @@ int StartLnrEEStream( void )
 	}
 	
 	if( lnr8_unload_size ){
-		temp = EERead( lnr8_fp, lnr8_buf+lnr8_read_idx*0x4000, lnr8_read_idx, 0x4000 );
+		temp = EERead( lnr8_fp, (u_int *)(lnr8_buf+lnr8_read_idx*0x4000), lnr8_read_idx, 0x4000 );
 		
 		for( i = 0 ; i < 16 ; i++ ){
 			lnr8_read_status[lnr8_read_idx*16+i] = 1;
 		}
 		
-		lnr8_read_idx = lnr8_read_idx+1 & 1;
+		lnr8_read_idx = (lnr8_read_idx+1) & 1;
 		
 		if( temp < lnr8_unload_size ){
 			lnr8_unload_size -= temp;
@@ -97,21 +126,21 @@ void LnrEELoad( void )
 					WaitVblankEnd();
 					
 					if( lnr8_unload_size > 0x4000 ){
-						temp = EERead( lnr8_fp, lnr8_buf+lnr8_read_idx*0x4000, lnr8_read_idx, 0x4000 );
+						temp = EERead( lnr8_fp, (u_int *)(lnr8_buf+lnr8_read_idx*0x4000), lnr8_read_idx, 0x4000 );
 						if( temp ){
 							for( j = 0 ; j < 16 ; j++ ){
 								lnr8_read_status[lnr8_read_idx*16+i] = 1;
 							}
-							lnr8_read_idx = lnr8_read_idx+1 & 1;
+							lnr8_read_idx = (lnr8_read_idx+1) & 1;
 							lnr8_unload_size -= 0x4000;
 						}
 					} else {
-						temp = EERead( lnr8_fp, lnr8_buf+lnr8_read_idx*0x4000, lnr8_read_idx, 0x4000 );
+						temp = EERead( lnr8_fp, (u_int *)(lnr8_buf+lnr8_read_idx*0x4000), lnr8_read_idx, 0x4000 );
 						if( temp ){
 							for( j = 0 ; j < 16 ; j++ ){
 								lnr8_read_status[lnr8_read_idx*16+i] = 1;
 							}
-							lnr8_read_idx = lnr8_read_idx+1 & 1;
+							lnr8_read_idx = (lnr8_read_idx+1) & 1;
 							lnr8_unload_size = 0;
 						}
 					}

@@ -7,34 +7,6 @@
 #include <sys/types.h>
 #include "sd_incl.h"
 
-extern struct SOUND_W *sptr;
-extern void *mptr;
-extern u_char mdata2;
-extern u_char mdata3;
-extern u_char mdata4;
-extern u_int mtrack;
-extern u_int skip_intro_loop;
-extern u_int stop_jouchuu_se;
-
-extern u_int keyd[2];
-extern u_int keyoffs[2];
-
-extern struct SEPLAYTBL se_playing[12];
-extern u_int fg_rev_set[44];
-extern struct SOUND_W sound_w[44];
-extern struct SPU_TRACK_REG spu_tr_wk[44];
-extern u_int rev_off_bit[2];
-extern u_int rev_bit_data[2];
-extern u_int rev_on_bit[2];
-extern u_char auto_env_pos;
-extern u_int auto_phase_fg;
-
-extern struct unkstr24 *mem_str_w;
-extern struct unkstr16 *mix_fader;
-
-// forward declaration
-void block_end( void );
-
 /*---------------------------------------------------------------------------*
  * Functions
  *---------------------------------------------------------------------------*/

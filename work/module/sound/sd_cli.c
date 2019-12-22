@@ -8,8 +8,7 @@
 #include <kernel.h>
 #include "sd_incl.h"
 
-// TODO: from jsifman, replace once decompiled
-extern void sif_rv_release_queue();
+unsigned int se_tracks;
 
 int sd_set_cli( u_int a0 )
 {
@@ -200,20 +199,20 @@ void sd_set( u_int a0 )
 					lnr8_stop_fg = 1;
 				}
 				str2_stop_fg[0] = 1;
-				ee_addr[5] = a0 & 0x00FFFFFF;
+				ee_addr[0].unk10 = (u_char *)(a0 & 0x00FFFFFF);
 			}
 		} else if( (a0 & 0xFF000000) == 0xF1000000 ){
 			if( str1_use_iop ){
-				ee_addr[1] = a0 & 0x00FFFFFF;
-				ee_addr[3]++;
+				ee_addr[0].unk04 = a0 & 0x00FFFFFF;
+				ee_addr[0].unk0C++;
 				str2_iop_load_set[0] = 1;
 				WakeupThread( id_SdEELoad );
 			}
 		} else if( (a0 & 0xFF000000) == 0xF2000000 ){
-			ee_addr[11] = (a0 & 0x00FFFFFF) << 4;
+			ee_addr[1].unk14 = (a0 & 0x00FFFFFF) << 4;
 		} else if( (a0 & 0xFF000000) == 0xF3000000 ){
-			ee_addr[7] = a0 & 0x00FFFFFF;
-			ee_addr[9]++;
+			ee_addr[1].unk04 = a0 & 0x00FFFFFF;
+			ee_addr[1].unk0C++;
 			str2_iop_load_set[1] = 1;
 			WakeupThread( id_SdEELoad );
 		} else if( (a0 & 0xFF000000) == 0xF4000000 ){
@@ -229,8 +228,8 @@ void sd_set( u_int a0 )
 				}
 				lnr8_stop_fg = 0;
 				lnr8_first_load = lnr8_load_code = a0;
-				ee_addr[10] = 0;
-				ee_addr[9] = 0;
+				ee_addr[1].unk10 = 0;
+				ee_addr[1].unk0C = 0;
 				lnr8_status = 1;
 				lnr8_counter = 0;
 			} else {
@@ -249,8 +248,8 @@ void sd_set( u_int a0 )
 				str2_first_load[1] = str2_load_code[1] = a0;
 				str2_counter[1] = 0;
 				str2_play_counter[1] = 0;
-				ee_addr[10] = 0;
-				ee_addr[9] = 0;
+				ee_addr[1].unk10 = 0;
+				ee_addr[1].unk0C = 0;
 				str2_status[1] = 1;
 			}
 			WakeupThread( id_SdEELoad );
@@ -270,8 +269,8 @@ void sd_set( u_int a0 )
 				str2_first_load[0] = str2_load_code[0] = a0;
 				str2_counter[0] = 0;
 				str2_play_counter[0] = 0;
-				ee_addr[4] = 0;
-				ee_addr[3] = 0;
+				ee_addr[0].unk10 = 0;
+				ee_addr[0].unk0C = 0;
 				str2_status[0] = 1;
 				WakeupThread( id_SdEELoad );
 			}
@@ -403,16 +402,16 @@ void sd_set( u_int a0 )
 			case 0xFF000013: str1_use_iop = 0; break;
 			case 0xFF000014: fader_off_fg = 1; break;
 			case 0xFF0000FE: stop_jouchuu_se = 1; break;
-			case 0xFF0000FF: set_sng_code_bug( a0 ); break;
+			case 0xFF0000FF: set_sng_code_buf( a0 ); break;
 			case 0xFF000100: fx_sound_code = 1; break;
-			case 0xFF000101: set_sng_code_bug( a0 ); break;
-			case 0xFF000102: set_sng_code_bug( a0 ); break;
-			case 0xFF000103: set_sng_code_bug( a0 ); break;
+			case 0xFF000101: set_sng_code_buf( a0 ); break;
+			case 0xFF000102: set_sng_code_buf( a0 ); break;
+			case 0xFF000103: set_sng_code_buf( a0 ); break;
 			case 0xFF000104: auto_phase_fg = 4; break;
-			case 0xFF000105: set_sng_code_bug( a0 ); break;
-			case 0xFF000106: set_sng_code_bug( a0 ); break;
-			case 0xFF000107: set_sng_code_bug( a0 ); break;
-			case 0xFF000108: set_sng_code_bug( a0 ); break;
+			case 0xFF000105: set_sng_code_buf( a0 ); break;
+			case 0xFF000106: set_sng_code_buf( a0 ); break;
+			case 0xFF000107: set_sng_code_buf( a0 ); break;
+			case 0xFF000108: set_sng_code_buf( a0 ); break;
 			case 0xFF000109: break; break; // NOTICE
 			case 0xFFFFFFFD: break;
 			default: break;

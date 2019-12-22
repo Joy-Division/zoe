@@ -182,7 +182,7 @@ void tone_set( u_int a0 )
 	u_char *temp2;
 	
 	if( a0 < 0x200 ){
-		temp2 = voice_tbl+a0;
+		temp2 = (u_char *)voice_tbl+a0;
 	} else {
 		temp2 = (mem_str_buf+0x9E180)+a0*16;
 	}

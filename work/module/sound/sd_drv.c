@@ -8,6 +8,9 @@
 #include <kernel.h>
 #include "sd_incl.h"
 
+int sng_status;
+unsigned int skip_intro_loop;
+
 void IntSdMain( void )
 {
 	int temp, i;
@@ -112,6 +115,7 @@ void IntSdMain( void )
 			}
 			break;
 		}
+		}
 	}
 	
 	if( d1E0E4[1] ){
@@ -192,6 +196,7 @@ void IntSdMain( void )
 		sng_play_code = 0;
 		sng_status = 2;
 		break;
+	}
 
 	
 	for( mtrack = 32 ; mtrack < 44 ; mtrack++ ){

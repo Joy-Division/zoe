@@ -8,8 +8,7 @@
 #include <kernel.h>
 #include "sd_incl.h"
 
-// TODO: from jsifman, replace once decompiled
-extern void sif_rv_release_queue();
+static unsigned int pakcd_pos;
 
 void LoadPakFile( void )
 {
@@ -165,7 +164,7 @@ int LoadSeFile( void )
 	return 0;
 }
 
-int LoadSngData( void )
+int LoadSngData()
 {
 	int temp;
 	
@@ -554,8 +553,8 @@ int PcmClose( int a0 )
 		if( temp3 < 0 ){
 			printf( "PcmClose Error(%x)\n", temp3 );
 		}
-		return temp3;
 	}
+	return temp3;
 }
 
 int EEOpen( int a0 )
@@ -571,7 +570,7 @@ int EEOpen( int a0 )
 	return temp;
 }
 
-int EERead( u_int a0, u_int a1, u_int a2, u_int a3, u_int a4 )
+int EERead( u_int a0, u_int *a1, u_int a2, u_int a3 )
 {
 	u_int *temp3, *temp2, temp = 0;
 	
@@ -587,7 +586,7 @@ int EERead( u_int a0, u_int a1, u_int a2, u_int a3, u_int a4 )
 		return 0;
 	}
 	
-	temp3 = sif_get_mem(a1, temp2[1] << 4, a4);
+	temp3 = sif_get_mem(a1, temp2[1] << 4, a3);
 	
 	while( 1 ){
 		DelayThread( 0x2710 );

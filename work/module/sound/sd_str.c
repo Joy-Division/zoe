@@ -9,6 +9,41 @@
 #include <libsd.h>
 #include "sd_incl.h"
 
+unsigned int str_mono_offset;
+unsigned int str_counter;
+unsigned int str_wait_fg;
+unsigned int str_wave_size;
+unsigned short str_volume;
+unsigned int str_counter_low;
+unsigned int str_mono_fg;
+unsigned int str_next_idx;
+unsigned int spu_str_idx;
+int str_off_ctr;
+unsigned int str_status;
+unsigned int spu_str_start_ptr_r;
+unsigned int str_trans_offset;
+unsigned int str_unplay_size;
+unsigned int mute_str_l_r_fg;
+int str_fp;
+unsigned int str_unload_size;
+unsigned int str_keyoffs;
+unsigned int str_first_load;
+unsigned int spu_str_start_ptr_l;
+unsigned int str_play_offset;
+unsigned int str_load_code;
+unsigned short str_pitch;
+unsigned int str_l_r_fg;
+unsigned int str_play_idx;
+unsigned int str_stop_fg;
+unsigned int str_start_offset;
+unsigned char *str_trans_buf;
+unsigned int str_read_idx;
+
+
+u_char str_header[0x8800];
+u_int str_read_status[8];
+
+
 void str_tr_off( void )
 {
 	str_keyoffs = 0x30000000;
@@ -513,7 +548,7 @@ void str_int( void )
 	if( sceSdVoiceTransStatus( 1, 0 ) == 1 && StrSpuTrans() ){
 		WakeupThread( id_SdMain );
 	}
-	str_spu_wr();
+	str_spuwr();
 }
 
 /*---------------------------------------------------------------------------*
