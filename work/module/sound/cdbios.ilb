@@ -1,0 +1,7 @@
+#IOP-ILB# [PsIIcdbios  2000]
+L cdbios
+V 0x0101
+F 0x0000
+E 004 cdRead
+E 005 cdOpen
+E 006 cdClose

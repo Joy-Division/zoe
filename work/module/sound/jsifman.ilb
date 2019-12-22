@@ -1,0 +1,8 @@
+#IOP-ILB# [PsIIjsifman 2000]
+L jsifman
+V 0x0101
+F 0x0000
+E 004 sif_set_callback_func
+E 009 sif_send_mem
+E 012 sif_rv_release_queue
+E 017 sif_get_mem

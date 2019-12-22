@@ -1,0 +1,8 @@
+#IOP-ILB# [PsIIusbfs   2000]
+L usbfs
+V 0x0101
+F 0x0000
+E 005 pcOpen
+E 006 pcClose
+E 007 pcRead
+E 009 pcLseek
