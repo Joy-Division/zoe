@@ -128,7 +128,7 @@ void adsr_reset( void )
 
 void note_compute( void )
 {
-	u_int temp, temp2;
+	int temp, temp2;
 	
 	if( mdata1 >= 0x48 ){
 		drum_set( mdata1 );
@@ -138,7 +138,7 @@ void note_compute( void )
 	}
 	
 	temp += sptr->ptps;
-	temp += (temp << 8) + sptr->tund;
+	temp = (temp << 8) + sptr->tund;
 	temp = temp + sptr->lp1_freq + sptr->lp2_freq;
 	
 	while( temp >= 0x6000 ){
@@ -568,7 +568,7 @@ void fader_automation1( void )
 
 void fader_automation2( void )
 {
-	int temp, temp2, temp3;
+	int temp, temp2;
 	
 	if( (sptr->unkE4 != auto_env_pos && sptr->unkE8 == 2) || (sptr->unkE4 != auto_env_pos2 && sptr->unkE8 == 3) ){
 		switch(sptr->unkE8) {
@@ -581,38 +581,31 @@ void fader_automation2( void )
 		if( sptr->unkE4 >= sptr->unkF1 ){
 			temp = (sptr->unkE9 << 8) + sptr->unkE9;
 		} else if( sptr->unkE4 >= sptr->unkF2 ){
-			temp3 = (sptr->unkE4 - sptr->unkF1) * (sptr->unkEA - sptr->unkE9);
-			temp = temp3;
+			temp = (sptr->unkE4 - sptr->unkF1) * (sptr->unkEA - sptr->unkE9);
 			temp = ((temp << 8) + temp) / (sptr->unkF2 - sptr->unkF1);
 			temp += (sptr->unkE9 << 8) + sptr->unkE9;
 		} else if( sptr->unkE4 >= sptr->unkF3 ){
-			temp3 = (sptr->unkE4 - sptr->unkF2) * (sptr->unkEB - sptr->unkEA);
-			temp = temp3;
+			temp = (sptr->unkE4 - sptr->unkF2) * (sptr->unkEB - sptr->unkEA);
 			temp = ((temp << 8) + temp) / (sptr->unkF3 - sptr->unkF2);
 			temp += (sptr->unkEA << 8) + sptr->unkEA;
 		} else if( sptr->unkE4 >= sptr->unkF4 ){
-			temp3 = (sptr->unkE4 - sptr->unkF3) * (sptr->unkEC - sptr->unkEB);
-			temp = temp3;
+			temp = (sptr->unkE4 - sptr->unkF3) * (sptr->unkEC - sptr->unkEB);
 			temp = ((temp << 8) + temp) / (sptr->unkF4 - sptr->unkF3);
 			temp += (sptr->unkEB << 8) + sptr->unkEB;
 		} else if( sptr->unkE4 >= sptr->unkF5 ){
-			temp3 = (sptr->unkE4 - sptr->unkF4) * (sptr->unkED - sptr->unkEC);
-			temp = temp3;
+			temp = (sptr->unkE4 - sptr->unkF4) * (sptr->unkED - sptr->unkEC);
 			temp = ((temp << 8) + temp) / (sptr->unkF5 - sptr->unkF4);
 			temp += (sptr->unkEC << 8) + sptr->unkEC;
 		} else if( sptr->unkE4 >= sptr->unkF6 ){
-			temp3 = (sptr->unkE4 - sptr->unkF5) * (sptr->unkEE - sptr->unkED);
-			temp = temp3;
+			temp = (sptr->unkE4 - sptr->unkF5) * (sptr->unkEE - sptr->unkED);
 			temp = ((temp << 8) + temp) / (sptr->unkF6 - sptr->unkF5);
 			temp += (sptr->unkED << 8) + sptr->unkED;
 		} else if( sptr->unkE4 >= sptr->unkF7 ){
-			temp3 = (sptr->unkE4 - sptr->unkF6) * (sptr->unkEF - sptr->unkEE);
-			temp = temp3;
+			temp = (sptr->unkE4 - sptr->unkF6) * (sptr->unkEF - sptr->unkEE);
 			temp = ((temp << 8) + temp) / (sptr->unkF7 - sptr->unkF6);
 			temp += (sptr->unkEE << 8) + sptr->unkEE;
 		} else if( sptr->unkE4 >= sptr->unkF8 ){
-			temp3 = (sptr->unkE4 - sptr->unkF7) * (sptr->unkF0 - sptr->unkEF);
-			temp = temp3;
+			temp = (sptr->unkE4 - sptr->unkF7) * (sptr->unkF0 - sptr->unkEF);
 			temp = ((temp << 8) + temp) / (sptr->unkF8 - sptr->unkF7);
 			temp += (sptr->unkEF << 8) + sptr->unkEF;
 		} else {

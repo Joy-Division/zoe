@@ -89,13 +89,13 @@ void SdInt( void )
 void sd_init( void )
 {
 	sceSdEffectAttr attr;
-	u_int i;
+	int i;
 	
 	for( i = 0 ; i < 2 ; i++ ){
 		sceSdSetParam( i | 0x0980, 0 );
 		sceSdSetParam( i | 0x0A80, 0 );
-		sceSdSetParam( i | 0x1300, 0 );
-		sceSdSetParam( i | 0x1400, 0 );
+		sceSdSetSwitch( i | 0x1300, 0 );
+		sceSdSetSwitch( i | 0x1400, 0 );
 		
 		if( i == 0 ){
 			sceSdSetParam( i | 0x0800, 0x0FFF );
@@ -131,6 +131,10 @@ void sd_init( void )
 	wave_load_status = 0;
 	
 	for( i = 0 ; i < 12 ; i++ ){
+		se_playing[i].code = 0;
+	}
+	
+	for( i = 0 ; i < 16 ; i++ ) {
 		mix_fader[i].unk04 = 0xFFFF;
 		mix_fader[i].unk08 = 0xFFFF;
 		mix_fader[i].unk00 = 0;
@@ -138,13 +142,16 @@ void sd_init( void )
 	}
 	
 	for( i = 16 ; i < 32 ; i++ ){
-		// EMPTY
+		mix_fader[i].unk04 = 0xFFFF;
+		mix_fader[i].unk08 = 0xFFFF;
+		mix_fader[i].unk00 = 0;
+		mix_fader[i].unk0C = 0x20;
 	}
 	
 	vox_fader[1].unk00 = 0x3F;
 	vox_fader[0].unk00 = 0x3F;
-	vox_fader[1].unk08 = 0x3F;
-	vox_fader[1].unk08 = 0x3F;
+	vox_fader[1].unk08 = 0x20;
+	vox_fader[0].unk08 = 0x20;
 }
 
 void SdTerm( void )

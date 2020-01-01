@@ -166,14 +166,14 @@ void lp1_end( void )
 			sptr->lp1_vol = 0;
 			sptr->lp1_freq = 0;
 			skip_intro_loop++;
-			return;
+			return; // can also be goto end
 		}
 	} else {
 		if( stop_jouchuu_se && !mdata2 ){
 			sptr->lp1_vol = 0;
 			sptr->lp1_freq = 0;
 			stop_jouchuu_se++;
-			return;
+			return; // can also be goto end
 		}
 	}
 	
@@ -185,6 +185,7 @@ void lp1_end( void )
 		sptr->lp1_vol = 0;
 		sptr->lp1_freq = 0;
 	}
+	end: // required, makes a nop appear
 }
 
 void lp2_start( void )
@@ -489,7 +490,7 @@ void vol_i_move( void )
 
 void at1_set( void )
 {
-	if( sptr->unkE4 == auto_env_pos || sptr->unkE4 == auto_phase_fg ){
+	if( sptr->unkE4 == auto_env_pos && sptr->unkE4 == auto_phase_fg ){
 		// not sure about this, will have to wait until struct is identified
 		mix_fader[mtrack].unk08 = mdata2 + (mdata2 << 8);
 		mix_fader[mtrack].unk04 = mix_fader[mtrack].unk08;
@@ -712,6 +713,7 @@ void flg_set( void )
 void no_cmd( void )
 {
 	// EMPTY
+	// there must be something here. nothing generates a trailing nop thats not supposed to be there
 }
 
 /*---------------------------------------------------------------------------*

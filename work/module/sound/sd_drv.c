@@ -45,7 +45,7 @@ void IntSdMain( void )
 				sng_kaihi_fg = 0;
 			}
 			break;
-		
+		}
 		// Fade Out
 		case 0x01FFFF04: SngFadeOutP( temp ); break;
 		case 0x01FFFF05: SngFadeOutS( temp ); break;
@@ -115,7 +115,6 @@ void IntSdMain( void )
 				WakeupThread( id_SdMain );
 			}
 			break;
-		}
 		}
 	}
 	
@@ -281,7 +280,7 @@ int SngFadeOutP( u_int a0 )
 		case 0x01FFFF09: temp = 0x0041; break;
 		}
 		if( !temp ){
-			sng_fadein_time = 1;
+			temp = 1;
 		}
 		for( i = 0 ; i < 32 ; i++ ){
 			if( i < 24 ){
@@ -313,7 +312,7 @@ int SngFadeOutS( u_int a0 )
 		case 0x01FFFF0D: temp = 0x0041; break;
 		}
 		if( !temp ){
-			sng_fadein_time = 1;
+			temp = 1;
 		}
 		for( i = 0 ; i < 32 ; i++ ){
 			if( i < 0x18 ){
@@ -358,7 +357,7 @@ int SngKaihiP( void )
 			mix_fader[i].unk00 = (mix_fader[i].unk08 - mix_fader[i].unk04) / 100;
 		}
 		for( i = 16 ; i < 32 ; i++ ){
-			mix_fader[i].unk08 = 0xFFFF;
+			mix_fader[i].unk08 = 0;
 			mix_fader[i].unk00 = (mix_fader[i].unk08 - mix_fader[i].unk04) / 400;
 		}
 		sng_kaihi_fg = 0;
@@ -429,13 +428,11 @@ void SngFadeWkSet( void )
 	sng_fout_fg = 0;
 }
 
-// NOMATCH: see inside
 void SngFadeInt( void )
 {
-	int temp;
+	u_int temp;
 	u_int temp2, temp3;
 	int i, temp5 = 0, temp6 = 0;
-	u_int temp7, temp8;
 	
 	if( sng_status < 3 ){
 		for( i = 0 ; i < 32 ; i++ ){
@@ -511,7 +508,7 @@ void SngFadeInt( void )
 			}
 		}
 		for( i = 0 ; i < 32 ; i++ ){
-			temp = 1;
+			temp = 0x10000;
 			if( (vox_on_vol >= sng_syukan_vol) && !fg_syukan_off[i] ){
 				temp3 = sng_syukan_vol;
 			} else {
@@ -541,11 +538,7 @@ void SngFadeInt( void )
 					}
 				}
 			}
-			temp8 = temp * mix_fader[i].unk04;
-			// 0xD5B4 this is rather close but it has an additional
-			// shift after the multiplication
-			temp7 = (temp8 / (65535));
-			temp = temp7 >> 15;
+			temp = (temp * mix_fader[i].unk04) / 65535;
 			sng_master_vol[i] = temp;
 		}
 	}

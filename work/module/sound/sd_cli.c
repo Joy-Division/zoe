@@ -62,24 +62,24 @@ int SePlay( u_int a0 )
 			temp10 = (se_header[temp6].addr[temp4]) + (u_int)se_data;
 		}
 		
-		temp2 = 0x0100;
-		temp4 = 0;
+		temp = 0x0100;
+		temp3 = 0;
 		
-		for( temp3 = 0 ; temp3 < 12 ; temp3++ ){
-			if( ((se_playing[temp3].code & 0x07FF) == (temp11 & 0x07FF)) && !se_request[temp3].code ){
+		for( temp2 = 0 ; temp2 < 12 ; temp2++ ){
+			if( ((se_playing[temp2].code & 0x07FF) == (temp11 & 0x07FF)) && !se_request[temp2].code ){
 				temp = 0;
 				temp3 = temp2;
 				break;
-			} else if( ((se_playing[temp3].code & 0x07FF) == (temp11 & 0x07FF)) && !temp4 ){
+			} else if( ((se_playing[temp2].code & 0x07FF) == (temp11 & 0x07FF)) && !temp4 ){
 				se_tracks = 0;
 				return 0;
-			} else if( temp9 ){
-				if( se_playing[temp3].character == temp9 ){
+			}
+			if( temp9 ){
+				if( se_playing[temp2].character == temp9 ){
 					temp = 0;
-					temp2 = temp3;
+					temp3 = temp2;
 					break;
-					continue; // NOTICE
-				} else if( se_request[temp3].character == temp9 ){
+				} else if( se_request[temp2].character == temp9 ){
 					temp = 0;
 					temp3 = temp2;
 					break;
@@ -97,12 +97,12 @@ int SePlay( u_int a0 )
 			if( temp2 != temp3 ){
 				for( temp2 = 0 ; temp2 < 12 ; temp2++ ){
 					if( !se_request[temp2].code ){
-						if( se_playing[temp2].pri < temp ){
+						if( se_playing[temp2].pri > temp ){
 							temp = se_playing[temp2].pri;
 							temp3 = temp2;
 						}
 					} else {
-						if( se_request[temp2].pri < temp ){
+						if( se_request[temp2].pri > temp ){
 							temp = se_request[temp2].pri;
 							temp3 = temp2;
 						}
@@ -117,12 +117,14 @@ int SePlay( u_int a0 )
 			se_request[temp3].pri = temp7;
 			se_request[temp3].kind = temp8;
 			se_request[temp3].character = temp9;
+			temp9 = 0;
 			se_request[temp3].addr = temp10;
 			se_request[temp3].code = temp11;
 			
 			if( temp7 == 0xFF ){
 				stop_jouchuu_se = 0;
-			} else {
+			}
+			if( 0 ) {
 				// EMPTY
 			}
 		}

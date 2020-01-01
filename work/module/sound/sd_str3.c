@@ -113,38 +113,39 @@ void LnrEELoad( void )
 	
 	if( lnr8_status < 3 || lnr8_status > 5 ){
 		// EMPTY
-	} else {
-		for( i = 0 ; i < 2 ; i++ ){
-			if( lnr8_unload_size ){
-				temp4 = 0;
-				for( j = 0 ; j < 16 ; j++ ){
-					temp4 |= lnr8_read_status[lnr8_read_idx*16+i];
-				}
-				if( !temp4 ){
-					
-					// wait for 1 vblank
-					WaitVblankStart();
-					WaitVblankEnd();
-					
-					if( lnr8_unload_size > 0x4000 ){
-						temp = EERead( lnr8_fp, (u_int *)(lnr8_buf+lnr8_read_idx*0x4000), lnr8_read_idx, 0x4000 );
-						if( temp ){
-							for( j = 0 ; j < 16 ; j++ ){
-								lnr8_read_status[lnr8_read_idx*16+i] = 1;
-							}
-							lnr8_read_idx = (lnr8_read_idx+1) & 1;
-							lnr8_unload_size -= 0x4000;
+		return;
+	}
+	for( i = 0 ; i < 2 ; i++ ){
+		if( lnr8_unload_size ){
+			temp4 = 0;
+			for( j = 0 ; j < 16 ; j++ ){
+				temp4 |= lnr8_read_status[lnr8_read_idx*16+j];
+			}
+			if( !temp4 ){
+				
+				// wait for 1 vblank
+				WaitVblankStart();
+				WaitVblankEnd();
+				
+				if( lnr8_unload_size > 0x4000 ){
+					temp = EERead( lnr8_fp, (u_int *)(lnr8_buf+lnr8_read_idx*0x4000), lnr8_read_idx, 0x4000 );
+					if( temp ){
+						for( j = 0 ; j < 16 ; j++ ){
+							lnr8_read_status[lnr8_read_idx*16+j] = 1;
 						}
-					} else {
-						temp = EERead( lnr8_fp, (u_int *)(lnr8_buf+lnr8_read_idx*0x4000), lnr8_read_idx, 0x4000 );
-						if( temp ){
-							for( j = 0 ; j < 16 ; j++ ){
-								lnr8_read_status[lnr8_read_idx*16+i] = 1;
-							}
-							lnr8_read_idx = (lnr8_read_idx+1) & 1;
-							lnr8_unload_size = 0;
-						}
+						lnr8_read_idx = (lnr8_read_idx+1) & 1;
+						lnr8_unload_size -= 0x4000;
 					}
+				} else {
+					temp = EERead( lnr8_fp, (u_int *)(lnr8_buf+lnr8_read_idx*0x4000), lnr8_read_idx, 0x4000 );
+					if( temp ){
+						for( j = 0 ; j < 16 ; j++ ){
+							lnr8_read_status[lnr8_read_idx*16+j] = 1;
+						}
+						lnr8_read_idx = (lnr8_read_idx+1) & 1;
+						lnr8_unload_size = 0;
+					}
+					break;
 				}
 			}
 		}
