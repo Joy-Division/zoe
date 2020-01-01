@@ -7,6 +7,7 @@
 #include <sys/types.h>
 #include <kernel.h>
 #include "sd_incl.h"
+#include "sd_ext.h"
 
 static int com_queue[140];
 

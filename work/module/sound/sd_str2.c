@@ -8,6 +8,7 @@
 #include <kernel.h>
 #include <libsd.h>
 #include "sd_incl.h"
+#include "sd_ext.h"
 
 unsigned int spu_str2_start_ptr_r[2];
 unsigned int str2_iop_load_set[2];

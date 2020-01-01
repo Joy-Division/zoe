@@ -8,6 +8,7 @@
 #include <kernel.h>
 #include <libsd.h>
 #include "sd_incl.h"
+#include "sd_ext.h"
 
 unsigned int lnr8_read_idx;
 unsigned short lnr_volume;

@@ -7,6 +7,7 @@
 #include <sys/types.h>
 #include <libsd.h>
 #include "sd_incl.h"
+#include "sd_ext.h"
 
 void spuwr( void )
 {

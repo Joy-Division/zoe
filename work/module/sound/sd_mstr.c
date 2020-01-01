@@ -8,6 +8,7 @@
 #include <kernel.h>
 #include <libsd.h>
 #include "sd_incl.h"
+#include "sd_ext.h"
 
 void init_mem_str_w( void )
 {

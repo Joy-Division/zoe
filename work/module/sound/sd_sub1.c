@@ -6,6 +6,7 @@
  */
 #include <sys/types.h>
 #include "sd_incl.h"
+#include "sd_ext.h"
 
 // NOMATCH: access to mem_str_w produces subtraction at the wrong point in time
 int sound_sub( void )

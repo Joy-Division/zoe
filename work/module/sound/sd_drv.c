@@ -7,6 +7,7 @@
 #include <sys/types.h>
 #include <kernel.h>
 #include "sd_incl.h"
+#include "sd_ext.h"
 
 int sng_status;
 unsigned int skip_intro_loop;
