@@ -153,46 +153,44 @@ void setTimer( void *a0 )
 
 int createThread( void )
 {
-	u_int temp, temp2;
-	void *temp3;
-	u_int temp4, temp5;
+	struct ThreadParam param;
 	
 	sd_mem_alloc();
 
-	temp = 0x02000000;
-	temp3 = SdMain;
-	temp5 = 0x41;
-	temp4 = 0x4000;
-	temp2 = 0;
-	id_SdMain = CreateThread( temp3 );
+	param.attr = 0x02000000;
+	param.entry = SdMain;
+	param.initPriority = 0x41;
+	param.stackSize = 0x4000;
+	param.option = 0;
+	id_SdMain = CreateThread( &param );
 	if( 0 >= id_SdMain ){};
 	StartThread( id_SdMain, 0 );
 
-	temp = 0x02000000;
-	temp3 = SdEELoad;
-	temp5 = 0x40;
-	temp4 = 0x4000;
-	temp2 = 0;
-	id_SdEELoad = CreateThread( temp3 );
+	param.attr = 0x02000000;
+	param.entry = SdEELoad;
+	param.initPriority = 0x40;
+	param.stackSize = 0x4000;
+	param.option = 0;
+	id_SdEELoad = CreateThread( &param );
 	if( 0 >= id_SdEELoad ){};
 	StartThread( id_SdEELoad, 0 );
 
-	temp = 0x02000000;
-	temp3 = SdSet;
-	temp5 = 0x3F;
-	temp4 = 0x2000;
-	temp2 = 0;
-	id_SdSet = CreateThread( temp3 );
+	param.attr = 0x02000000;
+	param.entry = SdSet;
+	param.initPriority = 0x3F;
+	param.stackSize = 0x2000;
+	param.option = 0;
+	id_SdSet = CreateThread( &param );
 	if( 0 >= id_SdSet ){};
 	StartThread( id_SdSet, 0 );
 	ReceiveInit( id_SdSet );
 
-	temp = 0x02000000;
-	temp3 = SdInt;
-	temp5 = 0x3E;
-	temp4 = 0x4000;
-	temp2 = 0;
-	id_SdInt = CreateThread( temp3 );
+	param.attr = 0x02000000;
+	param.entry = SdInt;
+	param.initPriority = 0x3E;
+	param.stackSize = 0x4000;
+	param.option = 0;
+	id_SdInt = CreateThread( &param );
 	if( 0 >= id_SdInt ){};
 	StartThread( id_SdInt, 0 );
 
@@ -204,10 +202,11 @@ int createThread( void )
 
 int start()
 {
-	u_int temp, temp2;
-	void *temp3;
-	u_int temp4, temp5, temp6;
-	int temp7;
+	//~ u_int temp, temp2;
+	//~ void *temp3;
+	//~ u_int temp4, temp5, temp6;
+	struct ThreadParam param;
+	int tid;
 
 	FlushDcache();
 	sceSdInit( 0 );
@@ -216,14 +215,14 @@ int start()
 	EnableIntr( INUM_DMA_7 );
 	EnableIntr( INUM_SPU );
 
-	temp = 0x02000000;
-	temp3 = createThread;
-	temp5 = 0x40;
-	temp4 = 0x4000;
-	temp2 = 0;
-	temp7 = CreateThread( temp3 );
-	if( 0 >= temp7 ) return 1;
-	StartThread( temp7, 0 );
+	param.attr = 0x02000000;
+	param.entry = createThread;
+	param.initPriority = 0x40;
+	param.stackSize = 0x400;
+	param.option = 0;
+	tid = CreateThread( &param );
+	if( 0 >= tid ) return 1;
+	StartThread( tid, 0 );
   
 	return RESIDENT_END;
 }
