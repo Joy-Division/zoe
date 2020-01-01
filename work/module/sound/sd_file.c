@@ -361,17 +361,17 @@ void WaveSpuTrans( void )
 	}
 }
 
+/* ------------------------------- */
+/* Name Format | Type  | Content   */
+/* ------------+-------+---------- */
+/* sg%06x.mdx  | Song  | Seq.Data  */
+/* se%06x.efx  | SE    | Seq.Data  */
+/* vc%06x.pcm  | Voice | Stream    */
+/* wv%06x.wvx  | Wave  | Bank      */
+/* pk%06x.sdx  | Pack  | Container */
+/* ------------------------------- */
 void code2name( u_int code, char *name )
 {
-/*
- * Name Format | File Type
- * ----------- + -------------
- * sg%06x.mdx  | Song Sequence
- * se%06x.efx  | SE Sequence
- * vc%06x.pcm  | Voice Stream
- * wv%06x.wvx  | Wave Bank
- * pk%06x.sdx  | Sound Pack
- */
 	if( code > 0x00FFFFFF && code <= 0x0100FFFF ){
 		name[ 0] = 's';
 		name[ 1] = 'g';
