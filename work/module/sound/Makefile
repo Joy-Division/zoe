@@ -22,4 +22,3 @@ clean:
 
 $(IRXNAME): $(OBJS)
 	$(LINK.o) -o $@ $(OBJS) $(LIBDIR) $(ILIBS)
-	#~ $(OBJDUMP) -d $@ > asmfiles/iop_main-symbols.asm
