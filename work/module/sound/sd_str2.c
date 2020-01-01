@@ -547,4 +547,4 @@ void str2_int( void )
  * END OF FILE
  *---------------------------------------------------------------------------*/
 /* -*- indent-tabs-mode: t; tab-width: 4; mode: c; -*- */
-/* vim: set noet ts=4 sw=4 ft=c ff=dos fenc=euc-jp : */
+/* vim: set noet ts=4 sw=4 ft=c ff=unix fenc=euc-jp : */
