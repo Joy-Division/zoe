@@ -9,6 +9,7 @@
 
 #include <sys/types.h>
 #include <libsd.h>
+#include <kernel.h>
 #include <stdio.h>
 
 // TODO: from jsifman, replace once decompiled
