@@ -47,6 +47,7 @@ void sd_set_status( void )
 	if( sng_load_code || pak_load_status ){
 		temp |= 0x0001;
 	}
+	
 	for( i = 0 ; i < 16 ; i++ ){
 		if( sd_sng_code_buf[i] > 0x01000000 ){
 			temp |= 0x0001;
@@ -140,14 +141,14 @@ void setTimer( void *a0 )
 	u_int temp;
 	struct SysClock clock;
 	
-	USec2SysClock( 0x1388, &clock );
+	USec2SysClock( 5000, &clock );
 	
 	id_HSyncTim = AllocHardTimer( 1, 32, 1 );
 	temp = GetHardTimerIntrCode( id_HSyncTim );
 	
 	RegisterIntrHandler( temp, 1, HIntHandler, a0 );
 	SetTimerCompare( id_HSyncTim, clock.low );
-	SetTimerMode( id_HSyncTim, 0x0158 );
+	SetTimerMode( id_HSyncTim, tZRET_1|tCMP_1|tREPT_1|tEXTC_1 );
 	EnableIntr( temp );
 }
 
@@ -157,7 +158,7 @@ int createThread( void )
 	
 	sd_mem_alloc();
 
-	param.attr = 0x02000000;
+	param.attr = TH_C;
 	param.entry = SdMain;
 	param.initPriority = 0x41;
 	param.stackSize = 0x4000;
@@ -166,7 +167,7 @@ int createThread( void )
 	if( 0 >= id_SdMain ){};
 	StartThread( id_SdMain, 0 );
 
-	param.attr = 0x02000000;
+	param.attr = TH_C;
 	param.entry = SdEELoad;
 	param.initPriority = 0x40;
 	param.stackSize = 0x4000;
@@ -175,7 +176,7 @@ int createThread( void )
 	if( 0 >= id_SdEELoad ){};
 	StartThread( id_SdEELoad, 0 );
 
-	param.attr = 0x02000000;
+	param.attr = TH_C;
 	param.entry = SdSet;
 	param.initPriority = 0x3F;
 	param.stackSize = 0x2000;
@@ -185,7 +186,7 @@ int createThread( void )
 	StartThread( id_SdSet, 0 );
 	ReceiveInit( id_SdSet );
 
-	param.attr = 0x02000000;
+	param.attr = TH_C;
 	param.entry = SdInt;
 	param.initPriority = 0x3E;
 	param.stackSize = 0x4000;
@@ -212,7 +213,7 @@ int start()
 	EnableIntr( INUM_DMA_7 );
 	EnableIntr( INUM_SPU );
 
-	param.attr = 0x02000000;
+	param.attr = TH_C;
 	param.entry = createThread;
 	param.initPriority = 0x40;
 	param.stackSize = 0x400;
