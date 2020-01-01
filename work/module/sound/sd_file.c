@@ -5,6 +5,7 @@
  * ver.ZONE OF THE ENDERS
  */
 #include <sys/types.h>
+#include <stdio.h>
 #include <kernel.h>
 #include "sd_incl.h"
 #include "sd_ext.h"
