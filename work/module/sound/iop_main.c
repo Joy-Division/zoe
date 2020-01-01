@@ -202,9 +202,6 @@ int createThread( void )
 
 int start()
 {
-	//~ u_int temp, temp2;
-	//~ void *temp3;
-	//~ u_int temp4, temp5, temp6;
 	struct ThreadParam param;
 	int tid;
 
