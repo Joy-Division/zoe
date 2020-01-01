@@ -164,9 +164,9 @@ struct SOUND_W {
 	char    macro;
 	char    micro;
 	u_short rrd;
-	/*
-	 * for PlayStation 2
-	 */
+/* ---------------------- */
+/* add. for PlayStation 2 */
+/* ---------------------- */
 	u_int   unkD4;
 	u_char  unkD8;
 	u_char  unkD9; // padding?

@@ -666,9 +666,9 @@ void sng_track_init( struct SOUND_W *work )
 	work->tmpd = 1;
 	work->tmp = 0xFF;
 	work->tmpc = 0;
-	/*
-	 * for PlayStation 2
-	 */
+/* ---------------------- */
+/* add. for PlayStation 2 */
+/* ---------------------- */
 	work->unkD4 = 0;
 	work->unkD9 = 1;
 	work->unkE0 = 0;
