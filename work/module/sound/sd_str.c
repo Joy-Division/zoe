@@ -91,7 +91,9 @@ int StartStream1( void )
 	
 	str_pitch =  str_header[6] << 8;
 	str_pitch |= str_header[7];
-	str_pitch /= 48000;
+	str_pitch = (str_pitch * 4096u) / 48000u;
+	//~ str_pitch *= 4096;
+	//~ str_pitch /= 48000;
 	
 	if( str_header[8] == 1 ){
 		str_mono_fg = 1;
