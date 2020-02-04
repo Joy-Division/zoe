@@ -306,7 +306,6 @@ extern struct SETBL se_tbl[128];
 int createThread(void);
 int HIntHandler(u_int a0);
 //int start();
-void RecieveInit(int a0);
 void sd_set_status(void);
 void sd_send_status(void);
 void SdSet(void);

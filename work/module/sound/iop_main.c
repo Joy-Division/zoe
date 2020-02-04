@@ -89,7 +89,7 @@ void sd_send_status( void )
 	}
 }
 
-void sif_callback_func( struct unkstr24 *a0, int *a1 )
+static void sif_callback_func( struct unkstr24 *a0, int *a1 )
 {
 	int *temp = a1;
 	
@@ -118,7 +118,7 @@ void SdSet( void )
 	ExitThread();
 }
 
-void ReceiveInit( int a0 )
+static void RecieveInit( int a0 )
 {
 	int *que = com_queue;
 	
@@ -185,7 +185,7 @@ int createThread( void )
 	id_SdSet = CreateThread( &param );
 	if( 0 >= id_SdSet ){};
 	StartThread( id_SdSet, 0 );
-	ReceiveInit( id_SdSet );
+	RecieveInit( id_SdSet );
 
 	param.attr = TH_C;
 	param.entry = SdInt;
