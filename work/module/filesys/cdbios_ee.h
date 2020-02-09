@@ -1,8 +1,6 @@
 /*
  * CDBIOS Module for PS2 IOP
  * Emotion Engine Interface
- *
- * ver.ZONE OF THE ENDERS
  */
 #ifndef INC_CDBIOS_EE_H
 #define INC_CDBIOS_EE_H

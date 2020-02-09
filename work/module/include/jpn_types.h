@@ -1,5 +1,5 @@
 /*
- * KCEJ West Libraries
+ * KCEJ WEST Libraries
  * Common Type Includes
  */
 #ifndef INC_JPN_TYPES_H

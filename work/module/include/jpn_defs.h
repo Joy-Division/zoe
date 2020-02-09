@@ -1,5 +1,5 @@
 /*
- * KCEJ West Libraries
+ * KCEJ WEST Libraries
  * Common Definitions
  */
 #ifndef INC_JPN_DEFS_H
