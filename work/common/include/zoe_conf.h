@@ -1,5 +1,5 @@
-#ifndef INC_BUILDCONF_H
-#define INC_BUILDCONF_H
+#ifndef INC_ZOE_CONF_H
+#define INC_ZOE_CONF_H
 
 /*---------------------------------------------------------------------------*
  * Definition Check
@@ -10,8 +10,8 @@
      + BUILD_SLPS99999 \
      + BUILD_SLPM61002 \
      + BUILD_PCPX96611 \
-     + BUILD_SCUS_DEMO \
-     + BUILD_SCED_DEMO \
+     + BUILD_USA_DEMO \
+     + BUILD_PAL_DEMO \
      + BUILD_NEW ) != 1 )
 #error "ERROR: 0 or >1 config flags defined."
 #endif
@@ -24,10 +24,10 @@
 #define ZOE_USA             BUILD_SLUS20148 // Jan.30,2001
 
 #define ZOE_DEMO_OCT2000    BUILD_SLPS99999 // Oct.09,2000
-#define ZOE_DEMO_DENGEKI    BUILD_SLPM61002 // Nov.11,2000 電撃PlayStation D40
-#define ZOE_DEMO_PURE2      BUILD_PCPX96611 // Jan.17,2001 プレプレ2 Vol.1 2001.04
-#define ZOE_DEMO_USA        BUILD_SCUS_DEMO // Jan.23,2001 PlayStation Underground
-#define ZOE_DEMO_PAL        BUILD_SCED_DEMO // Feb.14,2001 Official PS2 Magazine
+#define ZOE_DEMO_DENGEKI    BUILD_SLPM61002 // Nov.11,2000 :: 電撃PlayStation D40
+#define ZOE_DEMO_PURE2      BUILD_PCPX96611 // Jan.17,2001 :: プレプレ2 Vol.1 2001.04
+#define ZOE_DEMO_USA        BUILD_USA_DEMO  // Jan.23,2001 :: PlayStation Underground
+#define ZOE_DEMO_PAL        BUILD_PAL_DEMO  // Feb.14,2001 :: Official PS2 Magazine
 
 /*---------------------------------------------------------------------------*/
 #endif /* END OF FILE */

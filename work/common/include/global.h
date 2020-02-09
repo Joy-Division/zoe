@@ -6,7 +6,7 @@
 #define INC_GLOBAL_H
 
 /* Project Config */
-#include "buildconf.h"
+#include "zoe_conf.h"
 
 /* Common Typedefs */
 #include "cmtypes.h"
