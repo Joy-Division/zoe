@@ -3,7 +3,7 @@
 .vscode
 .vs
 
-# PS2 Binaries
+# PS2 Toolchain Output
 #-------------------------
 *.[Oo]
 *.[Aa]
