@@ -51,11 +51,9 @@ extern void NewDebugMode(); /* dbgmode.cc */
 static int ReplaceImageFlag = true;
 
 /*---------------------------------------------------------------------------*/
-/* Version   | Status     | Oflag | I./R. | etc.                             */
-/*-----------+------------+-------+-------+----------------------------------*/
-/* SLPS99999 | UNTESTED   | O?    | NA/NA |                                  */
-/* SLPM65019 | INCOMPLETE | O?    | NA/NA |                                  */
-/*---------------------------------------------------------------------------*/
+/* SLPS99999, status: UNTESTED,   opt: ? */
+/* SLPM65019, status: INCOMPLETE, opt: ? */
+
 static void SifLoad()
 {
 	char *irx_list[] = {
@@ -89,11 +87,9 @@ static void SifLoad()
 }
 
 /*---------------------------------------------------------------------------*/
-/* Version   | Status     | Oflag | I./R. | etc.                             */
-/*-----------+------------+-------+-------+----------------------------------*/
-/* SLPS99999 | UNTESTED   | O?    | NA/NA |                                  */
-/* SLPM65019 | UNTESTED   | O?    | NA/NA |                                  */
-/*---------------------------------------------------------------------------*/
+/* SLPS99999, status: UNTESTED, opt: ? */
+/* SLPM65019, status: UNTESTED, opt: ? */
+
 static void ResetIOP()
 {
 	char *IopReplaceModule = "cdrom0:\\MODULES\\IOPRP20.IMG;1";
