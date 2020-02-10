@@ -2,13 +2,14 @@
 #define INC_CARL_H
 
 #include "global.h"
+#include "zoe_defs.h"
 #include "zoe_types.h"
 #include "libdg.h"
 #include "libgv.h"
 
 /* (bgsphere.cc) */
-void CR_SetStageLoad( char *, sint32, char **, sint32 );
-void CR_SetStageLoad( u_char, sint32, char **, sint32 );
+void CR_SetStageLoad( char *, int, char **, int );
+void CR_SetStageLoad( u_char, int, char **, int );
 
 /*---------------------------------------------------------------------------*/
 
@@ -35,7 +36,7 @@ public: //! unconfirmed modifier
 	ALG_MATRIX*     pmatRef;
 	ALG_VECTOR      vecSize;
 	ALG_VECTOR      vecCol;
-	float32         fWidth;
+	float           fWidth;
 
 public:
 	CR_EDGE(const CR_EDGE&);
@@ -55,12 +56,12 @@ public:
 class CR_WINDOW
 {
 public: //! unconfirmed modifier
-	float32         fXwindow;
-	float32         fYwindow;
-	float32         fWrange;
-	float32         fHrange;
-	float32         fXrange;
-	float32         fYrange;
+	float           fXwindow;
+	float           fYwindow;
+	float           fWrange;
+	float           fHrange;
+	float           fXrange;
+	float           fYrange;
 	DG_OBJ_QUE      que;
 	DG_OBJ_POLYGON  polTitle;
 	DG_OBJ_POLYGON  polFrame0;
@@ -80,17 +81,18 @@ public: //! unconfirmed modifier
 	DG_VERTEX       vertArea[2];
 	DAT128          tagArea[3];
 	DAT128          tagFrame0[3];
-	sint32          ctr;
+	int             ctr;
 	
 	enum STATE {
-		OPEN,
-		CLOSE
+		OPEN, CLOSE
 	} st;
 	
-	CR_WINDOW*      pPrev;
-	CR_WINDOW*      pNext;
-//  bool            m_bXPositionAdjustedinWS;   // HVS addition
-//  float           m_fXAmountAdjustedinWS;     // HVS addition
+	CR_WINDOW* pPrev;
+	CR_WINDOW* pNext;
+
+// --- HVS addition ---
+//	bool    m_bXPositionAdjustedinWS;
+//	float   m_fXAmountAdjustedinWS;
 
 	static class CR_WINDOW* pWinTop;
 
@@ -100,9 +102,9 @@ protected:
 	void Validate();
 
 public: //! unconfirmed modifier
-	static const float32 fWLine = TEMP_ZERO;
-	static const float32 fHLine = TEMP_ZERO;
-	static const float32 fHTitle = TEMP_ZERO;
+	static const float fWLine = TEMP_ZERO;
+	static const float fHLine = TEMP_ZERO;
+	static const float fHTitle = TEMP_ZERO;
 
 public:
 	CR_WINDOW();
@@ -113,19 +115,21 @@ public:
 	void SetPosition(sint32, sint32);
 	void SetPositionWideScreen(sint32, sint32, sint32, sint32);
 	void SetArea(sint32, sint32);
-	void SetFrameColor(float32, float32, float32, float32);
-	void SetBgColor(float32, float32, float32, float32);
+	void SetFrameColor(float, float, float, float);
+	void SetBgColor(float, float, float, float);
 	void SetOrder(uint32);
 	void Open();
 	void Close();
-	void AnmOpen(float32*, float32*, float32, float32);
-	void AnmClose(float32*, float32*, float32, float32);
+	void AnmOpen(float*, float*, float, float);
+	void AnmClose(float*, float*, float, float);
 	void SetCursor(sint32, sint32);
 	void Queue(void*);
 	void Dequeue(void*);
 	void SetScissor(DAT128*);
 	void ResetScissor(DAT128*);
-//  void vEnableDepthBufferWritesForPolArea(bool);  // HVS addition
+	
+// --- HVS addition ---	
+//	void vEnableDepthBufferWritesForPolArea(bool);
 	
 	CR_WINDOW& operator=(CR_WINDOW&);
 };

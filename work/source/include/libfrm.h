@@ -8,6 +8,8 @@
 #define INC_LIBFRM_H
 
 #include "global.h"
+#include "zoe_defs.h"
+#include "zoe_types.h"
 #include "libalg.h"
 #include "libdg.h"
 #include "libgv.h"
@@ -15,14 +17,14 @@
 #include "libmt.h"
 #include "libtrg.h"
 
-// declaration
+// internal
 class FRM_CAMERA;
 class FRM_COMMAND;
 class FRM_OBJECT;
 class FRM_PAD;
 
 /*---------------------------------------------------------------------------*
- * Common Enums
+ * Common Defines
  *---------------------------------------------------------------------------*/
 
 // ref.default.pdb
@@ -92,7 +94,7 @@ enum {
 	FRM_NODE_NECK,
 	FRM_NODE_WAIST,
 	FRM_NODE_CHEST,
-	FRM_NODE_BLADE
+	FRM_NODE_BLADE,
 	FRM_NODE_SHIELD,
 	FRM_NODE_SLD_L,
 	FRM_NODE_SLD_R,
@@ -335,7 +337,7 @@ enum {
 struct CMD_TABLE {
 	void (*pfnAct)(void); // TODO: ret/arg types
 	uint16  u16ActTime[3];
-	float32 fParam[32];
+	float   fParam[32];
 };
 
 /*---------------------------------------------------------------------------*/
@@ -351,22 +353,22 @@ struct FRM_CUSTOM {
 	uint8   u8Level;
 	uint8   u8Demo;
 	uint32  u32EndProc;
-	float32 fMaxArm;
-	float32 fArmor;
-	float32 fHzdRad;
-	float32 fTrgRad;
-	float32 fArmsOffset;
-	float32 fGrdWidth;
-	float32 fGrdDepth;
-	float32 fGrdRad;
-	float32 fGrdOffset;
-	float32 fMoveSpd;
-	float32 fUpSpd;
-	float32 fDownSpd;
-	float32 fMoveVel;
-	float32 fTurnRate;
-	float32 fLockRate1;
-	float32 fLockRate2;
+	float   fMaxArm;
+	float   fArmor;
+	float   fHzdRad;
+	float   fTrgRad;
+	float   fArmsOffset;
+	float   fGrdWidth;
+	float   fGrdDepth;
+	float   fGrdRad;
+	float   fGrdOffset;
+	float   fMoveSpd;
+	float   fUpSpd;
+	float   fDownSpd;
+	float   fMoveVel;
+	float   fTurnRate;
+	float   fLockRate1;
+	float   fLockRate2;
 };
 
 /*---------------------------------------------------------------------------*/
@@ -379,12 +381,12 @@ public: //! unconfirmed modifier
 	ALG_MATRIX  matCam;
 	ALG_VECTOR  vecView;
 	ALG_VECTOR  vecLook;
-	float32     fTransRate;
-	float32     fRotRate;
-	float32     fCamRate;
+	float       fTransRate;
+	float       fRotRate;
+	float       fCamRate;
 
 public:
-	FRM_CAMERA(float32, float32, float32, float32, float32, float32, float32, float32, float32);
+	FRM_CAMERA(float, float, float, float, float, float, float, float, float);
 	FRM_CAMERA();
 	
 	void Init(FRM_CAMERA*, ALG_MATRIX*);
@@ -446,9 +448,9 @@ public:
 	uint16      Counter();
 	uint16      Time();
 	uint16      ActTime(uint8);
-	float32*    GetParam();
+	float*      GetParam();
 	sint32      GetParamNumber(uint8);
-	float32     GetParamFloat(uint8);
+	float       GetParamFloat(uint8);
 	uint32      GetParamAddr(uint8);
 	
 	FRM_COMMAND();
@@ -462,14 +464,14 @@ public:
 class FRM_PAD
 {
 public: //! unconfirmed modifier
-	float32 fX1;
-	float32 fY1;
-	float32 fX2;
-	float32 fY2;
-	float32 fStateX1;
-	float32 fStateY1;
-	float32 fStateX2;
-	float32 fStateY2;
+	float   fX1;
+	float   fY1;
+	float   fX2;
+	float   fY2;
+	float   fStateX1;
+	float   fStateY1;
+	float   fStateX2;
+	float   fStateY2;
 	uint32  u32State;
 	uint32  u32Last;
 	uint32  u32On;
@@ -481,16 +483,16 @@ public:
 	FRM_PAD();
 	
 	void    Input();
-	void    SetX1(float32);
-	void    SetY1(float32);
-	void    SetX2(float32);
-	void    SetY2(float32);
+	void    SetX1(float);
+	void    SetY1(float);
+	void    SetX2(float);
+	void    SetY2(float);
 	void    _SetButton(uint32, uint8, uint8);
 	void    _ResetButton(uint32, uint8);
-	float32 X1();
-	float32 Y1();
-	float32 X2();
-	float32 Y2();
+	float   X1();
+	float   Y1();
+	float   X2();
+	float   Y2();
 	sint32  On(uint32);
 	sint32  Press(uint32);
 	sint32  Release(uint32);
@@ -519,17 +521,17 @@ public: //! unconfirmed modifier
 	FRM_CAMERA  fcm;
 	ALG_MATRIX  matCam;
 	ALG_MATRIX  matOldCam;
-	float32     fSwCamRate;
-	float32     fSwCamSpd;
-	float32     fFixZoom;
+	float       fSwCamRate;
+	float       fSwCamSpd;
+	float       fFixZoom;
 	ALG_MATRIX  matFixCam;
 	ALG_MATRIX  matRotCam;
-	float32     fHzdRate;
+	float       fHzdRate;
 	ALG_MATRIX  matHzdCam;
 	ALG_MATRIX  matAim;
 	ALG_VECTOR  vecSpeed;
-	float32     fSpeed;
-	float32     fBstRate;
+	float       fSpeed;
+	float       fBstRate;
 	ALG_VECTOR  vecDamage;
 	bool32      bDestroy;
 	bool32      bSubject;
@@ -544,27 +546,27 @@ public: //! unconfirmed modifier
 	bool32      bLastNeutral;
 	bool32      bNeutral2;
 	ALG_MATRIX  matPad;
-	float32     fStickRate;
+	float       fStickRate;
 	ALG_MATRIX  matComp;
-	float32     fGravity;
+	float       fGravity;
 	uint8       u8GravUp;
 	uint8       u8GravDown;
-	float32     fLevRate;
-	float32     fAltitude;
-	float32     fLastAlt;
-	float32     fAltRate;
-	float32     fAltFree;
+	float       fLevRate;
+	float       fAltitude;
+	float       fLastAlt;
+	float       fAltRate;
+	float       fAltFree;
 	bool32      bGround;
-	float32     fFootL;
-	float32     fFootR;
-	float32     fFloat;
+	float       fFootL;
+	float       fFootR;
+	float       fFloat;
 	bool32      bGuard;
 	uint16      u16LotID;
 	TRG_OBJECT* ptrgLot;
-	float32     fLotDist;
+	float       fLotDist;
 	bool32      bInfight;
-	float32     fFixRate;
-	float32     fSpeedRate;
+	float       fFixRate;
+	float       fSpeedRate;
 	uint16      u16LabID;
 	TRG_OBJECT* ptrgLab;
 	bool32      bLockOn;
@@ -581,7 +583,7 @@ public:
 	ALG_MATRIX& NodeMat(uint8);
 	void        ResetFrame();
 	void        ResetTrg();
-	void        SetArms(uint8, float32, float32);
+	void        SetArms(uint8, float, float);
 	void        ResetArms();
 	void        SetGuard();
 	void        ResetGuard();
@@ -603,17 +605,17 @@ public:
 	void        SetModel();
 	void        TurnFrame();
 	void        MoveFrame();
-	void        TurnPad(float32);
-	void        TurnLot(float32);
-	void        InterpLot(ALG_VECTOR*, float32, float32);
-	void        TurnVec(ALG_VECTOR*, float32);
+	void        TurnPad(float);
+	void        TurnLot(float);
+	void        InterpLot(ALG_VECTOR*, float, float);
+	void        TurnVec(ALG_VECTOR*, float);
 	void        CalcLotVec(ALG_VECTOR*);
-	void        MoveVec(ALG_VECTOR*, float32, float32);
+	void        MoveVec(ALG_VECTOR*, float, float);
 	void        CheckCommand();
 	void        CheckDamage();
-	void        GetDamage(float32);
-	void        CheckHazardBack(float32, float32);
-	float32     CalcHazardAng(ALG_VECTOR*, ALG_VECTOR*, float32);
+	void        GetDamage(float);
+	void        CheckHazardBack(float, float);
+	float       CalcHazardAng(ALG_VECTOR*, ALG_VECTOR*, float);
 	sint32      CheckTouch();
 	void        CheckCross();
 	void        SwitchCamera(uint8);

@@ -8,7 +8,7 @@
 #define INC_LIBSD_H
 
 // EE Interface
-#include "sd_ee.h"
+#include "../../module/sound/sd_ee.h"
 
 #endif /* END OF FILE */
 

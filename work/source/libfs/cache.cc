@@ -3,14 +3,14 @@
  * FS Cache System
  */
 #include "global.h"
+#include "zoe_defs.h"
+#include "zoe_types.h"
 #include "libfs.h"
 
 /*---------------------------------------------------------------------------*/
-/* Version   | Status     | Oflag | I./R. | etc.                             */
-/*-----------+------------+-------+-------+----------------------------------*/
-/* SLPS99999 | MATCH      | O2,O3 | OK/OK |                                  */
-/* SLPM65019 | MATCH      | O2,O3 | OK/OK |                                  */
-/*---------------------------------------------------------------------------*/
+/* SLPS99999, status: MATCH, opt: -O2,-O3 */
+/* SLPM65019, status: MATCH, opt: -O2,-O3 */
+
 uint32 FS_StrCode( char *str )
 {
 	uint32 c;

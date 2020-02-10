@@ -43,7 +43,8 @@
 void dummy_printf( const char *fmt, ... );
 
 // dummy printf for non-debug builds
-#define printf(fmt, ...)  dummy_printf(fmt, ##__VA_ARGS__)
+//#define printf(fmt, ...)  dummy_printf(fmt, ##__VA_ARGS__)
+#define printf  dummy_printf
 
 #endif // ZOE_JPN
 

@@ -2,6 +2,8 @@
 #define INC_BREAK_DATA_H
 
 #include "global.h"
+#include "zoe_defs.h"
+#include "zoe_types.h"
 #include "libalg.h"
 
 /*---------------------------------------------------------------------------*/
@@ -15,9 +17,9 @@ public: //! unconfirmed modifier
 	uint8 F;
 
 public:
-	sint32  Check_Low(float32);
-	void    SP_Add(float32, ALG_VECTOR *);
-	void    SP_Add(float32);
+	sint32  Check_Low(float);
+	void    SP_Add(float, ALG_VECTOR *);
+	void    SP_Add(float);
 	void    Axis_Fall(ALG_MATRIX *);
 	void    Dump();
 	
@@ -36,7 +38,7 @@ public: //! unconfirmed modifier
 	ALG_MATRIX matR;
 	ALG_VECTOR vecP;
 	ALG_VECTOR SP;
-	float32 G;
+	float   G;
 	uint16  FON;
 	uint8   N;
 	uint8   u8EF;

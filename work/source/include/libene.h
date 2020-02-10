@@ -8,13 +8,19 @@
 #define INC_LIBENE_H
 
 #include "global.h"
+#include "zoe_defs.h"
+#include "zoe_types.h"
 #include "libalg.h"
 #include "libdg.h"
 #include "libfrm.h"
 #include "libgv.h"
 #include "libtrg.h"
 
-// declaration
+// external
+class FRM_OBJECT;
+class TRG_OBJECT;
+
+// internal
 struct ENE_ENTRY;
 struct ENE_MEMBER;
 class ENE_MANAGER;
@@ -61,6 +67,26 @@ public:
 	~ENE_MEMBER();
 	
 	ENE_MEMBER& operator=(const ENE_MEMBER&);
+};
+
+/*---------------------------------------------------------------------------*/
+
+// ref.default.pdb
+class ENE_STATE
+{
+public: //! unconfirmed modifier
+	uint8   u8ID;
+	uint8   u8NextID;
+	bool32  bInit;
+	bool32  bChange;
+
+public:
+	ENE_STATE();
+	
+	void    Set(uint8);
+	void    Update();
+	sint32  Init();
+	uint8   ID();
 };
 
 /*---------------------------------------------------------------------------*/
@@ -145,14 +171,14 @@ public: //! unconfirmed modifier
 	uint16      u16Common6;
 	uint16      u16Common7;
 	uint16      u16Common8;
-	float32     fCommon1;
-	float32     fCommon2;
-	float32     fCommon3;
-	float32     fCommon4;
-	float32     fCommon5;
-	float32     fCommon6;
-	float32     fCommon7;
-	float32     fCommon8;
+	float       fCommon1;
+	float       fCommon2;
+	float       fCommon3;
+	float       fCommon4;
+	float       fCommon5;
+	float       fCommon6;
+	float       fCommon7;
+	float       fCommon8;
 	bool32      bCommon1;
 	bool32      bCommon2;
 	bool32      bCommon3;
@@ -194,7 +220,7 @@ class ENE_PARTY:
 public: //! unconfirmed modifier
 	uint32        u32NameID;
 	uint8         u8MoveType;
-	float32       fMoveSpeed;
+	float         fMoveSpeed;
 	uint8         u8Item;
 	uint32        u32DestProc;
 	uint8         u8Level;
@@ -214,7 +240,7 @@ public: //! unconfirmed modifier
 
 public:
 	ENE_PARTY(const ENE_PARTY&);
-	ENE_PARTY(uint32, uint8, uint32, uint8, uint32*, ALG_VECTOR*, uint8*, uint8*, uint8*, uint8, float32, uint8, ALG_VECTOR*);
+	ENE_PARTY(uint32, uint8, uint32, uint8, uint32*, ALG_VECTOR*, uint8*, uint8*, uint8*, uint8, float, uint8, ALG_VECTOR*);
 	~ENE_PARTY();
 	
 	void Act();
@@ -222,26 +248,6 @@ public:
 	void SetBullet();
 	
 	ENE_PARTY& operator=(const ENE_PARTY&);
-};
-
-/*---------------------------------------------------------------------------*/
-
-// ref.default.pdb
-class ENE_STATE
-{
-public: //! unconfirmed modifier
-	uint8   u8ID;
-	uint8   u8NextID;
-	bool32  bInit;
-	bool32  bChange;
-
-public:
-	ENE_STATE();
-	
-	void    Set(uint8);
-	void    Update();
-	sint32  Init();
-	uint8   ID();
 };
 
 /*---------------------------------------------------------------------------*/

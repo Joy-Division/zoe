@@ -5,10 +5,12 @@
 #define INC_DEF_MOT_H
 
 #include "global.h"
+#include "zoe_defs.h"
+#include "zoe_types.h"
 
 // ref.default.pdb
 typedef struct _DEF_MOTION {
-	float32 fFrame;
+	float   fFrame;
 	uint32  nbNode;
 	uint32  pad1;
 	uint32  pad2;
@@ -16,7 +18,7 @@ typedef struct _DEF_MOTION {
 
 // ref.default.pdb
 typedef struct _DEF_MOTION_LIST {
-	uint32  nbMotion;
+	uint32 nbMotion;
 } DEF_MOTION_LIST;
 
 // ref.default.pdb

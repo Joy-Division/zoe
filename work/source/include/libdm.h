@@ -8,12 +8,14 @@
 #define INC_LIBDM_H
 
 #include "global.h"
+#include "zoe_defs.h"
+#include "zoe_types.h"
 #include "libalg.h"
 #include "libdg.h"
 #include "libfrm.h"
 
 /*---------------------------------------------------------------------------*
- * Common Enums
+ * Common Defines
  *---------------------------------------------------------------------------*/
 
 // ref.default.pdb
@@ -101,7 +103,7 @@ public: //! unconfirmed modifier
 	sint32      prevPosY;
 	sint32      prevPosZ;
 	DM_BUFFER*  pQue;
-	float32     fRate;
+	float       fRate;
 
 public:
 	DM_STRPACK* Que(DM_STRPACK*);
@@ -162,8 +164,8 @@ public: //! unconfirmed modifier
 	uint16      u16Flag;
 	uint16      u16Time;
 	sint32      idRefActor;
-	float32     fRoll;
-	float32     fAng;
+	float       fRoll;
+	float       fAng;
 
 public:
 	DM_PRCAMERA_DATA();
@@ -196,19 +198,19 @@ public: //! unconfirmed modifier
 	ALG_VECTOR  vecInterrestAbs;
 	uint16      u16Flag;
 	uint16      u16Time;
-	float32     fRoll;
-	float32     fAng;
-	float32     fSlantPrev;
-	float32     fSlantPost;
+	float       fRoll;
+	float       fAng;
+	float       fSlantPrev;
+	float       fSlantPost;
 	ALG_MATRIX* pmatRefCamera;
 	sint32      idRefActor;
 	DM_PRDEMO_CAMERA_RECDATA* pRecData;
-	sint32      nData;
+	int         nData;
 
 public:
 	void Calc(sint32);
 	void GetMatrix(ALG_MATRIX*);
-	void GetInterpMatrix(DM_PRDEMO_CAMERA_RECDATA*, DM_PRDEMO_CAMERA*, DM_PRDEMO_CAMERA*, DM_PRDEMO_CAMERA*, float32);
+	void GetInterpMatrix(DM_PRDEMO_CAMERA_RECDATA*, DM_PRDEMO_CAMERA*, DM_PRDEMO_CAMERA*, DM_PRDEMO_CAMERA*, float);
 	void UpdateCamera(sint32);
 	void GetData(DM_PRCAMERA_DATA*);
 	void PutData(DM_PRCAMERA_DATA*);

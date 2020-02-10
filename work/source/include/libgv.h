@@ -9,24 +9,11 @@
 #define INC_LIBGV_H
 
 #include "global.h"
+#include "zoe_defs.h"
+#include "zoe_types.h"
 
 /*---------------------------------------------------------------------------*
- * Prototypes
- *---------------------------------------------------------------------------*/
-
-// GV_InitSystem() is defined here according to the .mdebug section.
-// It was not inlined by the compiler, and is marked as an exported
-// function (i.e. not static/private).
-#ifdef IN_MAIN_CC
-void GV_InitSystem()
-{
-	GV_MEMORY::InitSystem();
-	GV_ACTOR::StartDaemon();
-}
-#endif
-
-/*---------------------------------------------------------------------------*
- * Common Enums
+ * Common Defines
  *---------------------------------------------------------------------------*/
 
 // ref.default.pdb
@@ -119,7 +106,7 @@ private:
 public: //! unconfirmed modifier
 	uint32 s32SoundEmitter;
 	
-	static float32 fEffect_Accum;
+	static float fEffect_Accum;
 	
 public:
 	GV_ACTOR(const GV_ACTOR&);
@@ -140,13 +127,13 @@ public:
 	static void     CancelPause(uint32);
 	static void     Kill(uint8);
 	static void     Kill2();
-//  static void     HVS_KillAll();
+//	static void     HVS_KillAll();
 	static void     Update();
 	static uint8    PauseAtt();
 	static uint8    NextPauseAtt();
 	static uint8    NextCancelPauseAtt();
 	static uint32   Time();
-	static float32  GetEffectScale();
+	static float    GetEffectScale();
 	
 	GV_ACTOR& operator=(const GV_ACTOR&);
 };
@@ -225,8 +212,8 @@ public:
 	static void*    Alloc(uint32);        // "_Alloc" in default.pdb
 	static void     Free(void*);
 	static void     Update(uint8);
-//  static void     SetFreeType(uint8);
-//  static uint8    nGetFreeType();
+//	static void     SetFreeType(uint8);
+//	static uint8    nGetFreeType();
 	static void     SwitchNonResidentMode();
 	static void     FreePrevMemory();
 	static void     FreeCurrentMemory();
@@ -235,9 +222,11 @@ public:
 	static sint32   CheckSync();
 	static uint8    GetType(void*);
 	static uint32   GetSize(void*);
-//  static uint32   nGetHVSAllocType(uint8);
-//  static uint32   nGetHVSNonResidentModeCurrent();
-//  static uint32   nGetHVSNonResidentModePrevious();
+
+// --- HVS addition ---
+//	static uint32   nGetHVSAllocType(uint8);
+//	static uint32   nGetHVSNonResidentModeCurrent();
+//	static uint32   nGetHVSNonResidentModePrevious();
 };
 
 /*---------------------------------------------------------------------------*
@@ -277,11 +266,11 @@ public:
 	~GV_MESSAGE();
 	
 	void    SetNumber(sint32);
-	void    SetFloat(float32);
+	void    SetFloat(float);
 	void    SetAddr(void*);
 	void    SetString(char*);
 	sint32  GetNumber(uint8);
-	float32 GetFloat(uint8);
+	float   GetFloat(uint8);
 	void*   GetAddr(uint8);
 	char*   GetString(uint8);
 	
@@ -344,9 +333,9 @@ enum {
 // ref.default.pdb
 typedef struct GV_PAD_ONE {
 
-	// This class has been modified by HVS to reference the Xbox 360 pad.
-	// Examine this class during decompilation and change member names to
-	// reference the DualShock 2.
+// This class has been modified by HVS to reference the Xbox 360 pad.
+// Examine this class during decompilation and change member names to
+// reference the DualShock 2.
 	
 	uint8   u8State;
 	uint8   u8IDLen;
@@ -374,8 +363,8 @@ typedef struct GV_PAD_ONE {
 // ref.default.pdb
 class GV_PAD
 {
-	// Examine this class during the decompilation.
-	// It appares that HVS has modified it somewhat.
+// Examine this class during decompilation.
+// It appares that HVS has modified it somewhat.
 	
 public: //! unconfirmed modifier
 	uint128 u128buf[4];
@@ -442,22 +431,39 @@ public:
 	void    SetAct(sint32, uint8);
 	
 	static void     ResetCurrentSecondaryPort();
-	static sint32   nGetCurrentSecondaryPort();
+	static sint32   nGetCurrentSecondaryPort(); // HVS?
 
 public: //! unconfirmed modifier
 	bool            mbPressureSensitive;
 	bool            mbSensorSupported;
 	bool            mbSupportsVibration;
-	sint32          mbActive;
+	int             mbActive;
 	bool            mbYAxisInvert;
 	bool            mbVibration;
-//  uint32          m_nLastFrame;
-//  bool            m_bReassigned;
-//  bool            m_bSemiReassigned;
-//  bool            m_bConnected;
-//  _XINPUT_STATE   m_oPadState;
+
+// --- HVS addition ---
+//	uint32          m_nLastFrame;
+//	bool            m_bReassigned;
+//	bool            m_bSemiReassigned;
+//	bool            m_bConnected;
+//	_XINPUT_STATE   m_oPadState;
 	GV_PAD_ONE      padone;
 };
+
+/*---------------------------------------------------------------------------*
+ * Prototypes
+ *---------------------------------------------------------------------------*/
+
+// GV_InitSystem() is defined here according to the .mdebug section.
+// It was not inlined by the compiler, and is marked as an exported
+// function (i.e. not static/private).
+#ifdef IN_MAIN_CC
+void GV_InitSystem()
+{
+	GV_MEMORY::InitSystem();
+	GV_ACTOR::StartDaemon();
+}
+#endif
 
 /*---------------------------------------------------------------------------*/
 #endif /* END OF FILE */

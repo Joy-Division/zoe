@@ -8,10 +8,16 @@
 #define INC_LIBTRG_H
 
 #include "global.h"
+#include "zoe_defs.h"
+#include "zoe_types.h"
 #include "libalg.h"
 #include "libene.h"
+#include "libfrm.h"
 
-// declaration
+// external
+class FRM_OBJECT;
+
+// internal
 class ITEM_DATA;
 class BULLET_DATA;
 class TRG_STATUS;
@@ -66,18 +72,18 @@ public: //! unconfirmed modifier
 	uint32      u32NameID;
 	uint8       u8Shape;
 	ALG_VECTOR  vecSize;
-	float32     fRadius;
-	float32     fBoxRad;
+	float       fRadius;
+	float       fBoxRad;
 	uint8       u8Prop;
 	uint8       u8Prio;
 	uint8       u8Side;
 	uint8       u8Type;
 	uint16      u16Att;
-	float32     fPower;
+	float       fPower;
 	ALG_MATRIX  matPos;
 	uint8       u8Level;
-	float32     fMaxArm;
-	float32     fArmor;
+	float       fMaxArm;
+	float       fArmor;
 	void*       pvData;
 
 public:
@@ -122,12 +128,12 @@ public:
 	void            SetSide(uint8);
 	void            SetType(uint8);
 	void            SetMat(ALG_MATRIX*);
-	void            SetRadius(float32);
-	void            SetSize(float32, float32, float32);
+	void            SetRadius(float);
+	void            SetSize(float, float, float);
 	void            SetAtt(uint16);
 	void            ResetAtt(uint16);
-	void            SetPower(float32);
-	float32         Damage();
+	void            SetPower(float);
+	float           Damage();
 	uint16          ID();
 	void            SwapID(TRG_OBJECT*);
 	uint16          SubID();
@@ -136,7 +142,7 @@ public:
 	uint8           Side();
 	uint8           Type();
 	uint16          Att();
-	float32         Radius();
+	float           Radius();
 	ALG_VECTOR&     Size();
 	uint16          PowerID();
 	uint8           PushProp();
@@ -150,15 +156,15 @@ public:
 	uint16          PowerAtt();
 	void            PushVector(ALG_VECTOR*);
 	void            SetLevel(uint8);
-	void            SetMaxArm(float32);
-	void            SetArmor(float32);
+	void            SetMaxArm(float);
+	void            SetArmor(float);
 	void            SetFrame(FRM_OBJECT*);
 	void            SetParty(ENE_PARTY*);
 	void            SetItem(ITEM_DATA*);
 	void            SetBullet(BULLET_DATA*);
 	uint8           Level();
-	float32         Armor();
-	float32         MaxArm();
+	float           Armor();
+	float           MaxArm();
 	uint8           PowerLevel();
 	FRM_OBJECT&     Frame();
 	FRM_OBJECT&     PowerFrame();

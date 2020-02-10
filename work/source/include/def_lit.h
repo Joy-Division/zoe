@@ -5,13 +5,15 @@
 #define INC_DEF_LIT_H
 
 #include "global.h"
+#include "zoe_defs.h"
+#include "zoe_types.h"
 #include "libdg.h"
 
 // ref.default.pdb
 class DEF_LIGHT
 {
 public: //! unconfirmed modifier
-	sint32 nLight;
+	int nLight;
 	uint32 pad0;
 	uint32 pad1;
 	uint32 pad2;

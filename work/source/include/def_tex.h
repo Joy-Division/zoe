@@ -6,6 +6,8 @@
 
 #include "global.h"
 #include <eestruct.h>
+#include "zoe_defs.h"
+#include "zoe_types.h"
 
 // ref.default.pdb
 typedef struct _DEF_TEXTURE {

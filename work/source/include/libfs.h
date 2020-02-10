@@ -9,23 +9,12 @@
 
 #include "global.h"
 #include <sifcmd.h>
+#include "zoe_defs.h"
+#include "zoe_types.h"
 #include "libev.h"
 
 // CDBIOS EE interface
-#include "cdbios_ee.h"
-
-/*---------------------------------------------------------------------------*
- * Prototypes
- *---------------------------------------------------------------------------*/
-
-/* FS Daemon (fsd.cc) */
-void FS_StartDaemon();
-
-/* FS Cache System (cache.cc) */
-uint32 FS_StrCode( char* str );
-
-/* FS CDVD (cdvd.cc) */
-void FS_CdLoadDirInfo( char*, sint32 );
+#include "../../module/filesys/cdbios_ee.h"
 
 /*---------------------------------------------------------------------------*
  * Common Structures
@@ -187,6 +176,19 @@ public:
 	
 	FS_LOADER& operator=(const FS_LOADER&);
 };
+
+/*---------------------------------------------------------------------------*
+ * Prototypes
+ *---------------------------------------------------------------------------*/
+
+/* FS Daemon (fsd.cc) */
+void FS_StartDaemon();
+
+/* FS Cache System (cache.cc) */
+uint32 FS_StrCode( char* str );
+
+/* FS CDVD (cdvd.cc) */
+void FS_CdLoadDirInfo( char*, int );
 
 /*---------------------------------------------------------------------------*/
 #endif /* END OF FILE */

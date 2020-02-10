@@ -14,6 +14,9 @@
 #include <sifdev.h>
 #include <sifrpc.h>
 
+#include "zoe_defs.h"
+#include "zoe_types.h"
+
 #define IN_MAIN_CC // for GV_InitSystem()
 
 #include "../../module/mts/mts.h"

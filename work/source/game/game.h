@@ -6,6 +6,8 @@
 #define INC_GAME_H
 
 #include "global.h"
+#include "zoe_defs.h"
+#include "zoe_types.h"
 #include "libalg.h"
 #include "libfrm.h"
 
@@ -18,10 +20,10 @@ struct CONTINUE_DATA {
 	uint8   u8Difficulty;
 	uint8   u8PlayerLevel;
 	uint16  u16PlayerExp;
-	float32 fPlayerArmor;
+	float   fPlayerArmor;
 	uint8   u8PlayerLevel2;
 	uint16  u16PlayerExp2;
-	float32 fPlayerArmor2;
+	float   fPlayerArmor2;
 	uint8   u8Story;
 	uint8   u8CurStage;
 	uint8   u8LastStage;
@@ -64,8 +66,8 @@ public: //! unconfirmed modifier
 	static uint8            u8Mode;
 	static uint8            u8State;
 	static FRM_OBJECT*      pfrmPlayer;
-	static float32          fPlayerLockDist;
-	static float32          fPartyLockDist;
+	static float            fPlayerLockDist;
+	static float            fPartyLockDist;
 	static uint16           u16EscapeTime;
 	static uint8            u8MaxEnemyNum;
 	static uint16           u16SpecialAtt;
@@ -93,7 +95,7 @@ public:
 	static void         SetPlayerExp(uint16);
 	static void         AddPlayerExp(uint16);
 	static void         SubPlayerExp();
-	static void         SetPlayerArmor(float32);
+	static void         SetPlayerArmor(float);
 	static void         ChangePlayerData();
 	static void         RestorePlayerData();
 	static void         SetWeapon(uint8);
@@ -105,8 +107,8 @@ public:
 	static void         SetTraining(uint8);
 	static void         ResetTraining(uint8);
 	static void         SetSpecialAtt(uint16);
-	static void         SetPlayerLockDist(float32);
-	static void         SetPartyLockDist(float32);
+	static void         SetPlayerLockDist(float);
+	static void         SetPartyLockDist(float);
 	static void         SetEscapeTime(uint16);
 	static void         SetMaxEnemyNum(uint8);
 	static void         ResetSpecialAtt(uint16);
@@ -143,10 +145,10 @@ public:
 	static FRM_OBJECT*  PlayerPtr();
 	static uint8        PlayerLevel();
 	static uint16       PlayerExp();
-	static float32      PlayerMaxArm();
-	static float32      PlayerArmor();
-	static float32      PlayerLockDist();
-	static float32      PartyLockDist();
+	static float        PlayerMaxArm();
+	static float        PlayerArmor();
+	static float        PlayerLockDist();
+	static float        PartyLockDist();
 	static uint8        MaxEnemyNum();
 	static uint16       EscapeTime();
 	static uint8        Weapon();

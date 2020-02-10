@@ -8,6 +8,8 @@
 #define INC_LIBHZD_H
 
 #include "global.h"
+#include "zoe_defs.h"
+#include "zoe_types.h"
 #include "libalg.h"
 #include "libdg.h"
 
@@ -24,13 +26,6 @@ class HZD_LIMIT;
 class HZD_OFFSET_TREE;
 class HZD_PLANE;
 class HZD_TREE_NODE;
-
-/*---------------------------------------------------------------------------*
- * Prototypes
- *---------------------------------------------------------------------------*/
-
-/* Hazard Daemon (hzdd.cc) */
-void HZD_Init();
 
 /*---------------------------------------------------------------------------*
  * Hazard Break (break.cc, status.cc)
@@ -105,7 +100,7 @@ public:
 	HZD_TREE_NODE*      HZD_GetPtr(uint32);
 	void                HZD_Dump();
 	HZD_BREAK_STATUS*   GetCurrentStatus();
-	float32             GetBreakStatus(uint32);
+	float               GetBreakStatus(uint32);
 	HZD_BREAK_STATUS*   GetBreakList(uint32);
 	
 	static HZD_BREAK*   Init();
@@ -119,7 +114,7 @@ public:
 typedef struct _HZD_CAPSULE
 {
 public: //! unconfirmed modifier
-	float32     fRadius;
+	float       fRadius;
 	uint32      pad0;
 	uint32      pad1;
 	uint32      pad2;
@@ -157,7 +152,7 @@ class HZD_G_LINE
 {
 public: //! unconfirmed modifier
 	ALG_MATRIX  matCenter;
-	float32     fHeight;
+	float       fHeight;
 
 public:
 	void GetComp(ALG_MATRIX*, ALG_VECTOR*);
@@ -174,7 +169,7 @@ class HZD_G_ROT
 {
 public: //! unconfirmed modifier
 	ALG_MATRIX  matCenter;
-	float32     fHeight;
+	float       fHeight;
 
 public:
 	void GetComp(ALG_MATRIX*, ALG_VECTOR*);
@@ -222,24 +217,24 @@ public:
 class HZD_AXIS_LIMIT
 {
 public: //! unconfirmed modifier
-	float32 fOuter;
-	float32 fInner;
+	float fOuter;
+	float fInner;
 
 private:
-	float32 LimitRate(float32);
-	float32 GetDist(float32);
+	float LimitRate(float);
+	float GetDist(float);
 };
 
 // ref.default.pdb
 class HZD_CIRCLE_LIMIT
 {
 public: //! unconfirmed modifier
-	float32 fOuter;
-	float32 fInner;
-	float32 fX, fY;
+	float fOuter;
+	float fInner;
+	float fX, fY;
 
 private:
-	float32 LimitRate(float32, float32);
+	float LimitRate(float, float);
 };
 
 // ref.default.pdb
@@ -254,7 +249,7 @@ public: //! unconfirmed modifier
 	HZD_AXIS_LIMIT      axlBottom;
 	HZD_CIRCLE_LIMIT    crlLevel;
 	bool32              bGravity;
-	float32             fSpdGravity;
+	float               fSpdGravity;
 	sint32              ctrLimit[2];
 	uint8               u8Flag;
 
@@ -263,13 +258,13 @@ private:
 	void   NearestLimit(ALG_VECTOR*, ALG_MATRIX*);
 
 public:
-	void SetAxisLimitNS(float32, float32, float32);
-	void SetAxisLimitWE(float32, float32, float32);
-	void SetLimitRangeWE(float32, float32);
-	void SetAxisLimitTop(float32, float32);
-	void SetAxisLimitBottom(float32, float32);
-	void SetCircleLimit(float32, float32, float32, float32);
-	void SetGravitySpeed(float32);
+	void SetAxisLimitNS(float, float, float);
+	void SetAxisLimitWE(float, float, float);
+	void SetLimitRangeWE(float, float);
+	void SetAxisLimitTop(float, float);
+	void SetAxisLimitBottom(float, float);
+	void SetCircleLimit(float, float, float, float);
+	void SetGravitySpeed(float);
 	
 	static sint32 LimitVelocity(ALG_VECTOR*, ALG_MATRIX*, sint32, sint32);
 	static void   GetNearestLimit(ALG_VECTOR*, ALG_MATRIX*);
@@ -309,9 +304,9 @@ public:
 class HZD_TREE_NODE
 {
 public: //! unconfirmed modifier
-	float32         lx, ly, lz;
+	float           lx, ly, lz;
 	HZD_TREE_NODE*  pChildOrg;
-	float32         ux, uy, uz;
+	float           ux, uy, uz;
 	HZD_TREE_NODE*  pSiblingOrg;
 	HZD_BREAK_LIST* pBreakList;
 	DG_MDL*         pmdl;
@@ -361,6 +356,13 @@ public:
 	
 	HZD_OFFSET_TREE& operator=(const HZD_OFFSET_TREE&);
 };
+
+/*---------------------------------------------------------------------------*
+ * Prototypes
+ *---------------------------------------------------------------------------*/
+
+/* Hazard Daemon (hzdd.cc) */
+void HZD_Init();
 
 /*---------------------------------------------------------------------------*/
 #endif /* END OF FILE */

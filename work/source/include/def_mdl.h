@@ -5,21 +5,26 @@
 #define INC_DEF_MDL_H
 
 #include "global.h"
+#include "zoe_defs.h"
+#include "zoe_types.h"
 #include "def_tex.h"
 #include "libalg.h"
 #include "libdg.h"
+
+// external
+typedef struct _DG_MATERIAL DG_MATERIAL;
 
 // ref.default.pdb
 typedef struct _DEF_OBJ {
 	uint32          u32Flag;
 	uint16          u16nMdl;
 	uint16          u16szMdl;
-	float32         lx, ly, lz;
-	float32         ux, uy, uz;
+	float           lx, ly, lz;
+	float           ux, uy, uz;
 	void*           pBuf;
 	uint32          u32size;
 	DEF_TEXLIST*    pTlst;
-	float32         fScale;
+	float           fScale;
 } DEF_OBJ;
 
 // ref.default.pdb
@@ -42,8 +47,8 @@ typedef struct _DEF_STRIP {
 // ref.default.pdb
 typedef struct _DEF_MDL {
 	FMATRIX     matLocal;
-	float32     lx, ly, lz;
-	float32     ux, uy, uz;
+	float       lx, ly, lz;
+	float       ux, uy, uz;
 	uint16      u16Flag;
 	sint16      s16Parent;
 	sint16      s16Child;
@@ -59,8 +64,8 @@ typedef struct _DEF_MDL {
 
 // ref.default.pdb
 typedef struct _DEF_MDL_ENVMAP {
-	char*   pName;
-	uint32  pad0, pad1, pad2;
+	char* pName;
+	uint32 pad0, pad1, pad2;
 } DEF_MDL_ENVMAP;
 
 // ref.default.pdb

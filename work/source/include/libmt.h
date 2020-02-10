@@ -8,16 +8,11 @@
 #define INC_LIBMT_H
 
 #include "global.h"
+#include "zoe_defs.h"
+#include "zoe_types.h"
 #include "def_mot.h"
 #include "libalg.h"
 #include "libdg.h"
-
-/*---------------------------------------------------------------------------*
- * Prototypes
- *---------------------------------------------------------------------------*/
-
-/* Motion Manager (motman.c) */
-void MT_Init();
 
 /*---------------------------------------------------------------------------*/
 
@@ -57,8 +52,8 @@ public: //! unconfirmed modifier
 	uint16      u16Type;
 	uint8       u8Level;
 	uint8       u8Next;
-	float32     fspdPlay;
-	float32     fspdInt;
+	float       fspdPlay;
+	float       fspdInt;
 
 public:
 	void Init(DEF_MOTION_LIST*);
@@ -70,11 +65,11 @@ public:
 class MT_STREAM
 {
 public: //! unconfirmed modifier
-	float32         fFrame;
-	float32         fdFrame;
+	float           fFrame;
+	float           fdFrame;
 	uint16          u16State;
-	float32         fRate;
-	float32         fdRate;
+	float           fRate;
+	float           fdRate;
 	sint16          s16Counter;
 	MT_SEQUENCE*    pSeq;
 	uint32          pad1;
@@ -150,6 +145,13 @@ public:
 	
 	void Destroy();
 };
+
+/*---------------------------------------------------------------------------*
+ * Prototypes
+ *---------------------------------------------------------------------------*/
+
+/* Motion Manager (motman.c) */
+void MT_Init();
 
 /*---------------------------------------------------------------------------*/
 #endif /* END OF FILE */

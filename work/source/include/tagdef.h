@@ -5,6 +5,8 @@
 #define INC_TAGDEF_H
 
 #include "global.h"
+#include "zoe_defs.h"
+#include "zoe_types.h"
 
 // ref.default.pdb
 typedef struct _TAG_CNTCODE {
@@ -47,7 +49,7 @@ typedef struct _TAG_FLOWTEX {
 // ref.default.pdb
 typedef struct _TAG_FLOWVEC {
 	uint32  tagdma[4];
-	float32 vecData[16]:
+	float   vecData[16]:
 } TAG_FLOWVEC;
 
 // ref.default.pdb

@@ -68,7 +68,7 @@ typedef union DAT32 {
 	uint32  u32;
 	uint16  u16[2];
 	uint8   u8[4];
-	float32 f;
+	float   f;
 } DAT32;
 
 // ref.default.pdb
@@ -77,7 +77,7 @@ typedef union DAT64 {
 	uint32  u32[2];
 	uint16  u16[4];
 	uint8   u8[8];
-	float32 f[2];
+	float   f[2];
 } DAT64;
 
 // ref.default.pdb
@@ -87,17 +87,17 @@ typedef union DAT128 {
 	uint32  u32[4];
 	uint16  u16[8];
 	uint8   u8[16];
-	float32 f[4];
+	float   f[4];
 } DAT128;
 
 // ref.default.pdb
 typedef struct FMATRIX {
-	float32 m[4][4];
+	float m[4][4];
 } FMATRIX;
 
 // ref.default.pdb
 typedef struct FVECTOR {
-	float32 vx, vy, vz, vw;
+	float vx, vy, vz, vw;
 } FVECTOR;
 
 /*---------------------------------------------------------------------------*/

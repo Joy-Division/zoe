@@ -8,6 +8,8 @@
 #define INC_LIBEFF_H
 
 #include "global.h"
+#include "zoe_defs.h"
+#include "zoe_types.h"
 #include "libalg.h"
 
 /*---------------------------------------------------------------------------*/
@@ -18,8 +20,8 @@ class EFF_FIELD
 	/* VTable */
 
 public: //! unconfirmed modifier
-	sint32 nProcess;
-	bool32 bLock;
+	int     nProcess;
+	bool32  bLock;
 
 public:
 	EFF_FIELD(const EFF_FIELD&);

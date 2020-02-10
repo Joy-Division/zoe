@@ -8,6 +8,12 @@
 #define INC_LIBALG_H
 
 #include "global.h"
+#include "zoe_defs.h"
+#include "zoe_types.h"
+
+class ALG_VECTOR;
+class ALG_MATRIX;
+class ALG_QUATER;
 
 /*---------------------------------------------------------------------------*
  * Vector Math (vector.cc)
@@ -17,51 +23,51 @@
 class ALG_VECTOR
 {
 public: //! unconfirmed modifier
-	float32 fX;
-	float32 fY;
-	float32 fZ;
-	float32 fW;
+	float fX;
+	float fY;
+	float fZ;
+	float fW;
 
 public:
-	ALG_VECTOR(float32, float32, float32, float32);
-	ALG_VECTOR(float32, float32, float32);
+	ALG_VECTOR(float, float, float, float);
+	ALG_VECTOR(float, float, float);
 	ALG_VECTOR();
 	
-	void        operator()(float32, float32, float32, float32);
-	void        operator()(float32, float32, float32);
-	ALG_VECTOR& operator=(float32);
+	void        operator()(float, float, float, float);
+	void        operator()(float, float, float);
+	ALG_VECTOR& operator=(float);
 	ALG_VECTOR& operator=(const ALG_VECTOR&);
 	ALG_VECTOR  operator+(const ALG_VECTOR&);
 	ALG_VECTOR  operator-(const ALG_VECTOR&);
 	ALG_VECTOR  operator-();
-	ALG_VECTOR  operator*(float32);
-	float32     operator*(const ALG_VECTOR&);
-	ALG_VECTOR  operator/(float32);
-	sint32      operator==(float32);
-	sint32      operator==(const ALG_VECTOR&);
-	sint32      operator!=(float32);
-	sint32      operator!=(const ALG_VECTOR&);
+	ALG_VECTOR  operator*(float);
+	float       operator*(const ALG_VECTOR&);
+	ALG_VECTOR  operator/(float);
+	int         operator==(float);
+	int         operator==(const ALG_VECTOR&);
+	int         operator!=(float);
+	int         operator!=(const ALG_VECTOR&);
 	void        operator+=(const ALG_VECTOR&);
 	void        operator-=(const ALG_VECTOR&);
-	void        operator*=(float32);
-	void        operator/=(float32);
+	void        operator*=(float);
+	void        operator/=(float);
 	
-	float32 Scalar2();
-	float32 Scalar();
-	float32 Dist2(ALG_VECTOR*);
-	float32 Dist(ALG_VECTOR*);
+	float   Scalar2();
+	float   Scalar();
+	float   Dist2(ALG_VECTOR*);
+	float   Dist(ALG_VECTOR*);
 	void    Cross(ALG_VECTOR*, ALG_VECTOR*);
-	sint32  DistClip(ALG_VECTOR*, float32);
+	int     DistClip(ALG_VECTOR*, float);
 	void    Norm();
-	void    Move(ALG_VECTOR*, float32);
-	void    Interp(ALG_VECTOR*, ALG_VECTOR*, float32);
-	void    Interp(ALG_VECTOR*, float32);
-	void    Hermite(ALG_VECTOR*, ALG_VECTOR*, ALG_VECTOR*, float32);
+	void    Move(ALG_VECTOR*, float);
+	void    Interp(ALG_VECTOR*, ALG_VECTOR*, float);
+	void    Interp(ALG_VECTOR*, float);
+	void    Hermite(ALG_VECTOR*, ALG_VECTOR*, ALG_VECTOR*, float);
 	void    RelPos(ALG_MATRIX*);
 	void    AbsPos(ALG_MATRIX*);
 	void    RelVec(ALG_MATRIX*);
 	void    AbsVec(ALG_MATRIX*);
-	float32 RelZ(ALG_MATRIX*);
+	float   RelZ(ALG_MATRIX*);
 	void    Dump();
 };
 
@@ -79,17 +85,17 @@ public: //! unconfirmed modifier
 	ALG_VECTOR vecT;
 
 public:
-	ALG_MATRIX( float32 fXX, float32 fXY, float32 fXZ, float32 fXW,
-	            float32 fYX, float32 fYY, float32 fYZ, float32 fYW,
-	            float32 fZX, float32 fZY, float32 fZZ, float32 fZW,
-	            float32 fTX, float32 fTY, float32 fTZ, float32 fTW )
+	ALG_MATRIX( float fXX, float fXY, float fXZ, float fXW,
+	            float fYX, float fYY, float fYZ, float fYW,
+	            float fZX, float fZY, float fZZ, float fZW,
+	            float fTX, float fTY, float fTZ, float fTW );
 	ALG_MATRIX();
 	
-	void        operator()( float32 fXX, float32 fXY, float32 fXZ, float32 fXW,
-	                        float32 fYX, float32 fYY, float32 fYZ, float32 fYW,
-	                        float32 fZX, float32 fZY, float32 fZZ, float32 fZW,
-	                        float32 fTX, float32 fTY, float32 fTZ, float32 fTW )
-	ALG_MATRIX& operator=( float32 fScalar );
+	void        operator()( float fXX, float fXY, float fXZ, float fXW,
+	                        float fYX, float fYY, float fYZ, float fYW,
+	                        float fZX, float fZY, float fZZ, float fZW,
+	                        float fTX, float fTY, float fTZ, float fTW );
+	ALG_MATRIX& operator=( float fScalar );
 	ALG_MATRIX& operator=( const ALG_MATRIX& rmat );
 	ALG_VECTOR  operator*( const ALG_VECTOR& rvec );
 	ALG_MATRIX  operator*( const ALG_MATRIX& rmat );
@@ -100,24 +106,24 @@ public:
 	void    Invert();
 	void    Invert2();
 	void    Transpose();
-	void    Translate(float32, float32, float32);
-	void    RotateX(float32);
-	void    RotateY(float32);
-	void    RotateZ(float32);
-	void    Rotate(float32, float32, float32);
-	void    Scale(float32, float32, float32);
-	void    Scale(float32);
+	void    Translate(float, float, float);
+	void    RotateX(float);
+	void    RotateY(float);
+	void    RotateZ(float);
+	void    Rotate(float, float, float);
+	void    Scale(float, float, float);
+	void    Scale(float);
 	void    RelMat(ALG_MATRIX*);
 	void    AbsMat(ALG_MATRIX*);
 	void    RelRot(ALG_MATRIX*);
 	void    AbsRot(ALG_MATRIX*);
 	void    Convert(ALG_QUATER*);
-	void    Interp(ALG_MATRIX*, float32);
-	float32 AngDist(ALG_MATRIX*);
+	void    Interp(ALG_MATRIX*, float);
+	float   AngDist(ALG_MATRIX*);
 	void    SetAxisY(ALG_VECTOR*);
 	void    SetAxisZ(ALG_VECTOR*);
-	void    SetFreeY(ALG_VECTOR*, float32);
-	void    SetFreeZ(ALG_VECTOR*, float32);
+	void    SetFreeY(ALG_VECTOR*, float);
+	void    SetFreeZ(ALG_VECTOR*, float);
 	void    Line(ALG_VECTOR*, ALG_VECTOR*, ALG_VECTOR*);
 	void    Dump();
 };
@@ -130,15 +136,15 @@ public:
 class ALG_QUATER
 {
 public: //! unconfirmed modifier
-	float32 fImX;
-	float32 fImY;
-	float32 fImZ;
-	float32 fReal;
+	float fImX;
+	float fImY;
+	float fImZ;
+	float fReal;
 
 public:
 	void Convert(ALG_MATRIX*);
 	void Norm();
-	void Slerp(ALG_QUATER*, float32);
+	void Slerp(ALG_QUATER*, float);
 	void Dump();
 };
 
