@@ -43,9 +43,9 @@ extern void NewDebugMode(); /* dbgmode.cc */
 /*---------------------------------------------------------------------------*/
 
 #if (ZOE_DEMO_OCT2000)
-#define CDVD_MODE  SCECdCD
+#  define CDVD_MODE SCECdCD
 #else
-#define CDVD_MODE  SCECdDVD
+#  define CDVD_MODE SCECdDVD
 #endif
 
 static int ReplaceImageFlag = true;
