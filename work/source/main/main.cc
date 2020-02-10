@@ -114,12 +114,10 @@ static void ResetIOP()
 }
 
 /*---------------------------------------------------------------------------*/
-/* Version   | Status     | Oflag | I./R. | etc.                             */
-/*-----------+------------+-------+-------+----------------------------------*/
-/* SLPS99999 | UNTESTED   | O?    | NA/NA |                                  */
-/* SLPM65019 | UNTESTED   | O?    | NA/NA |                                  */
-/*---------------------------------------------------------------------------*/
-void main()
+/* SLPS99999, status: UNTESTED, opt: ? */
+/* SLPM65019, status: UNTESTED, opt: ? */
+
+int main()
 {
 	sceDevVif0Reset();
 	sceDevVif1Reset();
@@ -127,15 +125,14 @@ void main()
 	sceDevVu1Reset();
 	sceGsResetPath();
 
-/*
- * The following COP0 Cache definitions were removed from eekernel.h in
- * version 2.3.0 (Jan.22,2003), however the functions are still present
- * within the "libkernl.a" static library.
- *
- * Pass "-DEEKERNEL_CACHEDEFS" to the compiler when building with a
- * PlayStation 2 Runtime Library Release which lacks these definitions.
- */
-#ifdef EEKERNEL_CACHEDEFS
+// The following COP0 Cache definitions were removed from eekernel.h in
+// version 2.3.0 (Jan.22,2003), however the functions are still present
+// within the libkernl.a static library.
+//
+// SOLUTION:
+//  Pass "-DNEED_EEKERNEL_CACHE" to the compiler when building this project
+//  using a PlayStation 2 Runtime Library Release lacking these definitions.
+#ifdef NEED_EEKERNEL_CACHE
 #define INST_CACHE  2
 #define DATA_CACHE  1
 #define CacheOn()   EnableCache(INST_CACHE | DATA_CACHE)
@@ -205,6 +202,7 @@ int DisableCache(int);
 #if (ZOE_DEMO_OCT2000)
 	NewInitLoad( "init", 0 );
 #else // TODO: Known for ZOE_JPN, check others
+	// ERROR: call does not match any candidates
 	CR_SetStageLoad( "title", 1, "font.pak", 0 );
 #endif
 	
