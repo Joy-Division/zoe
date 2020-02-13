@@ -244,7 +244,7 @@ void vol_set( u_int a0 )
 {
 	u_int temp, temp2;
 	
-	if( sptr->dec_vol >= a0 ){
+	if( !(a0 < sptr->dec_vol) ){
 		a0 -= sptr->dec_vol;
 	} else {
 		a0 = 0;
@@ -256,8 +256,8 @@ void vol_set( u_int a0 )
 			temp = 32;
 		}
 		a0++;
-		spu_tr_wk[mtrack].vol_r = (temp2 = ((se_pant[temp] * a0) / 127) * sng_master_vol[mtrack]) >> 16;
-		spu_tr_wk[mtrack].vol_l = (temp2 = ((se_pant[64-temp] * a0) / 127) * sng_master_vol[mtrack]) >> 16;
+		spu_tr_wk[mtrack].vol_r = (((se_pant[temp] * a0) / 127) * sng_master_vol[mtrack]) >> 16;
+		spu_tr_wk[mtrack].vol_l = (((se_pant[64-temp] * a0) / 127) * sng_master_vol[mtrack]) >> 16;
 		spu_tr_wk[mtrack].vol_fg = 1;
 	} else {
 		if( mtrack < 32 || !(se_playing[mtrack-32].kind) ){
@@ -270,22 +270,22 @@ void vol_set( u_int a0 )
 			}
 			a0++;
 			if( mtrack < 32 ){
-				spu_tr_wk[mtrack].vol_r = (temp2 = ((pant[temp] * a0) / 127) * sng_master_vol[mtrack]) >> 16;
-				spu_tr_wk[mtrack].vol_l = (temp2 = ((pant[40-temp] * a0) / 127) * sng_master_vol[mtrack]) >> 16;
+				spu_tr_wk[mtrack].vol_r = (((pant[temp] * a0) / 127) * sng_master_vol[mtrack]) >> 16;
+				spu_tr_wk[mtrack].vol_l = (((pant[40-temp] * a0) / 127) * sng_master_vol[mtrack]) >> 16;
 			} else {
 				spu_tr_wk[mtrack].vol_r = (pant[temp] * a0) / 127;
 				spu_tr_wk[mtrack].vol_l = (pant[40-temp] * a0) / 127;
 			}
 			spu_tr_wk[mtrack].vol_fg = 1;
 		} else {
-			a0 = (temp2 = (a0+1) * se_vol[mtrack-32]) >> 6;
+			a0 = ((a0+1) * se_vol[mtrack-32]) >> 6;
 			temp = se_pan[mtrack-32];
 			if( sound_mono_fg ){
 				temp = 32;
 			}
 			a0++;
-			spu_tr_wk[mtrack].vol_r = (temp2 = (se_pant[temp] * a0) / 127) >> 7;
-			spu_tr_wk[mtrack].vol_l = (temp2 = (se_pant[64-temp] * a0) / 127) >> 7;
+			spu_tr_wk[mtrack].vol_r = (se_pant[temp] * a0) >> 7;
+			spu_tr_wk[mtrack].vol_l = (se_pant[64-temp] * a0) >> 7;
 			spu_tr_wk[mtrack].vol_fg = 1;
 		}
 	}
