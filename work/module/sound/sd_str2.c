@@ -153,13 +153,15 @@ void str2_load( void )
 					str2_status[i] = 0;
 				} else {
 					str2_l_r_fg[i] = 0;
-					str2_status[i] = 0;
+					str2_status[i] = 2;
 				}
+			}
+			else {
 			}
 			break;
 		
 		case 1:
-			if( !ee_addr[i].unk0C ){
+			if( ee_addr[i].unk0C > 1 ){
 				StrEELoad( i );
 				str2_status[i]++;
 			} else {
