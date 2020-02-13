@@ -155,8 +155,8 @@ void str2_load( void )
 					str2_l_r_fg[i] = 0;
 					str2_status[i] = 2;
 				}
-			}
-			else {
+			} else {
+				// EMPTY
 			}
 			break;
 		

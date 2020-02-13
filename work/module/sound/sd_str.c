@@ -262,8 +262,7 @@ void str_load( void )
 	case 0:
 		if( StartStream() ){
 			str_status = 0;
-		}
-		else {
+		} else {
 			str_l_r_fg = 0;
 			str_status = 2;
 		}
