@@ -183,7 +183,7 @@ void tone_set( u_int a0 )
 	u_char *temp2;
 	
 	if( a0 < 0x200 ){
-		temp2 = (u_char *)voice_tbl+a0;
+		temp2 = (u_char *)voice_tbl+a0*16;
 	} else {
 		temp2 = (mem_str_buf+0x9E180)+a0*16;
 	}
@@ -191,6 +191,7 @@ void tone_set( u_int a0 )
 	temp = (mtrack << 4)+4;
 	spu_tr_wk[mtrack].addr = ((u_int *)temp2)[0];
 	spu_tr_wk[mtrack].addr_fg = 1;
+	// these appear to be struct accesses
 	sptr->macro = temp2[4];
 	sptr->micro = temp2[5];
 	
