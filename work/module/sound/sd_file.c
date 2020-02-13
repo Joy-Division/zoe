@@ -329,7 +329,7 @@ void WaveCdLoad( void )
 	WaitVblankStart(); WaitVblankEnd();
 	WaitVblankStart(); WaitVblankEnd();
 	
-	if( wave_unload_size >= 0x00018000 ){
+	if( wave_unload_size > 0x00018000 ){
 		PcmRead( wave_fp, cdload_buf, 0x00018000 );
 		wave_load_ptr = cdload_buf;
 		wave_load_size = 0x00018000;
@@ -339,6 +339,7 @@ void WaveCdLoad( void )
 		PcmRead( wave_fp, cdload_buf, wave_unload_size );
 		wave_load_ptr = cdload_buf;
 		wave_load_size = wave_unload_size;
+		wave_unload_size = 0;
 		wave_load_status = 2;
 	} else {
 		wave_load_status = 0;
@@ -509,19 +510,17 @@ int PcmOpen( u_int a0, u_int a1 )
 	return temp3;
 }
 
-// NOMATCH: using the register is required to get the correct instructions,
-// but it uses an S* register which makes the compiler save said register prior to use
 int PcmRead( int a0, void *a1, int a2 )
 {
 	int temp3;
-	register int temp;
+	int temp;
 	
 	a2 = (a2 + 0x07FF) & 0xFFFFF800;
 	
 	if( pak_cd_read_fg ){
 		cdRead( pakcd_pos, a1, a2 );
-		if( (temp = a2) < 0) temp += 0x07FF;
-		pakcd_pos += temp >> 11;
+		//~ if( a2 < 0 );
+		pakcd_pos += a2/2048;
 		return a2;
 	}
 	
