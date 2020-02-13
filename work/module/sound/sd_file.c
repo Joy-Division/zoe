@@ -33,11 +33,11 @@ void LoadPakFile( void )
 		pak_fp = PcmOpen( pak_load_code, 5 );
 		if( pak_fp < 0 ){
 			
-			// wait for 4 vblanks
-			WaitVblankStart(); WaitVblankEnd();
-			WaitVblankStart(); WaitVblankEnd();
-			WaitVblankStart(); WaitVblankEnd();
-			WaitVblankStart(); WaitVblankEnd();
+			// Wait for 4 V-blanks
+			WaitVblankStart(); WaitVblankEnd(); // 1st interval
+			WaitVblankStart(); WaitVblankEnd(); // 2nd interval
+			WaitVblankStart(); WaitVblankEnd(); // 3rd interval
+			WaitVblankStart(); WaitVblankEnd(); // 4th interval
 			
 			pak_load_code = 0;
 			pak_fp = 0;
@@ -238,11 +238,11 @@ int LoadWaveFile( void )
 	if( wave_fp < 0 ){
 		wave_fp = 0;
 		
-		// wait for 4 vblanks
-		WaitVblankStart(); WaitVblankEnd();
-		WaitVblankStart(); WaitVblankEnd();
-		WaitVblankStart(); WaitVblankEnd();
-		WaitVblankStart(); WaitVblankEnd();
+		// Wait for 4 V-blanks
+		WaitVblankStart(); WaitVblankEnd(); // 1st interval
+		WaitVblankStart(); WaitVblankEnd(); // 2nd interval
+		WaitVblankStart(); WaitVblankEnd(); // 3rd interval
+		WaitVblankStart(); WaitVblankEnd(); // 4th interval
 		
 		wave_load_code = 0;
 		return -1;
@@ -323,11 +323,11 @@ int LoadWaveFile( void )
 
 void WaveCdLoad( void )
 {
-	// wait for 3 vblanks
-	WaitVblankEnd();
-	WaitVblankStart(); WaitVblankEnd();
-	WaitVblankStart(); WaitVblankEnd();
-	WaitVblankStart(); WaitVblankEnd();
+	// Wait for 4 V-blanks
+	WaitVblankEnd(); // 1st interval (end-only)
+	WaitVblankStart(); WaitVblankEnd(); // 2nd interval
+	WaitVblankStart(); WaitVblankEnd(); // 3rd interval
+	WaitVblankStart(); WaitVblankEnd(); // 4th interval
 	
 	if( wave_unload_size > 0x00018000 ){
 		PcmRead( wave_fp, cdload_buf, 0x00018000 );
