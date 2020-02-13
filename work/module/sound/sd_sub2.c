@@ -122,7 +122,7 @@ void vib_set( void )
 			sptr->vibcad = sptr->vibcad << 2;
 		}
 	} else {
-		if( sptr->vibcad >= 0 ){
+		if( (char)sptr->vibcad >= 0 ){
 			sptr->vib_tc_ofst = 4;
 			sptr->vibcad = sptr->vibcad << 1;
 		} else if( ((u_char)sptr->vibcad) != 0xFF ){
