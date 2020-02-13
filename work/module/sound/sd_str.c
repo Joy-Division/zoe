@@ -263,16 +263,18 @@ void str_load( void )
 		if( StartStream() ){
 			str_status = 0;
 		}
+		else {
+			str_l_r_fg = 0;
+			str_status = 2;
+		}
 		break;
 	case 1:
 	case 2:
 	case 3:
 	case 4:
-		str_l_r_fg = 0;
-		str_status = 2;
+		StrCdLoad();
 		break;
 	case 5:
-		StrCdLoad();
 		break;
 	case 6:
 		PcmClose( str_fp );
