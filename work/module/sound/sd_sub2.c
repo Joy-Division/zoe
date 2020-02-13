@@ -281,7 +281,7 @@ void vol_move( void )
 	temp -= sptr->pvod;
 	
 	if( temp < 0 ){
-		sptr->pvoad = -temp / sptr->pvoc;
+		sptr->pvoad = -(-temp / sptr->pvoc);
 		if( sptr->pvoad < -0x07F0 )
 			sptr->pvoad = -0x07F0;
 	} else {
