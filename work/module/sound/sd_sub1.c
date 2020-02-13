@@ -178,7 +178,7 @@ void swpadset( int a0 )
 	register u_int temp;
 	
 	if( sptr->swpc ){
-		temp = (sptr->swpc << 8) / sptr->tmp;
+		temp = (u_int)(sptr->swpc << 8) / sptr->tmp;
 
 		if( a0 < 0 ){
 			a0 = 0;
