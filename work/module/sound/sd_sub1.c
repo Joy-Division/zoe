@@ -69,14 +69,14 @@ int sound_sub( void )
 	return 0;
 }
 
-// NOMATCH: this may not be functionally equivalent, check assignment of mdata1
 int tx_read( void )
 {
 	int i, temp2 = 0;
 	
-	for( i = 1 ; i ; i = 0 ){
+	for( i = 1 ; i ; ){
 		temp2++;
-		mdata1 = mptr[((temp2 == 256) ? 256 : 1) + 3];
+		if(temp2 == 256) return 1;
+		mdata1 = mptr[3];
 		if( !mdata1 ) return 1;
 		mdata2 = mptr[2];
 		mdata3 = mptr[1];
@@ -97,7 +97,7 @@ int tx_read( void )
 			}
 			sptr->rest_fg = 0;
 			note_set();
-			temp2 = 0;
+			i = 0;
 		}
 	}
 	return 0;
