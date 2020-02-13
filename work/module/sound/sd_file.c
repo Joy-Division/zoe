@@ -1,6 +1,6 @@
 /*
  * Sound Driver for PS2 IOP
- * File Format Handler
+ * File Loader System
  *
  * ver.ZONE OF THE ENDERS
  */
