@@ -238,7 +238,7 @@ void tempo_move( void )
 		if( temp < -127 )
 			temp = -127;
 		
-		sptr->tmpad = (-temp << 8) / sptr->tmpc;
+		sptr->tmpad = -((-temp << 8) / sptr->tmpc);
 		
 		if( sptr->tmpad < -0x07F0 )
 			sptr->tmpad = -0x07F0;
