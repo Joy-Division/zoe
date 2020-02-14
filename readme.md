@@ -41,7 +41,7 @@ All known builds of the game were created using Release 2.0.
 
 #### Custom Tools
 
-See: [Vivid Transparency (Factory)](https://github.com/Joy-Division/VividTransparency)
+See: [ZOE Toolbox](https://github.com/Joy-Division/tools-zoe)
 
 ## Links & Discussion
 
