@@ -563,7 +563,7 @@ int StrSpuTrans( void )
 
 void str_int( void )
 {
-	if( sceSdVoiceTransStatus( 1, 0 ) == 1 && StrSpuTrans() ){
+	if( sceSdVoiceTransStatus( 1, SD_TRANS_STATUS_CHECK ) == 1 && StrSpuTrans() ){
 		WakeupThread( id_SdMain );
 	}
 	str_spuwr();

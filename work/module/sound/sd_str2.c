@@ -550,7 +550,7 @@ int Str2SpuTrans( int a0 )
 
 void str2_int( void )
 {
-	if( sceSdVoiceTransStatus( 1, 0 ) == 1 ){
+	if( sceSdVoiceTransStatus( 1, SD_TRANS_STATUS_CHECK ) == 1 ){
 		if( Str2SpuTrans( 0 ) ){
 			WakeupThread( id_SdEELoad );
 		} else if( Str2SpuTrans(1) ){
