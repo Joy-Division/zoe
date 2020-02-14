@@ -157,18 +157,18 @@ int HIntHandler( u_int a0 )
 
 void setTimer( void *a0 )
 {
-	u_int temp;
+	u_int intr_code;
 	struct SysClock clock;
 	
 	USec2SysClock( 5000, &clock );
 	
 	id_HSyncTim = AllocHardTimer( 1, 32, 1 );
-	temp = GetHardTimerIntrCode( id_HSyncTim );
+	intr_code = GetHardTimerIntrCode( id_HSyncTim );
 	
-	RegisterIntrHandler( temp, 1, HIntHandler, a0 );
+	RegisterIntrHandler( intr_code, 1, HIntHandler, a0 );
 	SetTimerCompare( id_HSyncTim, clock.low );
 	SetTimerMode( id_HSyncTim, tZRET_1|tCMP_1|tREPT_1|tEXTC_1 );
-	EnableIntr( temp );
+	EnableIntr( intr_code );
 }
 
 /*---------------------------------------------------------------------------*/
