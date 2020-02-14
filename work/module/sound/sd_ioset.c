@@ -17,21 +17,21 @@ void spuwr( void )
 	int i;
 	
 	if( keyoffs[0] ){
-		sceSdSetSwitch( 0x1600, keyoffs[0] );
+		sceSdSetSwitch( SD_CORE_0|SD_S_KOFF, keyoffs[0] );
 		keyoffs[0] = 0;
 	}
 	if( keyoffs[1] ){
-		sceSdSetSwitch( 0x1601, keyoffs[1] );
+		sceSdSetSwitch( SD_CORE_1|SD_S_KOFF, keyoffs[1] );
 		keyoffs[1] = 0;
 	}
 	if( rev_off_bit[0] ){
-		sceSdSetSwitch( 0x1900, rev_bit_data[0] );
-		sceSdSetSwitch( 0x1B00, rev_bit_data[0] );
+		sceSdSetSwitch( SD_CORE_0|SD_S_VMIXEL, rev_bit_data[0] );
+		sceSdSetSwitch( SD_CORE_0|SD_S_VMIXER, rev_bit_data[0] );
 		rev_off_bit[0] = 0;
 	}
 	if( rev_off_bit[1] ){
-		sceSdSetSwitch( 0x1901, rev_bit_data[1] );
-		sceSdSetSwitch( 0x1B01, rev_bit_data[1] );
+		sceSdSetSwitch( SD_CORE_1|SD_S_VMIXEL, rev_bit_data[1] );
+		sceSdSetSwitch( SD_CORE_1|SD_S_VMIXER, rev_bit_data[1] );
 		rev_off_bit[1] = 0;
 	}
 	for( i = 0 ; i < 44 ; i++ ){
@@ -55,9 +55,11 @@ void spuwr( void )
 		}
 		if( spu_tr_wk[i].addr_fg ){
 			if( i < 24 ){
-				sceSdSetAddr( (i*2) | 0x2040, (u_int)(spu_wave_start_ptr+spu_tr_wk[i].addr) );
+				// TODO: check whether (SD_CORE_0|(i<<1)|SD_VA_SSA) changes the asm
+				sceSdSetAddr( (i*2) | (SD_CORE_0|SD_VA_SSA), (u_int)(spu_wave_start_ptr+spu_tr_wk[i].addr) );
 			} else {
-				sceSdSetAddr( ((i-24)*2) | 0x2041, (u_int)(spu_wave_start_ptr+spu_tr_wk[i].addr) );
+				// TODO: check whether (SD_CORE_1|((i-24)<<1)|SD_VA_SSA) changes the asm
+				sceSdSetAddr( ((i-24)*2) | (SD_CORE_1|SD_VA_SSA), (u_int)(spu_wave_start_ptr+spu_tr_wk[i].addr) );
 			}
 			spu_tr_wk[i].addr_fg = 0;
 		}
@@ -73,21 +75,21 @@ void spuwr( void )
 		}
 	}
 	if( rev_on_bit[0] ){
-		sceSdSetSwitch( 0x1900, rev_bit_data[0] );
-		sceSdSetSwitch( 0x1B00, rev_bit_data[0] );
+		sceSdSetSwitch( SD_CORE_0|SD_S_VMIXEL, rev_bit_data[0] );
+		sceSdSetSwitch( SD_CORE_0|SD_S_VMIXER, rev_bit_data[0] );
 		rev_on_bit[0] = 0;
 	}
 	if( rev_on_bit[1] ){
-		sceSdSetSwitch( 0x1901, rev_bit_data[1] );
-		sceSdSetSwitch( 0x1B01, rev_bit_data[1] );
+		sceSdSetSwitch( SD_CORE_1|SD_S_VMIXEL, rev_bit_data[1] );
+		sceSdSetSwitch( SD_CORE_1|SD_S_VMIXER, rev_bit_data[1] );
 		rev_on_bit[1] = 0;
 	}
 	if( keyons[0] ){
-		sceSdSetSwitch( 0x1500, keyons[0] );
+		sceSdSetSwitch( SD_CORE_0|SD_S_KON, keyons[0] );
 		keyons[0] = 0;
 	}
 	if( keyons[1] ){
-		sceSdSetSwitch( 0x1501, keyons[1] );
+		sceSdSetSwitch( SD_CORE_1|SD_S_KON, keyons[1] );
 		keyons[1] = 0;
 	}
 }

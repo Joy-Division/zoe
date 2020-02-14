@@ -233,7 +233,7 @@ void IntSdMain( void )
 		stop_jouchuu_se = 0;
 	}
 	
-	if( sceSdVoiceTransStatus( 0, 0 ) == 1 ){
+	if( sceSdVoiceTransStatus( 0, SD_TRANS_STATUS_CHECK ) == 1 ){
 		if( wave_load_status == 2 || wave_load_status == 4 ){
 			WaveSpuTrans();
 			WakeupThread( id_SdMain );

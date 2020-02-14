@@ -101,18 +101,19 @@ void sd_init( void )
 	sceSdEffectAttr attr;
 	int i;
 	
+	/* i = SPU CORE No. */
 	for( i = 0 ; i < 2 ; i++ ){
 		sceSdSetParam( i | 0x0980, 0 );
 		sceSdSetParam( i | 0x0A80, 0 );
-		sceSdSetSwitch( i | 0x1300, 0 );
-		sceSdSetSwitch( i | 0x1400, 0 );
+		sceSdSetSwitch( i | SD_S_PMON, 0 );
+		sceSdSetSwitch( i | SD_S_NON, 0 );
 		
 		if( i == 0 ){
 			sceSdSetParam( i | 0x0800, 0x0FFF );
-			sceSdSetAddr( i | 0x1D00, (u_int)(mem_str_buf+0x191F) );
+			sceSdSetAddr( i | SD_A_EEA, (u_int)(mem_str_buf+0x191F) );
 		} else {
 			sceSdSetParam( i | 0x0800, 0x0FFC );
-			sceSdSetAddr( i | 0x1D00, 0x001FFFFF );
+			sceSdSetAddr( i | SD_A_EEA, 0x001FFFFF );
 		}
 		
 		attr.depth_L = 0;
@@ -120,11 +121,11 @@ void sd_init( void )
 		attr.mode = 0x0105;
 		
 		sceSdSetEffectAttr( i, &attr );
-		sceSdSetCoreAttr( i | 2, 1 );
+		sceSdSetCoreAttr( i | SD_C_EFFECT_ENABLE, SD_SPDIF_OUT_BITSTREAM );
 		sceSdSetParam( i | 0x0B80, 0x2000 );
 		sceSdSetParam( i | 0x0C80, 0x2000 );
-		sceSdSetSwitch( i | 0x1900, 0 );
-		sceSdSetSwitch( i | 0x1B00, 0 );
+		sceSdSetSwitch( i | SD_S_VMIXEL, 0 );
+		sceSdSetSwitch( i | SD_S_VMIXER, 0 );
 		
 		rev_bit_data[i] = 0;
 		
@@ -134,7 +135,7 @@ void sd_init( void )
 	
 	sceSdSetParam( i | 0x0D80, 0x7FFF );
 	sceSdSetParam( i | 0x0E80, 0x7FFF );
-	sceSdSetCoreAttr( 0x0A, 0x80 );
+	sceSdSetCoreAttr( SD_C_SPDIF_MODE, SD_SPDIF_COPY_PROHIBIT );
 	
 	spu_wave_start_ptr[0] = 2;
 	init_sng_work();
@@ -168,8 +169,8 @@ void sd_init( void )
 
 void SdTerm( void )
 {
-	sceSdSetSwitch( 0x1600, 0x00FFFFFF );
-	sceSdSetSwitch( 0x1601, 0x00FFFFFF );
+	sceSdSetSwitch( SD_CORE_0|SD_S_KOFF, 0x00FFFFFF );
+	sceSdSetSwitch( SD_CORE_1|SD_S_KOFF, 0x00FFFFFF );
 }
 
 /*---------------------------------------------------------------------------*/
@@ -177,9 +178,9 @@ void SdTerm( void )
 void keyOff( u_int a0 )
 {
 	if( a0 < 24 ){
-		sceSdSetSwitch( 0x1600, 1 << a0 );
+		sceSdSetSwitch( SD_CORE_0|SD_S_KOFF, 1 << a0 );
 	} else {
-		sceSdSetSwitch( 0x1601, 1 << (a0-24) );
+		sceSdSetSwitch( SD_CORE_1|SD_S_KOFF, 1 << (a0-24) );
 	}
 }
 
@@ -188,9 +189,9 @@ void keyOff( u_int a0 )
 void keyOn( u_int a0 )
 {
 	if( a0 < 24 ){
-		sceSdSetSwitch( 0x1500, 1 << a0 );
+		sceSdSetSwitch( SD_CORE_0|SD_S_KON, 1 << a0 );
 	} else {
-		sceSdSetSwitch( 0x1501, 1 << (a0-24) );
+		sceSdSetSwitch( SD_CORE_1|SD_S_KON, 1 << (a0-24) );
 	}
 }
 

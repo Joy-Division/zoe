@@ -58,7 +58,7 @@ void str_tr_off( void )
 void str_spuwr( void )
 {
 	if( str_keyoffs ){
-		sceSdSetSwitch( 0x1601, str_keyoffs );
+		sceSdSetSwitch( SD_CORE_1|SD_S_KOFF, str_keyoffs );
 		str_keyoffs = 0;
 	}
 }
@@ -333,7 +333,7 @@ int StrSpuTrans( void )
 			str_play_idx = 0;
 			str_play_offset = 0;
 			spu_str_start_ptr_l = 0x5020;
-			sceSdSetAddr( 0x2169, 0x5020 );
+			sceSdSetAddr( SD_CORE_1|SD_VOICE_20|SD_VA_LSAX, 0x5020 );
 			sceSdVoiceTrans( 1, 0, str_trans_buf, (u_char *)spu_str_start_ptr_l, 0x0800 );
 			if( !str_mono_fg ){
 				str_play_offset = 0x0800;
@@ -342,7 +342,7 @@ int StrSpuTrans( void )
 			str_l_r_fg = 1;
 		} else {
 			spu_str_start_ptr_l = 0x6020;
-			sceSdSetAddr( 0x216B, 0x6020 );
+			sceSdSetAddr( SD_CORE_1|SD_VOICE_21|SD_VA_LSAX, 0x6020 );
 			sceSdVoiceTrans( 1, 0, str_trans_buf+str_play_offset, (u_char *)spu_str_start_ptr_r, 0x0800 );
 			str_play_offset += 0x0800;
 			str_unplay_size -= 0x0800;
@@ -396,7 +396,7 @@ int StrSpuTrans( void )
 			sceSdSetParam( 0x0129, 0 );
 		}
 		sceSdSetParam( 0x0229, (u_short)((u_int)(str_pitch*str_master_pitch) >> 12) );
-		sceSdSetAddr( 0x2069, 0x5020 );
+		sceSdSetAddr( SD_CORE_1|SD_VOICE_20|SD_VA_SSA, 0x5020 );
 		sceSdSetParam( 0x0329, 0xFF );
 		sceSdSetParam( 0x0429, 0x07 );
 		if( sound_mono_fg ){
@@ -407,10 +407,10 @@ int StrSpuTrans( void )
 			sceSdSetParam( 0x012B, (((str_volume*se_pant[0xFC]) >> 7)*str_master_vol) / 0x3FFF );
 		}
 		sceSdSetParam( 0x022B, (u_short)((u_int)(str_pitch*str_master_pitch) >> 12) );
-		sceSdSetAddr( 0x206B, 0x6020 );
+		sceSdSetAddr( SD_CORE_1|SD_VOICE_21|SD_VA_SSA, 0x6020 );
 		sceSdSetParam( 0x032B, 0x00FF );
 		sceSdSetParam( 0x042B, 0x0007 );
-		sceSdSetSwitch( 0x1501, 0x30 );
+		sceSdSetSwitch( SD_CORE_1|SD_S_KON, 0x30 );
 		mute_str_l_r_fg = 0;
 		spu_str_idx = 0;
 		str_next_idx = 0x0800;

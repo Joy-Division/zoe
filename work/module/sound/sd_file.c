@@ -372,9 +372,15 @@ void WaveSpuTrans( void )
 	int result;
 	
 	if( wave_load_status == 2 ){
-		temp = sceSdVoiceTrans( 0, 0, wave_load_ptr, spu_wave_start_ptr+spu_load_offset, wave_load_size );
-		if( temp < 0 ){
-			// EMPTY
+		result = sceSdVoiceTrans(
+			0,                                    /* transfer channel */
+			SD_TRANS_MODE_WRITE,                  /* transfer mode    */
+			wave_load_ptr,                        /* IOP memory addr  */
+			spu_wave_start_ptr + spu_load_offset, /* SPU memory addr  */
+			wave_load_size );                     /* transfer size    */
+		
+		if( result < 0 ){
+			// EMPTY BLOCK
 		} else {
 			spu_load_offset += wave_load_size;
 		}

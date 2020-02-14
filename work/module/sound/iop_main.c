@@ -230,7 +230,7 @@ int start()
 	int tid;
 
 	FlushDcache();
-	sceSdInit( 0 );
+	sceSdInit( SD_INIT_COLD ); /* initialize all */
 	CpuEnableIntr();
 	EnableIntr( INUM_DMA_4 );
 	EnableIntr( INUM_DMA_7 );
