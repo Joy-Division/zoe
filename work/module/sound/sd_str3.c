@@ -223,11 +223,10 @@ void lnr_trans( u_short *a0, char *a1, u_int a2 )
 	
 	for( i = 0 ; i < a2 ; i+=512 ){
 		for( j = 0 ; j < 0x0100 ; j++ ){
-			// FIXME
-			// this statement might be wrong
-			temp3 = a0[(j<<1)+i] = ((short)(((a1[0] & 0xF8) * 256)) >> ((char)((u_char *)a1)[0] & 0x07))+temp3;
+			// the second LHS needs to be computed this way to produce matching assembly
+			temp3 = *(a0+j+i) = ((short)(((a1[0] & 0xF8) * 256)) >> ((char)((u_char *)a1)[0] & 0x07))+temp3;
 			a1++;
-			temp4 = a0[(j<<1)+i+0x100] = ((short)(((a1[0] & 0xF8) * 256)) >> ((char)((u_char *)a1)[0] & 0x07))+temp4;
+			temp4 = *(a0+j+i+0x100) = ((short)(((a1[0] & 0xF8) * 256)) >> ((char)((u_char *)a1)[0] & 0x07))+temp4;
 			a1++;
 
 		}
