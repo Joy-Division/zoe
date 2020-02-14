@@ -55,11 +55,11 @@ void spuwr( void )
 		}
 		if( spu_tr_wk[i].addr_fg ){
 			if( i < 24 ){
-				// TODO: check whether (SD_CORE_0|(i<<1)|SD_VA_SSA) changes the asm
-				sceSdSetAddr( (i*2) | (SD_CORE_0|SD_VA_SSA), (u_int)(spu_wave_start_ptr+spu_tr_wk[i].addr) );
+//				sceSdSetAddr( (i*2) | (SD_CORE_0|SD_VA_SSA), (u_int)(spu_wave_start_ptr+spu_tr_wk[i].addr) );
+				sceSdSetAddr( SD_CORE_0|(i<<1)|SD_VA_SSA, (u_int)(spu_wave_start_ptr+spu_tr_wk[i].addr) ); // CHECK
 			} else {
-				// TODO: check whether (SD_CORE_1|((i-24)<<1)|SD_VA_SSA) changes the asm
-				sceSdSetAddr( ((i-24)*2) | (SD_CORE_1|SD_VA_SSA), (u_int)(spu_wave_start_ptr+spu_tr_wk[i].addr) );
+//				sceSdSetAddr( ((i-24)*2) | (SD_CORE_1|SD_VA_SSA), (u_int)(spu_wave_start_ptr+spu_tr_wk[i].addr) );
+				sceSdSetAddr( SD_CORE_1|((i-24)<<1)|SD_VA_SSA, (u_int)(spu_wave_start_ptr+spu_tr_wk[i].addr) ); // CHECK
 			}
 			spu_tr_wk[i].addr_fg = 0;
 		}
