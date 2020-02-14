@@ -422,7 +422,7 @@ int StrSpuTrans( void )
 		break;
 /* ///////////////////////////////////////////////////////////////////////// */
 	case 3:
-		if( !sceSdGetParam( 0x0529 ) ){
+		if( !sceSdGetParam( SD_CORE_1|SD_VOICE_20|SD_VP_ENVX ) ){
 			str_off_ctr = -1;
 			str_status++;
 			break;

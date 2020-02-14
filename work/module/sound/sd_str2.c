@@ -378,7 +378,8 @@ int Str2SpuTrans( int a0 )
 		break;
 /* ///////////////////////////////////////////////////////////////////////// */
 	case 3:
-		if( sceSdGetParam(((a0*2)+0x14)*2 | 0x0501) == 0 ){
+//		if( sceSdGetParam( ((a0*2)+0x14)*2 | (SD_CORE_1|SD_VP_ENVX) ) == 0 ){
+		if( sceSdGetParam( SD_CORE_1|(((a0<<1)+0x14)<<1)|SD_VP_ENVX ) == 0 ){ // CHECK
 			str2_off_ctr[a0] = -1;
 			str2_status[a0]++;
 			break;
@@ -417,8 +418,8 @@ int Str2SpuTrans( int a0 )
 				}
 			}
 		}
-		// TODO: check sceSdGetAddr( (SD_CORE_1|(((a0<<1)+0x14)<<1)|SD_VA_NAX) )
-		spu_str2_idx[a0] = sceSdGetAddr( ((a0*2)+0x14)*2 | (SD_CORE_1|SD_VA_NAX) );
+//		spu_str2_idx[a0] = sceSdGetAddr( ((a0*2)+0x14)*2 | (SD_CORE_1|SD_VA_NAX) );
+		spu_str2_idx[a0] = sceSdGetAddr( SD_CORE_1|(((a0<<1)+0x14)<<1)|SD_VA_NAX ); // CHECK
 		spu_str2_idx[a0] = (spu_str2_idx[a0] - 0x5020) * 0x1FFF;
 		if( spu_str2_idx[a0] >= 0x1000 || (spu_str2_idx[a0] & 0x80000000) ){
 			break;
