@@ -5,8 +5,12 @@ endif
 include PathDefs
 
 INCDIR  = -I. -I/usr/local/sce/common/include
-LIBDIR = 
-ILIBS = -ilb=libsd.ilb -ilb=jsifman.ilb -ilb=usbfs.ilb -ilb=cdbios.ilb
+LIBDIR = ../lib
+ILIBS =\
+-ilb=libsd.ilb \
+-ilb=$(LIBDIR)/jsifman.ilb \
+-ilb=$(LIBDIR)/usbfs.ilb \
+-ilb=$(LIBDIR)/cdbios.ilb
 
 CFLAGS   = -Wall -G0 $(INCDIR) -O0
 ASFLAGS  = $(INCDIR) -G0
