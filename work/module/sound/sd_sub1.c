@@ -2,11 +2,13 @@
  * Sound Driver for PS2 IOP
  * Sub-Module 1
  *
- * ver.ZONE OF THE ENDERS
+ * ver."ZONE OF THE ENDERS"
  */
 #include <sys/types.h>
 #include "sd_incl.h"
 #include "sd_ext.h"
+
+/*---------------------------------------------------------------------------*/
 
 // NOMATCH: access to mem_str_w produces subtraction at the wrong point in time
 int sound_sub( void )
@@ -69,6 +71,8 @@ int sound_sub( void )
 	return 0;
 }
 
+/*---------------------------------------------------------------------------*/
+
 int tx_read( void )
 {
 	int i, temp2 = 0;
@@ -103,6 +107,8 @@ int tx_read( void )
 	return 0;
 }
 
+/*---------------------------------------------------------------------------*/
+
 void note_set( void )
 {
 	u_int temp;
@@ -120,11 +126,15 @@ void note_set( void )
 	sptr->ngo = temp;
 }
 
+/*---------------------------------------------------------------------------*/
+
 void adsr_reset( void )
 {
 	spu_tr_wk[mtrack].rr = sptr->rrd;
 	spu_tr_wk[mtrack].env3_fg = 1;
 }
+
+/*---------------------------------------------------------------------------*/
 
 void note_compute( void )
 {
@@ -173,6 +183,8 @@ void note_compute( void )
 	freq_set( temp );
 }
 
+/*---------------------------------------------------------------------------*/
+
 void swpadset( int a0 )
 {
 	register u_int temp;
@@ -197,6 +209,8 @@ void swpadset( int a0 )
 		}
 	}
 }
+
+/*---------------------------------------------------------------------------*/
 
 void vol_compute( void )
 {
@@ -232,6 +246,8 @@ void vol_compute( void )
 	pan_generate();
 }
 
+/*---------------------------------------------------------------------------*/
+
 void pan_generate( void )
 {
 	if( sptr->panc ){
@@ -244,6 +260,8 @@ void pan_generate( void )
 	}
 }
 
+/*---------------------------------------------------------------------------*/
+
 void key_cut_off( void )
 {
 	if( sptr->rrd >= 8 ){
@@ -251,6 +269,8 @@ void key_cut_off( void )
 		spu_tr_wk[mtrack].env3_fg = 1;
 	}
 }
+
+/*---------------------------------------------------------------------------*/
 
 void keych( void )
 {
@@ -320,6 +340,8 @@ void keych( void )
 	}
 }
 
+/*---------------------------------------------------------------------------*/
+
 void por_compute( void )
 {
 	int temp;
@@ -353,6 +375,8 @@ void por_compute( void )
 	sptr->swpd += temp;
 }
 
+/*---------------------------------------------------------------------------*/
+
 int vib_compute( void )
 {
 	int temp;
@@ -375,6 +399,8 @@ int vib_compute( void )
 	}
 	return temp;
 }
+
+/*---------------------------------------------------------------------------*/
 
 int vib_generate( char a0 )
 {
@@ -403,6 +429,8 @@ int vib_generate( char a0 )
 	return temp3;
 }
 
+/*---------------------------------------------------------------------------*/
+
 void bendch( void )
 {
 	int temp;
@@ -420,6 +448,8 @@ void bendch( void )
 		}
 	}
 }
+
+/*---------------------------------------------------------------------------*/
 
 void note_cntl( void )
 {
@@ -474,6 +504,8 @@ void note_cntl( void )
 	}
 }
 
+/*---------------------------------------------------------------------------*/
+
 u_int random( void )
 {
 	u_int temp = 0;
@@ -494,6 +526,8 @@ u_int random( void )
 	return temp;
 }
 
+/*---------------------------------------------------------------------------*/
+
 void tempo_ch( void )
 {
 	if( sptr->tmpc ){
@@ -505,6 +539,8 @@ void tempo_ch( void )
 		sptr->tmp = sptr->tmpw >> 8;
 	}
 }
+
+/*---------------------------------------------------------------------------*/
 
 void volxset( u_char a0 )
 {
@@ -524,6 +560,8 @@ void volxset( u_char a0 )
 	temp2 = (sptr->pvod >> 8) & 0xFF;
 	vol_set( ((temp2 * temp + 128) >> 8) & 0xFF );
 }
+
+/*---------------------------------------------------------------------------*/
 
 void fader_automation1( void )
 {
@@ -566,12 +604,15 @@ void fader_automation1( void )
 	}
 }
 
+/*---------------------------------------------------------------------------*/
+
 void fader_automation2( void )
 {
 	int temp, temp2;
 	
-	if( (sptr->unkE4 != auto_env_pos && sptr->unkE8 == 2) || (sptr->unkE4 != auto_env_pos2 && sptr->unkE8 == 3) ){
-		switch(sptr->unkE8) {
+	if((sptr->unkE4 != auto_env_pos && sptr->unkE8 == 2)
+	|| (sptr->unkE4 != auto_env_pos2 && sptr->unkE8 == 3)){
+		switch( sptr->unkE8 ){
 		case 2: sptr->unkE4 = auto_env_pos; break;
 		case 3: sptr->unkE4 = auto_env_pos2; break;
 		default:

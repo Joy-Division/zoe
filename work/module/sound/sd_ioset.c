@@ -2,12 +2,15 @@
  * Sound Driver for PS2 IOP
  * I/O Set Module
  *
- * ver.ZONE OF THE ENDERS
+ * ver."ZONE OF THE ENDERS"
  */
 #include <sys/types.h>
 #include <libsd.h>
+
 #include "sd_incl.h"
 #include "sd_ext.h"
+
+/*---------------------------------------------------------------------------*/
 
 void spuwr( void )
 {
@@ -89,6 +92,8 @@ void spuwr( void )
 	}
 }
 
+/*---------------------------------------------------------------------------*/
+
 void sound_off( void )
 {
 	int i;
@@ -102,6 +107,8 @@ void sound_off( void )
 	keyoffs[1] = 0x003FFFFF;
 	spuwr();
 }
+
+/*---------------------------------------------------------------------------*/
 
 void sng_off( void )
 {
@@ -118,6 +125,8 @@ void sng_off( void )
 	keyoffs[1] |= 0xFF;
 }
 
+/*---------------------------------------------------------------------------*/
+
 void se_off( u_int a0 )
 {
 	spu_tr_wk[a0+32].rr = 0;
@@ -126,6 +135,8 @@ void se_off( u_int a0 )
 	keyoffs[1] |= 1 << (a0+8);
 	sound_w[a0+32].mpointer = 0;
 }
+
+/*---------------------------------------------------------------------------*/
 
 void se_off_exp( void )
 {
@@ -138,6 +149,8 @@ void se_off_exp( void )
 	}
 }
 
+/*---------------------------------------------------------------------------*/
+
 void se_off_all( void )
 {
 	int i;
@@ -149,6 +162,8 @@ void se_off_all( void )
 	}
 }
 
+/*---------------------------------------------------------------------------*/
+
 void sng_pause( void )
 {
 	sceSdSetParam( 0x0980, 0 );
@@ -156,6 +171,8 @@ void sng_pause( void )
 	sceSdSetParam( 0x0981, 0 );
 	sceSdSetParam( 0x0A81, 0 );
 }
+
+/*---------------------------------------------------------------------------*/
 
 void snd_pause_off( void )
 {
@@ -165,17 +182,23 @@ void snd_pause_off( void )
 	sceSdSetParam( 0x0A81, 0x3FFF );
 }
 
+/*---------------------------------------------------------------------------*/
+
 void keyon( void )
 {
 	keyons[0] |= keyd[0];
 	keyons[1] |= keyd[1];
 }
 
+/*---------------------------------------------------------------------------*/
+
 void keyoff( void )
 {
 	keyoffs[0] |= keyd[0];
 	keyoffs[1] |= keyd[1];
 }
+
+/*---------------------------------------------------------------------------*/
 
 void tone_set( u_int a0 )
 {
@@ -232,6 +255,8 @@ void tone_set( u_int a0 )
 	sptr->dec_vol = temp2[15];
 }
 
+/*---------------------------------------------------------------------------*/
+
 void pan_set2( u_char a0 )
 {
 	if( !sptr->panoff ){
@@ -239,6 +264,8 @@ void pan_set2( u_char a0 )
 		sptr->pand = a0*2 << 8;
 	}
 }
+
+/*---------------------------------------------------------------------------*/
 
 // NOMATCH: accessing se_playing and se_vol produces wrong addition
 void vol_set( u_int a0 )
@@ -292,6 +319,8 @@ void vol_set( u_int a0 )
 	}
 }
 
+/*---------------------------------------------------------------------------*/
+
 void freq_set( u_int a0 )
 {
 	u_char temp, temp2, temp3, temp4;
@@ -315,6 +344,8 @@ void freq_set( u_int a0 )
 	spu_tr_wk[mtrack].pitch = temp5;
 	spu_tr_wk[mtrack].pitch_fg = 1;
 }
+
+/*---------------------------------------------------------------------------*/
 
 void drum_set( u_int a0 )
 {

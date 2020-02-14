@@ -2,20 +2,27 @@
  * Sound Driver for PS2 IOP
  * Client Task
  *
- * ver.ZONE OF THE ENDERS
+ * ver."ZONE OF THE ENDERS"
  */
 #include <sys/types.h>
 #include <kernel.h>
+
 #include "sd_incl.h"
 #include "sd_ext.h"
 
+/*---------------------------------------------------------------------------*/
+
 unsigned int se_tracks;
+
+/*---------------------------------------------------------------------------*/
 
 int sd_set_cli( u_int a0 )
 {
 	sd_set( a0 );
 	return 0;
 }
+
+/*---------------------------------------------------------------------------*/
 
 int SePlay( u_int a0 )
 {
@@ -109,7 +116,7 @@ int SePlay( u_int a0 )
 					}
 				}
 				if( (temp7 % 100) < (temp % 100) ){
-					// EMPTY
+					// EMPTY BLOCK
 				}
 			}
 		}
@@ -125,7 +132,7 @@ int SePlay( u_int a0 )
 				stop_jouchuu_se = 0;
 			}
 			if( 0 ) {
-				// EMPTY
+				// EMPTY BLOCK
 			}
 		}
 	}
@@ -133,15 +140,19 @@ int SePlay( u_int a0 )
 	return 0;
 }
 
+/*---------------------------------------------------------------------------*/
+
 void set_sng_code_buf( u_int a0 )
 {
 	if( !sd_sng_code_buf[sd_code_set] ){
 		sd_sng_code_buf[sd_code_set] = a0;
 		sd_code_set = (sd_code_set + 1) & 0x0F;
 	} else {
-		// EMPTY
+		// EMPTY BLOCK
 	}
 }
+
+/*---------------------------------------------------------------------------*/
 
 // NOMATCH: see inside
 void sd_set( u_int a0 )
@@ -195,7 +206,7 @@ void sd_set( u_int a0 )
 					str_status = 1;
 					WakeupThread( id_SdMain );
 				} else {
-					// EMPTY
+					// EMPTY BLOCK
 				}
 			} else {
 				if( lnr8_status ){
@@ -297,7 +308,7 @@ void sd_set( u_int a0 )
 					vox_fader[temp.t1].unk00 = a0 & 0x3F;
 					vox_fader[temp.t1].unk08 = (int)(a0 & 0x3F00) >> 8;
 					if( sd_print_fg ){
-						// EMPTY
+						// EMPTY BLOCK
 					}
 				}
 			}
@@ -415,7 +426,7 @@ void sd_set( u_int a0 )
 			case 0xFF000106: set_sng_code_buf( a0 ); break;
 			case 0xFF000107: set_sng_code_buf( a0 ); break;
 			case 0xFF000108: set_sng_code_buf( a0 ); break;
-			case 0xFF000109: break; break; // NOTICE
+			case 0xFF000109: break; break; // SYNTAX NOTICE
 			case 0xFFFFFFFD: break;
 			default: break;
 			}

@@ -2,14 +2,14 @@
  * Sound Driver for PS2 IOP
  * External Include
  *
- * ver.ZONE OF THE ENDERS
+ * ver."ZONE OF THE ENDERS"
  */
 #ifndef INC_SD_EXT_H
 #define INC_SD_EXT_H
 
 #include <sys/types.h>
-#include <libsd.h>  // TODO: make explicit in C files
 #include <kernel.h> // TODO: make explicit in C files
+#include <libsd.h>  // TODO: make explicit in C files
 #include <stdio.h>  // TODO: make explicit in C files
 
 // TODO: from jsifman, replace once decompiled

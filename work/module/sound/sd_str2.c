@@ -2,13 +2,16 @@
  * Sound Driver for PS2 IOP
  * Stream System Module 2
  *
- * ver.ZONE OF THE ENDERS
+ * ver."ZONE OF THE ENDERS"
  */
 #include <sys/types.h>
 #include <kernel.h>
 #include <libsd.h>
+
 #include "sd_incl.h"
 #include "sd_ext.h"
+
+/*---------------------------------------------------------------------------*/
 
 unsigned int spu_str2_start_ptr_r[2];
 unsigned int str2_iop_load_set[2];
@@ -40,10 +43,10 @@ unsigned char *str2_trans_buf[2];
 unsigned int str2_play_idx[2];
 unsigned int str2_read_disable[2];
 
-
 u_char eeload2_buf[0x00010000];
 u_int str2_read_status[2][8];
 
+/*---------------------------------------------------------------------------*/
 
 void str2_tr_off( u_int a0 )
 {
@@ -54,6 +57,8 @@ void str2_tr_off( u_int a0 )
 	}
 }
 
+/*---------------------------------------------------------------------------*/
+
 void str2_spuwr( void )
 {
 	if( str2_keyoffs ){
@@ -61,6 +66,8 @@ void str2_spuwr( void )
 		str2_keyoffs = 0;
 	}
 }
+
+/*---------------------------------------------------------------------------*/
 
 int StartEEStream( u_int a0 )
 {
@@ -100,6 +107,8 @@ int StartEEStream( u_int a0 )
 	return 0;
 }
 
+/*---------------------------------------------------------------------------*/
+
 void StrEELoad( u_int a0 )
 {
 	int temp, i, j, temp4;
@@ -111,8 +120,7 @@ void StrEELoad( u_int a0 )
 				temp4 |= str2_read_status[a0][ee2_buf_idx[a0]+j];
 			}
 			if( !temp4 ){
-				
-				// wait for 1 vblank
+				// Wait for V-blank
 				WaitVblankStart();
 				WaitVblankEnd();
 				
@@ -141,6 +149,8 @@ void StrEELoad( u_int a0 )
 	}
 }
 
+/*---------------------------------------------------------------------------*/
+
 void str2_load( void )
 {
 	int i;
@@ -156,7 +166,7 @@ void str2_load( void )
 					str2_status[i] = 2;
 				}
 			} else {
-				// EMPTY
+				// EMPTY BLOCK
 			}
 			break;
 		
@@ -165,7 +175,7 @@ void str2_load( void )
 				StrEELoad( i );
 				str2_status[i]++;
 			} else {
-				// EMPTY
+				// EMPTY BLOCK
 			}
 		
 		case 2:
@@ -185,6 +195,7 @@ void str2_load( void )
 	}
 }
 
+/*---------------------------------------------------------------------------*/
 
 int Str2SpuTrans( int a0 )
 {
@@ -224,7 +235,8 @@ int Str2SpuTrans( int a0 )
 		str2_status[a0] = 8;
 		str2_stop_fg[a0] = 0;
 	}
-	
+
+/*///////////////////////////////////////////////////////////////////////////*/
 	switch( str2_status[a0]-3 ){
 	case 0: // 0x140C8
 		if( !str2_l_r_fg[a0] ){
@@ -258,7 +270,7 @@ int Str2SpuTrans( int a0 )
 		}
 		temp = 1;
 		break;
-	
+/*///////////////////////////////////////////////////////////////////////////*/
 	case 1:
 		if( !str2_unplay_size[a0] || (str2_unplay_size[a0] & 0x80000000) ){
 			str2_status[a0]++;
@@ -284,7 +296,7 @@ int Str2SpuTrans( int a0 )
 		}
 		temp = 1;
 		break;
-	
+/*///////////////////////////////////////////////////////////////////////////*/
 	case 2:
 		if( str2_first_load[a0] ){
 			str2_first_load[a0] = 0;
@@ -364,7 +376,7 @@ int Str2SpuTrans( int a0 )
 			str2_status[a0]++;
 		}
 		break;
-	
+/*///////////////////////////////////////////////////////////////////////////*/
 	case 3:
 		if( sceSdGetParam(((a0*2)+0x14)*2 | 0x0501) == 0 ){
 			str2_off_ctr[a0] = -1;
@@ -517,7 +529,7 @@ int Str2SpuTrans( int a0 )
 			}
 		}
 		break;
-	
+/*///////////////////////////////////////////////////////////////////////////*/
 	case 4:
 		str2_counter[a0] += 0x80;
 		if( (str2_off_ctr[a0] -= 1) == -2 ){
@@ -525,7 +537,7 @@ int Str2SpuTrans( int a0 )
 			str2_status[a0]++;
 		}
 		break;
-	
+/*///////////////////////////////////////////////////////////////////////////*/
 	case 5:
 		str2_counter[a0] += 0x80;
 		temp2 = 1;
@@ -533,6 +545,8 @@ int Str2SpuTrans( int a0 )
 	}
 	return (temp | temp2);
 }
+
+/*---------------------------------------------------------------------------*/
 
 void str2_int( void )
 {

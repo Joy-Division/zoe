@@ -2,16 +2,22 @@
  * Sound Driver for PS2 IOP
  * IOP Main Module
  *
- * ver.ZONE OF THE ENDERS
+ * ver."ZONE OF THE ENDERS"
  */
 #include <sys/types.h>
 #include <kernel.h>
+#include <libsd.h>
+
 #include "sd_incl.h"
 #include "sd_ext.h"
+
+/*---------------------------------------------------------------------------*/
 
 static int com_queue[140];
 
 ModuleInfo Module = { "SOUND", 0x0101 };
+
+/*---------------------------------------------------------------------------*/
 
 void sd_set_status( void )
 {
@@ -78,6 +84,8 @@ void sd_set_status( void )
 	com_queue[138] = (ee_addr[1].unk0C << 16) + (int)ee_addr[1].unk10;
 }
 
+/*---------------------------------------------------------------------------*/
+
 void sd_send_status( void )
 {
 	int *que = com_queue;
@@ -88,6 +96,8 @@ void sd_send_status( void )
 		if( sif_send_mem( (u_int *)que[139], &que[131], 32 ) == 0 );
 	}
 }
+
+/*---------------------------------------------------------------------------*/
 
 static void sif_callback_func( struct unkstr24 *a0, int *a1 )
 {
@@ -101,6 +111,8 @@ static void sif_callback_func( struct unkstr24 *a0, int *a1 )
 		iWakeupThread( temp[130] );
 	}
 }
+
+/*---------------------------------------------------------------------------*/
 
 void SdSet( void )
 {
@@ -118,6 +130,8 @@ void SdSet( void )
 	ExitThread();
 }
 
+/*---------------------------------------------------------------------------*/
+
 static void RecieveInit( int a0 )
 {
 	int *que = com_queue;
@@ -131,11 +145,15 @@ static void RecieveInit( int a0 )
 	que[139] = 0;
 }
 
+/*---------------------------------------------------------------------------*/
+
 int HIntHandler( u_int a0 )
 {
 	if( iWakeupThread( id_SdInt ) );
 	return 1;
 }
+
+/*---------------------------------------------------------------------------*/
 
 void setTimer( void *a0 )
 {
@@ -152,6 +170,8 @@ void setTimer( void *a0 )
 	SetTimerMode( id_HSyncTim, tZRET_1|tCMP_1|tREPT_1|tEXTC_1 );
 	EnableIntr( temp );
 }
+
+/*---------------------------------------------------------------------------*/
 
 int createThread( void )
 {
@@ -201,6 +221,8 @@ int createThread( void )
 
 	return 0;
 }
+
+/*---------------------------------------------------------------------------*/
 
 int start()
 {

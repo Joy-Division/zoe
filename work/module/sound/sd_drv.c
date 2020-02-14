@@ -2,15 +2,20 @@
  * Sound Driver for PS2 IOP
  * Driver Module
  *
- * ver.ZONE OF THE ENDERS
+ * ver."ZONE OF THE ENDERS"
  */
 #include <sys/types.h>
 #include <kernel.h>
+
 #include "sd_incl.h"
 #include "sd_ext.h"
 
+/*---------------------------------------------------------------------------*/
+
 int sng_status;
 unsigned int skip_intro_loop;
+
+/*---------------------------------------------------------------------------*/
 
 void IntSdMain( void )
 {
@@ -105,7 +110,7 @@ void IntSdMain( void )
 					skip_intro_loop = 0;
 				}
 			} else {
-				// EMPTY
+				// EMPTY BLOCK
 			}
 			break;
 		
@@ -246,6 +251,8 @@ void IntSdMain( void )
 	spuwr();
 }
 
+/*---------------------------------------------------------------------------*/
+
 void SngFadeIn( u_int a0 )
 {
 	int i;
@@ -267,6 +274,8 @@ void SngFadeIn( u_int a0 )
 	sng_fout_term[1] = 0;
 	sng_fout_term[0] = 0;
 }
+
+/*---------------------------------------------------------------------------*/
 
 int SngFadeOutP( u_int a0 )
 {
@@ -299,6 +308,8 @@ int SngFadeOutP( u_int a0 )
 		return -1;
 	}
 }
+
+/*---------------------------------------------------------------------------*/
 
 int SngFadeOutS( u_int a0 )
 {
@@ -337,6 +348,8 @@ int SngFadeOutS( u_int a0 )
 	}
 }
 
+/*---------------------------------------------------------------------------*/
+
 int SngKaihiP( void )
 {
 	int i;
@@ -365,6 +378,8 @@ int SngKaihiP( void )
 	return 0;
 }
 
+/*---------------------------------------------------------------------------*/
+
 void SngKaihiReset( void )
 {
 	int i;
@@ -382,6 +397,8 @@ void SngKaihiReset( void )
 	sng_kaihi_fg = 0;
 }
 
+/*---------------------------------------------------------------------------*/
+
 void SngKaihiReset2( void )
 {
 	int i;
@@ -398,6 +415,8 @@ void SngKaihiReset2( void )
 	}
 	sng_kaihi_fg = 0;
 }
+
+/*---------------------------------------------------------------------------*/
 
 void SngFadeWkSet( void )
 {
@@ -427,6 +446,8 @@ void SngFadeWkSet( void )
 	sng_fout_term[0] = 0;
 	sng_fout_fg = 0;
 }
+
+/*---------------------------------------------------------------------------*/
 
 void SngFadeInt( void )
 {
@@ -544,10 +565,14 @@ void SngFadeInt( void )
 	}
 }
 
+/*---------------------------------------------------------------------------*/
+
 void SngTempoInt( void )
 {
-	// EMPTY
+	// EMPTY FUNCTION
 }
+
+/*---------------------------------------------------------------------------*/
 
 void init_sng_work( void )
 {
@@ -563,6 +588,8 @@ void init_sng_work( void )
 	keyoffs[0] = 0;
 	sng_play_code = 0;
 }
+
+/*---------------------------------------------------------------------------*/
 
 void sng_adrs_set( u_int a0 )
 {
@@ -597,15 +624,17 @@ void sng_adrs_set( u_int a0 )
 	fx_sound_code = 0;
 }
 
+/*---------------------------------------------------------------------------*/
+
 void se_adrs_set( u_int a0 )
 {
-	se_playing[a0].code = se_request[a0].code;
-	se_playing[a0].pri = se_request[a0].pri;
-	se_playing[a0].kind = se_request[a0].kind;
+	se_playing[a0].code      = se_request[a0].code;
+	se_playing[a0].pri       = se_request[a0].pri;
+	se_playing[a0].kind      = se_request[a0].kind;
 	se_playing[a0].character = se_request[a0].character;
-	se_playing[a0].addr = se_request[a0].addr;
-	se_request[a0].code = 0;
-	se_request[a0].pri = 0;
+	se_playing[a0].addr      = se_request[a0].addr;
+	se_request[a0].code      = 0;
+	se_request[a0].pri       = 0;
 	se_request[a0].character = 0;
 	
 	sng_track_init( &sound_w[a0+32] );
@@ -628,38 +657,40 @@ void se_adrs_set( u_int a0 )
 	}
 }
 
+/*---------------------------------------------------------------------------*/
+
 void sng_track_init( struct SOUND_W *work )
 {
-	work->rdmd = 0;
-	work->ngc = 1;
-	work->ngo = 0;
-	work->ngs = 0;
-	work->ngg = 0;
-	work->lp1_cnt = 0;
-	work->lp2_cnt = 0;
-	work->lp1_vol = 0;
-	work->lp2_vol = 0;
+	work->rdmd     = 0;
+	work->ngc      = 1;
+	work->ngo      = 0;
+	work->ngs      = 0;
+	work->ngg      = 0;
+	work->lp1_cnt  = 0;
+	work->lp2_cnt  = 0;
+	work->lp1_vol  = 0;
+	work->lp2_vol  = 0;
 	work->lp1_freq = 0;
 	work->lp2_freq = 0;
-	work->pvoc = 0;
-	work->pvod = 0x7F;
-	work->vol = 0x7F;
-	work->pand = 0x1400;
-	work->panf = 0x14;
-	work->panoff = 0;
-	work->panmod = 0;
-	work->swsk = 0;
-	work->swsc = 0;
-	work->vibd = 0;
-	work->vibdm = 0;
-	work->tred = 0;
-	work->snos = 0;
-	work->ptps = 0;
-	work->dec_vol = 0;
-	work->tund = 0;
-	work->tmpd = 1;
-	work->tmp = 0xFF;
-	work->tmpc = 0;
+	work->pvoc     = 0;
+	work->pvod     = 0x7F;
+	work->vol      = 0x7F;
+	work->pand     = 0x1400;
+	work->panf     = 0x14;
+	work->panoff   = 0;
+	work->panmod   = 0;
+	work->swsk     = 0;
+	work->swsc     = 0;
+	work->vibd     = 0;
+	work->vibdm    = 0;
+	work->tred     = 0;
+	work->snos     = 0;
+	work->ptps     = 0;
+	work->dec_vol  = 0;
+	work->tund     = 0;
+	work->tmpd     = 1;
+	work->tmp      = 0xFF;
+	work->tmpc     = 0;
 /* ---------------------- */
 /* add. for PlayStation 2 */
 /* ---------------------- */

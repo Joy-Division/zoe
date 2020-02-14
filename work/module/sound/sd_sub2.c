@@ -2,16 +2,13 @@
  * Sound Driver for PS2 IOP
  * Sub-Module 2
  *
- * ver.ZONE OF THE ENDERS
+ * ver."ZONE OF THE ENDERS"
  */
 #include <sys/types.h>
 #include "sd_incl.h"
 #include "sd_ext.h"
 
-/*---------------------------------------------------------------------------*
- * Functions
- *---------------------------------------------------------------------------*/
-
+/*---------------------------------------------------------------------------*/
 // NOTE FOR ALL: Epilogues may be wrong; recheck later.
 
 void rest_set( void )
@@ -24,6 +21,8 @@ void rest_set( void )
 	sptr->ngc = sptr->ngs;
 	sptr->ngo = 0;
 }
+
+/*---------------------------------------------------------------------------*/
 
 void tie_set( void )
 {
@@ -39,6 +38,8 @@ void tie_set( void )
 	sptr->ngo = temp1;
 }
 
+/*---------------------------------------------------------------------------*/
+
 // NOMATCH: keyoff() doesnt get interleaved properly
 void sno_set( void )
 {
@@ -46,6 +47,8 @@ void sno_set( void )
 	keyoff();
 	tone_set( mdata2 );
 }
+
+/*---------------------------------------------------------------------------*/
 
 // NOMATCH: keyoff() doesnt get interleaved properly
 void svl_set( void )
@@ -55,6 +58,8 @@ void svl_set( void )
 	tone_set( mdata2 );
 }
 
+/*---------------------------------------------------------------------------*/
+
 // NOMATCH: keyoff() doesnt get interleaved properly
 void svp_set( void )
 {
@@ -63,15 +68,22 @@ void svp_set( void )
 	tone_set( mdata2 );
 }
 
+/*---------------------------------------------------------------------------*/
+
 void ofs_set( void )
 {
 	spu_tr_wk[mtrack].addr += mdata2 * 4096 + mdata3 * 16;
 	spu_tr_wk[mtrack].addr_fg = 1;
 }
 
+/*---------------------------------------------------------------------------*/
+
 void use_set( void )
 {
+	// EMPTY FUNCTION
 }
+
+/*---------------------------------------------------------------------------*/
 
 // NOMATCH: epilogue
 void pan_set( void )
@@ -81,6 +93,8 @@ void pan_set( void )
 	sptr->pand = sptr->panf << 8;
 	sptr->panc = 0;
 }
+
+/*---------------------------------------------------------------------------*/
 
 // TODO:
 // - Check break instructions. (codes differ between assemblers)
@@ -105,6 +119,8 @@ void pan_move( void )
 			sptr->panad = 0x07F0;
 	}
 }
+
+/*---------------------------------------------------------------------------*/
 
 // NOMATCH:
 // - At least one delay slot doesnt get used as it should.
@@ -135,12 +151,16 @@ void vib_set( void )
 	sptr->vibdm = mdata4 << 8;
 }
 
+/*---------------------------------------------------------------------------*/
+
 // NOMATCH: epilogue
 void vib_change( void )
 {
 	sptr->vibhs = mdata2;
 	sptr->vibad = sptr->vibdm / mdata2;
 }
+
+/*---------------------------------------------------------------------------*/
 
 // NOMATCH: epilogue
 void rdm_set( void )
@@ -151,6 +171,8 @@ void rdm_set( void )
 	sptr->rdmo = 0;
 }
 
+/*---------------------------------------------------------------------------*/
+
 // NOMATCH: epilogue
 void lp1_start( void )
 {
@@ -158,6 +180,8 @@ void lp1_start( void )
 	sptr->lp1_cnt = 0;
 	sptr->lp1_freq = sptr->lp1_vol = 0;
 }
+
+/*---------------------------------------------------------------------------*/
 
 void lp1_end( void )
 {
@@ -185,8 +209,10 @@ void lp1_end( void )
 		sptr->lp1_vol = 0;
 		sptr->lp1_freq = 0;
 	}
-	end: // required, makes a nop appear
+end: // required, makes a nop appear
 }
+
+/*---------------------------------------------------------------------------*/
 
 void lp2_start( void )
 {
@@ -194,6 +220,8 @@ void lp2_start( void )
 	sptr->lp2_cnt = 0;
 	sptr->lp2_vol = sptr->lp2_freq = 0;
 }
+
+/*---------------------------------------------------------------------------*/
 
 void lp2_end( void )
 {
@@ -204,10 +232,14 @@ void lp2_end( void )
 	}
 }
 
+/*---------------------------------------------------------------------------*/
+
 void l3s_set( void )
 {
 	sptr->lp3_addr = mptr;
 }
+
+/*---------------------------------------------------------------------------*/
 
 void l3e_set( void )
 {
@@ -218,10 +250,14 @@ void l3e_set( void )
 	}
 }
 
+/*---------------------------------------------------------------------------*/
+
 void tempo_set( void )
 {
 	sptr->tmp = mdata2;
 }
+
+/*---------------------------------------------------------------------------*/
 
 void tempo_move( void )
 {
@@ -253,10 +289,14 @@ void tempo_move( void )
 	}
 }
 
+/*---------------------------------------------------------------------------*/
+
 void trans_set( void )
 {
 	sptr->ptps = mdata2;
 }
+
+/*---------------------------------------------------------------------------*/
 
 void tre_set( void )
 {
@@ -265,11 +305,15 @@ void tre_set( void )
 	sptr->tred = mdata4;
 }
 
+/*---------------------------------------------------------------------------*/
+
 void vol_chg( void )
 {
 	sptr->pvod = mdata2 << 8;
 	sptr->pvoc = 0;
 }
+
+/*---------------------------------------------------------------------------*/
 
 void vol_move( void )
 {
@@ -291,6 +335,8 @@ void vol_move( void )
 	}
 }
 
+/*---------------------------------------------------------------------------*/
+
 void por_set( void )
 {
 	sptr->swshc = 0;
@@ -300,6 +346,8 @@ void por_set( void )
 	else sptr->swsk = 1;
 }
 
+/*---------------------------------------------------------------------------*/
+
 void sws_set( void )
 {
 	sptr->swsk = 0;
@@ -308,25 +356,35 @@ void sws_set( void )
 	sptr->swss = mdata4 << 8;
 }
 
+/*---------------------------------------------------------------------------*/
+
 void detune_set( void )
 {
 	sptr->tund = mdata2 << 2;
 }
 
+/*---------------------------------------------------------------------------*/
+
 void swp_set( void )
 {
-	// EMPTY
+	// EMPTY FUNCTION
 }
+
+/*---------------------------------------------------------------------------*/
 
 void echo_set1( void )
 {
-	// EMPTY
+	// EMPTY FUNCTION
 }
+
+/*---------------------------------------------------------------------------*/
 
 void echo_set2( void )
 {
-	// EMPTY
+	// EMPTY FUNCTION
 }
+
+/*---------------------------------------------------------------------------*/
 
 void eon_set( void )
 {
@@ -343,6 +401,8 @@ void eon_set( void )
 	}
 }
 
+/*---------------------------------------------------------------------------*/
+
 void eof_set( void )
 {
 	if( mtrack >= 32 && mtrack < 44 ){
@@ -358,11 +418,15 @@ void eof_set( void )
 	}	
 }
 
+/*---------------------------------------------------------------------------*/
+
 void kakko_start( void )
 {
 	sptr->kak1ptr = mptr;
 	sptr->kakfg = 0;
 }
+
+/*---------------------------------------------------------------------------*/
 
 void kakko_end( void )
 {
@@ -381,6 +445,8 @@ void kakko_end( void )
 		break;
 	}
 }
+
+/*---------------------------------------------------------------------------*/
 
 void env_set( void )
 {
@@ -410,6 +476,8 @@ void env_set( void )
 	spu_tr_wk[mtrack].env3_fg = 1;
 }
 
+/*---------------------------------------------------------------------------*/
+
 void ads_set( void )
 {
 	spu_tr_wk[mtrack].a_mode = 0;
@@ -419,12 +487,16 @@ void ads_set( void )
 	spu_tr_wk[mtrack].env1_fg = 1;
 }
 
+/*---------------------------------------------------------------------------*/
+
 void srs_set( void )
 {
 	spu_tr_wk[mtrack].s_mode = 0x4000;
 	spu_tr_wk[mtrack].sr = 0x7F-(mdata2 & 0x7F);
 	spu_tr_wk[mtrack].env2_fg = 1;
 }
+
+/*---------------------------------------------------------------------------*/
 
 void rrs_set( void )
 {
@@ -433,21 +505,29 @@ void rrs_set( void )
 	spu_tr_wk[mtrack].env3_fg = 1;
 }
 
+/*---------------------------------------------------------------------------*/
+
 void pm_set( void )
 {
-	// EMPTY
+	// EMPTY FUNCTION
 }
+
+/*---------------------------------------------------------------------------*/
 
 void jump_set( void )
 {
-	// EMPTY
+	// EMPTY FUNCTION
 }
+
+/*---------------------------------------------------------------------------*/
 
 void block_end( void )
 {
 	keyoffs[0] |= keyd[0];
 	keyoffs[1] |= keyd[1];
 }
+
+/*---------------------------------------------------------------------------*/
 
 void fxs_set( void )
 {
@@ -456,16 +536,22 @@ void fxs_set( void )
 	sptr->unkDC = mptr;
 }
 
+/*---------------------------------------------------------------------------*/
+
 void fxe_set( void )
 {
 	mptr = sptr->unkDC;
 	sptr->unkE0 = 0;
 }
 
+/*---------------------------------------------------------------------------*/
+
 void xon_set( void )
 {
 	sptr->unkE1 = 1;
 }
+
+/*---------------------------------------------------------------------------*/
 
 void vol_i_move( void )
 {
@@ -487,6 +573,8 @@ void vol_i_move( void )
 			work->pvoad = 0x07F0;
 	}
 }
+
+/*---------------------------------------------------------------------------*/
 
 void at1_set( void )
 {
@@ -534,6 +622,8 @@ void at1_set( void )
 	}
 }
 
+/*---------------------------------------------------------------------------*/
+
 void at2_set( void )
 {
 	if( sptr->unkE8 == 1 ){
@@ -569,6 +659,8 @@ void at2_set( void )
 	}
 }
 
+/*---------------------------------------------------------------------------*/
+
 void at3_set( void )
 {
 	if( sptr->unkE8 ){
@@ -600,6 +692,8 @@ void at3_set( void )
 	}
 }
 
+/*---------------------------------------------------------------------------*/
+
 void at4_set( void )
 {
 	if( sptr->unkE8 ){
@@ -627,6 +721,8 @@ void at4_set( void )
 	}
 }
 
+/*---------------------------------------------------------------------------*/
+
 void at5_set( void )
 {
 	if( sptr->unkE8 == 1 ){
@@ -650,6 +746,8 @@ void at5_set( void )
 	}
 }
 
+/*---------------------------------------------------------------------------*/
+
 void at6_set( void )
 {
 	if( sptr->unkE8 == 1 ){
@@ -669,6 +767,8 @@ void at6_set( void )
 	}
 }
 
+/*---------------------------------------------------------------------------*/
+
 void at7_set( void )
 {
 	if( sptr->unkE8 == 1 ){
@@ -684,11 +784,15 @@ void at7_set( void )
 	}
 }
 
+/*---------------------------------------------------------------------------*/
+
 void at8_set( void )
 {
 	sptr->unkF0 = mdata2;
 	sptr->unkF8 = mdata3;
 }
+
+/*---------------------------------------------------------------------------*/
 
 // NOMATCH: see inside
 void mno_set( void )
@@ -702,6 +806,8 @@ void mno_set( void )
 	}
 }
 
+/*---------------------------------------------------------------------------*/
+
 void flg_set( void )
 {
 	switch( mdata2 ){
@@ -710,10 +816,13 @@ void flg_set( void )
 	}
 }
 
+/*---------------------------------------------------------------------------*/
+
 void no_cmd( void )
 {
-	// EMPTY
-	// there must be something here. nothing generates a trailing nop thats not supposed to be there
+	// EMPTY FUNCTION
+	// there must be something here.
+	// nothing generates a trailing nop thats not supposed to be there
 }
 
 /*---------------------------------------------------------------------------*

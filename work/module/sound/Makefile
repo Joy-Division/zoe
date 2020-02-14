@@ -1,3 +1,10 @@
+#
+# Sound Driver for PS2 IOP
+# Makefile for IOP_MAIN.IRX
+#
+# ver."ZONE OF THE ENDERS"
+#
+
 ifeq ($(wildcard PathDefs),)
 PathDefs:
 	iop-path-setup > PathDefs || (rm -f PathDefs ; exit 1)
@@ -15,9 +22,24 @@ ILIBS =\
 CFLAGS   = -Wall -G0 $(INCDIR) -O0
 ASFLAGS  = $(INCDIR) -G0
 LDLIBS   =
+
 PROGNAME = iop_main
-IRXNAME = $(PROGNAME).irx
-OBJS = iop_main.o sd_file.o sd_sub1.o sd_sub2.o sd_ioset.o sd_drv.o sd_main.o sd_cli.o sd_mstr.o sd_wk.o se_tblmd.o sd_str.o sd_str2.o sd_str3.o
+IRXNAME  = $(PROGNAME).irx
+OBJS =\
+	iop_main.o \
+	sd_file.o \
+	sd_sub1.o \
+	sd_sub2.o \
+	sd_ioset.o \
+	sd_drv.o \
+	sd_main.o \
+	sd_cli.o \
+	sd_mstr.o \
+	sd_wk.o \
+	se_tblmd.o \
+	sd_str.o \
+	sd_str2.o \
+	sd_str3.o
 
 all: $(IRXNAME)
 

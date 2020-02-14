@@ -2,13 +2,16 @@
  * Sound Driver for PS2 IOP
  * Stream System Module 1
  *
- * ver.ZONE OF THE ENDERS
+ * ver."ZONE OF THE ENDERS"
  */
 #include <sys/types.h>
 #include <kernel.h>
 #include <libsd.h>
+
 #include "sd_incl.h"
 #include "sd_ext.h"
+
+/*---------------------------------------------------------------------------*/
 
 unsigned int str_mono_offset;
 unsigned int str_counter;
@@ -40,15 +43,17 @@ unsigned int str_start_offset;
 unsigned char *str_trans_buf;
 unsigned int str_read_idx;
 
-
 u_char str_header[0x8800];
 u_int str_read_status[8];
 
+/*---------------------------------------------------------------------------*/
 
 void str_tr_off( void )
 {
 	str_keyoffs = 0x30000000;
 }
+
+/*---------------------------------------------------------------------------*/
 
 void str_spuwr( void )
 {
@@ -57,6 +62,8 @@ void str_spuwr( void )
 		str_keyoffs = 0;
 	}
 }
+
+/*---------------------------------------------------------------------------*/
 
 int StartStream1( void )
 {
@@ -120,6 +127,8 @@ int StartStream1( void )
 	return 0;
 }
 
+/*---------------------------------------------------------------------------*/
+
 int StartStream2( void )
 {
 	int temp, i;
@@ -153,7 +162,7 @@ int StartStream2( void )
 		str_fp = 0;
 		return -1;
 	} else {
-		// EMPTY
+		// EMPTY BLOCK
 	}
 
 	str_wave_size -= str_start_offset*0x1000;
@@ -190,6 +199,8 @@ int StartStream2( void )
 	return 0;
 }
 
+/*---------------------------------------------------------------------------*/
+
 int StartStream( void )
 {
 	if( str_start_offset ){
@@ -199,12 +210,14 @@ int StartStream( void )
 	}
 }
 
+/*---------------------------------------------------------------------------*/
+
 void StrCdLoad( void )
 {
 	int temp, i, j, temp4;
 	
 	if( str_status < 3 || str_status > 6 ){
-		// EMPTY
+		// EMPTY BLOCK
 	} else {
 		for( i = 0 ; i < 2 ; i++ ){
 			if( str_unload_size ){
@@ -214,15 +227,15 @@ void StrCdLoad( void )
 				}
 				if( !temp4 ){
 					
-					// wait for 7 vblanks
-					WaitVblankEnd();
-					WaitVblankStart(); WaitVblankEnd();
-					WaitVblankStart(); WaitVblankEnd();
-					WaitVblankStart(); WaitVblankEnd();
-					WaitVblankStart(); WaitVblankEnd();
-					WaitVblankStart(); WaitVblankEnd();
-					WaitVblankStart(); WaitVblankEnd();
-					WaitVblankStart(); WaitVblankEnd();
+					// Wait for 8 V-blanks
+					WaitVblankEnd(); // 1st interval (end-only)
+					WaitVblankStart(); WaitVblankEnd(); // 2nd interval
+					WaitVblankStart(); WaitVblankEnd(); // 3rd interval
+					WaitVblankStart(); WaitVblankEnd(); // 4th interval
+					WaitVblankStart(); WaitVblankEnd(); // 5th interval
+					WaitVblankStart(); WaitVblankEnd(); // 6th interval
+					WaitVblankStart(); WaitVblankEnd(); // 7th interval
+					WaitVblankStart(); WaitVblankEnd(); // 8th interval
 					
 					if( str_unload_size > 0x4000 ){
 						temp = PcmRead( str_fp, str_trans_buf+str_trans_offset, 0x4000 );
@@ -256,6 +269,8 @@ void StrCdLoad( void )
 	}
 }
 
+/*---------------------------------------------------------------------------*/
+
 void str_load( void )
 {
 	switch( str_status-1 ){
@@ -284,6 +299,8 @@ void str_load( void )
 	}
 }
 
+/*---------------------------------------------------------------------------*/
+
 int StrSpuTrans( void )
 {
 	int temp = 0, temp2 = 0;
@@ -308,6 +325,8 @@ int StrSpuTrans( void )
 		str_tr_off();
 		str_stop_fg = 0;
 	}
+
+/*///////////////////////////////////////////////////////////////////////////*/
 	switch( str_status-2 ){
 	case 0:
 		if( !str_l_r_fg ){
@@ -336,7 +355,7 @@ int StrSpuTrans( void )
 		}
 		temp = 1;
 		break;
-	
+/*///////////////////////////////////////////////////////////////////////////*/
 	case 1:
 		if( !str_unplay_size || (str_unplay_size & 0x80000000) ){
 			str_status++;
@@ -361,7 +380,7 @@ int StrSpuTrans( void )
 		}
 		temp = 1;
 		break;
-	
+/*///////////////////////////////////////////////////////////////////////////*/
 	case 2:
 		if( str_first_load ){
 			str_first_load = 0;
@@ -401,7 +420,7 @@ int StrSpuTrans( void )
 			str_status++;
 		}
 		break;
-	
+/*///////////////////////////////////////////////////////////////////////////*/
 	case 3:
 		if( !sceSdGetParam( 0x0529 ) ){
 			str_off_ctr = -1;
@@ -515,7 +534,7 @@ int StrSpuTrans( void )
 			}
 		}
 		break;
-	
+/*///////////////////////////////////////////////////////////////////////////*/
 	case 4:
 		str_counter_low += 0x80;
 		if( str_counter_low >= 0x1000 ){
@@ -527,7 +546,7 @@ int StrSpuTrans( void )
 			str_status++;
 		}
 		break;
-	
+/*///////////////////////////////////////////////////////////////////////////*/
 	case 5:
 		str_counter_low += 0x80;
 		if( str_counter_low >= 0x1000 ){
@@ -539,6 +558,8 @@ int StrSpuTrans( void )
 	}
 	return (temp | temp2);
 }
+
+/*---------------------------------------------------------------------------*/
 
 void str_int( void )
 {

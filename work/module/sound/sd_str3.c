@@ -2,13 +2,16 @@
  * Sound Driver for PS2 IOP
  * Stream System Module 3
  *
- * ver.ZONE OF THE ENDERS
+ * ver."ZONE OF THE ENDERS"
  */
 #include <sys/types.h>
 #include <kernel.h>
 #include <libsd.h>
+
 #include "sd_incl.h"
 #include "sd_ext.h"
+
+/*---------------------------------------------------------------------------*/
 
 unsigned int lnr8_read_idx;
 unsigned short lnr_volume;
@@ -32,17 +35,18 @@ unsigned int lnr8_read_disable;
 unsigned int lnr8_counter;
 unsigned int lnr8_status;
 
-
-
 u_short lnr16_buf[0x0800];
 u_int lnr8_read_status[32];
 u_char lnr8_buf[0x8000];
 
+/*---------------------------------------------------------------------------*/
 
 void lnr_tr_off( void )
 {
 	lnr_keyoffs = 1;
 }
+
+/*---------------------------------------------------------------------------*/
 
 void lnr_spuwr( void )
 {
@@ -53,6 +57,8 @@ void lnr_spuwr( void )
 		lnr_keyoffs = 0;
 	}
 }
+
+/*---------------------------------------------------------------------------*/
 
 int StartLnrEEStream( void )
 {
@@ -105,6 +111,8 @@ int StartLnrEEStream( void )
 	return 0;
 }
 
+/*---------------------------------------------------------------------------*/
+
 // FIXME
 // control flow is not 100% certain
 void LnrEELoad( void )
@@ -112,9 +120,9 @@ void LnrEELoad( void )
 	int temp, i, j, temp4;
 	
 	if( lnr8_status < 3 || lnr8_status > 5 ){
-		// EMPTY
 		return;
 	}
+	
 	for( i = 0 ; i < 2 ; i++ ){
 		if( lnr8_unload_size ){
 			temp4 = 0;
@@ -122,8 +130,7 @@ void LnrEELoad( void )
 				temp4 |= lnr8_read_status[lnr8_read_idx*16+j];
 			}
 			if( !temp4 ){
-				
-				// wait for 1 vblank
+				// Wait for 1 V-blank
 				WaitVblankStart();
 				WaitVblankEnd();
 				
@@ -151,6 +158,8 @@ void LnrEELoad( void )
 		}
 	}
 }
+
+/*---------------------------------------------------------------------------*/
 
 void lnr_load( void )
 {
@@ -183,11 +192,15 @@ void lnr_load( void )
 	}
 }
 
+/*---------------------------------------------------------------------------*/
+
 void lnr_trans_init( void )
 {
 	lnr_val[1] = 0;
 	lnr_val[0] = 0;
 }
+
+/*---------------------------------------------------------------------------*/
 
 void lnr_trans_0( u_short *a0, u_int a1 )
 {
@@ -197,6 +210,8 @@ void lnr_trans_0( u_short *a0, u_int a1 )
 		a0[i] = 0;
 	}
 }
+
+/*---------------------------------------------------------------------------*/
 
 void lnr_trans( u_short *a0, char *a1, u_int a2 )
 {
@@ -221,6 +236,8 @@ void lnr_trans( u_short *a0, char *a1, u_int a2 )
 	lnr_val[1] = temp4;
 }
 
+/*---------------------------------------------------------------------------*/
+
 int lnrSpuTrans( void )
 {
 	int temp = 0, temp2 = 0;
@@ -230,7 +247,8 @@ int lnrSpuTrans( void )
 		lnr_tr_off();
 		lnr8_stop_fg = 0;
 	}
-	
+
+/*///////////////////////////////////////////////////////////////////////////*/
 	switch( lnr8_status-2 ){
 	case 0:
 		lnr8_play_idx = 0;
@@ -245,7 +263,7 @@ int lnrSpuTrans( void )
 		lnr8_status++;
 		temp = 1;
 		break;
-	
+/*///////////////////////////////////////////////////////////////////////////*/
 	case 1:
 		if( !lnr8_unplay_size || (lnr8_unplay_size & 0x80000000) ){
 			lnr8_status++;
@@ -259,13 +277,13 @@ int lnrSpuTrans( void )
 		lnr8_status++;
 		temp = 1;
 		break;
-	
+/*///////////////////////////////////////////////////////////////////////////*/
 	case 2:
 		if( lnr8_first_load ){
 			lnr8_first_load = 0;
 		}
 		if( str2_wait_fg[1] ){
-			// EMPTY
+			// EMPTY BLOCK
 		} else {
 			lnr8_fade_vol = 1;
 			sceSdSetParam( 0x0F81, lnr8_fade_vol * 32767 / 2 );
@@ -280,7 +298,7 @@ int lnrSpuTrans( void )
 			}
 		}
 		break;
-	
+/*///////////////////////////////////////////////////////////////////////////*/
 	case 3:
 		if( lnr8_fade_vol < 3 ){
 			sceSdSetParam( 0x0F81, lnr8_fade_vol * 32767 / 2 );
@@ -320,7 +338,7 @@ int lnrSpuTrans( void )
 			}
 		}
 		break;
-	
+/*///////////////////////////////////////////////////////////////////////////*/
 	case 4:
 		spu_lnr16_idx = sceSdBlockTransStatus( 1, 0 );
 		spu_lnr16_idx = (spu_lnr16_idx & 0x00FFFFFF) - (u_int)lnr16_buf;
@@ -337,7 +355,7 @@ int lnrSpuTrans( void )
 			lnr8_status++;
 		}
 		break;
-	
+/*///////////////////////////////////////////////////////////////////////////*/
 	case 5:
 		lnr8_counter += 512;
 		temp2 = 1;
@@ -346,9 +364,11 @@ int lnrSpuTrans( void )
 	return (temp | temp2);
 }
 
+/*---------------------------------------------------------------------------*/
+
 void lnr_int( void )
 {
-	if( sceSdVoiceTransStatus( 1, 0 ) == 1 ){
+	if( sceSdVoiceTransStatus( 1, SD_TRANS_STATUS_CHECK ) == 1 ){
 		if( lnrSpuTrans() ){
 			WakeupThread( id_SdEELoad );
 		}

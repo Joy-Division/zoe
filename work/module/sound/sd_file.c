@@ -2,7 +2,7 @@
  * Sound Driver for PS2 IOP
  * File Loader System
  *
- * ver.ZONE OF THE ENDERS
+ * ver."ZONE OF THE ENDERS"
  */
 #include <sys/types.h>
 #include <stdio.h>
@@ -10,12 +10,16 @@
 #include "sd_incl.h"
 #include "sd_ext.h"
 
+/*---------------------------------------------------------------------------*/
+
 static unsigned int pakcd_pos;
 
 u_int pak_cd_read_fg = 0;
 u_int save_wvx1 = -1, save_wvx2 = -1;
 u_int save_efx = -1;
 u_int save_mdx = -1;
+
+/*---------------------------------------------------------------------------*/
 
 void LoadPakFile( void )
 {
@@ -44,7 +48,7 @@ void LoadPakFile( void )
 			pak_load_status = 0;
 			break;
 		} else {
-			// EMPTY
+			// EMPTY BLOCK
 		}
 		pak_read_fg = 1;
 		PcmRead( pak_fp, pak_header, 0x0800 );
@@ -104,7 +108,7 @@ void LoadPakFile( void )
 				PcmLseek( pak_fp, (temp[6] - temp[4]) << 11, 1 );
 			}
 		} else {
-			// EMPTY
+			// EMPTY BLOCK
 		}
 		pak_load_status = 6;
 		break;
@@ -148,6 +152,8 @@ void LoadPakFile( void )
 	}
 }
 
+/*---------------------------------------------------------------------------*/
+
 char *sd_path_sd1[6] = {
     "\\DUMMY\\",
     "host0:./sound/vox1/",
@@ -156,6 +162,8 @@ char *sd_path_sd1[6] = {
     "host0:./sound/efx1/",
     "host0:./sound/sdx1/"
 };
+
+/*---------------------------------------------------------------------------*/
 
 int LoadSeFile( void )
 {
@@ -180,6 +188,8 @@ int LoadSeFile( void )
 	return 0;
 }
 
+/*---------------------------------------------------------------------------*/
+
 int LoadSngData()
 {
 	int temp;
@@ -200,6 +210,8 @@ int LoadSngData()
 	sng_fp = 0;
 	return 0;
 }
+
+/*---------------------------------------------------------------------------*/
 
 void set_voice_tbl( u_int *a0, u_int a1, u_int a2 )
 {
@@ -224,6 +236,8 @@ void set_voice_tbl( u_int *a0, u_int a1, u_int a2 )
 		memcpy( drum_tbl, temp4*4 + a0, temp4*4 - a1 );
 	}
 }
+
+/*---------------------------------------------------------------------------*/
 
 int LoadWaveFile( void )
 {
@@ -316,10 +330,12 @@ int LoadWaveFile( void )
 		wave_fp = 0;
 		wave_load_code = 0;
 		return 1;
-		return; // NOTICE
+		return; // SYNTAX NOTICE
 	}
 	return 0;
 }
+
+/*---------------------------------------------------------------------------*/
 
 void WaveCdLoad( void )
 {
@@ -349,9 +365,11 @@ void WaveCdLoad( void )
 	}
 }
 
+/*---------------------------------------------------------------------------*/
+
 void WaveSpuTrans( void )
 {
-	int temp;
+	int result;
 	
 	if( wave_load_status == 2 ){
 		temp = sceSdVoiceTrans( 0, 0, wave_load_ptr, spu_wave_start_ptr+spu_load_offset, wave_load_size );
@@ -363,6 +381,8 @@ void WaveSpuTrans( void )
 		wave_load_status += 1;
 	}
 }
+
+/*---------------------------------------------------------------------------*/
 
 /* ------------------------------- */
 /* Name Format | Type  | Content   */
@@ -452,6 +472,8 @@ void code2name( u_int code, char *name )
 	}
 }
 
+/*---------------------------------------------------------------------------*/
+
 char num2char( u_int num )
 {
 	num &= 0x0F;
@@ -464,6 +486,8 @@ char num2char( u_int num )
 	return num;
 }
 
+/*---------------------------------------------------------------------------*/
+
 void str_cat( char *a0, char *a1 )
 {
 	u_int i;
@@ -475,6 +499,8 @@ void str_cat( char *a0, char *a1 )
 		strcpy( a0+i, a1 );
 	}
 }
+
+/*---------------------------------------------------------------------------*/
 
 int PcmOpen( u_int a0, u_int a1 )
 {
@@ -499,7 +525,7 @@ int PcmOpen( u_int a0, u_int a1 )
 	str_cat( temp, temp2 );
 	
 	if( !pak_read_fg ){
-		// EMPTY
+		// EMPTY BLOCK
 	}
 	
 	temp3 = pcOpen( temp, 1 );
@@ -509,6 +535,8 @@ int PcmOpen( u_int a0, u_int a1 )
 	}
 	return temp3;
 }
+
+/*---------------------------------------------------------------------------*/
 
 int PcmRead( int a0, void *a1, int a2 )
 {
@@ -532,6 +560,8 @@ int PcmRead( int a0, void *a1, int a2 )
 	return temp3;
 }
 
+/*---------------------------------------------------------------------------*/
+
 int PcmLseek( int a0, u_int a1, u_int a2 )
 {
 	int temp3;
@@ -548,10 +578,12 @@ int PcmLseek( int a0, u_int a1, u_int a2 )
 	if( temp3 < 0 ){
 		printf( "CD Seek Error(%x)\n", temp3 );
 		return temp3;
-		return; // NOTICE
+		return; // SYNTAX NOTICE
 	}
 	return a0;
 }
+
+/*---------------------------------------------------------------------------*/
 
 int PcmClose( int a0 )
 {
@@ -572,6 +604,8 @@ int PcmClose( int a0 )
 	return temp3;
 }
 
+/*---------------------------------------------------------------------------*/
+
 int EEOpen( int a0 )
 {
 	u_int temp, *temp2;
@@ -584,6 +618,8 @@ int EEOpen( int a0 )
 	temp2 = (pak_header+0x01FA)+(6*temp);
 	return temp;
 }
+
+/*---------------------------------------------------------------------------*/
 
 int EERead( u_int a0, u_int *a1, u_int a2, u_int a3 )
 {
@@ -610,7 +646,7 @@ int EERead( u_int a0, u_int *a1, u_int a2, u_int a3 )
 		}
 		temp++;
 		if( !(temp & 0xFFFF) ){
-			// EMPTY
+			// EMPTY BLOCK
 		}
 	}
 	

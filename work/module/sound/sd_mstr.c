@@ -2,13 +2,16 @@
  * Sound Driver for PS2 IOP
  * Memory Stream System
  *
- * ver.ZONE OF THE ENDERS
+ * ver."ZONE OF THE ENDERS"
  */
 #include <sys/types.h>
 #include <kernel.h>
 #include <libsd.h>
+
 #include "sd_incl.h"
 #include "sd_ext.h"
+
+/*---------------------------------------------------------------------------*/
 
 void init_mem_str_w( void )
 {
@@ -18,6 +21,8 @@ void init_mem_str_w( void )
 		mem_str_w[i].unk00 = 0;
 	}
 }
+
+/*---------------------------------------------------------------------------*/
 
 int MemSpuTransWithNoLoop( u_int a0 )
 {
@@ -29,6 +34,7 @@ int MemSpuTransWithNoLoop( u_int a0 )
 	a0 -= 32;
 	temp4 = &mem_str_w[a0];
 	
+/*///////////////////////////////////////////////////////////////////////////*/
 	switch( temp4->unk00-2 ){
 	case 0:
 		temp4->unk04 = temp4->unk08 = voice_tbl[temp4->unk0C+1].addr - voice_tbl[temp4->unk0C].addr;
@@ -44,7 +50,7 @@ int MemSpuTransWithNoLoop( u_int a0 )
 		temp4->unk00++;
 		temp2 = 1;
 		break;
-	
+/*///////////////////////////////////////////////////////////////////////////*/
 	case 1:
 		if( !temp4->unk08 || temp4->unk08 & 0x8000 ){
 			temp4->unk00++;
@@ -59,7 +65,7 @@ int MemSpuTransWithNoLoop( u_int a0 )
 			temp2 = 1;
 		}
 		break;
-	
+/*///////////////////////////////////////////////////////////////////////////*/
 	case 2:
 		sceSdSetAddr( (a0+8)*2 | 0x2041, a0*0x1000+0x9020 );
 		keyon();
@@ -69,7 +75,7 @@ int MemSpuTransWithNoLoop( u_int a0 )
 			temp4->unk00++;
 		}
 		break;
-	
+/*///////////////////////////////////////////////////////////////////////////*/
 	case 3:
 		temp5 = sceSdGetParam( (a0+8)*2 | 0x0501 );
 		if( !temp5 ){
@@ -102,14 +108,14 @@ int MemSpuTransWithNoLoop( u_int a0 )
 				temp4->unk00++;
 			}
 		} else {
-			// EMPTY
+			// EMPTY BLOCK
 		}
 		break;
-	
+/*///////////////////////////////////////////////////////////////////////////*/
 	case 4:
 		temp4->unk00++;
 		break;
-	
+/*///////////////////////////////////////////////////////////////////////////*/
 	case 5:
 		break;
 	}

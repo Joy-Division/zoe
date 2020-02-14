@@ -2,7 +2,7 @@
  * Sound Driver for PS2 IOP
  * Sound Effect Table
  *
- * ver.ZONE OF THE ENDERS
+ * ver."ZONE OF THE ENDERS"
  */
 #include <sys/types.h>
 #include "sd_incl.h"

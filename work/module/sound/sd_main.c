@@ -2,13 +2,16 @@
  * Sound Driver for PS2 IOP
  * Main Module
  *
- * ver.ZONE OF THE ENDERS
+ * ver."ZONE OF THE ENDERS"
  */
 #include <sys/types.h>
 #include <kernel.h>
 #include <libsd.h>
+
 #include "sd_incl.h"
 #include "sd_ext.h"
+
+/*---------------------------------------------------------------------------*/
 
 void SdMain( void )
 {
@@ -16,6 +19,7 @@ void SdMain( void )
 		if( !pak_read_fg ){
 			SleepThread();
 		} else {
+			// Wait for V-blank
 			WaitVblankStart();
 			WaitVblankEnd();
 		}
@@ -50,6 +54,8 @@ void SdMain( void )
 	ExitThread();
 }
 
+/*---------------------------------------------------------------------------*/
+
 void SdEELoad( void )
 {
 	while( 1 ){
@@ -63,6 +69,8 @@ void SdEELoad( void )
 	}
 	ExitThread();
 }
+
+/*---------------------------------------------------------------------------*/
 
 void SdInt( void )
 {
@@ -85,6 +93,8 @@ void SdInt( void )
 	}
 	ExitThread();
 }
+
+/*---------------------------------------------------------------------------*/
 
 void sd_init( void )
 {
@@ -154,11 +164,15 @@ void sd_init( void )
 	vox_fader[0].unk08 = 0x20;
 }
 
+/*---------------------------------------------------------------------------*/
+
 void SdTerm( void )
 {
 	sceSdSetSwitch( 0x1600, 0x00FFFFFF );
 	sceSdSetSwitch( 0x1601, 0x00FFFFFF );
 }
+
+/*---------------------------------------------------------------------------*/
 
 void keyOff( u_int a0 )
 {
@@ -169,6 +183,8 @@ void keyOff( u_int a0 )
 	}
 }
 
+/*---------------------------------------------------------------------------*/
+
 void keyOn( u_int a0 )
 {
 	if( a0 < 24 ){
@@ -177,6 +193,8 @@ void keyOn( u_int a0 )
 		sceSdSetSwitch( 0x1501, 1 << (a0-24) );
 	}
 }
+
+/*---------------------------------------------------------------------------*/
 
 // TODO: recheck the memory referenced here,
 // find structs (if any) and correct types for pointers

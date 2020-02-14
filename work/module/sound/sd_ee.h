@@ -2,7 +2,7 @@
  * Sound Driver for PS2 IOP
  * Emotion Engine Interface
  *
- * ver.ZONE OF THE ENDERS
+ * ver."ZONE OF THE ENDERS"
  */
 #ifndef INC_SD_EE_H
 #define INC_SD_EE_H
