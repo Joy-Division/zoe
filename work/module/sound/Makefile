@@ -47,4 +47,4 @@ clean:
 	rm -f *.o $(IRXNAME)
 
 $(IRXNAME): $(OBJS)
-	$(LINK.o) -o $@ $(OBJS) $(LIBDIR) $(ILIBS)
+	$(LINK.o) -o $@ $(OBJS) $(ILIBS)
