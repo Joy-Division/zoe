@@ -117,7 +117,7 @@ void StrEELoad( u_int a0 )
 		if( str2_unload_size[a0] ){
 			temp4 = 0;
 			for( j = 0 ; j < 4 ; j++ ){
-				temp4 |= str2_read_status[a0][ee2_buf_idx[a0]+j];
+				temp4 |= str2_read_status[a0][ee2_buf_idx[a0]*2+j];
 			}
 			if( !temp4 ){
 				// Wait for V-blank
@@ -128,7 +128,7 @@ void StrEELoad( u_int a0 )
 					temp = EERead( str2_fp[a0], (uint *)(a0*0x8000+eeload2_buf+ee2_buf_idx[a0]*0x4000), ee2_buf_idx[a0], 0x4000 );
 					if( temp ){
 						for( j = 0 ; j < 4 ; j++ ){
-							str2_read_status[a0][ee2_buf_idx[a0]+j] = 1;
+							str2_read_status[a0][ee2_buf_idx[a0]*2+j] = 1;
 						}
 						ee2_buf_idx[a0] = (ee2_buf_idx[a0]+1) & 1;
 						str2_unload_size[a0] -= 0x4000;
@@ -137,7 +137,7 @@ void StrEELoad( u_int a0 )
 					temp = EERead( str2_fp[a0], (uint *)(a0*0x8000+eeload2_buf+ee2_buf_idx[a0]*0x4000), ee2_buf_idx[a0], 0x4000 );
 					if( temp ){
 						for( j = 0 ; j < 4 ; j++ ){
-							str2_read_status[a0][ee2_buf_idx[a0]+j] = 1;
+							str2_read_status[a0][ee2_buf_idx[a0]*2+j] = 1;
 						}
 						ee2_buf_idx[a0] = (ee2_buf_idx[a0]+1) & 1;
 						str2_unload_size[a0] = 0;
