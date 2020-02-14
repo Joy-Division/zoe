@@ -88,19 +88,19 @@ int StartEEStream( u_int a0 )
 	temp = EERead( str2_fp[a0], (uint *)(a0*0x8000+eeload2_buf+ee2_buf_idx[a0]*0x4000), ee2_buf_idx[a0], 0x4000 );
 	
 	for( i = 0 ; i < 4 ; i++ ){
-		str2_read_status[a0][ee2_buf_idx[a0]+i] = 1;
+		str2_read_status[a0][ee2_buf_idx[a0]*4+i] = 1;
 	}
 	
 	ee2_buf_idx[a0]++;
 	
-	if( temp < str2_unload_size[a0] ){
+	if( str2_unload_size[a0] > temp ){
 		str2_unload_size[a0] -= temp;
 	} else {
 		str2_unload_size[a0] = 0;
 	}
 	
 	for( i = 0 ; i < 4 ; i++ ){
-		str2_read_status[a0][ee2_buf_idx[a0]+i] = 0;
+		str2_read_status[a0][ee2_buf_idx[a0]*4+i] = 0;
 	}
 	
 	str2_trans_buf[a0] = eeload2_buf+a0*0x8000;
