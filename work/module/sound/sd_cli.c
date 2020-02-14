@@ -155,14 +155,12 @@ void set_sng_code_buf( u_int a0 )
 /*---------------------------------------------------------------------------*/
 
 // NOMATCH: see inside
-void sd_set( u_int a0 )
+void sd_set( int a0 )
 {
 	union {
 		u_int *t0;
 		u_int t1;
 	} temp;
-	
-	int temp2;
 	
 	if( a0 ==  0xFF000000 ){
 		sd_print_fg = 1;
@@ -178,13 +176,11 @@ void sd_set( u_int a0 )
 				return;
 			}
 			SePlay( a0 );
-		} else if( (a0 & 0xFF000000) == 0x10000000 ){
+		} else if( (a0 & 0xFF000000) == 0x1000000 ){
 			set_sng_code_buf( a0 );
-			return;
-		} else if( (a0 & 0xFF000000) == 0x20000000 ){
+		} else if( (a0 & 0xFF000000) == 0x2000000 ){
 			se_load_code = a0;
 			WakeupThread( id_SdMain );
-			return;
 		} else if( (a0 & 0xE0000000) == 0x80000000 ){
 			temp.t0 = sif_get_mem(path_name, a0 & 0x1FFFFFFF, 0x80 );
 			while( 1 ){
@@ -212,11 +208,11 @@ void sd_set( u_int a0 )
 				if( lnr8_status ){
 					lnr8_stop_fg = 1;
 				}
-				str2_stop_fg[0] = 1;
-				ee_addr[0].unk10 = (u_char *)(a0 & 0x00FFFFFF);
+				str2_stop_fg[0] = 0;
+				ee_addr[0].unk10 = (u_char *)((a0 & 0x00FFFFFF) << 4);
 			}
 		} else if( (a0 & 0xFF000000) == 0xF1000000 ){
-			if( str1_use_iop ){
+			if( !str1_use_iop ){
 				ee_addr[0].unk04 = a0 & 0x00FFFFFF;
 				ee_addr[0].unk0C++;
 				str2_iop_load_set[0] = 1;
@@ -247,14 +243,12 @@ void sd_set( u_int a0 )
 				lnr8_status = 1;
 				lnr8_counter = 0;
 			} else {
-				if( (a0 & 0xFF000000) == 0x10000000 ){
+				if( (a0 & 0xFF0000) == 0x10000 ){
 					str2_mono_fg[1] = 1;
 				} else {
 					str2_mono_fg[1] = 0;
 				}
-				// 0xF9F8 this is by no means close
-				str2_pitch[1] = (temp2 = ((a0 & 0xFFFF) * 4096 / 375) >> 10);
-				// 0xFA3C
+				str2_pitch[1] = (int)((a0 & 0xFFFF) * 4096) / 48000;
 				if( lnr8_status ){
 					lnr8_stop_fg = 1;
 				}
@@ -269,14 +263,12 @@ void sd_set( u_int a0 )
 			WakeupThread( id_SdEELoad );
 		} else if( (a0 & 0xFF000000) == 0xF5000000 ){
 			if( !str1_use_iop ){
-				if( (a0 & 0xFF000000) == 0x10000000 ){
+				if( (a0 & 0xFF0000) == 0x10000 ){
 					str2_mono_fg[0] = 1;
 				} else {
 					str2_mono_fg[0] = 0;
 				}
-				// 0xFB20 see 0xF9F8 this is basically the same
-				str2_pitch[0] = 0;
-				// 0xFB64
+				str2_pitch[0] = (int)((a0 & 0xFFFF) * 4096) / 48000;
 				if( lnr8_status ){
 					lnr8_stop_fg = 1;
 				}
@@ -290,21 +282,22 @@ void sd_set( u_int a0 )
 			}
 		} else if( (a0 & 0xFF000000) == 0xFA000000 ){
 			switch( a0 & 0x0F00 ){
+			// these assignments are broken...
 			// cases 0 & 256 don't get compiled, but exist in the original assembly
-			case   0: auto_env_pos = (a0 & 0xFFFFFFFF); break;
-			case 256: auto_env_pos2 = (a0 & 0xFFFFFFFF); break;
+			case   0: auto_env_pos = a0 & -1; break;
+			case 256: auto_env_pos2 = a0 & -1; break;
 			default: break;
 			}
 		} else if( (a0 & 0xFF000000) == 0xFB000000 ){
-			if( a0 >= 0xFB1F3F3F ){
-				temp.t1 = (int)(a0 & 0x1F000000) >> 16;
+			if( a0 <= 0xFB1F3F3F ){
+				temp.t1 = (int)(a0 & 0x1F0000) >> 16;
 				mix_fader[temp.t1].unk0C = (int)(a0 & 0x3F00) >> 8;
-				mix_fader[temp.t1].unk08 = ((a0 & 0x3F) << 10) + ((a0 & 0x3F) << 4) + ((a0 & 0x3F) << 2);
+				mix_fader[temp.t1].unk08 = ((a0 & 0x3F) << 10) + ((a0 & 0x3F) << 4) + ((int)(a0 & 0x3F) >> 2);
 				mix_fader[temp.t1].unk04 = mix_fader[temp.t1].unk08;
 				mix_fader[temp.t1].unk00 = 0;
 			} else {
-				if( (a0 & 0xFF) == 0xFE || (a0 & 0xFF) == 0xFF ){
-					temp.t1 = (int)(a0 & 0x1F000000) >> 16;
+				if( (a0 & 0xFF0000) == 0xFE0000 || (a0 & 0xFF0000) == 0xFF0000 ){
+					temp.t1 = (int)(a0 & 0x10000) >> 16;
 					vox_fader[temp.t1].unk00 = a0 & 0x3F;
 					vox_fader[temp.t1].unk08 = (int)(a0 & 0x3F00) >> 8;
 					if( sd_print_fg ){
@@ -312,11 +305,12 @@ void sd_set( u_int a0 )
 					}
 				}
 			}
-		} else if( a0 >= 0xFBFFFFFF && a0 < 0xFC1F3FFF ){
-			temp.t1 = (int)(a0 & 0x1F000000) >> 16;
+		} else if( a0 > 0xFBFFFFFF && a0 <= 0xFC1F3FFF ){
+			temp.t1 = (int)(a0 & 0x1F0000) >> 16;
 			mix_fader[temp.t1].unk0C = (int)(a0 & 0x3F00) >> 8;
-		} else if( a0 >= 0xFCFFFFFF && a0 < 0xFD1F3FFF ){
-			mix_fader[temp.t1].unk08 = ((a0 & 0x3F00) << 2) + ((int)(a0 & 0x3F) >> 4) + ((int)(a0 & 0x3F) >> 10);
+		} else if( a0 > 0xFCFFFFFF && a0 <= 0xFD1F3FFF ){
+			temp.t1 = (int)(a0 & 0x1F0000) >> 16;
+			mix_fader[temp.t1].unk08 = ((a0 & 0x3F00) << 2) + ((int)(a0 & 0x3F00) >> 4) + ((int)(a0 & 0x3F00) >> 10);
 			if( mix_fader[temp.t1].unk04 == mix_fader[temp.t1].unk08 ){
 				mix_fader[temp.t1].unk00 = 0;
 			} else if( a0 & 0xFF ){
@@ -330,7 +324,7 @@ void sd_set( u_int a0 )
 			}
 		} else if( (a0 & 0xFF000000) == 0xFE000000 ){
 			pak_cd_read_fg = 0;
-			if( a0 >= 0xFE7FFFFF ){
+			if( a0 <= 0xFE7FFFFF ){
 				wave_load_code = a0;
 				wave_load_status = 1;
 			} else {
@@ -413,7 +407,7 @@ void sd_set( u_int a0 )
 				break;
 			
 			case 0xFF000012: str1_use_iop = 1; break;
-			case 0xFF000013: str1_use_iop = 0; break;
+			case 0xFF000013: str1_use_iop = 0; 
 			case 0xFF000014: fader_off_fg = 1; break;
 			case 0xFF0000FE: stop_jouchuu_se = 1; break;
 			case 0xFF0000FF: set_sng_code_buf( a0 ); break;
@@ -426,13 +420,14 @@ void sd_set( u_int a0 )
 			case 0xFF000106: set_sng_code_buf( a0 ); break;
 			case 0xFF000107: set_sng_code_buf( a0 ); break;
 			case 0xFF000108: set_sng_code_buf( a0 ); break;
-			case 0xFF000109: break; break; // SYNTAX NOTICE
 			case 0xFFFFFFFD: break;
-			default: break;
+			case 0xFFFFFFED: break;
+			case 0xFFFFFFEC: break;
+			default: break; goto end; // the break jump is followed by another jump without a nop in between...
 			}
 		}
 	}
-	return;
+	end:
 }
 
 /*---------------------------------------------------------------------------*

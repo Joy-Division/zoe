@@ -314,7 +314,7 @@ void setTimer(void *a0);
 /* sd_cli.c */
 int sd_set_cli(u_int a0);
 int SePlay(u_int a0);
-void sd_set(u_int a0);
+void sd_set(int a0);
 void set_sng_code_buf(u_int a0);
 
 /* sd_drv.c */
