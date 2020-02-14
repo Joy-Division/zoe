@@ -350,6 +350,7 @@ int StrSpuTrans( void )
 				str_read_status[str_play_idx] = 0;
 				str_play_idx++;
 			}
+			// FIXME?: The assembly for this appears weird when diffed, could be the fault of diff though
 			str_l_r_fg = 0;
 			str_status++;
 		}
