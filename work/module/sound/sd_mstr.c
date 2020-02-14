@@ -35,15 +35,14 @@ int MemSpuTransWithNoLoop( u_int a0 )
 	temp4 = &mem_str_w[a0];
 	
 /*///////////////////////////////////////////////////////////////////////////*/
-	switch( temp4->unk00-2 ){
+	switch( (temp4->unk00 & 0xF)-2 ){
 	case 0:
 		temp4->unk04 = temp4->unk08 = voice_tbl[temp4->unk0C+1].addr - voice_tbl[temp4->unk0C].addr;
 		temp4->unk10 = mem_str_buf+voice_tbl[temp4->unk0C].addr;
-		temp4->unk10[11] = 0;
+		temp4->unk10[17] = 0;
 		temp4->unk10[temp4->unk04-0x1F] = 1;
 		
-		// TODO: check whether (SD_CORE_1|((a0+8)<<1)|SD_VA_LSAX) changes the asm
-		sceSdSetAddr( (a0+8)*2 | (SD_CORE_1|SD_VA_LSAX), a0*0x1000+0x9020 );
+		sceSdSetAddr( (SD_CORE_1|((a0+8)<<1)|SD_VA_LSAX), a0*0x1000+0x9020 );
 		sceSdVoiceTrans( 0, 0, temp4->unk10, (u_char *)(a0*0x1000+0x9020), 0x800 );
 		
 		temp4->unk10 += 0x0800;
@@ -53,7 +52,7 @@ int MemSpuTransWithNoLoop( u_int a0 )
 		break;
 /*///////////////////////////////////////////////////////////////////////////*/
 	case 1:
-		if( !temp4->unk08 || temp4->unk08 & 0x8000 ){
+		if( !temp4->unk08 || temp4->unk08 & 0x80000000 ){
 			temp4->unk00++;
 		} else {
 			if( temp4->unk08 > 0x0800 && temp4->unk10[0x07F1] != 1 ){
@@ -68,30 +67,28 @@ int MemSpuTransWithNoLoop( u_int a0 )
 		break;
 /*///////////////////////////////////////////////////////////////////////////*/
 	case 2:
-		// TODO: check whether (SD_CORE_1|((a0+8)<<1)|SD_VA_SSA) changes the asm
-		sceSdSetAddr( (a0+8)*2 | (SD_CORE_1|SD_VA_SSA), a0*0x1000+0x9020 );
+		sceSdSetAddr( (SD_CORE_1|((a0+8)<<1)|SD_VA_SSA), a0*0x1000+0x9020 );
 		keyon();
 		temp4->unk14 = 0x0800;
 		temp4->unk00++;
-		if( !temp4->unk08 || temp4->unk08 & 0x8000 ){
+		if( !temp4->unk08 || temp4->unk08 & 0x80000000 ){
 			temp4->unk00++;
 		}
 		break;
 /*///////////////////////////////////////////////////////////////////////////*/
 	case 3:
+		// FIXME: Adjust these to use the provided macros from the SDK
 		temp5 = sceSdGetParam( (a0+8)*2 | 0x0501 );
 		if( !temp5 ){
 			temp4->unk00++;
 		}
+		// FIXME: Adjust these to use the provided macros from the SDK
 		temp3 = sceSdGetAddr( (a0+8)*2 | 0x2241 );
-		// FIXME
-		// this produces the wrong order of instructions
-		// in asm the multiplication happens after the addition
-		temp3 = (temp3 + 0x9020) - a0*0x1000;
+		temp3 -= 0x9020 + (a0*0x1000);
 		if( temp3 >= 0x1000 ){
 			break;
 		}
-		if( (temp3 & 0x0800) == temp4->unk14 ){
+		if( temp4->unk14 == (temp3 & 0x0800) ){
 			temp2 = 1;
 			if( temp3 >= 0x0800 ){
 				sceSdVoiceTrans( 0, 0, temp4->unk10, (u_char *)(a0*0x1000+0x9020), 0x0800 );
