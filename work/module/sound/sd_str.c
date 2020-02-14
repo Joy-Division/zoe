@@ -427,7 +427,7 @@ int StrSpuTrans( void )
 			str_status++;
 			break;
 		}
-		spu_str_idx = sceSdGetAddr( 0x2269 );
+		spu_str_idx = sceSdGetAddr( SD_CORE_1|SD_VOICE_20|SD_VA_NAX );
 		spu_str_idx -= 0x5020;
 		if( !(spu_str_idx < 0x1000) || (spu_str_idx & 0x80000000) ){
 			break;

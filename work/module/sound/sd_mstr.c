@@ -83,7 +83,8 @@ int MemSpuTransWithNoLoop( u_int a0 )
 			temp4->unk00++;
 		}
 		// FIXME: Adjust these to use the provided macros from the SDK
-		temp3 = sceSdGetAddr( (a0+8)*2 | 0x2241 );
+		// TODO: check (SD_CORE_1|((a0+8)<<1)|SD_VA_NAX)
+		temp3 = sceSdGetAddr( (a0+8)*2 | (SD_CORE_1|SD_VA_NAX) );
 		temp3 -= 0x9020 + (a0*0x1000);
 		if( temp3 >= 0x1000 ){
 			break;
