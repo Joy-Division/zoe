@@ -284,18 +284,18 @@ int lnrSpuTrans( void )
 		}
 		if( str2_wait_fg[1] ){
 			// EMPTY BLOCK
-		} else {
-			lnr8_fade_vol = 1;
-			sceSdSetParam( 0x0F81, lnr8_fade_vol * 32767 / 2 );
-			sceSdSetParam( 0x1081, lnr8_fade_vol * 32767 / 2 );
-			lnr8_fade_vol++;
-			sceSdBlockTrans( 1, 16, (u_char *)lnr16_buf, 0x1000 );
-			lnr16_next_ofst = 0x0800;
+			break;
+		}
+		lnr8_fade_vol = 1;
+		sceSdSetParam( 0x0F81, lnr8_fade_vol * 32767 / 2 );
+		sceSdSetParam( 0x1081, lnr8_fade_vol * 32767 / 2 );
+		lnr8_fade_vol++;
+		sceSdBlockTrans( 1, 16, (u_char *)lnr16_buf, 0x1000 );
+		lnr16_next_ofst = 0x0800;
+		lnr8_status++;
+		if( !lnr8_unplay_size || (lnr8_unplay_size & 0x80000000) ){
+			lnr8_off_ctr = lnr8_wave_size >> 9;
 			lnr8_status++;
-			if( !lnr8_unplay_size || (lnr8_unplay_size & 0x80000000) ){
-				lnr8_off_ctr = lnr8_wave_size >> 9;
-				lnr8_status++;
-			}
 		}
 		break;
 /*///////////////////////////////////////////////////////////////////////////*/
@@ -307,13 +307,13 @@ int lnrSpuTrans( void )
 		}
 		spu_lnr16_idx = sceSdBlockTransStatus( 1, 0 );
 		spu_lnr16_idx = (spu_lnr16_idx & 0x00FFFFFF) - (u_int)lnr16_buf;
-		if( (spu_lnr16_idx < 0x1000) || (spu_lnr16_idx == 0x80000000) ){
+		if( (spu_lnr16_idx >= 0x1000) || (spu_lnr16_idx == 0x80000000) ){
 			break;
 		}
-		if( (spu_lnr16_idx & 0x0800) == lnr16_next_ofst ){
+		if( lnr16_next_ofst == (spu_lnr16_idx & 0x0800) ){
 			temp = 1;
 			if( lnr8_read_status[lnr8_play_idx] ){
-				lnr_trans( lnr16_buf+((-(spu_lnr16_idx / 0x0800))*0x0400), lnr8_trans_buf+lnr8_play_ofst, 0x0400 );
+				lnr_trans( lnr16_buf+((~(spu_lnr16_idx / 0x0800) & 1)*0x0400), lnr8_trans_buf+lnr8_play_ofst, 0x0400 );
 				lnr8_play_ofst += 0x0400;
 				if( lnr8_play_ofst == 0x8000 ){
 					lnr8_play_ofst = 0;
@@ -333,7 +333,7 @@ int lnrSpuTrans( void )
 				lnr8_counter += 512;
 				lnr16_next_ofst = (lnr16_next_ofst+0x0800) & 0x0FFF;
 			} else {
-				lnr_trans_0( lnr16_buf+((-(spu_lnr16_idx / 0x0800))*0x0400), 0x0400 );
+				lnr_trans_0( lnr16_buf+((~(spu_lnr16_idx / 0x0800) & 1)*0x0400), 0x0400 );
 				lnr16_next_ofst = (lnr16_next_ofst+0x800) & 0x0FFF;
 			}
 		}
@@ -342,16 +342,15 @@ int lnrSpuTrans( void )
 	case 4:
 		spu_lnr16_idx = sceSdBlockTransStatus( 1, 0 );
 		spu_lnr16_idx = (spu_lnr16_idx & 0x00FFFFFF) - (u_int)lnr16_buf;
-		if( (spu_lnr16_idx < 0x1000) || (spu_lnr16_idx == 0x80000000) ){
+		if( (spu_lnr16_idx >= 0x1000) || (spu_lnr16_idx & 0x80000000) ){
 			break;
 		}
-		if( (spu_lnr16_idx & 0x0800) == lnr16_next_ofst ){
-			lnr_trans_0( lnr16_buf+((-(spu_lnr16_idx / 0x0800))*0x0400), 0x0400 );
+		if( lnr16_next_ofst == (spu_lnr16_idx & 0x0800) ){
+			lnr_trans_0( lnr16_buf+((~(spu_lnr16_idx / 0x0800) & 1)*0x0400), 0x0400 );
 			lnr16_next_ofst = (lnr16_next_ofst+0x0800) & 0x0FFF;
 		}
 		lnr8_counter += 512;
-		lnr8_off_ctr--;
-		if( lnr8_off_ctr == -2 ){
+		if( --lnr8_off_ctr == -2 ){
 			lnr8_status++;
 		}
 		break;
