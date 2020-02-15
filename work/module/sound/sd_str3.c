@@ -282,7 +282,6 @@ int lnrSpuTrans( void )
 			lnr8_first_load = 0;
 		}
 		if( str2_wait_fg[1] ){
-			// EMPTY BLOCK
 			break;
 		}
 		lnr8_fade_vol = 1;
