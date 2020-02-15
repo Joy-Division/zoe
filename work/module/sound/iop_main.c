@@ -179,39 +179,39 @@ int createThread( void )
 	
 	sd_mem_alloc();
 
-	param.attr = TH_C;
-	param.entry = SdMain;
+	param.attr         = TH_C;
+	param.entry        = SdMain;
 	param.initPriority = 0x41;
-	param.stackSize = 0x4000;
-	param.option = 0;
+	param.stackSize    = 0x4000;
+	param.option       = 0;
 	id_SdMain = CreateThread( &param );
 	if( 0 >= id_SdMain ){};
 	StartThread( id_SdMain, 0 );
 
-	param.attr = TH_C;
-	param.entry = SdEELoad;
+	param.attr         = TH_C;
+	param.entry        = SdEELoad;
 	param.initPriority = 0x40;
-	param.stackSize = 0x4000;
-	param.option = 0;
+	param.stackSize    = 0x4000;
+	param.option       = 0;
 	id_SdEELoad = CreateThread( &param );
 	if( 0 >= id_SdEELoad ){};
 	StartThread( id_SdEELoad, 0 );
 
-	param.attr = TH_C;
-	param.entry = SdSet;
+	param.attr         = TH_C;
+	param.entry        = SdSet;
 	param.initPriority = 0x3F;
-	param.stackSize = 0x2000;
-	param.option = 0;
+	param.stackSize    = 0x2000;
+	param.option       = 0;
 	id_SdSet = CreateThread( &param );
 	if( 0 >= id_SdSet ){};
 	StartThread( id_SdSet, 0 );
 	RecieveInit( id_SdSet );
 
-	param.attr = TH_C;
-	param.entry = SdInt;
+	param.attr         = TH_C;
+	param.entry        = SdInt;
 	param.initPriority = 0x3E;
-	param.stackSize = 0x4000;
-	param.option = 0;
+	param.stackSize    = 0x4000;
+	param.option       = 0;
 	id_SdInt = CreateThread( &param );
 	if( 0 >= id_SdInt ){};
 	StartThread( id_SdInt, 0 );
@@ -230,17 +230,17 @@ int start()
 	int tid;
 
 	FlushDcache();
-	sceSdInit( SD_INIT_COLD ); /* initialize all */
+	sceSdInit( SD_INIT_COLD );  /* initialize all */
 	CpuEnableIntr();
-	EnableIntr( INUM_DMA_4 );
-	EnableIntr( INUM_DMA_7 );
-	EnableIntr( INUM_SPU );
+	EnableIntr( INUM_DMA_4 );   /* CORE0 DMA interrupt */
+	EnableIntr( INUM_DMA_7 );   /* CORE1 DMA interrupt */
+	EnableIntr( INUM_SPU );     /* SPU2 interrupt */
 
-	param.attr = TH_C;
-	param.entry = createThread;
+	param.attr         = TH_C;
+	param.entry        = createThread;
 	param.initPriority = 0x40;
-	param.stackSize = 0x400;
-	param.option = 0;
+	param.stackSize    = 0x400;
+	param.option       = 0;
 	tid = CreateThread( &param );
 	if( 0 >= tid ) return 1;
 	StartThread( tid, 0 );

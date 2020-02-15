@@ -101,7 +101,7 @@ void sd_init( void )
 	sceSdEffectAttr attr;
 	int i;
 	
-	/* i = SPU CORE No. */
+	/* i = SD_CORE_? (SPU CORE ID) */
 	for( i = 0 ; i < 2 ; i++ ){
 		sceSdSetParam( i|SD_P_MVOLL, 0 );
 		sceSdSetParam( i|SD_P_MVOLR, 0 );
@@ -145,7 +145,7 @@ void sd_init( void )
 		se_playing[i].code = 0;
 	}
 	
-	for( i = 0 ; i < 16 ; i++ ) {
+	for( i = 0 ; i < 16 ; i++ ){
 		mix_fader[i].unk04 = 0xFFFF;
 		mix_fader[i].unk08 = 0xFFFF;
 		mix_fader[i].unk00 = 0;
