@@ -37,49 +37,37 @@ void spuwr( void )
 	for( i = 0 ; i < 44 ; i++ ){
 		if( spu_tr_wk[i].vol_fg ){
 			if( i < 24 ){
-//				sceSdSetParam( i*2, spu_tr_wk[i].vol_l );
-//				sceSdSetParam( (i*2) | 0x100, spu_tr_wk[i].vol_r );
-				sceSdSetParam( SD_CORE_0|(i<<1)|SD_VP_VOLL, spu_tr_wk[i].vol_l ); // CHECK
-				sceSdSetParam( SD_CORE_0|(i<<1)|SD_VP_VOLR, spu_tr_wk[i].vol_r ); // CHECK
+				sceSdSetParam( SD_CORE_0|(i<<1)|SD_VP_VOLL, spu_tr_wk[i].vol_l );
+				sceSdSetParam( SD_CORE_0|(i<<1)|SD_VP_VOLR, spu_tr_wk[i].vol_r );
 			} else {
-//				sceSdSetParam( ((i-24)*2) | 0x0001, spu_tr_wk[i].vol_l );
-//				sceSdSetParam( ((i-24)*2) | 0x0101, spu_tr_wk[i].vol_r );
-				sceSdSetParam( SD_CORE_1|((i-24)<<1)|SD_VP_VOLL, spu_tr_wk[i].vol_l ); // CHECK
-				sceSdSetParam( SD_CORE_1|((i-24)<<1)|SD_VP_VOLR, spu_tr_wk[i].vol_r ); // CHECK
+				sceSdSetParam( SD_CORE_1|((i-24)<<1)|SD_VP_VOLL, spu_tr_wk[i].vol_l );
+				sceSdSetParam( SD_CORE_1|((i-24)<<1)|SD_VP_VOLR, spu_tr_wk[i].vol_r );
 			}
 			spu_tr_wk[i].vol_fg = 0;
 		}
 		if( spu_tr_wk[i].pitch_fg ){
 			if( i < 24 ){
-//				sceSdSetParam( (i * 2) | 0x0200, spu_tr_wk[i].pitch );
-				sceSdSetParam( SD_CORE_0|(i<<1)|SD_VP_PITCH, spu_tr_wk[i].pitch ); // CHECK
+				sceSdSetParam( SD_CORE_0|(i<<1)|SD_VP_PITCH, spu_tr_wk[i].pitch );
 			} else {
-//				sceSdSetParam( ((i-24)*2) | 0x0201, spu_tr_wk[i].pitch );
-				sceSdSetParam( SD_CORE_1|((i-24)<<1)|SD_VP_PITCH, spu_tr_wk[i].pitch ); // CHECK
+				sceSdSetParam( SD_CORE_1|((i-24)<<1)|SD_VP_PITCH, spu_tr_wk[i].pitch );
 			}
 			spu_tr_wk[i].pitch_fg = 0;
 		}
 		if( spu_tr_wk[i].addr_fg ){
 			if( i < 24 ){
-//				sceSdSetAddr( (i*2) | (SD_CORE_0|SD_VA_SSA), (u_int)(spu_wave_start_ptr+spu_tr_wk[i].addr) );
-				sceSdSetAddr( SD_CORE_0|(i<<1)|SD_VA_SSA, (u_int)(spu_wave_start_ptr+spu_tr_wk[i].addr) ); // CHECK
+				sceSdSetAddr( SD_CORE_0|(i<<1)|SD_VA_SSA, (u_int)(spu_wave_start_ptr+spu_tr_wk[i].addr) );
 			} else {
-//				sceSdSetAddr( ((i-24)*2) | (SD_CORE_1|SD_VA_SSA), (u_int)(spu_wave_start_ptr+spu_tr_wk[i].addr) );
-				sceSdSetAddr( SD_CORE_1|((i-24)<<1)|SD_VA_SSA, (u_int)(spu_wave_start_ptr+spu_tr_wk[i].addr) ); // CHECK
+				sceSdSetAddr( SD_CORE_1|((i-24)<<1)|SD_VA_SSA, (u_int)(spu_wave_start_ptr+spu_tr_wk[i].addr) );
 			}
 			spu_tr_wk[i].addr_fg = 0;
 		}
 		if( spu_tr_wk[i].env1_fg || spu_tr_wk[i].env2_fg || spu_tr_wk[i].env3_fg ){
 			if( i < 24 ){
-//				sceSdSetParam( (i*2) | 0x0300, ((spu_tr_wk[i].ar & 0x7F) << 8) | spu_tr_wk[i].a_mode | ((spu_tr_wk[i].dr & 0x0F) << 4) | (spu_tr_wk[i].sl & 0x0F) );
-//				sceSdSetParam( (i*2) | 0x0400, ((spu_tr_wk[i].sr & 0x7F) << 6) | spu_tr_wk[i].s_mode | spu_tr_wk[i].r_mode | (spu_tr_wk[i].rr & 0x1F) );
-				sceSdSetParam( SD_CORE_0|(i<<1)|SD_VP_ADSR1, ((spu_tr_wk[i].ar & 0x7F) << 8) | spu_tr_wk[i].a_mode | ((spu_tr_wk[i].dr & 0x0F) << 4) | (spu_tr_wk[i].sl & 0x0F) ); // CHECK
-				sceSdSetParam( SD_CORE_0|(i<<1)|SD_VP_ADSR2, ((spu_tr_wk[i].sr & 0x7F) << 6) | spu_tr_wk[i].s_mode | spu_tr_wk[i].r_mode | (spu_tr_wk[i].rr & 0x1F) ); // CHECK
+				sceSdSetParam( SD_CORE_0|(i<<1)|SD_VP_ADSR1, spu_tr_wk[i].a_mode | ((spu_tr_wk[i].ar & 0x7F) << 8) | ((spu_tr_wk[i].dr & 0x0F) << 4) | (spu_tr_wk[i].sl & 0x0F) );
+				sceSdSetParam( SD_CORE_0|(i<<1)|SD_VP_ADSR2, spu_tr_wk[i].s_mode | ((spu_tr_wk[i].sr & 0x7F) << 6) | spu_tr_wk[i].r_mode | (spu_tr_wk[i].rr & 0x1F) );
 			} else {
-//				sceSdSetParam( ((i-24)*2) | 0x0301, ((spu_tr_wk[i].ar & 0x7F) << 8) | spu_tr_wk[i].a_mode | ((spu_tr_wk[i].dr & 0x0F) << 4) | (spu_tr_wk[i].sl & 0x0F) );
-//				sceSdSetParam( ((i-24)*2) | 0x0401, ((spu_tr_wk[i].sr & 0x7F) << 6) | spu_tr_wk[i].s_mode | spu_tr_wk[i].r_mode | (spu_tr_wk[i].rr & 0x1F) );
-				sceSdSetParam( SD_CORE_1|((i-24)<<1)|SD_VP_ADSR1, ((spu_tr_wk[i].ar & 0x7F) << 8) | spu_tr_wk[i].a_mode | ((spu_tr_wk[i].dr & 0x0F) << 4) | (spu_tr_wk[i].sl & 0x0F) ); // CHECK
-				sceSdSetParam( SD_CORE_1|((i-24)<<1)|SD_VP_ADSR2, ((spu_tr_wk[i].sr & 0x7F) << 6) | spu_tr_wk[i].s_mode | spu_tr_wk[i].r_mode | (spu_tr_wk[i].rr & 0x1F) ); // CHECK
+				sceSdSetParam( SD_CORE_1|((i-24)<<1)|SD_VP_ADSR1, spu_tr_wk[i].a_mode | ((spu_tr_wk[i].ar & 0x7F) << 8) | ((spu_tr_wk[i].dr & 0x0F) << 4) | (spu_tr_wk[i].sl & 0x0F) );
+				sceSdSetParam( SD_CORE_1|((i-24)<<1)|SD_VP_ADSR2, spu_tr_wk[i].s_mode | ((spu_tr_wk[i].sr & 0x7F) << 6) | spu_tr_wk[i].r_mode | (spu_tr_wk[i].rr & 0x1F) );
 			}
 			spu_tr_wk[i].env1_fg = spu_tr_wk[i].env2_fg = spu_tr_wk[i].env3_fg = 0;
 		}
