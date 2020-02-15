@@ -51,9 +51,9 @@ void lnr_tr_off( void )
 void lnr_spuwr( void )
 {
 	if( lnr_keyoffs ){
-		sceSdBlockTrans( 1, 2, 0, 0 );
 		sceSdSetParam( 0x0F81, 0 );
 		sceSdSetParam( 0x1081, 0 );
+		sceSdBlockTrans( 1, SD_TRANS_MODE_STOP, NULL, 0 );
 		lnr_keyoffs = 0;
 	}
 }
@@ -289,7 +289,7 @@ int lnrSpuTrans( void )
 		sceSdSetParam( 0x0F81, lnr8_fade_vol * 32767 / 2 );
 		sceSdSetParam( 0x1081, lnr8_fade_vol * 32767 / 2 );
 		lnr8_fade_vol++;
-		sceSdBlockTrans( 1, 16, (u_char *)lnr16_buf, 0x1000 );
+		sceSdBlockTrans( 1, SD_TRANS_MODE_WRITE|SD_BLOCK_LOOP, (u_char *)lnr16_buf, 0x1000 );
 		lnr16_next_ofst = 0x0800;
 		lnr8_status++;
 		if( !lnr8_unplay_size || (lnr8_unplay_size & 0x80000000) ){
