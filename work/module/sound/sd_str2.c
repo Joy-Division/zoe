@@ -210,10 +210,14 @@ int Str2SpuTrans( int a0 )
 		case 1: // 0x13D94
 			// these are functionally fine but dont emit the same assembly
 			// lacks some register shuffling
-			sceSdSetParam( ((a0*2)+0x14)*2 | 0x0301, 0xFF );
-			sceSdSetParam( ((a0*2)+0x14)*2 | 0x0401, 0x07 );
-			sceSdSetParam( ((a0*2)+0x15)*2 | 0x0301, 0xFF );
-			sceSdSetParam( ((a0*2)+0x15)*2 | 0x0401, 0x07 );
+//			sceSdSetParam( ((a0*2)+0x14)*2 | 0x0301, 0xFF );
+//			sceSdSetParam( ((a0*2)+0x14)*2 | 0x0401, 0x07 );
+//			sceSdSetParam( ((a0*2)+0x15)*2 | 0x0301, 0xFF );
+//			sceSdSetParam( ((a0*2)+0x15)*2 | 0x0401, 0x07 );
+			sceSdSetParam( SD_CORE_1|(((a0<<1)+20)<<1)|SD_VP_ADSR1, 0xFF ); // CHECK
+			sceSdSetParam( SD_CORE_1|(((a0<<1)+20)<<1)|SD_VP_ADSR2, 0x07 ); // CHECK
+			sceSdSetParam( SD_CORE_1|(((a0<<1)+21)<<1)|SD_VP_ADSR1, 0xFF ); // CHECK
+			sceSdSetParam( SD_CORE_1|(((a0<<1)+21)<<1)|SD_VP_ADSR2, 0x07 ); // CHECK
 			str2_first_load[a0] = 0;
 			str2_status[a0] = 8;
 			break;
@@ -221,10 +225,14 @@ int Str2SpuTrans( int a0 )
 		case 2: // 0x13EB8
 			// these are functionally fine but dont emit the same assembly
 			// lacks some register shuffling
-			sceSdSetParam( ((a0*2)+0x14)*2 | 0x0301, 0xFF );
-			sceSdSetParam( ((a0*2)+0x14)*2 | 0x0401, 0x0D );
-			sceSdSetParam( ((a0*2)+0x15)*2 | 0x0301, 0xFF );
-			sceSdSetParam( ((a0*2)+0x15)*2 | 0x0401, 0x0D );
+//			sceSdSetParam( ((a0*2)+0x14)*2 | 0x0301, 0xFF );
+//			sceSdSetParam( ((a0*2)+0x14)*2 | 0x0401, 0x0D );
+//			sceSdSetParam( ((a0*2)+0x15)*2 | 0x0301, 0xFF );
+//			sceSdSetParam( ((a0*2)+0x15)*2 | 0x0401, 0x0D );
+			sceSdSetParam( SD_CORE_1|(((a0<<1)+20)<<1)|SD_VP_ADSR1, 0xFF ); // CHECK
+			sceSdSetParam( SD_CORE_1|(((a0<<1)+20)<<1)|SD_VP_ADSR2, 0x0D ); // CHECK
+			sceSdSetParam( SD_CORE_1|(((a0<<1)+21)<<1)|SD_VP_ADSR1, 0xFF ); // CHECK
+			sceSdSetParam( SD_CORE_1|(((a0<<1)+21)<<1)|SD_VP_ADSR2, 0x0D ); // CHECK
 			break;
 		}
 		str2_tr_off(a0);
@@ -245,7 +253,8 @@ int Str2SpuTrans( int a0 )
 			spu_str2_start_ptr_l[a0] = a0 * 0x2000 + 0x5020;
 			// this is functionally fine but doesnt emit the same assembly
 			// lacks some register shuffling
-			sceSdSetAddr( ((a0*2)+0x14)*2 | (SD_CORE_1|SD_VA_LSAX), a0*0x2000+0x5020 );
+//			sceSdSetAddr( ((a0*2)+0x14)*2 | (SD_CORE_1|SD_VA_LSAX), a0*0x2000+0x5020 );
+			sceSdSetAddr( SD_CORE_1|(((a0<<1)+20)<<1)|SD_VA_LSAX, a0*0x2000+0x5020 ); // CHECK
 			sceSdVoiceTrans( 1, 0, str2_trans_buf[a0], (u_char *)(spu_str2_start_ptr_l[a0]), 0x0800 );
 			if( !str2_mono_fg[a0] ){
 				str2_play_offset[a0] = 0x0800;
@@ -256,7 +265,8 @@ int Str2SpuTrans( int a0 )
 			spu_str2_start_ptr_r[a0] = a0*0x2000+0x6020;
 			// this is functionally fine but doesnt emit the same assembly
 			// lacks some register shuffling
-			sceSdSetAddr( ((a0*2)+0x15)*2 | (SD_CORE_1|SD_VA_LSAX), a0*0x2000+0x6020 );
+//			sceSdSetAddr( ((a0*2)+0x15)*2 | (SD_CORE_1|SD_VA_LSAX), a0*0x2000+0x6020 );
+			sceSdSetAddr( SD_CORE_1|(((a0<<1)+21)<<1)|SD_VA_LSAX, a0*0x2000+0x6020 ); // CHECK
 			sceSdVoiceTrans( 1, 0, str2_trans_buf[a0]+str2_play_offset[a0], (u_char *)(spu_str2_start_ptr_r[a0]), 0x0800 );
 			str2_play_offset[a0] += 0x0800;
 			str2_unplay_size[a0] -= 0x0800;
@@ -311,10 +321,14 @@ int Str2SpuTrans( int a0 )
 			// 0x14CC0
 			// these are functionally fine but dont emit the same assembly
 			// lacks some register shuffling
-			sceSdSetParam( (((a0*2)+0x14)*2) | 0x0001, temp3 );
-			sceSdSetParam( (((a0*2)+0x14)*2) | 0x0101, temp4 );
-			sceSdSetParam( (((a0*2)+0x15)*2) | 0x0001, (unsigned)temp3 / 3 );
-			sceSdSetParam( (((a0*2)+0x15)*2) | 0x0101, (unsigned)temp3 / 3 );
+//			sceSdSetParam( (((a0*2)+0x14)*2) | 0x0001, temp3 );
+//			sceSdSetParam( (((a0*2)+0x14)*2) | 0x0101, temp4 );
+//			sceSdSetParam( (((a0*2)+0x15)*2) | 0x0001, (unsigned)temp3 / 3 );
+//			sceSdSetParam( (((a0*2)+0x15)*2) | 0x0101, (unsigned)temp3 / 3 );
+			sceSdSetParam( SD_CORE_1|(((a0<<1)+20)<<1)|SD_VP_VOLL, temp3 ); // CHECK
+			sceSdSetParam( SD_CORE_1|(((a0<<1)+20)<<1)|SD_VP_VOLR, temp4 ); // CHECK
+			sceSdSetParam( SD_CORE_1|(((a0<<1)+21)<<1)|SD_VP_VOLL, (unsigned)temp3 / 3 ); // CHECK
+			sceSdSetParam( SD_CORE_1|(((a0<<1)+21)<<1)|SD_VP_VOLR, (unsigned)temp3 / 3 ); // CHECK
 			vox_fader[a0].unk04 = vox_fader[a0].unk00;
 			vox_fader[a0].unk0C = vox_fader[a0].unk08;
 		} else {
@@ -328,10 +342,14 @@ int Str2SpuTrans( int a0 )
 				// 0x1508C
 				// these are functionally fine but dont emit the same assembly
 				// lacks some register shuffling
-				sceSdSetParam( (((a0*2)+0x14)*2) | 0x0001, temp3 );
-				sceSdSetParam( (((a0*2)+0x14)*2) | 0x0101, temp4 );
-				sceSdSetParam( (((a0*2)+0x15)*2) | 0x0001, (unsigned)temp3 / 3 );
-				sceSdSetParam( (((a0*2)+0x15)*2) | 0x0101, (unsigned)temp3 / 3 );
+//				sceSdSetParam( (((a0*2)+0x14)*2) | 0x0001, temp3 );
+//				sceSdSetParam( (((a0*2)+0x14)*2) | 0x0101, temp4 );
+//				sceSdSetParam( (((a0*2)+0x15)*2) | 0x0001, (unsigned)temp3 / 3 );
+//				sceSdSetParam( (((a0*2)+0x15)*2) | 0x0101, (unsigned)temp3 / 3 );
+				sceSdSetParam( SD_CORE_1|(((a0<<1)+20)<<1)|SD_VP_VOLL, temp3 ); // CHECK
+				sceSdSetParam( SD_CORE_1|(((a0<<1)+20)<<1)|SD_VP_VOLR, temp4 ); // CHECK
+				sceSdSetParam( SD_CORE_1|(((a0<<1)+21)<<1)|SD_VP_VOLL, (unsigned)temp3 / 3 ); // CHECK
+				sceSdSetParam( SD_CORE_1|(((a0<<1)+21)<<1)|SD_VP_VOLR, (unsigned)temp3 / 3 ); // CHECK
 				vox_fader[a0].unk04 = vox_fader[a0].unk00;
 				vox_fader[a0].unk0C = vox_fader[a0].unk08;
 			} else {
@@ -341,28 +359,40 @@ int Str2SpuTrans( int a0 )
 				// 0x152C8
 				// these are functionally fine but dont emit the same assembly
 				// lacks some register shuffling
-				sceSdSetParam( (((a0*2)+0x14)*2) | 0x0001, temp3 );
-				sceSdSetParam( (((a0*2)+0x14)*2) | 0x0101, 0 );
-				sceSdSetParam( (((a0*2)+0x15)*2) | 0x0001, 0 );
-				sceSdSetParam( (((a0*2)+0x15)*2) | 0x0101, temp4 );
+//				sceSdSetParam( (((a0*2)+0x14)*2) | 0x0001, temp3 );
+//				sceSdSetParam( (((a0*2)+0x14)*2) | 0x0101, 0 );
+//				sceSdSetParam( (((a0*2)+0x15)*2) | 0x0001, 0 );
+//				sceSdSetParam( (((a0*2)+0x15)*2) | 0x0101, temp4 );
+				sceSdSetParam( SD_CORE_1|(((a0<<1)+20)<<1)|SD_VP_VOLL, temp3 ); // CHECK
+				sceSdSetParam( SD_CORE_1|(((a0<<1)+20)<<1)|SD_VP_VOLR, 0 ); // CHECK
+				sceSdSetParam( SD_CORE_1|(((a0<<1)+21)<<1)|SD_VP_VOLL, 0 ); // CHECK
+				sceSdSetParam( SD_CORE_1|(((a0<<1)+21)<<1)|SD_VP_VOLR, temp4 ); // CHECK
 				vox_fader[a0].unk04 = vox_fader[a0].unk00;
 				vox_fader[a0].unk0C = vox_fader[a0].unk08;
 			}
 		}
-		sceSdSetParam( ((a0*2)+0x14)*2 | 0x201, (u_int)((u_short)str2_pitch[a0]*str2_master_pitch) / 0x1000 );
-		sceSdSetAddr( ((a0*2)+0x14)*2 | (SD_CORE_1|SD_VA_SSA), a0*0x2000+0x5020 );
+//		sceSdSetParam( ((a0*2)+0x14)*2 | 0x201, (u_int)((u_short)str2_pitch[a0]*str2_master_pitch) / 0x1000 );
+//		sceSdSetAddr( ((a0*2)+0x14)*2 | (SD_CORE_1|SD_VA_SSA), a0*0x2000+0x5020 );
+		sceSdSetParam( SD_CORE_1|(((a0<<1)+20)<<1)|SD_VP_PITCH, (u_int)((u_short)str2_pitch[a0]*str2_master_pitch) / 0x1000 ); // CHECK
+		sceSdSetAddr( SD_CORE_1|(((a0<<1)+20)<<1)|SD_VA_SSA, a0*0x2000+0x5020 ); // CHECK
 		// 0x15470
 		// these are functionally fine but dont emit the same assembly
 		// lacks some register shuffling
-		sceSdSetParam( ((a0*2)+0x14)*2 | 0x0301, 0xFF );
-		sceSdSetParam( ((a0*2)+0x14)*2 | 0x0401, 0x07 );
-		sceSdSetParam( ((a0*2)+0x15)*2 | 0x0201, (u_int)((u_short)str2_pitch[a0]*str2_master_pitch) / 0x1000 );
-		sceSdSetAddr( ((a0*2)+0x15)*2 | (SD_CORE_1|SD_VA_SSA), a0*0x2000+0x6020 );
+//		sceSdSetParam( ((a0*2)+0x14)*2 | 0x0301, 0xFF );
+//		sceSdSetParam( ((a0*2)+0x14)*2 | 0x0401, 0x07 );
+//		sceSdSetParam( ((a0*2)+0x15)*2 | 0x0201, (u_int)((u_short)str2_pitch[a0]*str2_master_pitch) / 0x1000 );
+//		sceSdSetAddr( ((a0*2)+0x15)*2 | (SD_CORE_1|SD_VA_SSA), a0*0x2000+0x6020 );
+		sceSdSetParam( SD_CORE_1|(((a0<<1)+20)<<1)|SD_VP_ADSR1, 0xFF ); // CHECK
+		sceSdSetParam( SD_CORE_1|(((a0<<1)+20)<<1)|SD_VP_ADSR2, 0x07 ); // CHECK
+		sceSdSetParam( SD_CORE_1|(((a0<<1)+21)<<1)|SD_VP_PITCH, (u_int)((u_short)str2_pitch[a0]*str2_master_pitch) / 0x1000 ); // CHECK
+		sceSdSetAddr( SD_CORE_1|(((a0<<1)+21)<<1)|SD_VA_SSA, a0*0x2000+0x6020 ); // CHECK
 		// 0x155A0
 		// these are functionally fine but dont emit the same assembly
 		// lacks some register shuffling
-		sceSdSetParam( ((a0*2)+0x15)*2 | 0x0301, 0xFF );
-		sceSdSetParam( ((a0*2)+0x15)*2 | 0x0401, 0x07 );
+//		sceSdSetParam( ((a0*2)+0x15)*2 | 0x0301, 0xFF );
+//		sceSdSetParam( ((a0*2)+0x15)*2 | 0x0401, 0x07 );
+		sceSdSetParam( SD_CORE_1|(((a0<<1)+21)<<1)|SD_VP_ADSR1, 0xFF ); // CHECK
+		sceSdSetParam( SD_CORE_1|(((a0<<1)+21)<<1)|SD_VP_ADSR2, 0x07 ); // CHECK
 		if( !a0 ){
 			sceSdSetSwitch( SD_CORE_1|SD_S_KON, 0x30 );
 		} else {
@@ -379,12 +409,13 @@ int Str2SpuTrans( int a0 )
 /* ///////////////////////////////////////////////////////////////////////// */
 	case 3:
 //		if( sceSdGetParam( ((a0*2)+0x14)*2 | (SD_CORE_1|SD_VP_ENVX) ) == 0 ){
-		if( sceSdGetParam( SD_CORE_1|(((a0<<1)+0x14)<<1)|SD_VP_ENVX ) == 0 ){ // CHECK
+		if( sceSdGetParam( SD_CORE_1|(((a0<<1)+20)<<1)|SD_VP_ENVX ) == 0 ){ // CHECK
 			str2_off_ctr[a0] = -1;
 			str2_status[a0]++;
 			break;
 		}
-		if( (vox_fader[a0].unk00 == vox_fader[a0].unk04) || (vox_fader[a0].unk08 == vox_fader[a0].unk0C) ){
+		if((vox_fader[a0].unk00 == vox_fader[a0].unk04)
+		|| (vox_fader[a0].unk08 == vox_fader[a0].unk0C)){
 			if( sound_mono_fg ){
 				temp3 = temp4 = (((((unsigned)(str2_volume[a0] * vox_fader[a0].unk00) / 0x3F)
 								* se_pant[0x80]) / 0x7F) * str2_master_vol)
@@ -392,10 +423,14 @@ int Str2SpuTrans( int a0 )
 				// 0x159F0
 				// these are functionally fine but dont emit the same assembly
 				// lacks some register shuffling
-				sceSdSetParam( (((a0*2)+0x14)*2) | 0x0001, temp3 );
-				sceSdSetParam( (((a0*2)+0x14)*2) | 0x0101, temp4 );
-				sceSdSetParam( (((a0*2)+0x15)*2) | 0x0001, temp3 );
-				sceSdSetParam( (((a0*2)+0x15)*2) | 0x0101, temp4 );
+//				sceSdSetParam( (((a0*2)+0x14)*2) | 0x0001, temp3 );
+//				sceSdSetParam( (((a0*2)+0x14)*2) | 0x0101, temp4 );
+//				sceSdSetParam( (((a0*2)+0x15)*2) | 0x0001, temp3 );
+//				sceSdSetParam( (((a0*2)+0x15)*2) | 0x0101, temp4 );
+				sceSdSetParam( SD_CORE_1|(((a0<<1)+20)<<1)|SD_VP_VOLL, temp3 ); // CHECK
+				sceSdSetParam( SD_CORE_1|(((a0<<1)+20)<<1)|SD_VP_VOLR, temp4 ); // CHECK
+				sceSdSetParam( SD_CORE_1|(((a0<<1)+21)<<1)|SD_VP_VOLL, temp3 ); // CHECK
+				sceSdSetParam( SD_CORE_1|(((a0<<1)+21)<<1)|SD_VP_VOLR, temp4 ); // CHECK
 				vox_fader[a0].unk04 = vox_fader[a0].unk00;
 				vox_fader[a0].unk0C = vox_fader[a0].unk08;
 			} else {
@@ -409,17 +444,21 @@ int Str2SpuTrans( int a0 )
 					// 0x15D80
 					// these are functionally fine but dont emit the same assembly
 					// lacks some register shuffling
-					sceSdSetParam( (((a0*2)+0x14)*2) | 0x0001, temp3 );
-					sceSdSetParam( (((a0*2)+0x14)*2) | 0x0101, temp4 );
-					sceSdSetParam( (((a0*2)+0x15)*2) | 0x0001, temp3 );
-					sceSdSetParam( (((a0*2)+0x15)*2) | 0x0101, temp3 );
+//					sceSdSetParam( (((a0*2)+0x14)*2) | 0x0001, temp3 );
+//					sceSdSetParam( (((a0*2)+0x14)*2) | 0x0101, temp4 );
+//					sceSdSetParam( (((a0*2)+0x15)*2) | 0x0001, temp3 );
+//					sceSdSetParam( (((a0*2)+0x15)*2) | 0x0101, temp3 );
+					sceSdSetParam( SD_CORE_1|(((a0<<1)+20)<<1)|SD_VP_VOLL, temp3 ); // CHECK
+					sceSdSetParam( SD_CORE_1|(((a0<<1)+20)<<1)|SD_VP_VOLR, temp4 ); // CHECK
+					sceSdSetParam( SD_CORE_1|(((a0<<1)+21)<<1)|SD_VP_VOLL, temp3 ); // CHECK
+					sceSdSetParam( SD_CORE_1|(((a0<<1)+21)<<1)|SD_VP_VOLR, temp3 ); // CHECK
 					vox_fader[a0].unk04 = vox_fader[a0].unk00;
 					vox_fader[a0].unk0C = vox_fader[a0].unk08;
 				}
 			}
 		}
 //		spu_str2_idx[a0] = sceSdGetAddr( ((a0*2)+0x14)*2 | (SD_CORE_1|SD_VA_NAX) );
-		spu_str2_idx[a0] = sceSdGetAddr( SD_CORE_1|(((a0<<1)+0x14)<<1)|SD_VA_NAX ); // CHECK
+		spu_str2_idx[a0] = sceSdGetAddr( SD_CORE_1|(((a0<<1)+20)<<1)|SD_VA_NAX ); // CHECK
 		spu_str2_idx[a0] = (spu_str2_idx[a0] - 0x5020) * 0x1FFF;
 		if( spu_str2_idx[a0] >= 0x1000 || (spu_str2_idx[a0] & 0x80000000) ){
 			break;

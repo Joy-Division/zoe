@@ -308,18 +308,18 @@ int StrSpuTrans( void )
 	if( str_stop_fg && str_status > 1 ){
 		switch( str_stop_fg ){
 		case 1:
-			sceSdSetParam( 0x0329, 0xFF );
-			sceSdSetParam( 0x0429, 0x07 );
-			sceSdSetParam( 0x032B, 0xFF );
-			sceSdSetParam( 0x042B, 0x07 );
+			sceSdSetParam( SD_CORE_1|SD_VOICE_20|SD_VP_ADSR1, 0xFF );
+			sceSdSetParam( SD_CORE_1|SD_VOICE_20|SD_VP_ADSR2, 0x07 );
+			sceSdSetParam( SD_CORE_1|SD_VOICE_21|SD_VP_ADSR1, 0xFF );
+			sceSdSetParam( SD_CORE_1|SD_VOICE_21|SD_VP_ADSR2, 0x07 );
 			str_status = 7;
 			break;
 		
 		case 2:
-			sceSdSetParam( 0x0329, 0xFF );
-			sceSdSetParam( 0x0429, 0x0D );
-			sceSdSetParam( 0x032B, 0xFF );
-			sceSdSetParam( 0x042B, 0x0D );
+			sceSdSetParam( SD_CORE_1|SD_VOICE_20|SD_VP_ADSR1, 0xFF );
+			sceSdSetParam( SD_CORE_1|SD_VOICE_20|SD_VP_ADSR2, 0x0D );
+			sceSdSetParam( SD_CORE_1|SD_VOICE_21|SD_VP_ADSR1, 0xFF );
+			sceSdSetParam( SD_CORE_1|SD_VOICE_21|SD_VP_ADSR2, 0x0D );
 			break;
 		}
 		str_tr_off();
@@ -390,27 +390,27 @@ int StrSpuTrans( void )
 			break;
 		}
 		if( sound_mono_fg ){
-			sceSdSetParam( 0x0029, (((str_volume * se_pant[0x80]) >> 7) * str_master_vol) / 0x3FFF );
-			sceSdSetParam( 0x0129, (((str_volume * se_pant[0x80]) >> 7) * str_master_vol) / 0x3FFF );
+			sceSdSetParam( SD_CORE_1|SD_VOICE_20|SD_VP_VOLL, (((str_volume * se_pant[0x80]) >> 7) * str_master_vol) / 0x3FFF );
+			sceSdSetParam( SD_CORE_1|SD_VOICE_20|SD_VP_VOLR, (((str_volume * se_pant[0x80]) >> 7) * str_master_vol) / 0x3FFF );
 		} else {
-			sceSdSetParam( 0x0029, (((str_volume * se_pant[0xFC]) >> 7) * str_master_vol) / 0x3FFF );
-			sceSdSetParam( 0x0129, 0 );
+			sceSdSetParam( SD_CORE_1|SD_VOICE_20|SD_VP_VOLL, (((str_volume * se_pant[0xFC]) >> 7) * str_master_vol) / 0x3FFF );
+			sceSdSetParam( SD_CORE_1|SD_VOICE_20|SD_VP_VOLR, 0 );
 		}
-		sceSdSetParam( 0x0229, (u_short)((u_int)(str_pitch*str_master_pitch) >> 12) );
+		sceSdSetParam( SD_CORE_1|SD_VOICE_20|SD_VP_PITCH, (u_short)((u_int)(str_pitch*str_master_pitch) >> 12) );
 		sceSdSetAddr( SD_CORE_1|SD_VOICE_20|SD_VA_SSA, 0x5020 );
-		sceSdSetParam( 0x0329, 0xFF );
-		sceSdSetParam( 0x0429, 0x07 );
+		sceSdSetParam( SD_CORE_1|SD_VOICE_20|SD_VP_ADSR1, 0xFF );
+		sceSdSetParam( SD_CORE_1|SD_VOICE_20|SD_VP_ADSR2, 0x07 );
 		if( sound_mono_fg ){
-			sceSdSetParam( 0x002B, (((str_volume*se_pant[0x80]) >> 7)*str_master_vol) / 0x3FFF );
-			sceSdSetParam( 0x012B, (((str_volume*se_pant[0x80]) >> 7)*str_master_vol) / 0x3FFF );
+			sceSdSetParam( SD_CORE_1|SD_VOICE_21|SD_VP_VOLL, (((str_volume*se_pant[0x80]) >> 7)*str_master_vol) / 0x3FFF );
+			sceSdSetParam( SD_CORE_1|SD_VOICE_21|SD_VP_VOLR, (((str_volume*se_pant[0x80]) >> 7)*str_master_vol) / 0x3FFF );
 		} else {
-			sceSdSetParam( 0x002B, 0 );
-			sceSdSetParam( 0x012B, (((str_volume*se_pant[0xFC]) >> 7)*str_master_vol) / 0x3FFF );
+			sceSdSetParam( SD_CORE_1|SD_VOICE_21|SD_VP_VOLL, 0 );
+			sceSdSetParam( SD_CORE_1|SD_VOICE_21|SD_VP_VOLR, (((str_volume*se_pant[0xFC]) >> 7)*str_master_vol) / 0x3FFF );
 		}
-		sceSdSetParam( 0x022B, (u_short)((u_int)(str_pitch*str_master_pitch) >> 12) );
+		sceSdSetParam( SD_CORE_1|SD_VOICE_21|SD_VP_PITCH, (u_short)((u_int)(str_pitch*str_master_pitch) >> 12) );
 		sceSdSetAddr( SD_CORE_1|SD_VOICE_21|SD_VA_SSA, 0x6020 );
-		sceSdSetParam( 0x032B, 0x00FF );
-		sceSdSetParam( 0x042B, 0x0007 );
+		sceSdSetParam( SD_CORE_1|SD_VOICE_21|SD_VP_ADSR1, 0x00FF );
+		sceSdSetParam( SD_CORE_1|SD_VOICE_21|SD_VP_ADSR2, 0x0007 );
 		sceSdSetSwitch( SD_CORE_1|SD_S_KON, 0x30 );
 		mute_str_l_r_fg = 0;
 		spu_str_idx = 0;

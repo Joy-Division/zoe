@@ -42,7 +42,7 @@ int MemSpuTransWithNoLoop( u_int a0 )
 		temp4->unk10[17] = 0;
 		temp4->unk10[temp4->unk04-0x1F] = 1;
 		
-		sceSdSetAddr( (SD_CORE_1|((a0+8)<<1)|SD_VA_LSAX), a0*0x1000+0x9020 );
+		sceSdSetAddr( SD_CORE_1|((a0+8)<<1)|SD_VA_LSAX, a0*0x1000+0x9020 );
 		sceSdVoiceTrans( 0, 0, temp4->unk10, (u_char *)(a0*0x1000+0x9020), 0x800 );
 		
 		temp4->unk10 += 0x0800;
@@ -67,7 +67,7 @@ int MemSpuTransWithNoLoop( u_int a0 )
 		break;
 /* ///////////////////////////////////////////////////////////////////////// */
 	case 2:
-		sceSdSetAddr( (SD_CORE_1|((a0+8)<<1)|SD_VA_SSA), a0*0x1000+0x9020 );
+		sceSdSetAddr( SD_CORE_1|((a0+8)<<1)|SD_VA_SSA, a0*0x1000+0x9020 );
 		keyon();
 		temp4->unk14 = 0x0800;
 		temp4->unk00++;

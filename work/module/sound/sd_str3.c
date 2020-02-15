@@ -51,9 +51,9 @@ void lnr_tr_off( void )
 void lnr_spuwr( void )
 {
 	if( lnr_keyoffs ){
-		sceSdSetParam( 0x0F81, 0 );
-		sceSdSetParam( 0x1081, 0 );
 		sceSdBlockTrans( 1, SD_TRANS_MODE_STOP, NULL, 0 );
+		sceSdSetParam( SD_CORE_1|SD_P_BVOLL, 0 );
+		sceSdSetParam( SD_CORE_1|SD_P_BVOLR, 0 );
 		lnr_keyoffs = 0;
 	}
 }
@@ -286,8 +286,8 @@ int lnrSpuTrans( void )
 			break;
 		}
 		lnr8_fade_vol = 1;
-		sceSdSetParam( 0x0F81, lnr8_fade_vol * 32767 / 2 );
-		sceSdSetParam( 0x1081, lnr8_fade_vol * 32767 / 2 );
+		sceSdSetParam( SD_CORE_1|SD_P_BVOLL, lnr8_fade_vol * 32767 / 2 );
+		sceSdSetParam( SD_CORE_1|SD_P_BVOLR, lnr8_fade_vol * 32767 / 2 );
 		lnr8_fade_vol++;
 		sceSdBlockTrans( 1, SD_TRANS_MODE_WRITE|SD_BLOCK_LOOP, (u_char *)lnr16_buf, 0x1000 );
 		lnr16_next_ofst = 0x0800;
@@ -300,8 +300,8 @@ int lnrSpuTrans( void )
 /* ///////////////////////////////////////////////////////////////////////// */
 	case 3:
 		if( lnr8_fade_vol < 3 ){
-			sceSdSetParam( 0x0F81, lnr8_fade_vol * 32767 / 2 );
-			sceSdSetParam( 0x1081, lnr8_fade_vol * 32767 / 2 );
+			sceSdSetParam( SD_CORE_1|SD_P_BVOLL, lnr8_fade_vol * 32767 / 2 );
+			sceSdSetParam( SD_CORE_1|SD_P_BVOLR, lnr8_fade_vol * 32767 / 2 );
 			lnr8_fade_vol++;
 		}
 		spu_lnr16_idx = sceSdBlockTransStatus( 1, 0 );

@@ -103,17 +103,17 @@ void sd_init( void )
 	
 	/* i = SPU CORE No. */
 	for( i = 0 ; i < 2 ; i++ ){
-		sceSdSetParam( i | 0x0980, 0 );
-		sceSdSetParam( i | 0x0A80, 0 );
-		sceSdSetSwitch( i | SD_S_PMON, 0 );
-		sceSdSetSwitch( i | SD_S_NON, 0 );
+		sceSdSetParam( i|SD_P_MVOLL, 0 );
+		sceSdSetParam( i|SD_P_MVOLR, 0 );
+		sceSdSetSwitch( i|SD_S_PMON, 0 );
+		sceSdSetSwitch( i|SD_S_NON, 0 );
 		
 		if( i == 0 ){
-			sceSdSetParam( i | 0x0800, 0x0FFF );
-			sceSdSetAddr( i | SD_A_EEA, (u_int)(mem_str_buf+0x191F) );
+			sceSdSetParam( i|SD_P_MMIX, 0x0FFF );
+			sceSdSetAddr( i|SD_A_EEA, (u_int)(mem_str_buf+0x191F) );
 		} else {
-			sceSdSetParam( i | 0x0800, 0x0FFC );
-			sceSdSetAddr( i | SD_A_EEA, 0x001FFFFF );
+			sceSdSetParam( i|SD_P_MMIX, 0x0FFC );
+			sceSdSetAddr( i|SD_A_EEA, 0x001FFFFF );
 		}
 		
 		attr.depth_L = 0;
@@ -121,20 +121,20 @@ void sd_init( void )
 		attr.mode = 0x0105;
 		
 		sceSdSetEffectAttr( i, &attr );
-		sceSdSetCoreAttr( i | SD_C_EFFECT_ENABLE, SD_SPDIF_OUT_BITSTREAM );
-		sceSdSetParam( i | 0x0B80, 0x2000 );
-		sceSdSetParam( i | 0x0C80, 0x2000 );
-		sceSdSetSwitch( i | SD_S_VMIXEL, 0 );
-		sceSdSetSwitch( i | SD_S_VMIXER, 0 );
+		sceSdSetCoreAttr( i|SD_C_EFFECT_ENABLE, SD_SPDIF_OUT_BITSTREAM );
+		sceSdSetParam( i|SD_P_EVOLL, 0x2000 );
+		sceSdSetParam( i|SD_P_EVOLR, 0x2000 );
+		sceSdSetSwitch( i|SD_S_VMIXEL, 0 );
+		sceSdSetSwitch( i|SD_S_VMIXER, 0 );
 		
 		rev_bit_data[i] = 0;
 		
-		sceSdSetParam( i | 0x0980, 0x3FFF );
-		sceSdSetParam( i | 0x0A80, 0x3FFF );
+		sceSdSetParam( i|SD_P_MVOLL, 0x3FFF );
+		sceSdSetParam( i|SD_P_MVOLR, 0x3FFF );
 	}
 	
-	sceSdSetParam( i | 0x0D80, 0x7FFF );
-	sceSdSetParam( i | 0x0E80, 0x7FFF );
+	sceSdSetParam( i|SD_P_AVOLL, 0x7FFF );
+	sceSdSetParam( i|SD_P_AVOLR, 0x7FFF );
 	sceSdSetCoreAttr( SD_C_SPDIF_MODE, SD_SPDIF_COPY_PROHIBIT );
 	
 	spu_wave_start_ptr[0] = 2;

@@ -37,19 +37,25 @@ void spuwr( void )
 	for( i = 0 ; i < 44 ; i++ ){
 		if( spu_tr_wk[i].vol_fg ){
 			if( i < 24 ){
-				sceSdSetParam( i*2, spu_tr_wk[i].vol_l );
-				sceSdSetParam( (i*2) | 0x100, spu_tr_wk[i].vol_r );
+//				sceSdSetParam( i*2, spu_tr_wk[i].vol_l );
+//				sceSdSetParam( (i*2) | 0x100, spu_tr_wk[i].vol_r );
+				sceSdSetParam( SD_CORE_0|(i<<1)|SD_VP_VOLL, spu_tr_wk[i].vol_l ); // CHECK
+				sceSdSetParam( SD_CORE_0|(i<<1)|SD_VP_VOLR, spu_tr_wk[i].vol_r ); // CHECK
 			} else {
-				sceSdSetParam( ((i-24)*2) | 0x0001, spu_tr_wk[i].vol_l );
-				sceSdSetParam( ((i-24)*2) | 0x0101, spu_tr_wk[i].vol_r );
+//				sceSdSetParam( ((i-24)*2) | 0x0001, spu_tr_wk[i].vol_l );
+//				sceSdSetParam( ((i-24)*2) | 0x0101, spu_tr_wk[i].vol_r );
+				sceSdSetParam( SD_CORE_1|((i-24)<<1)|SD_VP_VOLL, spu_tr_wk[i].vol_l ); // CHECK
+				sceSdSetParam( SD_CORE_1|((i-24)<<1)|SD_VP_VOLR, spu_tr_wk[i].vol_r ); // CHECK
 			}
 			spu_tr_wk[i].vol_fg = 0;
 		}
 		if( spu_tr_wk[i].pitch_fg ){
 			if( i < 24 ){
-				sceSdSetParam( (i * 2) | 0x0200, spu_tr_wk[i].pitch );
+//				sceSdSetParam( (i * 2) | 0x0200, spu_tr_wk[i].pitch );
+				sceSdSetParam( SD_CORE_0|(i<<1)|SD_VP_PITCH, spu_tr_wk[i].pitch ); // CHECK
 			} else {
-				sceSdSetParam( ((i-24)*2) | 0x0201, spu_tr_wk[i].pitch );
+//				sceSdSetParam( ((i-24)*2) | 0x0201, spu_tr_wk[i].pitch );
+				sceSdSetParam( SD_CORE_1|((i-24)<<1)|SD_VP_PITCH, spu_tr_wk[i].pitch ); // CHECK
 			}
 			spu_tr_wk[i].pitch_fg = 0;
 		}
@@ -65,11 +71,15 @@ void spuwr( void )
 		}
 		if( spu_tr_wk[i].env1_fg || spu_tr_wk[i].env2_fg || spu_tr_wk[i].env3_fg ){
 			if( i < 24 ){
-				sceSdSetParam( (i*2) | 0x0300, ((spu_tr_wk[i].ar & 0x7F) << 8) | spu_tr_wk[i].a_mode | ((spu_tr_wk[i].dr & 0x0F) << 4) | (spu_tr_wk[i].sl & 0x0F) );
-				sceSdSetParam( (i*2) | 0x0400, ((spu_tr_wk[i].sr & 0x7F) << 6) | spu_tr_wk[i].s_mode | spu_tr_wk[i].r_mode | (spu_tr_wk[i].rr & 0x1F) );
+//				sceSdSetParam( (i*2) | 0x0300, ((spu_tr_wk[i].ar & 0x7F) << 8) | spu_tr_wk[i].a_mode | ((spu_tr_wk[i].dr & 0x0F) << 4) | (spu_tr_wk[i].sl & 0x0F) );
+//				sceSdSetParam( (i*2) | 0x0400, ((spu_tr_wk[i].sr & 0x7F) << 6) | spu_tr_wk[i].s_mode | spu_tr_wk[i].r_mode | (spu_tr_wk[i].rr & 0x1F) );
+				sceSdSetParam( SD_CORE_0|(i<<1)|SD_VP_ADSR1, ((spu_tr_wk[i].ar & 0x7F) << 8) | spu_tr_wk[i].a_mode | ((spu_tr_wk[i].dr & 0x0F) << 4) | (spu_tr_wk[i].sl & 0x0F) ); // CHECK
+				sceSdSetParam( SD_CORE_0|(i<<1)|SD_VP_ADSR2, ((spu_tr_wk[i].sr & 0x7F) << 6) | spu_tr_wk[i].s_mode | spu_tr_wk[i].r_mode | (spu_tr_wk[i].rr & 0x1F) ); // CHECK
 			} else {
-				sceSdSetParam( ((i-24)*2) | 0x0301, ((spu_tr_wk[i].ar & 0x7F) << 8) | spu_tr_wk[i].a_mode | ((spu_tr_wk[i].dr & 0x0F) << 4) | (spu_tr_wk[i].sl & 0x0F) );
-				sceSdSetParam( ((i-24)*2) | 0x0401, ((spu_tr_wk[i].sr & 0x7F) << 6) | spu_tr_wk[i].s_mode | spu_tr_wk[i].r_mode | (spu_tr_wk[i].rr & 0x1F) );
+//				sceSdSetParam( ((i-24)*2) | 0x0301, ((spu_tr_wk[i].ar & 0x7F) << 8) | spu_tr_wk[i].a_mode | ((spu_tr_wk[i].dr & 0x0F) << 4) | (spu_tr_wk[i].sl & 0x0F) );
+//				sceSdSetParam( ((i-24)*2) | 0x0401, ((spu_tr_wk[i].sr & 0x7F) << 6) | spu_tr_wk[i].s_mode | spu_tr_wk[i].r_mode | (spu_tr_wk[i].rr & 0x1F) );
+				sceSdSetParam( SD_CORE_1|((i-24)<<1)|SD_VP_ADSR1, ((spu_tr_wk[i].ar & 0x7F) << 8) | spu_tr_wk[i].a_mode | ((spu_tr_wk[i].dr & 0x0F) << 4) | (spu_tr_wk[i].sl & 0x0F) ); // CHECK
+				sceSdSetParam( SD_CORE_1|((i-24)<<1)|SD_VP_ADSR2, ((spu_tr_wk[i].sr & 0x7F) << 6) | spu_tr_wk[i].s_mode | spu_tr_wk[i].r_mode | (spu_tr_wk[i].rr & 0x1F) ); // CHECK
 			}
 			spu_tr_wk[i].env1_fg = spu_tr_wk[i].env2_fg = spu_tr_wk[i].env3_fg = 0;
 		}
@@ -168,20 +178,20 @@ void se_off_all( void )
 
 void sng_pause( void )
 {
-	sceSdSetParam( 0x0980, 0 );
-	sceSdSetParam( 0x0A80, 0 );
-	sceSdSetParam( 0x0981, 0 );
-	sceSdSetParam( 0x0A81, 0 );
+	sceSdSetParam( SD_CORE_0|SD_P_MVOLL, 0 );
+	sceSdSetParam( SD_CORE_0|SD_P_MVOLR, 0 );
+	sceSdSetParam( SD_CORE_1|SD_P_MVOLL, 0 );
+	sceSdSetParam( SD_CORE_1|SD_P_MVOLR, 0 );
 }
 
 /*---------------------------------------------------------------------------*/
 
 void snd_pause_off( void )
 {
-	sceSdSetParam( 0x0980, 0x3FFF );
-	sceSdSetParam( 0x0A80, 0x3FFF );
-	sceSdSetParam( 0x0981, 0x3FFF );
-	sceSdSetParam( 0x0A81, 0x3FFF );
+	sceSdSetParam( SD_CORE_0|SD_P_MVOLL, 0x3FFF );
+	sceSdSetParam( SD_CORE_0|SD_P_MVOLR, 0x3FFF );
+	sceSdSetParam( SD_CORE_1|SD_P_MVOLL, 0x3FFF );
+	sceSdSetParam( SD_CORE_1|SD_P_MVOLR, 0x3FFF );
 }
 
 /*---------------------------------------------------------------------------*/
