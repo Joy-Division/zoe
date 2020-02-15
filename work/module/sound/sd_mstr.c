@@ -77,8 +77,7 @@ int MemSpuTransWithNoLoop( u_int a0 )
 		break;
 /* ///////////////////////////////////////////////////////////////////////// */
 	case 3:
-//		temp5 = sceSdGetParam( (a0+8)*2 | (SD_CORE_1|SD_VP_ENVX) );
-		temp5 = sceSdGetParam( SD_CORE_1|((a0+8)<<1)|SD_VP_ENVX ); // CHECK
+		temp5 = sceSdGetParam( SD_CORE_1|((a0+8)<<1)|SD_VP_ENVX );
 		if( !temp5 ){
 			temp4->unk00++;
 		}
