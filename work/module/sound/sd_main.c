@@ -137,7 +137,7 @@ void sd_init( void )
 	sceSdSetParam( i|SD_P_AVOLR, 0x7FFF );
 	sceSdSetCoreAttr( SD_C_SPDIF_MODE, SD_SPDIF_COPY_PROHIBIT );
 	
-	spu_wave_start_ptr[0] = 2;
+	spu_wave_start_ptr = (u_char *)0x20000;
 	init_sng_work();
 	wave_load_status = 0;
 	
@@ -153,8 +153,8 @@ void sd_init( void )
 	}
 	
 	for( i = 16 ; i < 32 ; i++ ){
-		mix_fader[i].unk04 = 0xFFFF;
-		mix_fader[i].unk08 = 0xFFFF;
+		mix_fader[i].unk04 = 0;
+		mix_fader[i].unk08 = 0;
 		mix_fader[i].unk00 = 0;
 		mix_fader[i].unk0C = 0x20;
 	}
