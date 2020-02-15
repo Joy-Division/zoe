@@ -12,12 +12,9 @@ extern "C" {
 #endif
 
 /* (sd_ee.c) */
-int sd_init( void );
-
-#if (0) // TODO
-sd_set_cli();
-sd_status();
-#endif
+int  sd_init( void );   // TODO: check types
+void sd_set_cli( int ); // TODO: check types
+int  sd_status( void ); // TODO: check types
 
 #ifdef __cplusplus
 }
