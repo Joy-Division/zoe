@@ -638,21 +638,23 @@ int EEOpen( int a0 )
 
 int EERead( u_int a0, u_int *a1, u_int a2, u_int a3 )
 {
-	u_int *temp3, *temp2, temp = 0;
+	u_int *temp3;
+	struct unkstr24 *temp2;
+	u_int temp = 0;
 	
 	if( a0 != 1 && a0 != 2 ){
 		str2_iop_load_set[a0-1] = 0;
 		return 0;
 	}
 	
-	temp2 = (pak_header+506)+(a0*6);
+	temp2 = &(((struct unkstr24 *)(pak_header+506))[a0]);
 	
-	if( temp2[3] <= temp2[4] ){
+	if( temp2->unk0C <= (u_int)temp2->unk10 ){
 		str2_iop_load_set[a0-1] = 0;
 		return 0;
 	}
 	
-	temp3 = sif_get_mem(a1, temp2[1] << 4, a3);
+	temp3 = sif_get_mem(a1, temp2->unk04 << 4, a3);
 	
 	while( 1 ){
 		DelayThread( 0x2710 );
@@ -665,11 +667,11 @@ int EERead( u_int a0, u_int *a1, u_int a2, u_int a3 )
 		}
 	}
 	
-	if( temp2[3] ){
+	if( temp2->unk0C ){
 		// the triple load here is in the wrong order
 		// should be v1, v0, v1
 		// is v0, v0, v1
-		temp2[4]++;
+		temp2->unk10++;
 	}
 	
 	sif_rv_release_queue( temp3 );
