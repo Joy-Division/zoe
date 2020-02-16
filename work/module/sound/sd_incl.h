@@ -207,7 +207,8 @@ struct unkstrbig {
 	u_int unk200;
 	u_int unk204;
 	u_int unk208;
-	u_char pad20C[32]; // 0x20
+	u_int unk20C;
+	u_char pad210[28]; // 0x1C
 	u_int unk22C;
 };
 

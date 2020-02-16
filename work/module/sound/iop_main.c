@@ -88,12 +88,14 @@ void sd_set_status( void )
 
 void sd_send_status( void )
 {
-	int *que = com_queue;
+	volatile struct unkstrbig *que = (struct unkstrbig *)com_queue;
 	
-	if( que[139] ){
+	if( que->unk22C ){
 		// the way the arguments get loaded doesnt seem to be right
 		// also this if has an empty target that i cannot reproduce
-		if( sif_send_mem( (u_int *)que[139], &que[131], 32 ) == 0 );
+		if( sif_send_mem( (u_int *)que->unk22C, &que->unk20C, 32 ) == 0 );
+	}
+	else {
 	}
 }
 
