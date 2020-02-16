@@ -194,6 +194,11 @@ struct unkstr16 {
 	int unk08;
 	int unk0C;
 };
+// used by sd_file, some kind of tiny header struct for sdx files?
+struct unkstr08 {
+	u_int unk00;
+	u_int unk04;
+};
 
 /*---------------------------------------------------------------------------*/
 #endif /* END OF FILE */

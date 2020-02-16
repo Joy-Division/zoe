@@ -23,7 +23,7 @@ u_int save_mdx = -1;
 
 void LoadPakFile( void )
 {
-	u_int *temp = pak_header;
+	struct unkstr08 *temp = (struct unkstr08 *)pak_header;
 	
 	switch( pak_load_status-1 ){
 	case 0:
@@ -52,15 +52,15 @@ void LoadPakFile( void )
 		}
 		pak_read_fg = 1;
 		PcmRead( pak_fp, pak_header, 0x0800 );
-		if( temp[0] ){
-			if( temp[1] != save_wvx1 && temp[1] != save_wvx2 ){
-				d1E0E4[0] = (temp[2] - temp[0]) << 11;
-				save_wvx1 = temp[1];
+		if( temp[0].unk00 ){
+			if( temp[0].unk04 != save_wvx1 && temp[0].unk04 != save_wvx2 ){
+				d1E0E4[0] = (temp[1].unk00 - temp[0].unk00) * 0x0800;
+				save_wvx1 = temp[0].unk04;
 				wave_load_code = 0xFEFFFFFE;
 				wave_load_status = 1;
 				pak_load_status = 2;
 			} else {
-				PcmLseek( pak_fp, (temp[2] - temp[0]) << 11, 1 );
+				PcmLseek( pak_fp, (temp[1].unk00 - temp[0].unk00) * 0x0800, 1 );
 				pak_load_status = 3;
 			}
 		} else {
@@ -75,15 +75,15 @@ void LoadPakFile( void )
 		break;
 	
 	case 2:
-		if( temp[2] ){
-			if( temp[3] != save_wvx1 && temp[3] != save_wvx2 ){
-				d1E0E4[0] = (temp[4] - temp[2]) << 11;
-				save_wvx2 = temp[3];
+		if( temp[1].unk00 ){
+			if( temp[1].unk04 != save_wvx1 && temp[1].unk04 != save_wvx2 ){
+				d1E0E4[0] = (temp[2].unk00 - temp[1].unk00) * 0x0800;
+				save_wvx2 = temp[1].unk04;
 				wave_load_code = 0xFEFFFFFF;
 				wave_load_status = 1;
 				pak_load_status = 4;
 			} else {
-				PcmLseek( pak_fp, (temp[4] - temp[2]) << 11, 1 );
+				PcmLseek( pak_fp, (temp[2].unk00 - temp[1].unk00) * 0x0800, 1 );
 				pak_load_status = 4;
 			}
 		} else {
@@ -98,14 +98,14 @@ void LoadPakFile( void )
 		break;
 	
 	case 4:
-		if( temp[4] ){
-			if( temp[5] != save_efx ){
-				save_efx = temp[5];
+		if( temp[2].unk00 ){
+			if( temp[2].unk04 != save_efx ){
+				save_efx = temp[2].unk04;
 				se_load_code = 0x02FFFFFF;
-				PcmRead( pak_fp, se_exp_table, (temp[6] - temp[4]) << 11 );
+				PcmRead( pak_fp, se_exp_table, (temp[3].unk00 - temp[2].unk00) * 0x0800 );
 				se_load_code = 0;
 			} else {
-				PcmLseek( pak_fp, (temp[6] - temp[4]) << 11, 1 );
+				PcmLseek( pak_fp, (temp[3].unk00 - temp[2].unk00) * 0x0800, 1 );
 			}
 		} else {
 			// EMPTY BLOCK
@@ -114,18 +114,20 @@ void LoadPakFile( void )
 		break;
 	
 	case 5:
-		if( temp[6] ){
-			if( temp[7] != save_mdx ){
-				save_mdx = temp[7];
+		if( temp[3].unk00 ){
+			if( temp[3].unk04 != save_mdx ){
+				save_mdx = temp[3].unk04;
 				d1E0E4[1] = 0x010000FF;
 				pak_load_status = 7;
-			} else {
+			} else if(1) {
 				pak_load_status = 9;
+				break;
 			}
 		} else {
 			pak_load_status = 9;
+			break;
 		}
-		break;
+		break; // NOTICE
 	
 	case 6:
 		if( d1E0E4[1] ){
@@ -622,7 +624,7 @@ int EEOpen( int a0 )
 		temp = 2;
 	}
 	else {
-		// EMPTY
+		// EMPTY BLOCK
 	}
 	temp2 = (pak_header+0x01FA)+(6*temp);
 	
