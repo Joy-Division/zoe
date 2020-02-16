@@ -621,7 +621,11 @@ int EEOpen( int a0 )
 	} else if( (a0 & 0xFF000000) == 0xF4000000 ){
 		temp = 2;
 	}
+	else {
+		// EMPTY
+	}
 	temp2 = (pak_header+0x01FA)+(6*temp);
+	
 	return temp;
 }
 
