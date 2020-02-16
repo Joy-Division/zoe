@@ -216,53 +216,52 @@ void StrCdLoad( void )
 {
 	int temp, i, j, temp4;
 	
-	if( str_status < 3 || str_status > 6 ){
-		// EMPTY BLOCK
-	} else {
-		for( i = 0 ; i < 2 ; i++ ){
-			if( str_unload_size ){
-				temp4 = 0;
-				for( j = 0 ; j < 4 ; j++ ){
-					temp4 |= str_read_status[str_read_idx+j];
-				}
-				if( !temp4 ){
-					
-					// Wait for 8 V-blanks
-					WaitVblankEnd(); // 1st interval (end-only)
-					WaitVblankStart(); WaitVblankEnd(); // 2nd interval
-					WaitVblankStart(); WaitVblankEnd(); // 3rd interval
-					WaitVblankStart(); WaitVblankEnd(); // 4th interval
-					WaitVblankStart(); WaitVblankEnd(); // 5th interval
-					WaitVblankStart(); WaitVblankEnd(); // 6th interval
-					WaitVblankStart(); WaitVblankEnd(); // 7th interval
-					WaitVblankStart(); WaitVblankEnd(); // 8th interval
-					
-					if( str_unload_size > 0x4000 ){
-						temp = PcmRead( str_fp, str_trans_buf+str_trans_offset, 0x4000 );
-						for( j = 0 ; j < 4 ; j++ ){
-							str_read_status[str_read_idx+j] = 1;
-						}
-						str_read_idx += 4;
-						if( str_read_idx == 8 ){
-							str_read_idx = 0;
-						}
-						str_unload_size -= 0x4000;
-						str_trans_offset += 0x4000;
-						if( str_trans_offset >= 0x8000 ){
-							str_trans_offset = 0;
-						}
-					} else {
-						temp = PcmRead( str_fp, str_trans_buf+str_trans_offset, 0x4000 );
-						for( j = 0 ; j < 4 ; j++ ){
-							str_read_status[str_read_idx+j] = 1;
-						}
-						str_read_idx += 4;
-						if( str_read_idx == 8 ){
-							str_read_idx = 0;
-						}
-						str_unload_size = 0;
-						break;
+	if( str_status < 3 || str_status > 5 ){
+		return;
+	}
+	for( i = 0 ; i < 2 ; i++ ){
+		if( str_unload_size ){
+			temp4 = 0;
+			for( j = 0 ; j < 4 ; j++ ){
+				temp4 |= str_read_status[str_read_idx+j];
+			}
+			if( !temp4 ){
+				
+				// Wait for 8 V-blanks
+				WaitVblankEnd(); // 1st interval (end-only)
+				WaitVblankStart(); WaitVblankEnd(); // 2nd interval
+				WaitVblankStart(); WaitVblankEnd(); // 3rd interval
+				WaitVblankStart(); WaitVblankEnd(); // 4th interval
+				WaitVblankStart(); WaitVblankEnd(); // 5th interval
+				WaitVblankStart(); WaitVblankEnd(); // 6th interval
+				WaitVblankStart(); WaitVblankEnd(); // 7th interval
+				WaitVblankStart(); WaitVblankEnd(); // 8th interval
+				
+				if( str_unload_size > 0x4000 ){
+					temp = PcmRead( str_fp, str_trans_buf+str_trans_offset, 0x4000 );
+					for( j = 0 ; j < 4 ; j++ ){
+						str_read_status[str_read_idx+j] = 1;
 					}
+					str_read_idx += 4;
+					if( str_read_idx == 8 ){
+						str_read_idx = 0;
+					}
+					str_unload_size -= 0x4000;
+					str_trans_offset += 0x4000;
+					if( str_trans_offset >= 0x8000 ){
+						str_trans_offset = 0;
+					}
+				} else {
+					temp = PcmRead( str_fp, str_trans_buf+str_trans_offset, 0x4000 );
+					for( j = 0 ; j < 4 ; j++ ){
+						str_read_status[str_read_idx+j] = 1;
+					}
+					str_read_idx += 4;
+					if( str_read_idx == 8 ){
+						str_read_idx = 0;
+					}
+					str_unload_size = 0;
+					break;
 				}
 			}
 		}
