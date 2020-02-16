@@ -41,11 +41,11 @@ extern int id_SdSet;
 extern int id_HSyncTim;
 
 /* sd_cli.c */
-extern u_int se_tracks;
+extern int se_tracks;
 
 /* sd_drv.c */
 extern int sng_status;
-extern u_int skip_intro_loop;
+extern int skip_intro_loop;
 
 /* sd_file.c */
 //~ extern u_int pak_read_fg;
@@ -241,7 +241,7 @@ extern u_int mdata3;
 extern u_int mdata4;
 extern u_int spu_load_offset;
 extern u_int song_end[2];
-extern u_int stop_jouchuu_se;
+extern int stop_jouchuu_se;
 extern u_char *wave_load_ptr;
 extern u_int sound_mono_fg;
 extern u_int key_fg;
@@ -278,7 +278,7 @@ extern u_int pak_load_code;
 extern u_int d1E0E4[2];
 extern u_char *se_exp_table;
 extern int sng_fp;
-extern u_int fx_sound_code;
+extern int fx_sound_code;
 extern int sng_fadein_time;
 extern int sng_fout_term[2];
 extern int sng_play_code;

@@ -13,7 +13,7 @@
 /*---------------------------------------------------------------------------*/
 
 int sng_status;
-unsigned int skip_intro_loop;
+int skip_intro_loop;
 
 /*---------------------------------------------------------------------------*/
 
@@ -39,7 +39,9 @@ void IntSdMain( void )
 			snd_pause_off();
 			sng_pause_fg = 0;
 			break;
-		case 0x01FFFF03: {
+		case 0x01FFFF03:
+		case 0x01FFFF04:
+		case 0x01FFFF05:
 			if( sng_play_code != 0xFFFFFFFF ){
 				sng_fout_fg = 0;
 				if( sng_status < 3 ){
@@ -50,10 +52,15 @@ void IntSdMain( void )
 				sng_kaihi_fg = 0;
 			}
 			break;
-		}
 		// Fade Out
-		case 0x01FFFF04: SngFadeOutP( temp ); break;
-		case 0x01FFFF05: SngFadeOutS( temp ); break;
+		case 0x01FFFF06:
+		case 0x01FFFF07:
+		case 0x01FFFF08:
+		case 0x01FFFF09: SngFadeOutP( temp ); break;
+		case 0x01FFFF0A:
+		case 0x01FFFF0B:
+		case 0x01FFFF0C:
+		case 0x01FFFF0D: SngFadeOutS( temp ); break;
 		
 		// 回避モード (Evasion Mode)
 		case 0x01FFFF10: SngKaihiP(); break;
@@ -85,7 +92,14 @@ void IntSdMain( void )
 		case 0xFF000107: auto_phase_fg = 7; break;
 		case 0xFF000108: auto_phase_fg = 8; break;
 		
-		case 0xFF000109:
+		case 0x1000001:
+		case 0x1000002:
+		case 0x1000003:
+		case 0x1000004:
+		case 0x1000005:
+		case 0x1000006:
+		case 0x1000007:
+		case 0x1000008:
 			if( sng_play_code != temp ){
 				if( sng_data[0] < (temp & 0x0F) ){
 					temp = 0;
@@ -188,10 +202,10 @@ void IntSdMain( void )
 		if( song_end[0] == 0x00FFFFFF && song_end[1] == 0xFF ){
 			sng_status = 4;
 		}
-		if( fx_sound_code >= 2 ){
+		if( fx_sound_code > 1 ){
 			fx_sound_code = 0;
 		}
-		if( skip_intro_loop >= 2 ){
+		if( skip_intro_loop > 1 ){
 			skip_intro_loop = 0;
 		}
 		break;
@@ -205,7 +219,7 @@ void IntSdMain( void )
 
 	
 	for( mtrack = 32 ; mtrack < 44 ; mtrack++ ){
-		if( se_tracks < 2 && se_request[mtrack-32].code ){
+		if( se_tracks <= 1 && se_request[mtrack-32].code ){
 			se_off( mtrack-32 );
 			se_adrs_set( mtrack-32 );
 		} else {
@@ -229,7 +243,7 @@ void IntSdMain( void )
 		}
 	}
 	
-	if( stop_jouchuu_se >= 2 ){
+	if( stop_jouchuu_se > 1 ){
 		stop_jouchuu_se = 0;
 	}
 	
@@ -247,7 +261,9 @@ void IntSdMain( void )
 			}
 		}
 	}
-	
+	else {
+		// EMPTY BLOCK
+	}
 	spuwr();
 }
 
