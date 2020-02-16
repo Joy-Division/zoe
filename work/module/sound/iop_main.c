@@ -134,15 +134,14 @@ void SdSet( void )
 
 static void RecieveInit( int a0 )
 {
-	int *que = com_queue;
+	volatile struct unkstrbig *que = (struct unkstrbig *)com_queue;
 	
-	que[129] = 0;
-	que[128] = que[129];
-	que[130] = a0;
+	que->unk200 = que->unk204 = 0;
+	que->unk208 = a0;
 	
 	sif_set_callback_func( 1, (void (*)(void *, int *))sif_callback_func, com_queue );
 	
-	que[139] = 0;
+	que->unk22C = 0;
 }
 
 /*---------------------------------------------------------------------------*/

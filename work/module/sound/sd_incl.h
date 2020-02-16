@@ -200,6 +200,17 @@ struct unkstr08 {
 	u_int unk04;
 };
 
+// used by iop_main RecieveInit?
+// total size 0x230?
+struct unkstrbig {
+	u_char pad000[512]; // 0x200
+	u_int unk200;
+	u_int unk204;
+	u_int unk208;
+	u_char pad20C[32]; // 0x20
+	u_int unk22C;
+};
+
 /*---------------------------------------------------------------------------*/
 #endif /* END OF FILE */
 /*---------------------------------------------------------------------------*/
