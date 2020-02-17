@@ -284,8 +284,8 @@ void sd_set( int a0 )
 			switch( a0 & 0x0F00 ){
 			// these assignments are broken...
 			// cases 0 & 256 don't get compiled, but exist in the original assembly
-			case   0: auto_env_pos = a0 & -1; break;
-			case 256: auto_env_pos2 = a0 & -1; break;
+			case   0: auto_env_pos = (a0 & 0xFFFF); break;
+			case 256: auto_env_pos2 = (a0 & 0xFFFF); break;
 			default: break;
 			}
 		} else if( (a0 & 0xFF000000) == 0xFB000000 ){
@@ -407,7 +407,7 @@ void sd_set( int a0 )
 				break;
 			
 			case 0xFF000012: str1_use_iop = 1; break;
-			case 0xFF000013: str1_use_iop = 0; 
+			case 0xFF000013: str1_use_iop = 0;
 			case 0xFF000014: fader_off_fg = 1; break;
 			case 0xFF0000FE: stop_jouchuu_se = 1; break;
 			case 0xFF0000FF: set_sng_code_buf( a0 ); break;
@@ -423,11 +423,11 @@ void sd_set( int a0 )
 			case 0xFFFFFFFD: break;
 			case 0xFFFFFFED: break;
 			case 0xFFFFFFEC: break;
-			default: break; goto end; // the break jump is followed by another jump without a nop in between...
+			default: break; // the break jump is followed by another jump without a nop in between...
 			}
 		}
 	}
-	end:
+	// the above mentioned jump would target this position (right before the epilogue)
 }
 
 /*---------------------------------------------------------------------------*
