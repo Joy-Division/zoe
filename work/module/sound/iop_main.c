@@ -116,16 +116,17 @@ static void sif_callback_func( struct unkstr24 *a0, int *a1 )
 
 /*---------------------------------------------------------------------------*/
 
+// NOMATCH: see inside
 void SdSet( void )
 {
 	int temp;
-	int *que = com_queue;
+	volatile struct unkstrbig *que = (struct unkstrbig *)com_queue;
 	
 	while( 1 ){
 		SleepThread();
-		if( que[128] != que[129] ){
-            temp = que[que[129]*2];
-			que[128] = ((que[128]+1) / 64) * 63;
+		if( que->unk200 != que->unk204 ){
+			temp = que->unk000[que->unk200].unk04;
+			que->unk200 = (que->unk200+1) / 64 * 63; // this has the wrong registers
 			sd_set( temp );
 		}
 	}
