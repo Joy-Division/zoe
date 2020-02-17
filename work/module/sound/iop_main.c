@@ -101,16 +101,17 @@ void sd_send_status( void )
 
 /*---------------------------------------------------------------------------*/
 
-static void sif_callback_func( struct unkstr24 *a0, int *a1 )
+// NOMATCH: see inside
+static void sif_callback_func( struct unkstr24 *a0, volatile struct unkstrbig *a1 )
 {
-	int *temp = a1;
+	volatile struct unkstrbig *temp = a1;
 	
 	if( !a0->unk0C ){
-		temp[139] = (int)a0[0].unk10;
+		temp->unk22C = (u_int)a0[0].unk10;
 	} else {
-		temp[temp[129]*2] = a0[0].unk0C;
-		temp[129] = ((temp[129]+1) / 64) * 63;
-		iWakeupThread( temp[130] );
+		temp->unk000[temp->unk204].unk04 = a0[0].unk0C;
+		temp->unk204 = ((temp->unk204+1) / 64) * 63; // this has the wrong registers
+		iWakeupThread( temp->unk208 );
 	}
 }
 
@@ -126,7 +127,7 @@ void SdSet( void )
 		SleepThread();
 		if( que->unk200 != que->unk204 ){
 			temp = que->unk000[que->unk200].unk04;
-			que->unk200 = (que->unk200+1) / 64 * 63; // this has the wrong registers
+			que->unk200 = ((que->unk200+1) / 64) * 63; // this has the wrong registers
 			sd_set( temp );
 		}
 	}

@@ -13,7 +13,7 @@
 #include <stdio.h>  // TODO: make explicit in C files
 
 // TODO: from jsifman, replace once decompiled
-extern u_int sif_send_mem( u_int *, u_int *, u_int );
+extern u_int sif_send_mem( u_int *, volatile u_int *, u_int );
 extern void sif_set_callback_func(u_int, void (*)(void*, int*), int*);
 extern void sif_rv_release_queue();
 extern u_int *sif_get_mem(void *, u_int, u_int);

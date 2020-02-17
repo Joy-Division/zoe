@@ -205,8 +205,8 @@ struct unkstr08 {
 struct unkstrbig {
 	struct unkstr08 unk000[64]; // 0x200
 	int unk200;
-	u_int unk204;
-	u_int unk208;
+	int unk204;
+	int unk208;
 	u_int unk20C;
 	u_char pad210[28]; // 0x1C
 	u_int unk22C;
