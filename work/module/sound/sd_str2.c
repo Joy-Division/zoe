@@ -359,9 +359,9 @@ int Str2SpuTrans( int a0 )
 		sceSdSetParam( SD_CORE_1|(((a0*2)+21)<<1)|SD_VP_ADSR1, 0xFF );
 		sceSdSetParam( SD_CORE_1|(((a0*2)+21)<<1)|SD_VP_ADSR2, 0x07 );
 		if( !a0 ){
-			sceSdSetSwitch( SD_CORE_1|SD_S_KON, 0x30000 );
+			sceSdSetSwitch( SD_CORE_1|SD_S_KON, 0x300000 );
 		} else {
-			sceSdSetSwitch( SD_CORE_1|SD_S_KON, 0xC0000 );
+			sceSdSetSwitch( SD_CORE_1|SD_S_KON, 0xC00000 );
 		}
 		spu_str2_idx[a0] = mute2_l_r_fg[a0] = 0;
 		str2_next_idx[a0] = 0x0800;
