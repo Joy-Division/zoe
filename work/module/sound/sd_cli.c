@@ -282,7 +282,6 @@ void sd_set( int a0 )
 			}
 		} else if( (a0 & 0xFF000000) == 0xFA000000 ){
 			switch( a0 & 0x0F00 ){
-			// these assignments are broken...
 			// cases 0 & 256 don't get compiled, but exist in the original assembly
 			case   0: auto_env_pos = (a0 & 0xFFFF); break;
 			case 256: auto_env_pos2 = (a0 & 0xFFFF); break;
@@ -420,14 +419,14 @@ void sd_set( int a0 )
 			case 0xFF000106: set_sng_code_buf( a0 ); break;
 			case 0xFF000107: set_sng_code_buf( a0 ); break;
 			case 0xFF000108: set_sng_code_buf( a0 ); break;
-			case 0xFFFFFFFD: break;
-			case 0xFFFFFFED: break;
 			case 0xFFFFFFEC: break;
-			default: break; // the break jump is followed by another jump without a nop in between...
+			case 0xFFFFFFED: break;
+			case 0xFFFFFFFD: break;
+			default: break;
 			}
 		}
 	}
-	// the above mentioned jump would target this position (right before the epilogue)
+	// this here requires an additional nop which is the target after the ifs of the top-level if-else
 }
 
 /*---------------------------------------------------------------------------*
