@@ -80,9 +80,9 @@ struct SOUND_W {
 	u_char *lp1_addr;
 	u_char *lp2_addr;
 	u_char *lp3_addr;
-	u_char  kakfg;
-	u_char *kak1ptr;
-	u_char *kak2ptr;
+	u_char  kakfg;      /* kakko flag  */
+	u_char *kak1ptr;    /* kakko 1 ptr */
+	u_char *kak2ptr;    /* kakko 2 ptr */
 	u_char  pvoc;
 	int     pvod;
 	int     pvoad;
