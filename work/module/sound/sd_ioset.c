@@ -203,56 +203,56 @@ void keyoff( void )
 void tone_set( u_int a0 )
 {
 	u_int temp;
-	u_char *temp2;
+	struct WAVE_W *temp2;
 	
 	if( a0 < 0x200 ){
-		temp2 = (u_char *)voice_tbl+a0*16;
+		temp2 = &(voice_tbl[a0]);
 	} else {
-		temp2 = (mem_str_buf+0x9E180)+a0*16;
+		temp2 = &(((struct WAVE_W *)(mem_str_buf+0x9E180))[a0]);
 	}
 	
 	temp = (mtrack << 4)+4;
-	spu_tr_wk[mtrack].addr = ((u_int *)temp2)[0];
+	spu_tr_wk[mtrack].addr = temp2->addr;
 	spu_tr_wk[mtrack].addr_fg = 1;
 	// these appear to be struct accesses
-	sptr->macro = temp2[4];
-	sptr->micro = temp2[5];
+	sptr->macro = temp2->sample_note;
+	sptr->micro = temp2->sample_tune;
 	
-	if( temp2[6] ){
+	if( temp2->a_mode ){
 		spu_tr_wk[mtrack].a_mode = 0x8000;
 	} else {
 		spu_tr_wk[mtrack].a_mode = 0;
 	}
 	
-	spu_tr_wk[mtrack].ar = ((temp2[7] & 0x7F) & 0xFF) - 0x7F;
-	spu_tr_wk[mtrack].dr = ((temp2[8] & 0x0F) & 0xFF) - 0x0F;
+	spu_tr_wk[mtrack].ar = 0x7F - ((temp2->ar & 0x7F) & 0xFF);
+	spu_tr_wk[mtrack].dr = 0x0F - ((temp2->dr & 0x0F) & 0xFF);
 	spu_tr_wk[mtrack].env1_fg = 1;
 	
-	switch( temp2[9] ){
+	switch( temp2->s_mode ){
 	case 0:  spu_tr_wk[mtrack].s_mode = 0x4000; break;
 	case 1:  spu_tr_wk[mtrack].s_mode = 0xC000; break;
 	case 2:  spu_tr_wk[mtrack].s_mode = 0x0000; break;
 	default: spu_tr_wk[mtrack].s_mode = 0x8000; break;
 	}
 	
-	spu_tr_wk[mtrack].sr = ((temp2[10] & 0x7F) & 0xFF) - 0x7F;
-	spu_tr_wk[mtrack].sl = ((temp2[11] & 0x0F) & 0xFF);
+	spu_tr_wk[mtrack].sr = 0x7F - ((temp2->sr & 0x7F) & 0xFF);
+	spu_tr_wk[mtrack].sl = ((temp2->sl & 0x0F) & 0xFF);
 	spu_tr_wk[mtrack].env2_fg = 1;
 	
-	if( temp2[12] ){
+	if( temp2->r_mode ){
 		spu_tr_wk[mtrack].r_mode = 32;
 	} else {
 		spu_tr_wk[mtrack].r_mode = 0;
 	}
 	
-	spu_tr_wk[mtrack].rr = sptr->rrd = ((temp2[13] & 0x1F) & 0xFF) - 0x1F;
+	spu_tr_wk[mtrack].rr = sptr->rrd = 0x1F - ((temp2->rr & 0x1F) & 0xFF);
 	spu_tr_wk[mtrack].env3_fg = 1;
 	
 	if( !sptr->panmod ){
-		pan_set2(temp2[14]);
+		pan_set2(temp2->pan);
 	}
 	
-	sptr->dec_vol = temp2[15];
+	sptr->dec_vol = temp2->dec_vol;
 }
 
 /*---------------------------------------------------------------------------*/
