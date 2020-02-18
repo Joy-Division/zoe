@@ -1,20 +1,19 @@
 #
 # "ZONE OF THE ENDERS"
-# Test Makefile for main.cc
+# Test Makefile for MAIN
 #
 
-SCE_TOP = /usr/local/sce
+SCETOP ?= /usr/local/sce
+SCEINCDIR = $(SCETOP)/common/include
 
-SCE_CM_TOP = $(SCE_TOP)/common
-SCE_CM_INC = $(SCE_CM_TOP)/include
+EEINCDIR  = $(SCETOP)/ee/include
+EELIBDIR  = $(SCETOP)/ee/lib
+#EEILBDIR  = $(SCETOP)/ee/ilb
+#EEERXDIR  = $(SCETOP)/ee/modules
 
-SCE_EE_TOP = $(SCE_TOP)/ee
-SCE_EE_INC = $(SCE_EE_TOP)/include
-SCE_EE_LIB = $(SCE_EE_TOP)/lib
-
-SCE_IOP_TOP = $(SCE_TOP)/iop
-SCE_IOP_INC = $(SCE_IOP_TOP)/gcc/mipsel-scei-elfl/include
-SCE_IOP_LIB = $(SCE_IOP_TOP)/gcc/mipsel-scei-elfl/lib
+IOPINCDIR = $(SCETOP)/iop/gcc/mipsel-scei-elfl/include
+IOPLIBDIR = $(SCETOP)/iop/gcc/mipsel-scei-elfl/lib
+IOPIRXDIR = $(SCETOP)/iop/modules
 
 PREFIX  = ee
 AR      = $(PREFIX)-ar
@@ -25,6 +24,8 @@ LD      = $(PREFIX)-gcc
 DVPASM  = $(PREFIX)-dvp-as
 OBJCOPY = $(PREFIX)-objcopy
 OBJDUMP = $(PREFIX)-objdump
+RUN     = dsedb -r run
+RM      = /bin/rm -f
 
 TOP    = ../..
 COMMON = $(TOP)/common
@@ -32,8 +33,8 @@ MODULE = $(TOP)/module
 SOURCE = $(TOP)/source
 
 INCDIRS = \
--I$(SCE_CM_INC) \
--I$(SCE_EE_INC) \
+-I$(EEINCDIR) \
+-I$(SCEINCDIR) \
 -I$(COMMON)/include \
 -I$(MODULE)/include \
 -I$(SOURCE)/include
