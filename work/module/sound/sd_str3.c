@@ -65,6 +65,7 @@ int StartLnrEEStream( void )
 	int temp, i;
 	
 	lnr8_read_disable = 0;
+	lnr_tr_off();
 	lnr8_fp = EEOpen( lnr8_load_code );
 	
 	if( lnr8_fp < 0 ){
