@@ -66,6 +66,7 @@ int sound_sub( void )
 				mem_str_w[mtrack-32].unk00 = 2;
 			}
 		}
+		end: // required to get the return to behave right
 	}
 	return 0;
 }
