@@ -110,7 +110,7 @@ void sd_init( void )
 		
 		if( i == 0 ){
 			sceSdSetParam( i|SD_P_MMIX, 0x0FFF );
-			sceSdSetAddr( i|SD_A_EEA, (u_int)(mem_str_buf+0x191F) );
+			sceSdSetAddr( i|SD_A_EEA, 0x0001FFFF );
 		} else {
 			sceSdSetParam( i|SD_P_MMIX, 0x0FFC );
 			sceSdSetAddr( i|SD_A_EEA, 0x001FFFFF );
