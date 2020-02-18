@@ -15,7 +15,9 @@
 
 static int com_queue[140];
 
-ModuleInfo Module = { "SOUND", 0x0101 };
+char name[6] = "SOUND";
+
+ModuleInfo Module = { name, 0x0101 };
 
 /*---------------------------------------------------------------------------*/
 
