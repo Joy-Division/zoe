@@ -43,7 +43,12 @@ int MemSpuTransWithNoLoop( u_int a0 )
 		temp4->unk10[temp4->unk04-0x1F] = 1;
 		
 		sceSdSetAddr( SD_CORE_1|((a0+8)<<1)|SD_VA_LSAX, a0*0x1000+0x9020 );
-		sceSdVoiceTrans( 0, 0, temp4->unk10, (u_char *)(a0*0x1000+0x9020), 0x800 );
+		sceSdVoiceTrans(
+			0,                                   /* transfer channel */
+			SD_TRANS_MODE_WRITE|SD_TRANS_BY_DMA, /* transfer mode    */
+			temp4->unk10,                        /* IOP memory addr  */
+			(u_char *)(a0*0x1000+0x9020),        /* SPU memory addr  */
+			0x800 );                             /* transfer size    */
 		
 		temp4->unk10 += 0x0800;
 		temp4->unk08 -= 0x0800;
@@ -58,7 +63,12 @@ int MemSpuTransWithNoLoop( u_int a0 )
 			if( temp4->unk08 > 0x0800 && temp4->unk10[0x07F1] != 1 ){
 				temp4->unk10[0x07F1] |= 3;
 			}
-			sceSdVoiceTrans( 0, 0, temp4->unk10, (u_char *)(a0*0x1000+0x9820), 0x0800 );
+			sceSdVoiceTrans(
+				0,                                   /* transfer channel */
+				SD_TRANS_MODE_WRITE|SD_TRANS_BY_DMA, /* transfer mode    */
+				temp4->unk10,                        /* IOP memory addr  */
+				(u_char *)(a0*0x1000+0x9820),        /* SPU memory addr  */
+				0x0800 );                            /* transfer size    */
 			temp4->unk10 += 0x0800;
 			temp4->unk08 -= 0x0800;
 			temp4->unk00++;
@@ -89,13 +99,23 @@ int MemSpuTransWithNoLoop( u_int a0 )
 		if( temp4->unk14 == (temp3 & 0x0800) ){
 			temp2 = 1;
 			if( temp3 >= 0x0800 ){
-				sceSdVoiceTrans( 0, 0, temp4->unk10, (u_char *)(a0*0x1000+0x9020), 0x0800 );
+				sceSdVoiceTrans(
+					0,                                   /* transfer channel */
+					SD_TRANS_MODE_WRITE|SD_TRANS_BY_DMA, /* transfer mode    */
+					temp4->unk10,                        /* IOP memory addr  */
+					(u_char *)(a0*0x1000+0x9020),        /* SPU memory addr  */
+					0x0800 );                            /* transfer size    */
 				temp4->unk14 = 0;
 			} else {
 				if( temp4->unk08 > 0x0800 && temp4->unk10[0x07F1] != 1 ){
 					temp4->unk10[0x07F1] |= 3;
 				}
-				sceSdVoiceTrans( 0, 0, temp4->unk10, (u_char *)(a0*0x1000+0x9820), 0x0800 );
+				sceSdVoiceTrans(
+					0,                                   /* transfer channel */
+					SD_TRANS_MODE_WRITE|SD_TRANS_BY_DMA, /* transfer mode    */
+					temp4->unk10,                        /* IOP memory addr  */
+					(u_char *)(a0*0x1000+0x9820),        /* SPU memory addr  */
+					0x0800 );                            /* transfer size    */
 				temp4->unk14 = 0x0800;
 			}
 			temp4->unk10 += 0x0800;
