@@ -171,7 +171,7 @@ int StartStream2( void )
 	str_volume |= str_header[5];
 	str_pitch = str_header[6] << 8;
 	str_pitch |= str_header[7];
-	str_pitch /= 48000;
+	str_pitch = (u_int)(str_pitch * 4096) / 48000;
 	
 	if( str_header[8] == 1 ){
 		str_mono_fg = 1;
@@ -183,7 +183,7 @@ int StartStream2( void )
 	str_trans_buf = str_header+0x800;
 	temp = PcmRead( str_fp, str_trans_buf, 0x8000 );
 	
-	if( temp < str_unload_size ){
+	if( str_unload_size > temp ){
 		str_unload_size -= temp;
 	} else {
 		str_unload_size = 0;
