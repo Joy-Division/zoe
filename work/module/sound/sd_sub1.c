@@ -10,7 +10,6 @@
 
 /*---------------------------------------------------------------------------*/
 
-// NOMATCH: access to mem_str_w produces subtraction at the wrong point in time
 int sound_sub( void )
 {
 	sptr->tmpd += sptr->tmp;
@@ -567,7 +566,7 @@ void fader_automation1( void )
 {
 	int temp, temp2;
 	
-	if( sptr->unkE8 == 1 && (sptr->unkE4 != auto_phase_fg) ){
+	if( sptr->unkE8 == 1 && (auto_phase_fg != sptr->unkE4) ){
 		sptr->unkE4 = auto_phase_fg;
 		
 		switch( auto_phase_fg ){
