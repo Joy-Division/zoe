@@ -363,7 +363,8 @@ int Str2SpuTrans( int a0 )
 		} else {
 			sceSdSetSwitch( SD_CORE_1|SD_S_KON, 0xC00000 );
 		}
-		spu_str2_idx[a0] = mute2_l_r_fg[a0] = 0;
+		mute2_l_r_fg[a0] = 0;
+		spu_str2_idx[a0] = 0;
 		str2_next_idx[a0] = 0x0800;
 		str2_status[a0]++;
 		if( str2_unplay_size[a0] || !(str2_unplay_size[a0] & 0x80000000) ){
