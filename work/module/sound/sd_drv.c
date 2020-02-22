@@ -707,31 +707,31 @@ void sng_track_init( struct SOUND_W *work )
 	work->tmpd     = 1;
 	work->tmp      = 0xFF;
 	work->tmpc     = 0;
-/* ---------------------- */
-/* add. for PlayStation 2 */
-/* ---------------------- */
-	work->unkD4 = 0;
-	work->unkD9 = 1;
-	work->unkE0 = 0;
-	work->unkE1 = 0;
-	work->unkE4 = 0xFFFFFFFF;
-	work->unkE8 = 0;
-	work->unkE9 = 0;
-	work->unkEA = 0;
-	work->unkEB = 0;
-	work->unkEC = 0;
-	work->unkED = 0;
-	work->unkEE = 0;
-	work->unkEF = 0;
-	work->unkF0 = 0;
-	work->unkF1 = 0;
-	work->unkF2 = 0;
-	work->unkF3 = 0;
-	work->unkF4 = 0;
-	work->unkF5 = 0;
-	work->unkF6 = 0;
-	work->unkF7 = 0;
-	work->unkF8 = 0;
+/* ************************* */
+/* Addition for PS2 IOP ver. */
+/* ************************* */
+	work->unkD4    = 0;
+	work->unkD9    = 1;
+	work->unkE0    = 0;
+	work->unkE1    = 0;
+	work->unkE4    = 0xFFFFFFFF;
+	work->unkE8    = 0;
+	work->unkE9    = 0;
+	work->unkEA    = 0;
+	work->unkEB    = 0;
+	work->unkEC    = 0;
+	work->unkED    = 0;
+	work->unkEE    = 0;
+	work->unkEF    = 0;
+	work->unkF0    = 0;
+	work->unkF1    = 0;
+	work->unkF2    = 0;
+	work->unkF3    = 0;
+	work->unkF4    = 0;
+	work->unkF5    = 0;
+	work->unkF6    = 0;
+	work->unkF7    = 0;
+	work->unkF8    = 0;
 }
 
 /*---------------------------------------------------------------------------*
