@@ -116,9 +116,9 @@ void sd_init( void )
 			sceSdSetAddr( i|SD_A_EEA, 0x001FFFFF );
 		}
 		
-		attr.depth_L = 0;
-		attr.depth_R = 0;
-		attr.mode = 0x0105;
+		attr.depth_L = 0;      // redundant assignment
+		attr.depth_R = 0;      // redundant assignment
+		attr.mode    = 0x0105; // redundant assignment
 		
 		sceSdSetEffectAttr( i, &attr );
 		sceSdSetCoreAttr( i|SD_C_EFFECT_ENABLE, SD_SPDIF_OUT_BITSTREAM );
