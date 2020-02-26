@@ -115,10 +115,10 @@ struct SOUND_W {
 	u_char  vibcs;
 	u_char  vibcad;
 	u_int   vibad;
-	u_int   rdmc;
-	u_int   rdmo;
-	u_char  rdms;
-	u_int   rdmd;
+	u_int   rdmc;       /* random */
+	u_int   rdmo;       /* random */
+	u_char  rdms;       /* random */
+	u_int   rdmd;       /* random */
 	char    trec;
 	u_char  trehc;
 	char    tred;
