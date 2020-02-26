@@ -166,8 +166,8 @@ void set_sng_code_buf( u_int a0 )
 void sd_set( int a0 )
 {
 	union {
-		u_int *t0;
-		u_int t1;
+		u_int *up;
+		u_int u;
 	} temp;
 	
 	if( a0 ==  0xFF000000 ){
@@ -190,9 +190,9 @@ void sd_set( int a0 )
 			se_load_code = a0;
 			WakeupThread( id_SdMain );
 		} else if( (a0 & 0xE0000000) == 0x80000000 ){
-			temp.t0 = sif_get_mem(path_name, a0 & 0x1FFFFFFF, 0x80 );
+			temp.up = sif_get_mem( path_name, a0 & 0x1FFFFFFF, 0x80 );
 			while( 1 ){
-				if( *temp.t0 & 0x80000000 ){
+				if( *temp.up & 0x80000000 ){
 					break;
 				}
 			}
@@ -299,16 +299,16 @@ void sd_set( int a0 )
 			}
 		} else if( (a0 & 0xFF000000) == 0xFB000000 ){
 			if( a0 <= 0xFB1F3F3F ){
-				temp.t1 = (int)(a0 & 0x1F0000) >> 16;
-				mix_fader[temp.t1].unk0C = (int)(a0 & 0x3F00) >> 8;
-				mix_fader[temp.t1].unk08 = ((a0 & 0x3F) << 10) + ((a0 & 0x3F) << 4) + ((int)(a0 & 0x3F) >> 2);
-				mix_fader[temp.t1].unk04 = mix_fader[temp.t1].unk08;
-				mix_fader[temp.t1].unk00 = 0;
+				temp.u = (int)(a0 & 0x1F0000) >> 16;
+				mix_fader[temp.u].unk0C = (int)(a0 & 0x3F00) >> 8;
+				mix_fader[temp.u].unk08 = ((a0 & 0x3F) << 10) + ((a0 & 0x3F) << 4) + ((int)(a0 & 0x3F) >> 2);
+				mix_fader[temp.u].unk04 = mix_fader[temp.u].unk08;
+				mix_fader[temp.u].unk00 = 0;
 			} else {
 				if( (a0 & 0xFF0000) == 0xFE0000 || (a0 & 0xFF0000) == 0xFF0000 ){
-					temp.t1 = (int)(a0 & 0x10000) >> 16;
-					vox_fader[temp.t1].unk00 = a0 & 0x3F;
-					vox_fader[temp.t1].unk08 = (int)(a0 & 0x3F00) >> 8;
+					temp.u = (int)(a0 & 0x10000) >> 16;
+					vox_fader[temp.u].unk00 = a0 & 0x3F;
+					vox_fader[temp.u].unk08 = (int)(a0 & 0x3F00) >> 8;
 					if( sd_print_fg ){
 						//
 						// EMPTY BLOCK
@@ -317,21 +317,21 @@ void sd_set( int a0 )
 				}
 			}
 		} else if( a0 > 0xFBFFFFFF && a0 <= 0xFC1F3FFF ){
-			temp.t1 = (int)(a0 & 0x1F0000) >> 16;
-			mix_fader[temp.t1].unk0C = (int)(a0 & 0x3F00) >> 8;
+			temp.u = (int)(a0 & 0x1F0000) >> 16;
+			mix_fader[temp.u].unk0C = (int)(a0 & 0x3F00) >> 8;
 		} else if( a0 > 0xFCFFFFFF && a0 <= 0xFD1F3FFF ){
-			temp.t1 = (int)(a0 & 0x1F0000) >> 16;
-			mix_fader[temp.t1].unk08 = ((a0 & 0x3F00) << 2) + ((int)(a0 & 0x3F00) >> 4) + ((int)(a0 & 0x3F00) >> 10);
-			if( mix_fader[temp.t1].unk04 == mix_fader[temp.t1].unk08 ){
-				mix_fader[temp.t1].unk00 = 0;
+			temp.u = (int)(a0 & 0x1F0000) >> 16;
+			mix_fader[temp.u].unk08 = ((a0 & 0x3F00) << 2) + ((int)(a0 & 0x3F00) >> 4) + ((int)(a0 & 0x3F00) >> 10);
+			if( mix_fader[temp.u].unk04 == mix_fader[temp.u].unk08 ){
+				mix_fader[temp.u].unk00 = 0;
 			} else if( a0 & 0xFF ){
-				mix_fader[temp.t1].unk00 = (mix_fader[temp.t1].unk08 - mix_fader[temp.t1].unk04) / ((int)(a0 & 0xFF)*10);
-				if( !mix_fader[temp.t1].unk00 ){
-					mix_fader[temp.t1].unk00 = 1;
+				mix_fader[temp.u].unk00 = (mix_fader[temp.u].unk08 - mix_fader[temp.u].unk04) / ((int)(a0 & 0xFF)*10);
+				if( !mix_fader[temp.u].unk00 ){
+					mix_fader[temp.u].unk00 = 1;
 				}
 			} else {
-				mix_fader[temp.t1].unk04 = mix_fader[temp.t1].unk08;
-				mix_fader[temp.t1].unk00 = 0;
+				mix_fader[temp.u].unk04 = mix_fader[temp.u].unk08;
+				mix_fader[temp.u].unk00 = 0;
 			}
 		} else if( (a0 & 0xFF000000) == 0xFE000000 ){
 			pak_cd_read_fg = 0;
