@@ -92,7 +92,7 @@ int freq_tbl[108] = {
 	0xE1, 0xEE, 0xFC,
 };
 
-unsigned int str1_use_iop = 0;
+u_int str1_use_iop = 0;
 
 unsigned short str_master_vol = 0x3FFF;
 unsigned short str_master_pitch = 0x1000;
@@ -232,19 +232,23 @@ u_char dummy_data[2048] = {
 unsigned short str2_master_vol = 0x3FFF;
 unsigned short str2_master_pitch = 0x1000;
 
+
+
+
+
 /*---------------------------------------------------------------------------*
  * Uninitialized Data
  *---------------------------------------------------------------------------*/
 
-
-int id_SdInt;
-int id_SdEELoad;
-int id_SdMain;
-int id_SdSet;
-int id_HSyncTim;
-void *common;
+int sng_status;
+int skip_intro_loop;
 
 u_int rev_on_bit[2];
+u_int rev_off_bit[2];
+u_int sound_mono_fg;
+u_int sng_load_code;
+
+
 u_int mdata1;
 u_int mdata2;
 u_int mdata3;
@@ -253,12 +257,9 @@ u_int spu_load_offset;
 u_int song_end[2];
 int stop_jouchuu_se;
 u_char *wave_load_ptr;
-u_int sound_mono_fg;
 u_int key_fg;
 u_int mtrack;
-u_int rev_off_bit[2];
 u_int keyons[2];
-struct SETBL *se_header;
 u_char *spu_wave_start_ptr;
 u_int wave_load_code;
 u_int keyd[2];
@@ -271,12 +272,12 @@ u_char *mptr;
 struct SOUND_W *sptr;
 u_int wave_load_size;
 u_int se_load_code;
-u_char *se_data;
 int wave_fp;
 u_int keyoffs[2];
 int se_fp;
 
-struct WAVE_W *wave_w;
+
+
 
 u_int rev_bit_data[2];
 u_char auto_env_pos;
@@ -284,12 +285,9 @@ u_char auto_env_pos2;
 u_int auto_phase_fg;
 
 u_int pak_load_status;
-u_int sng_load_code;
 u_int pak_read_fg;
 int pak_fp;
 u_int pak_load_code;
-u_int d1E0E4[2];
-u_char *se_exp_table;
 int sng_fp;
 int fx_sound_code;
 int sng_fadein_time;
@@ -303,7 +301,6 @@ u_int sng_syukan_fg;
 int sng_syukan_vol;
 
 u_int sd_code_set;
-u_int sd_print_fg;
 u_int vox_rev_on;
 u_int fader_off_fg;
 u_int sd_code_read;
@@ -312,10 +309,7 @@ u_int sng_pause_fg;
 
 
 
-u_int se_vol[12];
-struct SEPLAYTBL se_request[12];
-struct unkstr24 mem_str_w[12];
-u_char mem_str_buf[0x000A0000];
+
 struct SEPLAYTBL se_playing[12];
 u_int fg_rev_set[44];
 int sd_sng_code_buf[16];
@@ -332,7 +326,7 @@ char path_name[0x80];
 u_int se_pan[12];
 u_int pak_header[512];
 struct unkstr24 ee_addr[2];
-u_char wave_header[0x2000]; // this is most likely struct WAVE_W
+struct WAVE_W wave_header[0x200];
 u_char sng_data[0x00020000];
 u_char se_data_area[0x4800];
 u_char cdload_buf[0x18000];

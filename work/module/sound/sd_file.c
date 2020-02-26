@@ -18,6 +18,16 @@ u_int pak_cd_read_fg = 0;
 u_int save_wvx1 = -1, save_wvx2 = -1;
 u_int save_efx = -1;
 u_int save_mdx = -1;
+u_int sng_load_code;
+
+char *sd_path_sd1[6] = {
+    "\\DUMMY\\",
+    "host0:./sound/vox1/",
+    "host0:./sound/wvx1/",
+    "host0:./sound/mdx1/",
+    "host0:./sound/efx1/",
+    "host0:./sound/sdx1/"
+};
 
 /*---------------------------------------------------------------------------*/
 
@@ -155,15 +165,6 @@ void LoadPakFile( void )
 }
 
 /*---------------------------------------------------------------------------*/
-
-char *sd_path_sd1[6] = {
-    "\\DUMMY\\",
-    "host0:./sound/vox1/",
-    "host0:./sound/wvx1/",
-    "host0:./sound/mdx1/",
-    "host0:./sound/efx1/",
-    "host0:./sound/sdx1/"
-};
 
 /*---------------------------------------------------------------------------*/
 

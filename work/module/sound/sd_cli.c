@@ -12,8 +12,6 @@
 
 /*---------------------------------------------------------------------------*/
 
-int se_tracks;
-
 /*---------------------------------------------------------------------------*/
 
 int sd_set_cli( u_int a0 )
@@ -405,8 +403,15 @@ void sd_set( int a0 )
 				}
 				break;
 			
+			/* the next two cases are different in the original assembly
+			   gcc was smart there and did the following, using the delay slot:
+				lui, j, sw
+			   however, when recompiling you get the "normal" version instead:
+				lui, sw, j, nop
+			*/
 			case 0xFF000012: str1_use_iop = 1; break;
-			case 0xFF000013: str1_use_iop = 0;
+			case 0xFF000013: str1_use_iop = 0; break;
+			
 			case 0xFF000014: fader_off_fg = 1; break;
 			case 0xFF0000FE: stop_jouchuu_se = 1; break;
 			case 0xFF0000FF: set_sng_code_buf( a0 ); break;
@@ -426,7 +431,11 @@ void sd_set( int a0 )
 			}
 		}
 	}
-	// this here requires an additional nop which is the target after the ifs of the top-level if-else
+	/* these are pure evil and shouldnt be left here, but i dont see any other way of getting the double-nop otherwise
+	   i guess the control flow should be changed at some point to account for this... */
+	asm("nop");
+	asm("nop");
+	return;
 }
 
 /*---------------------------------------------------------------------------*

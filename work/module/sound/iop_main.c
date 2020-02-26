@@ -19,6 +19,13 @@ char name[6] = "SOUND";
 
 ModuleInfo Module = { name, 0x0101 };
 
+int id_SdInt;
+int id_SdEELoad;
+int id_SdMain;
+int id_SdSet;
+int id_HSyncTim;
+void *common;
+
 /*---------------------------------------------------------------------------*/
 
 void sd_set_status( void )

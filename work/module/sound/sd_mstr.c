@@ -11,6 +11,9 @@
 #include "sd_incl.h"
 #include "sd_ext.h"
 
+struct unkstr24 mem_str_w[12];
+u_char mem_str_buf[0x000A0000];
+
 /*---------------------------------------------------------------------------*/
 
 void init_mem_str_w( void )
