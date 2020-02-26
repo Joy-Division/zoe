@@ -31,14 +31,19 @@ void IntSdMain( void )
 	
 	if( temp ){
 		switch( temp ){
+		
+		/* Pause Song */
 		case 0x01FFFF01:
 			sng_pause_fg = 1;
 			sng_pause();
 			break;
+		
+		/* Unpause Song */
 		case 0x01FFFF02:
 			snd_pause_off();
 			sng_pause_fg = 0;
 			break;
+		
 		case 0x01FFFF03:
 		case 0x01FFFF04:
 		case 0x01FFFF05:
@@ -52,7 +57,8 @@ void IntSdMain( void )
 				sng_kaihi_fg = 0;
 			}
 			break;
-		// Fade Out
+		
+		/* Fade Out */
 		case 0x01FFFF06:
 		case 0x01FFFF07:
 		case 0x01FFFF08:
@@ -62,20 +68,20 @@ void IntSdMain( void )
 		case 0x01FFFF0C:
 		case 0x01FFFF0D: SngFadeOutS( temp ); break;
 		
-		// 回避モード (Evasion Mode)
+		/* 回避モード *//* Evasion Mode */
 		case 0x01FFFF10: SngKaihiP(); break;
 		case 0x01FFFF11: SngKaihiReset(); break;
 		case 0x01FFFF12: SngKaihiReset2(); break;
 		
-		// 主観モード (First Person Mode)
+		/* 主観モード *//* First Person Mode */
 		case 0x01FFFF20: sng_syukan_fg = 1; break;
 		case 0x01FFFF21: sng_syukan_fg = 0; break;
 		
-		// Sound Effect
+		/* Sound Effect Off */
 		case 0x01FFFFFD: se_off_exp(); break;
 		case 0x01FFFFFE: se_off_all(); break;
 		
-		// Song Off
+		/* Song Off */
 		case 0x01FFFFFF:
 			sng_play_code = 0xFFFFFFFF;
 			sng_off();
