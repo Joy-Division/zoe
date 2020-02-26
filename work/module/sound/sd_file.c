@@ -58,7 +58,9 @@ void LoadPakFile( void )
 			pak_load_status = 0;
 			break;
 		} else {
+			//
 			// EMPTY BLOCK
+			//
 		}
 		pak_read_fg = 1;
 		PcmRead( pak_fp, pak_header, 0x0800 );
@@ -118,7 +120,9 @@ void LoadPakFile( void )
 				PcmLseek( pak_fp, (temp[3].unk00 - temp[2].unk00) * 0x0800, 1 );
 			}
 		} else {
+			//
 			// EMPTY BLOCK
+			//
 		}
 		pak_load_status = 6;
 		break;
@@ -163,8 +167,6 @@ void LoadPakFile( void )
 		break;
 	}
 }
-
-/*---------------------------------------------------------------------------*/
 
 /*---------------------------------------------------------------------------*/
 
@@ -386,7 +388,9 @@ void WaveSpuTrans( void )
 			wave_load_size );                     /* transfer size    */
 		
 		if( result < 0 ){
+			//
 			// EMPTY BLOCK
+			//
 		} else {
 			spu_load_offset += wave_load_size;
 		}
@@ -537,7 +541,9 @@ int PcmOpen( u_int a0, u_int a1 )
 	str_cat( temp, temp2 );
 	
 	if( !pak_read_fg ){
+		//
 		// EMPTY BLOCK
+		//
 	}
 	
 	temp3 = pcOpen( temp, 1 );
@@ -628,7 +634,9 @@ int EEOpen( int a0 )
 		temp = 2;
 	}
 	else {
+		//
 		// EMPTY BLOCK
+		//
 	}
 	temp2 = (pak_header+0x01FA)+(6*temp);
 	
@@ -664,7 +672,9 @@ int EERead( u_int a0, u_int *a1, u_int a2, u_int a3 )
 		}
 		temp++;
 		if( !(temp & 0xFFFF) ){
+			//
 			// EMPTY BLOCK
+			//
 		}
 	}
 	

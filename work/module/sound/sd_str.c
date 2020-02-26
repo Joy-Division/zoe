@@ -162,7 +162,9 @@ int StartStream2( void )
 		str_fp = 0;
 		return -1;
 	} else {
+		//
 		// EMPTY BLOCK
+		//
 	}
 
 	str_wave_size -= str_start_offset*0x1000;

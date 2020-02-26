@@ -166,7 +166,9 @@ void str2_load( void )
 					str2_status[i] = 2;
 				}
 			} else {
+				//
 				// EMPTY BLOCK
+				//
 			}
 			break;
 		
@@ -175,7 +177,9 @@ void str2_load( void )
 				StrEELoad( i );
 				str2_status[i]++;
 			} else {
+				//
 				// EMPTY BLOCK
+				//
 			}
 		
 		case 2:

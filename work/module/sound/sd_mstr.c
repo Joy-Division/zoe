@@ -128,7 +128,9 @@ int MemSpuTransWithNoLoop( u_int a0 )
 				temp4->unk00++;
 			}
 		} else {
+			//
 			// EMPTY BLOCK
+			//
 		}
 		break;
 /* ///////////////////////////////////////////////////////////////////////// */

@@ -124,7 +124,9 @@ void IntSdMain( void )
 					skip_intro_loop = 0;
 				}
 			} else {
+				//
 				// EMPTY BLOCK
+				//
 			}
 			break;
 		
@@ -260,9 +262,10 @@ void IntSdMain( void )
 				}
 			}
 		}
-	}
-	else {
+	} else {
+		//
 		// EMPTY BLOCK
+		//
 	}
 	spuwr();
 }
@@ -451,7 +454,7 @@ void SngFadeWkSet( void )
 		case 0x01FFFF03:
 		case 0x01FFFF04:
 		case 0x01FFFF05:
-			SngFadeIn(sng_fadein_fg);
+			SngFadeIn( sng_fadein_fg );
 			for( i = 0 ; i < 32 ; i++ ){
 				sng_fade_value[i] = 1;
 			}
@@ -585,7 +588,9 @@ void SngFadeInt( void )
 
 void SngTempoInt( void )
 {
+	//
 	// EMPTY FUNCTION
+	//
 }
 
 /*---------------------------------------------------------------------------*/

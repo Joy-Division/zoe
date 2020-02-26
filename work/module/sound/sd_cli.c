@@ -12,6 +12,10 @@
 
 /*---------------------------------------------------------------------------*/
 
+//
+// PLACEHOLDER
+//
+
 /*---------------------------------------------------------------------------*/
 
 int sd_set_cli( u_int a0 )
@@ -114,7 +118,9 @@ int SePlay( u_int a0 )
 					}
 				}
 				if( (temp7 % 100) < (temp % 100) ){
+					//
 					// EMPTY BLOCK
+					//
 				}
 			}
 		}
@@ -129,8 +135,10 @@ int SePlay( u_int a0 )
 			if( temp7 == 0xFF ){
 				stop_jouchuu_se = 0;
 			}
-			if( 0 ) {
+			if( 0 ){
+				//
 				// EMPTY BLOCK
+				//
 			}
 		}
 	}
@@ -146,7 +154,9 @@ void set_sng_code_buf( u_int a0 )
 		sd_sng_code_buf[sd_code_set] = a0;
 		sd_code_set = (sd_code_set + 1) & 0x0F;
 	} else {
+		//
 		// EMPTY BLOCK
+		//
 	}
 }
 
@@ -200,7 +210,9 @@ void sd_set( int a0 )
 					str_status = 1;
 					WakeupThread( id_SdMain );
 				} else {
+					//
 					// EMPTY BLOCK
+					//
 				}
 			} else {
 				if( lnr8_status ){
@@ -281,7 +293,7 @@ void sd_set( int a0 )
 		} else if( (a0 & 0xFF000000) == 0xFA000000 ){
 			switch( a0 & 0x0F00 ){
 			// cases 0 & 256 don't get compiled, but exist in the original assembly
-			case   0: auto_env_pos = (a0 & 0xFFFF); break;
+			case   0: auto_env_pos  = (a0 & 0xFFFF); break;
 			case 256: auto_env_pos2 = (a0 & 0xFFFF); break;
 			default: break;
 			}
@@ -298,7 +310,9 @@ void sd_set( int a0 )
 					vox_fader[temp.t1].unk00 = a0 & 0x3F;
 					vox_fader[temp.t1].unk08 = (int)(a0 & 0x3F00) >> 8;
 					if( sd_print_fg ){
+						//
 						// EMPTY BLOCK
+						//
 					}
 				}
 			}
