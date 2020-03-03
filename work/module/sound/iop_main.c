@@ -254,7 +254,7 @@ int start()
 	param.stackSize    = 0x400;
 	param.option       = 0;
 	tid = CreateThread( &param );
-	if( 0 >= tid ) return 1;
+	if( 0 >= tid ) return NO_RESIDENT_END;
 	StartThread( tid, 0 );
   
 	return RESIDENT_END;
