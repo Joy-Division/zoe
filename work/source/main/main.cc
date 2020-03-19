@@ -33,6 +33,8 @@
 #include "../include/libtrg.h"
 #include "../include/carl.h"
 
+#include "main.h"
+
 /*---------------------------------------------------------------------------*/
 
 // TODO: move temporary prototypes
@@ -124,24 +126,8 @@ int main()
 	sceDevVu0Reset();
 	sceDevVu1Reset();
 	sceGsResetPath();
-
-// The following COP0 Cache definitions were removed from eekernel.h in
-// version 2.3.0 (Jan.22,2003), however the functions are still present
-// within the libkernl.a static library.
-//
-// SOLUTION:
-//  Pass "-DNEED_EEKERNEL_CACHE" to the compiler when building this project
-//  using a PlayStation 2 Runtime Library Release lacking these definitions.
-#ifdef NEED_EEKERNEL_CACHE
-#define INST_CACHE  2
-#define DATA_CACHE  1
-#define CacheOn()   EnableCache(INST_CACHE | DATA_CACHE)
-#define CacheOff()  DisableCache(INST_CACHE | DATA_CACHE)
-int EnableCache(int);
-int DisableCache(int);
-#endif
-
-	CacheOn();
+	
+	CacheOn(); // see "main.h" if undefined
 	
 	sceDmaReset( 1 );
 	sceGsResetPath();
