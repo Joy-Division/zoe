@@ -1,4 +1,3 @@
-
 # SCE PS2 Runtime Library Versions
 
 All known builds of ZOE were linked with PS2 Runtime Library 2.0.

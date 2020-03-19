@@ -1,4 +1,3 @@
-
 # Disc ID
 
 Follow the product ID links to visit the [Redump.org](http://redump.org/) database entry for the disc in question.
