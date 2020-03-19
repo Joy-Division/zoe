@@ -1,9 +1,13 @@
 /*
- *【 LibCM 】by J.Ingram
+ *【 LibCM 】ver.20200314
+ * Copyright (C) 2019 2020 J.Ingram
+ * All rights reserved.
+ */
+/* cmtypes.h
  * Common Type Definitions
  */
-#ifndef INC_CMTYPES_H
-#define INC_CMTYPES_H
+#ifndef INCLUDED_CMTYPES_H
+#define INCLUDED_CMTYPES_H
 
 #include "cmconf.h"
 
@@ -16,7 +20,7 @@
 #ifndef llong
 #define llong    long long
 #endif
-
+/*---------------------------------------------------------------------------*/
 #ifndef int8
 #define int8     CM_TYPE_INT8
 #endif
@@ -29,9 +33,12 @@
 #ifndef int64
 #define int64    CM_TYPE_INT64
 #endif
-
+/*---------------------------------------------------------------------------*/
 #ifndef char8
 #define char8    CM_TYPE_INT8
+#endif
+#ifndef char16
+#define char16   CM_TYPE_INT16
 #endif
 #ifndef short16
 #define short16  CM_TYPE_INT16
@@ -65,7 +72,7 @@ typedef unsigned long long  ullong, u_llong;
 /*---------------------------------------------------------------------------*/
 typedef   signed CM_TYPE_INT8   sbyte,  s_byte;
 typedef unsigned CM_TYPE_INT8   ubyte,  u_byte;
-
+/*---------------------------------------------------------------------------*/
 typedef   signed CM_TYPE_INT8   sint8,  s_int8,  s8;
 typedef unsigned CM_TYPE_INT8   uint8,  u_int8,  u8;
 typedef   signed CM_TYPE_INT16  sint16, s_int16, s16;
@@ -74,9 +81,11 @@ typedef   signed CM_TYPE_INT32  sint32, s_int32, s32;
 typedef unsigned CM_TYPE_INT32  uint32, u_int32, u32;
 typedef   signed CM_TYPE_INT64  sint64, s_int64, s64;
 typedef unsigned CM_TYPE_INT64  uint64, u_int64, u64;
-
+/*---------------------------------------------------------------------------*/
 typedef   signed CM_TYPE_INT8   schar8,   s_char8;
 typedef unsigned CM_TYPE_INT8   uchar8,   u_char8;
+typedef   signed CM_TYPE_INT16  schar16,  s_char16;
+typedef unsigned CM_TYPE_INT16  uchar16,  u_char16;
 typedef   signed CM_TYPE_INT16  sshort16, s_short16;
 typedef unsigned CM_TYPE_INT16  ushort16, u_short16;
 typedef   signed CM_TYPE_INT32  sshort32, s_short32;
@@ -91,20 +100,23 @@ typedef unsigned CM_TYPE_INT64  ulong64,  u_long64;
 /*---------------------------------------------------------------------------*/
 typedef CM_TYPE_FLOAT32  float32, f32;
 typedef CM_TYPE_FLOAT64  float64, f64;
-
-#ifdef CM_HAVE_MODETF
+/*---------------------------------------------------------------------------*/
+#if defined(CM_HAVE_MODETF)
 typedef float float128 __attribute__((mode(TF)));
 typedef float f128     __attribute__((mode(TF)));
+#define CM_HAVE_FLOAT128 (1)
 #endif
-#ifdef CM_HAVE_MODEXF
+/*---------------------------------------------------------------------------*/
+#if defined(CM_HAVE_MODEXF)
 typedef float float96  __attribute__((mode(XF)));
 typedef float f96      __attribute__((mode(XF)));
+#define CM_HAVE_FLOAT96 (1)
 #endif
 
 /*---------------------------------------------------------------------------*/
 /* 128bit Integer Types (Tetra-Integer Mode)                                 */
 /*---------------------------------------------------------------------------*/
-#ifdef CM_HAVE_MODETI
+#if defined(CM_HAVE_MODETI)
 typedef /******/ int int128    __attribute__((mode(TI)));
 typedef /******/ int long128   __attribute__((mode(TI)));
 typedef   signed int sint128   __attribute__((mode(TI)));
@@ -117,36 +129,42 @@ typedef   signed int s_long128 __attribute__((mode(TI)));
 typedef unsigned int u_long128 __attribute__((mode(TI)));
 typedef   signed int s128      __attribute__((mode(TI)));
 typedef unsigned int u128      __attribute__((mode(TI)));
+#define CM_HAVE_INT128 (1)
 #endif
 
 /*---------------------------------------------------------------------------*/
 /* Fake Boolean Types                                                        */
 /*---------------------------------------------------------------------------*/
 #ifndef bool8
-#define bool8  CM_TYPE_INT8
+#define bool8   CM_TYPE_INT8
 #endif
 #ifndef bool16
-#define bool16 CM_TYPE_INT16
+#define bool16  CM_TYPE_INT16
 #endif
 #ifndef bool32
-#define bool32 CM_TYPE_INT32
+#define bool32  CM_TYPE_INT32
 #endif
 #ifndef bool64
-#define bool64 CM_TYPE_INT64
+#define bool64  CM_TYPE_INT64
 #endif
 
-#ifndef TRUE
-#define TRUE  (1)
+/* These macros were copied to "cmdefs.h" to avoid
+ * creating a dependency on this header or vice versa.
+ */
+#ifndef TRUE       /* Duplicately defined in "cmdefs.h" */
+#define TRUE  (1)  /* Any changes must be synchronized. */
 #endif
-#ifndef FALSE
-#define FALSE (0)
+#ifndef FALSE      /* Duplicately defined in "cmdefs.h" */
+#define FALSE (0)  /* Any changes must be synchronized. */
 #endif
 
 /*---------------------------------------------------------------------------*/
 /* Generic Union Types                                                       */
 /*---------------------------------------------------------------------------*/
 
-/* 8-bit (1 Byte) */
+/*
+ * 8-bit (1 Byte)
+ */
 typedef union union8 {
 	struct {
 		byte bit0:1; /* LSB */
@@ -162,7 +180,9 @@ typedef union union8 {
 	u_int8 u8;
 } union8;
 
-/* 16-bit (2 Bytes) */
+/*
+ * 16-bit (2 Bytes)
+ */
 typedef union union16 {
 	s_int16 s16;
 	u_int16 u16;
@@ -171,7 +191,9 @@ typedef union union16 {
 	union8  c8[2];
 } union16;
 
-/* 32-bit (4 Bytes) */
+/*
+ * 32-bit (4 Bytes)
+ */
 typedef union union32 {
 	s_int32 s32;
 	u_int32 u32;
@@ -184,7 +206,9 @@ typedef union union32 {
 	union8  c8[4];
 } union32;
 
-/* 64-bit (8 Bytes) */
+/*
+ * 64-bit (8 Bytes)
+ */
 typedef union union64 {
 	s_int64 s64;
 	u_int64 u64;
@@ -201,7 +225,9 @@ typedef union union64 {
 	union8  c8[8];
 } union64;
 
-/* 128-bit (16 Bytes) */
+/*
+ * 128-bit (16 Bytes)
+ */
 typedef union union128 {
 #ifdef CM_HAVE_INT128
 	s_int128 s128;
@@ -226,8 +252,4 @@ typedef union union128 {
 	union8   c8[16];
 } union128;
 
-/*---------------------------------------------------------------------------*/
 #endif /* END OF FILE */
-/*---------------------------------------------------------------------------*/
-/* -*- indent-tabs-mode: t; tab-width: 4; mode: c; -*- */
-/* vim: set noet ts=4 sw=4 ft=c ff=unix fenc=utf-8 : */

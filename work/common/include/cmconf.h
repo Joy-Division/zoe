@@ -1,73 +1,108 @@
 /*
- *【 LibCM 】by J.Ingram
- * Configuration Include
+ *【 LibCM 】ver.20200314
+ * Copyright (C) 2019 2020 J.Ingram
+ * All rights reserved.
  */
-#ifndef INC_CMCONF_H
-#define INC_CMCONF_H
+/* cmdefs.h
+ * Common Definitions
+ */
+#ifndef INCLUDED_CMDEFS_H
+#define INCLUDED_CMDEFS_H
 
 /*---------------------------------------------------------------------------*/
-/* Data Type Width Specification w/ C Primitives                             */
+/* Generic Constant Definitions                                              */
 /*---------------------------------------------------------------------------*/
-#define CM_TYPE_INT8     char
-#define CM_TYPE_INT16    short
-#define CM_TYPE_INT32    int
-#define CM_TYPE_INT64    long long
-#define CM_TYPE_FLOAT32  float
-#define CM_TYPE_FLOAT64  double
 
-/*---------------------------------------------------------------------------*/
-/* Data Type Availability for GNU C                                          */
-/*---------------------------------------------------------------------------*/
-#if defined( __GNUC__ )
+/*---< Logical Constants (Boolean) >---*/
 
-/* --- 128-bit Floating Point --- */
+#define CM_TRUE   (1)
+#define CM_FALSE  (0)
 
-#if defined( __i686__ )\
-||  defined( __x86_64__ )
-#define CM_HAVE_FLOAT128 (1)
-#define CM_HAVE_MODETF   (1)
+/* These macros are copied from "cmtypes.h" to avoid
+ * creating a dependency on this header or vice versa.
+ */
+#ifndef TRUE       /* Duplicately defined in "cmtypes.h" */
+#define TRUE  (1)  /* Any changes must be synchronized.  */
+#endif
+#ifndef FALSE      /* Duplicately defined in "cmtypes.h" */
+#define FALSE (0)  /* Any changes must be synchronized.  */
 #endif
 
-/* --- 96-bit Floating Point --- */
+/*---< Logical Constants (Confirmation) >---*/
 
-#if defined( __i686__ )
-#define CM_HAVE_FLOAT96 (1)
-#define CM_HAVE_MODEXF  (1)
+#define CM_YES  (1)
+#define CM_NO   (0)
+
+#ifndef YES
+#define YES CM_YES
+#endif
+#ifndef NO
+#define NO  CM_NO
 #endif
 
-/* --- 128-bit Integer --- */
+/*---< Status Constants >---*/
 
-#if defined( __x86_64__ )\
-||  defined( __R5900__ ) /* (PS2) Emotion Engine */\
-||  defined( __psp__ )   /* (PSP) Allegrex       */\
-||  defined( __PPU__ )   /* (PS3) Cell/B.E. PPU  */\
-||  defined( __SPU__ )   /* (PS3) Cell/B.E. SPU  */
-#define CM_HAVE_INT128 (1)
-#define CM_HAVE_MODETI (1)
+#define CM_ON   (1)
+#define CM_OFF  (0)
+
+#ifndef ON
+#define ON  CM_ON
+#endif
+#ifndef OFF
+#define OFF CM_OFF
 #endif
 
-#endif /* __GNUC__ */
+/*---< Result Constants >---*/
+
+#define CM_OK  ( 0)
+#define CM_NG  (-1)
+
+#ifndef OK
+#define OK  CM_OK
+#endif
+#ifndef NG
+#define NG  CM_NG
+#endif
 
 /*---------------------------------------------------------------------------*/
-/* Conflict Check for SCEI PSP(TM) Programmer Tool                           */
+/* C Language Standard                                                       */
 /*---------------------------------------------------------------------------*/
-#if defined( __psp__ )
-
-/* Check if psptypes.h has been included without suppressing typedefs
- * that conflict with cmtypes.h. Halt the build process if so. */
-#if defined( _SCE_PSPTYPES_H )\
-&& !defined( SCE_PSPTYPES_SUPPRESS_ADDITIONAL_DEFINE )
-#error "psptypes.h was included before conflict suppression!!"
+#if defined(__STDC__)
+#  define STANDARD_C89 __STDC__
+#  if defined(__STDC_VERSION__)
+#    define STANDARD_C __STDC_VERSION__
+#    if (__STDC_VERSION__ >= 199409L)
+#      define STANDARD_C95 199409L
+#    endif
+#    if (__STDC_VERSION__ >= 199901L)
+#      define STANDARD_C99 199901L
+#    endif
+#    if (__STDC_VERSION__ >= 201112L)
+#      define STANDARD_C11 201112L
+#    endif
+#    if (__STDC_VERSION__ >= 201710L)
+#      define STANDARD_C18 201710L
+#    endif
+#  endif
 #endif
 
-#ifndef SCE_PSPTYPES_SUPPRESS_ADDITIONAL_DEFINE
-#define SCE_PSPTYPES_SUPPRESS_ADDITIONAL_DEFINE (1)
+/*---------------------------------------------------------------------------*/
+/* C++ Language Standard                                                     */
+/*---------------------------------------------------------------------------*/
+#if defined(__cplusplus)
+#  define STANDARD_CPP __cplusplus
+#  if (__cplusplus >= 199711L)
+#    define STANDARD_CPP98 199711L
+#  endif
+#  if (__cplusplus >= 201103L)
+#    define STANDARD_CPP11 201103L
+#  endif
+#  if (__cplusplus >= 201402L)
+#    define STANDARD_CPP14 201402L
+#  endif
+#  if (__cplusplus >= 201703L)
+#    define STANDARD_CPP17 201703L
+#  endif
 #endif
 
-#endif /* __psp__ */
-
-/*---------------------------------------------------------------------------*/
 #endif /* END OF FILE */
-/*---------------------------------------------------------------------------*/
-/* -*- indent-tabs-mode: t; tab-width: 4; mode: c; -*- */
-/* vim: set noet ts=4 sw=4 ft=c ff=unix fenc=utf-8 : */
