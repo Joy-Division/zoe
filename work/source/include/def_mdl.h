@@ -1,8 +1,9 @@
 /*
+ * "ZONE OF THE ENDERS"
  * Model Format Definitions
  */
-#ifndef INC_DEF_MDL_H
-#define INC_DEF_MDL_H
+#ifndef INCLUDED_DEF_MDL_H
+#define INCLUDED_DEF_MDL_H
 
 #include "global.h"
 #include "zoe_defs.h"
@@ -85,8 +86,4 @@ public:
 }
 DEF_MDL_FLOWLINE;
 
-/*---------------------------------------------------------------------------*/
 #endif /* END OF FILE */
-/*---------------------------------------------------------------------------*/
-/* -*- indent-tabs-mode: t; tab-width: 4; mode: cpp; -*- */
-/* vim: set noet ts=4 sw=4 ft=cpp ff=dos fenc=euc-jp : */

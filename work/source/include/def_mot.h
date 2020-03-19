@@ -1,8 +1,9 @@
 /*
+ * "ZONE OF THE ENDERS"
  * Motion Format Definitions
  */
-#ifndef INC_DEF_MOT_H
-#define INC_DEF_MOT_H
+#ifndef INCLUDED_DEF_MOT_H
+#define INCLUDED_DEF_MOT_H
 
 #include "global.h"
 #include "zoe_defs.h"
@@ -30,8 +31,4 @@ typedef struct _DEF_MOTION_NODE {
 	sint16* pMotData;
 } DEF_MOTION_NODE;
 
-/*---------------------------------------------------------------------------*/
 #endif /* END OF FILE */
-/*---------------------------------------------------------------------------*/
-/* -*- indent-tabs-mode: t; tab-width: 4; mode: cpp; -*- */
-/* vim: set noet ts=4 sw=4 ft=cpp ff=dos fenc=euc-jp : */

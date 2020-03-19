@@ -1,11 +1,11 @@
 /*
- * [ LibSTRM ]
  * Streaming Library
- *
- * ver.ZONE OF THE ENDERS
+ * Global Include
  */
-#ifndef INC_LIBSTRM_H
-#define INC_LIBSTRM_H
+/* ver."ZONE OF THE ENDERS"
+ */
+#ifndef INCLUDED_LIBSTRM_H
+#define INCLUDED_LIBSTRM_H
 
 #include "global.h"
 #include <libmpeg.h>
@@ -146,8 +146,4 @@ public:
 /* CDVD Stream System (streamcd.cc) */
 void STRM_LoadPcmDir();
 
-/*---------------------------------------------------------------------------*/
 #endif /* END OF FILE */
-/*---------------------------------------------------------------------------*/
-/* -*- indent-tabs-mode: t; tab-width: 4; mode: cpp; -*- */
-/* vim: set noet ts=4 sw=4 ft=cpp ff=dos fenc=euc-jp : */

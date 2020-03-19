@@ -1,11 +1,11 @@
 /*
- * [ LibENE ]
- * Enemy Management Library
- *
- * ver.ZONE OF THE ENDERS
+ * Enemy Manager Library
+ * Global Include
  */
-#ifndef INC_LIBENE_H
-#define INC_LIBENE_H
+/* ver."ZONE OF THE ENDERS"
+ */
+#ifndef INCLUDED_LIBENE_H
+#define INCLUDED_LIBENE_H
 
 #include "global.h"
 #include "zoe_defs.h"
@@ -250,8 +250,4 @@ public:
 	ENE_PARTY& operator=(const ENE_PARTY&);
 };
 
-/*---------------------------------------------------------------------------*/
 #endif /* END OF FILE */
-/*---------------------------------------------------------------------------*/
-/* -*- indent-tabs-mode: t; tab-width: 4; mode: cpp; -*- */
-/* vim: set noet ts=4 sw=4 ft=cpp ff=dos fenc=euc-jp : */

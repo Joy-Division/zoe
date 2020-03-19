@@ -1,8 +1,8 @@
 /*
  * Sound Driver for PS2 IOP
  * Sub-Module 2
- *
- * ver."ZONE OF THE ENDERS"
+ */
+/* ver."ZONE OF THE ENDERS"
  */
 #include <sys/types.h>
 #include "sd_incl.h"
@@ -836,9 +836,3 @@ void no_cmd( void )
 	// there must be something here.
 	// nothing generates a trailing nop thats not supposed to be there
 }
-
-/*---------------------------------------------------------------------------*
- * END OF FILE
- *---------------------------------------------------------------------------*/
-/* -*- indent-tabs-mode: t; tab-width: 4; mode: c; -*- */
-/* vim: set noet ts=4 sw=4 ft=c ff=unix fenc=euc-jp : */

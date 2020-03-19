@@ -1,8 +1,8 @@
 /*
  * Sound Driver for PS2 IOP
  * Global Work Data
- *
- * ver."ZONE OF THE ENDERS"
+ */
+/* ver."ZONE OF THE ENDERS"
  */
 #include <sys/types.h>
 #include "sd_incl.h"
@@ -331,9 +331,3 @@ u_char sng_data[0x00020000];
 u_char se_data_area[0x4800];
 u_char cdload_buf[0x18000];
 
-
-/*---------------------------------------------------------------------------*
- * END OF FILE
- *---------------------------------------------------------------------------*/
-/* -*- indent-tabs-mode: t; tab-width: 4; mode: c; -*- */
-/* vim: set noet ts=4 sw=4 ft=c ff=unix fenc=euc-jp : */

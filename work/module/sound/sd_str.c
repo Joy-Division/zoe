@@ -1,8 +1,8 @@
 /*
  * Sound Driver for PS2 IOP
  * Stream System Module 1
- *
- * ver."ZONE OF THE ENDERS"
+ */
+/* ver."ZONE OF THE ENDERS"
  */
 #include <sys/types.h>
 #include <kernel.h>
@@ -630,9 +630,3 @@ void str_int( void )
 	}
 	str_spuwr();
 }
-
-/*---------------------------------------------------------------------------*
- * END OF FILE
- *---------------------------------------------------------------------------*/
-/* -*- indent-tabs-mode: t; tab-width: 4; mode: c; -*- */
-/* vim: set noet ts=4 sw=4 ft=c ff=unix fenc=euc-jp : */

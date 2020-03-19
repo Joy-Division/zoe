@@ -1,12 +1,11 @@
 /*
- * [ LibGV ]
- * Memory Management &
- * Execution Unit Control Library
- *
- * ver.ZONE OF THE ENDERS
+ * LibGV for PS2
+ * Global Include
  */
-#ifndef INC_LIBGV_H
-#define INC_LIBGV_H
+/* ver."ZONE OF THE ENDERS"
+ */
+#ifndef INCLUDED_LIBGV_H
+#define INCLUDED_LIBGV_H
 
 #include "global.h"
 #include "zoe_defs.h"
@@ -223,7 +222,7 @@ public:
 	static uint8    GetType(void*);
 	static uint32   GetSize(void*);
 
-// --- HVS addition ---
+// *** HVS addition ***
 //	static uint32   nGetHVSAllocType(uint8);
 //	static uint32   nGetHVSNonResidentModeCurrent();
 //	static uint32   nGetHVSNonResidentModePrevious();
@@ -441,7 +440,7 @@ public: //! unconfirmed modifier
 	bool            mbYAxisInvert;
 	bool            mbVibration;
 
-// --- HVS addition ---
+// *** HVS addition ***
 //	uint32          m_nLastFrame;
 //	bool            m_bReassigned;
 //	bool            m_bSemiReassigned;
@@ -465,8 +464,4 @@ void GV_InitSystem()
 }
 #endif
 
-/*---------------------------------------------------------------------------*/
 #endif /* END OF FILE */
-/*---------------------------------------------------------------------------*/
-/* -*- indent-tabs-mode: t; tab-width: 4; mode: cpp; -*- */
-/* vim: set noet ts=4 sw=4 ft=cpp ff=dos fenc=euc-jp : */

@@ -1,9 +1,9 @@
 /*
- * Game Management Library
- * for ZONE OF THE ENDERS
+ * "ZONE OF THE ENDERS"
+ * Game Manager Library
  */
-#ifndef INC_GAME_H
-#define INC_GAME_H
+#ifndef INCLUDED_GAME_H
+#define INCLUDED_GAME_H
 
 #include "global.h"
 #include "zoe_defs.h"
@@ -198,8 +198,4 @@ public:
 	static uint8        GetDifficultiesFinished();
 };
 
-/*---------------------------------------------------------------------------*/
 #endif /* END OF FILE */
-/*---------------------------------------------------------------------------*/
-/* -*- indent-tabs-mode: t; tab-width: 4; mode: cpp; -*- */
-/* vim: set noet ts=4 sw=4 ft=cpp ff=dos fenc=euc-jp : */

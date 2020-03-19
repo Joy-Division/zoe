@@ -1,8 +1,8 @@
 /*
  * Sound Driver for PS2 IOP
  * I/O Set Module
- *
- * ver."ZONE OF THE ENDERS"
+ */
+/* ver."ZONE OF THE ENDERS"
  */
 #include <sys/types.h>
 #include <libsd.h>
@@ -351,9 +351,3 @@ void drum_set( u_int a0 )
 	a0 += 0x01B8;
 	tone_set( a0 );
 }
-
-/*---------------------------------------------------------------------------*
- * END OF FILE
- *---------------------------------------------------------------------------*/
-/* -*- indent-tabs-mode: t; tab-width: 4; mode: c; -*- */
-/* vim: set noet ts=4 sw=4 ft=c ff=unix fenc=euc-jp : */

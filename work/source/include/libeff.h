@@ -1,11 +1,11 @@
 /*
- * [ LibEFF ]
  * Effects Library
- *
- * ver.ZONE OF THE ENDERS
+ * Global Include
  */
-#ifndef INC_LIBEFF_H
-#define INC_LIBEFF_H
+/* ver."ZONE OF THE ENDERS"
+ */
+#ifndef INCLUDED_LIBEFF_H
+#define INCLUDED_LIBEFF_H
 
 #include "global.h"
 #include "zoe_defs.h"
@@ -36,8 +36,4 @@ public:
 	EFF_FIELD& operator=(const EFF_FIELD&);
 };
 
-/*---------------------------------------------------------------------------*/
 #endif /* END OF FILE */
-/*---------------------------------------------------------------------------*/
-/* -*- indent-tabs-mode: t; tab-width: 4; mode: cpp; -*- */
-/* vim: set noet ts=4 sw=4 ft=cpp ff=dos fenc=euc-jp : */

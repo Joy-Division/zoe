@@ -1,8 +1,8 @@
 /*
  * Sound Driver for PS2 IOP
- * IOP Main Module
- *
- * ver."ZONE OF THE ENDERS"
+ * Main Module (IOP_MAIN.IRX)
+ */
+/* ver."ZONE OF THE ENDERS"
  */
 #include <sys/types.h>
 #include <kernel.h>
@@ -259,9 +259,3 @@ int start()
   
 	return RESIDENT_END;
 }
-
-/*---------------------------------------------------------------------------*
- * END OF FILE
- *---------------------------------------------------------------------------*/
-/* -*- indent-tabs-mode: t; tab-width: 4; mode: c; -*- */
-/* vim: set noet ts=4 sw=4 ft=c ff=unix fenc=euc-jp : */

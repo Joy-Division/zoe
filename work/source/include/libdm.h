@@ -1,11 +1,11 @@
 /*
- * [ LibDM ]
  * Polygon Demo Library
- *
- * ver.ZONE OF THE ENDERS
+ * Global Include
  */
-#ifndef INC_LIBDM_H
-#define INC_LIBDM_H
+/* ver."ZONE OF THE ENDERS"
+ */
+#ifndef INCLUDED_LIBDM_H
+#define INCLUDED_LIBDM_H
 
 #include "global.h"
 #include "zoe_defs.h"
@@ -226,8 +226,4 @@ public:
 	DM_PRDEMO_CAMERA& operator=(const DM_PRDEMO_CAMERA&);
 };
 
-/*---------------------------------------------------------------------------*/
 #endif /* END OF FILE */
-/*---------------------------------------------------------------------------*/
-/* -*- indent-tabs-mode: t; tab-width: 4; mode: cpp; -*- */
-/* vim: set noet ts=4 sw=4 ft=cpp ff=dos fenc=euc-jp : */

@@ -1,5 +1,5 @@
-#ifndef INC_FOG_RANGE_H
-#define INC_FOG_RANGE_H
+#ifndef INCLUDED_FOG_RANGE_H
+#define INCLUDED_FOG_RANGE_H
 
 // ref.default.pdb
 class FOG_RANGE
@@ -14,8 +14,4 @@ public:
 	void Init(float, float);
 };
 
-/*---------------------------------------------------------------------------*/
 #endif /* END OF FILE */
-/*---------------------------------------------------------------------------*/
-/* -*- indent-tabs-mode: t; tab-width: 4; mode: cpp; -*- */
-/* vim: set noet ts=4 sw=4 ft=cpp ff=dos fenc=euc-jp : */

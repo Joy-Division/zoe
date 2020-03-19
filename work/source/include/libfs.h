@@ -1,11 +1,11 @@
 /*
- * [ LibFS ]
- * File System Library
- *
- * ver.ZONE OF THE ENDERS
+ * LibFS for PS2
+ * Global Include
  */
-#ifndef INC_LIBFS_H
-#define INC_LIBFS_H
+/* ver."ZONE OF THE ENDERS"
+ */
+#ifndef INCLUDED_LIBFS_H
+#define INCLUDED_LIBFS_H
 
 #include "global.h"
 #include <sifcmd.h>
@@ -190,8 +190,4 @@ uint32 FS_StrCode( char* str );
 /* FS CDVD (cdvd.cc) */
 void FS_CdLoadDirInfo( char*, int );
 
-/*---------------------------------------------------------------------------*/
 #endif /* END OF FILE */
-/*---------------------------------------------------------------------------*/
-/* -*- indent-tabs-mode: t; tab-width: 4; mode: cpp; -*- */
-/* vim: set noet ts=4 sw=4 ft=cpp ff=dos fenc=euc-jp : */

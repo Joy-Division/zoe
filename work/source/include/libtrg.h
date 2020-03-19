@@ -1,11 +1,11 @@
 /*
- * [ LibTRG ]
  * Target Library
- *
- * ver.ZONE OF THE ENDERS
+ * Global Include
  */
-#ifndef INC_LIBTRG_H
-#define INC_LIBTRG_H
+/* ver."ZONE OF THE ENDERS"
+ */
+#ifndef INCLUDED_LIBTRG_H
+#define INCLUDED_LIBTRG_H
 
 #include "global.h"
 #include "zoe_defs.h"
@@ -183,8 +183,4 @@ public:
 	TRG_OBJECT& operator=(const TRG_OBJECT&);
 };
 
-/*---------------------------------------------------------------------------*/
 #endif /* END OF FILE */
-/*---------------------------------------------------------------------------*/
-/* -*- indent-tabs-mode: t; tab-width: 4; mode: cpp; -*- */
-/* vim: set noet ts=4 sw=4 ft=cpp ff=dos fenc=euc-jp : */

@@ -1,16 +1,17 @@
 /*
- * [ LibSD ]
- * Sound Library
- *
- * ver.ZONE OF THE ENDERS
+ * Sound Library for PS2
+ * Global Include
  */
-#ifndef INC_LIBSD_H
-#define INC_LIBSD_H
+/* ver."ZONE OF THE ENDERS"
+ */
+#ifndef INCLUDED_LIBSD_H
+#define INCLUDED_LIBSD_H
 
-// EE Interface
+// IOP <--> EE interface
 #include "../../module/sound/sd_ee.h"
 
-#endif /* END OF FILE */
+//
+// PLACEHOLDER
+//
 
-/* -*- indent-tabs-mode: t; tab-width: 4; mode: cpp; -*- */
-/* vim: set noet ts=4 sw=4 ft=cpp ff=dos fenc=euc-jp : */
+#endif /* END OF FILE */

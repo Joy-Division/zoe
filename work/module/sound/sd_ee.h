@@ -1,11 +1,11 @@
 /*
  * Sound Driver for PS2 IOP
  * Emotion Engine Interface
- *
- * ver."ZONE OF THE ENDERS"
  */
-#ifndef INC_SD_EE_H
-#define INC_SD_EE_H
+/* ver."ZONE OF THE ENDERS"
+ */
+#ifndef INCLUDED_SD_EE_H
+#define INCLUDED_SD_EE_H
 
 #ifdef __cplusplus
 extern "C" {
@@ -21,6 +21,3 @@ int  sd_status( void ); // TODO: check types
 #endif
 
 #endif /* END OF FILE */
-
-/* -*- indent-tabs-mode: t; tab-width: 4; mode: c; -*- */
-/* vim: set noet ts=4 sw=4 ft=c ff=unix fenc=euc-jp : */

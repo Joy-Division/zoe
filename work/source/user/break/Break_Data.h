@@ -1,5 +1,5 @@
-#ifndef INC_BREAK_DATA_H
-#define INC_BREAK_DATA_H
+#ifndef INCLUDED_BREAK_DATA_H
+#define INCLUDED_BREAK_DATA_H
 
 #include "global.h"
 #include "zoe_defs.h"
@@ -52,8 +52,4 @@ public:
 	BRK_FRM& operator=(const BRK_FRM&);
 };
 
-/*---------------------------------------------------------------------------*/
 #endif /* END OF FILE */
-/*---------------------------------------------------------------------------*/
-/* -*- indent-tabs-mode: t; tab-width: 4; mode: cpp; -*- */
-/* vim: set noet ts=4 sw=4 ft=cpp ff=dos fenc=euc-jp : */

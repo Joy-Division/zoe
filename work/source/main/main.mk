@@ -1,6 +1,6 @@
 #
 # "ZONE OF THE ENDERS"
-# Test Makefile for MAIN
+# Test Makefile for Main
 #
 
 SCETOP ?= /usr/local/sce

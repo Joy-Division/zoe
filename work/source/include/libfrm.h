@@ -1,11 +1,11 @@
 /*
- * [ LibFRM ]
  * Oribital Frame Library
- *
- * ver.ZONE OF THE ENDERS
+ * Global Include
  */
-#ifndef INC_LIBFRM_H
-#define INC_LIBFRM_H
+/* ver."ZONE OF THE ENDERS"
+ */
+#ifndef INCLUDED_LIBFRM_H
+#define INCLUDED_LIBFRM_H
 
 #include "global.h"
 #include "zoe_defs.h"
@@ -660,8 +660,4 @@ public:
 	FRM_OBJECT& operator=(const FRM_OBJECT&);
 };
 
-/*---------------------------------------------------------------------------*/
 #endif /* END OF FILE */
-/*---------------------------------------------------------------------------*/
-/* -*- indent-tabs-mode: t; tab-width: 4; mode: cpp; -*- */
-/* vim: set noet ts=4 sw=4 ft=cpp ff=dos fenc=euc-jp : */

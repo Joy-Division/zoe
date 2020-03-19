@@ -1,8 +1,9 @@
 /*
+ * "ZONE OF THE ENDERS"
  * Texture Format Definitions
  */
-#ifndef INC_DEF_TEX_H
-#define INC_DEF_TEX_H
+#ifndef INCLUDED_DEF_TEX_H
+#define INCLUDED_DEF_TEX_H
 
 #include "global.h"
 #include <eestruct.h>
@@ -38,8 +39,4 @@ typedef struct _DEF_TEXLIST {
 	DEF_CLUT*       pClut;
 } DEF_TEXLIST;
 
-/*---------------------------------------------------------------------------*/
 #endif /* END OF FILE */
-/*---------------------------------------------------------------------------*/
-/* -*- indent-tabs-mode: t; tab-width: 4; mode: cpp; -*- */
-/* vim: set noet ts=4 sw=4 ft=cpp ff=dos fenc=euc-jp : */

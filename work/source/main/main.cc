@@ -1,6 +1,6 @@
 /*
- * ZONE OF THE ENDERS
- * Startup Module
+ * "ZONE OF THE ENDERS"
+ * Startup / Main Module
  */
 #include "global.h"
 #include <stdlib.h>
@@ -161,7 +161,7 @@ int DisableCache(int);
 #if (ZOE_DEMO_OCT2000)
 	DEBUG_InitException(
 		(((0x00010000+(s16)0x8000)
-		+ (0x00200000+(s16)0x8000)) - 16) );
+		+ (0x00200000+(s16)0x8000))-16) );
 #endif
 	
 	GV_InitSystem();
@@ -202,7 +202,7 @@ int DisableCache(int);
 #if (ZOE_DEMO_OCT2000)
 	NewInitLoad( "init", 0 );
 #else // TODO: Known for ZOE_JPN, check others
-	// ERROR: call does not match any candidates
+	// FIXME: call does not match any candidates
 	CR_SetStageLoad( "title", 1, "font.pak", 0 );
 #endif
 	
@@ -216,9 +216,3 @@ int DisableCache(int);
 		GV_ACTOR::Execute();
 	}
 }
-
-/*---------------------------------------------------------------------------*
- * END OF FILE
- *---------------------------------------------------------------------------*/
-/* -*- indent-tabs-mode: t; tab-width: 4; mode: cpp; -*- */
-/* vim: set noet ts=4 sw=4 ft=cpp ff=dos fenc=euc-jp : */

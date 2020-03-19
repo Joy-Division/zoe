@@ -1,5 +1,5 @@
-#ifndef INC_TITLE_H
-#define INC_TITLE_H
+#ifndef INCLUDED_TITLE_H
+#define INCLUDED_TITLE_H
 
 // ref.default.pdb
 enum {
@@ -50,8 +50,4 @@ enum {
 	TITLE_BUT_POL_NUM
 };
 
-/*---------------------------------------------------------------------------*/
 #endif /* END OF FILE */
-/*---------------------------------------------------------------------------*/
-/* -*- indent-tabs-mode: t; tab-width: 4; mode: cpp; -*- */
-/* vim: set noet ts=4 sw=4 ft=cpp ff=dos fenc=euc-jp : */

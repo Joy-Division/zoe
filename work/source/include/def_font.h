@@ -1,8 +1,9 @@
 /*
+ * "ZONE OF THE ENDERS"
  * Font Format Definitions
  */
-#ifndef INC_DEF_FONT_H
-#define INC_DEF_FONT_H
+#ifndef INCLUDED_DEF_FONT_H
+#define INCLUDED_DEF_FONT_H
 
 #include "global.h"
 #include "zoe_defs.h"
@@ -31,8 +32,4 @@ typedef struct _DEF_FONT_TABLE {
     UINT32              u32ColClut[16];     // 32-96:CLUT Column_colors_(from_lowRGBA)
 } DEF_FONT_TABLE ALIGN16;
 
-/*---------------------------------------------------------------------------*/
 #endif /* END OF FILE */
-/*---------------------------------------------------------------------------*/
-/* -*- indent-tabs-mode: t; tab-width: 4; mode: cpp; -*- */
-/* vim: set noet ts=4 sw=4 ft=cpp ff=dos fenc=euc-jp : */

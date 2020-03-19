@@ -1,8 +1,8 @@
 /*
  * Sound Driver for PS2 IOP
  * Client Task
- *
- * ver."ZONE OF THE ENDERS"
+ */
+/* ver."ZONE OF THE ENDERS"
  */
 #include <sys/types.h>
 #include <kernel.h>
@@ -447,13 +447,7 @@ void sd_set( int a0 )
 	}
 	/* these are pure evil and shouldnt be left here, but i dont see any other way of getting the double-nop otherwise
 	   i guess the control flow should be changed at some point to account for this... */
-	asm("nop");
-	asm("nop");
+	asm("nop"); // FAKEMATCH
+	asm("nop"); // FAKEMATCH
 	return;
 }
-
-/*---------------------------------------------------------------------------*
- * END OF FILE
- *---------------------------------------------------------------------------*/
-/* -*- indent-tabs-mode: t; tab-width: 4; mode: c; -*- */
-/* vim: set noet ts=4 sw=4 ft=c ff=unix fenc=euc-jp : */

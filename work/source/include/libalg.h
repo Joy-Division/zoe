@@ -1,11 +1,11 @@
 /*
- * [ LibALG ]
  * Linear Algebra Library
- *
- * ver.ZONE OF THE ENDERS
+ * Global Include
  */
-#ifndef INC_LIBALG_H
-#define INC_LIBALG_H
+/* ver."ZONE OF THE ENDERS"
+ */
+#ifndef INCLUDED_LIBALG_H
+#define INCLUDED_LIBALG_H
 
 #include "global.h"
 #include "zoe_defs.h"
@@ -33,24 +33,24 @@ public:
 	ALG_VECTOR(float, float, float);
 	ALG_VECTOR();
 	
-	void        operator()(float, float, float, float);
-	void        operator()(float, float, float);
-	ALG_VECTOR& operator=(float);
-	ALG_VECTOR& operator=(const ALG_VECTOR&);
-	ALG_VECTOR  operator+(const ALG_VECTOR&);
-	ALG_VECTOR  operator-(const ALG_VECTOR&);
-	ALG_VECTOR  operator-();
-	ALG_VECTOR  operator*(float);
-	float       operator*(const ALG_VECTOR&);
-	ALG_VECTOR  operator/(float);
-	int         operator==(float);
-	int         operator==(const ALG_VECTOR&);
-	int         operator!=(float);
-	int         operator!=(const ALG_VECTOR&);
-	void        operator+=(const ALG_VECTOR&);
-	void        operator-=(const ALG_VECTOR&);
-	void        operator*=(float);
-	void        operator/=(float);
+	void        operator () (float, float, float, float);
+	void        operator () (float, float, float);
+	ALG_VECTOR& operator =  (float);
+	ALG_VECTOR& operator =  (const ALG_VECTOR&);
+	ALG_VECTOR  operator +  (const ALG_VECTOR&);
+	ALG_VECTOR  operator -  (const ALG_VECTOR&);
+	ALG_VECTOR  operator -  ();
+	ALG_VECTOR  operator *  (float);
+	float       operator *  (const ALG_VECTOR&);
+	ALG_VECTOR  operator /  (float);
+	int         operator == (float);
+	int         operator == (const ALG_VECTOR&);
+	int         operator != (float);
+	int         operator != (const ALG_VECTOR&);
+	void        operator += (const ALG_VECTOR&);
+	void        operator -= (const ALG_VECTOR&);
+	void        operator *= (float);
+	void        operator /= (float);
 	
 	float   Scalar2();
 	float   Scalar();
@@ -91,17 +91,17 @@ public:
 	            float fTX, float fTY, float fTZ, float fTW );
 	ALG_MATRIX();
 	
-	void        operator()( float fXX, float fXY, float fXZ, float fXW,
-	                        float fYX, float fYY, float fYZ, float fYW,
-	                        float fZX, float fZY, float fZZ, float fZW,
-	                        float fTX, float fTY, float fTZ, float fTW );
-	ALG_MATRIX& operator=( float fScalar );
-	ALG_MATRIX& operator=( const ALG_MATRIX& rmat );
-	ALG_VECTOR  operator*( const ALG_VECTOR& rvec );
-	ALG_MATRIX  operator*( const ALG_MATRIX& rmat );
-	ALG_MATRIX  operator/( const ALG_MATRIX& rmat );
-	void        operator*=( const ALG_MATRIX& rmat );
-	void        operator/=( const ALG_MATRIX& rmat );
+	void        operator () ( float fXX, float fXY, float fXZ, float fXW,
+	                          float fYX, float fYY, float fYZ, float fYW,
+	                          float fZX, float fZY, float fZZ, float fZW,
+	                          float fTX, float fTY, float fTZ, float fTW );
+	ALG_MATRIX& operator =  ( float fScalar );
+	ALG_MATRIX& operator =  ( const ALG_MATRIX& rmat );
+	ALG_VECTOR  operator *  ( const ALG_VECTOR& rvec );
+	ALG_MATRIX  operator *  ( const ALG_MATRIX& rmat );
+	ALG_MATRIX  operator /  ( const ALG_MATRIX& rmat );
+	void        operator *= ( const ALG_MATRIX& rmat );
+	void        operator /= ( const ALG_MATRIX& rmat );
 	
 	void    Invert();
 	void    Invert2();
@@ -148,8 +148,4 @@ public:
 	void Dump();
 };
 
-/*---------------------------------------------------------------------------*/
 #endif /* END OF FILE */
-/*---------------------------------------------------------------------------*/
-/* -*- indent-tabs-mode: t; tab-width: 4; mode: cpp; -*- */
-/* vim: set noet ts=4 sw=4 ft=cpp ff=dos fenc=euc-jp : */

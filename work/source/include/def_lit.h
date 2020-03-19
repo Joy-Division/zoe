@@ -1,8 +1,9 @@
 /*
+ * "ZONE OF THE ENDERS"
  * Light Format Definitions
  */
-#ifndef INC_DEF_LIT_H
-#define INC_DEF_LIT_H
+#ifndef INCLUDED_DEF_LIT_H
+#define INCLUDED_DEF_LIT_H
 
 #include "global.h"
 #include "zoe_defs.h"
@@ -27,8 +28,4 @@ public:
 	{/* TODO */}
 };
 
-/*---------------------------------------------------------------------------*/
 #endif /* END OF FILE */
-/*---------------------------------------------------------------------------*/
-/* -*- indent-tabs-mode: t; tab-width: 4; mode: cpp; -*- */
-/* vim: set noet ts=4 sw=4 ft=cpp ff=dos fenc=euc-jp : */

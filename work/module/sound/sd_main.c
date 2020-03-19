@@ -1,8 +1,8 @@
 /*
  * Sound Driver for PS2 IOP
- * Main Module
- *
- * ver."ZONE OF THE ENDERS"
+ * Main Module (Internal)
+ */
+/* ver."ZONE OF THE ENDERS"
  */
 #include <sys/types.h>
 #include <kernel.h>
@@ -208,9 +208,3 @@ int sd_mem_alloc( void )
 	se_data = (u_char *)(se_header)+4096;
 	return 0;
 }
-
-/*---------------------------------------------------------------------------*
- * END OF FILE
- *---------------------------------------------------------------------------*/
-/* -*- indent-tabs-mode: t; tab-width: 4; mode: c; -*- */
-/* vim: set noet ts=4 sw=4 ft=c ff=unix fenc=euc-jp : */

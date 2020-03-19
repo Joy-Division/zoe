@@ -1,11 +1,11 @@
 /*
- * [ LibDG ]
- * Image-Drawing & Display Library
- *
- * ver.ZONE OF THE ENDERS
+ * LibDG for PS2
+ * Global Include
  */
-#ifndef INC_LIBDG_H
-#define INC_LIBDG_H
+/* ver."ZONE OF THE ENDERS"
+ */
+#ifndef INCLUDED_LIBDG_H
+#define INCLUDED_LIBDG_H
 
 #include "global.h"
 
@@ -1047,7 +1047,7 @@ public: //! unconfirmed modifier
 public:
 	void    Init(uint8);
 
-// --- HVS additions ---
+// *** HVS additions ***
 //	void    vSetNmObj(char*);
 //	char*   szGetNmObj();
 	
@@ -1094,7 +1094,7 @@ public:
 	void Reset();
 	void ResetNonResident();
 
-// --- HVS additions ---
+// *** HVS additions ***
 //	void vMarkHVSNonResidentForRelease();
 //	void vReleaseHVSTextures();
 };
@@ -1110,8 +1110,4 @@ void DG_StartDaemon();
 /* Debug Prim (debugprim.cc) */
 void DG_DebugPrimDaemon( int );
 
-/*---------------------------------------------------------------------------*/
 #endif /* END OF FILE */
-/*---------------------------------------------------------------------------*/
-/* -*- indent-tabs-mode: t; tab-width: 4; mode: cpp; -*- */
-/* vim: set noet ts=4 sw=4 ft=cpp ff=dos fenc=euc-jp : */

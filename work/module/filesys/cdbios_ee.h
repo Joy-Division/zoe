@@ -2,8 +2,10 @@
  * CDBIOS Module for PS2 IOP
  * Emotion Engine Interface
  */
-#ifndef INC_CDBIOS_EE_H
-#define INC_CDBIOS_EE_H
+/* ver."ZONE OF THE ENDERS"
+ */
+#ifndef INCLUDED_CDBIOS_EE_H
+#define INCLUDED_CDBIOS_EE_H
 
 #ifdef __cplusplus
 extern "C" {
@@ -31,6 +33,3 @@ send_iop();
 #endif
 
 #endif /* END OF FILE */
-
-/* -*- indent-tabs-mode: t; tab-width: 4; mode: c; -*- */
-/* vim: set noet ts=4 sw=4 ft=c ff=dos fenc=euc-jp : */

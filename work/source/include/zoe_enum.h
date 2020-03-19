@@ -1,9 +1,9 @@
 /*
- * ZONE OF THE ENDERS
+ * "ZONE OF THE ENDERS"
  * Misc. Enum Definitions
  */
-#ifndef INC_ZOE_ENUM_H
-#define INC_ZOE_ENUM_H
+#ifndef INCLUDED_ZOE_ENUM_H
+#define INCLUDED_ZOE_ENUM_H
 
 // ref.default.pdb
 enum {
@@ -52,8 +52,4 @@ enum {
 	Q_SUSPEND
 };
 
-/*---------------------------------------------------------------------------*/
 #endif /* END OF FILE */
-/*---------------------------------------------------------------------------*/
-/* -*- indent-tabs-mode: t; tab-width: 4; mode: cpp; -*- */
-/* vim: set noet ts=4 sw=4 ft=cpp ff=dos fenc=euc-jp : */

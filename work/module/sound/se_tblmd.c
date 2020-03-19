@@ -1,8 +1,8 @@
 /*
  * Sound Driver for PS2 IOP
  * Sound Effect Table
- *
- * ver."ZONE OF THE ENDERS"
+ */
+/* ver."ZONE OF THE ENDERS"
  */
 #include <sys/types.h>
 #include "sd_incl.h"
@@ -2030,9 +2030,3 @@ struct SETBL se_tbl[128] = {
 	{ 0x01, 0x01, 0x01, 0x00, { se_dummy,    se_dummy,    se_dummy    } },
 	{ 0x01, 0x01, 0x01, 0x00, { se_dummy,    se_dummy,    se_dummy    } }
 };
-
-/*---------------------------------------------------------------------------*
- * END OF FILE
- *---------------------------------------------------------------------------*/
-/* -*- indent-tabs-mode: t; tab-width: 4; mode: c; -*- */
-/* vim: set noet ts=4 sw=4 ft=c ff=unix fenc=euc-jp : */

@@ -1,11 +1,11 @@
 /*
- * [ LibHZD ]
- * Collision Library
- *
- * ver.ZONE OF THE ENDERS
+ * Hazard Library
+ * Global Include
  */
-#ifndef INC_LIBHZD_H
-#define INC_LIBHZD_H
+/* ver."ZONE OF THE ENDERS"
+ */
+#ifndef INCLUDED_LIBHZD_H
+#define INCLUDED_LIBHZD_H
 
 #include "global.h"
 #include "zoe_defs.h"
@@ -364,8 +364,4 @@ public:
 /* Hazard Daemon (hzdd.cc) */
 void HZD_Init();
 
-/*---------------------------------------------------------------------------*/
 #endif /* END OF FILE */
-/*---------------------------------------------------------------------------*/
-/* -*- indent-tabs-mode: t; tab-width: 4; mode: cpp; -*- */
-/* vim: set noet ts=4 sw=4 ft=cpp ff=dos fenc=euc-jp : */

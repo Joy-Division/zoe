@@ -1,11 +1,11 @@
 /*
- * [ LibEV ]
  * Event Task Library
- *
- * ver.ZONE OF THE ENDERS
+ * Global Include
  */
-#ifndef INC_LIBEV_H
-#define INC_LIBEV_H
+/* ver."ZONE OF THE ENDERS"
+ */
+#ifndef INCLUDED_LIBEV_H
+#define INCLUDED_LIBEV_H
 
 #include "global.h"
 #include "zoe_defs.h"
@@ -124,8 +124,4 @@ public:
 /* EV Daemon (evd.cc) */
 void EV_StartDaemon();
 
-/*---------------------------------------------------------------------------*/
 #endif /* END OF FILE */
-/*---------------------------------------------------------------------------*/
-/* -*- indent-tabs-mode: t; tab-width: 4; mode: cpp; -*- */
-/* vim: set noet ts=4 sw=4 ft=cpp ff=dos fenc=euc-jp : */

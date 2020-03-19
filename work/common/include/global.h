@@ -1,9 +1,9 @@
 /*
- * ZONE OF THE ENDERS
- * Global Includes
+ * "ZONE OF THE ENDERS"
+ * Global Includes & Defines
  */
-#ifndef INC_GLOBAL_H
-#define INC_GLOBAL_H
+#ifndef INCLUDED_GLOBAL_H
+#define INCLUDED_GLOBAL_H
 
 /* Project Config */
 #include "zoe_conf.h"
@@ -12,6 +12,3 @@
 #include "cmtypes.h"
 
 #endif /* END OF FILE */
-
-/* -*- indent-tabs-mode: t; tab-width: 4; mode: c; -*- */
-/* vim: set noet ts=4 sw=4 ft=c ff=dos fenc=euc-jp : */

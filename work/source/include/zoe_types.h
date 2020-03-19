@@ -1,9 +1,9 @@
 /*
- * ZONE OF THE ENDERS
- * Common Type Includes
+ * "ZONE OF THE ENDERS"
+ * Common Type Include
  */
-#ifndef INC_ZOE_TYPES_H
-#define INC_ZOE_TYPES_H
+#ifndef INCLUDED_ZOE_TYPES_H
+#define INCLUDED_ZOE_TYPES_H
 
 #include "global.h"
 
@@ -35,8 +35,8 @@ typedef unsigned int64 UINT64;
 typedef float32 FLOAT32;
 typedef float64 FLOAT64;
 
-#if defined( __GNUC__ )
-#if defined( __R5900__ )
+#if defined(__GNUC__)
+#if defined(__R5900__)
 typedef          int  INT128 __attribute__((mode(TI)));
 typedef   signed int SINT128 __attribute__((mode(TI)));
 typedef unsigned int UINT128 __attribute__((mode(TI)));
@@ -100,8 +100,4 @@ typedef struct FVECTOR {
 	float vx, vy, vz, vw;
 } FVECTOR;
 
-/*---------------------------------------------------------------------------*/
 #endif /* END OF FILE */
-/*---------------------------------------------------------------------------*/
-/* -*- indent-tabs-mode: t; tab-width: 4; mode: cpp; -*- */
-/* vim: set noet ts=4 sw=4 ft=cpp ff=dos fenc=euc-jp : */

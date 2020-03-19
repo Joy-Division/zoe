@@ -1,8 +1,8 @@
 /*
  * Sound Driver for PS2 IOP
  * Driver Module
- *
- * ver."ZONE OF THE ENDERS"
+ */
+/* ver."ZONE OF THE ENDERS"
  */
 #include <sys/types.h>
 #include <kernel.h>
@@ -744,9 +744,3 @@ void sng_track_init( struct SOUND_W *work )
 	work->unkF7    = 0;
 	work->unkF8    = 0;
 }
-
-/*---------------------------------------------------------------------------*
- * END OF FILE
- *---------------------------------------------------------------------------*/
-/* -*- indent-tabs-mode: t; tab-width: 4; mode: c; -*- */
-/* vim: set noet ts=4 sw=4 ft=c ff=unix fenc=euc-jp : */

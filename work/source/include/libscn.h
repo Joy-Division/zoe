@@ -1,11 +1,11 @@
 /*
- * [ LibSCN ]
  * Scenario Interpreter Library
- *
- * ver.ZONE OF THE ENDERS
+ * Global Include
  */
-#ifndef INC_LIBSCN_H
-#define INC_LIBSCN_H
+/* ver."ZONE OF THE ENDERS"
+ */
+#ifndef INCLUDED_LIBSCN_H
+#define INCLUDED_LIBSCN_H
 
 #include "global.h"
 #include "zoe_defs.h"
@@ -167,8 +167,4 @@ public:
 	static SCN_THREAD*  _GetCurrentThread(); // prefixed with '_' by HVS?
 };
 
-/*---------------------------------------------------------------------------*/
 #endif /* END OF FILE */
-/*---------------------------------------------------------------------------*/
-/* -*- indent-tabs-mode: t; tab-width: 4; mode: cpp; -*- */
-/* vim: set noet ts=4 sw=4 ft=cpp ff=dos fenc=euc-jp : */

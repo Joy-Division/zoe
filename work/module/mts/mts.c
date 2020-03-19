@@ -2,6 +2,8 @@
  * Multi-Task Scheduler for PS2
  * Main Module
  */
+/* ver."ZONE OF THE ENDERS"
+ */
 #include "global.h"
 #include "mts.h"
 
@@ -29,9 +31,3 @@ init_threads()
 MTS_BootThread()
 MTS_Panic()
 #endif
-
-/*---------------------------------------------------------------------------*
- * END OF FILE
- *---------------------------------------------------------------------------*/
-/* -*- indent-tabs-mode: t; tab-width: 4; mode: c; -*- */
-/* vim: set noet ts=4 sw=4 ft=c ff=dos fenc=euc-jp : */

@@ -1,6 +1,6 @@
 #
-# KCE Japan SIF Manager
-# Module Entry Table
+# KCEJ WEST SIF Manager
+# Export Table for JSIFMAN.IRX
 #
 
 Libname jsifman

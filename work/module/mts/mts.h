@@ -2,8 +2,10 @@
  * Multi-Task Scheduler for PS2
  * Public Include
  */
-#ifndef INC_MTS_H
-#define INC_MTS_H
+/* ver."ZONE OF THE ENDERS"
+ */
+#ifndef INCLUDED_MTS_H
+#define INCLUDED_MTS_H
 
 #include "global.h"
 
@@ -73,8 +75,4 @@ DEBUG_ExceptionIn();
 }
 #endif
 
-/*---------------------------------------------------------------------------*/
 #endif /* END OF FILE */
-/*---------------------------------------------------------------------------*/
-/* -*- indent-tabs-mode: t; tab-width: 4; mode: c; -*- */
-/* vim: set noet ts=4 sw=4 ft=c ff=dos fenc=euc-jp : */

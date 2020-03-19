@@ -1,5 +1,5 @@
-#ifndef INC_CARL_H
-#define INC_CARL_H
+#ifndef INCLUDED_CARL_H
+#define INCLUDED_CARL_H
 
 #include "global.h"
 #include "zoe_defs.h"
@@ -134,8 +134,4 @@ public:
 	CR_WINDOW& operator=(CR_WINDOW&);
 };
 
-/*---------------------------------------------------------------------------*/
 #endif /* END OF FILE */
-/*---------------------------------------------------------------------------*/
-/* -*- indent-tabs-mode: t; tab-width: 4; mode: cpp; -*- */
-/* vim: set noet ts=4 sw=4 ft=cpp ff=dos fenc=euc-jp : */

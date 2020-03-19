@@ -1,8 +1,9 @@
 /*
+ * "ZONE OF THE ENDERS"
  * DMA Tag Format Definitions
  */
-#ifndef INC_TAGDEF_H
-#define INC_TAGDEF_H
+#ifndef INCLUDED_TAGDEF_H
+#define INCLUDED_TAGDEF_H
 
 #include "global.h"
 #include "zoe_defs.h"
@@ -103,8 +104,4 @@ typedef struct _TAG_VECREFWEIGHT {
 	uint32 tagdma[4];
 } TAG_VECREFWEIGHT;
 
-/*---------------------------------------------------------------------------*/
 #endif /* END OF FILE */
-/*---------------------------------------------------------------------------*/
-/* -*- indent-tabs-mode: t; tab-width: 4; mode: cpp; -*- */
-/* vim: set noet ts=4 sw=4 ft=cpp ff=dos fenc=euc-jp : */

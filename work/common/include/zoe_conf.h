@@ -1,5 +1,5 @@
-#ifndef INC_ZOE_CONF_H
-#define INC_ZOE_CONF_H
+#ifndef INCLUDED_ZOE_CONF_H
+#define INCLUDED_ZOE_CONF_H
 
 /*---------------------------------------------------------------------------*
  * Definition Check
@@ -29,8 +29,4 @@
 #define ZOE_DEMO_USA        BUILD_USA_DEMO  // Jan.23,2001 :: PlayStation Underground
 #define ZOE_DEMO_PAL        BUILD_PAL_DEMO  // Feb.14,2001 :: Official PS2 Magazine
 
-/*---------------------------------------------------------------------------*/
 #endif /* END OF FILE */
-/*---------------------------------------------------------------------------*/
-/* -*- indent-tabs-mode: t; tab-width: 4; mode: c; -*- */
-/* vim: set noet ts=4 sw=4 ft=c ff=unix fenc=utf-8 : */
