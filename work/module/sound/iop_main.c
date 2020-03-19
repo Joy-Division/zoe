@@ -194,7 +194,7 @@ int createThread( void )
 	param.attr         = TH_C;
 	param.entry        = SdMain;
 	param.initPriority = 0x41;
-	param.stackSize    = 0x4000;
+	param.stackSize    = 0x4000;    /* 16KB */
 	param.option       = 0;
 	id_SdMain = CreateThread( &param );
 	if( 0 >= id_SdMain ){};
@@ -203,7 +203,7 @@ int createThread( void )
 	param.attr         = TH_C;
 	param.entry        = SdEELoad;
 	param.initPriority = 0x40;
-	param.stackSize    = 0x4000;
+	param.stackSize    = 0x4000;    /* 16KB */
 	param.option       = 0;
 	id_SdEELoad = CreateThread( &param );
 	if( 0 >= id_SdEELoad ){};
@@ -212,7 +212,7 @@ int createThread( void )
 	param.attr         = TH_C;
 	param.entry        = SdSet;
 	param.initPriority = 0x3F;
-	param.stackSize    = 0x2000;
+	param.stackSize    = 0x2000;    /* 8KB */
 	param.option       = 0;
 	id_SdSet = CreateThread( &param );
 	if( 0 >= id_SdSet ){};
@@ -222,7 +222,7 @@ int createThread( void )
 	param.attr         = TH_C;
 	param.entry        = SdInt;
 	param.initPriority = 0x3E;
-	param.stackSize    = 0x4000;
+	param.stackSize    = 0x4000;    /* 16KB */
 	param.option       = 0;
 	id_SdInt = CreateThread( &param );
 	if( 0 >= id_SdInt ){};
@@ -251,7 +251,7 @@ int start()
 	param.attr         = TH_C;
 	param.entry        = createThread;
 	param.initPriority = 0x40;
-	param.stackSize    = 0x400;
+	param.stackSize    = 0x400; /* 1KB */
 	param.option       = 0;
 	tid = CreateThread( &param );
 	if( 0 >= tid ) return NO_RESIDENT_END;
