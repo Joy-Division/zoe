@@ -1,0 +1,21 @@
+#*********************************
+# EditorConfig (editorconfig.org)
+#*********************************
+root = true
+
+[*]
+tab_width = 4
+end_of_line = unset
+charset = unset
+
+[*.{c,h,cc,hh,cpp,hpp,cxx,hxx}]
+indent_style = tab
+indent_size = tab
+trim_trailing_whitespace = true
+insert_final_newline = true
+
+[{Makefile,*.{mk,mak}}]
+indent_style = tab
+indent_size = tab
+trim_trailing_whitespace = true
+insert_final_newline = true
