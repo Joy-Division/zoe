@@ -44,7 +44,7 @@ extern void NewDebugMode(); /* dbgmode.cc */
 
 /*---------------------------------------------------------------------------*/
 
-#if (ZOE_DEMO_OCT2000)
+#if (ZOE_DEMO_BORMAN)
 #  define CDVD_MODE SCECdCD
 #else
 #  define CDVD_MODE SCECdDVD
@@ -99,8 +99,8 @@ static void ResetIOP()
 	sceSifInitRpc( 0 );
 	sceCdInit( SCECdINIT );
 	sceCdMmode( CDVD_MODE );
-	
-#if (ZOE_DEMO_OCT2000)
+
+#if (ZOE_DEMO_BORMAN)
 	printf( "IopReplaceModule %s\n", IopReplaceModule );
 #endif
 
@@ -139,8 +139,8 @@ int main()
 	SifLoad();  // load IRX modules
 
 	sd_init();
-	
-#if (ZOE_DEMO_OCT2000)
+
+#if (ZOE_DEMO_BORMAN)
 	DEBUG_InitException(
 		(((0x00010000+(s16)0x8000)
 		+ (0x00200000+(s16)0x8000))-16) );
@@ -180,8 +180,8 @@ int main()
 	FS_CdLoadDirInfo( "\\ZOE.DAT;1", 32 );
 
 	STRM_LoadPcmDir();
-	
-#if (ZOE_DEMO_OCT2000)
+
+#if (ZOE_DEMO_BORMAN)
 	NewInitLoad( "init", 0 );
 #else // TODO: Known for ZOE_JPN, check others
 	// FIXME: call does not match any candidates
@@ -189,8 +189,8 @@ int main()
 #endif
 
 	NewStartStage();
-	
-#if (ZOE_DEMO_OCT2000)
+
+#if (ZOE_DEMO_BORMAN)
 	NewDebugMode();
 #endif
 

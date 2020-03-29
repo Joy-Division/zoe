@@ -23,7 +23,7 @@
 #define ZOE_PAL             BUILD_SLES50111 // Jan.17,2001
 #define ZOE_USA             BUILD_SLUS20148 // Jan.30,2001
 
-#define ZOE_DEMO_OCT2000    BUILD_SLPS99999 // Oct.09,2000
+#define ZOE_DEMO_BORMAN     BUILD_SLPS99999 // Oct.09,2000
 #define ZOE_DEMO_DENGEKI    BUILD_SLPM61002 // Nov.11,2000 :: 電撃PlayStation D40
 #define ZOE_DEMO_PURE2      BUILD_PCPX96611 // Jan.17,2001 :: プレプレ2 Vol.1 2001.04
 #define ZOE_DEMO_USA        BUILD_USA_DEMO  // Jan.23,2001 :: PlayStation Underground
