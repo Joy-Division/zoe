@@ -2,9 +2,9 @@
  * "ZONE OF THE ENDERS"
  * Startup / Main Module
  */
-#include "global.h"
 #include <stdlib.h>
 #include <string.h>
+
 #include <eekernel.h>
 #include <libcdvd.h>
 #include <libdev.h>
@@ -14,6 +14,7 @@
 #include <sifdev.h>
 #include <sifrpc.h>
 
+#include "global.h"
 #include "zoe_defs.h"
 #include "zoe_types.h"
 
