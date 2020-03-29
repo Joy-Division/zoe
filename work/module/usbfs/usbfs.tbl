@@ -1,0 +1,24 @@
+#
+# KCEJ WEST USB File System
+# Entry Table for USBFS.IRX
+#
+# ver."ZONE OF THE ENDERS"
+#
+
+Libname usbfs
+
+Version 1.1
+
+# --- Reserved ---
+Entry	-
+Entry	-
+Entry	-
+Entry	-
+
+# --- Entries ---
+Entry	-
+Entry	pcOpen
+Entry	pcClose
+Entry	pcRead
+Entry	-
+Entry	pcLseek
