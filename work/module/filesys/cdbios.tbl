@@ -1,0 +1,21 @@
+#
+# KCEJ WEST CDBIOS Module
+# Entry Table for CDBIOS.IRX
+#
+# ver."ZONE OF THE ENDERS"
+#
+
+Libname cdbios
+
+Version 1.1
+
+# --- Reserved ---
+Entry	-
+Entry	-
+Entry	-
+Entry	-
+
+# --- Entries ---
+Entry	cdRead
+Entry	cdOpen
+Entry	cdClose
