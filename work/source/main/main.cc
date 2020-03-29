@@ -77,10 +77,10 @@ static void SifLoad()
 	//
 #endif
 	sceSifInitRpc( 0 );
-	
+
 	for( int i=8 ; i >= 0 ; i-- ){
 		printf( "Load module %s\n", irx_list[i] );
-		
+
 		if( sceSifLoadModule( irx_list[i], 0, NULL ) < 0 ){
 			printf( "Can't load module %s\n", irx_list[i] );
 			exit( 0 );
@@ -95,7 +95,7 @@ static void SifLoad()
 static void ResetIOP()
 {
 	char *IopReplaceModule = "cdrom0:\\MODULES\\IOPRP20.IMG;1";
-	
+
 	sceSifInitRpc( 0 );
 	sceCdInit( SCECdINIT );
 	sceCdMmode( CDVD_MODE );
@@ -103,12 +103,12 @@ static void ResetIOP()
 #if (ZOE_DEMO_OCT2000)
 	printf( "IopReplaceModule %s\n", IopReplaceModule );
 #endif
-	
+
 	if( ReplaceImageFlag ){
 		while( !sceSifRebootIop( IopReplaceModule ) );
 		while( !sceSifSyncIop() );
 	}
-	
+
 	sceSifInitRpc( 0 );
 	sceCdInit( SCECdINIT );
 	sceCdMmode( CDVD_MODE );
@@ -126,22 +126,18 @@ int main()
 	sceDevVu0Reset();
 	sceDevVu1Reset();
 	sceGsResetPath();
-	
+
 	CacheOn(); // see "main.h" if undefined
-	
+
 	sceDmaReset( 1 );
 	sceGsResetPath();
-	sceGsResetGraph(
-		0,
-		SCE_GS_NOINTERLACE,
-		SCE_GS_NTSC,
-		SCE_GS_FRAME );
-	
+	sceGsResetGraph( 0, SCE_GS_NOINTERLACE, SCE_GS_NTSC, SCE_GS_FRAME );
+
 	DG_InitClean();
-	
+
 	ResetIOP(); // load IOPRP*.IMG
 	SifLoad();  // load IRX modules
-	
+
 	sd_init();
 	
 #if (ZOE_DEMO_OCT2000)
@@ -149,40 +145,40 @@ int main()
 		(((0x00010000+(s16)0x8000)
 		+ (0x00200000+(s16)0x8000))-16) );
 #endif
-	
+
 	GV_InitSystem();
-	
+
 	FS_StartDaemon();
 	printf( "FS_StartDaemon\n" );
-	
+
 	DG_StartDaemon();
 	printf( "DG_StartDaemon\n" );
-	
+
 	SCN_SYSTEM::InitSystem( 200, 200, 200 );
-	
+
 	MC_StartDaemon();
 	printf( "MC_StartDaemon\n" );
-	
+
 	EV_StartDaemon();
 	printf( "EV_StartDaemon\n" );
-	
+
 	TRG_OBJECT::StartDaemon();
 	printf( "TRG_StartDaemon\n" );
-	
+
 	HZD_Init();
-	
+
 	MT_Init();
-	
+
 	DM_MANAGER::InitSystem();
-	
+
 	sceMpegInit();
-	
+
 	DG_DebugPrimDaemon( 40960 );
-	
+
 	cdbios_init();
-	
+
 	FS_CdLoadDirInfo( "\\ZOE.DAT;1", 32 );
-	
+
 	STRM_LoadPcmDir();
 	
 #if (ZOE_DEMO_OCT2000)
@@ -191,13 +187,13 @@ int main()
 	// FIXME: call does not match any candidates
 	CR_SetStageLoad( "title", 1, "font.pak", 0 );
 #endif
-	
+
 	NewStartStage();
 	
 #if (ZOE_DEMO_OCT2000)
 	NewDebugMode();
 #endif
-	
+
 	while( 1 ){
 		GV_ACTOR::Execute();
 	}

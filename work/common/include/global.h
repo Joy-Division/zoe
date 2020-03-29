@@ -5,10 +5,7 @@
 #ifndef INCLUDED_GLOBAL_H
 #define INCLUDED_GLOBAL_H
 
-/* Project Config */
-#include "zoe_conf.h"
-
-/* Common Typedefs */
-#include "cmtypes.h"
+#include "zoe_conf.h" /* Project Config */
+#include "cmtypes.h"  /* LibCM TypeDefs */
 
 #endif /* END OF FILE */
