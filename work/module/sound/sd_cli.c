@@ -10,6 +10,12 @@
 #include "sd_incl.h"
 #include "sd_ext.h"
 
+
+
+u_int str1_use_iop = 0;
+
+
+
 /*---------------------------------------------------------------------------*/
 
 //
@@ -417,12 +423,7 @@ void sd_set( int a0 )
 				}
 				break;
 			
-			/* the next two cases are different in the original assembly
-			   gcc was smart there and did the following, using the delay slot:
-				lui, j, sw
-			   however, when recompiling you get the "normal" version instead:
-				lui, sw, j, nop
-			*/
+			/* these two assignments rely on str1_use_iop to be in the same translation unit */
 			case 0xFF000012: str1_use_iop = 1; break;
 			case 0xFF000013: str1_use_iop = 0; break;
 			
