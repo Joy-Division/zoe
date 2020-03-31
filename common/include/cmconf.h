@@ -1,5 +1,5 @@
 /*
- *【 LibCM 】ver.20200314
+ *【 LibCM 】ver.20200331
  * Copyright (C) 2019 2020 J.Ingram
  * All rights reserved.
  */
@@ -148,11 +148,11 @@
 
 #if defined(__littleendian__)\
 ||  defined(__LITTLE_ENDIAN__)
-#define CM_ENDIANNESS  CM_LIL_ENDIAN
-#define CM_BYTE_ORDER  CM_ENDIANNESS
+#  define CM_ENDIANNESS  CM_LIL_ENDIAN
+#  define CM_BYTE_ORDER  CM_ENDIANNESS
 #else
-#define CM_ENDIANNESS  CM_BIG_ENDIAN
-#define CM_BYTE_ORDER  CM_ENDIANNESS
+#  define CM_ENDIANNESS  CM_BIG_ENDIAN
+#  define CM_BYTE_ORDER  CM_ENDIANNESS
 #endif
 
 /*---< UNDEFINED >---*/
@@ -179,6 +179,10 @@
 
 #  undef  CM_TYPE_INT64
 #  define CM_TYPE_INT64 long
+
+#  ifdef CM_HAVE_MODETF
+#  undef CM_HAVE_MODETF
+#  endif
 #endif
 
 #endif /* (Emotion Engine) */

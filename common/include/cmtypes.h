@@ -1,5 +1,5 @@
 /*
- *【 LibCM 】ver.20200314
+ *【 LibCM 】ver.20200331
  * Copyright (C) 2019 2020 J.Ingram
  * All rights reserved.
  */
