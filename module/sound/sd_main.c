@@ -98,7 +98,7 @@ void SdInt( void )
 
 void sd_init( void )
 {
-	sceSdEffectAttr attr;
+	sceSdEffectAttr r_attr;
 	int i;
 	
 	/* i = SD_CORE_? (SPU CORE ID) */
@@ -115,12 +115,12 @@ void sd_init( void )
 			sceSdSetParam( i|SD_P_MMIX, 0x0FFC );
 			sceSdSetAddr( i|SD_A_EEA, 0x001FFFFF );
 		}
-		
-		attr.depth_L = 0;      // redundant assignment
-		attr.depth_R = 0;      // redundant assignment
-		attr.mode    = 0x0105; // redundant assignment
-		
-		sceSdSetEffectAttr( i, &attr );
+
+		r_attr.depth_L = 0;
+		r_attr.depth_R = 0;
+		r_attr.mode = SD_REV_MODE_HALL | SD_REV_MODE_CLEAR_WA;
+
+		sceSdSetEffectAttr( i, &r_attr );
 		sceSdSetCoreAttr( i|SD_C_EFFECT_ENABLE, SD_SPDIF_OUT_BITSTREAM );
 		sceSdSetParam( i|SD_P_EVOLL, 0x2000 );
 		sceSdSetParam( i|SD_P_EVOLR, 0x2000 );
