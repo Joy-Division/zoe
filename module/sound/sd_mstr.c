@@ -11,6 +11,8 @@
 #include "sd_incl.h"
 #include "sd_ext.h"
 
+/*---------------------------------------------------------------------------*/
+
 struct unkstr24 mem_str_w[12];
 u_char mem_str_buf[0x000A0000];
 
@@ -19,7 +21,7 @@ u_char mem_str_buf[0x000A0000];
 void init_mem_str_w( void )
 {
 	int i;
-	
+
 	for( i = 0 ; i < 12 ; i++ ){
 		mem_str_w[i].unk00 = 0;
 	}
@@ -33,10 +35,10 @@ int MemSpuTransWithNoLoop( u_int a0 )
 	u_int temp3;
 	struct unkstr24 *temp4;
 	u_short temp5;
-	
+
 	a0 -= 32;
 	temp4 = &mem_str_w[a0];
-	
+
 /* ///////////////////////////////////////////////////////////////////////// */
 	switch( (temp4->unk00 & 0xF)-2 ){
 	case 0:
@@ -44,7 +46,7 @@ int MemSpuTransWithNoLoop( u_int a0 )
 		temp4->unk10 = mem_str_buf+voice_tbl[temp4->unk0C].addr;
 		temp4->unk10[17] = 0;
 		temp4->unk10[temp4->unk04-0x1F] = 1;
-		
+
 		sceSdSetAddr( SD_CORE_1|((a0+8)<<1)|SD_VA_LSAX, a0*0x1000+0x9020 );
 		sceSdVoiceTrans(
 			0,                                   /* transfer channel */
@@ -52,7 +54,7 @@ int MemSpuTransWithNoLoop( u_int a0 )
 			temp4->unk10,                        /* IOP memory addr  */
 			(u_char *)(a0*0x1000+0x9020),        /* SPU memory addr  */
 			0x800 );                             /* transfer size    */
-		
+
 		temp4->unk10 += 0x0800;
 		temp4->unk08 -= 0x0800;
 		temp4->unk00++;

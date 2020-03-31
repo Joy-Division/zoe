@@ -7,6 +7,7 @@
 #include <sys/types.h>
 #include "sd_incl.h"
 
+/*---------------------------------------------------------------------------*/
 
 /* GUESSED NAMES */
 u_int wave_size; // used to be d1E0E4[0] or d1E0E4

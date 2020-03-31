@@ -1,6 +1,6 @@
 /*
  * Sound Driver for PS2 IOP
- * Main Module (IOP_MAIN.IRX)
+ * Main Module (External)
  */
 /* ver."ZONE OF THE ENDERS"
  */
@@ -32,7 +32,7 @@ void sd_set_status( void )
 {
 	u_int i, temp = 0;
 	com_queue[131] = 0;
-	
+
 	if( sng_status == 3 ){
 		temp |= 0x4000;
 	}
@@ -63,7 +63,7 @@ void sd_set_status( void )
 	if( sng_load_code || pak_load_status ){
 		temp |= 0x0001;
 	}
-	
+
 	for( i = 0 ; i < 16 ; i++ ){
 		if( sd_sng_code_buf[i] > 0x01000000 ){
 			temp |= 0x0001;
@@ -73,19 +73,19 @@ void sd_set_status( void )
 
 	temp &= 0x7FFFFFFF;
 	com_queue[132] = temp;
-	
+
 	if( str_status ){
 		com_queue[133] = str_counter | str_counter_low;
 	} else {
 		com_queue[133] = str2_counter[0];
 	}
-	
+
 	if( str2_status[1] ){
 		com_queue[134] = str2_counter[1];
 	} else {
 		com_queue[134] = lnr8_counter;
 	}
-	
+
 	com_queue[135] = str2_play_counter[0];
 	com_queue[136] = str2_play_counter[1];
 	// these two assignments have register mismatches for the seccond summand
@@ -98,7 +98,7 @@ void sd_set_status( void )
 void sd_send_status( void )
 {
 	volatile struct unkstrbig *que = (struct unkstrbig *)com_queue;
-	
+
 	if( que->unk22C ){
 		// the way the arguments get loaded doesnt seem to be right
 		// also this if has an empty target that i cannot reproduce
@@ -114,7 +114,7 @@ void sd_send_status( void )
 static void sif_callback_func( struct unkstr24 *a0, volatile struct unkstrbig *a1 )
 {
 	volatile struct unkstrbig *temp = a1;
-	
+
 	if( !a0->unk0C ){
 		temp->unk22C = (u_int)a0[0].unk10;
 	} else {
@@ -131,7 +131,7 @@ void SdSet( void )
 {
 	int temp;
 	volatile struct unkstrbig *que = (struct unkstrbig *)com_queue;
-	
+
 	while( 1 ){
 		SleepThread();
 		if( que->unk200 != que->unk204 ){
@@ -148,12 +148,12 @@ void SdSet( void )
 static void RecieveInit( int a0 )
 {
 	volatile struct unkstrbig *que = (struct unkstrbig *)com_queue;
-	
+
 	que->unk200 = que->unk204 = 0;
 	que->unk208 = a0;
-	
+
 	sif_set_callback_func( 1, (void (*)(void *, int *))sif_callback_func, com_queue );
-	
+
 	que->unk22C = 0;
 }
 
@@ -171,12 +171,12 @@ void setTimer( void *a0 )
 {
 	u_int intr_code;
 	struct SysClock clock;
-	
+
 	USec2SysClock( 5000, &clock );
-	
+
 	id_HSyncTim = AllocHardTimer( 1, 32, 1 );
 	intr_code = GetHardTimerIntrCode( id_HSyncTim );
-	
+
 	RegisterIntrHandler( intr_code, 1, HIntHandler, a0 );
 	SetTimerCompare( id_HSyncTim, clock.low );
 	SetTimerMode( id_HSyncTim, tZRET_1|tCMP_1|tREPT_1|tEXTC_1 );
@@ -188,7 +188,7 @@ void setTimer( void *a0 )
 int createThread( void )
 {
 	struct ThreadParam param;
-	
+
 	sd_mem_alloc();
 
 	param.attr         = TH_C;
@@ -256,6 +256,6 @@ int start()
 	tid = CreateThread( &param );
 	if( 0 >= tid ) return NO_RESIDENT_END;
 	StartThread( tid, 0 );
-  
+
 	return RESIDENT_END;
 }

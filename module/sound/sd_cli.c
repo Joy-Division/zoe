@@ -10,17 +10,11 @@
 #include "sd_incl.h"
 #include "sd_ext.h"
 
+/*---------------------------------------------------------------------------*/
 
 
 u_int str1_use_iop = 0;
 
-
-
-/*---------------------------------------------------------------------------*/
-
-//
-// PLACEHOLDER
-//
 
 /*---------------------------------------------------------------------------*/
 
@@ -38,9 +32,9 @@ int SePlay( u_int a0 )
 	u_char temp7, temp8, temp9;
 	u_char *temp10;
 	u_int temp11;
-	
+
 	temp3 = song_end[1] >> 8;
-	
+
 	for( temp2 = 0 ; temp2 < 12 ; temp2++ ){
 		if( temp3 & 1 ){
 			se_playing[temp2].code = 0;
@@ -49,10 +43,10 @@ int SePlay( u_int a0 )
 		}
 		temp3 >>= 1;
 	}
-	
+
 	temp5 = a0 & 0x07FF;
 	temp11 = a0;
-	
+
 	if( temp5 < 0x0100 ){
 		se_tracks = se_tbl[temp5].tracks;
 		temp9 = se_tbl[temp5].character;
@@ -64,7 +58,7 @@ int SePlay( u_int a0 )
 		se_tracks = se_header[temp6].tracks;
 		temp9 = se_header[temp6].character;
 	}
-	
+
 	for( temp4 = 0 ; temp4 < se_tracks ; temp4++ ){
 		if( temp5 < 0x0100 ){
 			temp7 = se_tbl[temp5].pri;
@@ -76,10 +70,10 @@ int SePlay( u_int a0 )
 			// note to self, pointer + pointer is bad, pointer + int is ok
 			temp10 = (se_header[temp6].addr[temp4]) + (u_int)se_data;
 		}
-		
+
 		temp = 0x0100;
 		temp3 = 0;
-		
+
 		for( temp2 = 0 ; temp2 < 12 ; temp2++ ){
 			if( ((se_playing[temp2].code & 0x07FF) == (temp11 & 0x07FF)) && !se_request[temp2].code ){
 				temp = 0;
@@ -137,7 +131,7 @@ int SePlay( u_int a0 )
 			temp9 = 0;
 			se_request[temp3].addr = temp10;
 			se_request[temp3].code = temp11;
-			
+
 			if( temp7 == 0xFF ){
 				stop_jouchuu_se = 0;
 			}
@@ -175,7 +169,7 @@ void sd_set( int a0 )
 		u_int *up;
 		u_int u;
 	} temp;
-	
+
 	if( a0 ==  0xFF000000 ){
 		sd_print_fg = 1;
 	} else if( a0 == 0xFF000001 ){
@@ -361,7 +355,7 @@ void sd_set( int a0 )
 			case 0xFF000007: se_rev_on = 1; vox_rev_on = 0; break;
 			case 0xFF000008: se_rev_on = 0; vox_rev_on = 0; break;
 			case 0xFF000009: se_rev_on = 1; vox_rev_on = 1; break;
-			
+
 			case 0xFF00000A:
 				if( str1_use_iop ){
 					if( str_status ){
@@ -374,7 +368,7 @@ void sd_set( int a0 )
 					str2_iop_load_set[0] = 0;
 				}
 				break;
-			
+
 			case 0xFF00000B:
 				if( str1_use_iop ){
 					str_wait_fg = 1;
@@ -382,7 +376,7 @@ void sd_set( int a0 )
 					str2_wait_fg[0] = 1;
 				}
 				break;
-			
+
 			case 0xFF00000C:
 				if( str1_use_iop ){
 					str_wait_fg = 0;
@@ -390,17 +384,17 @@ void sd_set( int a0 )
 					str2_wait_fg[0] = 0;
 				}
 				break;
-			
+
 			case 0xFF00000D:
 				if( str1_use_iop ){
 					if( str_status ){
 						str_stop_fg = 2;
 					}
 				} else if( str2_status[0] ){
-					str2_stop_fg[0] = 2;   
+					str2_stop_fg[0] = 2;
 				}
 				break;
-			
+
 			case 0xFF00000E:
 				if( str2_status[1] ){
 					str2_stop_fg[1] = 1;
@@ -410,10 +404,10 @@ void sd_set( int a0 )
 				}
 				str2_iop_load_set[1] = 0;
 				break;
-			
+
 			case 0xFF00000F: str2_wait_fg[1] = 1; break;
 			case 0xFF000010: str2_wait_fg[1] = 0; break;
-			
+
 			case 0xFF000011:
 				if( str2_status[1] ){
 					str2_stop_fg[1] = 2;
@@ -422,11 +416,11 @@ void sd_set( int a0 )
 					lnr8_stop_fg = 1;
 				}
 				break;
-			
+
 			/* these two assignments rely on str1_use_iop to be in the same translation unit */
 			case 0xFF000012: str1_use_iop = 1; break;
 			case 0xFF000013: str1_use_iop = 0; break;
-			
+
 			case 0xFF000014: fader_off_fg = 1; break;
 			case 0xFF0000FE: stop_jouchuu_se = 1; break;
 			case 0xFF0000FF: set_sng_code_buf( a0 ); break;

@@ -8,25 +8,30 @@
 #include "sd_incl.h"
 #include "sd_ext.h"
 
-
+/*---------------------------------------------------------------------------*/
 
 void (*cntl_tbl[128])(void) = {
-	no_cmd, no_cmd, no_cmd, no_cmd, no_cmd, no_cmd, no_cmd, no_cmd,
-	no_cmd, no_cmd, no_cmd, no_cmd, no_cmd, no_cmd, no_cmd, no_cmd,
-	no_cmd, no_cmd, no_cmd, no_cmd, no_cmd, no_cmd, no_cmd, no_cmd,
-	no_cmd, no_cmd, no_cmd, no_cmd, no_cmd, no_cmd, no_cmd, no_cmd,
-	no_cmd, no_cmd, no_cmd, no_cmd, no_cmd, no_cmd, no_cmd, no_cmd,
-	no_cmd, no_cmd, no_cmd, no_cmd, no_cmd, no_cmd, no_cmd, no_cmd,
-	no_cmd, no_cmd, no_cmd, no_cmd, no_cmd, no_cmd, no_cmd, no_cmd,
-	no_cmd, no_cmd, no_cmd, no_cmd, no_cmd, no_cmd, no_cmd, no_cmd,
-	no_cmd, no_cmd, no_cmd, no_cmd, no_cmd, no_cmd, no_cmd, no_cmd,
-	no_cmd, at6_set, at7_set, at8_set, tempo_set, tempo_move, sno_set, svl_set,
-	svp_set, vol_chg, vol_move, ads_set, srs_set, rrs_set, fxs_set, fxe_set,
-	ofs_set, pan_set, pan_move, trans_set, detune_set, vib_set, vib_change, rdm_set,
-	swp_set, sws_set, por_set, lp1_start, lp1_end, lp2_start, lp2_end, l3s_set,
-	l3e_set, kakko_start, kakko_end, xon_set, vol_i_move, env_set, rest_set, tie_set,
-	echo_set1, echo_set2, eon_set, eof_set, at1_set, at2_set, at3_set, at4_set,
-	at5_set, mno_set, flg_set, block_end
+
+/* ---- 0x00～0x47 (No Command Range) --- */
+no_cmd, no_cmd, no_cmd, no_cmd, no_cmd, no_cmd, no_cmd, no_cmd,
+no_cmd, no_cmd, no_cmd, no_cmd, no_cmd, no_cmd, no_cmd, no_cmd,
+no_cmd, no_cmd, no_cmd, no_cmd, no_cmd, no_cmd, no_cmd, no_cmd,
+no_cmd, no_cmd, no_cmd, no_cmd, no_cmd, no_cmd, no_cmd, no_cmd,
+no_cmd, no_cmd, no_cmd, no_cmd, no_cmd, no_cmd, no_cmd, no_cmd,
+no_cmd, no_cmd, no_cmd, no_cmd, no_cmd, no_cmd, no_cmd, no_cmd,
+no_cmd, no_cmd, no_cmd, no_cmd, no_cmd, no_cmd, no_cmd, no_cmd,
+no_cmd, no_cmd, no_cmd, no_cmd, no_cmd, no_cmd, no_cmd, no_cmd,
+no_cmd, no_cmd, no_cmd, no_cmd, no_cmd, no_cmd, no_cmd, no_cmd,
+
+/* --- 0x48～0x7F (Command Range) ---- */
+no_cmd,    at6_set,     at7_se,    at8_set,   tempo_set,  tempo_move, sno_set,    svl_set,
+svp_set,   vol_chg,     vol_move,  ads_set,   srs_set,    rrs_set,    fxs_set,    fxe_set,
+ofs_set,   pan_set,     pan_move,  trans_set, detune_set, vib_set,    vib_change, rdm_set,
+swp_set,   sws_set,     por_set,   lp1_start, lp1_end,    lp2_start,  lp2_end,    l3s_set,
+l3e_set,   kakko_start, kakko_end, xon_set,   vol_i_move, env_set,    rest_set,   tie_set,
+echo_set1, echo_set2,   eon_set,   eof_set,   at1_set,    at2_set,    at3_set,    at4_set,
+at5_set,   mno_set,     flg_set,   block_end, NULL,       NULL,       NULL,       NULL
+
 };
 
 char rdm_tbl[129] = { // not sure about size?
@@ -47,14 +52,12 @@ u_char VIBX_TBL[44] = {
 	0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00
 };
 
-
-
 /*---------------------------------------------------------------------------*/
 
 int sound_sub( void )
 {
 	sptr->tmpd += sptr->tmp;
-	
+
 	if( sptr->tmpd >= 256 && sptr->unkD4 ){
 		sptr->unkD9--;
 		if( !sptr->unkD9 ){
@@ -76,7 +79,7 @@ int sound_sub( void )
 			}
 		}
 	}
-	
+
 	if( sptr->unkD4 && !sptr->unkE0 ){
 		sptr->tmpd &= 0xFF;
 	} else {
@@ -117,7 +120,7 @@ int sound_sub( void )
 int tx_read( void )
 {
 	int i, temp2 = 0;
-	
+
 	for( i = 1 ; i ; ){
 		temp2++;
 		if(temp2 == 256) return 1;
@@ -153,14 +156,14 @@ int tx_read( void )
 void note_set( void )
 {
 	u_int temp;
-	
+
 	sptr->ngs = mdata2;
 	sptr->ngg = mdata3;
 	sptr->vol = (mdata4 & 0x7F);
 	note_compute();
 	sptr->ngc = sptr->ngs;
 	temp = (sptr->ngg * sptr->ngc)/100;
-	
+
 	if( !temp ){
 		temp = 1;
 	}
@@ -180,22 +183,22 @@ void adsr_reset( void )
 void note_compute( void )
 {
 	int temp, temp2;
-	
+
 	if( mdata1 >= 0x48 ){
 		drum_set( mdata1 );
 		temp = 0x24;
 	} else {
 		temp = mdata1;
 	}
-	
+
 	temp += sptr->ptps;
 	temp = (temp << 8) + sptr->tund;
 	temp = temp + sptr->lp1_freq + sptr->lp2_freq;
-	
+
 	while( temp >= 0x6000 ){
 		temp -= 0x6000;
 	}
-	
+
 	temp2 = sptr->swpd;
 	sptr->swpd = temp;
 	sptr->vibhc = sptr->vibcc = 0;
@@ -204,7 +207,7 @@ void note_compute( void )
 	sptr->trec = sptr->trehc = 0;
 	adsr_reset();
 	sptr->swpc = sptr->swsc;
-	
+
 	if( sptr->swpc ){
 		sptr->swphc = sptr->swshc;
 		if( !sptr->swsk ){
@@ -229,7 +232,7 @@ void note_compute( void )
 void swpadset( int a0 )
 {
 	register u_int temp;
-	
+
 	if( sptr->swpc ){
 		temp = (u_int)(sptr->swpc << 8) / sptr->tmp;
 
@@ -238,10 +241,10 @@ void swpadset( int a0 )
 		} else if( a0 >= 0x6000 ){
 			a0 = 0x5FFF;
 		}
-		
+
 	    sptr->swpm = a0;
 	    a0 -= sptr->swpd;
-		
+
 		if( a0 < 0 ){
 			a0 = -a0 / temp;
 			sptr->swpad = -a0;
@@ -256,7 +259,7 @@ void swpadset( int a0 )
 void vol_compute( void )
 {
 	u_int temp;
-	
+
 	if( sptr->pvoc ){
 		if( !(--sptr->pvoc & 0xFF) ){
 			sptr->pvod = sptr->pvom << 8;
@@ -316,20 +319,20 @@ void key_cut_off( void )
 void keych( void )
 {
 	u_int temp, temp2, temp3;
-	
+
 	if( sptr->ngg < 0x64 && (sptr->ngc == 1) ){
 		key_cut_off();
 	}
-	
+
 	if( sptr->ngo ){
 		sptr->ngo--;
 		if( !sptr->ngo ){
 			keyoff();
 		}
 	}
-	
+
 	temp3 = 0;
-	
+
 	if( sptr->swpc ){
 		if( sptr->swphc ){
 			sptr->swphc--;
@@ -344,9 +347,9 @@ void keych( void )
 		}
 		temp3 = 1;
 	}
-	
+
 	temp = 0;
-	
+
 	if( sptr->vibdm ){
 		if( sptr->vibhc == sptr->vibhs ){
 			sptr->vibhc++;
@@ -369,9 +372,9 @@ void keych( void )
 			}
 		}
 	}
-	
+
 	temp2 = random();
-	
+
 	if( temp2 ){
 		temp += temp2;
 		temp3 = 1;
@@ -387,9 +390,9 @@ void por_compute( void )
 {
 	int temp;
 	u_int temp2, temp3;
-	
+
 	temp = sptr->swpm - sptr->swpd;
-	
+
 	if( temp < 0 ){
 		temp = -temp;
 		temp3 = temp & 0xFF;
@@ -422,11 +425,11 @@ int vib_compute( void )
 {
 	int temp;
 	u_int temp2;
-	
+
 	sptr->vib_tbl_cnt += sptr->vib_tc_ofst;
 	sptr->vib_tbl_cnt &= 0x3F;
 	temp2 = VIBX_TBL[sptr->vib_tbl_cnt & 0x1F];
-	
+
 	if( sptr->vibd >= 0x7FFF ){
 		temp = (sptr->vibd >> 7) & 0xFE;
 		temp = (temp * temp2) >> 8;
@@ -434,7 +437,7 @@ int vib_compute( void )
 		temp = ((sptr->vibd >> 8) & 0x7F) + 2;
 		temp = (temp * temp2) >> 1;
 	}
-	
+
 	if( sptr->vib_tbl_cnt >= 32 ){
 		temp = -temp;
 	}
@@ -447,7 +450,7 @@ int vib_generate( char a0 )
 {
 	char temp2;
 	int temp3;
-	
+
 	if( a0 < 0 ){
 		temp2 = -((u_char)a0) << 1;
 		if( temp2 < 0 ){
@@ -475,7 +478,7 @@ int vib_generate( char a0 )
 void bendch( void )
 {
 	int temp;
-	
+
 	if( !sptr->swpc ){
 		mdata1 = mptr[3];
 		if( mdata1 == 0xE4 ){
@@ -496,7 +499,7 @@ void note_cntl( void )
 {
 	char temp;
 	u_int temp2, temp3, temp4, temp5, temp6;
-	
+
 	if( sptr->vol && sptr->tred && (sptr->trehs == sptr->trehc) ){
 		temp = sptr->tmpd;
 		sptr->trec += ((sptr->trecad * temp) >> 8);
@@ -509,10 +512,10 @@ void note_cntl( void )
 		}
 		volxset( (temp6 >> 8) & 0xFF );
 	}
-	
+
 	temp4 = 0;
 	temp5 = sptr->swpd;
-	
+
 	if( sptr->swpc && !sptr->swphc ){
 		temp4 = 1;
 		if( !sptr->swsk ){
@@ -522,7 +525,7 @@ void note_cntl( void )
 		}
 		temp5 = sptr->swpd;
 	}
-	
+
 	if( sptr->vibd && (sptr->vibhs == sptr->vibhc) ){
 		sptr->vib_tmp_cnt += sptr->vibcad;
 		if( sptr->vib_tmp_cnt >= 256 ){
@@ -532,14 +535,14 @@ void note_cntl( void )
 			temp4 = 1;
 		}
 	}
-	
+
 	temp2 = random();
-	
+
 	if( temp2 ){
 		temp4 = 1;
 		temp5 += temp2;
 	}
-	
+
 	if( temp4 ){
 		freq_set( temp5 );
 	}
@@ -551,7 +554,7 @@ u_int random( void )
 {
 	u_int temp = 0;
 	char temp2;
-	
+
 	if( sptr->rdms ){
 		sptr->rdmc += sptr->rdms;
 		if( sptr->rdmc > 256 ){
@@ -586,18 +589,18 @@ void tempo_ch( void )
 void volxset( u_char a0 )
 {
 	int temp, temp2;
-	
+
 	temp = sptr->vol;
 	temp -= a0;
 	temp += sptr->lp1_vol;
 	temp += sptr->lp2_vol;
-	
+
 	if( temp < 0 ){
 		temp = 0;
 	} else if( temp >= 128 ){
 		temp = 0x7F;
 	}
-	
+
 	temp2 = (sptr->pvod >> 8) & 0xFF;
 	vol_set( ((temp2 * temp + 128) >> 8) & 0xFF );
 }
@@ -607,10 +610,10 @@ void volxset( u_char a0 )
 void fader_automation1( void )
 {
 	int temp, temp2;
-	
+
 	if( sptr->unkE8 == 1 && (auto_phase_fg != sptr->unkE4) ){
 		sptr->unkE4 = auto_phase_fg;
-		
+
 		switch( auto_phase_fg ){
 		case 0: break;
 		case 1: temp = (sptr->unkE9 << 8) + sptr->unkE9; temp2 = sptr->unkF1; break;
@@ -625,7 +628,7 @@ void fader_automation1( void )
 			auto_phase_fg = 0;
 			break;
 		}
-		
+
 		if( auto_phase_fg ){
 			mix_fader[mtrack].unk08 = temp;
 			if( mix_fader[mtrack].unk08 == mix_fader[mtrack].unk04 ){
@@ -650,7 +653,7 @@ void fader_automation1( void )
 void fader_automation2( void )
 {
 	int temp, temp2;
-	
+
 	if((sptr->unkE4 != auto_env_pos && sptr->unkE8 == 2)
 	|| (sptr->unkE4 != auto_env_pos2 && sptr->unkE8 == 3)){
 		switch( sptr->unkE8 ){
@@ -659,7 +662,7 @@ void fader_automation2( void )
 		default:
 			break;
 		}
-		
+
 		if( sptr->unkE4 >= sptr->unkF1 ){
 			temp = (sptr->unkE9 << 8) + sptr->unkE9;
 		} else if( sptr->unkE4 >= sptr->unkF2 ){
@@ -693,10 +696,10 @@ void fader_automation2( void )
 		} else {
 			temp = (sptr->unkF0 << 8) + sptr->unkF0;
 		}
-		
+
 		temp2 = 1;
 		mix_fader[mtrack].unk08 = temp;
-		
+
 		if( mix_fader[mtrack].unk08 == mix_fader[mtrack].unk04 ){
 			mix_fader[mtrack].unk00 = 0;
 		} else {
