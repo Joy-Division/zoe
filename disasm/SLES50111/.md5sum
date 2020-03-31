@@ -1,8 +1,0 @@
-32eaec7a8c73bb301898bb4cfbbfab95 *SLES_501.11
-9be2d065ad8d83f00544642f3972836f *cdbios.irx
-4904c21b7ebb89efc88b6ff33fed158e *cdbiosh.irx
-b04b149ac95876cf293b284a319b5cbc *filesys.irx
-a63556da1dfe417f4edd7b6b22586530 *iop_main.irx
-41794233d3d039a887131e8003e8ce13 *jsifman.irx
-305961a958168bdd5496a4335226a449 *nousbfs.irx
-798d2cc2a09697395e0e8d3cef985eb9 *usbfs.irx
