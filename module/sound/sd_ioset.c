@@ -111,11 +111,11 @@ void spuwr( void )
 		}
 		if( spu_tr_wk[i].env1_fg || spu_tr_wk[i].env2_fg || spu_tr_wk[i].env3_fg ){
 			if( i < 24 ){
-				sceSdSetParam( SD_CORE_0|(i<<1)|SD_VP_ADSR1, spu_tr_wk[i].a_mode | ((spu_tr_wk[i].ar & 0x7F) << 8) | ((spu_tr_wk[i].dr & 0x0F) << 4) | (spu_tr_wk[i].sl & 0x0F) );
-				sceSdSetParam( SD_CORE_0|(i<<1)|SD_VP_ADSR2, spu_tr_wk[i].s_mode | ((spu_tr_wk[i].sr & 0x7F) << 6) | spu_tr_wk[i].r_mode | (spu_tr_wk[i].rr & 0x1F) );
+				sceSdSetParam( SD_CORE_0|(i<<1)|SD_VP_ADSR1, SD_ADSR1(spu_tr_wk[i].a_mode, spu_tr_wk[i].ar, spu_tr_wk[i].dr, spu_tr_wk[i].sl) );
+				sceSdSetParam( SD_CORE_0|(i<<1)|SD_VP_ADSR2, SD_ADSR2(spu_tr_wk[i].s_mode, spu_tr_wk[i].sr, spu_tr_wk[i].r_mode, spu_tr_wk[i].rr) );
 			} else {
-				sceSdSetParam( SD_CORE_1|((i-24)<<1)|SD_VP_ADSR1, spu_tr_wk[i].a_mode | ((spu_tr_wk[i].ar & 0x7F) << 8) | ((spu_tr_wk[i].dr & 0x0F) << 4) | (spu_tr_wk[i].sl & 0x0F) );
-				sceSdSetParam( SD_CORE_1|((i-24)<<1)|SD_VP_ADSR2, spu_tr_wk[i].s_mode | ((spu_tr_wk[i].sr & 0x7F) << 6) | spu_tr_wk[i].r_mode | (spu_tr_wk[i].rr & 0x1F) );
+				sceSdSetParam( SD_CORE_1|((i-24)<<1)|SD_VP_ADSR1, SD_ADSR1(spu_tr_wk[i].a_mode, spu_tr_wk[i].ar, spu_tr_wk[i].dr, spu_tr_wk[i].sl) );
+				sceSdSetParam( SD_CORE_1|((i-24)<<1)|SD_VP_ADSR2, SD_ADSR2(spu_tr_wk[i].s_mode, spu_tr_wk[i].sr, spu_tr_wk[i].r_mode, spu_tr_wk[i].rr) );
 			}
 			spu_tr_wk[i].env1_fg = spu_tr_wk[i].env2_fg = spu_tr_wk[i].env3_fg = 0;
 		}
