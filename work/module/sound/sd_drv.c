@@ -145,9 +145,9 @@ void IntSdMain( void )
 		}
 	}
 	
-	if( d1E0E4[1] ){
-		sng_load_code = d1E0E4[1];
-		d1E0E4[1] = 0;
+	if( sng_load_code2 ){ // guessed varname
+		sng_load_code = sng_load_code2; // guessed varname
+		sng_load_code2 = 0; // guessed varname
 	}
 	
 	switch( sng_status ){

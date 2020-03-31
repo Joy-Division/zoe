@@ -275,7 +275,7 @@ extern u_int sng_load_code;
 extern u_int pak_read_fg;
 extern int pak_fp;
 extern u_int pak_load_code;
-extern u_int d1E0E4[2];
+//~ extern u_int d1E0E4[2];
 extern u_char *se_exp_table;
 extern int sng_fp;
 extern int fx_sound_code;
@@ -294,6 +294,10 @@ extern u_int vox_rev_on;
 extern u_int fader_off_fg;
 extern u_int sd_code_read;
 extern u_int sng_pause_fg;
+
+/* GUESSED NAMES */
+extern u_int wave_size;
+extern u_int sng_load_code2;
 
 /* se_tbl.c */
 extern struct SETBL se_tbl[128];

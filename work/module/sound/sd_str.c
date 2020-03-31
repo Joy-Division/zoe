@@ -13,6 +13,10 @@
 
 /*---------------------------------------------------------------------------*/
 
+/* unreferenced TGS2000 variables */
+// u_int str_mute_fg;
+// u_int ee_str_load_addr;
+
 unsigned int str_mono_offset;
 unsigned int str_counter;
 unsigned int str_wait_fg;
