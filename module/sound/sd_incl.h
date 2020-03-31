@@ -16,37 +16,37 @@ struct WAVE_W {
 	u_long  addr;
 	char    sample_note;
 	char    sample_tune;
-	u_char  a_mode;
-	u_char  ar;
-	u_char  dr;
-	u_char  s_mode;
-	u_char  sr;
-	u_char  sl;
-	u_char  r_mode;
-	u_char  rr;
+	u_char  a_mode;         /* attack rate mode  */
+	u_char  ar;             /* attack rate       */
+	u_char  dr;             /* decay rate        */
+	u_char  s_mode;         /* sustain rate mode */
+	u_char  sr;             /* sustain rate      */
+	u_char  sl;             /* sustain level     */
+	u_char  r_mode;         /* release rate mode */
+	u_char  rr;             /* release rate      */
 	u_char  pan;
 	u_char  dec_vol;
 };
 
 struct SPU_TRACK_REG {
-	u_short vol_l;
-	u_short vol_r;
-	int     vol_fg;
-	u_short pitch;
-	int     pitch_fg;
-	u_long  addr;
-	int     addr_fg;
-	long    a_mode;
-	u_short ar;
-	u_short dr;
-	int     env1_fg;
-	long    s_mode;
-	u_short sr;
-	u_short sl;
-	int     env2_fg;
-	long    r_mode;
-	u_short rr;
-	int     env3_fg;
+	u_short vol_l;          /* volume left       */
+	u_short vol_r;          /* volume right      */
+	int     vol_fg;         /* volume flag       */
+	u_short pitch;          /* pitch             */
+	int     pitch_fg;       /* pitch flag        */
+	u_long  addr;           /* address           */
+	int     addr_fg;        /* address flag      */
+	long    a_mode;         /* attack rate mode  */
+	u_short ar;             /* attack rate       */
+	u_short dr;             /* decay rate        */
+	int     env1_fg;        /* envelope 1 flag   */
+	long    s_mode;         /* sustain rate mode */
+	u_short sr;             /* sustain rate      */
+	u_short sl;             /* sustain level     */
+	int     env2_fg;        /* envelope 2 flag   */
+	long    r_mode;         /* release rate mode */
+	u_short rr;             /* release rate      */
+	int     env3_fg;        /* envelope 3 flag   */
 };
 
 struct SETBL {
