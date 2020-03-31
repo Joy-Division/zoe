@@ -212,19 +212,19 @@ int Str2SpuTrans( int a0 )
 	if( str2_stop_fg[a0] && str2_status[a0] >= 3 ){
 		switch( str2_stop_fg[a0] ){
 		case 1:
-			sceSdSetParam( SD_CORE_1|(((a0*2)+20)<<1)|SD_VP_ADSR1, 0xFF );
-			sceSdSetParam( SD_CORE_1|(((a0*2)+20)<<1)|SD_VP_ADSR2, 0x07 );
-			sceSdSetParam( SD_CORE_1|(((a0*2)+21)<<1)|SD_VP_ADSR1, 0xFF );
-			sceSdSetParam( SD_CORE_1|(((a0*2)+21)<<1)|SD_VP_ADSR2, 0x07 );
+			sceSdSetParam( SD_CORE_1|(((a0*2)+20)<<1)|SD_VP_ADSR1, 0x00FF );
+			sceSdSetParam( SD_CORE_1|(((a0*2)+20)<<1)|SD_VP_ADSR2, 0x0007 );
+			sceSdSetParam( SD_CORE_1|(((a0*2)+21)<<1)|SD_VP_ADSR1, 0x00FF );
+			sceSdSetParam( SD_CORE_1|(((a0*2)+21)<<1)|SD_VP_ADSR2, 0x0007 );
 			str2_first_load[a0] = 0;
 			str2_status[a0] = 8;
 			break;
 		
 		case 2:
-			sceSdSetParam( SD_CORE_1|(((a0*2)+20)<<1)|SD_VP_ADSR1, 0xFF );
-			sceSdSetParam( SD_CORE_1|(((a0*2)+20)<<1)|SD_VP_ADSR2, 0x0D );
-			sceSdSetParam( SD_CORE_1|(((a0*2)+21)<<1)|SD_VP_ADSR1, 0xFF );
-			sceSdSetParam( SD_CORE_1|(((a0*2)+21)<<1)|SD_VP_ADSR2, 0x0D );
+			sceSdSetParam( SD_CORE_1|(((a0*2)+20)<<1)|SD_VP_ADSR1, 0x00FF );
+			sceSdSetParam( SD_CORE_1|(((a0*2)+20)<<1)|SD_VP_ADSR2, 0x000D );
+			sceSdSetParam( SD_CORE_1|(((a0*2)+21)<<1)|SD_VP_ADSR1, 0x00FF );
+			sceSdSetParam( SD_CORE_1|(((a0*2)+21)<<1)|SD_VP_ADSR2, 0x000D );
 			break;
 		}
 		str2_tr_off(a0);
@@ -356,12 +356,12 @@ int Str2SpuTrans( int a0 )
 		}
 		sceSdSetParam( SD_CORE_1|(((a0*2)+20)<<1)|SD_VP_PITCH, (u_int)((u_short)str2_pitch[a0]*str2_master_pitch) / 0x1000 );
 		sceSdSetAddr( SD_CORE_1|(((a0*2)+20)<<1)|SD_VA_SSA, a0*0x2000+0x5020 );
-		sceSdSetParam( SD_CORE_1|(((a0*2)+20)<<1)|SD_VP_ADSR1, 0xFF );
-		sceSdSetParam( SD_CORE_1|(((a0*2)+20)<<1)|SD_VP_ADSR2, 0x07 );
+		sceSdSetParam( SD_CORE_1|(((a0*2)+20)<<1)|SD_VP_ADSR1, 0x00FF );
+		sceSdSetParam( SD_CORE_1|(((a0*2)+20)<<1)|SD_VP_ADSR2, 0x0007 );
 		sceSdSetParam( SD_CORE_1|(((a0*2)+21)<<1)|SD_VP_PITCH, (u_int)((u_short)str2_pitch[a0]*str2_master_pitch) / 0x1000 );
 		sceSdSetAddr( SD_CORE_1|(((a0*2)+21)<<1)|SD_VA_SSA, a0*0x2000+0x6020 );
-		sceSdSetParam( SD_CORE_1|(((a0*2)+21)<<1)|SD_VP_ADSR1, 0xFF );
-		sceSdSetParam( SD_CORE_1|(((a0*2)+21)<<1)|SD_VP_ADSR2, 0x07 );
+		sceSdSetParam( SD_CORE_1|(((a0*2)+21)<<1)|SD_VP_ADSR1, 0x00FF );
+		sceSdSetParam( SD_CORE_1|(((a0*2)+21)<<1)|SD_VP_ADSR2, 0x0007 );
 		if( !a0 ){
 			sceSdSetSwitch( SD_CORE_1|SD_S_KON, 0x300000 );
 		} else {
