@@ -228,7 +228,15 @@ u_int sd_code_read;
 u_int sng_pause_fg;
 
 
+/* referenced TGS2000 variables */
+// u_int se_save_code2;
 
+/* unreferenced TGS2000 variables */
+// u_int spu_irq_counter;
+// u_int blank_data_addr;
+// u_int lnr8_fg;
+// u_int irq_addr;
+// u_int mem_str_fg;
 
 
 struct SEPLAYTBL se_playing[12];
