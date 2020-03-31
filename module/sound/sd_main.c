@@ -75,7 +75,7 @@ void SdEELoad( void )
 void SdInt( void )
 {
 	sd_init();
-	
+
 	while( 1 ){
 		SleepThread();
 		IntSdMain();
@@ -100,14 +100,14 @@ void sd_init( void )
 {
 	sceSdEffectAttr r_attr;
 	int i;
-	
+
 	/* i = SD_CORE_? (SPU CORE ID) */
 	for( i = 0 ; i < 2 ; i++ ){
 		sceSdSetParam( i|SD_P_MVOLL, 0 );
 		sceSdSetParam( i|SD_P_MVOLR, 0 );
 		sceSdSetSwitch( i|SD_S_PMON, 0 );
 		sceSdSetSwitch( i|SD_S_NON, 0 );
-		
+
 		if( i == 0 ){
 			sceSdSetParam( i|SD_P_MMIX, 0x0FFF );
 			sceSdSetAddr( i|SD_A_EEA, 0x0001FFFF );
@@ -126,39 +126,39 @@ void sd_init( void )
 		sceSdSetParam( i|SD_P_EVOLR, 0x2000 );
 		sceSdSetSwitch( i|SD_S_VMIXEL, 0 );
 		sceSdSetSwitch( i|SD_S_VMIXER, 0 );
-		
+
 		rev_bit_data[i] = 0;
-		
+
 		sceSdSetParam( i|SD_P_MVOLL, 0x3FFF );
 		sceSdSetParam( i|SD_P_MVOLR, 0x3FFF );
 	}
-	
+
 	sceSdSetParam( i|SD_P_AVOLL, 0x7FFF );
 	sceSdSetParam( i|SD_P_AVOLR, 0x7FFF );
 	sceSdSetCoreAttr( SD_C_SPDIF_MODE, SD_SPDIF_COPY_PROHIBIT );
-	
+
 	spu_wave_start_ptr = (u_char *)0x20000;
 	init_sng_work();
 	wave_load_status = 0;
-	
+
 	for( i = 0 ; i < 12 ; i++ ){
 		se_playing[i].code = 0;
 	}
-	
+
 	for( i = 0 ; i < 16 ; i++ ){
 		mix_fader[i].unk04 = 0xFFFF;
 		mix_fader[i].unk08 = 0xFFFF;
 		mix_fader[i].unk00 = 0;
 		mix_fader[i].unk0C = 0x20;
 	}
-	
+
 	for( i = 16 ; i < 32 ; i++ ){
 		mix_fader[i].unk04 = 0;
 		mix_fader[i].unk08 = 0;
 		mix_fader[i].unk00 = 0;
 		mix_fader[i].unk0C = 0x20;
 	}
-	
+
 	vox_fader[1].unk00 = 0x3F;
 	vox_fader[0].unk00 = 0x3F;
 	vox_fader[1].unk08 = 0x20;

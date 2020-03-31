@@ -63,7 +63,7 @@ int freq_tbl[108] = {
 void spuwr( void )
 {
 	int i;
-	
+
 	if( keyoffs[0] ){
 		sceSdSetSwitch( SD_CORE_0|SD_S_KOFF, keyoffs[0] );
 		keyoffs[0] = 0;
@@ -145,12 +145,12 @@ void spuwr( void )
 void sound_off( void )
 {
 	int i;
-	
+
 	for( i = 0 ; i < 44 ; i++ ){
 		spu_tr_wk[i].rr = 7;
 		spu_tr_wk[i].env3_fg = 1;
 	}
-	
+
 	keyoffs[0] = 0x00FFFFFF;
 	keyoffs[1] = 0x003FFFFF;
 	spuwr();
@@ -161,12 +161,12 @@ void sound_off( void )
 void sng_off( void )
 {
 	int i;
-	
+
 	for( i = 0 ; i < 44 ; i++ ){
 		spu_tr_wk[i].rr = 7;
 		spu_tr_wk[i].env3_fg = 1;
 	}
-	
+
 	song_end[0] |= 0x00FFFFFF;
 	song_end[1] |= 0xFF;
 	keyoffs[0] |= 0x00FFFFFF;
@@ -189,7 +189,7 @@ void se_off( u_int a0 )
 void se_off_exp( void )
 {
 	int i;
-	
+
 	for( i = 32 ; i < 44 ; i++ ){
 		if( sound_w[i].mpointer >= se_data && sound_w[i].mpointer < se_data+0x3000 ){
 			se_off(i-32);
@@ -202,7 +202,7 @@ void se_off_exp( void )
 void se_off_all( void )
 {
 	int i;
-	
+
 	for( i = 32 ; i < 44 ; i++ ){
 		if( sound_w[i].mpointer ){
 			se_off(i-32);
@@ -252,53 +252,53 @@ void tone_set( u_int a0 )
 {
 	u_int temp;
 	struct WAVE_W *wave;
-	
+
 	if( a0 < 0x200 ){
 		wave = &(voice_tbl[a0]);
 	} else {
 		wave = &(((struct WAVE_W *)(mem_str_buf+0x9E180))[a0]);
 	}
-	
+
 	temp = (mtrack << 4)+4; // UNUSED
 	spu_tr_wk[mtrack].addr = wave->addr;
 	spu_tr_wk[mtrack].addr_fg = 1;
 	sptr->macro = wave->sample_note;
 	sptr->micro = wave->sample_tune;
-	
+
 	if( wave->a_mode ){
 		spu_tr_wk[mtrack].a_mode = 0x8000;
 	} else {
 		spu_tr_wk[mtrack].a_mode = 0;
 	}
-	
+
 	spu_tr_wk[mtrack].ar = 0x7F - ((wave->ar & 0x7F) & 0xFF);
 	spu_tr_wk[mtrack].dr = 0x0F - ((wave->dr & 0x0F) & 0xFF);
 	spu_tr_wk[mtrack].env1_fg = 1;
-	
+
 	switch( wave->s_mode ){
 	case 0:  spu_tr_wk[mtrack].s_mode = 0x4000; break;
 	case 1:  spu_tr_wk[mtrack].s_mode = 0xC000; break;
 	case 2:  spu_tr_wk[mtrack].s_mode = 0x0000; break;
 	default: spu_tr_wk[mtrack].s_mode = 0x8000; break;
 	}
-	
+
 	spu_tr_wk[mtrack].sr = 0x7F - ((wave->sr & 0x7F) & 0xFF);
 	spu_tr_wk[mtrack].sl = ((wave->sl & 0x0F) & 0xFF);
 	spu_tr_wk[mtrack].env2_fg = 1;
-	
+
 	if( wave->r_mode ){
 		spu_tr_wk[mtrack].r_mode = 32;
 	} else {
 		spu_tr_wk[mtrack].r_mode = 0;
 	}
-	
+
 	spu_tr_wk[mtrack].rr = sptr->rrd = 0x1F - ((wave->rr & 0x1F) & 0xFF);
 	spu_tr_wk[mtrack].env3_fg = 1;
-	
+
 	if( !sptr->panmod ){
 		pan_set2( wave->pan );
 	}
-	
+
 	sptr->dec_vol = wave->dec_vol;
 }
 
@@ -318,13 +318,13 @@ void pan_set2( u_char a0 )
 void vol_set( u_int a0 )
 {
 	u_int temp, temp2;
-	
+
 	if( !(a0 < sptr->dec_vol) ){
 		a0 -= sptr->dec_vol;
 	} else {
 		a0 = 0;
 	}
-	
+
 	if( sptr->panmod == 2 && mtrack < 32 ){
 		temp = mix_fader[mtrack].unk0C;
 		if( sound_mono_fg ){
@@ -372,18 +372,18 @@ void freq_set( u_int a0 )
 {
 	u_char temp, temp2, temp3, temp4;
 	u_int temp5, *temp6;
-	
+
 	a0 += (u_char)sptr->micro;
 	temp4 = a0;
 	temp3 = (a0 >> 8) + ((u_char)sptr->macro);
 	temp3 &= 0x7F;
 	temp6 = freq_tbl;
 	temp5 = temp6[temp3+1] - temp6[temp3];
-	
+
 	if( temp5 & 0x8000 ){
 		temp5 = 0xC9;
 	}
-	
+
 	temp = temp5;
 	temp2 = temp5 >> 8;
 	temp5 = ((temp * temp4) >> 8) + (temp2 * temp4);

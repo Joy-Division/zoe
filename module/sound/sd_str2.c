@@ -72,37 +72,37 @@ void str2_spuwr( void )
 int StartEEStream( u_int a0 )
 {
 	int temp, i;
-	
+
 	str2_read_disable[a0] = 0;
 	str2_tr_off( a0 );
-	
+
 	if( (str2_fp[a0] = EEOpen(str2_load_code[a0])) < 0 ){
 		str2_fp[a0] = str2_first_load[a0] = str2_load_code[a0] = 0;
 		str2_iop_load_set[a0] = 0;
 		return -1;
 	}
-	
+
 	str2_unplay_size[a0] = str2_unload_size[a0] = ee_addr[a0].unk14;
 	str2_volume[a0] = 0x7F;
 	ee2_buf_idx[a0] = 0;
 	temp = EERead( str2_fp[a0], (uint *)(a0*0x8000+eeload2_buf+ee2_buf_idx[a0]*0x4000), ee2_buf_idx[a0], 0x4000 );
-	
+
 	for( i = 0 ; i < 4 ; i++ ){
 		str2_read_status[a0][ee2_buf_idx[a0]*4+i] = 1;
 	}
-	
+
 	ee2_buf_idx[a0]++;
-	
+
 	if( str2_unload_size[a0] > temp ){
 		str2_unload_size[a0] -= temp;
 	} else {
 		str2_unload_size[a0] = 0;
 	}
-	
+
 	for( i = 0 ; i < 4 ; i++ ){
 		str2_read_status[a0][ee2_buf_idx[a0]*4+i] = 0;
 	}
-	
+
 	str2_trans_buf[a0] = eeload2_buf+a0*0x8000;
 	return 0;
 }
@@ -112,7 +112,7 @@ int StartEEStream( u_int a0 )
 void StrEELoad( u_int a0 )
 {
 	int temp, i, j, temp4;
-	
+
 	for( i = 0 ; i < 2 ; i++ ){
 		if( str2_unload_size[a0] ){
 			temp4 = 0;
@@ -123,7 +123,7 @@ void StrEELoad( u_int a0 )
 				// Wait for V-blank
 				WaitVblankStart();
 				WaitVblankEnd();
-				
+
 				if( str2_unload_size[a0] > 0x4000 ){
 					temp = EERead( str2_fp[a0], (uint *)(a0*0x8000+eeload2_buf+ee2_buf_idx[a0]*0x4000), ee2_buf_idx[a0], 0x4000 );
 					if( temp ){
@@ -154,7 +154,7 @@ void StrEELoad( u_int a0 )
 void str2_load( void )
 {
 	int i;
-	
+
 	for( i = 0 ; i < 2 ; i++ ){
 		switch( str2_status[i]-1 ){
 		case 0:
@@ -171,7 +171,7 @@ void str2_load( void )
 				//
 			}
 			break;
-		
+
 		case 1:
 			if( ee_addr[i].unk0C > 1 ){
 				StrEELoad( i );
@@ -181,17 +181,17 @@ void str2_load( void )
 				// EMPTY BLOCK
 				//
 			}
-		
+
 		case 2:
 		case 3:
 		case 4:
 		case 5:
 			StrEELoad( i );
 			break;
-		
+
 		case 6:
 			break;
-		
+
 		case 7:
 			ee_addr[i].unk10 = (u_char *)ee_addr[i].unk0C = str2_fp[i] = str2_status[i] = str2_load_code[i] = 0;
 			break;
@@ -204,11 +204,11 @@ void str2_load( void )
 int Str2SpuTrans( int a0 )
 {
 	int temp = 0, temp2 = 0, temp3, temp4;
-	
+
 	if( a0 >= 2 ){
 		return 0;
 	}
-	
+
 	if( str2_stop_fg[a0] && str2_status[a0] >= 3 ){
 		switch( str2_stop_fg[a0] ){
 		case 1:
@@ -219,7 +219,7 @@ int Str2SpuTrans( int a0 )
 			str2_first_load[a0] = 0;
 			str2_status[a0] = 8;
 			break;
-		
+
 		case 2:
 			sceSdSetParam( SD_CORE_1|(((a0*2)+20)<<1)|SD_VP_ADSR1, 0x00FF );
 			sceSdSetParam( SD_CORE_1|(((a0*2)+20)<<1)|SD_VP_ADSR2, 0x000D );
