@@ -24,7 +24,7 @@ int id_SdEELoad;
 int id_SdMain;
 int id_SdSet;
 int id_HSyncTim;
-void *common;
+int common;
 
 /*---------------------------------------------------------------------------*/
 
@@ -228,7 +228,7 @@ int createThread( void )
 	if( 0 >= id_SdInt ){};
 	StartThread( id_SdInt, 0 );
 
-	setTimer( common );
+	setTimer( &common );
 	SleepThread();
 
 	return 0;

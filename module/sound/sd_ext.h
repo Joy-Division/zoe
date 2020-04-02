@@ -234,7 +234,7 @@ extern u_char lnr8_buf[0x8000];
 
 
 extern u_int rev_on_bit[2];
-extern void *common;
+//~ extern void *common;
 extern u_int mdata1;
 extern u_int mdata2;
 extern u_int mdata3;
