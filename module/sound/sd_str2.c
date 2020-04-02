@@ -13,6 +13,13 @@
 
 /*---------------------------------------------------------------------------*/
 
+
+
+unsigned short str2_master_vol = 0x3FFF;
+unsigned short str2_master_pitch = 0x1000;
+
+
+
 unsigned int spu_str2_start_ptr_r[2];
 unsigned int str2_iop_load_set[2];
 unsigned int str2_wait_fg[2];

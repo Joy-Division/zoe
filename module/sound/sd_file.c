@@ -15,7 +15,8 @@
 static unsigned int pakcd_pos;
 
 /* unreferenced TGS2000 variables */
-// u_int gsize = 0;
+u_int gsize = 0;
+
 u_int pak_cd_read_fg = 0;
 u_int save_wvx1 = -1, save_wvx2 = -1;
 u_int save_efx = -1;
@@ -67,7 +68,7 @@ void LoadPakFile( void )
 		PcmRead( pak_fp, pak_header, 0x0800 );
 		if( temp[0].unk00 ){
 			if( temp[0].unk04 != save_wvx1 && temp[0].unk04 != save_wvx2 ){
-				wave_size = (temp[1].unk00 - temp[0].unk00) * 0x0800; // guessed varname
+				d1E0E4 = (temp[1].unk00 - temp[0].unk00) * 0x0800; // guessed varname
 				save_wvx1 = temp[0].unk04;
 				wave_load_code = 0xFEFFFFFE;
 				wave_load_status = 1;
@@ -90,7 +91,7 @@ void LoadPakFile( void )
 	case 2:
 		if( temp[1].unk00 ){
 			if( temp[1].unk04 != save_wvx1 && temp[1].unk04 != save_wvx2 ){
-				wave_size = (temp[2].unk00 - temp[1].unk00) * 0x0800; // guessed varname
+				d1E0E4 = (temp[2].unk00 - temp[1].unk00) * 0x0800; // guessed varname
 				save_wvx2 = temp[1].unk04;
 				wave_load_code = 0xFEFFFFFF;
 				wave_load_status = 1;
@@ -132,7 +133,7 @@ void LoadPakFile( void )
 		if( temp[3].unk00 ){
 			if( temp[3].unk04 != save_mdx ){
 				save_mdx = temp[3].unk04;
-				sng_load_code2 = 0x010000FF; // guessed varname
+				d1E0E8 = 0x010000FF; // guessed varname
 				pak_load_status = 7;
 			} else if(1) {
 				pak_load_status = 9;
@@ -145,7 +146,7 @@ void LoadPakFile( void )
 		break; // NOTICE
 	
 	case 6:
-		if( sng_load_code2 ){ // guessed varname
+		if( d1E0E8 ){ // guessed varname
 			break;
 		} else {
 			pak_load_status = 8;
@@ -271,8 +272,8 @@ int LoadWaveFile( void )
 	
 	if( wave_load_code <= 0xFEFFFFFD ){
 		temp4 = 0x00018000;
-	} else if( wave_size <= 0x00017FFF ){ // guessed varname
-		temp4 = wave_size; // guessed varname
+	} else if( d1E0E4 <= 0x00017FFF ){
+		temp4 = d1E0E4;
 	} else {
 		temp4 = 0x00018000;
 	}

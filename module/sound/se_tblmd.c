@@ -9,18 +9,6 @@
 
 /*---------------------------------------------------------------------------*/
 
-/* GUESSED NAMES */
-u_int wave_size; // used to be d1E0E4[0] or d1E0E4
-u_int sng_load_code2; // used to be d1E0E4[1] or d1E0E8
-
-//~ u_int d1E0E4[2]; // this name is bad and messes up variable placement in sd_wk. it should be placed there but sits here for now
-// these should probably sit in sd_wk instead, but variable placement screws up if theyre there
-u_int sd_print_fg;
-u_char *se_exp_table;
-struct SETBL *se_header;
-u_char *se_data;
-int se_tracks;
-
 /*---------------------------------------------------------------------------*
  * Sound Effect Data
  *---------------------------------------------------------------------------*/

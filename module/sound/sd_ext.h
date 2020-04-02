@@ -191,7 +191,7 @@ extern char rdm_tbl[129];
 extern u_char VIBX_TBL[44];
 extern int pant[41];
 extern u_int se_pant[65];
-extern int freq_tbl[108];
+extern int freq_tbl[111];
 extern u_int str1_use_iop;
 extern u_short str_master_vol;
 extern u_short str_master_pitch;
@@ -296,8 +296,8 @@ extern u_int sd_code_read;
 extern u_int sng_pause_fg;
 
 /* GUESSED NAMES */
-extern u_int wave_size;
-extern u_int sng_load_code2;
+extern u_int d1E0E4;
+extern u_int d1E0E8;
 
 /* se_tbl.c */
 extern struct SETBL se_tbl[128];
