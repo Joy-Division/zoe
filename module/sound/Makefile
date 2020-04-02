@@ -62,4 +62,4 @@ $(IRXNAME): $(OBJS)
 	$(AS) $(CLSTUB).s -o $(CLSTUB).o
 	$(LD) -EL -dc -r -T ldscript.txt -o $(CLREL) $(CLLIBS) $(OBJS) $(CLSTUB).o -lgcc
 	$(IFIXUP) -r $(IRXNAME) $(CLREL)
-	rm $(CLREL) $(CLSTUB).{s,o} $(PROGNAME).tbl
+	rm $(CLREL) $(CLSTUB).{s,o}
