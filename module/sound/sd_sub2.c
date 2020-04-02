@@ -590,9 +590,9 @@ void vol_i_move( void )
 
 void at1_set( void )
 {
-	if( sptr->unkE4 == auto_env_pos && sptr->unkE4 == auto_phase_fg ){
+	if( sptr->unkE4 != auto_env_pos && sptr->unkE4 != auto_phase_fg ){
 		// not sure about this, will have to wait until struct is identified
-		mix_fader[mtrack].unk08 = mdata2 + (mdata2 << 8);
+		mix_fader[mtrack].unk08 = (mdata2 << 8) + mdata2;
 		mix_fader[mtrack].unk04 = mix_fader[mtrack].unk08;
 		mix_fader[mtrack].unk00 = 0;
 	}
