@@ -475,7 +475,7 @@ void code2name( u_int code, char *name )
 		if( code > 0xFE7FFFFF && code <= 0xFEFFFFFF ){
 			name[ 0] = 'p';
 			name[ 1] = 'k';
-			name[ 2] = num2char( (code >> 20) & 0x0F );
+			name[ 2] = num2char( (code >> 20) & 0x07 ); // NOTICE
 			name[ 3] = num2char( (code >> 16) & 0x0F );
 			name[ 4] = num2char( (code >> 12) & 0x0F );
 			name[ 5] = num2char( (code >>  8) & 0x0F );
