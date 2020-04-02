@@ -12,25 +12,82 @@
 
 void (*cntl_tbl[128])(void) = {
 
-/* ---- 0x00～0x47 (No Command Range) --- */
-no_cmd, no_cmd, no_cmd, no_cmd, no_cmd, no_cmd, no_cmd, no_cmd,
-no_cmd, no_cmd, no_cmd, no_cmd, no_cmd, no_cmd, no_cmd, no_cmd,
-no_cmd, no_cmd, no_cmd, no_cmd, no_cmd, no_cmd, no_cmd, no_cmd,
-no_cmd, no_cmd, no_cmd, no_cmd, no_cmd, no_cmd, no_cmd, no_cmd,
-no_cmd, no_cmd, no_cmd, no_cmd, no_cmd, no_cmd, no_cmd, no_cmd,
-no_cmd, no_cmd, no_cmd, no_cmd, no_cmd, no_cmd, no_cmd, no_cmd,
-no_cmd, no_cmd, no_cmd, no_cmd, no_cmd, no_cmd, no_cmd, no_cmd,
-no_cmd, no_cmd, no_cmd, no_cmd, no_cmd, no_cmd, no_cmd, no_cmd,
-no_cmd, no_cmd, no_cmd, no_cmd, no_cmd, no_cmd, no_cmd, no_cmd,
+/* --- 0x00～0x48 (NO COMMAND RANGE) --- */
 
-/* --- 0x48～0x7F (Command Range) ---- */
-no_cmd,    at6_set,     at7_se,    at8_set,   tempo_set,  tempo_move, sno_set,    svl_set,
-svp_set,   vol_chg,     vol_move,  ads_set,   srs_set,    rrs_set,    fxs_set,    fxe_set,
-ofs_set,   pan_set,     pan_move,  trans_set, detune_set, vib_set,    vib_change, rdm_set,
-swp_set,   sws_set,     por_set,   lp1_start, lp1_end,    lp2_start,  lp2_end,    l3s_set,
-l3e_set,   kakko_start, kakko_end, xon_set,   vol_i_move, env_set,    rest_set,   tie_set,
-echo_set1, echo_set2,   eon_set,   eof_set,   at1_set,    at2_set,    at3_set,    at4_set,
-at5_set,   mno_set,     flg_set,   block_end, NULL,       NULL,       NULL,       NULL
+no_cmd, no_cmd, no_cmd, no_cmd, no_cmd, no_cmd, no_cmd, no_cmd,
+no_cmd, no_cmd, no_cmd, no_cmd, no_cmd, no_cmd, no_cmd, no_cmd,
+no_cmd, no_cmd, no_cmd, no_cmd, no_cmd, no_cmd, no_cmd, no_cmd,
+no_cmd, no_cmd, no_cmd, no_cmd, no_cmd, no_cmd, no_cmd, no_cmd,
+no_cmd, no_cmd, no_cmd, no_cmd, no_cmd, no_cmd, no_cmd, no_cmd,
+no_cmd, no_cmd, no_cmd, no_cmd, no_cmd, no_cmd, no_cmd, no_cmd,
+no_cmd, no_cmd, no_cmd, no_cmd, no_cmd, no_cmd, no_cmd, no_cmd,
+no_cmd, no_cmd, no_cmd, no_cmd, no_cmd, no_cmd, no_cmd, no_cmd,
+no_cmd, no_cmd, no_cmd, no_cmd, no_cmd, no_cmd, no_cmd, no_cmd,
+no_cmd,
+
+/* --- 0x49～0x7F (COMMAND RANGE) --- */
+
+/* 0x49 */ at6_set,
+/* 0x4A */ at7_set,
+/* 0x4B */ at8_set,
+/* 0x4C */ tempo_set,
+/* 0x4D */ tempo_move,
+/* 0x4E */ sno_set,
+/* 0x4F */ svl_set,
+
+/* 0x50 */ svp_set,
+/* 0x51 */ vol_chg,
+/* 0x52 */ vol_move,
+/* 0x53 */ ads_set,
+/* 0x54 */ srs_set,
+/* 0x55 */ rrs_set,
+/* 0x56 */ fxs_set,
+/* 0x57 */ fxe_set,
+/* 0x58 */ ofs_set,
+/* 0x59 */ pan_set,
+/* 0x5A */ pan_move,
+/* 0x5B */ trans_set,
+/* 0x5C */ detune_set,
+/* 0x5D */ vib_set,
+/* 0x5E */ vib_change,
+/* 0x5F */ rdm_set,
+
+/* 0x60 */ swp_set,
+/* 0x61 */ sws_set,
+/* 0x62 */ por_set,
+/* 0x63 */ lp1_start,
+/* 0x64 */ lp1_end,
+/* 0x65 */ lp2_start,
+/* 0x66 */ lp2_end,
+/* 0x67 */ l3s_set,
+/* 0x68 */ l3e_set,
+/* 0x69 */ kakko_start,
+/* 0x6A */ kakko_end,
+/* 0x6B */ xon_set,
+/* 0x6C */ vol_i_move,
+/* 0x6D */ env_set,
+/* 0x6E */ rest_set,
+/* 0x6F */ tie_set,
+
+/* 0x70 */ echo_set1,
+/* 0x71 */ echo_set2,
+/* 0x72 */ eon_set,
+/* 0x73 */ eof_set,
+/* 0x74 */ at1_set,
+/* 0x75 */ at2_set,
+/* 0x76 */ at3_set,
+/* 0x77 */ at4_set,
+/* 0x78 */ at5_set,
+/* 0x79 */ mno_set,
+/* 0x7A */ flg_set,
+/* 0x7B */ block_end,
+
+/* --- 0x7C～0x7F (UNSET RANGE) --- */
+
+/* 0x7C */ NULL,
+/* 0x7D */ NULL,
+/* 0x7E */ NULL,
+/* 0x7F */ NULL
 
 };
 
