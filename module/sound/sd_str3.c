@@ -166,7 +166,7 @@ void lnr_load( void )
 {
 	switch( lnr8_status-1 ){
 	case 0:
-		if( ee_addr[6].unk0C < 2 || (ee_addr[6].unk0C && ee_addr[6].unk14 > 0x4000) ){
+		if( ee_addr[1].unk0C >= 2 || (ee_addr[1].unk0C && ee_addr[1].unk14 <= 0x4000) ){
 			if( StartLnrEEStream() ){
 				lnr8_status = 0;
 			} else {
