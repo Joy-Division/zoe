@@ -10,15 +10,16 @@
 #include "global.h"
 #include "zoe_defs.h"
 #include "zoe_types.h"
+
 #include "libalg.h"
-#include "libdg.h"
-#include "libfrm.h"
+//#include "libdg.h"
+//#include "libfrm.h"
 #include "libgv.h"
 #include "libtrg.h"
 
 // external
+class DG_OBJ;
 class FRM_OBJECT;
-class TRG_OBJECT;
 
 // internal
 struct ENE_ENTRY;
