@@ -27,7 +27,7 @@ u_int save_mdx = -1;
 void LoadPakFile( void )
 {
 	struct unkstr08 *temp = (struct unkstr08 *)pak_header;
-	
+
 	switch( pak_load_status-1 ){
 	case 0:
 		if( pak_read_fg ){
@@ -39,13 +39,13 @@ void LoadPakFile( void )
 		}
 		pak_fp = PcmOpen( pak_load_code, 5 );
 		if( pak_fp < 0 ){
-			
+
 			// Wait for 4 V-blanks
 			WaitVblankStart(); WaitVblankEnd(); // 1st interval
 			WaitVblankStart(); WaitVblankEnd(); // 2nd interval
 			WaitVblankStart(); WaitVblankEnd(); // 3rd interval
 			WaitVblankStart(); WaitVblankEnd(); // 4th interval
-			
+
 			pak_load_code = 0;
 			pak_fp = 0;
 			pak_load_status = 0;
@@ -72,13 +72,13 @@ void LoadPakFile( void )
 			pak_load_status = 9;
 		}
 		break;
-	
+
 	case 1:
 		if( !wave_load_status ){
 			pak_load_status = 3;
 		}
 		break;
-	
+
 	case 2:
 		if( temp[1].unk00 ){
 			if( temp[1].unk04 != save_wvx1 && temp[1].unk04 != save_wvx2 ){
@@ -95,13 +95,13 @@ void LoadPakFile( void )
 			pak_load_status = 9;
 		}
 		break;
-	
+
 	case 3:
 		if( !wave_load_status ){
 			pak_load_status = 5;
 		}
 		break;
-	
+
 	case 4:
 		if( temp[2].unk00 ){
 			if( temp[2].unk04 != save_efx ){
@@ -119,7 +119,7 @@ void LoadPakFile( void )
 		}
 		pak_load_status = 6;
 		break;
-	
+
 	case 5:
 		if( temp[3].unk00 ){
 			if( temp[3].unk04 != save_mdx ){
@@ -135,7 +135,7 @@ void LoadPakFile( void )
 			break;
 		}
 		break; // NOTICE
-	
+
 	case 6:
 		if( d1E0E8 ){ // guessed varname
 			break;
@@ -143,7 +143,7 @@ void LoadPakFile( void )
 			pak_load_status = 8;
 		}
 		break;
-	
+
 	case 7:
 		if( sng_load_code ){
 			break;
@@ -151,7 +151,7 @@ void LoadPakFile( void )
 			pak_load_status = 9;
 		}
 		break;
-	
+
 	case 8:
 		pak_read_fg = 0;
 		PcmClose( pak_fp );
@@ -187,18 +187,18 @@ int LoadSeFile( void )
 		PcmClose( se_fp );
 		se_fp = 0;
 	}
-	
+
 	se_fp = PcmOpen( se_load_code, 4 );
-	
+
 	if( se_fp < 0 ){
 		se_load_code = 0;
 		se_fp = 0;
 		return -1;
 	}
-	
+
 	PcmRead( se_fp, se_exp_table, 0x4800 );
 	PcmClose( se_fp );
-	
+
 	se_load_code = 0;
 	se_fp = 0;
 	return 0;
@@ -209,19 +209,19 @@ int LoadSeFile( void )
 int LoadSngData()
 {
 	int temp;
-	
+
 	sng_fp = PcmOpen( sng_load_code, 3 );
-	
+
 	if( sng_fp < 0 ){
 		sng_load_code = 0;
 		sng_fp = 0;
 		return -1;
 	}
-	
+
 	temp = PcmRead( sng_fp, sng_data, 0x20000 );
-	
+
 	PcmClose( sng_fp );
-	
+
 	sng_load_code = 0;
 	sng_fp = 0;
 	return 0;
@@ -233,9 +233,9 @@ void set_voice_tbl( u_int *a0, u_int a1, u_int a2 )
 {
 	u_int temp;
 	int temp2 = 0, temp3, temp4;
-	
+
 	temp4 = -1;
-	
+
 	for( temp = a2/16; temp < a1/16; temp++ ){
 		temp3 = a0[temp*4];
 		if( !temp2 ) {
@@ -247,9 +247,9 @@ void set_voice_tbl( u_int *a0, u_int a1, u_int a2 )
 			}
 		}
 	}
-	
+
 	memcpy( (u_char *)voice_tbl + a2, a0, temp * 16 );
-	
+
 	if( temp2 ){
 		memcpy( drum_tbl, temp*4 + a0, a1 - temp*16 );
 	}
@@ -260,27 +260,27 @@ void set_voice_tbl( u_int *a0, u_int a1, u_int a2 )
 int LoadWaveFile( void )
 {
 	u_int temp, temp2, temp3, temp4;
-	
+
 	if( wave_fp ){
 		PcmClose( wave_fp );
 		wave_fp = 0;
 	}
-	
+
 	wave_fp = PcmOpen( wave_load_code, 2 );
-	
+
 	if( wave_fp < 0 ){
 		wave_fp = 0;
-		
+
 		// Wait for 4 V-blanks
 		WaitVblankStart(); WaitVblankEnd(); // 1st interval
 		WaitVblankStart(); WaitVblankEnd(); // 2nd interval
 		WaitVblankStart(); WaitVblankEnd(); // 3rd interval
 		WaitVblankStart(); WaitVblankEnd(); // 4th interval
-		
+
 		wave_load_code = 0;
 		return -1;
 	}
-	
+
 	if( wave_load_code <= 0xFEFFFFFD ){
 		temp4 = 0x00018000;
 	} else if( d1E0E4 <= 0x00017FFF ){
@@ -288,14 +288,14 @@ int LoadWaveFile( void )
 	} else {
 		temp4 = 0x00018000;
 	}
-	
+
 	PcmRead( wave_fp, cdload_buf, temp4 );
-	
+
 	temp =  cdload_buf[0] << 24;
 	temp |= cdload_buf[1] << 16;
 	temp |= cdload_buf[2] << 8;
 	temp |= cdload_buf[3];
-	
+
 	temp2 =  cdload_buf[4] << 24;
 	temp2 |= cdload_buf[5] << 16;
 	temp2 |= cdload_buf[6] << 8;
@@ -309,7 +309,7 @@ int LoadWaveFile( void )
 	spu_load_offset |= wave_load_ptr[1] << 16;
 	spu_load_offset |= wave_load_ptr[2] << 8;
 	spu_load_offset |= wave_load_ptr[3];
-	
+
 	wave_unload_size =  wave_load_ptr[4] << 24;
 	wave_unload_size |= wave_load_ptr[5] << 16;
 	wave_unload_size |= wave_load_ptr[6] << 8;
@@ -365,7 +365,7 @@ void WaveCdLoad( void )
 	WaitVblankStart(); WaitVblankEnd(); // 2nd interval
 	WaitVblankStart(); WaitVblankEnd(); // 3rd interval
 	WaitVblankStart(); WaitVblankEnd(); // 4th interval
-	
+
 	if( wave_unload_size > 0x00018000 ){
 		PcmRead( wave_fp, cdload_buf, 0x00018000 );
 		wave_load_ptr = cdload_buf;
@@ -391,7 +391,7 @@ void WaveCdLoad( void )
 void WaveSpuTrans( void )
 {
 	int result;
-	
+
 	if( wave_load_status == 2 ){
 		result = sceSdVoiceTrans(
 			0,                                    /* transfer channel */
@@ -399,7 +399,7 @@ void WaveSpuTrans( void )
 			wave_load_ptr,                        /* IOP memory addr  */
 			spu_wave_start_ptr + spu_load_offset, /* SPU memory addr  */
 			wave_load_size );                     /* transfer size    */
-		
+
 		if( result < 0 ){
 			//
 			// EMPTY BLOCK
@@ -527,10 +527,11 @@ char num2char( u_int num )
 void str_cat( char *dst, char *src )
 {
 	u_int i;
-	
+
 	for( i = 0 ; i < 256 ; i++ ){
 		if( !dst[i] ) break;
 	}
+
 	if( i < 256 ){
 		strcpy( dst+i, src );
 	}
@@ -546,6 +547,7 @@ int PcmOpen( u_int code, u_int path_idx )
 	if( pak_read_fg ){
 		return pak_fp;
 	}
+
 	if( pak_cd_read_fg ){
 		cdOpen();
 		pakcd_pos = pak_load_code;
@@ -582,18 +584,18 @@ int PcmRead( int a0, void *a1, int a2 )
 {
 	int temp3;
 	int temp;
-	
+
 	a2 = (a2 + 0x07FF) & 0xFFFFF800;
-	
+
 	if( pak_cd_read_fg ){
 		cdRead( pakcd_pos, a1, a2 );
 		//~ if( a2 < 0 );
 		pakcd_pos += a2/2048;
 		return a2;
 	}
-	
+
 	temp3 = pcRead( a0, a1, a2 );
-	
+
 	if( temp3 <= 0 ){
 		printf( "PcmRead Error(%x:size=%x)\n", temp3, a2 );
 	}
@@ -605,16 +607,16 @@ int PcmRead( int a0, void *a1, int a2 )
 int PcmLseek( int a0, u_int a1, u_int a2 )
 {
 	int temp3;
-	
+
 	if( pak_cd_read_fg ){
 		if( a2 == 1 ){
 			pakcd_pos += a1 >> 11;
 		}
 		return a0;
 	}
-	
+
 	temp3 = pcLseek( a0, a1, a2 );
-	
+
 	if( temp3 < 0 ){
 		printf( "CD Seek Error(%x)\n", temp3 );
 		return temp3;
@@ -628,7 +630,7 @@ int PcmLseek( int a0, u_int a1, u_int a2 )
 int PcmClose( int a0 )
 {
 	int temp3 = 0;
-	
+
 	if( pak_cd_read_fg ){
 		if( !pak_read_fg ){
 			cdClose();
@@ -649,7 +651,7 @@ int PcmClose( int a0 )
 int EEOpen( int a0 )
 {
 	u_int temp, *temp2;
-	
+
 	if( (a0 & 0xFF000000) == 0xF5000000 ){
 		temp = 1;
 	} else if( (a0 & 0xFF000000) == 0xF4000000 ){
@@ -661,7 +663,7 @@ int EEOpen( int a0 )
 		//
 	}
 	temp2 = (pak_header+0x01FA)+(6*temp);
-	
+
 	return temp;
 }
 
@@ -672,21 +674,21 @@ int EERead( u_int a0, u_int *a1, u_int a2, u_int a3 )
 	u_int *temp3;
 	struct unkstr24 *temp2;
 	u_int temp = 0;
-	
+
 	if( a0 != 1 && a0 != 2 ){
 		str2_iop_load_set[a0-1] = 0;
 		return 0;
 	}
-	
+
 	temp2 = &(((struct unkstr24 *)(pak_header+506))[a0]);
-	
+
 	if( temp2->unk0C <= (u_int)temp2->unk10 ){
 		str2_iop_load_set[a0-1] = 0;
 		return 0;
 	}
-	
+
 	temp3 = sif_get_mem(a1, temp2->unk04 << 4, a3);
-	
+
 	while( 1 ){
 		DelayThread( 0x2710 );
 		if( temp3[0] & 0x80000000 ){
@@ -699,14 +701,14 @@ int EERead( u_int a0, u_int *a1, u_int a2, u_int a3 )
 			//
 		}
 	}
-	
+
 	if( temp2->unk0C ){
 		// the triple load here is in the wrong order
 		// should be v1, v0, v1
 		// is v0, v0, v1
 		temp2->unk10++;
 	}
-	
+
 	sif_rv_release_queue( temp3 );
 	str2_iop_load_set[a0-1] = 0;
 	return a3;
