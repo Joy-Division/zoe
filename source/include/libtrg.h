@@ -11,10 +11,11 @@
 #include "zoe_defs.h"
 #include "zoe_types.h"
 #include "libalg.h"
-#include "libene.h"
-#include "libfrm.h"
+//#include "libene.h"
+//#include "libfrm.h"
 
 // external
+class ENE_PARTY;
 class FRM_OBJECT;
 
 // internal
