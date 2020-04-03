@@ -10,7 +10,7 @@
 #include "zoe_types.h"
 #include "def_tex.h"
 #include "libalg.h"
-#include "libdg.h"
+//#include "libdg.h"
 
 // external
 typedef struct _DG_MATERIAL DG_MATERIAL;
