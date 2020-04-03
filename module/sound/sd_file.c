@@ -22,15 +22,6 @@ u_int save_wvx1 = -1, save_wvx2 = -1;
 u_int save_efx = -1;
 u_int save_mdx = -1;
 
-char *sd_path_sd1[6] = {
-    "\\DUMMY\\",
-    "host0:./sound/vox1/",
-    "host0:./sound/wvx1/",
-    "host0:./sound/mdx1/",
-    "host0:./sound/efx1/",
-    "host0:./sound/sdx1/"
-};
-
 /*---------------------------------------------------------------------------*/
 
 void LoadPakFile( void )
@@ -98,7 +89,7 @@ void LoadPakFile( void )
 				pak_load_status = 4;
 			} else {
 				PcmLseek( pak_fp, (temp[2].unk00 - temp[1].unk00) * 0x0800, 1 );
-				pak_load_status = 4;
+				pak_load_status = 5;
 			}
 		} else {
 			pak_load_status = 9;
@@ -169,6 +160,15 @@ void LoadPakFile( void )
 		break;
 	}
 }
+
+char *sd_path_sd1[6] = {
+    "\\DUMMY\\",
+    "host0:./sound/vox1/",
+    "host0:./sound/wvx1/",
+    "host0:./sound/mdx1/",
+    "host0:./sound/efx1/",
+    "host0:./sound/sdx1/"
+};
 
 /*---------------------------------------------------------------------------*/
 
