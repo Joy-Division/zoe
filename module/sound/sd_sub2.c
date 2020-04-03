@@ -362,7 +362,7 @@ void sws_set( void )
 
 void detune_set( void )
 {
-	sptr->tund = mdata2 << 2;
+	sptr->tund = (char)mdata2 << 2;
 }
 
 /*---------------------------------------------------------------------------*/
