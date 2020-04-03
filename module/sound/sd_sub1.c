@@ -270,7 +270,7 @@ void note_compute( void )
 		if( !sptr->swsk ){
 			temp = sptr->swpd;
 			if( sptr->swss > 0x7F00 ){
-				sptr->swpd += 1 - (sptr->swss & 0xFFFF);
+				sptr->swpd += 0x10000 - (sptr->swss & 0xFFFF);
 			} else {
 				sptr->swpd -= sptr->swss;
 			}
