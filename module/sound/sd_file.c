@@ -513,11 +513,11 @@ void code2name( u_int code, char *name )
 char num2char( u_int num )
 {
 	num &= 0x0F;
-	
-	if( num < 0x0A ){
-		num += 0x30;
+
+	if( num < 10 ){
+		num += 0x30; /* ASCII '0'～'9' */
 	} else {
-		num += 0x57;
+		num += 0x57; /* ASCII 'a'～'f' */
 	}
 	return num;
 }
