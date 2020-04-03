@@ -347,7 +347,7 @@ int LoadSngData(); // this cannot be void(void): function doesnt take argument b
 int LoadWaveFile(void);
 int PcmClose(int a0);
 int PcmLseek(int a0, u_int a1, u_int a2);
-int PcmOpen(u_int a0, u_int a1);
+int PcmOpen( u_int code, u_int path_idx );
 int PcmRead(int a0, void *a1, int a2);
 void code2name(u_int code, char *name);
 void set_voice_tbl(u_int *a0, u_int a1, u_int a2);

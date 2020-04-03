@@ -538,11 +538,11 @@ void str_cat( char *dst, char *src )
 
 /*---------------------------------------------------------------------------*/
 
-int PcmOpen( u_int a0, u_int a1 )
+int PcmOpen( u_int code, u_int path_idx )
 {
-	int temp3;
-	char temp[128], temp2[16];
-	
+	int status;
+	char path[128], filename[16];
+
 	if( pak_read_fg ){
 		return pak_fp;
 	}
@@ -551,27 +551,29 @@ int PcmOpen( u_int a0, u_int a1 )
 		pakcd_pos = pak_load_code;
 		return 1;
 	}
-	if( a1 != 5 || !path_name[0] ){
-		strcpy( temp, sd_path_sd1[a1] );
+
+	if( path_idx != SD_PATH_SD1_SDX1 || !path_name[0] ){
+		strcpy( path, sd_path_sd1[path_idx] );
 	} else {
-		strcpy( temp, path_name );
+		strcpy( path, path_name );
 	}
-	
-	code2name( a0, temp2 );
-	str_cat( temp, temp2 );
-	
+
+	code2name( code, filename );
+	str_cat( path, filename );
+
 	if( !pak_read_fg ){
 		//
 		// EMPTY BLOCK
 		//
 	}
-	
-	temp3 = pcOpen( temp, 1 );
-	
-	if( temp3 < 0 ){
-		printf( "PcmOpen Error(%x)\n", temp3 );
+
+	status = pcOpen( path, 1 );
+
+	if( status < 0 ){
+		printf( "PcmOpen Error(%x)\n", status );
 	}
-	return temp3;
+
+	return status;
 }
 
 /*---------------------------------------------------------------------------*/
