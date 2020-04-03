@@ -11,9 +11,12 @@
 #include "zoe_defs.h"
 #include "zoe_types.h"
 #include "libalg.h"
-#include "libdg.h"
+//#include "libdg.h"
 
-// declaration
+// external
+class DG_MDL;
+
+// internal
 class HZD_AXIS_LIMIT;
 class HZD_BREAK;
 class HZD_BREAK_STATUS;
