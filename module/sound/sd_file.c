@@ -291,8 +291,8 @@ int LoadWaveFile( void )
 	temp2 |= cdload_buf[7];
 
 	wave_load_ptr = cdload_buf+16;
-	set_voice_tbl( (u_int *)wave_load_ptr, temp3, temp4 );
-	wave_load_ptr += temp3;
+	set_voice_tbl( (u_int *)wave_load_ptr, temp2, temp );
+	wave_load_ptr += temp2;
 
 	spu_load_offset =  wave_load_ptr[0] << 24;
 	spu_load_offset |= wave_load_ptr[1] << 16;
@@ -306,8 +306,8 @@ int LoadWaveFile( void )
 
 	wave_load_ptr += 16;
 
-	if( (0x00017FE0 - temp3) < wave_unload_size ){
-		wave_load_size = 0x00017FE0 - temp3;
+	if( (0x00017FE0 - temp2) < wave_unload_size ){
+		wave_load_size = 0x00017FE0 - temp2;
 	} else {
 		wave_load_size = wave_unload_size;
 	}
@@ -315,9 +315,9 @@ int LoadWaveFile( void )
 	wave_unload_size = wave_unload_size - wave_load_size;
 	wave_save_code = wave_load_code;
 
-	if( temp4 >= 0x1000 ){
+	if( temp >= 0x1000 ){
 		memcpy( mem_str_buf, wave_load_ptr, wave_load_size );
-		temp2 = wave_load_size;
+		temp3 = wave_load_size;
 		while( wave_unload_size ){
 			if( wave_unload_size > 0x00018000 ){
 				PcmRead( wave_fp, cdload_buf, 0x18000 );
@@ -330,9 +330,9 @@ int LoadWaveFile( void )
 			}
 			else {
 			}
-			memcpy( mem_str_buf+temp2, cdload_buf, wave_load_size );
-			temp2 += wave_load_size;
-			if( temp2 > 0x000A0000 ){
+			memcpy( mem_str_buf+temp3, cdload_buf, wave_load_size );
+			temp3 += wave_load_size;
+			if( temp3 > 0x000A0000 ){
 				break;
 			}
 		}
