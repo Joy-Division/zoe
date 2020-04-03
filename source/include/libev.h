@@ -10,8 +10,12 @@
 #include "global.h"
 #include "zoe_defs.h"
 #include "zoe_types.h"
+
 #include "libgv.h"
-#include "libscn.h"
+//#include "libscn.h"
+
+// external
+class SCN_THREAD;
 
 /*---------------------------------------------------------------------------*
  * Classes
