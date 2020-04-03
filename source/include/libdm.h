@@ -10,9 +10,13 @@
 #include "global.h"
 #include "zoe_defs.h"
 #include "zoe_types.h"
+
 #include "libalg.h"
-#include "libdg.h"
+//#include "libdg.h"
 #include "libfrm.h"
+
+// external
+class DG_CAMERA;
 
 /*---------------------------------------------------------------------------*
  * Common Defines
