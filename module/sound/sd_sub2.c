@@ -180,7 +180,7 @@ void lp1_start( void )
 {
 	sptr->lp1_addr = mptr;
 	sptr->lp1_cnt = 0;
-	sptr->lp1_freq = sptr->lp1_vol = 0;
+	sptr->lp1_vol = sptr->lp1_freq = 0;
 }
 
 /*---------------------------------------------------------------------------*/
