@@ -9,11 +9,11 @@ SCEINCDIR = $(SCETOP)/common/include
 EEINCDIR  = $(SCETOP)/ee/include
 EELIBDIR  = $(SCETOP)/ee/lib
 #EEILBDIR  = $(SCETOP)/ee/ilb
-#EEERXDIR  = $(SCETOP)/ee/modules
+#EEMODDIR  = $(SCETOP)/ee/modules
 
 IOPINCDIR = $(SCETOP)/iop/gcc/mipsel-scei-elfl/include
 IOPLIBDIR = $(SCETOP)/iop/gcc/mipsel-scei-elfl/lib
-IOPIRXDIR = $(SCETOP)/iop/modules
+IOPMODDIR = $(SCETOP)/iop/modules
 
 PREFIX  = ee
 AR      = $(PREFIX)-ar
