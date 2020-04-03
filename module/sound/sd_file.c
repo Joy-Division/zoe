@@ -161,13 +161,22 @@ void LoadPakFile( void )
 	}
 }
 
+/*---------------------------------------------------------------------------*/
+
+#define SD_PATH_SD1_DUMMY  0
+#define SD_PATH_SD1_VOX1   1
+#define SD_PATH_SD1_WVX1   2
+#define SD_PATH_SD1_MDX1   3
+#define SD_PATH_SD1_EFX1   4
+#define SD_PATH_SD1_SDX1   5
+
 char *sd_path_sd1[6] = {
-    "\\DUMMY\\",
-    "host0:./sound/vox1/",
-    "host0:./sound/wvx1/",
-    "host0:./sound/mdx1/",
-    "host0:./sound/efx1/",
-    "host0:./sound/sdx1/"
+	"\\DUMMY\\",
+	"host0:./sound/vox1/",
+	"host0:./sound/wvx1/",
+	"host0:./sound/mdx1/",
+	"host0:./sound/efx1/",
+	"host0:./sound/sdx1/"
 };
 
 /*---------------------------------------------------------------------------*/
