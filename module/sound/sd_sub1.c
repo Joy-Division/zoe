@@ -556,12 +556,12 @@ void bendch( void )
 
 void note_cntl( void )
 {
-	char temp;
+	u_char temp;
 	u_int temp2, temp3, temp4, temp5, temp6;
 
 	if( sptr->vol && sptr->tred && (sptr->trehs == sptr->trehc) ){
 		temp = sptr->tmpd;
-		sptr->trec += ((sptr->trecad * temp) >> 8);
+		sptr->trec += ((u_int)(sptr->trecad * temp) >> 8);
 		if( sptr->trec < 0 ){
 			temp6 = sptr->tred * -(sptr->trec);
 		} else if( sptr->trec == 0 ){
