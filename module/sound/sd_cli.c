@@ -28,7 +28,9 @@ int sd_set_cli( u_int a0 )
 
 int SePlay( u_int a0 )
 {
-	int temp, temp2, temp3, temp4, temp5, temp6;
+	int temp, temp2, temp3;
+	u_int temp4;
+	int temp5, temp6;
 	u_char temp7, temp8, temp9;
 	u_char *temp10;
 	u_int temp11;
@@ -68,7 +70,7 @@ int SePlay( u_int a0 )
 			temp7 = se_header[temp6].pri;
 			temp8 = se_header[temp6].kind;
 			// note to self, pointer + pointer is bad, pointer + int is ok
-			temp10 = (se_header[temp6].addr[temp4]) + (u_int)se_data;
+			temp10 = se_data + (u_int)(se_header[temp6].addr[temp4]);
 		}
 
 		temp = 0x0100;
@@ -79,7 +81,7 @@ int SePlay( u_int a0 )
 				temp = 0;
 				temp3 = temp2;
 				break;
-			} else if( ((se_playing[temp2].code & 0x07FF) == (temp11 & 0x07FF)) && !temp4 ){
+			} else if( ((se_request[temp2].code & 0x07FF) == (temp11 & 0x07FF)) && !temp4 ){
 				se_tracks = 0;
 				return 0;
 			}
@@ -103,21 +105,21 @@ int SePlay( u_int a0 )
 					break;
 				}
 			}
-			if( temp2 != temp3 ){
+			if( temp3 != temp2 ){
 				for( temp2 = 0 ; temp2 < 12 ; temp2++ ){
 					if( !se_request[temp2].code ){
-						if( se_playing[temp2].pri > temp ){
+						if( se_playing[temp2].pri <= temp ){
 							temp = se_playing[temp2].pri;
 							temp3 = temp2;
 						}
 					} else {
-						if( se_request[temp2].pri > temp ){
+						if( se_request[temp2].pri <= temp ){
 							temp = se_request[temp2].pri;
 							temp3 = temp2;
 						}
 					}
 				}
-				if( (temp7 % 100) < (temp % 100) ){
+				if( (temp7 % 100) >= (temp % 100) ){
 					//
 					// EMPTY BLOCK
 					//
