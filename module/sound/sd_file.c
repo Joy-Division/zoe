@@ -222,25 +222,27 @@ int LoadSngData()
 
 void set_voice_tbl( u_int *a0, u_int a1, u_int a2 )
 {
-	int temp, temp2;
-	u_int temp3 = 0, temp4;
+	u_int temp;
+	int temp2 = 0, temp3, temp4;
 	
-	temp = -1;
+	temp4 = -1;
 	
-	for( temp4 = a2 >> 4 ; (a1 >> 4) < temp4 ; temp4++ ){
-		temp2 = a0[temp4];
-		if( !temp3 && (temp2 < temp) ){
-			temp3 = 1;
-			break;
-		} else {
-			temp = temp2;
+	for( temp = a2/16; temp < a1/16; temp++ ){
+		temp3 = a0[temp*4];
+		if( !temp2 ) {
+			if( temp3 < temp4 ){
+				temp2 = 1;
+				break;
+			} else {
+				temp4 = temp3;
+			}
 		}
 	}
 	
-	memcpy( (u_char *)voice_tbl + a2, a0, temp4 * 16 );
+	memcpy( (u_char *)voice_tbl + a2, a0, temp * 16 );
 	
-	if( temp3 ){
-		memcpy( drum_tbl, temp4*4 + a0, temp4*4 - a1 );
+	if( temp2 ){
+		memcpy( drum_tbl, temp*4 + a0, a1 - temp*16 );
 	}
 }
 
