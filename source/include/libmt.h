@@ -10,9 +10,14 @@
 #include "global.h"
 #include "zoe_defs.h"
 #include "zoe_types.h"
+
 #include "def_mot.h"
 #include "libalg.h"
-#include "libdg.h"
+//#include "libdg.h"
+
+// external
+class DG_MDL;
+class DG_OBJ;
 
 /*---------------------------------------------------------------------------*/
 
