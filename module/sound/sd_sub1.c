@@ -393,22 +393,24 @@ void keych( void )
 	if( sptr->swpc ){
 		if( sptr->swphc ){
 			sptr->swphc--;
-		} else if( !sptr->swsk ){
-			if( !(--sptr->swpc) ){
-				sptr->swpd = sptr->swpm;
-			} else {
-				sptr->swpd += sptr->swpad;
-			}
 		} else {
-			por_compute();
+			if( !sptr->swsk ){
+				if( !(--sptr->swpc) ){
+					sptr->swpd = sptr->swpm;
+				} else {
+					sptr->swpd += sptr->swpad;
+				}
+			} else {
+				por_compute();
+			}
+			temp3 = 1;
 		}
-		temp3 = 1;
 	}
 
 	temp = 0;
 
 	if( sptr->vibdm ){
-		if( sptr->vibhc == sptr->vibhs ){
+		if( sptr->vibhc != sptr->vibhs ){
 			sptr->vibhc++;
 		} else {
 			if( sptr->vibcc == sptr->vibcs ){
