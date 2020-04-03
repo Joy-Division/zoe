@@ -720,33 +720,33 @@ void fader_automation2( void )
 			break;
 		}
 
-		if( sptr->unkE4 >= sptr->unkF1 ){
+		if( sptr->unkE4 <= sptr->unkF1 ){
 			temp = (sptr->unkE9 << 8) + sptr->unkE9;
-		} else if( sptr->unkE4 >= sptr->unkF2 ){
+		} else if( sptr->unkE4 <= sptr->unkF2 ){
 			temp = (sptr->unkE4 - sptr->unkF1) * (sptr->unkEA - sptr->unkE9);
 			temp = ((temp << 8) + temp) / (sptr->unkF2 - sptr->unkF1);
 			temp += (sptr->unkE9 << 8) + sptr->unkE9;
-		} else if( sptr->unkE4 >= sptr->unkF3 ){
+		} else if( sptr->unkE4 <= sptr->unkF3 ){
 			temp = (sptr->unkE4 - sptr->unkF2) * (sptr->unkEB - sptr->unkEA);
 			temp = ((temp << 8) + temp) / (sptr->unkF3 - sptr->unkF2);
 			temp += (sptr->unkEA << 8) + sptr->unkEA;
-		} else if( sptr->unkE4 >= sptr->unkF4 ){
+		} else if( sptr->unkE4 <= sptr->unkF4 ){
 			temp = (sptr->unkE4 - sptr->unkF3) * (sptr->unkEC - sptr->unkEB);
 			temp = ((temp << 8) + temp) / (sptr->unkF4 - sptr->unkF3);
 			temp += (sptr->unkEB << 8) + sptr->unkEB;
-		} else if( sptr->unkE4 >= sptr->unkF5 ){
+		} else if( sptr->unkE4 <= sptr->unkF5 ){
 			temp = (sptr->unkE4 - sptr->unkF4) * (sptr->unkED - sptr->unkEC);
 			temp = ((temp << 8) + temp) / (sptr->unkF5 - sptr->unkF4);
 			temp += (sptr->unkEC << 8) + sptr->unkEC;
-		} else if( sptr->unkE4 >= sptr->unkF6 ){
+		} else if( sptr->unkE4 <= sptr->unkF6 ){
 			temp = (sptr->unkE4 - sptr->unkF5) * (sptr->unkEE - sptr->unkED);
 			temp = ((temp << 8) + temp) / (sptr->unkF6 - sptr->unkF5);
 			temp += (sptr->unkED << 8) + sptr->unkED;
-		} else if( sptr->unkE4 >= sptr->unkF7 ){
+		} else if( sptr->unkE4 <= sptr->unkF7 ){
 			temp = (sptr->unkE4 - sptr->unkF6) * (sptr->unkEF - sptr->unkEE);
 			temp = ((temp << 8) + temp) / (sptr->unkF7 - sptr->unkF6);
 			temp += (sptr->unkEE << 8) + sptr->unkEE;
-		} else if( sptr->unkE4 >= sptr->unkF8 ){
+		} else if( sptr->unkE4 <= sptr->unkF8 ){
 			temp = (sptr->unkE4 - sptr->unkF7) * (sptr->unkF0 - sptr->unkEF);
 			temp = ((temp << 8) + temp) / (sptr->unkF8 - sptr->unkF7);
 			temp += (sptr->unkEF << 8) + sptr->unkEF;
