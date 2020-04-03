@@ -612,7 +612,7 @@ void note_cntl( void )
 u_int random( void )
 {
 	u_int temp = 0;
-	char temp2;
+	u_char temp2;
 
 	if( sptr->rdms ){
 		sptr->rdmc += sptr->rdms;
