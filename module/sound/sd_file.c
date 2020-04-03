@@ -524,15 +524,15 @@ char num2char( u_int num )
 
 /*---------------------------------------------------------------------------*/
 
-void str_cat( char *a0, char *a1 )
+void str_cat( char *dst, char *src )
 {
 	u_int i;
 	
 	for( i = 0 ; i < 256 ; i++ ){
-		if( !a0[i] ) break;
+		if( !dst[i] ) break;
 	}
 	if( i < 256 ){
-		strcpy( a0+i, a1 );
+		strcpy( dst+i, src );
 	}
 }
 
