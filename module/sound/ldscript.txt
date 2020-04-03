@@ -138,6 +138,7 @@ SECTIONS
 	auto_env_pos = .;		. += 1;
 	. = ALIGN(4);
 	mptr = .;			. += 4;
+	. += 4;
 	sng_play_code = .;		. += 4;
 	auto_env_pos2 = .;		. += 1;
 	. = ALIGN(4);
