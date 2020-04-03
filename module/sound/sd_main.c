@@ -204,7 +204,7 @@ int sd_mem_alloc( void )
 {
 	voice_tbl = wave_header;
 	se_exp_table = (u_char *)se_data_area;
-	se_header = (struct SETBL *)(se_exp_table)+2048;
+	se_header = (struct SETBL *)(se_exp_table+2048);
 	se_data = (u_char *)(se_header)+4096;
 	return 0;
 }
