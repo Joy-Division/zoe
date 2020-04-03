@@ -30,7 +30,8 @@ int common;
 
 void sd_set_status( void )
 {
-	u_int i, temp = 0;
+	int i;
+	u_int temp = 0;
 	com_queue[131] = 0;
 
 	if( sng_status == 3 ){
@@ -62,12 +63,12 @@ void sd_set_status( void )
 	}
 	if( sng_load_code || pak_load_status ){
 		temp |= 0x0001;
-	}
-
-	for( i = 0 ; i < 16 ; i++ ){
-		if( sd_sng_code_buf[i] > 0x01000000 ){
-			temp |= 0x0001;
-			break;
+	} else {
+		for( i = 0 ; i < 16 ; i++ ){
+			if( sd_sng_code_buf[i] > 0x01000000 ){
+				temp |= 0x0001;
+				break;
+			}
 		}
 	}
 
