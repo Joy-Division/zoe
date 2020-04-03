@@ -413,17 +413,19 @@ void WaveSpuTrans( void )
 
 /*---------------------------------------------------------------------------*/
 
-/* ------------------------------- */
-/* Name Format | Type  | Content   */
-/* ------------+-------+---------- */
-/* sg%06x.mdx  | Song  | Seq.Data  */
-/* se%06x.efx  | SE    | Seq.Data  */
-/* vc%06x.pcm  | Voice | Stream    */
-/* wv%06x.wvx  | Wave  | Bank      */
-/* pk%06x.sdx  | Pack  | Container */
-/* ------------------------------- */
+/* ------------------------------------------------ */
+/* Name Format  | Type  | Content                   */
+/* -------------+-------+-------------------------- */
+/* sg%06x.mdx   | SONG  | Sequence Data (BGM)       */
+/* se%06x.efx   | SE    | Sequence Data (SE)        */
+/* vc%06x.pcm   | VOICE | ADPCM Stream              */
+/* wv%06x.wvx   | WAVE  | ADPCM Sample Bank         */
+/* pk%06x.sdx   | PACK  | MDX+EFX+WVX Container     */
+/* ------------------------------------------------ */
+
 void code2name( u_int code, char *name )
 {
+	/* --- Song Sequence Data --- */
 	if( code > 0x00FFFFFF && code <= 0x0100FFFF ){
 		name[ 0] = 's';
 		name[ 1] = 'g';
@@ -438,7 +440,9 @@ void code2name( u_int code, char *name )
 		name[10] = 'd';
 		name[11] = 'x';
 		name[12] = 0;
-	} else if( code > 0x01FFFFFF && code <= 0x0200FFFF ){
+	}
+	/* --- Sound Effect Sequence Data --- */
+	else if( code > 0x01FFFFFF && code <= 0x0200FFFF ){
 		name[ 0] = 's';
 		name[ 1] = 'e';
 		name[ 2] = num2char( (code >> 20) & 0x0F );
@@ -453,6 +457,7 @@ void code2name( u_int code, char *name )
 		name[11] = 'x';
 		name[12] = 0;
 	} else {
+		/* --- ADPCM Stream --- */
 		if( code > 0xEFFFFFFF && code <= 0xF0FFFFFF ){
 			name[ 0] = 'v';
 			name[ 1] = 'c';
@@ -468,6 +473,7 @@ void code2name( u_int code, char *name )
 			name[11] = 'm';
 			name[12] = 0;
 		}
+		/* --- ADPCM Wave Bank --- */
 		if( code > 0xFDFFFFFF && code <= 0xFE00FFFF ){
 			name[ 0] = 'w';
 			name[ 1] = 'v';
@@ -483,6 +489,7 @@ void code2name( u_int code, char *name )
 			name[11] = 'x';
 			name[12] = 0;
 		}
+		/* --- MDX+EFX+WVX Container --- */
 		if( code > 0xFE7FFFFF && code <= 0xFEFFFFFF ){
 			name[ 0] = 'p';
 			name[ 1] = 'k';
