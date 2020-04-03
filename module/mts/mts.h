@@ -9,6 +9,10 @@
 
 #include "global.h"
 
+#if defined(__cplusplus)
+extern "C" {
+#endif
+
 /*---------------------------------------------------------------------------*
  * Definitions
  *---------------------------------------------------------------------------*/
@@ -24,9 +28,6 @@ typedef struct {
 /*---------------------------------------------------------------------------*
  * Prototypes
  *---------------------------------------------------------------------------*/
-#ifdef __cplusplus
-extern "C" {
-#endif
 
 /* ---------------- */
 /* MTS Main (mts.c) */
@@ -71,7 +72,7 @@ DEBUG_GetStackUseSize();
 DEBUG_ExceptionIn();
 #endif
 
-#ifdef __cplusplus
+#if defined(__cplusplus)
 }
 #endif
 

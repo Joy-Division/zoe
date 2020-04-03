@@ -7,7 +7,7 @@
 #ifndef INCLUDED_CDBIOS_EE_H
 #define INCLUDED_CDBIOS_EE_H
 
-#ifdef __cplusplus
+#if defined(__cplusplus)
 extern "C" {
 #endif
 
@@ -28,7 +28,7 @@ cdbios_set_hd_file();
 send_iop();
 #endif
 
-#ifdef __cplusplus
+#if defined(__cplusplus)
 }
 #endif
 
