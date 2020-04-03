@@ -4,7 +4,7 @@
 // ref.default.pdb
 class FOG_RANGE
 {
-public: //! unconfirmed modifier
+public: //! check modifier
 	float N, N2; // near
 	float F, F2; // far
 	float S;

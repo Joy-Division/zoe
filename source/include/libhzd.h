@@ -46,9 +46,9 @@ typedef struct _HZD_BREAK_LIST {
 // ref.default.pdb
 class HZD_BREAK_STATUS
 {
-public: //! unconfirmed modifier
+public: //! check modifier
 	static const sint32 HZD_N_BREAK = TEMP_ZERO;
-	
+
 	uint32          u32HZTCode;
 	HZD_TREE_NODE*  pRoot;
 	HZD_BREAK_LIST  pData[256];
@@ -77,9 +77,9 @@ public:
 // ref.default.pdb
 class HZD_BREAK
 {
-public: //! unconfirmed modifier
+public: //! check modifier
 	static const uint8 HZD_N_STAGE = TEMP_ZERO;
-	
+
 	uint32              u32StageNo;
 	uint32              u32NowStage;
 	uint32              u32Flag;
@@ -88,7 +88,7 @@ public: //! unconfirmed modifier
 
 public:
 	HZD_BREAK();
-	
+
 	void                Reset();
 	sint32              HZD_SetBreakStatus(char*, HZD_TREE_NODE*);
 	sint32              HZD_CheckBreakStatus();
@@ -105,7 +105,7 @@ public:
 	HZD_BREAK_STATUS*   GetCurrentStatus();
 	float               GetBreakStatus(uint32);
 	HZD_BREAK_STATUS*   GetBreakList(uint32);
-	
+
 	static HZD_BREAK*   Init();
 };
 
@@ -116,7 +116,7 @@ public:
 // ref.default.pdb
 typedef struct _HZD_CAPSULE
 {
-public: //! unconfirmed modifier
+public: //! check modifier
 	float       fRadius;
 	uint32      pad0;
 	uint32      pad1;
@@ -126,7 +126,7 @@ public: //! unconfirmed modifier
 
 public:
 	_HZD_CAPSULE();
-	
+
 	_HZD_CAPSULE& operator=(const _HZD_CAPSULE&);
 }
 HZD_CAPSULE;
@@ -138,22 +138,22 @@ HZD_CAPSULE;
 // ref.default.pdb
 class HZD_G_DIR
 {
-public: //! unconfirmed modifier
+public: //! check modifier
 	ALG_MATRIX matDir;
 
 public:
 	void GetComp(ALG_MATRIX*, ALG_VECTOR*);
 	void Init();
-	
+
 	HZD_G_DIR();
-	
+
 	HZD_G_DIR& operator=(const HZD_G_DIR&);
 };
 
 // ref.default.pdb
 class HZD_G_LINE
 {
-public: //! unconfirmed modifier
+public: //! check modifier
 	ALG_MATRIX  matCenter;
 	float       fHeight;
 
@@ -161,32 +161,32 @@ public:
 	void GetComp(ALG_MATRIX*, ALG_VECTOR*);
 	void Inverse(ALG_VECTOR*, ALG_VECTOR*);
 	void Init();
-	
-	void HZD_G_LINE();
-	
+
+	HZD_G_LINE();
+
 	HZD_G_LINE& operator=(const HZD_G_LINE&);
 };
 
 // ref.default.pdb
 class HZD_G_ROT
 {
-public: //! unconfirmed modifier
+public: //! check modifier
 	ALG_MATRIX  matCenter;
 	float       fHeight;
 
 public:
 	void GetComp(ALG_MATRIX*, ALG_VECTOR*);
 	void Init();
-	
-	void HZD_G_ROT();
-	
+
+	HZD_G_ROT();
+
 	HZD_G_ROT& operator=(const HZD_G_ROT&);
 };
 
 // ref.default.pdb
 class HZD_GRAVITY
 {
-public: //! unconfirmed modifier
+public: //! check modifier
 	uint8       u8Type;
 	HZD_G_DIR   g_dir;
 	HZD_G_LINE  g_line;
@@ -197,7 +197,7 @@ private:
 	void iSetComp(uint8, ALG_MATRIX*);
 	void iInverse(ALG_VECTOR*, ALG_VECTOR*);
 
-public: //! unconfirmed modifier
+public: //! check modifier
 	static HZD_GRAVITY* pGrav;
 
 public:
@@ -206,9 +206,9 @@ public:
 	static void Inverse(ALG_VECTOR*, ALG_VECTOR*);
 	static void Reset();
 	static void Init();
-	
+
 	HZD_GRAVITY();
-	
+
 	HZD_GRAVITY& operator=(const HZD_GRAVITY&);
 };
 
@@ -219,7 +219,7 @@ public:
 // ref.default.pdb
 class HZD_AXIS_LIMIT
 {
-public: //! unconfirmed modifier
+public: //! check modifier
 	float fOuter;
 	float fInner;
 
@@ -231,7 +231,7 @@ private:
 // ref.default.pdb
 class HZD_CIRCLE_LIMIT
 {
-public: //! unconfirmed modifier
+public: //! check modifier
 	float fOuter;
 	float fInner;
 	float fX, fY;
@@ -243,7 +243,7 @@ private:
 // ref.default.pdb
 class HZD_LIMIT
 {
-public: //! unconfirmed modifier
+public: //! check modifier
 	HZD_AXIS_LIMIT      axlNorth;
 	HZD_AXIS_LIMIT      axlSouth;
 	HZD_AXIS_LIMIT      axlWest;
@@ -268,12 +268,12 @@ public:
 	void SetAxisLimitBottom(float, float);
 	void SetCircleLimit(float, float, float, float);
 	void SetGravitySpeed(float);
-	
+
 	static sint32 LimitVelocity(ALG_VECTOR*, ALG_MATRIX*, sint32, sint32);
 	static void   GetNearestLimit(ALG_VECTOR*, ALG_MATRIX*);
-	
+
 	void Reset();
-	
+
 	static int Time(int);
 };
 
@@ -282,7 +282,7 @@ public:
 // ref.default.pdb
 class HZD_PLANE
 {
-public: //! unconfirmed modifier
+public: //! check modifier
 	uint32          u32Flag;
 	HZD_TREE_NODE*  pNode;
 	uint32          pad0;
@@ -295,9 +295,9 @@ public:
 	uint8           AddDamage(sint32);
 	void            ChangeModel();
 	HZD_TREE_NODE*  CheckChain();
-	
+
 	HZD_PLANE();
-	
+
 	HZD_PLANE& operator=(const HZD_PLANE&);
 };
 
@@ -306,7 +306,7 @@ public:
 // ref.default.pdb
 class HZD_TREE_NODE
 {
-public: //! unconfirmed modifier
+public: //! check modifier
 	float           lx, ly, lz;
 	HZD_TREE_NODE*  pChildOrg;
 	float           ux, uy, uz;
@@ -337,7 +337,7 @@ public:
 // ref.default.pdb
 class HZD_OFFSET_TREE
 {
-public: //! unconfirmed modifier
+public: //! check modifier
 	static HZD_OFFSET_TREE* pOffsetTop;
 	static sint32           nTree;
 
@@ -348,15 +348,15 @@ public: //! unconfirmed modifier
 public:
 	void Set(sint32);
 	void CalcInv();
-	
+
 	static void Reset();
-	
+
 	~HZD_OFFSET_TREE();
-	
+
 	static HZD_OFFSET_TREE* GetCurrent();
-	
+
 	HZD_OFFSET_TREE();
-	
+
 	HZD_OFFSET_TREE& operator=(const HZD_OFFSET_TREE&);
 };
 

@@ -7,8 +7,9 @@
 #ifndef INCLUDED_LIBSTRM_H
 #define INCLUDED_LIBSTRM_H
 
-#include "global.h"
 #include <libmpeg.h>
+
+#include "global.h"
 #include "zoe_defs.h"
 #include "zoe_types.h"
 
@@ -40,7 +41,7 @@ enum {
 // ref.default.pdb
 class STRM_RING_AREA
 {
-public: //! unconfirmed modifier
+public: //! check modifier
 	sint32  indxTop;
 	sint32  size;
 	uint8*  pBufTop;
@@ -57,7 +58,7 @@ public:
 // ref.default.pdb
 class STRM_RING_BUFFER
 {
-public: //! unconfirmed modifier
+public: //! check modifier
 	void*   pBufTop;
 	sint32  sizeBuf;
 	sint32  indxDataTop;
@@ -83,12 +84,11 @@ public:
 /*---------------------------------------------------------------------------*/
 
 // ref.default.pdb
-class STRM_DATACONSUMER:
-  public STRM_RING_BUFFER //! unconfirmed modifier
+class STRM_DATACONSUMER : public STRM_RING_BUFFER //! check modifier
 {
 	/* VTable */
 
-public: //! unconfirmed modifier
+public: //! check modifier
 
 /* typedef (function *) */
 /* TODO: create replacement, ret/arg types */
@@ -108,7 +108,7 @@ public: //! unconfirmed modifier
 	};
 
 	static const sint32 TIMEOUT_INIT = TEMP_ZERO;
-	
+
 	void*               pBuf;
 	STRM_RING_BUFFER*   pRingRead;
 	sint32              sizeExtend;
@@ -118,24 +118,24 @@ public: //! unconfirmed modifier
 
 public:
 	sint32 Update(sint32);
-	
+
 	STRM_DATACONSUMER(const STRM_DATACONSUMER&);
 	STRM_DATACONSUMER(sint32, sint32, sint32);
 	~STRM_DATACONSUMER();
-	
+
 	void    Cancel();
 	void    SetExtendArea();
 	void    CheckInitTimeout();
 	sint32  CbData(sceMpeg*, sceMpegCbDataStr*);
 
-public: //! unconfirmed modifier
+public: //! check modifier
 	static void (*pNewfunc[13])(void); // TODO: ret/arg types
 	static char* pnmFile;
 	static bool32 bStrEnd;
 
 public:
 	static void SetFunc(sint32, void(*)(void)); // TODO: func ptr ret/arg types
-	
+
 	STRM_DATACONSUMER& operator=(const STRM_DATACONSUMER&);
 };
 

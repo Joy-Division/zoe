@@ -8,6 +8,7 @@
 #include "global.h"
 #include "zoe_defs.h"
 #include "zoe_types.h"
+
 #include "def_tex.h"
 #include "libalg.h"
 //#include "libdg.h"
@@ -72,7 +73,7 @@ typedef struct _DEF_MDL_ENVMAP {
 // ref.default.pdb
 typedef struct _DEF_MDL_FLOWLINE
 {
-public: //! unconfirmed modifier
+public: //! check modifier
 	ALG_VECTOR vecStart;
 	ALG_VECTOR vecEnd;
 	ALG_VECTOR vecSide;

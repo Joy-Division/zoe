@@ -10,8 +10,10 @@
 #include "global.h"
 #include "zoe_defs.h"
 #include "zoe_types.h"
+
 #include "libalg.h"
 #include "libdg.h"
+#include "libene.h"
 #include "libgv.h"
 #include "libhzd.h"
 #include "libmt.h"
@@ -376,7 +378,7 @@ struct FRM_CUSTOM {
 // ref.default.pdb
 class FRM_CAMERA
 {
-public: //! unconfirmed modifier
+public: //! check modifier
 	ALG_MATRIX  matOrg;
 	ALG_MATRIX  matCam;
 	ALG_VECTOR  vecView;
@@ -388,12 +390,12 @@ public: //! unconfirmed modifier
 public:
 	FRM_CAMERA(float, float, float, float, float, float, float, float, float);
 	FRM_CAMERA();
-	
+
 	void Init(FRM_CAMERA*, ALG_MATRIX*);
 	void Set(FRM_CAMERA*);
 	void Move(ALG_MATRIX*);
 	void Calc(ALG_MATRIX*, ALG_MATRIX*);
-	
+
 	FRM_CAMERA& operator=(const FRM_CAMERA&);
 };
 
@@ -402,7 +404,7 @@ public:
 // ref.default.pdb
 class FRM_COMMAND
 {
-public: //! unconfirmed modifier
+public: //! check modifier
 	bool32      bInitCmd;
 	bool32      bInitPhase[3];
 	bool32      bLockCmd;
@@ -452,9 +454,9 @@ public:
 	sint32      GetParamNumber(uint8);
 	float       GetParamFloat(uint8);
 	uint32      GetParamAddr(uint8);
-	
+
 	FRM_COMMAND();
-	
+
 	FRM_COMMAND& operator=(const FRM_COMMAND&);
 };
 
@@ -463,7 +465,7 @@ public:
 // ref.default.pdb
 class FRM_PAD
 {
-public: //! unconfirmed modifier
+public: //! check modifier
 	float   fX1;
 	float   fY1;
 	float   fX2;
@@ -481,7 +483,7 @@ public: //! unconfirmed modifier
 
 public:
 	FRM_PAD();
-	
+
 	void    Input();
 	void    SetX1(float);
 	void    SetY1(float);
@@ -502,10 +504,9 @@ public:
 /*---------------------------------------------------------------------------*/
 
 // ref.default.pdb
-class FRM_OBJECT:
-  public GV_ACTOR //! unconfirmed modifier
+class FRM_OBJECT : public GV_ACTOR //! check modifier
 {
-public: //! unconfirmed modifier
+public: //! check modifier
 	uint32      u32NameID;
 	DG_OBJPTR   pobj;
 	MT_MOTPTR   pmt;
@@ -577,8 +578,9 @@ public:
 	FRM_OBJECT(const FRM_OBJECT &);
 	FRM_OBJECT(uint32, ALG_MATRIX*, uint8, uint8, uint8, uint8, sint32, uint32, uint8);
 	~FRM_OBJECT();
-	
-	void        Act();
+
+	void Act(); // override GV_ACTOR::Act()
+
 	DG_MDL&     NodeMdl(uint8);
 	ALG_MATRIX& NodeMat(uint8);
 	void        ResetFrame();
@@ -651,12 +653,12 @@ public:
 	void        DoRebSqrShot();
 	void        DoRebSqrDShot();
 	void        DoRebSqrBShot();
-	
+
 	static DG_LIGHT     lightPlayer;
 	static DG_LIGHT     lightPlayerBack;
 	static DG_LIGHT*    LockPlayerLight;
 	static void         UnlockPlayerLight(DG_LIGHT*);
-	
+
 	FRM_OBJECT& operator=(const FRM_OBJECT&);
 };
 

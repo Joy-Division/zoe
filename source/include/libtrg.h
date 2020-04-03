@@ -10,6 +10,7 @@
 #include "global.h"
 #include "zoe_defs.h"
 #include "zoe_types.h"
+
 #include "libalg.h"
 //#include "libene.h"
 //#include "libfrm.h"
@@ -29,7 +30,7 @@ class TRG_OBJECT;
 // ref.default.pdb
 class ITEM_DATA
 {
-public: //! unconfirmed modifier
+public: //! check modifier
 	uint8       u8ItemNum;
 	uint8*      pu8Item;
 	bool32      bGet;
@@ -51,7 +52,7 @@ public:
 
 class BULLET_DATA
 {
-public: //! unconfirmed modifier
+public: //! check modifier
 	uint8       u8Type;
 	TRG_OBJECT* ptrgBul;
 
@@ -67,7 +68,7 @@ public:
 // ref.default.pdb
 class TRG_STATUS
 {
-public: //! unconfirmed modifier
+public: //! check modifier
 	uint16      u16ID;
 	uint16      u16SubID;
 	uint32      u32NameID;
@@ -89,7 +90,7 @@ public: //! unconfirmed modifier
 
 public:
 	TRG_STATUS();
-	
+
 	TRG_STATUS& operator=(const TRG_STATUS&);
 };
 
@@ -98,7 +99,7 @@ public:
 // ref.default.pdb
 class TRG_OBJECT
 {
-public: //! unconfirmed modifier
+public: //! check modifier
 	TRG_STATUS  status;
 	TRG_STATUS  staPush;
 	TRG_STATUS  staPower;
@@ -112,7 +113,7 @@ public: //! unconfirmed modifier
 protected:
 	void PushVecSph(ALG_VECTOR*);
 	void PushVecBox(ALG_VECTOR*);
-	
+
 	static sint32 CheckSphCol(TRG_OBJECT*, TRG_OBJECT*);
 	static sint32 CheckSphBoxCol(TRG_OBJECT*, TRG_OBJECT*);
 	static sint32 CheckTrgCol(TRG_OBJECT*, TRG_OBJECT*);
@@ -120,7 +121,7 @@ protected:
 public:
 	TRG_OBJECT();
 	~TRG_OBJECT();
-	
+
 	void            SetSubID(uint16);
 	void            SetNameID(uint32);
 	void            SetProp(uint8);
@@ -173,14 +174,14 @@ public:
 	ITEM_DATA&      Item();
 	BULLET_DATA&    Bullet();
 	BULLET_DATA&    PowerBullet();
-	
+
 	static void         StartDaemon();
 	static void         Execute();
 	static TRG_OBJECT*  CheckID(uint16);
 	static TRG_OBJECT*  CheckNameID(uint32);
 	static void         Reset();
 	static TRG_OBJECT*  Get();
-	
+
 	TRG_OBJECT& operator=(const TRG_OBJECT&);
 };
 

@@ -15,8 +15,8 @@ typedef struct _DEF_HANKAKU_PROP {
 	uint16 u16index;
 } DEF_HANKAKU_PROP;
 
-// ref.ZONE OF THE ENDERS HD Edition (PSN ver.)
-// source : USRDIR/ZoE1/stage/title/ExtractSpacingInfo.rb
+// ref.『ZONE OF THE ENDERS HD EDITION』(PSN ver.)
+//  USRDIR/ZoE1/stage/title/ExtractSpacingInfo.rb
 typedef struct _DEF_FONT_TABLE {
     UINT16  u16nTex;            // 00-01:The_number_of_Fontotekusuchadeta
     UINT16  u16SizeTex;         // 02-03:1Sentence_texture_data_size_characters

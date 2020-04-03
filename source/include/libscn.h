@@ -49,7 +49,7 @@ typedef struct SCN_STACK {
 // ref.default.pdb
 class SCN_DATA
 {
-public: //! unconfirmed modifier
+public: //! check modifier
 	uint8 u8Code[5];
 
 public:
@@ -69,7 +69,7 @@ public:
 // ref.default.pdb
 class SCN_THREAD
 {
-public: //! unconfirmed modifier
+public: //! check modifier
 	uint8 u8State;
 
 private:
@@ -93,7 +93,7 @@ private:
 	static char*        GetString(uint8*);
 	static SCN_DATA*    GetData(uint8*);
 
-public: //! unconfirmed modifier
+public: //! check modifier
 	uint8*      pu8Cursor;
 	uint16      u16StackSize;
 	SCN_STACK*  pstk;
@@ -121,7 +121,7 @@ public:
 // ref.default.pdb
 class SCN_SYSTEM
 {
-public: //! unconfirmed modifier
+public: //! check modifier
 	static SCN_THREAD   Thread[0x4];
 	static SCN_THREAD*  pcurThread;
 	static SCN_STACK*   pstk;

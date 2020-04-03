@@ -11,7 +11,7 @@
 // ref.default.pdb
 class BRK_DAT
 {
-public: //! unconfirmed modifier
+public: //! check modifier
 	ALG_VECTOR *pPos;
 	ALG_VECTOR SP;
 	uint8 F;
@@ -33,7 +33,7 @@ public:
 // ref.default.pdb
 class BRK_FRM
 {
-public: //! unconfirmed modifier
+public: //! check modifier
 	ALG_MATRIX matO;
 	ALG_MATRIX matR;
 	ALG_VECTOR vecP;

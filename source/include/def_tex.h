@@ -5,8 +5,9 @@
 #ifndef INCLUDED_DEF_TEX_H
 #define INCLUDED_DEF_TEX_H
 
-#include "global.h"
 #include <eestruct.h>
+
+#include "global.h"
 #include "zoe_defs.h"
 #include "zoe_types.h"
 

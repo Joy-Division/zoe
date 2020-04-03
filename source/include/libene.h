@@ -34,7 +34,7 @@ class ENE_STATE;
 // ref.default.pdb
 struct ENE_ENTRY
 {
-public: //! unconfirmed modifier
+public: //! check modifier
 	ENE_PARTY*  ppar;
 	uint8       u8Index;
 	uint8       u8State;
@@ -43,7 +43,7 @@ public: //! unconfirmed modifier
 
 public:
 	ENE_ENTRY();
-	
+
 	ENE_ENTRY& operator=(const ENE_ENTRY&);
 };
 
@@ -52,7 +52,7 @@ public:
 // ref.default.pdb
 struct ENE_MEMBER
 {
-public: //! unconfirmed modifier
+public: //! check modifier
 	uint32      u32NameID;
 	uint8       u8Type;
 	uint8       u8Mode;
@@ -66,7 +66,7 @@ public: //! unconfirmed modifier
 public:
 	ENE_MEMBER();
 	~ENE_MEMBER();
-	
+
 	ENE_MEMBER& operator=(const ENE_MEMBER&);
 };
 
@@ -75,7 +75,7 @@ public:
 // ref.default.pdb
 class ENE_STATE
 {
-public: //! unconfirmed modifier
+public: //! check modifier
 	uint8   u8ID;
 	uint8   u8NextID;
 	bool32  bInit;
@@ -83,7 +83,7 @@ public: //! unconfirmed modifier
 
 public:
 	ENE_STATE();
-	
+
 	void    Set(uint8);
 	void    Update();
 	sint32  Init();
@@ -93,10 +93,9 @@ public:
 /*---------------------------------------------------------------------------*/
 
 // ref.default.pdb
-class ENE_MANAGER:
-  public GV_ACTOR //! unconfirmed modifier
+class ENE_MANAGER : public GV_ACTOR //! check modifier
 {
-public: //! unconfirmed modifier
+public: //! check modifier
 	static uint8        u8PartyNum;
 	static uint8        u8EntryNum;
 	static uint8        u8FightNum;
@@ -115,9 +114,9 @@ public:
 	ENE_MANAGER(const ENE_MANAGER &);
 	ENE_MANAGER();
 	~ENE_MANAGER();
-	
-	void Act();
-	
+
+	void Act(); // override GV_ACTOR::Act()
+
 	static sint32   Encount();
 	static sint32   Escape();
 	static uint16   EscapeCounter();
@@ -131,7 +130,7 @@ public:
 	static void     SetFight();
 	static void     ResetFight();
 	static void     ForceEscape();
-	
+
 	ENE_MANAGER& operator=(const ENE_MANAGER&);
 };
 
@@ -140,7 +139,7 @@ public:
 // ref.default.pdb
 class ENE_OBJECT
 {
-public: //! unconfirmed modifier
+public: //! check modifier
 	FRM_OBJECT* pfrm;
 	ENE_STATE   state;
 	ALG_VECTOR  vecLotPos;
@@ -205,20 +204,19 @@ public:
 	void ThinkNeith2();
 	void Init(FRM_OBJECT*);
 	void SetPad();
-	
+
 	ENE_OBJECT();
 	~ENE_OBJECT();
-	
+
 	ENE_OBJECT& operator=(const ENE_OBJECT&);
 };
 
 /*---------------------------------------------------------------------------*/
 
 // ref.default.pdb
-class ENE_PARTY:
-  public GV_ACTOR //! unconfirmed modifier
+class ENE_PARTY : public GV_ACTOR //! check modifier
 {
-public: //! unconfirmed modifier
+public: //! check modifier
 	uint32        u32NameID;
 	uint8         u8MoveType;
 	float         fMoveSpeed;
@@ -243,11 +241,12 @@ public:
 	ENE_PARTY(const ENE_PARTY&);
 	ENE_PARTY(uint32, uint8, uint32, uint8, uint32*, ALG_VECTOR*, uint8*, uint8*, uint8*, uint8, float, uint8, ALG_VECTOR*);
 	~ENE_PARTY();
-	
-	void Act();
+
+	void Act(); // override GV_ACTOR::Act()
+
 	void CalcPartyData();
 	void SetBullet();
-	
+
 	ENE_PARTY& operator=(const ENE_PARTY&);
 };
 

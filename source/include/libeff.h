@@ -19,20 +19,20 @@ class EFF_FIELD
 {
 	/* VTable */
 
-public: //! unconfirmed modifier
+public: //! check modifier
 	int     nProcess;
 	bool32  bLock;
 
 public:
 	EFF_FIELD(const EFF_FIELD&);
 	EFF_FIELD();
-	
+
 	void AddProcess();
 	void DeleteProcess();
 	void Lock();
 	void Unlock();
 	void FieldFunc(ALG_VECTOR*, ALG_VECTOR*);
-	
+
 	EFF_FIELD& operator=(const EFF_FIELD&);
 };
 

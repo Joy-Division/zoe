@@ -13,7 +13,7 @@
 // ref.default.pdb
 class DEF_LIGHT
 {
-public: //! unconfirmed modifier
+public: //! check modifier
 	int nLight;
 	uint32 pad0;
 	uint32 pad1;

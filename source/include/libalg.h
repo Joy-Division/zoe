@@ -22,7 +22,7 @@ class ALG_QUATER;
 // ref.default.pdb
 class ALG_VECTOR
 {
-public: //! unconfirmed modifier
+public: //! check modifier
 	float fX;
 	float fY;
 	float fZ;
@@ -78,7 +78,7 @@ public:
 // ref.default.pdb
 class ALG_MATRIX
 {
-public: //! unconfirmed modifier
+public: //! check modifier
 	ALG_VECTOR vecX;
 	ALG_VECTOR vecY;
 	ALG_VECTOR vecZ;
@@ -135,7 +135,7 @@ public:
 // ref.default.pdb
 class ALG_QUATER
 {
-public: //! unconfirmed modifier
+public: //! check modifier
 	float fImX;
 	float fImY;
 	float fImZ;

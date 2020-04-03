@@ -82,47 +82,48 @@ typedef struct GV_LIST {
 class GV_ACTOR
 {
 	/* VTable */
-	
-public: //! unconfirmed modifier
+
+public: //! check modifier
 	uint8       u8Level;
 	uint8       u8Type;
 	uint8       u8Kill;
 	uint8       u8KillState;
 	GV_ACTOR*   pactPrev;
 	GV_ACTOR*   pactNext;
-	
+
 	static uint8    u8Pause;
 	static uint8    u8NextPause;
 	static uint8    u8NextCancelPause;
 	static sint8    s8ReqKill;
 	static uint32   u32Time;
 	static GV_LIST  list[9];
-	
+
 private:
 	void AddActor();
 	void InsertActor();
 	void DeleteActor();
-	
+
 	static void KillExec();
-	
-public: //! unconfirmed modifier
+
+public: //! check modifier
 	uint32 s32SoundEmitter;
-	
+
 	static float fEffect_Accum;
-	
+
 public:
 	GV_ACTOR(const GV_ACTOR&);
 	GV_ACTOR(uint8, uint8, uint8);
 	~GV_ACTOR();
-	
-	void    Act();
+
+	virtual void Act(); //! check VTable
+
 	void    SetActor();
 	void    DestroyQuick();
 	void    Destroy();
 	void    ResetDestroy();
 	sint32  CheckDestroy();
 	void    SetKillLevel(uint8);
-	
+
 	static void     StartDaemon();
 	static void     Execute();
 	static void     Pause(uint32);
@@ -136,7 +137,7 @@ public:
 	static uint8    NextCancelPauseAtt();
 	static uint32   Time();
 	static float    GetEffectScale();
-	
+
 	GV_ACTOR& operator=(const GV_ACTOR&);
 };
 
@@ -145,17 +146,16 @@ public:
  *---------------------------------------------------------------------------*/
 
 // ref.default.pdb
-class GV_DAEMON:
-  public GV_ACTOR //! unconfirmed modifier
+class GV_DAEMON : public GV_ACTOR //! check modifier
 {
 public:
 	GV_DAEMON(const GV_DAEMON&);
 	GV_DAEMON();
-	
+
 	void Act();
-	
+
 	~GV_DAEMON();
-	
+
 	GV_DAEMON& operator=(const GV_DAEMON&);
 };
 
@@ -188,7 +188,7 @@ enum {
 // ref.default.pdb
 class GV_MEMORY
 {
-public: //! unconfirmed modifier
+public: //! check modifier
 	uint8       u8Type;
 	uint8       u8State;
 	uint8       u8Mode;
@@ -197,7 +197,7 @@ public: //! unconfirmed modifier
 	GV_MEMORY*  pmemNext;
 	GV_MEMORY*  pmemFreePrev;
 	GV_MEMORY*  pmemFreeNext;
-	
+
 	static uint8        u8FreeType;
 	static uint32       u32MaxFreeSize;
 	static GV_MEMORY*   pmemList;
@@ -252,21 +252,21 @@ enum {
 // ref.default.pdb
 class GV_MESSAGE
 {
-public: //! unconfirmed modifier
+public: //! check modifier
 	uint32      u32ID;
 	uint8       u8ArgNum;
 	bool32      bReceive;
 	GV_MESSAGE* pmsgPrev;
 	GV_MESSAGE* pmsgNext;
 	GV_MSG_DATA msd[16];
-	
+
 	static GV_MESSAGE* pmsgList;
 	static GV_MESSAGE* pmsgCursor;
 
 public:
 	GV_MESSAGE(uint32);
 	~GV_MESSAGE();
-	
+
 	void    SetNumber(sint32);
 	void    SetFloat(float);
 	void    SetAddr(void*);
@@ -275,7 +275,7 @@ public:
 	float   GetFloat(uint8);
 	void*   GetAddr(uint8);
 	char*   GetString(uint8);
-	
+
 	static void         Update();
 	static GV_MESSAGE*  Send(uint32);
 	static void         Reset();
@@ -338,7 +338,7 @@ typedef struct GV_PAD_ONE {
 // This class has been modified by HVS to reference the Xbox 360 pad.
 // Examine this class during decompilation and change member names to
 // reference the DualShock 2.
-	
+
 	uint8   u8State;
 	uint8   u8IDLen;
 	uint16  u16Button;
@@ -367,8 +367,8 @@ class GV_PAD
 {
 // Examine this class during decompilation.
 // It appares that HVS has modified it somewhat.
-	
-public: //! unconfirmed modifier
+
+public: //! check modifier
 	uint128 u128buf[4];
 	sint8   s8X1;
 	sint8   s8Y1;
@@ -390,9 +390,9 @@ public: //! unconfirmed modifier
 	uint8   u8Kind;
 	uint8   u8ActDirect[6];
 	bool8   bActChange;
-	
+
 	static uint32 nCurrentSecondaryPort;
-	
+
 	enum {
 		PH_INIT,
 		PH_SETDIGIT,
@@ -407,12 +407,12 @@ public: //! unconfirmed modifier
 
 public:
 	static void InitPad();
-	
+
 	void Reset();
 	void Read(int);
-	
+
 	static void Update();
-	
+
 	sint8   X1();
 	sint8   Y1();
 	sint8   X2();
@@ -431,11 +431,11 @@ public:
 	sint32  Release2(uint16);
 	uint8   _Force(uint16);
 	void    SetAct(sint32, uint8);
-	
+
 	static void     ResetCurrentSecondaryPort();
 	static sint32   nGetCurrentSecondaryPort(); // HVS?
 
-public: //! unconfirmed modifier
+public: //! check modifier
 	bool            mbPressureSensitive;
 	bool            mbSensorSupported;
 	bool            mbSupportsVibration;

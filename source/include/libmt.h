@@ -24,7 +24,7 @@ class DG_OBJ;
 // ref.default.pdb
 class MT_NODE
 {
-public: //! unconfirmed modifier
+public: //! check modifier
 	ALG_QUATER          quat;
 	ALG_VECTOR          pos;
 	ALG_VECTOR          scl;
@@ -38,9 +38,9 @@ public: //! unconfirmed modifier
 public:
 	void Init(uint8);
 	void Update(DG_MDL*, MT_STREAM*);
-	
+
 	MT_NODE();
-	
+
 	MT_NODE& operator=(const MT_NODE&);
 };
 
@@ -49,7 +49,7 @@ public:
 // ref.default.pdb
 class MT_SEQUENCE
 {
-public: //! unconfirmed modifier
+public: //! check modifier
 	sint32      nMot;
 	DEF_MOTION* pMot;
 	uint16      u16StreamFlag;
@@ -69,7 +69,7 @@ public:
 // ref.default.pdb
 class MT_STREAM
 {
-public: //! unconfirmed modifier
+public: //! check modifier
 	float           fFrame;
 	float           fdFrame;
 	uint16          u16State;
@@ -91,7 +91,7 @@ public:
 // ref.default.pdb
 class MT_TABLE
 {
-public: //! unconfirmed modifier
+public: //! check modifier
 	char*               nmFile;
 	DEF_MOTION_LIST*    pmlst;
 	sint32              nbNs;
@@ -111,7 +111,7 @@ public:
 // ref.default.pdb
 class MT_MOTION
 {
-public: //! unconfirmed modifier
+public: //! check modifier
 	DG_OBJ*     pobj;
 	MT_TABLE*   ptabMot;
 	uint32      u32Flag;
@@ -125,11 +125,11 @@ public:
 	void    Stop();
 	void    Destroy();
 	sint32  CurrentSeq(sint32);
-	
+
 	static MT_MOTION* Init(DG_OBJ*, MT_TABLE*, sint32);
-	
+
 	MT_MOTION();
-	
+
 	MT_MOTION& operator=(const MT_MOTION&);
 };
 
@@ -138,16 +138,16 @@ public:
 // ref.default.pdb
 class MT_MOTPTR
 {
-public: //! unconfirmed modifier
+public: //! check modifier
 	MT_MOTION* pmt;
 
 public:
 	MT_MOTPTR();
 	~MT_MOTPTR();
-	
+
 	MT_MOTION* operator MT_MOTION*();
 	MT_MOTION* operator->();
-	
+
 	void Destroy();
 };
 

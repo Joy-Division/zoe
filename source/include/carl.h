@@ -14,10 +14,9 @@ void CR_SetStageLoad( u_char, int, char **, int );
 /*---------------------------------------------------------------------------*/
 
 // ref.default.pdb
-class CR_EDGE:
-  public GV_ACTOR //! unconfirmed modifier
+class CR_EDGE : public GV_ACTOR //! check modifier
 {
-public: //! unconfirmed modifier
+public: //! check modifier
 	DG_OBJ_QUE      que;
 	DG_OBJ_POLYGON  polAlp1;
 	DG_VERTEX       vertAlp1[2];
@@ -42,11 +41,12 @@ public:
 	CR_EDGE(const CR_EDGE&);
 	CR_EDGE(ALG_MATRIX*, ALG_VECTOR*);
 	~CR_EDGE();
-	
+
 	void Invisible();
 	void Visible();
-	void Act();
-	
+
+	void Act(); // GV_ACTOR override
+
 	CR_EDGE& operator=(CR_EDGE&);
 };
 
@@ -55,7 +55,7 @@ public:
 // ref.default.pdb
 class CR_WINDOW
 {
-public: //! unconfirmed modifier
+public: //! check modifier
 	float           fXwindow;
 	float           fYwindow;
 	float           fWrange;
@@ -82,11 +82,11 @@ public: //! unconfirmed modifier
 	DAT128          tagArea[3];
 	DAT128          tagFrame0[3];
 	int             ctr;
-	
+
 	enum STATE {
 		OPEN, CLOSE
 	} st;
-	
+
 	CR_WINDOW* pPrev;
 	CR_WINDOW* pNext;
 
@@ -101,7 +101,7 @@ protected:
 	void SetZ();
 	void Validate();
 
-public: //! unconfirmed modifier
+public: //! check modifier
 	static const float fWLine = TEMP_ZERO;
 	static const float fHLine = TEMP_ZERO;
 	static const float fHTitle = TEMP_ZERO;
@@ -109,7 +109,7 @@ public: //! unconfirmed modifier
 public:
 	CR_WINDOW();
 	~CR_WINDOW();
-	
+
 	void Init(sint32, sint32, sint32, sint32);
 	void SetOffset(sint32, sint32);
 	void SetPosition(sint32, sint32);
@@ -127,10 +127,10 @@ public:
 	void Dequeue(void*);
 	void SetScissor(DAT128*);
 	void ResetScissor(DAT128*);
-	
-// --- HVS addition ---	
+
+// *** HVS addition ***
 //	void vEnableDepthBufferWritesForPolArea(bool);
-	
+
 	CR_WINDOW& operator=(CR_WINDOW&);
 };
 

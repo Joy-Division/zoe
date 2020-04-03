@@ -7,10 +7,13 @@
 #ifndef INCLUDED_LIBFS_H
 #define INCLUDED_LIBFS_H
 
-#include "global.h"
 #include <sifcmd.h>
+
+#include "global.h"
 #include "zoe_defs.h"
 #include "zoe_types.h"
+
+#include "libgv.h"
 #include "libev.h"
 
 // CDBIOS EE interface
@@ -54,7 +57,7 @@ typedef struct HDRINFO {
 // ref.default.pdb
 class FS_EXTEND_INFO
 {
-public: //! unconfirmed modifier
+public: //! check modifier
 	char nmFile[32];
 	char nmPack[32];
 };
@@ -62,7 +65,7 @@ public: //! unconfirmed modifier
 // ref.default.pdb
 class FS_LOAD_INFO
 {
-public: //! unconfirmed modifier
+public: //! check modifier
 	void*           pMem;
 	FS_EXTEND_INFO* pInfo;
 	uint32          u32Pos;
@@ -77,7 +80,7 @@ public: //! unconfirmed modifier
 // ref.default.pdb
 class FS_CACHEMEMBER
 {
-public: //! unconfirmed modifier
+public: //! check modifier
 	uint32  u32Id;
 	void*   pBuf;
 };
@@ -85,11 +88,11 @@ public: //! unconfirmed modifier
 // ref.default.pdb
 class FS_CACHE
 {
-public: //! unconfirmed modifier
+public: //! check modifier
 	FS_CACHEMEMBER* pMember;
 	sint32          size;
 
-private:    
+private:
 	FS_CACHEMEMBER* Find(uint32);
 	void            Shift(FS_CACHEMEMBER*);
 
@@ -108,10 +111,10 @@ public:
 
 // ref.default.pdb
 class FS_LOADER:
-  public GV_ACTOR, //! unconfirmed modifier
-  public EV_JOB    //! unconfirmed modifier
+  public GV_ACTOR, //! check modifier
+  public EV_JOB    //! check modifier
 {
-public: //! unconfirmed modifier
+public: //! check modifier
 	FS_FILEINFO savefileinfo;
 	char        nmStage[16];
 	sint32      indx;
@@ -135,7 +138,7 @@ public: //! unconfirmed modifier
 		INTR,
 		RESTART
 	} state;
-	
+
 	enum SUS_PHASE {
 		S_NOTHING,
 		S_REQUEST,
@@ -155,11 +158,12 @@ public: //! unconfirmed modifier
 public:
 	void CallInitializer(void*, char*, uint32, sint32);
 	void InitStageLoad();
-	
+
 	FS_LOADER(const FS_LOADER&);
 	FS_LOADER();
-	
-	void    Act();
+
+	void Act(); // override GV_ACTOR::Act()
+
 	sint32  SetStage(EV_EVENT*);
 	void    Load();
 	sint32  CheckSuspend();
@@ -169,11 +173,12 @@ public:
 	sint32  CheckReading();
 	void    Restart();
 	void    RequestSetStage(EV_EVENT*, char*, sint32, char**);
-	void    SuspendJob(EV_EVENT*);
-	void    WakeupJob(EV_EVENT*);
-	
+
+	void SuspendJob(EV_EVENT*); // override EV_JOB::SuspendJob()
+	void WakeupJob(EV_EVENT*);  // override EV_JOB::WakeupJob()
+
 	~FS_LOADER();
-	
+
 	FS_LOADER& operator=(const FS_LOADER&);
 };
 

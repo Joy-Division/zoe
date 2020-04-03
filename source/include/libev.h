@@ -24,7 +24,7 @@ class SCN_THREAD;
 // ref.default.pdb
 class EV_EVENT
 {
-public: //! unconfirmed modifier
+public: //! check modifier
 	uint32  u32AddrProc;
 	void (*pFunc)(void); // TODO: ret/arg types
 	uint8   u8Prio;
@@ -49,30 +49,29 @@ class EV_JOB
 	/* VTable */
 
 public:
-	void SuspendJob(EV_EVENT*);
-	void WakeupJob(EV_EVENT*);
-	void StopJob(EV_EVENT*);
-	
+	virtual void SuspendJob(EV_EVENT*);
+	virtual void WakeupJob(EV_EVENT*);
+	virtual void StopJob(EV_EVENT*); //! check VTable
+
 	EV_JOB(const EV_JOB&);
 	EV_JOB();
-	
+
 	EV_JOB& operator=(const EV_JOB&);
 };
 
 /*---------------------------------------------------------------------------*/
 
 // ref.default.pdb
-class EV_EVENTLIST:
-  public EV_EVENT //! unconfirmed modifier
+class EV_EVENTLIST : public EV_EVENT //! check modifier
 {
-public: //! unconfirmed modifier
+public: //! check modifier
 	EV_EVENTLIST*   pPrev;
 	EV_EVENTLIST*   pNext;
 	uint16          u16State;
 	bool16          bReset;
 	SCN_THREAD*     pThread;
 	EV_JOB*         pJob;
-	
+
 	static EV_EVENTLIST* pTop;
 
 public:
@@ -84,10 +83,9 @@ public:
 /*---------------------------------------------------------------------------*/
 
 // ref.default.pdb
-class EV_DAEMON:
-  public GV_ACTOR //! unconfirmed modifier
+class EV_DAEMON : public GV_ACTOR //! check modifier
 {
-public: //! unconfirmed modifier
+public: //! check modifier
 
 	static const sint32 QUE_LENGTH = TEMP_ZERO;
 
@@ -96,14 +94,14 @@ public: //! unconfirmed modifier
 private:
 	EV_EVENTLIST* SearchEmptyQue();
 
-public: //! unconfirmed modifier
+public: //! check modifier
 	EV_JOB jbDefault;
 	bool32 bReset;
 
 private:
 	void ExecReset();
 
-public: //! unconfirmed modifier
+public: //! check modifier
 	uint16          u16UseRes;
 	uint16          u16SusRes;
 	EV_EVENTLIST*   pEvCurrent;
@@ -111,13 +109,14 @@ public: //! unconfirmed modifier
 public:
 	EV_DAEMON(const EV_DAEMON&);
 	EV_DAEMON();
-	
-	void Act();
+
+	void Act(); // override GV_ACTOR::Act()
+
 	int Queue(EV_EVENT*);
 	void Reset();
-	
+
 	~EV_DAEMON();
-	
+
 	EV_DAEMON& operator=(const EV_DAEMON&);
 };
 
