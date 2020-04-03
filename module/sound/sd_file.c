@@ -689,5 +689,5 @@ int EERead( u_int a0, u_int *a1, u_int a2, u_int a3 )
 	
 	sif_rv_release_queue( temp3 );
 	str2_iop_load_set[a0-1] = 0;
-	return a2;
+	return a3;
 }
