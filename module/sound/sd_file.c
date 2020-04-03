@@ -209,7 +209,7 @@ int LoadSngData()
 		return -1;
 	}
 	
-	temp = PcmRead( sng_fp, sng_data, 2 );
+	temp = PcmRead( sng_fp, sng_data, 0x20000 );
 	
 	PcmClose( sng_fp );
 	
