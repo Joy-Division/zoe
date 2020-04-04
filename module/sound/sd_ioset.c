@@ -331,8 +331,8 @@ void vol_set( u_int a0 )
 			temp = 32;
 		}
 		a0++;
-		spu_tr_wk[mtrack].vol_r = (((se_pant[temp] * a0) / 127) * sng_master_vol[mtrack]) >> 16;
-		spu_tr_wk[mtrack].vol_l = (((se_pant[64-temp] * a0) / 127) * sng_master_vol[mtrack]) >> 16;
+		spu_tr_wk[mtrack].vol_r = (((a0 * se_pant[temp]) / 127) * sng_master_vol[mtrack]) >> 16;
+		spu_tr_wk[mtrack].vol_l = (((a0 * se_pant[64-temp]) / 127) * sng_master_vol[mtrack]) >> 16;
 		spu_tr_wk[mtrack].vol_fg = 1;
 	} else {
 		if( mtrack < 32 || !(se_playing[mtrack-32].kind) ){
@@ -345,11 +345,11 @@ void vol_set( u_int a0 )
 			}
 			a0++;
 			if( mtrack < 32 ){
-				spu_tr_wk[mtrack].vol_r = (((pant[temp] * a0) / 127) * sng_master_vol[mtrack]) >> 16;
-				spu_tr_wk[mtrack].vol_l = (((pant[40-temp] * a0) / 127) * sng_master_vol[mtrack]) >> 16;
+				spu_tr_wk[mtrack].vol_r = (((a0 * pant[temp]) / 127) * sng_master_vol[mtrack]) >> 16;
+				spu_tr_wk[mtrack].vol_l = (((a0 * pant[40-temp]) / 127) * sng_master_vol[mtrack]) >> 16;
 			} else {
-				spu_tr_wk[mtrack].vol_r = (pant[temp] * a0) / 127;
-				spu_tr_wk[mtrack].vol_l = (pant[40-temp] * a0) / 127;
+				spu_tr_wk[mtrack].vol_r = (a0 * pant[temp]) / 127;
+				spu_tr_wk[mtrack].vol_l = (a0 * pant[40-temp]) / 127;
 			}
 			spu_tr_wk[mtrack].vol_fg = 1;
 		} else {
@@ -359,8 +359,8 @@ void vol_set( u_int a0 )
 				temp = 32;
 			}
 			a0++;
-			spu_tr_wk[mtrack].vol_r = (se_pant[temp] * a0) >> 7;
-			spu_tr_wk[mtrack].vol_l = (se_pant[64-temp] * a0) >> 7;
+			spu_tr_wk[mtrack].vol_r = (a0 * se_pant[temp]) >> 7;
+			spu_tr_wk[mtrack].vol_l = (a0 * se_pant[64-temp]) >> 7;
 			spu_tr_wk[mtrack].vol_fg = 1;
 		}
 	}
