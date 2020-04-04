@@ -489,7 +489,7 @@ int vib_compute( void )
 	sptr->vib_tbl_cnt &= 0x3F;
 	temp2 = VIBX_TBL[sptr->vib_tbl_cnt & 0x1F];
 
-	if( sptr->vibd >= 0x7FFF ){
+	if( 0x7FFF >= sptr->vibd ){
 		temp = (sptr->vibd >> 7) & 0xFE;
 		temp = (temp * temp2) >> 8;
 	} else {
