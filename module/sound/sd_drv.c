@@ -667,7 +667,7 @@ void se_adrs_set( u_int a0 )
 	
 	sng_track_init( &sound_w[a0+32] );
 	
-	se_vol[a0] = (se_playing[a0].code & (u_int)(mem_str_buf+0x00020920)) >> 12;
+	se_vol[a0] = (se_playing[a0].code & 0x3F000) >> 12;
 	se_pan[a0] = (se_playing[a0].code >> 18) & 0x3F;
 	sound_w[a0+32].mpointer = se_playing[a0].addr;
 	song_end[1] &= ~(1 << (a0+8));
