@@ -353,7 +353,7 @@ int Str2SpuTrans( int a0 )
 				vox_fader[a0].unk0C = vox_fader[a0].unk08;
 			} else {
 				temp3 = temp4 = (((unsigned)(str2_volume[a0]
-								* se_pant[0xFC] / 0x7F)) * str2_master_vol)
+								* se_pant[0x3F] / 0x7F)) * str2_master_vol)
 								/ 0x3FFF;
 				sceSdSetParam( SD_CORE_1|(((a0*2)+20)<<1)|SD_VP_VOLL, temp3 );
 				sceSdSetParam( SD_CORE_1|(((a0*2)+20)<<1)|SD_VP_VOLR, 0 );
@@ -374,11 +374,12 @@ int Str2SpuTrans( int a0 )
 		} else {
 			sceSdSetSwitch( SD_CORE_1|SD_S_KON, 0xC00000 );
 		}
+		// the following two assignments should follow the form var1 = var2 = 0, but i get an extra instruction that way...
 		mute2_l_r_fg[a0] = 0;
 		spu_str2_idx[a0] = 0;
 		str2_next_idx[a0] = 0x0800;
 		str2_status[a0]++;
-		if( str2_unplay_size[a0] || !(str2_unplay_size[a0] & 0x80000000) ){
+		if( !str2_unplay_size[a0] || (str2_unplay_size[a0] & 0x80000000) ){
 			str2_off_ctr[a0] = 0x1F;
 			str2_status[a0]++;
 		}
@@ -390,11 +391,11 @@ int Str2SpuTrans( int a0 )
 			str2_status[a0]++;
 			break;
 		}
-		if((vox_fader[a0].unk00 == vox_fader[a0].unk04)
-		|| (vox_fader[a0].unk08 == vox_fader[a0].unk0C)){
+		if((vox_fader[a0].unk00 != vox_fader[a0].unk04)
+		|| (vox_fader[a0].unk08 != vox_fader[a0].unk0C)){
 			if( sound_mono_fg ){
 				temp3 = temp4 = (((((unsigned)(str2_volume[a0] * vox_fader[a0].unk00) / 0x3F)
-								* se_pant[0x80]) / 0x7F) * str2_master_vol)
+								* se_pant[0x20]) / 0x7F) * str2_master_vol)
 								/ 0x3FFF;
 				sceSdSetParam( SD_CORE_1|(((a0*2)+20)<<1)|SD_VP_VOLL, temp3 );
 				sceSdSetParam( SD_CORE_1|(((a0*2)+20)<<1)|SD_VP_VOLR, temp4 );
@@ -427,7 +428,7 @@ int Str2SpuTrans( int a0 )
 		if( !str2_mute_fg[a0] ){
 			str2_play_counter[a0]++;
 		}
-		if( str2_next_idx[a0] == (spu_str2_idx[a0] & 0x0800) || str2_l_r_fg[a0] || !mute2_l_r_fg[a0] ){
+		if( str2_next_idx[a0] == (spu_str2_idx[a0] & 0x0800) || str2_l_r_fg[a0] || mute2_l_r_fg[a0] ){
 			temp = 1;
 			if( str2_read_status[a0][str2_play_idx[a0]] && !mute2_l_r_fg[a0] ){
 				str2_mute_fg[a0] = 0;
@@ -455,7 +456,7 @@ int Str2SpuTrans( int a0 )
 							0x0800 );                                /* transfer size    */
 						str2_next_idx[a0] = (str2_next_idx[a0] + 0x0800) & 0x0FFF;
 						str2_l_r_fg[a0] = 0;
-						if( str2_mono_fg[a0] ){
+						if( !str2_mono_fg[a0] ){
 							str2_read_status[a0][str2_play_idx[a0]] = 0;
 							str2_play_idx[a0]++;
 							if( str2_play_idx[a0] == 8 ){
