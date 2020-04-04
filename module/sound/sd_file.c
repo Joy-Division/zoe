@@ -526,7 +526,7 @@ char num2char( u_int num )
 
 void str_cat( char *dst, char *src )
 {
-	u_int i;
+	int i;
 
 	for( i = 0 ; i < 256 ; i++ ){
 		if( !dst[i] ) break;
