@@ -480,7 +480,7 @@ void SngFadeInt( void )
 	u_int temp2, temp3;
 	int i, temp5 = 0, temp6 = 0;
 	
-	if( sng_status < 3 ){
+	if( sng_status >= 3 ){
 		for( i = 0 ; i < 32 ; i++ ){
 			temp5 |= sng_fade_time[i];
 		}
@@ -494,7 +494,7 @@ void SngFadeInt( void )
 						} else {
 							sng_fout_term[1] |= (1 << (i-0x18));
 						}
-						sng_fade_value[i] = 1;
+						sng_fade_value[i] = 0x10000;
 						sng_fade_time[i] = 0;
 					}
 					if( sng_fout_term[0] == 0x00FFFFFF && sng_fout_term[1] == 0xFF ){
@@ -555,7 +555,7 @@ void SngFadeInt( void )
 		}
 		for( i = 0 ; i < 32 ; i++ ){
 			temp = 0x10000;
-			if( (vox_on_vol >= sng_syukan_vol) && !fg_syukan_off[i] ){
+			if( (sng_syukan_vol >= vox_on_vol) && !fg_syukan_off[i] ){
 				temp3 = sng_syukan_vol;
 			} else {
 				temp3 = vox_on_vol;
@@ -565,7 +565,7 @@ void SngFadeInt( void )
 			} else {
 				temp2 = temp3;
 			}
-			if( temp2 < temp3 ){
+			if( temp < temp2 ){
 				temp = 0;
 			} else {
 				temp -= temp2;
