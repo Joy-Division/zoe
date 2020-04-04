@@ -295,7 +295,7 @@ void tempo_move( void )
 
 void trans_set( void )
 {
-	sptr->ptps = mdata2;
+	sptr->ptps = (char)mdata2;
 }
 
 /*---------------------------------------------------------------------------*/
