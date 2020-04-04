@@ -129,7 +129,7 @@ void pan_move( void )
 void vib_set( void )
 {
 	sptr->vibhs = mdata2;
-	sptr->vibcad = mdata2;
+	sptr->vibcad = mdata3;
 	
 	if( sptr->vibcad < 64 ){
 		if( sptr->vibcad < 32 ){
