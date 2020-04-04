@@ -75,7 +75,7 @@ int StartLnrEEStream( void )
 		return -1;
 	}
 	
-	lnr8_wave_size = lnr8_unplay_size = lnr8_unload_size = ee_addr[24].unk14;
+	lnr8_wave_size = lnr8_unplay_size = lnr8_unload_size = ee_addr[1].unk14;
 	lnr_volume = 0x7F;
 	lnr8_read_idx = 0;
 	temp = EERead( lnr8_fp, (u_int *)(lnr8_buf+lnr8_read_idx*0x4000), lnr8_read_idx, 0x4000 );
@@ -86,7 +86,7 @@ int StartLnrEEStream( void )
 	
 	lnr8_read_idx++;
 	
-	if( temp < lnr8_unload_size ){
+	if( lnr8_unload_size > temp ){
 		lnr8_unload_size -= temp;
 	} else {
 		lnr8_unload_size = 0;
@@ -101,7 +101,7 @@ int StartLnrEEStream( void )
 		
 		lnr8_read_idx = (lnr8_read_idx+1) & 1;
 		
-		if( temp < lnr8_unload_size ){
+		if( lnr8_unload_size > temp ){
 			lnr8_unload_size -= temp;
 		} else {
 			lnr8_unload_size = 0;
