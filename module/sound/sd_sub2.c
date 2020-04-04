@@ -158,7 +158,7 @@ void vib_set( void )
 // NOMATCH: epilogue
 void vib_change( void )
 {
-	sptr->vibhs = mdata2;
+	sptr->vibcs = mdata2;
 	sptr->vibad = sptr->vibdm / mdata2;
 }
 
