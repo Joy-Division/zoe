@@ -103,9 +103,9 @@ void spuwr( void )
 		}
 		if( spu_tr_wk[i].addr_fg ){
 			if( i < 24 ){
-				sceSdSetAddr( SD_CORE_0|(i<<1)|SD_VA_SSA, (u_int)(spu_wave_start_ptr+spu_tr_wk[i].addr) );
+				sceSdSetAddr( SD_CORE_0|(i<<1)|SD_VA_SSA, spu_tr_wk[i].addr+(u_int)spu_wave_start_ptr );
 			} else {
-				sceSdSetAddr( SD_CORE_1|((i-24)<<1)|SD_VA_SSA, (u_int)(spu_wave_start_ptr+spu_tr_wk[i].addr) );
+				sceSdSetAddr( SD_CORE_1|((i-24)<<1)|SD_VA_SSA, spu_tr_wk[i].addr+(u_int)spu_wave_start_ptr );
 			}
 			spu_tr_wk[i].addr_fg = 0;
 		}
