@@ -293,7 +293,7 @@ int lnrSpuTrans( void )
 		lnr16_next_ofst = 0x0800;
 		lnr8_status++;
 		if( !lnr8_unplay_size || (lnr8_unplay_size & 0x80000000) ){
-			lnr8_off_ctr = lnr8_wave_size >> 9;
+			lnr8_off_ctr = lnr8_wave_size / 512;
 			lnr8_status++;
 		}
 		break;
