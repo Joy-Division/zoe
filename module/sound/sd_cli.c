@@ -164,7 +164,7 @@ void set_sng_code_buf( u_int a0 )
 
 /*---------------------------------------------------------------------------*/
 
-// NOMATCH: see inside
+// NOMATCH: see inside, control flow does not line up completely
 void sd_set( int a0 )
 {
 	union {
@@ -172,7 +172,7 @@ void sd_set( int a0 )
 		u_int u;
 	} temp;
 
-	if( a0 ==  0xFF000000 ){
+	if( a0 == 0xFF000000 ){
 		sd_print_fg = 1;
 	} else if( a0 == 0xFF000001 ){
 		sd_print_fg = 0;
@@ -221,7 +221,7 @@ void sd_set( int a0 )
 					lnr8_stop_fg = 1;
 				}
 				str2_stop_fg[0] = 0;
-				ee_addr[0].unk10 = (u_char *)((a0 & 0x00FFFFFF) << 4);
+				ee_addr[0].unk14 = (a0 & 0x00FFFFFF) << 4;
 			}
 		} else if( (a0 & 0xFF000000) == 0xF1000000 ){
 			if( !str1_use_iop ){
@@ -324,7 +324,7 @@ void sd_set( int a0 )
 		} else if( a0 > 0xFCFFFFFF && a0 <= 0xFD1F3FFF ){
 			temp.u = (int)(a0 & 0x1F0000) >> 16;
 			mix_fader[temp.u].unk08 = ((a0 & 0x3F00) << 2) + ((int)(a0 & 0x3F00) >> 4) + ((int)(a0 & 0x3F00) >> 10);
-			if( mix_fader[temp.u].unk04 == mix_fader[temp.u].unk08 ){
+			if( mix_fader[temp.u].unk08 == mix_fader[temp.u].unk04 ){
 				mix_fader[temp.u].unk00 = 0;
 			} else if( a0 & 0xFF ){
 				mix_fader[temp.u].unk00 = (mix_fader[temp.u].unk08 - mix_fader[temp.u].unk04) / ((int)(a0 & 0xFF)*10);
@@ -441,10 +441,9 @@ void sd_set( int a0 )
 			default: break;
 			}
 		}
+		/* this is pure evil and shouldnt be left here, but i dont see any other way of getting the double-nop otherwise
+		   i guess the control flow should be changed at some point to account for this... */
+		asm("nop"); // FAKEMATCH
 	}
-	/* these are pure evil and shouldnt be left here, but i dont see any other way of getting the double-nop otherwise
-	   i guess the control flow should be changed at some point to account for this... */
-	asm("nop"); // FAKEMATCH
-	asm("nop"); // FAKEMATCH
 	return;
 }
