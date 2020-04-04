@@ -462,7 +462,7 @@ void SngFadeWkSet( void )
 		case 0x01FFFF05:
 			SngFadeIn( sng_fadein_fg );
 			for( i = 0 ; i < 32 ; i++ ){
-				sng_fade_value[i] = 1;
+				sng_fade_value[i] = 0x10000;
 			}
 			sng_fadein_fg = 0;
 		}
