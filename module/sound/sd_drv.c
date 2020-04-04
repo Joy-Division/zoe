@@ -620,7 +620,8 @@ void init_sng_work( void )
 
 void sng_adrs_set( u_int a0 )
 {
-	u_int i, temp2, temp3, temp4, temp5;
+	int i;
+	u_int temp2, temp3, temp4;
 	
 	a0 &= 0x0F;
 	temp3 = sng_data[a0*4+3] << 24;
