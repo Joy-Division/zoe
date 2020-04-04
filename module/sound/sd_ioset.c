@@ -162,7 +162,7 @@ void sng_off( void )
 {
 	int i;
 
-	for( i = 0 ; i < 44 ; i++ ){
+	for( i = 0 ; i < 32 ; i++ ){
 		spu_tr_wk[i].rr = 7;
 		spu_tr_wk[i].env3_fg = 1;
 	}
