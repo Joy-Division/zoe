@@ -190,11 +190,11 @@ int tx_read( void )
 		if( mdata1 >= 128 ){
 			cntl_tbl[mdata1-128]();
 			if( mdata1 == 0xF2 || mdata1 == 0xF3 || mdata1 == 0xFF ){
-				temp2 = 0;
+				i = 0;
 			}
 			if( mdata1 == 0xFF ) return 1;
 			if( mdata1 == 0xDA || mdata1 == 0xDB ){
-				temp2 = 0;
+				i = 0;
 			}
 		} else {
 			if( sptr->ngg < 0x64 && mdata4 ){
