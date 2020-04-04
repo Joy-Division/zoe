@@ -526,7 +526,7 @@ int vib_generate( char a0 )
 		temp2 = (u_char)temp2 >> 2;
 		temp3 = ((sptr->vibd >> 8) & 0xFF) * temp2;
 	}
-	if( sptr->vibdm >= 0x7FFF ){
+	if( 0x7FFF >= sptr->vibdm ){
 		temp3 >>= 2;
 	}
 	return temp3;
