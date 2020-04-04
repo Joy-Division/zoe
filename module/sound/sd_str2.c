@@ -58,9 +58,9 @@ u_int str2_read_status[2][8];
 void str2_tr_off( u_int a0 )
 {
 	if( !a0 ){
-		str2_keyoffs |= 0x30000000;
+		str2_keyoffs |= 0x300000;
 	} else {
-		str2_keyoffs |= 0xC0000000;
+		str2_keyoffs |= 0xC00000;
 	}
 }
 
