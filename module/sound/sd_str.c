@@ -252,7 +252,7 @@ int StartStream1( void )
 	str_trans_buf = str_header+0x0800;
 	temp -= 0x0800;
 	
-	if( temp < str_unload_size ){
+	if( str_unload_size > temp ){
 		str_unload_size -= temp;
 	} else {
 		str_unload_size = 0;
