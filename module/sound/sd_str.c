@@ -488,7 +488,7 @@ int StrSpuTrans( void )
 			}
 			str_l_r_fg = 1;
 		} else {
-			spu_str_start_ptr_l = 0x6020;
+			spu_str_start_ptr_r = 0x6020;
 			sceSdSetAddr( SD_CORE_1|SD_VOICE_21|SD_VA_LSAX, 0x6020 );
 			sceSdVoiceTrans(
 				1,                                   /* transfer channel */
@@ -552,10 +552,10 @@ int StrSpuTrans( void )
 			break;
 		}
 		if( sound_mono_fg ){
-			sceSdSetParam( SD_CORE_1|SD_VOICE_20|SD_VP_VOLL, (((str_volume * se_pant[0x80]) >> 7) * str_master_vol) / 0x3FFF );
-			sceSdSetParam( SD_CORE_1|SD_VOICE_20|SD_VP_VOLR, (((str_volume * se_pant[0x80]) >> 7) * str_master_vol) / 0x3FFF );
+			sceSdSetParam( SD_CORE_1|SD_VOICE_20|SD_VP_VOLL, (((str_volume * se_pant[0x20]) >> 7) * str_master_vol) / 0x3FFF );
+			sceSdSetParam( SD_CORE_1|SD_VOICE_20|SD_VP_VOLR, (((str_volume * se_pant[0x20]) >> 7) * str_master_vol) / 0x3FFF );
 		} else {
-			sceSdSetParam( SD_CORE_1|SD_VOICE_20|SD_VP_VOLL, (((str_volume * se_pant[0xFC]) >> 7) * str_master_vol) / 0x3FFF );
+			sceSdSetParam( SD_CORE_1|SD_VOICE_20|SD_VP_VOLL, (((str_volume * se_pant[0x3F]) >> 7) * str_master_vol) / 0x3FFF );
 			sceSdSetParam( SD_CORE_1|SD_VOICE_20|SD_VP_VOLR, 0 );
 		}
 		sceSdSetParam( SD_CORE_1|SD_VOICE_20|SD_VP_PITCH, (u_short)((u_int)(str_pitch*str_master_pitch) >> 12) );
@@ -563,17 +563,17 @@ int StrSpuTrans( void )
 		sceSdSetParam( SD_CORE_1|SD_VOICE_20|SD_VP_ADSR1, 0x00FF );
 		sceSdSetParam( SD_CORE_1|SD_VOICE_20|SD_VP_ADSR2, 0x0007 );
 		if( sound_mono_fg ){
-			sceSdSetParam( SD_CORE_1|SD_VOICE_21|SD_VP_VOLL, (((str_volume*se_pant[0x80]) >> 7)*str_master_vol) / 0x3FFF );
-			sceSdSetParam( SD_CORE_1|SD_VOICE_21|SD_VP_VOLR, (((str_volume*se_pant[0x80]) >> 7)*str_master_vol) / 0x3FFF );
+			sceSdSetParam( SD_CORE_1|SD_VOICE_21|SD_VP_VOLL, (((str_volume*se_pant[0x20]) >> 7)*str_master_vol) / 0x3FFF );
+			sceSdSetParam( SD_CORE_1|SD_VOICE_21|SD_VP_VOLR, (((str_volume*se_pant[0x20]) >> 7)*str_master_vol) / 0x3FFF );
 		} else {
 			sceSdSetParam( SD_CORE_1|SD_VOICE_21|SD_VP_VOLL, 0 );
-			sceSdSetParam( SD_CORE_1|SD_VOICE_21|SD_VP_VOLR, (((str_volume*se_pant[0xFC]) >> 7)*str_master_vol) / 0x3FFF );
+			sceSdSetParam( SD_CORE_1|SD_VOICE_21|SD_VP_VOLR, (((str_volume*se_pant[0x3F]) >> 7)*str_master_vol) / 0x3FFF );
 		}
 		sceSdSetParam( SD_CORE_1|SD_VOICE_21|SD_VP_PITCH, (u_short)((u_int)(str_pitch*str_master_pitch) >> 12) );
 		sceSdSetAddr( SD_CORE_1|SD_VOICE_21|SD_VA_SSA, 0x6020 );
 		sceSdSetParam( SD_CORE_1|SD_VOICE_21|SD_VP_ADSR1, 0x00FF );
 		sceSdSetParam( SD_CORE_1|SD_VOICE_21|SD_VP_ADSR2, 0x0007 );
-		sceSdSetSwitch( SD_CORE_1|SD_S_KON, 0x30 );
+		sceSdSetSwitch( SD_CORE_1|SD_S_KON, 0x300000 );
 		mute_str_l_r_fg = 0;
 		spu_str_idx = 0;
 		str_next_idx = 0x0800;
@@ -635,7 +635,7 @@ int StrSpuTrans( void )
 						}
 					}
 				} else {
-					str_trans_buf[str_play_offset+0x07F1] = str_trans_buf[str_play_offset+0x07F1] | 1;
+					*(str_trans_buf+str_play_offset+0x07F1) |= 1;
 					if( !str_l_r_fg ){
 						sceSdVoiceTrans(
 							1,                                   /* transfer channel */
