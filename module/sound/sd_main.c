@@ -101,7 +101,7 @@ void sd_init( void )
 	sceSdEffectAttr r_attr;
 	int i;
 
-	/* i = SD_CORE_? (SPU CORE ID) */
+	/* i = SPU CORE ID */
 	for( i = 0 ; i < 2 ; i++ ){
 		sceSdSetParam( i|SD_P_MVOLL, 0 );
 		sceSdSetParam( i|SD_P_MVOLR, 0 );
@@ -197,9 +197,6 @@ void keyOn( u_int a0 )
 
 /*---------------------------------------------------------------------------*/
 
-// TODO: recheck the memory referenced here,
-// find structs (if any) and correct types for pointers
-// casts here are mostly done to simplify arithmetic
 int sd_mem_alloc( void )
 {
 	voice_tbl = wave_header;
