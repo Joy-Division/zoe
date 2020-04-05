@@ -180,8 +180,14 @@ void sd_set( int a0 )
 		goto end;
 	}
 	if( a0 == 0xFF000002 ){
+		//
+		// EMPTY BLOCK
+		//
 	}
 	if( sd_print_fg ){
+		//
+		// EMPTY BLOCK
+		//
 	}
 	if( !(a0 & 0xFF000000) ) {
 		if( !(a0 & 0x07FF) ) {
@@ -473,6 +479,6 @@ void sd_set( int a0 )
 		case 0xFFFFFFFD: break;
 		default: break;
 	}
-	end:;
+end:
 	return;
 }
