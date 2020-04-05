@@ -209,61 +209,59 @@ void str_spuwr( void )
 int StartStream1( void )
 {
 	int temp, i;
-	
+
 	if( str_fp ){
 		str_tr_off();
 		PcmClose( str_fp );
 		str_fp = 0;
 	}
-	
+
 	str_fp = PcmOpen( str_load_code, 1 );
-	
+
 	if( str_fp < 0 ){
 		str_load_code = 0;
 		str_first_load = 0;
 		str_fp = 0;
 		return -1;
 	}
-	
+
 	temp = PcmRead( str_fp, str_header, 0x8800 );
-	
+
 	str_wave_size =  str_header[0] << 24;
 	str_wave_size |= str_header[1] << 16;
 	str_wave_size |= str_header[2] << 8;
 	str_wave_size |= str_header[3];
-	
+
 	str_unplay_size = str_unload_size = str_wave_size;
-	
+
 	str_volume =  str_header[4] << 8;
 	str_volume |= str_header[5];
-	
+
 	str_pitch =  str_header[6] << 8;
 	str_pitch |= str_header[7];
 	str_pitch = (str_pitch * 4096u) / 48000u;
-	//~ str_pitch *= 4096;
-	//~ str_pitch /= 48000;
-	
+
 	if( str_header[8] == 1 ){
 		str_mono_fg = 1;
 	} else {
 		str_mono_fg = 0;
 	}
-	
+
 	str_trans_buf = str_header+0x0800;
 	temp -= 0x0800;
-	
+
 	if( str_unload_size > temp ){
 		str_unload_size -= temp;
 	} else {
 		str_unload_size = 0;
 	}
-	
+
 	str_trans_offset = 0;
-	
+
 	for( i = 0 ; i < 8 ; i++ ){
 		str_read_status[i] = 1;
 	}
-	
+
 	str_read_idx = 0;
 	return 0;
 }
@@ -273,29 +271,29 @@ int StartStream1( void )
 int StartStream2( void )
 {
 	int temp, i;
-	
+
 	if( str_fp ){
 		str_tr_off();
 		PcmClose( str_fp );
 		str_fp = 0;
 	}
-	
+
 	str_fp = PcmOpen( str_load_code, 1 );
-	
+
 	if( str_fp < 0 ){
 		str_load_code = 0;
 		str_first_load = 0;
 		str_fp = 0;
 		return -1;
 	}
-	
+
 	temp = PcmRead( str_fp, str_header, 0x0800 );
-	
+
 	str_wave_size =  str_header[0] << 24;
 	str_wave_size |= str_header[1] << 16;
 	str_wave_size |= str_header[2] << 8;
 	str_wave_size |= str_header[3];
-	
+
 	if( str_start_offset*0x1000 >= str_wave_size ){
 		PcmClose( str_fp );
 		str_load_code = 0;
@@ -315,29 +313,29 @@ int StartStream2( void )
 	str_pitch = str_header[6] << 8;
 	str_pitch |= str_header[7];
 	str_pitch = (u_int)(str_pitch * 4096) / 48000;
-	
+
 	if( str_header[8] == 1 ){
 		str_mono_fg = 1;
 	} else {
 		str_mono_fg = 0;
 	}
-	
+
 	PcmLseek( str_fp, str_start_offset*0x1000, 1 );
 	str_trans_buf = str_header+0x800;
 	temp = PcmRead( str_fp, str_trans_buf, 0x8000 );
-	
+
 	if( str_unload_size > temp ){
 		str_unload_size -= temp;
 	} else {
 		str_unload_size = 0;
 	}
-	
+
 	str_trans_offset = 0;
-	
+
 	for( i = 0 ; i < 8 ; i++) {
 		str_read_status[i] = 1;
 	}
-	
+
 	str_read_idx = 0;
 	return 0;
 }
@@ -358,7 +356,7 @@ int StartStream( void )
 void StrCdLoad( void )
 {
 	int temp, i, j, temp4;
-	
+
 	if( str_status < 3 || str_status > 5 ){
 		return;
 	}
@@ -369,7 +367,7 @@ void StrCdLoad( void )
 				temp4 |= str_read_status[str_read_idx+j];
 			}
 			if( !temp4 ){
-				
+
 				// Wait for 8 V-blanks
 				WaitVblankEnd(); // 1st interval (end-only)
 				WaitVblankStart(); WaitVblankEnd(); // 2nd interval
@@ -379,7 +377,7 @@ void StrCdLoad( void )
 				WaitVblankStart(); WaitVblankEnd(); // 6th interval
 				WaitVblankStart(); WaitVblankEnd(); // 7th interval
 				WaitVblankStart(); WaitVblankEnd(); // 8th interval
-				
+
 				if( str_unload_size > 0x4000 ){
 					temp = PcmRead( str_fp, str_trans_buf+str_trans_offset, 0x4000 );
 					for( j = 0 ; j < 4 ; j++ ){
@@ -424,9 +422,9 @@ void str_load( void )
 			str_status = 2;
 		}
 		break;
-	case 1:
-	case 2:
-	case 3:
+	case 1: /* fallthrough */
+	case 2: /* fallthrough */
+	case 3: /* fallthrough */
 	case 4:
 		StrCdLoad();
 		break;
@@ -446,7 +444,7 @@ void str_load( void )
 int StrSpuTrans( void )
 {
 	int temp = 0, temp2 = 0;
-	
+
 	if( str_stop_fg && str_status > 1 ){
 		switch( str_stop_fg ){
 		case 1:
@@ -456,7 +454,7 @@ int StrSpuTrans( void )
 			sceSdSetParam( SD_CORE_1|SD_VOICE_21|SD_VP_ADSR2, 0x0007 );
 			str_status = 7;
 			break;
-		
+
 		case 2:
 			sceSdSetParam( SD_CORE_1|SD_VOICE_20|SD_VP_ADSR1, 0x00FF );
 			sceSdSetParam( SD_CORE_1|SD_VOICE_20|SD_VP_ADSR2, 0x000D );
@@ -502,7 +500,6 @@ int StrSpuTrans( void )
 				str_read_status[str_play_idx] = 0;
 				str_play_idx++;
 			}
-			// FIXME?: The assembly for this appears weird when diffed, could be the fault of diff though
 			str_l_r_fg = 0;
 			str_status++;
 		}
