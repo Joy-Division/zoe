@@ -314,7 +314,6 @@ void pan_set2( u_char a0 )
 
 /*---------------------------------------------------------------------------*/
 
-// NOMATCH: accessing se_playing and se_vol produces wrong addition
 void vol_set( u_int a0 )
 {
 	u_int temp, temp2;
