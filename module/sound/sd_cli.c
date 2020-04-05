@@ -175,20 +175,24 @@ void sd_set( int a0 )
 		sd_print_fg = 1;
 		goto end;
 	}
+
 	if( a0 == 0xFF000001 ){
 		sd_print_fg = 0;
 		goto end;
 	}
+
 	if( a0 == 0xFF000002 ){
 		//
 		// EMPTY BLOCK
 		//
 	}
+
 	if( sd_print_fg ){
 		//
 		// EMPTY BLOCK
 		//
 	}
+
 	if( !(a0 & 0xFF000000) ) {
 		if( !(a0 & 0x07FF) ) {
 			goto end;
@@ -196,15 +200,18 @@ void sd_set( int a0 )
 		SePlay( a0 );
 		goto end;
 	}
+
 	if( (a0 & 0xFF000000) == 0x1000000 ){
 		set_sng_code_buf( a0 );
 		goto end;
 	}
+
 	if( (a0 & 0xFF000000) == 0x2000000 ){
 		se_load_code = a0;
 		WakeupThread( id_SdMain );
 		goto end;
 	}
+
 	if( (a0 & 0xE0000000) == 0x80000000 ){
 		temp.up = sif_get_mem( path_name, a0 & 0x1FFFFFFF, 0x80 );
 		while( 1 ){
@@ -215,6 +222,7 @@ void sd_set( int a0 )
 		sif_rv_release_queue( temp );
 		goto end;
 	}
+
 	if( (a0 & 0xFF000000) == 0xF0000000 ){
 		if( str1_use_iop ){
 			if( str_load_code != a0 ){
@@ -241,6 +249,7 @@ void sd_set( int a0 )
 		}
 		goto end;
 	}
+
 	if( (a0 & 0xFF000000) == 0xF1000000 ){
 		if( !str1_use_iop ){
 			ee_addr[0].unk04 = a0 & 0x00FFFFFF;
@@ -250,10 +259,12 @@ void sd_set( int a0 )
 		}
 		goto end;
 	}
+
 	if( (a0 & 0xFF000000) == 0xF2000000 ){
 		ee_addr[1].unk14 = (a0 & 0x00FFFFFF) << 4;
 		goto end;
 	}
+
 	if( (a0 & 0xFF000000) == 0xF3000000 ){
 		ee_addr[1].unk04 = a0 & 0x00FFFFFF;
 		ee_addr[1].unk0C++;
@@ -261,6 +272,7 @@ void sd_set( int a0 )
 		WakeupThread( id_SdEELoad );
 		goto end;
 	}
+
 	if( (a0 & 0xFF000000) == 0xF4000000 ){
 		if( !(a0 & 0x00FFFFFF) ){
 			if( str_status ){
@@ -299,6 +311,7 @@ void sd_set( int a0 )
 		WakeupThread( id_SdEELoad );
 		goto end;
 	}
+
 	if( (a0 & 0xFF000000) == 0xF5000000 ){
 		if( !str1_use_iop ){
 			if( (a0 & 0xFF0000) == 0x10000 ){
@@ -320,15 +333,16 @@ void sd_set( int a0 )
 		}
 		goto end;
 	}
+
 	if( (a0 & 0xFF000000) == 0xFA000000 ){
 		switch( a0 & 0x0F00 ){
-		// cases 0 & 256 don't get compiled, but exist in the original assembly
-		case   0: auto_env_pos  = (a0 & 0xFFFF); break;
-		case 256: auto_env_pos2 = (a0 & 0xFFFF); break;
-		default: break;
+		case 0   : auto_env_pos  = (a0 & 0xFFFF); break;
+		case 256 : auto_env_pos2 = (a0 & 0xFFFF); break;
+		default  : break;
 		}
 		goto end;
 	}
+
 	if( (a0 & 0xFF000000) == 0xFB000000 ){
 		if( a0 <= 0xFB1F3F3F ){
 			temp.u = (int)(a0 & 0x1F0000) >> 16;
@@ -350,11 +364,13 @@ void sd_set( int a0 )
 		}
 		goto end;
 	}
+
 	if( a0 > 0xFBFFFFFF && a0 <= 0xFC1F3FFF ){
 		temp.u = (int)(a0 & 0x1F0000) >> 16;
 		mix_fader[temp.u].unk0C = (int)(a0 & 0x3F00) >> 8;
 		goto end;
 	}
+
 	if( a0 > 0xFCFFFFFF && a0 <= 0xFD1F3FFF ){
 		temp.u = (int)(a0 & 0x1F0000) >> 16;
 		mix_fader[temp.u].unk08 = ((a0 & 0x3F00) << 2) + ((int)(a0 & 0x3F00) >> 4) + ((int)(a0 & 0x3F00) >> 10);
@@ -371,6 +387,7 @@ void sd_set( int a0 )
 		}
 		goto end;
 	}
+
 	if( (a0 & 0xFF000000) == 0xFE000000 ){
 		pak_cd_read_fg = 0;
 		if( a0 <= 0xFE7FFFFF ){
@@ -383,6 +400,7 @@ void sd_set( int a0 )
 		WakeupThread( id_SdMain );
 		goto end;
 	}
+
 	if( (a0 & 0xFF000000) == 0xC0000000 ){
 		pak_load_code = a0 & 0x0FFFFFFF;
 		pak_load_status = 1;
@@ -390,6 +408,7 @@ void sd_set( int a0 )
 		WakeupThread( id_SdMain );
 		goto end;
 	}
+
 	switch( a0 ){
 		case 0xFF000005: sound_mono_fg = 1; break;
 		case 0xFF000006: sound_mono_fg = 0; break;
@@ -458,13 +477,13 @@ void sd_set( int a0 )
 			}
 			break;
 
-		/* these two assignments rely on str1_use_iop to be in the same translation unit */
 		case 0xFF000012: str1_use_iop = 1; break;
 		case 0xFF000013: str1_use_iop = 0; break;
-
 		case 0xFF000014: fader_off_fg = 1; break;
+
 		case 0xFF0000FE: stop_jouchuu_se = 1; break;
 		case 0xFF0000FF: set_sng_code_buf( a0 ); break;
+
 		case 0xFF000100: fx_sound_code = 1; break;
 		case 0xFF000101: set_sng_code_buf( a0 ); break;
 		case 0xFF000102: set_sng_code_buf( a0 ); break;
@@ -474,11 +493,14 @@ void sd_set( int a0 )
 		case 0xFF000106: set_sng_code_buf( a0 ); break;
 		case 0xFF000107: set_sng_code_buf( a0 ); break;
 		case 0xFF000108: set_sng_code_buf( a0 ); break;
+
 		case 0xFFFFFFEC: break;
 		case 0xFFFFFFED: break;
 		case 0xFFFFFFFD: break;
+
 		default: break;
 	}
+
 end:
 	return;
 }
