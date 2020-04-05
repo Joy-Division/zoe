@@ -15,7 +15,7 @@
 
 static int com_queue[140];
 
-char name[6] = "SOUND";
+char name[] = "SOUND";
 
 ModuleInfo Module = { name, 0x0101 };
 
@@ -31,49 +31,40 @@ int common;
 void sd_set_status( void )
 {
 	int i;
-	u_int temp = 0;
+	u_int flags = 0;
 	com_queue[131] = 0;
 
-	if( sng_status == 3 ){
-		temp |= 0x4000;
-	}
-	if( str2_iop_load_set[1] ){
-		temp |= 0x2000;
-	}
-	if( str2_iop_load_set[0] ){
-		temp |= 0x1000;
-	}
-	if( str2_load_code[1] || lnr8_load_code ){
-		temp |= 0x0040;
-	}
-	if( str2_load_code[0] || str_load_code ){
-		temp |= 0x0020;
-	}
-	if( str2_first_load[1] || lnr8_first_load ){
-		temp |= 0x0010;
-	}
-	if( str2_first_load[0] || str_first_load ){
-		temp |= 0x0008;
-	}
-	if( wave_load_code || pak_load_status ){
-		temp |= 0x0004;
-	}
-	if( se_load_code || pak_load_status ){
-		temp |= 0x0002;
-	}
+	if( sng_status == 3 ){ flags |= 0x4000; }
+
+	/* --- Stream Load --- */
+
+	if( str2_iop_load_set[1] ){ flags |= 0x2000; }
+	if( str2_iop_load_set[0] ){ flags |= 0x1000; }
+
+	if( str2_load_code[1] || lnr8_load_code ){ flags |= 0x0040; }
+	if( str2_load_code[0] || str_load_code  ){ flags |= 0x0020; }
+
+	if( str2_first_load[1] || lnr8_first_load ){ flags |= 0x0010; }
+	if( str2_first_load[0] || str_first_load  ){ flags |= 0x0008; }
+
+	/* --- Wave/SE/Song Load --- */
+
+	if( wave_load_code || pak_load_status ){ flags |= 0x0004; }
+	if( se_load_code   || pak_load_status ){ flags |= 0x0002; }
+
 	if( sng_load_code || pak_load_status ){
-		temp |= 0x0001;
+		flags |= 0x0001;
 	} else {
 		for( i = 0 ; i < 16 ; i++ ){
 			if( sd_sng_code_buf[i] > 0x01000000 ){
-				temp |= 0x0001;
+				flags |= 0x0001;
 				break;
 			}
 		}
 	}
 
-	temp &= 0x7FFFFFFF;
-	com_queue[132] = temp;
+	flags &= 0x7FFFFFFF;
+	com_queue[132] = flags;
 
 	if( str_status ){
 		com_queue[133] = str_counter | str_counter_low;
@@ -89,7 +80,6 @@ void sd_set_status( void )
 
 	com_queue[135] = str2_play_counter[0];
 	com_queue[136] = str2_play_counter[1];
-	// these two assignments have register mismatches for the seccond summand
 	com_queue[137] = (ee_addr[0].unk0C << 16) + (int)ee_addr[0].unk10;
 	com_queue[138] = (ee_addr[1].unk0C << 16) + (int)ee_addr[1].unk10;
 }
@@ -101,11 +91,11 @@ void sd_send_status( void )
 	volatile struct unkstrbig *que = (struct unkstrbig *)com_queue;
 
 	if( que->unk22C ){
-		// the way the arguments get loaded doesnt seem to be right
-		// also this if has an empty target that i cannot reproduce
 		if( sif_send_mem( (u_int *)que->unk22C, &que->unk20C, 32 ) == 0 );
-	}
-	else {
+	} else {
+		//
+		// EMPTY BLOCK
+		//
 	}
 }
 
