@@ -134,7 +134,7 @@ void LoadPakFile( void )
 			pak_load_status = 9;
 			break;
 		}
-		break; // NOTICE
+		break; // UNREACHABLE
 
 	case 6:
 		if( d1E0E8 ){ // guessed varname
@@ -351,7 +351,7 @@ int LoadWaveFile( void )
 		wave_fp = 0;
 		wave_load_code = 0;
 		return 1;
-		return; // SYNTAX NOTICE
+		return; // UNREACHABLE
 	}
 	return 0;
 }
@@ -416,11 +416,11 @@ void WaveSpuTrans( void )
 /* ------------------------------------------------ */
 /* Name Format  | Type  | Content                   */
 /* -------------+-------+-------------------------- */
-/* sg%06x.mdx   | SONG  | Sequence Data (BGM)       */
+/* sg%06x.mdx   | SONG  | Sequence Data (SONG)      */
 /* se%06x.efx   | SE    | Sequence Data (SE)        */
 /* vc%06x.pcm   | VOICE | ADPCM Stream              */
 /* wv%06x.wvx   | WAVE  | ADPCM Sample Bank         */
-/* pk%06x.sdx   | PACK  | MDX+EFX+WVX Container     */
+/* pk%06x.sdx   | PACK  | SONG+SE+WAVE Container    */
 /* ------------------------------------------------ */
 
 void code2name( u_int code, char *name )
@@ -515,9 +515,9 @@ char num2char( u_int num )
 	num &= 0x0F;
 
 	if( num < 10 ){
-		num += 0x30; /* ASCII '0'～'9' */
+		num += 0x30; /* ASCII 0～9 */
 	} else {
-		num += 0x57; /* ASCII 'a'～'f' */
+		num += 0x57; /* ASCII a～f */
 	}
 	return num;
 }
@@ -582,7 +582,7 @@ int PcmOpen( u_int code, u_int path_idx )
 
 int PcmRead( int a0, void *a1, int a2 )
 {
-	int temp3;
+	int status;
 	int temp;
 
 	a2 = (a2 + 0x07FF) & 0xFFFFF800;
@@ -594,19 +594,19 @@ int PcmRead( int a0, void *a1, int a2 )
 		return a2;
 	}
 
-	temp3 = pcRead( a0, a1, a2 );
+	status = pcRead( a0, a1, a2 );
 
-	if( temp3 <= 0 ){
-		printf( "PcmRead Error(%x:size=%x)\n", temp3, a2 );
+	if( status <= 0 ){
+		printf( "PcmRead Error(%x:size=%x)\n", status, a2 );
 	}
-	return temp3;
+	return status;
 }
 
 /*---------------------------------------------------------------------------*/
 
 int PcmLseek( int a0, u_int a1, u_int a2 )
 {
-	int temp3;
+	int status;
 
 	if( pak_cd_read_fg ){
 		if( a2 == 1 ){
@@ -615,12 +615,12 @@ int PcmLseek( int a0, u_int a1, u_int a2 )
 		return a0;
 	}
 
-	temp3 = pcLseek( a0, a1, a2 );
+	status = pcLseek( a0, a1, a2 );
 
-	if( temp3 < 0 ){
-		printf( "CD Seek Error(%x)\n", temp3 );
-		return temp3;
-		return; // SYNTAX NOTICE
+	if( status < 0 ){
+		printf( "CD Seek Error(%x)\n", status );
+		return status;
+		return; // UNREACHABLE
 	}
 	return a0;
 }
@@ -629,39 +629,40 @@ int PcmLseek( int a0, u_int a1, u_int a2 )
 
 int PcmClose( int a0 )
 {
-	int temp3 = 0;
+	int status = 0;
 
 	if( pak_cd_read_fg ){
 		if( !pak_read_fg ){
 			cdClose();
 		}
-		return temp3;
+		return status;
 	}
 	if( !pak_read_fg ){
-		temp3 = pcClose( a0 );
-		if( temp3 < 0 ){
-			printf( "PcmClose Error(%x)\n", temp3 );
+		status = pcClose( a0 );
+		if( status < 0 ){
+			printf( "PcmClose Error(%x)\n", status );
 		}
 	}
-	return temp3;
+	return status;
 }
 
 /*---------------------------------------------------------------------------*/
 
 int EEOpen( int a0 )
 {
-	u_int temp, *temp2;
+	u_int temp;
+	u_int *temp2;
 
 	if( (a0 & 0xFF000000) == 0xF5000000 ){
 		temp = 1;
 	} else if( (a0 & 0xFF000000) == 0xF4000000 ){
 		temp = 2;
-	}
-	else {
+	} else {
 		//
 		// EMPTY BLOCK
 		//
 	}
+
 	temp2 = (pak_header+0x01FA)+(6*temp);
 
 	return temp;
@@ -703,9 +704,6 @@ int EERead( u_int a0, u_int *a1, u_int a2, u_int a3 )
 	}
 
 	if( temp2->unk0C ){
-		// the triple load here is in the wrong order
-		// should be v1, v0, v1
-		// is v0, v0, v1
 		temp2->unk10++;
 	}
 
