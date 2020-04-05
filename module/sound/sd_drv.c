@@ -20,7 +20,7 @@ struct SEPLAYTBL se_request[12];
 void IntSdMain( void )
 {
 	int temp, i;
-	
+
 	if( sd_sng_code_buf[sd_code_read] ){
 		temp = sd_sng_code_buf[sd_code_read];
 		sd_sng_code_buf[sd_code_read] = 0;
@@ -28,24 +28,24 @@ void IntSdMain( void )
 	} else {
 		temp = 0;
 	}
-	
+
 	if( temp ){
 		switch( temp ){
-		
+
 		/* Pause Song */
 		case 0x01FFFF01:
 			sng_pause_fg = 1;
 			sng_pause();
 			break;
-		
+
 		/* Unpause Song */
 		case 0x01FFFF02:
 			snd_pause_off();
 			sng_pause_fg = 0;
 			break;
-		
-		case 0x01FFFF03:
-		case 0x01FFFF04:
+
+		case 0x01FFFF03: /* fallthrough */
+		case 0x01FFFF04: /* fallthrough */
 		case 0x01FFFF05:
 			if( sng_play_code != 0xFFFFFFFF ){
 				sng_fout_fg = 0;
@@ -57,37 +57,37 @@ void IntSdMain( void )
 				sng_kaihi_fg = 0;
 			}
 			break;
-		
+
 		/* Fade Out */
-		case 0x01FFFF06:
-		case 0x01FFFF07:
-		case 0x01FFFF08:
+		case 0x01FFFF06: /* fallthrough */
+		case 0x01FFFF07: /* fallthrough */
+		case 0x01FFFF08: /* fallthrough */
 		case 0x01FFFF09: SngFadeOutP( temp ); break;
-		case 0x01FFFF0A:
-		case 0x01FFFF0B:
-		case 0x01FFFF0C:
+		case 0x01FFFF0A: /* fallthrough */
+		case 0x01FFFF0B: /* fallthrough */
+		case 0x01FFFF0C: /* fallthrough */
 		case 0x01FFFF0D: SngFadeOutS( temp ); break;
-		
+
 		/* 回避モード *//* Evasion Mode */
 		case 0x01FFFF10: SngKaihiP(); break;
 		case 0x01FFFF11: SngKaihiReset(); break;
 		case 0x01FFFF12: SngKaihiReset2(); break;
-		
+
 		/* 主観モード *//* First Person Mode */
 		case 0x01FFFF20: sng_syukan_fg = 1; break;
 		case 0x01FFFF21: sng_syukan_fg = 0; break;
-		
+
 		/* Sound Effect Off */
 		case 0x01FFFFFD: se_off_exp(); break;
 		case 0x01FFFFFE: se_off_all(); break;
-		
+
 		/* Song Off */
 		case 0x01FFFFFF:
 			sng_play_code = 0xFFFFFFFF;
 			sng_off();
 			sng_status = 0;
 			break;
-		
+
 		case 0xFF0000FF: skip_intro_loop = 1; break;
 		case 0xFF000101: auto_phase_fg = 1; break;
 		case 0xFF000102: auto_phase_fg = 2; break;
@@ -97,14 +97,14 @@ void IntSdMain( void )
 		case 0xFF000106: auto_phase_fg = 6; break;
 		case 0xFF000107: auto_phase_fg = 7; break;
 		case 0xFF000108: auto_phase_fg = 8; break;
-		
-		case 0x1000001:
-		case 0x1000002:
-		case 0x1000003:
-		case 0x1000004:
-		case 0x1000005:
-		case 0x1000006:
-		case 0x1000007:
+
+		case 0x1000001: /* fallthrough */
+		case 0x1000002: /* fallthrough */
+		case 0x1000003: /* fallthrough */
+		case 0x1000004: /* fallthrough */
+		case 0x1000005: /* fallthrough */
+		case 0x1000006: /* fallthrough */
+		case 0x1000007: /* fallthrough */
 		case 0x1000008:
 			if( sng_play_code != temp ){
 				if( sng_data[0] < (temp & 0x0F) ){
@@ -135,7 +135,7 @@ void IntSdMain( void )
 				//
 			}
 			break;
-		
+
 		default:
 			if( sng_load_code != temp ){
 				sng_load_code = temp;
@@ -144,12 +144,12 @@ void IntSdMain( void )
 			break;
 		}
 	}
-	
+
 	if( d1E0E8 ){ // guessed varname
 		sng_load_code = d1E0E8; // guessed varname
 		d1E0E8 = 0; // guessed varname
 	}
-	
+
 	switch( sng_status ){
 	case 1: break;
 	case 2:
@@ -174,7 +174,7 @@ void IntSdMain( void )
 			sng_status = 3;
 		}
 		break;
-	
+
 	case 3:
 		SngFadeInt();
 		SngTempoInt();
@@ -217,7 +217,7 @@ void IntSdMain( void )
 			skip_intro_loop = 0;
 		}
 		break;
-	
+
 	case 4:
 		sng_off();
 		sng_play_code = 0;
@@ -225,7 +225,7 @@ void IntSdMain( void )
 		break;
 	}
 
-	
+
 	for( mtrack = 32 ; mtrack < 44 ; mtrack++ ){
 		if( se_tracks <= 1 && se_request[mtrack-32].code ){
 			se_off( mtrack-32 );
@@ -250,11 +250,11 @@ void IntSdMain( void )
 			}
 		}
 	}
-	
+
 	if( stop_jouchuu_se > 1 ){
 		stop_jouchuu_se = 0;
 	}
-	
+
 	if( sceSdVoiceTransStatus( 0, SD_TRANS_STATUS_CHECK ) == 1 ){
 		if( wave_load_status == 2 || wave_load_status == 4 ){
 			WaveSpuTrans();
@@ -281,21 +281,21 @@ void IntSdMain( void )
 void SngFadeIn( u_int a0 )
 {
 	int i;
-	
+
 	switch( a0 ){
 	case 0x01FFFF03: sng_fadein_time = 0x0147; break;
 	case 0x01FFFF04: sng_fadein_time = 0x006D; break;
 	case 0x01FFFF05: sng_fadein_time = 0x0041; break;
 	}
-	
+
 	if( !sng_fadein_time ){
 		sng_fadein_time = 1;
 	}
-	
+
 	for( i = 0 ; i < 32 ; i++ ){
 		sng_fade_time[i] = 0;
 	}
-	
+
 	sng_fout_term[1] = 0;
 	sng_fout_term[0] = 0;
 }
@@ -305,7 +305,7 @@ void SngFadeIn( u_int a0 )
 int SngFadeOutP( u_int a0 )
 {
 	int temp, i;
-	
+
 	if( sng_status && sng_fout_term[0] != 0x00FFFFFF && sng_fout_term[1] != 0xFF ){
 		switch( a0 ){
 		case 0x01FFFF06: temp = 0x028F; break;
@@ -339,7 +339,7 @@ int SngFadeOutP( u_int a0 )
 int SngFadeOutS( u_int a0 )
 {
 	int temp, i;
-	
+
 	if( (sng_status && sng_fout_term[0] != 0x00FFFFFF && sng_fout_term[1] != 0xFF) || (sng_status && sng_fadein_time) ){
 		switch( a0 ){
 		case 0x01FFFF0A: temp = 0x028F; break;
@@ -378,7 +378,7 @@ int SngFadeOutS( u_int a0 )
 int SngKaihiP( void )
 {
 	int i;
-	
+
 	if( !sng_kaihi_fg ){
 		for( i = 0 ; i < 16 ; i++ ){
 			mix_fader[i].unk08 = 0;
@@ -408,7 +408,7 @@ int SngKaihiP( void )
 void SngKaihiReset( void )
 {
 	int i;
-	
+
 	for( i = 0 ; i < 16 ; i++ ){
 		mix_fader[i].unk04 = 0xFFFF;
 		mix_fader[i].unk08 = 0xFFFF;
@@ -427,7 +427,7 @@ void SngKaihiReset( void )
 void SngKaihiReset2( void )
 {
 	int i;
-	
+
 	for( i = 0 ; i < 16 ; i++ ){
 		mix_fader[i].unk04 = 0;
 		mix_fader[i].unk08 = 0;
@@ -446,7 +446,7 @@ void SngKaihiReset2( void )
 void SngFadeWkSet( void )
 {
 	int i;
-	
+
 	if( !sng_fadein_fg ){
 		sng_fadein_time = 0;
 		for( i = 0 ; i < 32 ; i++ ){
@@ -479,7 +479,7 @@ void SngFadeInt( void )
 	u_int temp;
 	u_int temp2, temp3;
 	int i, temp5 = 0, temp6 = 0;
-	
+
 	if( sng_status >= 3 ){
 		for( i = 0 ; i < 32 ; i++ ){
 			temp5 |= sng_fade_time[i];
@@ -622,7 +622,7 @@ void sng_adrs_set( u_int a0 )
 {
 	int i;
 	u_int temp2, temp3, temp4;
-	
+
 	a0 &= 0x0F;
 	temp3 = sng_data[a0*4+3] << 24;
 	temp3 += sng_data[a0*4+2] << 16;
@@ -630,7 +630,7 @@ void sng_adrs_set( u_int a0 )
 	temp3 += sng_data[a0*4];
 	song_end[0] = 0;
 	song_end[1] &= 0x00FFFF00;
-	
+
 	for( i = 0 ; i < 32 ; i++ ){
 		temp2 = i << 2;
 		temp4 = sng_data[(temp3 + temp2 + 2)] << 16;
@@ -664,16 +664,16 @@ void se_adrs_set( u_int a0 )
 	se_request[a0].code      = 0;
 	se_request[a0].pri       = 0;
 	se_request[a0].character = 0;
-	
+
 	sng_track_init( &sound_w[a0+32] );
-	
+
 	se_vol[a0] = (se_playing[a0].code & 0x3F000) >> 12;
 	se_pan[a0] = (se_playing[a0].code >> 18) & 0x3F;
 	sound_w[a0+32].mpointer = se_playing[a0].addr;
 	song_end[1] &= ~(1 << (a0+8));
 	keyons[1] &= ~(1 << (a0+8));
 	keyoffs[1] &= ~(1 << (a0+8));
-	
+
 	if( se_playing[a0].kind ){
 		if( se_rev_on ){
 			rev_on_bit[1] |= (1 << (a0+8));
