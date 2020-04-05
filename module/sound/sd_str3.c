@@ -63,67 +63,65 @@ void lnr_spuwr( void )
 int StartLnrEEStream( void )
 {
 	int temp, i;
-	
+
 	lnr8_read_disable = 0;
 	lnr_tr_off();
 	lnr8_fp = EEOpen( lnr8_load_code );
-	
+
 	if( lnr8_fp < 0 ){
 		lnr8_load_code = 0;
 		lnr8_first_load = 0;
 		lnr8_fp = 0;
 		return -1;
 	}
-	
+
 	lnr8_wave_size = lnr8_unplay_size = lnr8_unload_size = ee_addr[1].unk14;
 	lnr_volume = 0x7F;
 	lnr8_read_idx = 0;
 	temp = EERead( lnr8_fp, (u_int *)(lnr8_buf+lnr8_read_idx*0x4000), lnr8_read_idx, 0x4000 );
-	
+
 	for( i = 0 ; i < 16 ; i++ ){
 		lnr8_read_status[lnr8_read_idx*16+i] = 1;
 	}
-	
+
 	lnr8_read_idx++;
-	
+
 	if( lnr8_unload_size > temp ){
 		lnr8_unload_size -= temp;
 	} else {
 		lnr8_unload_size = 0;
 	}
-	
+
 	if( lnr8_unload_size ){
 		temp = EERead( lnr8_fp, (u_int *)(lnr8_buf+lnr8_read_idx*0x4000), lnr8_read_idx, 0x4000 );
-		
+
 		for( i = 0 ; i < 16 ; i++ ){
 			lnr8_read_status[lnr8_read_idx*16+i] = 1;
 		}
-		
+
 		lnr8_read_idx = (lnr8_read_idx+1) & 1;
-		
+
 		if( lnr8_unload_size > temp ){
 			lnr8_unload_size -= temp;
 		} else {
 			lnr8_unload_size = 0;
 		}
 	}
-	
+
 	lnr8_trans_buf = lnr8_buf;
 	return 0;
 }
 
 /*---------------------------------------------------------------------------*/
 
-// FIXME
-// control flow is not 100% certain
 void LnrEELoad( void )
 {
 	int temp, i, j, temp4;
-	
+
 	if( lnr8_status < 3 || lnr8_status > 5 ){
 		return;
 	}
-	
+
 	for( i = 0 ; i < 2 ; i++ ){
 		if( lnr8_unload_size ){
 			temp4 = 0;
@@ -134,7 +132,7 @@ void LnrEELoad( void )
 				// Wait for 1 V-blank
 				WaitVblankStart();
 				WaitVblankEnd();
-				
+
 				if( lnr8_unload_size > 0x4000 ){
 					temp = EERead( lnr8_fp, (u_int *)(lnr8_buf+lnr8_read_idx*0x4000), lnr8_read_idx, 0x4000 );
 					if( temp ){
@@ -174,17 +172,17 @@ void lnr_load( void )
 			}
 		}
 		break;
-	
+
 	case 1:
 	case 2:
 	case 3:
 	case 4:
 		LnrEELoad();
 		break;
-	
+
 	case 5:
 		break;
-	
+
 	case 6:
 		lnr8_load_code = 0;
 		lnr8_status = 0;
@@ -206,7 +204,7 @@ void lnr_trans_init( void )
 void lnr_trans_0( u_short *a0, u_int a1 )
 {
 	int i;
-	
+
 	for( i = 0 ; i < a1 ; i++ ){
 		a0[i] = 0;
 	}
@@ -218,13 +216,12 @@ void lnr_trans( u_short *a0, char *a1, u_int a2 )
 {
 	int j, i;
 	u_short temp3, temp4;
-	
+
 	temp3 = lnr_val[0];
 	temp4 = lnr_val[1];
-	
+
 	for( i = 0 ; i < a2 ; i+=512 ){
 		for( j = 0 ; j < 0x0100 ; j++ ){
-			// the second LHS needs to be computed this way to produce matching assembly
 			temp3 = *(a0+j+i) = ((short)(((a1[0] & 0xF8) * 256)) >> ((char)((u_char *)a1)[0] & 0x07))+temp3;
 			a1++;
 			temp4 = *(a0+j+i+0x100) = ((short)(((a1[0] & 0xF8) * 256)) >> ((char)((u_char *)a1)[0] & 0x07))+temp4;
@@ -241,7 +238,7 @@ void lnr_trans( u_short *a0, char *a1, u_int a2 )
 int lnrSpuTrans( void )
 {
 	int temp = 0, temp2 = 0;
-	
+
 	if( lnr8_stop_fg && lnr8_status >= 2 ){
 		lnr8_status = 7;
 		lnr_tr_off();
