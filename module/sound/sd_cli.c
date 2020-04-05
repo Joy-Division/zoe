@@ -164,7 +164,6 @@ void set_sng_code_buf( u_int a0 )
 
 /*---------------------------------------------------------------------------*/
 
-// NOMATCH: see inside, control flow does not line up completely
 void sd_set( int a0 )
 {
 	union {
@@ -174,276 +173,306 @@ void sd_set( int a0 )
 
 	if( a0 == 0xFF000000 ){
 		sd_print_fg = 1;
-	} else if( a0 == 0xFF000001 ){
+		goto end;
+	}
+	if( a0 == 0xFF000001 ){
 		sd_print_fg = 0;
-	} else {
-		if( a0 == 0xFF000002 ){
+		goto end;
+	}
+	if( a0 == 0xFF000002 ){
+	}
+	if( sd_print_fg ){
+	}
+	if( !(a0 & 0xFF000000) ) {
+		if( !(a0 & 0x07FF) ) {
+			goto end;
 		}
-		if( sd_print_fg ){
-		}
-		if( !(a0 & 0xFF000000) ){
-			if( !(a0 & 0x07FF) ){
-				return;
+		SePlay( a0 );
+		goto end;
+	}
+	if( (a0 & 0xFF000000) == 0x1000000 ){
+		set_sng_code_buf( a0 );
+		goto end;
+	}
+	if( (a0 & 0xFF000000) == 0x2000000 ){
+		se_load_code = a0;
+		WakeupThread( id_SdMain );
+		goto end;
+	}
+	if( (a0 & 0xE0000000) == 0x80000000 ){
+		temp.up = sif_get_mem( path_name, a0 & 0x1FFFFFFF, 0x80 );
+		while( 1 ){
+			if( *temp.up & 0x80000000 ){
+				break;
 			}
-			SePlay( a0 );
-		} else if( (a0 & 0xFF000000) == 0x1000000 ){
-			set_sng_code_buf( a0 );
-		} else if( (a0 & 0xFF000000) == 0x2000000 ){
-			se_load_code = a0;
-			WakeupThread( id_SdMain );
-		} else if( (a0 & 0xE0000000) == 0x80000000 ){
-			temp.up = sif_get_mem( path_name, a0 & 0x1FFFFFFF, 0x80 );
-			while( 1 ){
-				if( *temp.up & 0x80000000 ){
-					break;
+		}
+		sif_rv_release_queue( temp );
+		goto end;
+	}
+	if( (a0 & 0xFF000000) == 0xF0000000 ){
+		if( str1_use_iop ){
+			if( str_load_code != a0 ){
+				if( lnr8_status ){
+					lnr8_stop_fg = 1;
 				}
+				str_stop_fg = 0;
+				str_first_load = str_load_code = a0;
+				str_counter_low = 0;
+				str_counter = 0;
+				str_status = 1;
+				WakeupThread( id_SdMain );
+			} else {
+				//
+				// EMPTY BLOCK
+				//
 			}
-			sif_rv_release_queue( temp );
-		} else if( (a0 & 0xFF000000) == 0xF0000000 ){
-			if( str1_use_iop ){
-				if( str_load_code != a0 ){
-					if( lnr8_status ){
-						lnr8_stop_fg = 1;
-					}
-					str_stop_fg = 0;
-					str_first_load = str_load_code = a0;
-					str_counter_low = 0;
-					str_counter = 0;
-					str_status = 1;
-					WakeupThread( id_SdMain );
-				} else {
+		} else {
+			if( lnr8_status ){
+				lnr8_stop_fg = 1;
+			}
+			str2_stop_fg[0] = 0;
+			ee_addr[0].unk14 = (a0 & 0x00FFFFFF) << 4;
+		}
+		goto end;
+	}
+	if( (a0 & 0xFF000000) == 0xF1000000 ){
+		if( !str1_use_iop ){
+			ee_addr[0].unk04 = a0 & 0x00FFFFFF;
+			ee_addr[0].unk0C++;
+			str2_iop_load_set[0] = 1;
+			WakeupThread( id_SdEELoad );
+		}
+		goto end;
+	}
+	if( (a0 & 0xFF000000) == 0xF2000000 ){
+		ee_addr[1].unk14 = (a0 & 0x00FFFFFF) << 4;
+		goto end;
+	}
+	if( (a0 & 0xFF000000) == 0xF3000000 ){
+		ee_addr[1].unk04 = a0 & 0x00FFFFFF;
+		ee_addr[1].unk0C++;
+		str2_iop_load_set[1] = 1;
+		WakeupThread( id_SdEELoad );
+		goto end;
+	}
+	if( (a0 & 0xFF000000) == 0xF4000000 ){
+		if( !(a0 & 0x00FFFFFF) ){
+			if( str_status ){
+				str_stop_fg = 1;
+			}
+			if( str2_status[0] ){
+				str2_stop_fg[0] = 1;
+			}
+			if( str2_status[1] ){
+				str2_stop_fg[1] = 1;
+			}
+			lnr8_stop_fg = 0;
+			lnr8_first_load = lnr8_load_code = a0;
+			ee_addr[1].unk10 = 0;
+			ee_addr[1].unk0C = 0;
+			lnr8_status = 1;
+			lnr8_counter = 0;
+		} else {
+			if( (a0 & 0xFF0000) == 0x10000 ){
+				str2_mono_fg[1] = 1;
+			} else {
+				str2_mono_fg[1] = 0;
+			}
+			str2_pitch[1] = (int)((a0 & 0xFFFF) * 4096) / 48000;
+			if( lnr8_status ){
+				lnr8_stop_fg = 1;
+			}
+			str2_stop_fg[1] = 0;
+			str2_first_load[1] = str2_load_code[1] = a0;
+			str2_counter[1] = 0;
+			str2_play_counter[1] = 0;
+			ee_addr[1].unk10 = 0;
+			ee_addr[1].unk0C = 0;
+			str2_status[1] = 1;
+		}
+		WakeupThread( id_SdEELoad );
+		goto end;
+	}
+	if( (a0 & 0xFF000000) == 0xF5000000 ){
+		if( !str1_use_iop ){
+			if( (a0 & 0xFF0000) == 0x10000 ){
+				str2_mono_fg[0] = 1;
+			} else {
+				str2_mono_fg[0] = 0;
+			}
+			str2_pitch[0] = (int)((a0 & 0xFFFF) * 4096) / 48000;
+			if( lnr8_status ){
+				lnr8_stop_fg = 1;
+			}
+			str2_first_load[0] = str2_load_code[0] = a0;
+			str2_counter[0] = 0;
+			str2_play_counter[0] = 0;
+			ee_addr[0].unk10 = 0;
+			ee_addr[0].unk0C = 0;
+			str2_status[0] = 1;
+			WakeupThread( id_SdEELoad );
+		}
+		goto end;
+	}
+	if( (a0 & 0xFF000000) == 0xFA000000 ){
+		switch( a0 & 0x0F00 ){
+		// cases 0 & 256 don't get compiled, but exist in the original assembly
+		case   0: auto_env_pos  = (a0 & 0xFFFF); break;
+		case 256: auto_env_pos2 = (a0 & 0xFFFF); break;
+		default: break;
+		}
+		goto end;
+	}
+	if( (a0 & 0xFF000000) == 0xFB000000 ){
+		if( a0 <= 0xFB1F3F3F ){
+			temp.u = (int)(a0 & 0x1F0000) >> 16;
+			mix_fader[temp.u].unk0C = (int)(a0 & 0x3F00) >> 8;
+			mix_fader[temp.u].unk08 = ((a0 & 0x3F) << 10) + ((a0 & 0x3F) << 4) + ((int)(a0 & 0x3F) >> 2);
+			mix_fader[temp.u].unk04 = mix_fader[temp.u].unk08;
+			mix_fader[temp.u].unk00 = 0;
+		} else {
+			if( (a0 & 0xFF0000) == 0xFE0000 || (a0 & 0xFF0000) == 0xFF0000 ){
+				temp.u = (int)(a0 & 0x10000) >> 16;
+				vox_fader[temp.u].unk00 = a0 & 0x3F;
+				vox_fader[temp.u].unk08 = (int)(a0 & 0x3F00) >> 8;
+				if( sd_print_fg ){
 					//
 					// EMPTY BLOCK
 					//
 				}
-			} else {
-				if( lnr8_status ){
-					lnr8_stop_fg = 1;
-				}
-				str2_stop_fg[0] = 0;
-				ee_addr[0].unk14 = (a0 & 0x00FFFFFF) << 4;
 			}
-		} else if( (a0 & 0xFF000000) == 0xF1000000 ){
-			if( !str1_use_iop ){
-				ee_addr[0].unk04 = a0 & 0x00FFFFFF;
-				ee_addr[0].unk0C++;
-				str2_iop_load_set[0] = 1;
-				WakeupThread( id_SdEELoad );
+		}
+		goto end;
+	}
+	if( a0 > 0xFBFFFFFF && a0 <= 0xFC1F3FFF ){
+		temp.u = (int)(a0 & 0x1F0000) >> 16;
+		mix_fader[temp.u].unk0C = (int)(a0 & 0x3F00) >> 8;
+		goto end;
+	}
+	if( a0 > 0xFCFFFFFF && a0 <= 0xFD1F3FFF ){
+		temp.u = (int)(a0 & 0x1F0000) >> 16;
+		mix_fader[temp.u].unk08 = ((a0 & 0x3F00) << 2) + ((int)(a0 & 0x3F00) >> 4) + ((int)(a0 & 0x3F00) >> 10);
+		if( mix_fader[temp.u].unk08 == mix_fader[temp.u].unk04 ){
+			mix_fader[temp.u].unk00 = 0;
+		} else if( a0 & 0xFF ){
+			mix_fader[temp.u].unk00 = (mix_fader[temp.u].unk08 - mix_fader[temp.u].unk04) / ((int)(a0 & 0xFF)*10);
+			if( !mix_fader[temp.u].unk00 ){
+				mix_fader[temp.u].unk00 = 1;
 			}
-		} else if( (a0 & 0xFF000000) == 0xF2000000 ){
-			ee_addr[1].unk14 = (a0 & 0x00FFFFFF) << 4;
-		} else if( (a0 & 0xFF000000) == 0xF3000000 ){
-			ee_addr[1].unk04 = a0 & 0x00FFFFFF;
-			ee_addr[1].unk0C++;
-			str2_iop_load_set[1] = 1;
-			WakeupThread( id_SdEELoad );
-		} else if( (a0 & 0xFF000000) == 0xF4000000 ){
-			if( !(a0 & 0x00FFFFFF) ){
+		} else {
+			mix_fader[temp.u].unk04 = mix_fader[temp.u].unk08;
+			mix_fader[temp.u].unk00 = 0;
+		}
+		goto end;
+	}
+	if( (a0 & 0xFF000000) == 0xFE000000 ){
+		pak_cd_read_fg = 0;
+		if( a0 <= 0xFE7FFFFF ){
+			wave_load_code = a0;
+			wave_load_status = 1;
+		} else {
+			pak_load_code = a0;
+			pak_load_status = 1;
+		}
+		WakeupThread( id_SdMain );
+		goto end;
+	}
+	if( (a0 & 0xFF000000) == 0xC0000000 ){
+		pak_load_code = a0 & 0x0FFFFFFF;
+		pak_load_status = 1;
+		pak_cd_read_fg = 1;
+		WakeupThread( id_SdMain );
+		goto end;
+	}
+	switch( a0 ){
+		case 0xFF000005: sound_mono_fg = 1; break;
+		case 0xFF000006: sound_mono_fg = 0; break;
+		case 0xFF000007: se_rev_on = 1; vox_rev_on = 0; break;
+		case 0xFF000008: se_rev_on = 0; vox_rev_on = 0; break;
+		case 0xFF000009: se_rev_on = 1; vox_rev_on = 1; break;
+
+		case 0xFF00000A:
+			if( str1_use_iop ){
 				if( str_status ){
 					str_stop_fg = 1;
 				}
+			} else {
 				if( str2_status[0] ){
 					str2_stop_fg[0] = 1;
 				}
-				if( str2_status[1] ){
-					str2_stop_fg[1] = 1;
-				}
-				lnr8_stop_fg = 0;
-				lnr8_first_load = lnr8_load_code = a0;
-				ee_addr[1].unk10 = 0;
-				ee_addr[1].unk0C = 0;
-				lnr8_status = 1;
-				lnr8_counter = 0;
+				str2_iop_load_set[0] = 0;
+			}
+			break;
+
+		case 0xFF00000B:
+			if( str1_use_iop ){
+				str_wait_fg = 1;
 			} else {
-				if( (a0 & 0xFF0000) == 0x10000 ){
-					str2_mono_fg[1] = 1;
-				} else {
-					str2_mono_fg[1] = 0;
-				}
-				str2_pitch[1] = (int)((a0 & 0xFFFF) * 4096) / 48000;
-				if( lnr8_status ){
-					lnr8_stop_fg = 1;
-				}
-				str2_stop_fg[1] = 0;
-				str2_first_load[1] = str2_load_code[1] = a0;
-				str2_counter[1] = 0;
-				str2_play_counter[1] = 0;
-				ee_addr[1].unk10 = 0;
-				ee_addr[1].unk0C = 0;
-				str2_status[1] = 1;
+				str2_wait_fg[0] = 1;
 			}
-			WakeupThread( id_SdEELoad );
-		} else if( (a0 & 0xFF000000) == 0xF5000000 ){
-			if( !str1_use_iop ){
-				if( (a0 & 0xFF0000) == 0x10000 ){
-					str2_mono_fg[0] = 1;
-				} else {
-					str2_mono_fg[0] = 0;
-				}
-				str2_pitch[0] = (int)((a0 & 0xFFFF) * 4096) / 48000;
-				if( lnr8_status ){
-					lnr8_stop_fg = 1;
-				}
-				str2_first_load[0] = str2_load_code[0] = a0;
-				str2_counter[0] = 0;
-				str2_play_counter[0] = 0;
-				ee_addr[0].unk10 = 0;
-				ee_addr[0].unk0C = 0;
-				str2_status[0] = 1;
-				WakeupThread( id_SdEELoad );
-			}
-		} else if( (a0 & 0xFF000000) == 0xFA000000 ){
-			switch( a0 & 0x0F00 ){
-			// cases 0 & 256 don't get compiled, but exist in the original assembly
-			case   0: auto_env_pos  = (a0 & 0xFFFF); break;
-			case 256: auto_env_pos2 = (a0 & 0xFFFF); break;
-			default: break;
-			}
-		} else if( (a0 & 0xFF000000) == 0xFB000000 ){
-			if( a0 <= 0xFB1F3F3F ){
-				temp.u = (int)(a0 & 0x1F0000) >> 16;
-				mix_fader[temp.u].unk0C = (int)(a0 & 0x3F00) >> 8;
-				mix_fader[temp.u].unk08 = ((a0 & 0x3F) << 10) + ((a0 & 0x3F) << 4) + ((int)(a0 & 0x3F) >> 2);
-				mix_fader[temp.u].unk04 = mix_fader[temp.u].unk08;
-				mix_fader[temp.u].unk00 = 0;
+			break;
+
+		case 0xFF00000C:
+			if( str1_use_iop ){
+				str_wait_fg = 0;
 			} else {
-				if( (a0 & 0xFF0000) == 0xFE0000 || (a0 & 0xFF0000) == 0xFF0000 ){
-					temp.u = (int)(a0 & 0x10000) >> 16;
-					vox_fader[temp.u].unk00 = a0 & 0x3F;
-					vox_fader[temp.u].unk08 = (int)(a0 & 0x3F00) >> 8;
-					if( sd_print_fg ){
-						//
-						// EMPTY BLOCK
-						//
-					}
-				}
+				str2_wait_fg[0] = 0;
 			}
-		} else if( a0 > 0xFBFFFFFF && a0 <= 0xFC1F3FFF ){
-			temp.u = (int)(a0 & 0x1F0000) >> 16;
-			mix_fader[temp.u].unk0C = (int)(a0 & 0x3F00) >> 8;
-		} else if( a0 > 0xFCFFFFFF && a0 <= 0xFD1F3FFF ){
-			temp.u = (int)(a0 & 0x1F0000) >> 16;
-			mix_fader[temp.u].unk08 = ((a0 & 0x3F00) << 2) + ((int)(a0 & 0x3F00) >> 4) + ((int)(a0 & 0x3F00) >> 10);
-			if( mix_fader[temp.u].unk08 == mix_fader[temp.u].unk04 ){
-				mix_fader[temp.u].unk00 = 0;
-			} else if( a0 & 0xFF ){
-				mix_fader[temp.u].unk00 = (mix_fader[temp.u].unk08 - mix_fader[temp.u].unk04) / ((int)(a0 & 0xFF)*10);
-				if( !mix_fader[temp.u].unk00 ){
-					mix_fader[temp.u].unk00 = 1;
+			break;
+
+		case 0xFF00000D:
+			if( str1_use_iop ){
+				if( str_status ){
+					str_stop_fg = 2;
 				}
-			} else {
-				mix_fader[temp.u].unk04 = mix_fader[temp.u].unk08;
-				mix_fader[temp.u].unk00 = 0;
+			} else if( str2_status[0] ){
+				str2_stop_fg[0] = 2;
 			}
-		} else if( (a0 & 0xFF000000) == 0xFE000000 ){
-			pak_cd_read_fg = 0;
-			if( a0 <= 0xFE7FFFFF ){
-				wave_load_code = a0;
-				wave_load_status = 1;
-			} else {
-				pak_load_code = a0;
-				pak_load_status = 1;
+			break;
+
+		case 0xFF00000E:
+			if( str2_status[1] ){
+				str2_stop_fg[1] = 1;
 			}
-			WakeupThread( id_SdMain );
-		} else if( (a0 & 0xFF000000) == 0xC0000000 ){
-			pak_load_code = a0 & 0x0FFFFFFF;
-			pak_load_status = 1;
-			pak_cd_read_fg = 1;
-			WakeupThread( id_SdMain );
-		} else {
-			switch( a0 ){
-			case 0xFF000005: sound_mono_fg = 1; break;
-			case 0xFF000006: sound_mono_fg = 0; break;
-			case 0xFF000007: se_rev_on = 1; vox_rev_on = 0; break;
-			case 0xFF000008: se_rev_on = 0; vox_rev_on = 0; break;
-			case 0xFF000009: se_rev_on = 1; vox_rev_on = 1; break;
-
-			case 0xFF00000A:
-				if( str1_use_iop ){
-					if( str_status ){
-						str_stop_fg = 1;
-					}
-				} else {
-					if( str2_status[0] ){
-						str2_stop_fg[0] = 1;
-					}
-					str2_iop_load_set[0] = 0;
-				}
-				break;
-
-			case 0xFF00000B:
-				if( str1_use_iop ){
-					str_wait_fg = 1;
-				} else {
-					str2_wait_fg[0] = 1;
-				}
-				break;
-
-			case 0xFF00000C:
-				if( str1_use_iop ){
-					str_wait_fg = 0;
-				} else {
-					str2_wait_fg[0] = 0;
-				}
-				break;
-
-			case 0xFF00000D:
-				if( str1_use_iop ){
-					if( str_status ){
-						str_stop_fg = 2;
-					}
-				} else if( str2_status[0] ){
-					str2_stop_fg[0] = 2;
-				}
-				break;
-
-			case 0xFF00000E:
-				if( str2_status[1] ){
-					str2_stop_fg[1] = 1;
-				}
-				if( lnr8_status ){
-					lnr8_stop_fg = 1;
-				}
-				str2_iop_load_set[1] = 0;
-				break;
-
-			case 0xFF00000F: str2_wait_fg[1] = 1; break;
-			case 0xFF000010: str2_wait_fg[1] = 0; break;
-
-			case 0xFF000011:
-				if( str2_status[1] ){
-					str2_stop_fg[1] = 2;
-				}
-				if( lnr8_status ){
-					lnr8_stop_fg = 1;
-				}
-				break;
-
-			/* these two assignments rely on str1_use_iop to be in the same translation unit */
-			case 0xFF000012: str1_use_iop = 1; break;
-			case 0xFF000013: str1_use_iop = 0; break;
-
-			case 0xFF000014: fader_off_fg = 1; break;
-			case 0xFF0000FE: stop_jouchuu_se = 1; break;
-			case 0xFF0000FF: set_sng_code_buf( a0 ); break;
-			case 0xFF000100: fx_sound_code = 1; break;
-			case 0xFF000101: set_sng_code_buf( a0 ); break;
-			case 0xFF000102: set_sng_code_buf( a0 ); break;
-			case 0xFF000103: set_sng_code_buf( a0 ); break;
-			case 0xFF000104: auto_phase_fg = 4; break;
-			case 0xFF000105: set_sng_code_buf( a0 ); break;
-			case 0xFF000106: set_sng_code_buf( a0 ); break;
-			case 0xFF000107: set_sng_code_buf( a0 ); break;
-			case 0xFF000108: set_sng_code_buf( a0 ); break;
-			case 0xFFFFFFEC: break;
-			case 0xFFFFFFED: break;
-			case 0xFFFFFFFD: break;
-			default: break;
+			if( lnr8_status ){
+				lnr8_stop_fg = 1;
 			}
-		}
-		/* this is pure evil and shouldnt be left here, but i dont see any other way of getting the double-nop otherwise
-		   i guess the control flow should be changed at some point to account for this... */
-		asm("nop"); // FAKEMATCH
+			str2_iop_load_set[1] = 0;
+			break;
+
+		case 0xFF00000F: str2_wait_fg[1] = 1; break;
+		case 0xFF000010: str2_wait_fg[1] = 0; break;
+
+		case 0xFF000011:
+			if( str2_status[1] ){
+				str2_stop_fg[1] = 2;
+			}
+			if( lnr8_status ){
+				lnr8_stop_fg = 1;
+			}
+			break;
+
+		/* these two assignments rely on str1_use_iop to be in the same translation unit */
+		case 0xFF000012: str1_use_iop = 1; break;
+		case 0xFF000013: str1_use_iop = 0; break;
+
+		case 0xFF000014: fader_off_fg = 1; break;
+		case 0xFF0000FE: stop_jouchuu_se = 1; break;
+		case 0xFF0000FF: set_sng_code_buf( a0 ); break;
+		case 0xFF000100: fx_sound_code = 1; break;
+		case 0xFF000101: set_sng_code_buf( a0 ); break;
+		case 0xFF000102: set_sng_code_buf( a0 ); break;
+		case 0xFF000103: set_sng_code_buf( a0 ); break;
+		case 0xFF000104: auto_phase_fg = 4; break;
+		case 0xFF000105: set_sng_code_buf( a0 ); break;
+		case 0xFF000106: set_sng_code_buf( a0 ); break;
+		case 0xFF000107: set_sng_code_buf( a0 ); break;
+		case 0xFF000108: set_sng_code_buf( a0 ); break;
+		case 0xFFFFFFEC: break;
+		case 0xFFFFFFED: break;
+		case 0xFFFFFFFD: break;
+		default: break;
 	}
+	end:;
 	return;
 }
