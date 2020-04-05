@@ -189,9 +189,9 @@ void str2_load( void )
 				//
 			}
 
-		case 2:
-		case 3:
-		case 4:
+		case 2: /* fallthrough */
+		case 3: /* fallthrough */
+		case 4: /* fallthrough */
 		case 5:
 			StrEELoad( i );
 			break;
