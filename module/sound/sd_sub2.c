@@ -9,7 +9,6 @@
 #include "sd_ext.h"
 
 /*---------------------------------------------------------------------------*/
-// NOTE FOR ALL: Epilogues may be wrong; recheck later.
 
 void rest_set( void )
 {
@@ -27,20 +26,19 @@ void rest_set( void )
 void tie_set( void )
 {
 	int temp1;
-	
+
 	sptr->rest_fg = 1;
 	sptr->ngs = mdata2;
 	sptr->ngg = mdata3;
 	sptr->ngc = sptr->ngs;
 	temp1 = ((sptr->ngg * sptr->ngc) / 100);
-	
+
 	if( !temp1 ) temp1 = 1;
 	sptr->ngo = temp1;
 }
 
 /*---------------------------------------------------------------------------*/
 
-// NOMATCH: keyoff() doesnt get interleaved properly
 void sno_set( void )
 {
 	sptr->snos = mdata2;
@@ -50,7 +48,6 @@ void sno_set( void )
 
 /*---------------------------------------------------------------------------*/
 
-// NOMATCH: keyoff() doesnt get interleaved properly
 void svl_set( void )
 {
 	sptr->snos = mdata2;
@@ -60,7 +57,6 @@ void svl_set( void )
 
 /*---------------------------------------------------------------------------*/
 
-// NOMATCH: keyoff() doesnt get interleaved properly
 void svp_set( void )
 {
 	sptr->snos = mdata2;
@@ -87,7 +83,6 @@ void use_set( void )
 
 /*---------------------------------------------------------------------------*/
 
-// NOMATCH: epilogue
 void pan_set( void )
 {
 	sptr->panmod = mdata2;
@@ -98,19 +93,16 @@ void pan_set( void )
 
 /*---------------------------------------------------------------------------*/
 
-// TODO:
-// - Check break instructions. (codes differ between assemblers)
-// - Do another pass of the code.
 void pan_move( void )
 {
 	int temp2;
 	u_char temp1;
-	
+
 	sptr->panc = mdata2;
 	temp1 = mdata3 + 0x14;
 	sptr->panm = temp1 << 8;
 	temp2 = temp1 - sptr->panf;
-	
+
 	if( temp2 < 0 ){
 		sptr->panad = -(((-temp2) << 8) / mdata2);
 		if( sptr->panad < -0x07F0 )
@@ -124,13 +116,11 @@ void pan_move( void )
 
 /*---------------------------------------------------------------------------*/
 
-// NOMATCH:
-// - At least one delay slot doesnt get used as it should.
 void vib_set( void )
 {
 	sptr->vibhs = mdata2;
 	sptr->vibcad = mdata3;
-	
+
 	if( sptr->vibcad < 64 ){
 		if( sptr->vibcad < 32 ){
 			sptr->vib_tc_ofst = 1;
@@ -155,7 +145,6 @@ void vib_set( void )
 
 /*---------------------------------------------------------------------------*/
 
-// NOMATCH: epilogue
 void vib_change( void )
 {
 	sptr->vibcs = mdata2;
@@ -164,7 +153,6 @@ void vib_change( void )
 
 /*---------------------------------------------------------------------------*/
 
-// NOMATCH: epilogue
 void rdm_set( void )
 {
 	sptr->rdms = mdata2;
@@ -175,7 +163,6 @@ void rdm_set( void )
 
 /*---------------------------------------------------------------------------*/
 
-// NOMATCH: epilogue
 void lp1_start( void )
 {
 	sptr->lp1_addr = mptr;
@@ -202,7 +189,7 @@ void lp1_end( void )
 			goto end; // return; also works for -O0
 		}
 	}
-	
+
 	if( ((++sptr->lp1_cnt) & 0xFF) != mdata2 || !mdata2 ){
 		sptr->lp1_vol += (char)mdata3;
 		sptr->lp1_freq += (char)mdata4 << 3;
@@ -266,26 +253,26 @@ void tempo_move( void )
 	// this is required to avoid recomputing
 	// the assignment below for inside the ifs
 	register int temp;
-	
+
 	sptr->tmpc = mdata2;
 	sptr->tmpm = mdata3;
 	sptr->tmpw = sptr->tmp << 8;
 	temp = (sptr->tmpm - sptr->tmp);
-	
+
 	if( temp < 0 ){
 		if( temp < -127 )
 			temp = -127;
-		
+
 		sptr->tmpad = -((-temp << 8) / sptr->tmpc);
-		
+
 		if( sptr->tmpad < -0x07F0 )
 			sptr->tmpad = -0x07F0;
 	} else {
 		if( temp > 127 )
 			temp = 127;
-		
+
 		sptr->tmpad = (temp << 8) / sptr->tmpc;
-		
+
 		if( sptr->tmpad > 0x07F0 )
 			sptr->tmpad = 0x07F0;
 	}
@@ -320,12 +307,12 @@ void vol_chg( void )
 void vol_move( void )
 {
 	int temp;
-	
+
 	sptr->pvoc = mdata2;
 	sptr->pvom = mdata3;
 	temp = mdata3 << 8;
 	temp -= sptr->pvod;
-	
+
 	if( temp < 0 ){
 		sptr->pvoad = -(-temp / sptr->pvoc);
 		if( sptr->pvoad < -0x07F0 )
@@ -343,7 +330,7 @@ void por_set( void )
 {
 	sptr->swshc = 0;
 	sptr->swsc = mdata2;
-	
+
 	if( !mdata2 ) sptr->swsk = 0;
 	else sptr->swsk = 1;
 }
@@ -423,7 +410,7 @@ void eof_set( void )
 		rev_off_bit[1] |= keyd[1];
 		rev_bit_data[0] &= ~keyd[0];
 		rev_bit_data[1] &= ~keyd[1];
-	}	
+	}
 }
 
 /*---------------------------------------------------------------------------*/
@@ -463,24 +450,24 @@ void env_set( void )
 	} else {
 		spu_tr_wk[mtrack].a_mode = 0;
 	}
-	
+
 	spu_tr_wk[mtrack].env1_fg = 1;
-	
+
 	switch( mdata3 ){
 	case 0:  spu_tr_wk[mtrack].s_mode = 0x4000; break;
 	case 1:  spu_tr_wk[mtrack].s_mode = 0xC000; break;
 	case 2:  spu_tr_wk[mtrack].s_mode = 0x0000; break;
 	default: spu_tr_wk[mtrack].s_mode = 0x8000; break;
 	}
-	
+
 	spu_tr_wk[mtrack].env2_fg = 1;
-	
+
 	if( mdata4 ){
 		spu_tr_wk[mtrack].r_mode = 32;
 	} else {
 		spu_tr_wk[mtrack].r_mode = 0;
 	}
-	
+
 	spu_tr_wk[mtrack].env3_fg = 1;
 }
 
@@ -569,7 +556,7 @@ void vol_i_move( void )
 {
 	int temp2;
 	struct SOUND_W *work;
-	
+
 	work = &sound_w[mdata2];
 	work->pvoc = mdata3;
 	work->pvom = mdata4;
@@ -591,16 +578,15 @@ void vol_i_move( void )
 void at1_set( void )
 {
 	if( sptr->unkE4 != auto_env_pos && sptr->unkE4 != auto_phase_fg ){
-		// not sure about this, will have to wait until struct is identified
 		mix_fader[mtrack].unk08 = (mdata2 << 8) + mdata2;
 		mix_fader[mtrack].unk04 = mix_fader[mtrack].unk08;
 		mix_fader[mtrack].unk00 = 0;
 	}
-	
+
 	sptr->unkE9 = mdata2;
 	sptr->unkF1 = mdata3;
 	sptr->unkE8 = mdata4;
-	
+
 	if( sptr->unkE8 == 1 ){
 		sptr->unkEA = mdata2;
 		sptr->unkF2 = 0;
@@ -806,12 +792,9 @@ void at8_set( void )
 
 /*---------------------------------------------------------------------------*/
 
-// NOMATCH: see inside
 void mno_set( void )
 {
 	if( mtrack >= 32 ){
-		// this array access is only a placeholder, mem_str_w appears to be a struct
-		// (same addition problem as in eon_set as well)
 		mem_str_w[mtrack-32].unk0C = sptr->snos = mdata2+256;
 		keyoff();
 		tone_set( sptr->snos );
@@ -832,7 +815,7 @@ void flg_set( void )
 
 void no_cmd( void )
 {
+	//
 	// EMPTY FUNCTION
-	// there must be something here.
-	// nothing generates a trailing nop thats not supposed to be there
+	//
 }
