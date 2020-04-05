@@ -192,14 +192,14 @@ void lp1_end( void )
 			sptr->lp1_vol = 0;
 			sptr->lp1_freq = 0;
 			skip_intro_loop++;
-			return; // can also be goto end
+			goto end; // return; also works for -O0
 		}
 	} else {
 		if( stop_jouchuu_se && !mdata2 ){
 			sptr->lp1_vol = 0;
 			sptr->lp1_freq = 0;
 			stop_jouchuu_se++;
-			return; // can also be goto end
+			goto end; // return; also works for -O0
 		}
 	}
 	
@@ -211,7 +211,7 @@ void lp1_end( void )
 		sptr->lp1_vol = 0;
 		sptr->lp1_freq = 0;
 	}
-end: // required, makes a nop appear
+end: // needed for nop asm on -O0
 }
 
 /*---------------------------------------------------------------------------*/
