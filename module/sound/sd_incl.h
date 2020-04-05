@@ -54,7 +54,7 @@ struct SETBL {
 	u_char  tracks;
 	u_char  kind;
 	u_char  character;
-	u_char *addr[3]; // possibly NOT fixed at 3 here
+	u_char *addr[3];
 };
 
 struct SEPLAYTBL {
@@ -177,8 +177,7 @@ struct SOUND_W {
 /*---------------------------------------------------------------------------*
  * Additional Struct Types
  *---------------------------------------------------------------------------*/
-// the definition of this is definitely bad,
-// causes problems in mno_set
+
 struct unkstr24 {
 	u_int   unk00;
 	u_int   unk04;
@@ -187,14 +186,16 @@ struct unkstr24 {
 	u_char *unk10;
 	u_int   unk14;
 };
-// same here
+
 struct unkstr16 {
 	int unk00;
 	int unk04;
 	int unk08;
 	int unk0C;
 };
-// used by sd_file, some kind of tiny header struct for sdx files?
+
+// used by sd_file
+// some kind of tiny header struct for sdx files?
 struct unkstr08 {
 	u_int unk00;
 	u_int unk04;
