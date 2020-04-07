@@ -3,16 +3,16 @@ L jsifman
 V 0x0101
 F 0x0000
 E 004 sif_set_callback_func
-E 005 sif send packet and data
-E 006 i sif send packet and data
-E 007 sif send direct
-E 008 i sif send direct
+E 005 sif_send_packet_and_data
+E 006 i_sif_send_packet_and_data
+E 007 sif_send_direct
+E 008 i_sif_send_direct
 E 009 sif_send_mem
-E 010 i sif_send_mem
-E 011 sif rv get queue
+E 010 i_sif_send_mem
+E 011 sif_rv_get_queue
 E 012 sif_rv_release_queue
-E 013 sif rv call func
-E 014 sif rv return value
-E 015 i sif rv return value
-E 016 sif check status
+E 013 sif_rv_call_func
+E 014 sif_rv_return_value
+E 015 i_sif_rv_return_value
+E 016 sif_check_status
 E 017 sif_get_mem
