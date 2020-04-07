@@ -17,16 +17,16 @@ Entry	-
 
 # --- Entries ---
 Entry	sif_set_callback_func
-Entry	-
-Entry	-
-Entry	-
-Entry	-
+Entry	sif send packet and data
+Entry	i sif send packet and data
+Entry	sif send direct
+Entry	i sif send direct
 Entry	sif_send_mem
-Entry	-
-Entry	-
+Entry	i sif_send_mem
+Entry	sif rv get queue
 Entry	sif_rv_release_queue
-Entry	-
-Entry	-
-Entry	-
-Entry	-
+Entry	sif rv call func
+Entry	sif rv return value
+Entry	i sif rv return value
+Entry	sif check status
 Entry	sif_get_mem
