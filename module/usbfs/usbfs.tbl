@@ -16,9 +16,10 @@ Entry	-
 Entry	-
 
 # --- Entries ---
-Entry	-
-Entry	pcOpen
-Entry	pcClose
-Entry	pcRead
-Entry	-
-Entry	pcLseek
+Entry	usbInit
+Entry	usbOpen
+Entry	usbClose
+Entry	usbRead
+Entry	usbWrite
+Entry	usbLseek
+Entry	usbPuts
