@@ -25,7 +25,7 @@ struct foo work;
 void _ftext(void) {
     int temp20, temp1C, temp18, temp14, temp10;
     while(1) {
-        SleepThrea();
+        SleepThread();
         switch(work.unk7C) {
             case 0:
             case 4: {
