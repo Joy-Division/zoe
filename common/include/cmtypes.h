@@ -1,5 +1,5 @@
 /*
- *【 LibCM 】ver.20200331
+ *【 LibCM 】ver.20200411
  * Copyright (C) 2019 2020 J.Ingram
  * All rights reserved.
  */
@@ -70,9 +70,9 @@ typedef unsigned long long  ullong, u_llong;
 /*---------------------------------------------------------------------------*/
 /* Integer Types w/ Specified Width                                          */
 /*---------------------------------------------------------------------------*/
-typedef   signed CM_TYPE_INT8   sbyte,  s_byte;
-typedef unsigned CM_TYPE_INT8   ubyte,  u_byte;
-/*---------------------------------------------------------------------------*/
+typedef   signed CM_TYPE_INT8   sbyte, s_byte;
+typedef unsigned CM_TYPE_INT8   ubyte, u_byte;
+
 typedef   signed CM_TYPE_INT8   sint8,  s_int8,  s8;
 typedef unsigned CM_TYPE_INT8   uint8,  u_int8,  u8;
 typedef   signed CM_TYPE_INT16  sint16, s_int16, s16;
@@ -81,7 +81,7 @@ typedef   signed CM_TYPE_INT32  sint32, s_int32, s32;
 typedef unsigned CM_TYPE_INT32  uint32, u_int32, u32;
 typedef   signed CM_TYPE_INT64  sint64, s_int64, s64;
 typedef unsigned CM_TYPE_INT64  uint64, u_int64, u64;
-/*---------------------------------------------------------------------------*/
+
 typedef   signed CM_TYPE_INT8   schar8,   s_char8;
 typedef unsigned CM_TYPE_INT8   uchar8,   u_char8;
 typedef   signed CM_TYPE_INT16  schar16,  s_char16;
@@ -100,18 +100,24 @@ typedef unsigned CM_TYPE_INT64  ulong64,  u_long64;
 /*---------------------------------------------------------------------------*/
 typedef CM_TYPE_FLOAT32  float32, f32;
 typedef CM_TYPE_FLOAT64  float64, f64;
-/*---------------------------------------------------------------------------*/
+
 #if defined(CM_HAVE_MODETF)
+typedef float floatTF  __attribute__((mode(TF)));
+#if (CM_SIZEOF_MODETF == 16)
 typedef float float128 __attribute__((mode(TF)));
 typedef float f128     __attribute__((mode(TF)));
-#define CM_HAVE_FLOAT128 (1)
+#define CM_HAVE_FLOAT128 1
 #endif
-/*---------------------------------------------------------------------------*/
+#endif /* CM_HAVE_MODETF */
+
 #if defined(CM_HAVE_MODEXF)
+typedef float floatXF  __attribute__((mode(XF)));
+#if (CM_SIZEOF_MODEXF == 12)
 typedef float float96  __attribute__((mode(XF)));
 typedef float f96      __attribute__((mode(XF)));
-#define CM_HAVE_FLOAT96 (1)
+#define CM_HAVE_FLOAT96 1
 #endif
+#endif /* CM_HAVE_MODEXF */
 
 /*---------------------------------------------------------------------------*/
 /* 128bit Integer Types (Tetra-Integer Mode)                                 */
@@ -129,8 +135,8 @@ typedef   signed int s_long128 __attribute__((mode(TI)));
 typedef unsigned int u_long128 __attribute__((mode(TI)));
 typedef   signed int s128      __attribute__((mode(TI)));
 typedef unsigned int u128      __attribute__((mode(TI)));
-#define CM_HAVE_INT128 (1)
-#endif
+#define CM_HAVE_INT128 1
+#endif /* CM_HAVE_MODETI */
 
 /*---------------------------------------------------------------------------*/
 /* Fake Boolean Types                                                        */
@@ -167,15 +173,15 @@ typedef unsigned int u128      __attribute__((mode(TI)));
  */
 typedef union union8 {
 	struct {
-		byte bit0:1; /* LSB */
-		byte bit1:1;
-		byte bit2:1;
-		byte bit3:1;
-		byte bit4:1;
-		byte bit5:1;
-		byte bit6:1;
-		byte bit7:1; /* MSB */
-	};
+		u_byte bit0:1;  /*   1 (0x01) */
+		u_byte bit1:1;  /*   2 (0x02) */
+		u_byte bit2:1;  /*   4 (0x04) */
+		u_byte bit3:1;  /*   8 (0x08) */
+		u_byte bit4:1;  /*  16 (0x10) */
+		u_byte bit5:1;  /*  32 (0x20) */
+		u_byte bit6:1;  /*  64 (0x40) */
+		u_byte bit7:1;  /* 128 (0x80) */
+	} bits;
 	s_int8 s8;
 	u_int8 u8;
 } union8;

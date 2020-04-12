@@ -1,5 +1,5 @@
 /*
- *【 LibCM 】ver.20200331
+ *【 LibCM 】ver.20200411
  * Copyright (C) 2019 2020 J.Ingram
  * All rights reserved.
  */
@@ -32,8 +32,9 @@
 /* Target-Dependent Defines (Processor ISA)                                  */
 /*---------------------------------------------------------------------------*/
 
-/*---< Intel x86 (32-bit) >---*/
-
+/* --------------------------------------------- */
+/*          <<< Intel x86 (32-bit) >>>           */
+/* --------------------------------------------- */
 #if defined(__i386__)||defined(__i486__)\
 ||  defined(__i586__)||defined(__i686__)\
 ||  defined(_M_IX86)
@@ -41,14 +42,19 @@
 #define CM_ENDIANNESS  CM_LIL_ENDIAN
 #define CM_BYTE_ORDER  CM_ENDIANNESS
 
-#if defined(__GNUC__)\
-&&  defined(__i686__)
-#  define CM_HAVE_MODEXF  (1)
-#  define CM_HAVE_MODETF  (1)
-#endif
+#if defined(__GNUC__)&&defined(__i686__)
 
-/*---< AMD64 / x86-64 (64-bit) >---*/
+#  define CM_HAVE_MODEXF    1
+#  define CM_SIZEOF_MODEXF  12
 
+#  define CM_HAVE_MODETF    1
+#  define CM_SIZEOF_MODETF  16
+
+#endif /* __GNUC__ && __i686__ */
+
+/* --------------------------------------------- */
+/*        <<< AMD64 / x86-64 (64-bit) >>>        */
+/* --------------------------------------------- */
 #elif defined(__x86_64__)||defined(_M_X64)\
 ||    defined(__adm64__) ||defined(_M_AMD64)
 
@@ -56,19 +62,33 @@
 #define CM_BYTE_ORDER  CM_ENDIANNESS
 
 #if defined(__GNUC__)
-#  define CM_HAVE_MODETI  (1)
 
-/* Support added in 3.9.0 */
+#  define CM_HAVE_MODETI    1
+#  define CM_SIZEOF_MODETI  16
+
+#  define CM_HAVE_MODEXF    1
+#  define CM_SIZEOF_MODEXF  16
+
+/* GCC version 4.4.0 minimum
+ * Clang defines GNU C 4.2.1 */
+#if !((__GNUC__ <= 4)\
+||   ((__GNUC__ == 4)&&(__GNUC_MINOR__ < 4)))
+#  define CM_HAVE_MODETF    1
+#  define CM_SIZEOF_MODETF  16
+#endif
+
+/* Clang version 3.9.0 minimum */
 #if !((__clang_major__ <= 3)\
-    &&(__clang_minor__ <= 8))
+||   ((__clang_major__ == 3)&&(__clang_minor__ <= 8)))
+#  define CM_HAVE_MODETF    1
+#  define CM_SIZEOF_MODETF  16
+#endif
 
-#  define CM_HAVE_MODETF  (1)
-
-#endif /* clang >= 3.9.0 */
 #endif /* __GNUC__ */
 
-/*---< ARM >---*/
-
+/* --------------------------------------------- */
+/*                  <<< ARM >>>                  */
+/* --------------------------------------------- */
 #elif defined(__arm__)||defined(_M_ARM)
 
 #if defined(__ARMEB__)
@@ -79,8 +99,9 @@
 #  define CM_BYTE_ORDER  CM_ENDIANNESS
 #endif
 
-/*---< ARM Thumb Mode >---*/
-
+/* --------------------------------------------- */
+/*            <<< ARM Thumb Mode >>>             */
+/* --------------------------------------------- */
 #elif defined(__thumb__)||defined(_M_ARMT)
 
 #if defined(__THUMBEB__)
@@ -91,8 +112,9 @@
 #  define CM_BYTE_ORDER  CM_ENDIANNESS
 #endif
 
-/*---< IBM PowerPC >---*/
-
+/* --------------------------------------------- */
+/*              <<< IBM PowerPC >>>              */
+/* --------------------------------------------- */
 #elif defined(__ppc__)||defined(__powerpc__)||defined(_M_PPC)\
 ||    defined(__PPC__)||defined(__POWERPC__)||defined(_M_PPCBE)
 
@@ -101,8 +123,9 @@
 #define CM_ENDIANNESS  CM_BIG_ENDIAN
 #define CM_BYTE_ORDER  CM_ENDIANNESS
 
-/*---< MIPS / MIPS64 >---*/
-
+/* --------------------------------------------- */
+/*             <<< MIPS / MIPS64 >>>             */
+/* --------------------------------------------- */
 #elif defined(__mips__)||defined(__mips)\
 ||    defined(__MIPS__)||defined(__MIPS)
 
@@ -116,12 +139,15 @@
 
 #if defined(__GNUC__)\
 &&  defined(__mips64)
-#  define CM_HAVE_MODETI  (1)
-#  define CM_HAVE_MODETF  (1)
+#  define CM_HAVE_MODETI    1
+#  define CM_SIZEOF_MODETI  16
+#  define CM_HAVE_MODETF    1
+#  define CM_SIZEOF_MODETF  16
 #endif
 
-/*---< Motorola 680000 >---*/
-
+/* --------------------------------------------- */
+/*            <<< Motorola 680000 >>>            */
+/* --------------------------------------------- */
 #elif defined(__m68k__)\
 ||    defined(__mc68000__)||defined(__MC68000__)\
 ||    defined(__mc68010__)||defined(__MC68010__)\
@@ -134,8 +160,9 @@
 #define CM_ENDIANNESS  CM_BIG_ENDIAN
 #define CM_BYTE_ORDER  CM_ENDIANNESS
 
-/*---< Hitachi SuperH >---*/
-
+/* --------------------------------------------- */
+/*            <<< Hitachi SuperH >>>             */
+/* --------------------------------------------- */
 #elif defined(__sh__) ||defined(__SH__)\
 ||    defined(__sh1__)||defined(__SH1__)\
 ||    defined(__sh2__)||defined(__SH2__)\
@@ -155,26 +182,43 @@
 #  define CM_BYTE_ORDER  CM_ENDIANNESS
 #endif
 
-/*---< UNDEFINED >---*/
-
+/* --------------------------------------------- */
+/*               <<< UNDEFINED >>>               */
+/* --------------------------------------------- */
 #else /* (DEFAULTS) */
 
 #define CM_ENDIANNESS  CM_LIL_ENDIAN
 #define CM_BYTE_ORDER  CM_ENDIANNESS
 
-#endif /* (ARCH) */
+#ifdef CM_HAVE_MODETI
+#undef CM_HAVE_MODETI
+#endif
+
+#ifdef CM_HAVE_MODEXF
+#undef CM_HAVE_MODEXF
+#endif
+
+#ifdef CM_HAVE_MODETF
+#undef CM_HAVE_MODETF
+#endif
+
+#endif /* (ARCH CHAIN) */
 
 /*---------------------------------------------------------------------------*/
 /* Target-Dependent Defines (Platform/OS)                                    */
 /*---------------------------------------------------------------------------*/
 
-/*---< PlayStation 2 (Emotion Engine) >---*/
-
+/* --------------------------------------------- */
+/*    <<< PlayStation 2 (Emotion Engine) >>>     */
+/* --------------------------------------------- */
 #if defined(__R5900__)||defined(__ee__)
 
 #if defined(__GNUC__)
 #  ifndef CM_HAVE_MODETI
-#  define CM_HAVE_MODETI  (1)
+#  define CM_HAVE_MODETI 1
+#  endif
+#  ifndef CM_SIZEOF_MODETI
+#  define CM_SIZEOF_MODETI 16
 #  endif
 
 #  undef  CM_TYPE_INT64
@@ -187,18 +231,22 @@
 
 #endif /* (Emotion Engine) */
 
-/*---< PlayStation Portable (ALLEGREX) >---*/
-
+/* --------------------------------------------- */
+/*    <<< PlayStation Portable (ALLEGREX) >>>    */
+/* --------------------------------------------- */
 #if defined(__psp__)
 
 #if defined(__GNUC__)\
-||  defined(__MWERKS__)\
-||  defined(__SNC__)
+||  defined(__MWERKS__) /* ref."psptypes.h" */\
+||  defined(__SNC__)    /* ref."psptypes.h" */
 
 #  ifndef CM_HAVE_MODETI
-#  define CM_HAVE_MODETI  (1)
+#  define CM_HAVE_MODETI 1
 #  endif
 
+#  ifdef CM_HAVE_MODETF
+#  undef CM_HAVE_MODETF
+#  endif
 #endif
 
 #if defined(__SCE__)
@@ -211,21 +259,22 @@
 #endif
 
 #ifndef SCE_PSPTYPES_SUPPRESS_ADDITIONAL_DEFINE
-#define SCE_PSPTYPES_SUPPRESS_ADDITIONAL_DEFINE (1)
+#define SCE_PSPTYPES_SUPPRESS_ADDITIONAL_DEFINE 1
 #endif
 
 #endif /* __SCE__ */
 #endif /* __psp__ */
 
-/*---< PlayStation 3 (Cell Broadband Engine) >---*/
-
+/* --------------------------------------------- */
+/* <<< PlayStation 3 (Cell Broadband Engine) >>> */
+/* --------------------------------------------- */
 #if defined(__CELLOS_LV2__)\
 ||  defined(__PPU__)||defined(__SPU__)
 
 #if defined(__GNUC__)\
 && !defined(__SNC__) /* Error:1103 */
 #  ifndef CM_HAVE_MODETI
-#  define CM_HAVE_MODETI  (1)
+#  define CM_HAVE_MODETI 1
 #  endif
 #endif
 
