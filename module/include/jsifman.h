@@ -1,0 +1,8 @@
+#ifndef REDIRECT_JSIFMAN_H
+#define REDIRECT_JSIFMAN_H
+
+//
+// PLACEHOLDER
+//
+
+#endif /* END OF FILE */

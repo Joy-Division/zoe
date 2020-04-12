@@ -1,0 +1,8 @@
+#ifndef REDIRECT_NOUSBFS_H
+#define REDIRECT_NOUSBFS_H
+
+//
+// PLACEHOLDER
+//
+
+#endif /* END OF FILE */
