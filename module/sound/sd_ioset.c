@@ -1,6 +1,7 @@
 /*
- * Sound Driver for PS2 IOP
- * I/O Set Module
+ * Sound Driver (for PlayStation 2) by K.Muraoka
+ * Copyright (C) Konami Computer Entertainment Japan
+ * Codebase Restoration by Joy Division
  */
 /* ver."ZONE OF THE ENDERS"
  */
