@@ -1,6 +1,7 @@
 /*
- * "ZONE OF THE ENDERS"
- * Startup / Main Module
+ *『ZONE OF THE ENDERS』(for PlayStation 2)
+ * Copyright (C) Konami Computer Entertainment Japan
+ * Codebase Restoration by Joy Division
  */
 #ifndef INCLUDED_MAIN_H
 #define INCLUDED_MAIN_H

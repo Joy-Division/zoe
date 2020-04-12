@@ -1,6 +1,7 @@
 /*
- * LibFS for PS2
- * File Cache System
+ * LibFS C++ Version (for PlayStation 2)
+ * Copyright (C) Konami Computer Entertainment Japan
+ * Codebase Restoration by Joy Division
  */
 /* ver."ZONE OF THE ENDERS"
  */
@@ -16,9 +17,9 @@
 uint32 FS_StrCode( char *str )
 {
 	uint32 c;
-	sint32 n  = 0;
+	sint32 n = 0;
 	uint32 id = 0;
-	
+
 	while(( c = *str++ ))
 	{
 		id += ((id << (c & 0x0F)) | ((id >> 3) + (c << (n & 0x0F)) + c));

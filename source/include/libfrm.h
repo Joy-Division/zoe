@@ -1,9 +1,3 @@
-/*
- * Oribital Frame Library
- * Global Include
- */
-/* ver."ZONE OF THE ENDERS"
- */
 #ifndef INCLUDED_LIBFRM_H
 #define INCLUDED_LIBFRM_H
 

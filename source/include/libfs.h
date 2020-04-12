@@ -1,6 +1,7 @@
 /*
- * LibFS for PS2
- * Global Include
+ * LibFS C++ Version (for PlayStation 2)
+ * Copyright (C) Konami Computer Entertainment Japan
+ * Codebase Restoration by Joy Division
  */
 /* ver."ZONE OF THE ENDERS"
  */
@@ -15,9 +16,6 @@
 
 #include "libgv.h"
 #include "libev.h"
-
-// CDBIOS EE interface
-#include "../../module/filesys/cdbios_ee.h"
 
 /*---------------------------------------------------------------------------*
  * Common Structures

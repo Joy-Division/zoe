@@ -1,7 +1,3 @@
-/*
- * "ZONE OF THE ENDERS"
- * Misc. Enum Definitions
- */
 #ifndef INCLUDED_ZOE_ENUM_H
 #define INCLUDED_ZOE_ENUM_H
 

@@ -1,7 +1,3 @@
-/*
- * "ZONE OF THE ENDERS"
- * DMA Tag Format Definitions
- */
 #ifndef INCLUDED_TAGDEF_H
 #define INCLUDED_TAGDEF_H
 

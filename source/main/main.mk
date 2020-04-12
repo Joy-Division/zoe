@@ -1,15 +1,18 @@
 #
-# "ZONE OF THE ENDERS"
-# Test Makefile for Main
+#『ZONE OF THE ENDERS』(for PlayStation 2)
+# Copyright (C) Konami Computer Entertainment Japan
+# Codebase Restoration by Joy Division
+#
+# Makefile for Main (Test Build)
 #
 
 SCETOP ?= /usr/local/sce
 SCEINCDIR = $(SCETOP)/common/include
 
-EEINCDIR  = $(SCETOP)/ee/include
-EELIBDIR  = $(SCETOP)/ee/lib
-#EEILBDIR  = $(SCETOP)/ee/ilb
-#EEMODDIR  = $(SCETOP)/ee/modules
+EEINCDIR = $(SCETOP)/ee/include
+EELIBDIR = $(SCETOP)/ee/lib
+#EEILBDIR = $(SCETOP)/ee/ilb
+#EEMODDIR = $(SCETOP)/ee/modules
 
 IOPINCDIR = $(SCETOP)/iop/gcc/mipsel-scei-elfl/include
 IOPLIBDIR = $(SCETOP)/iop/gcc/mipsel-scei-elfl/lib

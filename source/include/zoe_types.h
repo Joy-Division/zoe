@@ -1,7 +1,3 @@
-/*
- * "ZONE OF THE ENDERS"
- * Common Type Include
- */
 #ifndef INCLUDED_ZOE_TYPES_H
 #define INCLUDED_ZOE_TYPES_H
 

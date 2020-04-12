@@ -1,6 +1,7 @@
 /*
- * "ZONE OF THE ENDERS"
- * Game Manager Library
+ *『ZONE OF THE ENDERS』(for PlayStation 2)
+ * Copyright (C) Konami Computer Entertainment Japan
+ * Codebase Restoration by Joy Division
  */
 #ifndef INCLUDED_GAME_H
 #define INCLUDED_GAME_H

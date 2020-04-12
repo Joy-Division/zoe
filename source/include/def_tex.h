@@ -1,7 +1,3 @@
-/*
- * "ZONE OF THE ENDERS"
- * Texture Format Definitions
- */
 #ifndef INCLUDED_DEF_TEX_H
 #define INCLUDED_DEF_TEX_H
 

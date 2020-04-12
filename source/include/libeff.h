@@ -1,9 +1,3 @@
-/*
- * Effects Library
- * Global Include
- */
-/* ver."ZONE OF THE ENDERS"
- */
 #ifndef INCLUDED_LIBEFF_H
 #define INCLUDED_LIBEFF_H
 

@@ -1,7 +1,3 @@
-/*
- * "ZONE OF THE ENDERS"
- * Light Format Definitions
- */
 #ifndef INCLUDED_DEF_LIT_H
 #define INCLUDED_DEF_LIT_H
 

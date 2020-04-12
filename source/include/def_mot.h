@@ -1,7 +1,3 @@
-/*
- * "ZONE OF THE ENDERS"
- * Motion Format Definitions
- */
 #ifndef INCLUDED_DEF_MOT_H
 #define INCLUDED_DEF_MOT_H
 

@@ -5,10 +5,10 @@
 class FOG_RANGE
 {
 public: //! check modifier
-	float N, N2; // near
-	float F, F2; // far
-	float S;
-	float H;
+	float N, N2;	// Near
+	float F, F2;	// Far
+	float S;		//
+	float H;		//
 
 public:
 	void Init(float, float);

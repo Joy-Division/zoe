@@ -1,7 +1,3 @@
-/*
- * "ZONE OF THE ENDERS"
- * Model Format Definitions
- */
 #ifndef INCLUDED_DEF_MDL_H
 #define INCLUDED_DEF_MDL_H
 

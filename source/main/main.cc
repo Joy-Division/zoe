@@ -1,6 +1,7 @@
 /*
- * "ZONE OF THE ENDERS"
- * Startup / Main Module
+ *『ZONE OF THE ENDERS』(for PlayStation 2)
+ * Copyright (C) Konami Computer Entertainment Japan
+ * Codebase Restoration by Joy Division
  */
 #include <stdlib.h>
 #include <string.h>
@@ -18,9 +19,12 @@
 #include "zoe_defs.h"
 #include "zoe_types.h"
 
+#include "cdbios.h"
+#include "mts.h"
+#include "sound.h"
+
 #define IN_MAIN_CC // for GV_InitSystem()
 
-#include "../../module/mts/mts.h"
 #include "../include/libdg.h"
 #include "../include/libdm.h"
 #include "../include/libev.h"
@@ -29,14 +33,11 @@
 #include "../include/libhzd.h"
 #include "../include/libmcard.h"
 #include "../include/libscn.h"
-#include "../include/libsd.h"
 #include "../include/libstrm.h"
 #include "../include/libtrg.h"
 #include "../include/carl.h"
 
-#include "main.h"
-
-/*---------------------------------------------------------------------------*/
+#include "main.h" // for CacheOn()
 
 // TODO: move temporary prototypes
 extern void NewInitLoad( char *, int ); /* bgsphere.cc */
@@ -128,7 +129,7 @@ int main()
 	sceDevVu1Reset();
 	sceGsResetPath();
 
-	CacheOn(); // see "main.h" if undefined
+	CacheOn();
 
 	sceDmaReset( 1 );
 	sceGsResetPath();

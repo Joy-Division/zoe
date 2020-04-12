@@ -1,9 +1,3 @@
-/*
- * Target Library
- * Global Include
- */
-/* ver."ZONE OF THE ENDERS"
- */
 #ifndef INCLUDED_LIBTRG_H
 #define INCLUDED_LIBTRG_H
 

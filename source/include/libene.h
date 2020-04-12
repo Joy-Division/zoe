@@ -1,9 +1,3 @@
-/*
- * Enemy Manager Library
- * Global Include
- */
-/* ver."ZONE OF THE ENDERS"
- */
 #ifndef INCLUDED_LIBENE_H
 #define INCLUDED_LIBENE_H
 

@@ -1,6 +1,7 @@
 /*
- * Linear Algebra Library
- * Global Include
+ * LibALG (for PlayStation 2)
+ * Copyright (C) Konami Computer Entertainment Japan
+ * Codebase Restoration by Joy Division
  */
 /* ver."ZONE OF THE ENDERS"
  */
@@ -32,7 +33,7 @@ public:
 	ALG_VECTOR(float, float, float, float);
 	ALG_VECTOR(float, float, float);
 	ALG_VECTOR();
-	
+
 	void        operator () (float, float, float, float);
 	void        operator () (float, float, float);
 	ALG_VECTOR& operator =  (float);
@@ -51,7 +52,7 @@ public:
 	void        operator -= (const ALG_VECTOR&);
 	void        operator *= (float);
 	void        operator /= (float);
-	
+
 	float   Scalar2();
 	float   Scalar();
 	float   Dist2(ALG_VECTOR*);
@@ -90,7 +91,7 @@ public:
 	            float fZX, float fZY, float fZZ, float fZW,
 	            float fTX, float fTY, float fTZ, float fTW );
 	ALG_MATRIX();
-	
+
 	void        operator () ( float fXX, float fXY, float fXZ, float fXW,
 	                          float fYX, float fYY, float fYZ, float fYW,
 	                          float fZX, float fZY, float fZZ, float fZW,
@@ -102,7 +103,7 @@ public:
 	ALG_MATRIX  operator /  ( const ALG_MATRIX& rmat );
 	void        operator *= ( const ALG_MATRIX& rmat );
 	void        operator /= ( const ALG_MATRIX& rmat );
-	
+
 	void    Invert();
 	void    Invert2();
 	void    Transpose();

@@ -90,7 +90,7 @@ public: //! check modifier
 	CR_WINDOW* pPrev;
 	CR_WINDOW* pNext;
 
-// --- HVS addition ---
+// *** HVS addition ***
 //	bool    m_bXPositionAdjustedinWS;
 //	float   m_fXAmountAdjustedinWS;
 
