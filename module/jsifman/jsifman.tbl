@@ -1,6 +1,7 @@
 #
-# KCEJ WEST SIF Manager
-# Entry Table for JSIFMAN.IRX
+# KCEJ SIF Manager (for PlayStation 2)
+# Copyright (C) Konami Computer Entertainment Japan
+# Codebase Restoration by Joy Division
 #
 # ver."ZONE OF THE ENDERS"
 #
@@ -9,13 +10,13 @@ Libname jsifman
 
 Version 1.1
 
-# --- Reserved ---
+# ***** RESERVED *****
 Entry	-
 Entry	-
 Entry	-
 Entry	-
 
-# --- Entries ---
+# ***** ENTRIES *****
 Entry	sif_set_callback_func
 Entry	sif_send_packet_and_data
 Entry	i_sif_send_packet_and_data
