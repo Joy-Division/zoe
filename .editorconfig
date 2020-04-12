@@ -5,7 +5,7 @@ root = true
 
 [*]
 tab_width = 4
-end_of_line = unset
+end_of_line = lf
 charset = unset
 
 [*.{c,h,cc,hh,cpp,hpp,cxx,hxx}]

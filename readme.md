@@ -1,4 +1,3 @@
-
 # The Earth Light
 
 Decompilation of KCE Japan West's "High Speed Robot Action" title *Zone of the Enders*.
