@@ -1,6 +1,7 @@
 #
-# KCEJ WEST USB File System
-# Entry Table for USBFS.IRX
+# KCEJ USB File System (for PlayStation 2)
+# Copyright (C) Konami Computer Entertainment Japan
+# Codebase Restoration by Joy Division
 #
 # ver."ZONE OF THE ENDERS"
 #
@@ -9,13 +10,13 @@ Libname usbfs
 
 Version 1.1
 
-# --- Reserved ---
+# ***** RESERVED *****
 Entry	-
 Entry	-
 Entry	-
 Entry	-
 
-# --- Entries ---
+# ***** ENTRIES *****
 Entry	usbInit
 Entry	usbOpen
 Entry	usbClose
