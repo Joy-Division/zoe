@@ -17,6 +17,7 @@ Entry	-
 Entry	-
 
 # ***** ENTRIES *****
-Entry	cdRead
-Entry	cdOpen
-Entry	cdClose
+
+#
+# PLACEHOLDER
+#

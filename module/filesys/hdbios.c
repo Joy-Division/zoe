@@ -1,11 +1,11 @@
 /*
- * KCEJ CD/DVD BIOS (for PlayStation 2)
+ * KCEJ HARD DISK BIOS (for PlayStation 2)
  * Copyright (C) Konami Computer Entertainment Japan
  * Codebase Restoration by Joy Division
  */
 /* ver."ZONE OF THE ENDERS"
  */
-#include "cdbios.h"
+#include "hdbios.h"
 
 //
 // PLACEHOLDER

@@ -5,8 +5,11 @@
  */
 /* ver."ZONE OF THE ENDERS"
  */
-#include "cdbios.h"
+#ifndef INCLUDED_CDBIOS_H
+#define INCLUDED_CDBIOS_H
 
 //
 // PLACEHOLDER
 //
+
+#endif /* END OF FILE */

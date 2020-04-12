@@ -5,18 +5,3 @@
 #
 # ver."ZONE OF THE ENDERS"
 #
-
-Libname cdbios
-
-Version 1.1
-
-# ***** RESERVED *****
-Entry	-
-Entry	-
-Entry	-
-Entry	-
-
-# ***** ENTRIES *****
-Entry	cdRead
-Entry	cdOpen
-Entry	cdClose
