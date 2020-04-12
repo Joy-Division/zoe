@@ -3,19 +3,3 @@
 # Copyright (C) Konami Computer Entertainment Japan
 # Codebase Restoration by Joy Division
 #
-
-Libname PLACEHOLDER
-
-Version 1.1
-
-# ***** RESERVED *****
-Entry	-
-Entry	-
-Entry	-
-Entry	-
-
-# ***** ENTRIES *****
-
-#
-# PLACEHOLDER
-#
