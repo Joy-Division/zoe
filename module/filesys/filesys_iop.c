@@ -6,10 +6,25 @@
 #include <sys/types.h>
 #include <kernel.h>
 
+// TODO: from jsifman, replace once decompiled
+extern u_int sif_send_mem( u_int *, volatile void *, u_int );
+extern void sif_set_callback_func(u_int, void (*)(void*, volatile void*), void*);
+extern void sif_rv_release_queue();
+extern int sif_check_status(u_int);
+extern u_int *sif_get_mem(void *, u_int, u_int);
+
+// TODO: from usbfs
+extern int pcOpen(char *, int);
+extern int pcClose(int);
+extern int pcRead(int, void *, int);
+extern int pcLseek(int, u_int, u_int);
+
 // todo: add prototypes/includes
 // todo: documentation
 
-struct Work {
+ModuleInfo Module = { "ZOE_FILESYS", 0x0101 };
+
+struct substruct {
 	unsigned char unk00[12];
 	int unk0C;
 	int unk10;
@@ -17,13 +32,16 @@ struct Work {
 	int unk18;
 	unsigned unk1C;
 	int unk20;
-	unsigned char unk24[60];
+	char unk24[60];
+};
+
+struct Work {
+	struct substruct substr;
 	int unk60;
 	int unk64;
 	unsigned unk68;
 	int unk6C;
-	unsigned int *unk70;
-	unsigned int *unk74;
+	unsigned int *unk70[2];
 	int unk78;  /* thread ID */
 	int unk7C;
 	unsigned char unk80[16];
@@ -33,7 +51,7 @@ struct Work work;
 
 /*---------------------------------------------------------------------------*/
 
-void _ftext( void )
+void LoadDaemonThread( void )
 {
 	int temp20;
 	int temp1C;
@@ -49,39 +67,39 @@ void _ftext( void )
 		{
 		case 0:  /* fallthrough */
 		case 4:
-			work.unk60 = work.unk18;
+			work.unk60 = work.substr.unk18;
 
-			if( (work.unk6C = pcOpen( &work.unk24, 1 )) < 0 ){
-				work.unk10 = 4;
+			if( (work.unk6C = pcOpen( work.substr.unk24, 1 )) < 0 ){
+				work.substr.unk10 = 4;
 				sif_send_mem( work.unk60, &work, 0x60 );
 				break;
 			}
 
-			work.unk14 = pcLseek( work.unk6C, 0, 2 );
+			work.substr.unk14 = pcLseek( work.unk6C, 0, 2 );
 
 			if( !work.unk7C ){
 				pcLseek( work.unk6C, 0, 0 );
-				work.unk20 = 0;
+				work.substr.unk20 = 0;
 			} else {
-				pcLseek( work.unk6C, work.unk20, 0 );
+				pcLseek( work.unk6C, work.substr.unk20, 0 );
 			}
 
-			work.unk10 = 0;
+			work.substr.unk10 = 0;
 			sif_send_mem( work.unk60, &work, 0x60 );
 			break;
 
 		case 1:
-			temp20 = work.unk1C;
+			temp20 = work.substr.unk1C;
 			temp1C = 0;
 			temp14 = 0;
-			temp10 = work.unk18;
-			work.unk10 = 2;
+			temp10 = work.substr.unk18;
+			work.substr.unk10 = 2;
 
 			sif_send_mem( work.unk60, &work, 0x60 );
 
-			while( temp20 < 1 && work.unk7C != 3 ){
-				temp18 = (temp20 <= 0x8000) ? 0x8000 : temp20;
-				work.unk20 += pcRead( work.unk6C, work.unk70[temp1C], temp18 );
+			while( temp20 > 0 && work.unk7C != 3 ){
+				temp18 = (temp20 > 0x8000) ? 0x8000 : temp20;
+				work.substr.unk20 += pcRead( work.unk6C, work.unk70[temp1C], temp18 );
 				work.unk64 -= temp18;
 
 				if( temp14 ){
@@ -89,7 +107,7 @@ void _ftext( void )
 				}
 
 				do {
-					sif_send_mem( temp10, work.unk70[temp1C], (temp18+0xF) & 0xFFFFFFF0 );
+					temp14 = sif_send_mem( temp10, work.unk70[temp1C], (temp18+0xF) & 0xFFFFFFF0 );
 				} while( !temp14 );
 
 				temp20 -= temp18;
@@ -101,13 +119,13 @@ void _ftext( void )
 				while( sif_check_status( temp14 ) >= 0 );
 			}
 
-			work.unk10 = 0;
+			work.substr.unk10 = 0;
 			sif_send_mem( work.unk60, &work, 0x60 );
 			break;
 
 		case 2:
 			pcClose( work.unk6C );
-			work.unk10 = 0;
+			work.substr.unk10 = 0;
 			sif_send_mem( work.unk60, &work, 0x60 );
 			work.unk6C = -1;
 			break;
@@ -117,7 +135,7 @@ void _ftext( void )
 				pcClose( work.unk6C );
 				work.unk6C = -1;
 			}
-			work.unk10 = 0;
+			work.substr.unk10 = 0;
 			sif_send_mem( work.unk60, &work, 0x60 );
 			break;
 		}
@@ -126,10 +144,10 @@ void _ftext( void )
 
 /*---------------------------------------------------------------------------*/
 
-void CallBackFunc( struct Work *a0, struct Work *a1 )
+void CallBackFunc( struct Work *a0, volatile struct Work *a1 )
 {
-	struct Work *temp = a1;
-	temp->unk7C = a0->unk0C;
+	volatile struct Work *temp = a1;
+	temp->unk7C = a0->substr.unk0C;
 
 	switch( temp->unk7C )
 	{
@@ -137,15 +155,15 @@ void CallBackFunc( struct Work *a0, struct Work *a1 )
 	case 0:
 		if( temp->unk6C > 0 ) break;
 		temp->unk6C = -1;
-		memcpy( temp, a0, 0x60 );
+		temp->substr = a0->substr;
 		break;
 	case 1:
 		if(temp->unk6C < 0) break;
-		memcpy( temp, a0, 0x60 );
+		temp->substr = a0->substr;
 		break;
 	case 2:
 		if( temp->unk6C < 0 ) break;
-		memcpy( temp, a0, 0x60 );
+		temp->substr = a0->substr;
 		break;
 	default:
 		break;
@@ -161,15 +179,15 @@ int FS_StartDaemonIOP( void )
 	struct ThreadParam param;
 	int tid;
 
-	work.unk70 = AllocSysMemory( 0, 0x8000, 0 );
-	work.unk74 = AllocSysMemory( 0, 0x8000, 0 );
+	work.unk70[0] = AllocSysMemory( 0, 0x8000, 0 );
+	work.unk70[1] = AllocSysMemory( 0, 0x8000, 0 );
 	work.unk6C = -1;
 
 	param.attr         = TH_C;
-	param.entry        = _ftext;
+	param.entry        = LoadDaemonThread;
 	param.initPriority = 0x52;
 	param.stackSize    = 0x1000;    /* 4KB */
-	tid = createThread( &param );
+	tid = CreateThread( &param );
 
 	if( tid > 0 ){
 		work.unk78 = tid;
