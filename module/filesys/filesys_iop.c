@@ -5,6 +5,7 @@
  */
 #include <sys/types.h>
 #include <kernel.h>
+#include <sifcmd.h>
 
 // TODO: from jsifman, replace once decompiled
 extern u_int sif_send_mem( u_int *, volatile void *, u_int );
@@ -24,19 +25,18 @@ extern int pcLseek(int, u_int, u_int);
 
 ModuleInfo Module = { "ZOE_FILESYS", 0x0101 };
 
-struct substruct {
-	unsigned char unk00[12];
-	int unk0C;
-	int unk10;
-	int unk14;
-	int unk18;
-	unsigned unk1C;
-	int unk20;
-	char unk24[60];
-};
+typedef struct _FS_FILEINFO {
+	sceSifCmdHdr hdr;
+	int  status;
+	int  size;
+	void*   pBuf;
+	int  sizeRead;
+	int  pos;
+	char    nmFile[60];
+} FS_FILEINFO;
 
 struct Work {
-	struct substruct substr;
+	FS_FILEINFO fileinfo;
 	int unk60;
 	int unk64;
 	unsigned unk68;
@@ -67,39 +67,39 @@ void LoadDaemonThread( void )
 		{
 		case 0:  /* fallthrough */
 		case 4:
-			work.unk60 = work.substr.unk18;
+			work.unk60 = work.fileinfo.pBuf;
 
-			if( (work.unk6C = pcOpen( work.substr.unk24, 1 )) < 0 ){
-				work.substr.unk10 = 4;
+			if( (work.unk6C = pcOpen( work.fileinfo.nmFile, 1 )) < 0 ){
+				work.fileinfo.status = 4;
 				sif_send_mem( work.unk60, &work, 0x60 );
 				break;
 			}
 
-			work.substr.unk14 = pcLseek( work.unk6C, 0, 2 );
+			work.fileinfo.size = pcLseek( work.unk6C, 0, 2 );
 
 			if( !work.unk7C ){
 				pcLseek( work.unk6C, 0, 0 );
-				work.substr.unk20 = 0;
+				work.fileinfo.pos = 0;
 			} else {
-				pcLseek( work.unk6C, work.substr.unk20, 0 );
+				pcLseek( work.unk6C, work.fileinfo.pos, 0 );
 			}
 
-			work.substr.unk10 = 0;
+			work.fileinfo.status = 0;
 			sif_send_mem( work.unk60, &work, 0x60 );
 			break;
 
 		case 1:
-			temp20 = work.substr.unk1C;
+			temp20 = work.fileinfo.sizeRead;
 			temp1C = 0;
 			temp14 = 0;
-			temp10 = work.substr.unk18;
-			work.substr.unk10 = 2;
+			temp10 = work.fileinfo.pBuf;
+			work.fileinfo.status = 2;
 
 			sif_send_mem( work.unk60, &work, 0x60 );
 
 			while( temp20 > 0 && work.unk7C != 3 ){
 				temp18 = (temp20 > 0x8000) ? 0x8000 : temp20;
-				work.substr.unk20 += pcRead( work.unk6C, work.unk70[temp1C], temp18 );
+				work.fileinfo.pos += pcRead( work.unk6C, work.unk70[temp1C], temp18 );
 				work.unk64 -= temp18;
 
 				if( temp14 ){
@@ -119,13 +119,13 @@ void LoadDaemonThread( void )
 				while( sif_check_status( temp14 ) >= 0 );
 			}
 
-			work.substr.unk10 = 0;
+			work.fileinfo.status = 0;
 			sif_send_mem( work.unk60, &work, 0x60 );
 			break;
 
 		case 2:
 			pcClose( work.unk6C );
-			work.substr.unk10 = 0;
+			work.fileinfo.status = 0;
 			sif_send_mem( work.unk60, &work, 0x60 );
 			work.unk6C = -1;
 			break;
@@ -135,7 +135,7 @@ void LoadDaemonThread( void )
 				pcClose( work.unk6C );
 				work.unk6C = -1;
 			}
-			work.substr.unk10 = 0;
+			work.fileinfo.status = 0;
 			sif_send_mem( work.unk60, &work, 0x60 );
 			break;
 		}
@@ -147,7 +147,7 @@ void LoadDaemonThread( void )
 void CallBackFunc( struct Work *a0, volatile struct Work *a1 )
 {
 	volatile struct Work *temp = a1;
-	temp->unk7C = a0->substr.unk0C;
+	temp->unk7C = a0->fileinfo.hdr.opt;
 
 	switch( temp->unk7C )
 	{
@@ -155,15 +155,15 @@ void CallBackFunc( struct Work *a0, volatile struct Work *a1 )
 	case 0:
 		if( temp->unk6C > 0 ) break;
 		temp->unk6C = -1;
-		temp->substr = a0->substr;
+		temp->fileinfo = a0->fileinfo;
 		break;
 	case 1:
 		if(temp->unk6C < 0) break;
-		temp->substr = a0->substr;
+		temp->fileinfo = a0->fileinfo;
 		break;
 	case 2:
 		if( temp->unk6C < 0 ) break;
-		temp->substr = a0->substr;
+		temp->fileinfo = a0->fileinfo;
 		break;
 	default:
 		break;
