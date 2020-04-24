@@ -1,7 +1,7 @@
 /*
- *【 LibCM 】ver.20200411
+ *【 LibCM 】ver.20200423
  * Copyright (C) 2019 2020 J.Ingram
- * All rights reserved.
+ * All Rights Reserved.
  */
 /* cmtypes.h
  * Common Type Definitions
@@ -171,7 +171,7 @@ typedef unsigned int u128      __attribute__((mode(TI)));
 /*
  * 8-bit (1 Byte)
  */
-typedef union union8 {
+typedef union cmUnion8 {
 	struct {
 		u_byte bit0:1;  /*   1 (0x01) */
 		u_byte bit1:1;  /*   2 (0x02) */
@@ -181,81 +181,81 @@ typedef union union8 {
 		u_byte bit5:1;  /*  32 (0x20) */
 		u_byte bit6:1;  /*  64 (0x40) */
 		u_byte bit7:1;  /* 128 (0x80) */
-	} bits;
+	} oct;
 	s_int8 s8;
 	u_int8 u8;
-} union8;
+} cmUnion8;
 
 /*
  * 16-bit (2 Bytes)
  */
-typedef union union16 {
-	s_int16 s16;
-	u_int16 u16;
-	s_int8  s8[2];
-	u_int8  u8[2];
-	union8  c8[2];
-} union16;
+typedef union cmUnion16 {
+	s_int16     s16;
+	u_int16     u16;
+	s_int8      s8[2];
+	u_int8      u8[2];
+	cmUnion8    r8[2];
+} cmUnion16;
 
 /*
  * 32-bit (4 Bytes)
  */
-typedef union union32 {
-	s_int32 s32;
-	u_int32 u32;
-	float32 f32;
-	s_int16 s16[2];
-	u_int16 u16[2];
-	union16 c16[2];
-	s_int8  s8[4];
-	u_int8  u8[4];
-	union8  c8[4];
-} union32;
+typedef union cmUnion32 {
+	s_int32     s32;
+	u_int32     u32;
+	float32     f32;
+	s_int16     s16[2];
+	u_int16     u16[2];
+	cmUnion16   r16[2];
+	s_int8      s8[4];
+	u_int8      u8[4];
+	cmUnion8    r8[4];
+} cmUnion32;
 
 /*
  * 64-bit (8 Bytes)
  */
-typedef union union64 {
-	s_int64 s64;
-	u_int64 u64;
-	float64 f64;
-	s_int32 s32[2];
-	u_int32 u32[2];
-	float32 f32[2];
-	union32 c32[2];
-	s_int16 s16[4];
-	u_int16 u16[4];
-	union16 c16[4];
-	s_int8  s8[8];
-	u_int8  u8[8];
-	union8  c8[8];
-} union64;
+typedef union cmUnion64 {
+	s_int64     s64;
+	u_int64     u64;
+	float64     f64;
+	s_int32     s32[2];
+	u_int32     u32[2];
+	float32     f32[2];
+	cmUnion32   r32[2];
+	s_int16     s16[4];
+	u_int16     u16[4];
+	cmUnion16   r16[4];
+	s_int8      s8[8];
+	u_int8      u8[8];
+	cmUnion8    r8[8];
+} cmUnion64;
 
 /*
  * 128-bit (16 Bytes)
  */
-typedef union union128 {
+typedef union cmUnion128 {
 #ifdef CM_HAVE_INT128
-	s_int128 s128;
-	u_int128 u128;
+	s_int128    s128;
+	u_int128    u128;
 #endif
 #ifdef CM_HAVE_FLOAT128
-	float128 f128;
+	float128    f128;
 #endif
-	s_int64  s64[2];
-	u_int64  u64[2];
-	float64  f64[2];
-	union64  c64[2];
-	s_int32  s32[4];
-	u_int32  u32[4];
-	float32  f32[4];
-	union32  c32[4];
-	s_int16  s16[8];
-	u_int16  u16[8];
-	union16  c16[8];
-	s_int8   s8[16];
-	u_int8   u8[16];
-	union8   c8[16];
-} union128;
+	s_int64     s64[2];
+	u_int64     u64[2];
+	float64     f64[2];
+	cmUnion64   r64[2];
+	s_int32     s32[4];
+	u_int32     u32[4];
+	float32     f32[4];
+	cmUnion32   r32[4];
+	s_int16     s16[8];
+	u_int16     u16[8];
+	cmUnion16   r16[8];
+	s_int8      s8[16];
+	u_int8      u8[16];
+	cmUnion8    r8[16];
+} cmUnion128;
 
 #endif /* END OF FILE */
