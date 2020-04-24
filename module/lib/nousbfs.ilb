@@ -1,0 +1,10 @@
+#IOP-ILB# $Id$
+L usbfs
+V 0x0101
+F 0x0000
+E 004 pcInit
+E 005 pcOpen
+E 006 pcClose
+E 007 pcRead
+E 008 pcWrite
+E 009 pcLseek
