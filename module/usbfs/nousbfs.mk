@@ -23,7 +23,7 @@ IOPMODDIR = $(SCETOP)/iop/modules
 INCDIR = ../include
 LIBDIR = ../lib
 
-INCDIRS = -I. -I$(INCDIR) -I$(SCEINCDIR)
+INCDIRS = -I$(INCDIR) -I$(SCEINCDIR)
 
 ILIBS = 
 
