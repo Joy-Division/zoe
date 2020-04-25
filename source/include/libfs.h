@@ -24,26 +24,25 @@
 // ref.default.pdb
 typedef struct _FS_FILEINFO {
 	sceSifCmdHdr hdr;
-	sint32  status;
-	sint32  size;
-	void*   pBuf;
-	sint32  sizeRead;
-	sint32  pos;
-	char    nmFile[60];
+	int32	status;
+	int32	size;
+	void*	pBuf;
+	int32	sizeRead;
+	int32	pos;
+	char	nmFile[60];
 } FS_FILEINFO;
 
 // ref.default.pdb
 typedef struct _FS_PACKHDR {
-	sint32 nFile;
-	uint32 flag;
-	sint32 pad0;
-	sint32 pad1;
+	int32	nFile;
+	uint32	flag;
+	int32	pad0,pad1;
 } FS_PACKHDR;
 
 // ref.default.pdb
 typedef struct _FS_FILEHDR {
-	char    nmFile[44];
-	sint32  size;
+	char	nmFile[44];
+	int32	size;
 } FS_FILEHDR;
 
 // ref.default.pdb
@@ -64,11 +63,11 @@ public: //! check modifier
 class FS_LOAD_INFO
 {
 public: //! check modifier
-	void*           pMem;
-	FS_EXTEND_INFO* pInfo;
-	uint32          u32Pos;
-	uint8           u8State;
-	sint32          nAllocType;
+	void*			pMem;
+	FS_EXTEND_INFO*	pInfo;
+	uint32			u32Pos;
+	uint8			u8State;
+	int32			nAllocType;
 };
 
 /*---------------------------------------------------------------------------*
@@ -79,8 +78,8 @@ public: //! check modifier
 class FS_CACHEMEMBER
 {
 public: //! check modifier
-	uint32  u32Id;
-	void*   pBuf;
+	uint32	u32Id;
+	void*	pBuf;
 };
 
 // ref.default.pdb
@@ -88,18 +87,18 @@ class FS_CACHE
 {
 public: //! check modifier
 	FS_CACHEMEMBER* pMember;
-	sint32          size;
+	int32 size;
 
 private:
-	FS_CACHEMEMBER* Find(uint32);
-	void            Shift(FS_CACHEMEMBER*);
+	FS_CACHEMEMBER*	Find(uint32);
+	void			Shift(FS_CACHEMEMBER*);
 
 public:
-	void    Init(FS_CACHEMEMBER*, sint32);
-	void    Set(uint32, void*);
-	void    Unset(uint32);
-	void*   Get(uint32);
-	void    Destroy();
+	void	Init(FS_CACHEMEMBER*, int32);
+	void	Set(uint32, void*);
+	void	Unset(uint32);
+	void*	Get(uint32);
+	void	Destroy();
 };
 
 
@@ -113,16 +112,16 @@ class FS_LOADER:
   public EV_JOB    //! check modifier
 {
 public: //! check modifier
-	FS_FILEINFO savefileinfo;
-	char        nmStage[16];
-	sint32      indx;
-	void*       pBufLoad;
-	sint32      nLoadPakFile;
-	bool32      bOpen;
-	bool32      bInterrupt;
-	void*       pLastReadAddress;
-	sint32      nLastReadSize;
-	sint32      nLastReadOffset;
+	FS_FILEINFO	savefileinfo;
+	char		nmStage[16];
+	int32		indx;
+	void*		pBufLoad;
+	int32		nLoadPakFile;
+	bool32		bOpen;
+	bool32		bInterrupt;
+	void*		pLastReadAddress;
+	int32		nLastReadSize;
+	int32		nLastReadOffset;
 
 	enum STATE {
 		IDLE,
@@ -145,16 +144,16 @@ public: //! check modifier
 		S_REOPEN
 	} phSuspend;
 
-	EV_EVENT*       pEv;
-	sint32          nFiles;
-	sint32          nRestFiles;
-	char*           pnmFilesTop[64];
-	char**          ppnmFiles;
-	char*           pnmFileLoad;
-	FS_LOAD_INFO    Info[256];
+	EV_EVENT*		pEv;
+	int32			nFiles;
+	int32			nRestFiles;
+	char*			pnmFilesTop[64];
+	char**			ppnmFiles;
+	char*			pnmFileLoad;
+	FS_LOAD_INFO	Info[256];
 
 public:
-	void CallInitializer(void*, char*, uint32, sint32);
+	void CallInitializer(void*, char*, uint32, int32);
 	void InitStageLoad();
 
 	FS_LOADER(const FS_LOADER&);
@@ -162,18 +161,18 @@ public:
 
 	void Act(); // override GV_ACTOR::Act()
 
-	sint32  SetStage(EV_EVENT*);
-	void    Load();
-	sint32  CheckSuspend();
-	sint32  StartStage();
-	void    Interrupt();
-	sint32  CheckBusy();
-	sint32  CheckReading();
-	void    Restart();
-	void    RequestSetStage(EV_EVENT*, char*, sint32, char**);
+	int32	SetStage(EV_EVENT*);
+	void	Load();
+	int32	CheckSuspend();
+	int32	StartStage();
+	void	Interrupt();
+	int32	CheckBusy();
+	int32	CheckReading();
+	void	Restart();
+	void	RequestSetStage(EV_EVENT*, char*, int32, char**);
 
-	void SuspendJob(EV_EVENT*); // override EV_JOB::SuspendJob()
-	void WakeupJob(EV_EVENT*);  // override EV_JOB::WakeupJob()
+	void SuspendJob(EV_EVENT*);	// override EV_JOB::SuspendJob()
+	void WakeupJob(EV_EVENT*);	// override EV_JOB::WakeupJob()
 
 	~FS_LOADER();
 
