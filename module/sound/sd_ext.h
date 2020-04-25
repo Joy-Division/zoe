@@ -19,17 +19,6 @@ extern void sif_set_callback_func(u_int, void (*)(void*, int*), int*);
 extern void sif_rv_release_queue();
 extern u_int *sif_get_mem(void *, u_int, u_int);
 
-// TODO: from usbfs
-extern int pcOpen(char *, int);
-extern int pcClose(int);
-extern int pcRead(int, void *, int);
-extern int pcLseek(int, u_int, u_int);
-
-// TODO: from cdbios
-extern void cdRead(int, void *, int);
-extern void cdOpen();
-extern void cdClose();
-
 /*---------------------------------------------------------------------------*
  * Global Data
  *---------------------------------------------------------------------------*/

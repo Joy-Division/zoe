@@ -8,6 +8,15 @@
 #include <sys/types.h>
 #include <stdio.h>
 #include <kernel.h>
+
+// TODO: remove when "cdbios.h" is ready
+extern void cdRead(int, void *, int);
+extern void cdOpen();
+extern void cdClose();
+
+//#include "cdbios.h"
+#include "nousbfs.h"
+
 #include "sd_incl.h"
 #include "sd_ext.h"
 
