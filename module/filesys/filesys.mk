@@ -46,8 +46,8 @@ clean:
 $(PROGNAME): $(OBJS)
 	$(LINK.o) -o $@ $(OBJS) $(ILIBS)
 
-# stripping is required for checksumming as symbols are virtually impossible to
-# reproduce...
+# Stripping of the IRX is required for checksum comparisons
+# as the symbol table is virtually impossible to reproduce.
 test: $(PROGNAME)
 	@$(IFIXUP) -o filesys-retail-jp.irx $(PROGNAME)
 	@# sha1sum filesys-retail-jp.irx
