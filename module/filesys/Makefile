@@ -13,7 +13,7 @@ cdbios cdbios_ee:
 	$(MAKE) -f$@.mk
 
 hdbios hdbios_ee:
-	@echo "Skipping $@ (not implemented)"
+	@echo "Skipping $@ (PLACEHOLDER)"
 
 filesys:
 	$(MAKE) -f$@.mk
