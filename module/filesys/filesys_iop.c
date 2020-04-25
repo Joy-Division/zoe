@@ -7,18 +7,14 @@
 #include <kernel.h>
 #include <sifcmd.h> /* for FS_FILEINFO */
 
+#include "nousbfs.h"
+
 // TODO: from jsifman, replace once decompiled
 extern u_int sif_send_mem( u_int *, volatile void *, u_int );
-extern void sif_set_callback_func(u_int, void (*)(void*, volatile void*), void*);
+extern void sif_set_callback_func( u_int, void (*)(void*, volatile void*), void* );
 extern void sif_rv_release_queue();
-extern int sif_check_status(u_int);
-extern u_int *sif_get_mem(void *, u_int, u_int);
-
-// TODO: from usbfs
-extern int pcOpen(char *, int);
-extern int pcClose(int);
-extern int pcRead(int, void *, int);
-extern int pcLseek(int, u_int, u_int);
+extern int sif_check_status( u_int );
+extern u_int *sif_get_mem( void *, u_int, u_int );
 
 /*---------------------------------------------------------------------------*/
 
