@@ -25,11 +25,11 @@ LIBDIR = ../lib
 
 INCDIRS = -I$(INCDIR) -I$(SCEINCDIR)
 
-ILIBS = 
+ILIBS =
 
 CFLAGS  = -Wall -G0 $(INCDIRS) -O0 -O1
 ASFLAGS = $(INCDIRS) -G0
-LDFLAGS  = 
+LDFLAGS  =
 
 PROGNAME = nousbfs.irx
 
@@ -45,10 +45,10 @@ all: $(PROGNAME)
 
 clean:
 	-rm -f $(OBJS) $(ENTRYFILE) $(PROGNAME)
-	
+
 $(ENTRYFILE): $(ENTRYTABLE)
 	$(ILBGEN) -d $(LIBDIR)/$(ILBFILE) -e $(ENTRYFILE) $(ENTRYTABLE)
-	
+
 nousbfs_entry.o: $(ENTRYFILE)
 
 $(PROGNAME): $(OBJS)
