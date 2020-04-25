@@ -5,3 +5,8 @@
 #
 # ver."ZONE OF THE ENDERS"
 #
+
+all: usbfs nousbfs
+
+usbfs nousbfs:
+	$(MAKE) -f$@.mk
