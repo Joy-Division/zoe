@@ -1,8 +1,6 @@
 #ifndef REDIRECT_FILESYS_H
 #define REDIRECT_FILESYS_H
 
-//
-// PLACEHOLDER
-//
+#include "../filesys/filesys_iop.h"
 
 #endif /* END OF FILE */

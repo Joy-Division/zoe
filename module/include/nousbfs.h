@@ -1,8 +1,6 @@
 #ifndef REDIRECT_NOUSBFS_H
 #define REDIRECT_NOUSBFS_H
 
-//
-// PLACEHOLDER
-//
+#include "../usbfs/nousbfs.h"
 
 #endif /* END OF FILE */
