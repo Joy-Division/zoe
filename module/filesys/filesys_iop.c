@@ -5,7 +5,7 @@
  */
 #include <sys/types.h>
 #include <kernel.h>
-#include <sifcmd.h>
+#include <sifcmd.h> /* for FS_FILEINFO */
 
 // TODO: from jsifman, replace once decompiled
 extern u_int sif_send_mem( u_int *, volatile void *, u_int );
@@ -20,31 +20,31 @@ extern int pcClose(int);
 extern int pcRead(int, void *, int);
 extern int pcLseek(int, u_int, u_int);
 
-// todo: add prototypes/includes
-// todo: documentation
+/*---------------------------------------------------------------------------*/
 
 ModuleInfo Module = { "ZOE_FILESYS", 0x0101 };
 
+// ref."default.pdb"
 typedef struct _FS_FILEINFO {
 	sceSifCmdHdr hdr;
-	int  status;
-	int  size;
-	void*   pBuf;
-	int  sizeRead;
-	int  pos;
-	char    nmFile[60];
+	int		status;
+	int		size;
+	void*	pBuf;
+	int		sizeRead;
+	int		pos;
+	char	nmFile[60];
 } FS_FILEINFO;
 
 struct Work {
 	FS_FILEINFO fileinfo;
-	int unk60;
-	int unk64;
-	unsigned unk68;
-	int unk6C;
-	unsigned int *unk70[2];
-	int unk78;  /* thread ID */
-	int unk7C;
-	unsigned char unk80[16];
+	int		unk60;
+	int		unk64;
+	u_int	unk68;
+	int		unk6C;
+	u_int*	unk70[2];
+	int		unk78;		/* thread ID */
+	int		unk7C;
+	u_char	unk80[16];	/* UNUSED */
 };
 
 struct Work work;
@@ -158,7 +158,7 @@ void CallBackFunc( struct Work *a0, volatile struct Work *a1 )
 		temp->fileinfo = a0->fileinfo;
 		break;
 	case 1:
-		if(temp->unk6C < 0) break;
+		if( temp->unk6C < 0 ) break;
 		temp->fileinfo = a0->fileinfo;
 		break;
 	case 2:
