@@ -1,61 +1,68 @@
 /*
- *【 LibCM 】ver.20200423
+ *【 LibCM 】ver.20200504
  * Copyright (C) 2019 2020 J.Ingram
  * All Rights Reserved.
- */
-/* cmtypes.h
- * Common Type Definitions
  */
 #ifndef INCLUDED_CMTYPES_H
 #define INCLUDED_CMTYPES_H
 
 #include "cmconf.h"
 
-/*---------------------------------------------------------------------------*/
+/*===========================================================================*/
 /* Integer Types w/ Unspecified Sign                                         */
+/*===========================================================================*/
+/* These types are declared as preprocessor macros to sidestep a limitation  */
+/* of typedef aliasing in which the user becomes unable to specificy the     */
+/* alias's signedness.                                                       */
 /*---------------------------------------------------------------------------*/
+
 #ifndef byte
-#define byte     CM_TYPE_INT8
+#define byte    CM_TYPE_INT8
 #endif
 #ifndef llong
-#define llong    long long
-#endif
-/*---------------------------------------------------------------------------*/
-#ifndef int8
-#define int8     CM_TYPE_INT8
-#endif
-#ifndef int16
-#define int16    CM_TYPE_INT16
-#endif
-#ifndef int32
-#define int32    CM_TYPE_INT32
-#endif
-#ifndef int64
-#define int64    CM_TYPE_INT64
-#endif
-/*---------------------------------------------------------------------------*/
-#ifndef char8
-#define char8    CM_TYPE_INT8
-#endif
-#ifndef char16
-#define char16   CM_TYPE_INT16
-#endif
-#ifndef short16
-#define short16  CM_TYPE_INT16
-#endif
-#ifndef short32
-#define short32  CM_TYPE_INT32
-#endif
-#ifndef long32
-#define long32   CM_TYPE_INT32
-#endif
-#ifndef long64
-#define long64   CM_TYPE_INT64
+#define llong   long long
 #endif
 
 /*---------------------------------------------------------------------------*/
-/* Integer Types w/ Unspecified Width                                        */
+
+#ifndef int8
+#define int8    CM_TYPE_INT8
+#endif
+#ifndef int16
+#define int16   CM_TYPE_INT16
+#endif
+#ifndef int32
+#define int32   CM_TYPE_INT32
+#endif
+#ifndef int64
+#define int64   CM_TYPE_INT64
+#endif
+
 /*---------------------------------------------------------------------------*/
+
+#ifndef char8
+#define char8   CM_TYPE_INT8
+#endif
+#ifndef char16
+#define char16  CM_TYPE_INT16
+#endif
+#ifndef short16
+#define short16 CM_TYPE_INT16
+#endif
+#ifndef short32
+#define short32 CM_TYPE_INT32
+#endif
+#ifndef long32
+#define long32  CM_TYPE_INT32
+#endif
+#ifndef long64
+#define long64  CM_TYPE_INT64
+#endif
+
+/*===========================================================================*/
+/* Integer Types w/ Unspecified Width                                        */
+/*===========================================================================*/
+
 typedef   signed char       schar,  s_char;
 typedef unsigned char       uchar,  u_char;
 typedef   signed short      sshort, s_short;
@@ -67,9 +74,10 @@ typedef unsigned long       ulong,  u_long;
 typedef   signed long long  sllong, s_llong;
 typedef unsigned long long  ullong, u_llong;
 
-/*---------------------------------------------------------------------------*/
+/*===========================================================================*/
 /* Integer Types w/ Specified Width                                          */
-/*---------------------------------------------------------------------------*/
+/*===========================================================================*/
+
 typedef   signed CM_TYPE_INT8   sbyte, s_byte;
 typedef unsigned CM_TYPE_INT8   ubyte, u_byte;
 
@@ -95,9 +103,10 @@ typedef unsigned CM_TYPE_INT32  ulong32,  u_long32;
 typedef   signed CM_TYPE_INT64  slong64,  s_long64;
 typedef unsigned CM_TYPE_INT64  ulong64,  u_long64;
 
-/*---------------------------------------------------------------------------*/
+/*===========================================================================*/
 /* Floating Point Types w/ Specified Width                                   */
-/*---------------------------------------------------------------------------*/
+/*===========================================================================*/
+
 typedef CM_TYPE_FLOAT32  float32, f32;
 typedef CM_TYPE_FLOAT64  float64, f64;
 
@@ -119,9 +128,10 @@ typedef float f96      __attribute__((mode(XF)));
 #endif
 #endif /* CM_HAVE_MODEXF */
 
-/*---------------------------------------------------------------------------*/
+/*===========================================================================*/
 /* 128bit Integer Types (Tetra-Integer Mode)                                 */
-/*---------------------------------------------------------------------------*/
+/*===========================================================================*/
+
 #if defined(CM_HAVE_MODETI)
 typedef /******/ int int128    __attribute__((mode(TI)));
 typedef /******/ int long128   __attribute__((mode(TI)));
@@ -138,9 +148,10 @@ typedef unsigned int u128      __attribute__((mode(TI)));
 #define CM_HAVE_INT128 1
 #endif /* CM_HAVE_MODETI */
 
-/*---------------------------------------------------------------------------*/
+/*===========================================================================*/
 /* Fake Boolean Types                                                        */
-/*---------------------------------------------------------------------------*/
+/*===========================================================================*/
+
 #ifndef bool8
 #define bool8   CM_TYPE_INT8
 #endif
@@ -164,24 +175,25 @@ typedef unsigned int u128      __attribute__((mode(TI)));
 #define FALSE (0)  /* Any changes must be synchronized. */
 #endif
 
-/*---------------------------------------------------------------------------*/
+/*===========================================================================*/
 /* Generic Union Types                                                       */
-/*---------------------------------------------------------------------------*/
+/*===========================================================================*/
 
 /*
  * 8-bit (1 Byte)
  */
 typedef union cmUnion8 {
 	struct {
-		u_byte bit0:1;  /*   1 (0x01) */
-		u_byte bit1:1;  /*   2 (0x02) */
-		u_byte bit2:1;  /*   4 (0x04) */
-		u_byte bit3:1;  /*   8 (0x08) */
-		u_byte bit4:1;  /*  16 (0x10) */
-		u_byte bit5:1;  /*  32 (0x20) */
-		u_byte bit6:1;  /*  64 (0x40) */
-		u_byte bit7:1;  /* 128 (0x80) */
-	} oct;
+		u_byte
+			bit0:1, /*   1 (0x01) */
+			bit1:1, /*   2 (0x02) */
+			bit2:1, /*   4 (0x04) */
+			bit3:1, /*   8 (0x08) */
+			bit4:1, /*  16 (0x10) */
+			bit5:1, /*  32 (0x20) */
+			bit6:1, /*  64 (0x40) */
+			bit7:1; /* 128 (0x80) */
+	} f; /* bitField */
 	s_int8 s8;
 	u_int8 u8;
 } cmUnion8;
