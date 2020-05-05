@@ -8,6 +8,7 @@
 #include <sifcmd.h> /* for FS_FILEINFO */
 
 #include "nousbfs.h"
+//#include "jsifman.h"
 
 // TODO: from jsifman, replace once decompiled
 extern u_int sif_send_mem( u_int *, volatile void *, u_int );
