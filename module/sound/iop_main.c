@@ -35,23 +35,36 @@ void sd_set_status( void )
 	u_int flags = 0;
 	com_queue[131] = 0;
 
-	if( sng_status == 3 ){ flags |= 0x4000; }
+	if( sng_status == 3 )
+		flags |= 0x4000;
 
 	/* --- Stream Load --- */
 
-	if( str2_iop_load_set[1] ){ flags |= 0x2000; }
-	if( str2_iop_load_set[0] ){ flags |= 0x1000; }
+	if( str2_iop_load_set[1] )
+		flags |= 0x2000;
 
-	if( str2_load_code[1] || lnr8_load_code ){ flags |= 0x0040; }
-	if( str2_load_code[0] || str_load_code  ){ flags |= 0x0020; }
+	if( str2_iop_load_set[0] )
+		flags |= 0x1000;
 
-	if( str2_first_load[1] || lnr8_first_load ){ flags |= 0x0010; }
-	if( str2_first_load[0] || str_first_load  ){ flags |= 0x0008; }
+	if( str2_load_code[1] || lnr8_load_code )
+		flags |= 0x0040;
+
+	if( str2_load_code[0] || str_load_code )
+		flags |= 0x0020;
+
+	if( str2_first_load[1] || lnr8_first_load )
+		flags |= 0x0010;
+
+	if( str2_first_load[0] || str_first_load )
+		flags |= 0x0008;
 
 	/* --- Wave/SE/Song Load --- */
 
-	if( wave_load_code || pak_load_status ){ flags |= 0x0004; }
-	if( se_load_code   || pak_load_status ){ flags |= 0x0002; }
+	if( wave_load_code || pak_load_status )
+		flags |= 0x0004;
+
+	if( se_load_code || pak_load_status )
+		flags |= 0x0002;
 
 	if( sng_load_code || pak_load_status ){
 		flags |= 0x0001;
@@ -184,7 +197,7 @@ int createThread( void )
 	param.attr         = TH_C;
 	param.entry        = SdMain;
 	param.initPriority = 0x41;
-	param.stackSize    = 0x4000;    /* 16KB */
+	param.stackSize    = 0x4000;	// 16KB
 	param.option       = 0;
 	id_SdMain = CreateThread( &param );
 	if( 0 >= id_SdMain ){};
@@ -193,7 +206,7 @@ int createThread( void )
 	param.attr         = TH_C;
 	param.entry        = SdEELoad;
 	param.initPriority = 0x40;
-	param.stackSize    = 0x4000;    /* 16KB */
+	param.stackSize    = 0x4000;	// 16KB
 	param.option       = 0;
 	id_SdEELoad = CreateThread( &param );
 	if( 0 >= id_SdEELoad ){};
@@ -202,7 +215,7 @@ int createThread( void )
 	param.attr         = TH_C;
 	param.entry        = SdSet;
 	param.initPriority = 0x3F;
-	param.stackSize    = 0x2000;    /* 8KB */
+	param.stackSize    = 0x2000;	// 8KB
 	param.option       = 0;
 	id_SdSet = CreateThread( &param );
 	if( 0 >= id_SdSet ){};
@@ -212,7 +225,7 @@ int createThread( void )
 	param.attr         = TH_C;
 	param.entry        = SdInt;
 	param.initPriority = 0x3E;
-	param.stackSize    = 0x4000;    /* 16KB */
+	param.stackSize    = 0x4000;	// 16KB
 	param.option       = 0;
 	id_SdInt = CreateThread( &param );
 	if( 0 >= id_SdInt ){};
@@ -232,16 +245,16 @@ int start()
 	int tid;
 
 	FlushDcache();
-	sceSdInit( SD_INIT_COLD );  /* initialize all */
+	sceSdInit( SD_INIT_COLD );	// initialize all
 	CpuEnableIntr();
-	EnableIntr( INUM_DMA_4 );   /* CORE0 DMA interrupt */
-	EnableIntr( INUM_DMA_7 );   /* CORE1 DMA interrupt */
-	EnableIntr( INUM_SPU );     /* SPU2 interrupt */
+	EnableIntr( INUM_DMA_4 );	// CORE0 DMA interrupt
+	EnableIntr( INUM_DMA_7 );	// CORE1 DMA interrupt
+	EnableIntr( INUM_SPU );		// SPU2 interrupt
 
 	param.attr         = TH_C;
 	param.entry        = createThread;
 	param.initPriority = 0x40;
-	param.stackSize    = 0x400; /* 1KB */
+	param.stackSize    = 0x400;	// 1KB
 	param.option       = 0;
 	tid = CreateThread( &param );
 	if( 0 >= tid ) return NO_RESIDENT_END;

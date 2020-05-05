@@ -55,8 +55,8 @@ extern void NewDebugMode(); /* dbgmode.cc */
 static int ReplaceImageFlag = true;
 
 /*---------------------------------------------------------------------------*/
-/* SLPS99999, status: UNTESTED,   opt: ? */
-/* SLPM65019, status: INCOMPLETE, opt: ? */
+// SLPS99999, status: UNTESTED,   opt: ?
+// SLPM65019, status: INCOMPLETE, opt: ?
 
 static void SifLoad()
 {
@@ -91,8 +91,8 @@ static void SifLoad()
 }
 
 /*---------------------------------------------------------------------------*/
-/* SLPS99999, status: UNTESTED, opt: ? */
-/* SLPM65019, status: UNTESTED, opt: ? */
+// SLPS99999, status: UNTESTED, opt: ?
+// SLPM65019, status: UNTESTED, opt: ?
 
 static void ResetIOP()
 {
@@ -118,8 +118,8 @@ static void ResetIOP()
 }
 
 /*---------------------------------------------------------------------------*/
-/* SLPS99999, status: UNTESTED, opt: ? */
-/* SLPM65019, status: UNTESTED, opt: ? */
+// SLPS99999, status: UNTESTED, opt: ?
+// SLPM65019, status: UNTESTED, opt: ?
 
 int main()
 {
@@ -137,15 +137,16 @@ int main()
 
 	DG_InitClean();
 
-	ResetIOP(); // load IOPRP*.IMG
-	SifLoad();  // load IRX modules
+	ResetIOP();	// load IOPRP*.IMG
+	SifLoad();	// load IRX modules
 
 	sd_init();
 
 #if (ZOE_DEMO_BORMAN)
 	DEBUG_InitException(
-		(((0x00010000+(s16)0x8000)
-		+ (0x00200000+(s16)0x8000))-16) );
+		(((0x00010000 + (s16)0x8000)
+		+ (0x00200000 + (s16)0x8000))-16)
+	);
 #endif
 
 	GV_InitSystem();

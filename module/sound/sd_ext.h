@@ -19,9 +19,9 @@ extern void sif_set_callback_func(u_int, void (*)(void*, int*), int*);
 extern void sif_rv_release_queue();
 extern u_int *sif_get_mem(void *, u_int, u_int);
 
-/*---------------------------------------------------------------------------*
- * Global Data
- *---------------------------------------------------------------------------*/
+/*===========================================================================*/
+/* Global Data                                                               */
+/*===========================================================================*/
 
 /* iop_main.c */
 extern int id_SdInt;
@@ -221,8 +221,6 @@ extern u_short lnr16_buf[0x800];
 extern u_int lnr8_read_status[32];
 extern u_char lnr8_buf[0x8000];
 
-
-
 extern u_int rev_on_bit[2];
 //~ extern void *common;
 extern u_int mdata1;
@@ -292,9 +290,9 @@ extern u_int d1E0E8;
 /* se_tbl.c */
 extern struct SETBL se_tbl[128];
 
-/*---------------------------------------------------------------------------*
- * Prototypes
- *---------------------------------------------------------------------------*/
+/*===========================================================================*/
+/* Global Functions                                                          */
+/*===========================================================================*/
 
 /* iop_main.c */
 int createThread(void);

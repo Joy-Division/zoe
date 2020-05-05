@@ -14,8 +14,6 @@
 
 /*---------------------------------------------------------------------------*/
 
-
-
 unsigned short str_master_vol = 0x3FFF;
 unsigned short str_master_pitch = 0x1000;
 
@@ -476,11 +474,12 @@ int StrSpuTrans( void )
 			spu_str_start_ptr_l = 0x5020;
 			sceSdSetAddr( SD_CORE_1|SD_VOICE_20|SD_VA_LSAX, 0x5020 );
 			sceSdVoiceTrans(
-				1,                                   /* transfer channel */
-				SD_TRANS_MODE_WRITE|SD_TRANS_BY_DMA, /* transfer mode    */
-				str_trans_buf,                       /* IOP memory addr  */
-				(u_char *)spu_str_start_ptr_l,       /* SPU memory addr  */
-				0x0800 );                            /* transfer size    */
+				1,										// transfer channel
+				SD_TRANS_MODE_WRITE|SD_TRANS_BY_DMA,	// transfer mode
+				str_trans_buf,							// IOP memory addr
+				(u_char *)spu_str_start_ptr_l,			// SPU memory addr
+				0x0800									// transfer size
+			);
 			if( !str_mono_fg ){
 				str_play_offset = 0x0800;
 				str_unplay_size -= 0x0800;
@@ -490,11 +489,12 @@ int StrSpuTrans( void )
 			spu_str_start_ptr_r = 0x6020;
 			sceSdSetAddr( SD_CORE_1|SD_VOICE_21|SD_VA_LSAX, 0x6020 );
 			sceSdVoiceTrans(
-				1,                                   /* transfer channel */
-				SD_TRANS_MODE_WRITE|SD_TRANS_BY_DMA, /* transfer mode    */
-				str_trans_buf+str_play_offset,       /* IOP memory addr  */
-				(u_char *)spu_str_start_ptr_r,       /* SPU memory addr  */
-				0x0800 );                            /* transfer size    */
+				1,										// transfer channel
+				SD_TRANS_MODE_WRITE|SD_TRANS_BY_DMA,	// transfer mode
+				str_trans_buf+str_play_offset,			// IOP memory addr
+				(u_char *)spu_str_start_ptr_r,			// SPU memory addr
+				0x0800									// transfer size
+			);
 			str_play_offset += 0x0800;
 			str_unplay_size -= 0x0800;
 			if( !str_mono_fg ){
@@ -514,11 +514,12 @@ int StrSpuTrans( void )
 		if( !str_l_r_fg ){
 			str_trans_buf[str_play_offset+0x07F1] = str_trans_buf[str_play_offset+0x07F1] | 1;
 			sceSdVoiceTrans(
-				1,                                   /* transfer channel */
-				SD_TRANS_MODE_WRITE|SD_TRANS_BY_DMA, /* transfer mode    */
-				str_trans_buf+str_play_offset,       /* IOP memory addr  */
-				(u_char *)spu_str_start_ptr_l+0x800, /* SPU memory addr  */
-				0x0800 );                            /* transfer size    */
+				1,										// transfer channel
+				SD_TRANS_MODE_WRITE|SD_TRANS_BY_DMA,	// transfer mode
+				str_trans_buf+str_play_offset,			// IOP memory addr
+				(u_char *)spu_str_start_ptr_l+0x800,	// SPU memory addr
+				0x0800									// transfer size
+			);
 			if( !str_mono_fg ){
 				str_play_offset += 0x0800;
 				str_unplay_size -= 0x0800;
@@ -527,11 +528,12 @@ int StrSpuTrans( void )
 		} else {
 			str_trans_buf[str_play_offset+0x07F1] = str_trans_buf[str_play_offset+0x07F1] | 1;
 			sceSdVoiceTrans(
-				1,                                   /* transfer channel */
-				SD_TRANS_MODE_WRITE|SD_TRANS_BY_DMA, /* transfer mode    */
-				str_trans_buf+str_play_offset,       /* IOP memory addr  */
-				(u_char *)spu_str_start_ptr_r+0x800, /* SPU memory addr  */
-				0x0800 );                            /* transfer size    */
+				1,										// transfer channel
+				SD_TRANS_MODE_WRITE|SD_TRANS_BY_DMA,	// transfer mode
+				str_trans_buf+str_play_offset,			// IOP memory addr
+				(u_char *)spu_str_start_ptr_r+0x800,	// SPU memory addr
+				0x0800									// transfer size
+			);
 			str_play_offset += 0x0800;
 			str_unplay_size -= 0x0800;
 			str_read_status[str_play_idx] = 0;
@@ -606,19 +608,21 @@ int StrSpuTrans( void )
 				if( spu_str_idx >= 0x0800 ){
 					if( !str_l_r_fg ){
 						sceSdVoiceTrans(
-							1,                                   /* transfer channel */
-							SD_TRANS_MODE_WRITE|SD_TRANS_BY_DMA, /* transfer mode    */
-							str_trans_buf+str_play_offset,       /* IOP memory addr  */
-							(u_char *)spu_str_start_ptr_l,       /* SPU memory addr  */
-							0x0800 );                            /* transfer size    */
+							1,										// transfer channel
+							SD_TRANS_MODE_WRITE|SD_TRANS_BY_DMA,	// transfer mode
+							str_trans_buf+str_play_offset,			// IOP memory addr
+							(u_char *)spu_str_start_ptr_l,			// SPU memory addr
+							0x0800									// transfer size
+						);
 						str_l_r_fg = 1;
 					} else {
 						sceSdVoiceTrans(
-							1,                                   /* transfer channel */
-							SD_TRANS_MODE_WRITE|SD_TRANS_BY_DMA, /* transfer mode    */
-							str_trans_buf+str_play_offset,       /* IOP memory addr  */
-							(u_char *)spu_str_start_ptr_r,       /* SPU memory addr  */
-							0x0800 );                            /* transfer size    */
+							1,										// transfer channel
+							SD_TRANS_MODE_WRITE|SD_TRANS_BY_DMA,	// transfer mode
+							str_trans_buf+str_play_offset,			// IOP memory addr
+							(u_char *)spu_str_start_ptr_r,			// SPU memory addr
+							0x0800									// transfer size
+						);
 						str_next_idx = (str_next_idx+0x0800) & 0x0FFF;
 						str_l_r_fg = 0;
 						if( !str_mono_fg ){
@@ -636,20 +640,22 @@ int StrSpuTrans( void )
 					*(str_trans_buf+str_play_offset+0x07F1) |= 1;
 					if( !str_l_r_fg ){
 						sceSdVoiceTrans(
-							1,                                   /* transfer channel */
-							SD_TRANS_MODE_WRITE|SD_TRANS_BY_DMA, /* transfer mode    */
-							str_trans_buf+str_play_offset,       /* IOP memory addr  */
-							(u_char *)spu_str_start_ptr_l+0x800, /* SPU memory addr  */
-							0x0800 );                            /* transfer size    */
+							1,										// transfer channel
+							SD_TRANS_MODE_WRITE|SD_TRANS_BY_DMA,	// transfer mode
+							str_trans_buf+str_play_offset,			// IOP memory addr
+							(u_char *)spu_str_start_ptr_l+0x800,	// SPU memory addr
+							0x0800									// transfer size
+						);
 						str_l_r_fg = 1;
 					} else {
 						str_next_idx = (str_next_idx+0x0800) & 0x0FFF;
 						sceSdVoiceTrans(
-							1,                                   /* transfer channel */
-							SD_TRANS_MODE_WRITE|SD_TRANS_BY_DMA, /* transfer mode    */
-							str_trans_buf+str_play_offset,       /* IOP memory addr  */
-							(u_char *)spu_str_start_ptr_r+0x800, /* SPU memory addr  */
-							0x0800 );                            /* transfer size    */
+							1,										// transfer channel
+							SD_TRANS_MODE_WRITE|SD_TRANS_BY_DMA,	// transfer mode
+							str_trans_buf+str_play_offset,			// IOP memory addr
+							(u_char *)spu_str_start_ptr_r+0x800,	// SPU memory addr
+							0x0800									// transfer size
+						);
 						str_l_r_fg = 0;
 						str_read_status[str_play_idx] = 0;
 						str_play_idx++;
@@ -694,19 +700,21 @@ int StrSpuTrans( void )
 					dummy_data[0x07F1] = 2;
 					if( !mute_str_l_r_fg ){
 						sceSdVoiceTrans(
-							1,                                   /* transfer channel */
-							SD_TRANS_MODE_WRITE|SD_TRANS_BY_DMA, /* transfer mode    */
-							dummy_data,                          /* IOP memory addr  */
-							(u_char *)spu_str_start_ptr_l,       /* SPU memory addr  */
-							0x0800 );                            /* transfer size    */
+							1,										// transfer channel
+							SD_TRANS_MODE_WRITE|SD_TRANS_BY_DMA,	// transfer mode
+							dummy_data,								// IOP memory addr
+							(u_char *)spu_str_start_ptr_l,			// SPU memory addr
+							0x0800									// transfer size
+						);
 						mute_str_l_r_fg = 1;
 					} else {
 						sceSdVoiceTrans(
-							1,                                   /* transfer channel */
-							SD_TRANS_MODE_WRITE|SD_TRANS_BY_DMA, /* transfer mode    */
-							dummy_data,                          /* IOP memory addr  */
-							(u_char *)spu_str_start_ptr_r,       /* SPU memory addr  */
-							0x0800 );                            /* transfer size    */
+							1,										// transfer channel
+							SD_TRANS_MODE_WRITE|SD_TRANS_BY_DMA,	// transfer mode
+							dummy_data,								// IOP memory addr
+							(u_char *)spu_str_start_ptr_r,			// SPU memory addr
+							0x0800									// transfer size
+						);
 						str_next_idx = (str_next_idx+0x0800) & 0x0FFF;
 						mute_str_l_r_fg = 0;
 					}
@@ -716,20 +724,22 @@ int StrSpuTrans( void )
 					if( !mute_str_l_r_fg ){
 						mute_str_l_r_fg = 1;
 						sceSdVoiceTrans(
-							1,                                   /* transfer channel */
-							SD_TRANS_MODE_WRITE|SD_TRANS_BY_DMA, /* transfer mode    */
-							dummy_data,                          /* IOP memory addr  */
-							(u_char *)spu_str_start_ptr_l+0x800, /* SPU memory addr  */
-							0x0800 );                            /* transfer size    */
+							1,										// transfer channel
+							SD_TRANS_MODE_WRITE|SD_TRANS_BY_DMA,	// transfer mode
+							dummy_data,								// IOP memory addr
+							(u_char *)spu_str_start_ptr_l+0x800,	// SPU memory addr
+							0x0800									// transfer size
+						);
 					} else {
 						mute_str_l_r_fg = 0;
 						str_next_idx = (str_next_idx+0x800) & 0x0FFF;
 						sceSdVoiceTrans(
-							1,                                   /* transfer channel */
-							SD_TRANS_MODE_WRITE|SD_TRANS_BY_DMA, /* transfer mode    */
-							dummy_data,                          /* IOP memory addr  */
-							(u_char *)spu_str_start_ptr_r+0x800, /* SPU memory addr  */
-							0x0800 );                            /* transfer size    */
+							1,										// transfer channel
+							SD_TRANS_MODE_WRITE|SD_TRANS_BY_DMA,	// transfer mode
+							dummy_data,								// IOP memory addr
+							(u_char *)spu_str_start_ptr_r+0x800,	// SPU memory addr
+							0x0800									// transfer size
+						);
 					}
 				}
 			}

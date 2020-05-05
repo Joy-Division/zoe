@@ -11,8 +11,8 @@
 #include "libfs.h"
 
 /*---------------------------------------------------------------------------*/
-/* SLPS99999, status: MATCH, opt: -O2,-O3 */
-/* SLPM65019, status: MATCH, opt: -O2,-O3 */
+// SLPS99999, status: MATCH, opt: -O2,-O3
+// SLPM65019, status: MATCH, opt: -O2,-O3
 
 uint32 FS_StrCode( char *str )
 {

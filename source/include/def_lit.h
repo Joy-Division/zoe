@@ -10,17 +10,17 @@
 class DEF_LIGHT
 {
 public: //! check modifier
-	int nLight;
-	uint32 pad0;
-	uint32 pad1;
-	uint32 pad2;
-	DG_LIGHT lit[];
+	int			nLight;
+	uint32		pad0;
+	uint32		pad1;
+	uint32		pad2;
+	DG_LIGHT	lit[];
 
 public:
 	DEF_LIGHT(){/* TODO */}
 	~DEF_LIGHT(){/* TODO */}
 
-	DEF_LIGHT& operator=( const DEF_LIGHT& ref )
+	DEF_LIGHT& operator = ( const DEF_LIGHT& ref )
 	{/* TODO */}
 };
 

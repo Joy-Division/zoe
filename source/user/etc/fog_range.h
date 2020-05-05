@@ -11,7 +11,7 @@ public: //! check modifier
 	float H;		//
 
 public:
-	void Init(float, float);
+	void Init( float, float );
 };
 
 #endif /* END OF FILE */

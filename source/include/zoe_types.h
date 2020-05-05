@@ -1,11 +1,12 @@
 #ifndef INCLUDED_ZOE_TYPES_H
 #define INCLUDED_ZOE_TYPES_H
 
-#include "global.h"
+#include "cmtypes.h"
 
-/*---------------------------------------------------------------------------*
- * BASETYPES
- *---------------------------------------------------------------------------*/
+//=============================================================================
+// BASETYPES
+//=============================================================================
+
 #ifndef INT8
 #define INT8  int8
 #endif
@@ -19,6 +20,8 @@
 #define INT64 int64
 #endif
 
+/*---------------------------------------------------------------------------*/
+
 typedef   signed int8  SINT8;
 typedef unsigned int8  UINT8;
 typedef   signed int16 SINT16;
@@ -31,6 +34,8 @@ typedef unsigned int64 UINT64;
 typedef float32 FLOAT32;
 typedef float64 FLOAT64;
 
+/*---------------------------------------------------------------------------*/
+
 #if defined(__GNUC__)
 #if defined(__R5900__)
 typedef          int  INT128 __attribute__((mode(TI)));
@@ -38,6 +43,8 @@ typedef   signed int SINT128 __attribute__((mode(TI)));
 typedef unsigned int UINT128 __attribute__((mode(TI)));
 #endif // __R5900__
 #endif // __GNUC__
+
+/*---------------------------------------------------------------------------*/
 
 #ifndef BOOL8
 #define BOOL8  bool8
@@ -52,48 +59,53 @@ typedef unsigned int UINT128 __attribute__((mode(TI)));
 #define BOOL64 bool64
 #endif
 
-/*---------------------------------------------------------------------------*
- * ZOE Common Types
- *---------------------------------------------------------------------------*/
+//=============================================================================
+// Unions for Type Punning
+//=============================================================================
+
 typedef union DAT16 {
-	uint16  u16;
-	uint8   u8[2];
+	uint16	u16;
+	uint8	u8[2];
 } DAT16;
 
 typedef union DAT32 {
-	uint32  u32;
-	uint16  u16[2];
-	uint8   u8[4];
-	float   f;
+	uint32	u32;
+	uint16	u16[2];
+	uint8	u8[4];
+	float	f;
 } DAT32;
 
 // ref.default.pdb
 typedef union DAT64 {
-	uint64  u64;
-	uint32  u32[2];
-	uint16  u16[4];
-	uint8   u8[8];
-	float   f[2];
+	uint64	u64;
+	uint32	u32[2];
+	uint16	u16[4];
+	uint8	u8[8];
+	float	f[2];
 } DAT64;
 
 // ref.default.pdb
 typedef union DAT128 {
-	uint128 u128;
-	uint64  u64[2];
-	uint32  u32[4];
-	uint16  u16[8];
-	uint8   u8[16];
-	float   f[4];
+	uint128	u128;
+	uint64	u64[2];
+	uint32	u32[4];
+	uint16	u16[8];
+	uint8	u8[16];
+	float	f[4];
 } DAT128;
 
-// ref.default.pdb
-typedef struct FMATRIX {
-	float m[4][4];
-} FMATRIX;
+//=============================================================================
+// Linear Math Data Types
+//=============================================================================
 
 // ref.default.pdb
 typedef struct FVECTOR {
 	float vx, vy, vz, vw;
 } FVECTOR;
+
+// ref.default.pdb
+typedef struct FMATRIX {
+	float m[4][4];
+} FMATRIX;
 
 #endif /* END OF FILE */

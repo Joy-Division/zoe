@@ -9,22 +9,16 @@
 #include "sd_incl.h"
 #include "sd_ext.h"
 
-/*---------------------------------------------------------------------------*
- * Initialized Data
- *---------------------------------------------------------------------------*/
+/*===========================================================================*/
+/* Initialized Data                                                          */
+/*===========================================================================*/
 
 // spu_ch_tbl
 // blank_data (appears to be the same as "dummy_data" except first and last sampleset)
 
-
-
-
-
-/*---------------------------------------------------------------------------*
- * Uninitialized Data
- *---------------------------------------------------------------------------*/
-
-
+/*===========================================================================*/
+/* Uninitialized Data                                                        */
+/*===========================================================================*/
 
 /* GUESSED NAMES */
 u_int d1E0E4; // used to be d1E0E4[0] or d1E0E4
@@ -36,7 +30,6 @@ struct SETBL *se_header;
 u_char *se_data;
 int se_tracks;
 
-
 int sng_status;
 int skip_intro_loop;
 
@@ -44,7 +37,6 @@ u_int rev_on_bit[2];
 u_int rev_off_bit[2];
 u_int sound_mono_fg;
 u_int sng_load_code;
-
 
 u_int mdata1;
 u_int mdata2;
@@ -73,9 +65,6 @@ int wave_fp;
 u_int keyoffs[2];
 int se_fp;
 
-
-
-
 u_int rev_bit_data[2];
 u_char auto_env_pos;
 u_char auto_env_pos2;
@@ -103,7 +92,6 @@ u_int fader_off_fg;
 u_int sd_code_read;
 u_int sng_pause_fg;
 
-
 /* referenced TGS2000 variables */
 // u_int se_save_code2;
 
@@ -113,7 +101,6 @@ u_int sng_pause_fg;
 // u_int lnr8_fg;
 // u_int irq_addr;
 // u_int mem_str_fg;
-
 
 struct SEPLAYTBL se_playing[12];
 u_int fg_rev_set[44];
@@ -135,4 +122,3 @@ struct WAVE_W wave_header[0x200];
 u_char sng_data[0x00020000];
 u_char se_data_area[0x4800];
 u_char cdload_buf[0x18000];
-

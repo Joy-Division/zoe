@@ -7,24 +7,23 @@
 
 // ref.default.pdb
 typedef struct _DEF_MOTION {
-	float   fFrame;
-	uint32  nbNode;
-	uint32  pad1;
-	uint32  pad2;
+	float	fFrame;
+	uint32	nbNode;
+	uint32	pad1,pad2;
 } DEF_MOTION;
 
 // ref.default.pdb
 typedef struct _DEF_MOTION_LIST {
-	uint32 nbMotion;
+	uint32	nbMotion;
 } DEF_MOTION_LIST;
 
 // ref.default.pdb
 typedef struct _DEF_MOTION_NODE {
-	uint16  u16Flag;
-	uint16  u16nbElm;
-	uint32  nbData;
-	uint16* pKeyData;
-	sint16* pMotData;
+	uint16	u16Flag;
+	uint16	u16nbElm;
+	uint32	nbData;
+	uint16*	pKeyData;
+	sint16*	pMotData;
 } DEF_MOTION_NODE;
 
 #endif /* END OF FILE */

@@ -19,9 +19,20 @@
 // external
 class DG_CAMERA;
 
-/*---------------------------------------------------------------------------*
- * Common Defines
- *---------------------------------------------------------------------------*/
+// internal
+class DM_MANAGER;
+class DM_RECFRAME;
+class DM_BUFFER;
+class DM_STRPACK;
+class DM_DATA;
+class DM_FRAME;
+struct DM_PRCAMERA_DATA;
+struct DM_PRDEMO_CAMERA_RECDATA;
+class DM_PRDEMO_CAMERA;
+
+//=============================================================================
+// Demo Common Defines
+//=============================================================================
 
 // ref.default.pdb
 enum {
@@ -38,9 +49,9 @@ enum {
 	DM_PDCFLAG_DATA          = 0x0200
 };
 
-/*---------------------------------------------------------------------------*
- * Classes
- *---------------------------------------------------------------------------*/
+//=============================================================================
+// Classes (IN-PROGRESS)
+//=============================================================================
 
 //! INCOMPLETE
 class DM_MANAGER
@@ -48,6 +59,8 @@ class DM_MANAGER
 public:
 	static void InitSystem();
 };
+
+/*---------------------------------------------------------------------------*/
 
 //! INCOMPLETE
 class DM_RECFRAME
@@ -59,7 +72,9 @@ class DM_RECFRAME
 	};
 };
 
-/*---------------------------------------------------------------------------*/
+//=============================================================================
+// Demo Buffer
+//=============================================================================
 
 // ref.default.pdb
 class DM_BUFFER
@@ -71,15 +86,17 @@ public: //! check modifier
 		STATE_FULL
 	};
 
-	uint16 u16Key;
-	uint8  u8State;
-	uint8  pad0;
-	uint32 pad1;
-	uint32 pad2;
-	uint32 pad3;
+	uint16	u16Key;
+	uint8	u8State;
+	uint8	pad0;		// alignment
+	uint32	pad1;		// alignment
+	uint32	pad2;		// alignment
+	uint32	pad3;		// alignment
 };
 
-/*---------------------------------------------------------------------------*/
+//=============================================================================
+// Demo StreamPack
+//=============================================================================
 
 // ref.default.pdb
 class DM_STRPACK
@@ -92,40 +109,44 @@ public: //! check modifier
 	uint64 u64Dat;
 };
 
-/*---------------------------------------------------------------------------*/
+//=============================================================================
+// Demo Data
+//=============================================================================
 
 // ref.default.pdb
 class DM_DATA
 {
 public: //! check modifier
-	uint16      u16szBuf;
-	uint16      u16szRead;
-	uint8       u8Flag;
-	uint8       u8State;
-	uint8       u8Current;
-	uint8       u8End;
-	sint32      prevPosX;
-	sint32      prevPosY;
-	sint32      prevPosZ;
-	DM_BUFFER*  pQue;
-	float       fRate;
+	uint16		u16szBuf;
+	uint16		u16szRead;
+	uint8		u8Flag;
+	uint8		u8State;
+	uint8		u8Current;
+	uint8		u8End;
+	int32		prevPosX;
+	int32		prevPosY;
+	int32		prevPosZ;
+	DM_BUFFER*	pQue;
+	float		fRate;
 
 public:
-	DM_STRPACK* Que(DM_STRPACK*);
-	DM_BUFFER*  GetpQue(uint8);
-	DM_BUFFER*  SetValidQue(uint16);
+	DM_STRPACK*	Que( DM_STRPACK* );
+	DM_BUFFER*	GetpQue( uint8 );
+	DM_BUFFER*	SetValidQue( uint16 );
 };
 
-/*---------------------------------------------------------------------------*/
+//=============================================================================
+// Demo Frame
+//=============================================================================
 
 // ref.default.pdb
 class DM_FRAME : public FRM_OBJECT //! check modifier
 {
 public: //! check modifier
-	ALG_MATRIX  matCamera;
-	uint16      u16Time;
+	ALG_MATRIX	matCamera;
+	uint16		u16Time;
 	void (*pModulateFunc)(void); // TODO: ret/arg types
-	void*       pArg;
+	void*		pArg;
 
 private:
 	void Act();
@@ -135,17 +156,17 @@ private:
 public: //! check modifier
 	static FRM_OBJECT* pfrmPlayer;
 
-	DM_DATA*    pDatPad;
-	sint32      id;
+	DM_DATA*	pDatPad;
+	int32		id;
 
 public:
-	void Update(uint16);
+	void Update( uint16 );
 	void Reset();
-	void SetModulateFunc( void (*)(void), void*); // TODO: func ptr ret/arg types
+	void SetModulateFunc( void (*)(void), void* ); // TODO: func ptr ret/arg types
 
-	DM_FRAME(const DM_FRAME&);
-	DM_FRAME(uint32, ALG_MATRIX*, uint8, uint8, uint8, uint8, sint32, uint32, uint8);
-	DM_FRAME(char*, uint8, ALG_MATRIX*, ALG_MATRIX*);
+	DM_FRAME( const DM_FRAME& );
+	DM_FRAME( uint32, ALG_MATRIX*, uint8, uint8, uint8, uint8, int32, uint32, uint8 );
+	DM_FRAME( char*, uint8, ALG_MATRIX*, ALG_MATRIX* );
 	~DM_FRAME();
 
 public: //! check modifier
@@ -154,27 +175,29 @@ public: //! check modifier
 public:
 	static FRM_OBJECT& Player();
 
-	DM_FRAME& operator=(const DM_FRAME&);
+	DM_FRAME& operator = ( const DM_FRAME& );
 };
 
-/*---------------------------------------------------------------------------*/
+//=============================================================================
+// Demo PR Camera
+//=============================================================================
 
 // ref.default.pdb
 struct DM_PRCAMERA_DATA
 {
 public: //! check modifier
-	ALG_VECTOR  vecView;
-	ALG_VECTOR  vecInterrest;
-	uint16      u16Flag;
-	uint16      u16Time;
-	sint32      idRefActor;
-	float       fRoll;
-	float       fAng;
+	ALG_VECTOR	vecView;
+	ALG_VECTOR	vecInterrest;
+	uint16		u16Flag;
+	uint16		u16Time;
+	int32		idRefActor;
+	float		fRoll;
+	float		fAng;
 
 public:
 	DM_PRCAMERA_DATA();
 
-	DM_PRCAMERA_DATA& operator=(const DM_PRCAMERA_DATA&);
+	DM_PRCAMERA_DATA& operator = ( const DM_PRCAMERA_DATA& );
 };
 
 /*---------------------------------------------------------------------------*/
@@ -183,42 +206,44 @@ public:
 struct DM_PRDEMO_CAMERA_RECDATA
 {
 public: //! check modifier
-	ALG_VECTOR vecView;
-	ALG_VECTOR vecInterrest;
+	ALG_VECTOR	vecView;
+	ALG_VECTOR	vecInterrest;
 
 public:
 	DM_PRDEMO_CAMERA_RECDATA();
 
-	DM_PRDEMO_CAMERA_RECDATA& operator=(const DM_PRDEMO_CAMERA_RECDATA&);
+	DM_PRDEMO_CAMERA_RECDATA& operator = ( const DM_PRDEMO_CAMERA_RECDATA& );
 };
+
+/*---------------------------------------------------------------------------*/
 
 // ref.default.pdb
 class DM_PRDEMO_CAMERA
 {
 public: //! check modifier
-	ALG_VECTOR  vecViewRel;
-	ALG_VECTOR  vecInterrestRel;
-	ALG_VECTOR  vecViewAbs;
-	ALG_VECTOR  vecInterrestAbs;
-	uint16      u16Flag;
-	uint16      u16Time;
-	float       fRoll;
-	float       fAng;
-	float       fSlantPrev;
-	float       fSlantPost;
-	ALG_MATRIX* pmatRefCamera;
-	sint32      idRefActor;
+	ALG_VECTOR	vecViewRel;
+	ALG_VECTOR	vecInterrestRel;
+	ALG_VECTOR	vecViewAbs;
+	ALG_VECTOR	vecInterrestAbs;
+	uint16		u16Flag;
+	uint16		u16Time;
+	float		fRoll;
+	float		fAng;
+	float		fSlantPrev;
+	float		fSlantPost;
+	ALG_MATRIX*	pmatRefCamera;
+	int32		idRefActor;
 	DM_PRDEMO_CAMERA_RECDATA* pRecData;
-	int         nData;
+	int			nData;
 
 public:
-	void Calc(sint32);
-	void GetMatrix(ALG_MATRIX*);
-	void GetInterpMatrix(DM_PRDEMO_CAMERA_RECDATA*, DM_PRDEMO_CAMERA*, DM_PRDEMO_CAMERA*, DM_PRDEMO_CAMERA*, float);
-	void UpdateCamera(sint32);
-	void GetData(DM_PRCAMERA_DATA*);
-	void PutData(DM_PRCAMERA_DATA*);
-	void SetPlayData(sint32);
+	void Calc( int32 );
+	void GetMatrix( ALG_MATRIX* );
+	void GetInterpMatrix( DM_PRDEMO_CAMERA_RECDATA*, DM_PRDEMO_CAMERA*, DM_PRDEMO_CAMERA*, DM_PRDEMO_CAMERA*, float );
+	void UpdateCamera( int32 );
+	void GetData( DM_PRCAMERA_DATA* );
+	void PutData( DM_PRCAMERA_DATA* );
+	void SetPlayData( int32 );
 	void Reset();
 
 public: //! check modifier
@@ -227,7 +252,7 @@ public: //! check modifier
 public:
 	DM_PRDEMO_CAMERA();
 
-	DM_PRDEMO_CAMERA& operator=(const DM_PRDEMO_CAMERA&);
+	DM_PRDEMO_CAMERA& operator = ( const DM_PRDEMO_CAMERA& );
 };
 
 #endif /* END OF FILE */

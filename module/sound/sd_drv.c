@@ -657,14 +657,14 @@ void sng_adrs_set( u_int a0 )
 
 void se_adrs_set( u_int a0 )
 {
-	se_playing[a0].code      = se_request[a0].code;
-	se_playing[a0].pri       = se_request[a0].pri;
-	se_playing[a0].kind      = se_request[a0].kind;
-	se_playing[a0].character = se_request[a0].character;
-	se_playing[a0].addr      = se_request[a0].addr;
-	se_request[a0].code      = 0;
-	se_request[a0].pri       = 0;
-	se_request[a0].character = 0;
+	se_playing[a0].code			= se_request[a0].code;
+	se_playing[a0].pri			= se_request[a0].pri;
+	se_playing[a0].kind			= se_request[a0].kind;
+	se_playing[a0].character	= se_request[a0].character;
+	se_playing[a0].addr			= se_request[a0].addr;
+	se_request[a0].code			= 0;
+	se_request[a0].pri			= 0;
+	se_request[a0].character	= 0;
 
 	sng_track_init( &sound_w[a0+32] );
 
@@ -690,59 +690,59 @@ void se_adrs_set( u_int a0 )
 
 void sng_track_init( struct SOUND_W *work )
 {
-	work->rdmd     = 0;
-	work->ngc      = 1;
-	work->ngo      = 0;
-	work->ngs      = 0;
-	work->ngg      = 0;
-	work->lp1_cnt  = 0;
-	work->lp2_cnt  = 0;
-	work->lp1_vol  = 0;
-	work->lp2_vol  = 0;
-	work->lp1_freq = 0;
-	work->lp2_freq = 0;
-	work->pvoc     = 0;
-	work->pvod     = 0x7F;
-	work->vol      = 0x7F;
-	work->pand     = 0x1400;
-	work->panf     = 0x14;
-	work->panoff   = 0;
-	work->panmod   = 0;
-	work->swsk     = 0;
-	work->swsc     = 0;
-	work->vibd     = 0;
-	work->vibdm    = 0;
-	work->tred     = 0;
-	work->snos     = 0;
-	work->ptps     = 0;
-	work->dec_vol  = 0;
-	work->tund     = 0;
-	work->tmpd     = 1;
-	work->tmp      = 0xFF;
-	work->tmpc     = 0;
+	work->rdmd		= 0;
+	work->ngc		= 1;
+	work->ngo		= 0;
+	work->ngs		= 0;
+	work->ngg		= 0;
+	work->lp1_cnt	= 0;
+	work->lp2_cnt	= 0;
+	work->lp1_vol	= 0;
+	work->lp2_vol	= 0;
+	work->lp1_freq	= 0;
+	work->lp2_freq	= 0;
+	work->pvoc		= 0;
+	work->pvod		= 0x7F;
+	work->vol		= 0x7F;
+	work->pand		= 0x1400;
+	work->panf		= 0x14;
+	work->panoff	= 0;
+	work->panmod	= 0;
+	work->swsk		= 0;
+	work->swsc		= 0;
+	work->vibd		= 0;
+	work->vibdm		= 0;
+	work->tred		= 0;
+	work->snos		= 0;
+	work->ptps		= 0;
+	work->dec_vol	= 0;
+	work->tund		= 0;
+	work->tmpd		= 1;
+	work->tmp		= 0xFF;
+	work->tmpc		= 0;
 /* ************************* */
 /* Addition for PS2 IOP ver. */
 /* ************************* */
-	work->unkD4    = 0;
-	work->unkD9    = 1;
-	work->unkE0    = 0;
-	work->unkE1    = 0;
-	work->unkE4    = 0xFFFFFFFF;
-	work->unkE8    = 0;
-	work->unkE9    = 0;
-	work->unkEA    = 0;
-	work->unkEB    = 0;
-	work->unkEC    = 0;
-	work->unkED    = 0;
-	work->unkEE    = 0;
-	work->unkEF    = 0;
-	work->unkF0    = 0;
-	work->unkF1    = 0;
-	work->unkF2    = 0;
-	work->unkF3    = 0;
-	work->unkF4    = 0;
-	work->unkF5    = 0;
-	work->unkF6    = 0;
-	work->unkF7    = 0;
-	work->unkF8    = 0;
+	work->unkD4		= 0;
+	work->unkD9		= 1;
+	work->unkE0		= 0;
+	work->unkE1		= 0;
+	work->unkE4		= 0xFFFFFFFF;
+	work->unkE8		= 0;
+	work->unkE9		= 0;
+	work->unkEA		= 0;
+	work->unkEB		= 0;
+	work->unkEC		= 0;
+	work->unkED		= 0;
+	work->unkEE		= 0;
+	work->unkEF		= 0;
+	work->unkF0		= 0;
+	work->unkF1		= 0;
+	work->unkF2		= 0;
+	work->unkF3		= 0;
+	work->unkF4		= 0;
+	work->unkF5		= 0;
+	work->unkF6		= 0;
+	work->unkF7		= 0;
+	work->unkF8		= 0;
 }

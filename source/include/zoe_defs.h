@@ -1,9 +1,9 @@
 #ifndef INCLUDED_ZOE_DEFS_H
 #define INCLUDED_ZOE_DEFS_H
 
-/*---------------------------------------------------------------------------*
- * Common Definitions
- *---------------------------------------------------------------------------*/
+//=============================================================================
+// Data Alignment Macros
+//=============================================================================
 
 #if defined(__GNUC__)
 #define ALIGN(x)	__attribute__((aligned(x)))
@@ -25,22 +25,28 @@
 #define ALIGN512	//__attribute__((aligned(64)))
 #endif
 
-// Hack for unknown const values.
-// TODO: Replace anything initialized to TEMP_ZERO with the real values.
-//       Delete this definition once all instances have been replaced.
-#define TEMP_ZERO (0)
+//=============================================================================
+// Hack for Unknown Constants
+//=============================================================================
 
-/*---------------------------------------------------------------------------*
- * Configuration Definitions
- *---------------------------------------------------------------------------*/
+// TODO:
+// * Replace anything initialized to these macros with the real values.
+// * Delete these definitions once all instances have been replaced.
+#define TEMP_ZERO	(0)
+#define DEFINE_ME	(0)
+
+//=============================================================================
+// Configuration Definitions
+//=============================================================================
 
 #if (ZOE_JPN)
-// dummy_printf() is defined in include/orgtype.h according to .mdebug
+// dummy_printf() is possibly defined in include/orgtype.h
+// according to .mdebug
 void dummy_printf( const char *fmt, ... );
 
 // dummy printf for non-debug builds
-//#define printf(fmt, ...)  dummy_printf(fmt, ##__VA_ARGS__)
-#define printf  dummy_printf
+//#define printf(fmt, ...)	dummy_printf(fmt, ##__VA_ARGS__)
+#define printf				dummy_printf
 
 #endif // ZOE_JPN
 

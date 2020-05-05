@@ -19,46 +19,9 @@ class FRM_COMMAND;
 class FRM_OBJECT;
 class FRM_PAD;
 
-/*---------------------------------------------------------------------------*
- * Common Defines
- *---------------------------------------------------------------------------*/
-
-// ref.default.pdb
-enum {
-	CMD_ID_CONTROL,
-	CMD_ID_ACTION,
-	CMD_ID_DASH,
-	CMD_ID_ARMS1,
-	CMD_ID_ARMS2,
-	CMD_ID_ARMS3,
-	CMD_ID_ARMS4,
-	CMD_ID_D_ARMS,
-	CMD_ID_B_ARMS,
-	CMD_ID_CATCH,
-	CMD_ID_GUARD,
-	CMD_ID_HOLD,
-	CMD_ID_HELD,
-	CMD_ID_CROSS,
-	CMD_ID_BACK,
-	CMD_ID_S_DMG,
-	CMD_ID_B_DMG,
-	CMD_ID_BUMP,
-	CMD_ID_BLAST,
-	CMD_ID_SHOT,
-	CMD_ID_D_SHOT,
-	CMD_ID_B_SHOT,
-	CMD_ID_JAVELIN,
-	CMD_ID_GEYSER,
-	CMD_ID_SQUASH,
-	CMD_ID_PHALANX,
-	CMD_ID_HALBERD,
-	CMD_ID_COMET,
-	CMD_ID_GAUNTLET,
-	CMD_ID_SNIPER,
-	CMD_ID_DECOY,
-	CMD_ID_MUMMY,
-	CMD_ID_NUM
-};
+//=============================================================================
+// Orbital Frame Common Defines
+//=============================================================================
 
 // ref.default.pdb
 enum {
@@ -66,6 +29,8 @@ enum {
 	FRM_DEMO_PLAY,
 	FRM_DEMO_EDIT
 };
+
+/*---------------------------------------------------------------------------*/
 
 // ref.default.pdb
 enum {
@@ -133,6 +98,8 @@ enum {
 	FRM_NODE_FS7_R,
 	FRM_NODE_ANTENNA
 };
+
+/*---------------------------------------------------------------------------*/
 
 // ref.default.pdb
 enum {
@@ -227,42 +194,20 @@ enum {
 	FRM_SEQ_DECOY
 };
 
+/*---------------------------------------------------------------------------*/
+
 // ref.default.pdb
 enum {
-	FRM_TYPE_JEHUTY,
-	FRM_TYPE_RAPTOR,
-	FRM_TYPE_MUMMY,
-	FRM_TYPE_CYCLOPS,
-	FRM_TYPE_NEITH1,
-	FRM_TYPE_NEITH2,
+	FRM_TYPE_JEHUTY,	// Jehuty (default)
+	FRM_TYPE_RAPTOR,	// Raptor
+	FRM_TYPE_MUMMY,		// MummyHead
+	FRM_TYPE_CYCLOPS,	// Cyclops
+	FRM_TYPE_NEITH1,	// Neith (1st battle)
+	FRM_TYPE_NEITH2,	// Neith (2nd battle)
 	FRM_TYPE_NUM
 };
 
-// ref.default.pdb
-enum {
-	PAD_UP     = 0x01,
-	PAD_DOWN   = 0x02,
-	PAD_DASH   = 0x04,
-	PAD_ATTACK = 0x08,
-	PAD_WEAPON = 0x10,
-	PAD_GUARD  = 0x20,
-	PAD_CAMERA = 0x40,
-	PAD_LOCKON = 0x80
-};
-
-// ref.default.pdb
-enum {
-	PAD_UP_P,
-	PAD_DOWN_P,
-	PAD_DASH_P,
-	PAD_ATTACK_P,
-	PAD_WEAPON_P,
-	PAD_GUARD_P,
-	PAD_CAMERA_P,
-	PAD_LOCKON_P,
-	PAD_SELECT_P,
-	FRM_PAD_NUM
-};
+/*---------------------------------------------------------------------------*/
 
 // ref.default.pdb
 enum {
@@ -283,6 +228,8 @@ enum {
 	PASS_INFO,
 	PASS_NUM
 };
+
+/*---------------------------------------------------------------------------*/
 
 // ref.default.pdb
 enum {
@@ -309,6 +256,8 @@ enum {
 	PROG_NUM
 };
 
+/*---------------------------------------------------------------------------*/
+
 // ref.default.pdb
 enum {
 	WEP_NONE,
@@ -325,72 +274,54 @@ enum {
 	WEP_NUM
 };
 
-/*---------------------------------------------------------------------------*
- * Common Structures
- *---------------------------------------------------------------------------*/
+//=============================================================================
+// Orbital Frame Commands
+//=============================================================================
+
+// ref.default.pdb
+enum {
+	CMD_ID_CONTROL,
+	CMD_ID_ACTION,
+	CMD_ID_DASH,
+	CMD_ID_ARMS1,
+	CMD_ID_ARMS2,
+	CMD_ID_ARMS3,
+	CMD_ID_ARMS4,
+	CMD_ID_D_ARMS,
+	CMD_ID_B_ARMS,
+	CMD_ID_CATCH,
+	CMD_ID_GUARD,
+	CMD_ID_HOLD,
+	CMD_ID_HELD,
+	CMD_ID_CROSS,
+	CMD_ID_BACK,
+	CMD_ID_S_DMG,
+	CMD_ID_B_DMG,
+	CMD_ID_BUMP,
+	CMD_ID_BLAST,
+	CMD_ID_SHOT,
+	CMD_ID_D_SHOT,
+	CMD_ID_B_SHOT,
+	CMD_ID_JAVELIN,
+	CMD_ID_GEYSER,
+	CMD_ID_SQUASH,
+	CMD_ID_PHALANX,
+	CMD_ID_HALBERD,
+	CMD_ID_COMET,
+	CMD_ID_GAUNTLET,
+	CMD_ID_SNIPER,
+	CMD_ID_DECOY,
+	CMD_ID_MUMMY,
+	CMD_ID_NUM
+};
+
+/*---------------------------------------------------------------------------*/
 
 // ref.default.pdb
 struct CMD_TABLE {
 	void (*pfnAct)(void); // TODO: ret/arg types
-	uint16  u16ActTime[3];
-	float   fParam[32];
-};
-
-/*---------------------------------------------------------------------------*/
-
-// ref.default.pdb
-struct FRM_CUSTOM {
-	bool32  bPadCtrl;
-	bool32  bPlayer;
-	bool32  bImmortal;
-	uint8   u8Type;
-	uint8   u8Mode;
-	uint8   u8Side;
-	uint8   u8Level;
-	uint8   u8Demo;
-	uint32  u32EndProc;
-	float   fMaxArm;
-	float   fArmor;
-	float   fHzdRad;
-	float   fTrgRad;
-	float   fArmsOffset;
-	float   fGrdWidth;
-	float   fGrdDepth;
-	float   fGrdRad;
-	float   fGrdOffset;
-	float   fMoveSpd;
-	float   fUpSpd;
-	float   fDownSpd;
-	float   fMoveVel;
-	float   fTurnRate;
-	float   fLockRate1;
-	float   fLockRate2;
-};
-
-/*---------------------------------------------------------------------------*/
-
-// ref.default.pdb
-class FRM_CAMERA
-{
-public: //! check modifier
-	ALG_MATRIX  matOrg;
-	ALG_MATRIX  matCam;
-	ALG_VECTOR  vecView;
-	ALG_VECTOR  vecLook;
-	float       fTransRate;
-	float       fRotRate;
-	float       fCamRate;
-
-public:
-	FRM_CAMERA(float, float, float, float, float, float, float, float, float);
-	FRM_CAMERA();
-
-	void Init(FRM_CAMERA*, ALG_MATRIX*);
-	void Set(FRM_CAMERA*);
-	void Move(ALG_MATRIX*);
-	void Calc(ALG_MATRIX*, ALG_MATRIX*);
-
-	FRM_CAMERA& operator=(const FRM_CAMERA&);
+	uint16	u16ActTime[3];
+	float	fParam[ CMD_ID_NUM ];//[32];
 };
 
 /*---------------------------------------------------------------------------*/
@@ -399,59 +330,119 @@ public:
 class FRM_COMMAND
 {
 public: //! check modifier
-	bool32      bInitCmd;
-	bool32      bInitPhase[3];
-	bool32      bLockCmd;
-	bool32      bEndless;
-	uint8       u8Phase;
-	bool32      bChangePhase;
-	uint8       u8NextPhase;
-	uint16      u16Counter;
-	uint16      u16ActTime[3];
-	uint8       u8ID;
-	uint8       u8NextID;
-	FRM_OBJECT* pfrm;
-	uint8       u8FrmType;
+	bool32		bInitCmd;
+	bool32		bInitPhase[3];
+	bool32		bLockCmd;
+	bool32		bEndless;
+	uint8		u8Phase;
+	bool32		bChangePhase;
+	uint8		u8NextPhase;
+	uint16		u16Counter;
+	uint16		u16ActTime[3];
+	uint8		u8ID;
+	uint8		u8NextID;
+	FRM_OBJECT*	pfrm;
+	uint8		u8FrmType;
 
-	static CMD_TABLE ctb[32][6];
+	static CMD_TABLE ctb[ CMD_ID_NUM ][ FRM_TYPE_NUM ];//[32][6];
 
-	bool32      bCommon1;
-	bool32      bCommon2;
-	bool32      bCommon3;
-	uint8       u8Common1;
-	uint8       u8Common2;
-	sint32      s32Common1;
-	sint32      s32Common2;
-	ALG_VECTOR  vecCommon1;
-	ALG_VECTOR  vecCommon2;
-	ALG_MATRIX  matCommon1;
-	ALG_MATRIX  matCommon2;
+	bool32		bCommon1;
+	bool32		bCommon2;
+	bool32		bCommon3;
+	uint8		u8Common1;
+	uint8		u8Common2;
+	sint32		s32Common1;
+	sint32		s32Common2;
+	ALG_VECTOR	vecCommon1;
+	ALG_VECTOR	vecCommon2;
+	ALG_MATRIX	matCommon1;
+	ALG_MATRIX	matCommon2;
 
 public:
-	void        Init(FRM_OBJECT*);
-	void        Execute();
-	sint32      InitPhase(uint8);
-	void        Set(uint8);
-	void        Reset(uint8);
-	void        Update();
-	void        Lock();
-	void        Unlock();
-	void        SetPhase(uint8);
-	void        SetCounter(uint16);
-	uint8       ID();
-	uint8       NextID();
-	uint8       Phase();
-	uint16      Counter();
-	uint16      Time();
-	uint16      ActTime(uint8);
-	float*      GetParam();
-	sint32      GetParamNumber(uint8);
-	float       GetParamFloat(uint8);
-	uint32      GetParamAddr(uint8);
+	void	Init( FRM_OBJECT* );
+	void	Execute();
+	sint32	InitPhase( uint8 );
+	void	Set( uint8 );
+	void	Reset( uint8 );
+	void	Update();
+	void	Lock();
+	void	Unlock();
+	void	SetPhase( uint8 );
+	void	SetCounter( uint16 );
+	uint8	ID();
+	uint8	NextID();
+	uint8	Phase();
+	uint16	Counter();
+	uint16	Time();
+	uint16	ActTime( uint8 );
+	float*	GetParam();
+	sint32	GetParamNumber( uint8 );
+	float	GetParamFloat( uint8 );
+	uint32	GetParamAddr( uint8 );
 
 	FRM_COMMAND();
 
-	FRM_COMMAND& operator=(const FRM_COMMAND&);
+	FRM_COMMAND& operator = ( const FRM_COMMAND& );
+};
+
+//=============================================================================
+// Orbital Frame Camera
+//=============================================================================
+
+// ref.default.pdb
+class FRM_CAMERA
+{
+public: //! check modifier
+	ALG_MATRIX	matOrg;
+	ALG_MATRIX	matCam;
+	ALG_VECTOR	vecView;
+	ALG_VECTOR	vecLook;
+	float		fTransRate;
+	float		fRotRate;
+	float		fCamRate;
+
+public:
+	FRM_CAMERA( float, float, float, float, float, float, float, float, float );
+	FRM_CAMERA();
+
+	void Init( FRM_CAMERA*, ALG_MATRIX* );
+	void Set( FRM_CAMERA* );
+	void Move( ALG_MATRIX* );
+	void Calc( ALG_MATRIX*, ALG_MATRIX* );
+
+	FRM_CAMERA& operator = ( const FRM_CAMERA& );
+};
+
+//=============================================================================
+// Orbital Frame GamePad Input
+//=============================================================================
+
+// ref.default.pdb
+enum {
+	PAD_UP     = 0x01,
+	PAD_DOWN   = 0x02,
+	PAD_DASH   = 0x04,
+	PAD_ATTACK = 0x08,
+	PAD_WEAPON = 0x10,
+	PAD_GUARD  = 0x20,
+	PAD_CAMERA = 0x40,
+	PAD_LOCKON = 0x80
+};
+
+/*---------------------------------------------------------------------------*/
+
+// ref.default.pdb
+enum {
+	PAD_UP_P,
+	PAD_DOWN_P,
+	PAD_DASH_P,
+	PAD_ATTACK_P,
+	PAD_WEAPON_P,
+	PAD_GUARD_P,
+	PAD_CAMERA_P,
+	PAD_LOCKON_P,
+	PAD_SELECT_P,
+	FRM_PAD_NUM
 };
 
 /*---------------------------------------------------------------------------*/
@@ -460,200 +451,241 @@ public:
 class FRM_PAD
 {
 public: //! check modifier
-	float   fX1;
-	float   fY1;
-	float   fX2;
-	float   fY2;
-	float   fStateX1;
-	float   fStateY1;
-	float   fStateX2;
-	float   fStateY2;
-	uint32  u32State;
-	uint32  u32Last;
-	uint32  u32On;
-	uint32  u32Press;
-	uint32  u32Release;
-	uint8   u8Press[9];
+	float	fX1, fY1;
+	float	fX2, fY2;
+	float	fStateX1, fStateY1;
+	float	fStateX2, fStateY2;
+	uint32	u32State;
+	uint32	u32Last;
+	uint32	u32On;
+	uint32	u32Press;
+	uint32	u32Release;
+	uint8	u8Press[ FRM_PAD_NUM ];//[9];
 
 public:
 	FRM_PAD();
 
-	void    Input();
-	void    SetX1(float);
-	void    SetY1(float);
-	void    SetX2(float);
-	void    SetY2(float);
-	void    _SetButton(uint32, uint8, uint8);
-	void    _ResetButton(uint32, uint8);
-	float   X1();
-	float   Y1();
-	float   X2();
-	float   Y2();
-	sint32  On(uint32);
-	sint32  Press(uint32);
-	sint32  Release(uint32);
-	uint8   _Force(uint8);
+	void	Input();
+	void	SetX1( float );
+	void	SetY1( float );
+	void	SetX2( float );
+	void	SetY2( float );
+	void	_SetButton( uint32, uint8, uint8 );	// prefixed with '_' by HVS?
+	void	_ResetButton( uint32, uint8 );		// prefixed with '_' by HVS?
+	float	X1();
+	float	Y1();
+	float	X2();
+	float	Y2();
+	sint32	On( uint32 );
+	sint32	Press( uint32 );
+	sint32	Release( uint32 );
+	uint8	_Force( uint8 );	// prefixed with '_' by HVS?
 };
 
-/*---------------------------------------------------------------------------*/
+//=============================================================================
+// Orbital Frame Custom Data
+//=============================================================================
+
+// ref.default.pdb
+struct FRM_CUSTOM {
+	bool32	bPadCtrl;
+	bool32	bPlayer;
+	bool32	bImmortal;
+	uint8	u8Type;
+	uint8	u8Mode;
+	uint8	u8Side;
+	uint8	u8Level;
+	uint8	u8Demo;
+	uint32	u32EndProc;
+	float	fMaxArm;
+	float	fArmor;
+	float	fHzdRad;
+	float	fTrgRad;
+	float	fArmsOffset;
+	float	fGrdWidth;
+	float	fGrdDepth;
+	float	fGrdRad;
+	float	fGrdOffset;
+	float	fMoveSpd;
+	float	fUpSpd;
+	float	fDownSpd;
+	float	fMoveVel;
+	float	fTurnRate;
+	float	fLockRate1;
+	float	fLockRate2;
+};
+
+//=============================================================================
+// Orbital Frame Object
+//=============================================================================
 
 // ref.default.pdb
 class FRM_OBJECT : public GV_ACTOR //! check modifier
 {
 public: //! check modifier
-	uint32      u32NameID;
-	DG_OBJPTR   pobj;
-	MT_MOTPTR   pmt;
-	HZD_CAPSULE hzc;
-	TRG_OBJECT  trg;
-	TRG_OBJECT  trgArms;
-	TRG_OBJECT  trgGuard;
-	ALG_MATRIX  matOrg;
-	ALG_MATRIX  matAng;
-	ALG_MATRIX  matScr;
-	ALG_MATRIX  matNewScr;
-	DG_CAMERA   cam;
-	FRM_CAMERA  fcm;
-	ALG_MATRIX  matCam;
-	ALG_MATRIX  matOldCam;
-	float       fSwCamRate;
-	float       fSwCamSpd;
-	float       fFixZoom;
-	ALG_MATRIX  matFixCam;
-	ALG_MATRIX  matRotCam;
-	float       fHzdRate;
-	ALG_MATRIX  matHzdCam;
-	ALG_MATRIX  matAim;
-	ALG_VECTOR  vecSpeed;
-	float       fSpeed;
-	float       fBstRate;
-	ALG_VECTOR  vecDamage;
-	bool32      bDestroy;
-	bool32      bSubject;
-	bool32      bLastSub;
-	bool32      bPosture;
-	bool32      bSearch;
-	FRM_COMMAND cmd;
-	FRM_CUSTOM  cus;
-	ENE_OBJECT  ene;
-	FRM_PAD     pad;
-	bool32      bNeutral;
-	bool32      bLastNeutral;
-	bool32      bNeutral2;
-	ALG_MATRIX  matPad;
-	float       fStickRate;
-	ALG_MATRIX  matComp;
-	float       fGravity;
-	uint8       u8GravUp;
-	uint8       u8GravDown;
-	float       fLevRate;
-	float       fAltitude;
-	float       fLastAlt;
-	float       fAltRate;
-	float       fAltFree;
-	bool32      bGround;
-	float       fFootL;
-	float       fFootR;
-	float       fFloat;
-	bool32      bGuard;
-	uint16      u16LotID;
-	TRG_OBJECT* ptrgLot;
-	float       fLotDist;
-	bool32      bInfight;
-	float       fFixRate;
-	float       fSpeedRate;
-	uint16      u16LabID;
-	TRG_OBJECT* ptrgLab;
-	bool32      bLockOn;
+	uint32		u32NameID;
+	DG_OBJPTR	pobj;
+	MT_MOTPTR	pmt;
+	HZD_CAPSULE	hzc;
+	TRG_OBJECT	trg;
+	TRG_OBJECT	trgArms;
+	TRG_OBJECT	trgGuard;
+	ALG_MATRIX	matOrg;
+	ALG_MATRIX	matAng;
+	ALG_MATRIX	matScr;
+	ALG_MATRIX	matNewScr;
+	DG_CAMERA	cam;
+	FRM_CAMERA	fcm;
+	ALG_MATRIX	matCam;
+	ALG_MATRIX	matOldCam;
+	float		fSwCamRate;
+	float		fSwCamSpd;
+	float		fFixZoom;
+	ALG_MATRIX	matFixCam;
+	ALG_MATRIX	matRotCam;
+	float		fHzdRate;
+	ALG_MATRIX	matHzdCam;
+	ALG_MATRIX	matAim;
+	ALG_VECTOR	vecSpeed;
+	float		fSpeed;
+	float		fBstRate;
+	ALG_VECTOR	vecDamage;
+	bool32		bDestroy;
+	bool32		bSubject;
+	bool32		bLastSub;
+	bool32		bPosture;
+	bool32		bSearch;
+	FRM_COMMAND	cmd;
+	FRM_CUSTOM	cus;
+	ENE_OBJECT	ene;
+	FRM_PAD		pad;
+	bool32		bNeutral;
+	bool32		bLastNeutral;
+	bool32		bNeutral2;
+	ALG_MATRIX	matPad;
+	float		fStickRate;
+	ALG_MATRIX	matComp;
+	float		fGravity;
+	uint8		u8GravUp;
+	uint8		u8GravDown;
+	float		fLevRate;
+	float		fAltitude;
+	float		fLastAlt;
+	float		fAltRate;
+	float		fAltFree;
+	bool32		bGround;
+	float		fFootL;
+	float		fFootR;
+	float		fFloat;
+	bool32		bGuard;
+	uint16		u16LotID;
+	TRG_OBJECT*	ptrgLot;
+	float		fLotDist;
+	bool32		bInfight;
+	float		fFixRate;
+	float		fSpeedRate;
+	uint16		u16LabID;
+	TRG_OBJECT*	ptrgLab;
+	bool32		bLockOn;
 
-	static uint8 u8FrameNode[41][6];
+	static uint8 u8FrameNode[ 41 ][ FRM_TYPE_NUM ];//[41][6];
 
 public:
-	FRM_OBJECT(const FRM_OBJECT &);
-	FRM_OBJECT(uint32, ALG_MATRIX*, uint8, uint8, uint8, uint8, sint32, uint32, uint8);
+
+	FRM_OBJECT( const FRM_OBJECT & );
+	FRM_OBJECT( uint32, ALG_MATRIX*, uint8, uint8, uint8, uint8, sint32, uint32, uint8 );
 	~FRM_OBJECT();
 
 	void Act(); // override GV_ACTOR::Act()
 
-	DG_MDL&     NodeMdl(uint8);
-	ALG_MATRIX& NodeMat(uint8);
-	void        ResetFrame();
-	void        ResetTrg();
-	void        SetArms(uint8, float, float);
-	void        ResetArms();
-	void        SetGuard();
-	void        ResetGuard();
-	void        GetState();
-	void        GetPosData();
-	void        GetLockOnData();
-	void        GetPadData();
-	void        SetPad();
-	void        SetPosition();
-	void        SetScreen();
-	void        CheckLockOn();
-	void        SearchLab();
-	void        CheckHazard();
-	void        SetCamera();
-	void        CalcFixCam();
-	void        CalcRotCam();
-	void        CalcHzdCam();
-	void        SetTarget();
-	void        SetModel();
-	void        TurnFrame();
-	void        MoveFrame();
-	void        TurnPad(float);
-	void        TurnLot(float);
-	void        InterpLot(ALG_VECTOR*, float, float);
-	void        TurnVec(ALG_VECTOR*, float);
-	void        CalcLotVec(ALG_VECTOR*);
-	void        MoveVec(ALG_VECTOR*, float, float);
-	void        CheckCommand();
-	void        CheckDamage();
-	void        GetDamage(float);
-	void        CheckHazardBack(float, float);
-	float       CalcHazardAng(ALG_VECTOR*, ALG_VECTOR*, float);
-	sint32      CheckTouch();
-	void        CheckCross();
-	void        SwitchCamera(uint8);
-	void        ResetMatrix(ALG_MATRIX*);
-	void        PlayVibration(uint8);
-	void        DoControl();
-	void        DoAction();
-	void        DoDash();
-	void        DoArms();
-	void        DoGuard();
-	void        DoHold();
-	void        DoHeld();
-	void        DoCross();
-	void        DoDamage();
-	void        DoBump();
-	void        DoBlast();
-	void        DoDecoy();
-	void        DoJehShot();
-	void        DoJehLaser();
-	void        DoJehCannon();
-	void        DoJavelin();
-	void        DoGeyser();
-	void        DoBounder();
-	void        DoPhalanx();
-	void        DoHalberd();
-	void        DoComet();
-	void        DoGauntlet();
-	void        DoSniper();
-	void        DoMumShell();
-	void        DoFlySqrShot();
-	void        DoFlySqrDShot();
-	void        DoFlySqrBShot();
-	void        DoRebSqrShot();
-	void        DoRebSqrDShot();
-	void        DoRebSqrBShot();
+	DG_MDL&		NodeMdl( uint8 );
+	ALG_MATRIX&	NodeMat( uint8 );
 
-	static DG_LIGHT     lightPlayer;
-	static DG_LIGHT     lightPlayerBack;
-	static DG_LIGHT*    LockPlayerLight;
-	static void         UnlockPlayerLight(DG_LIGHT*);
+	void ResetFrame();	// Reset Orbital Frame
+	void ResetTrg();	// Reset Target
 
-	FRM_OBJECT& operator=(const FRM_OBJECT&);
+	void SetArms( uint8, float, float );
+	void ResetArms();
+
+	void SetGuard();
+	void ResetGuard();
+
+	void GetState();
+	void GetPosData();
+	void GetLockOnData();
+	void GetPadData();
+	void SetPad();
+	void SetPosition();
+	void SetScreen();
+	void CheckLockOn();
+	void SearchLab();
+	void CheckHazard();
+
+	void SetCamera();
+	void CalcFixCam();
+	void CalcRotCam();
+	void CalcHzdCam();
+
+	void SetTarget();
+	void SetModel();
+	void TurnFrame();
+	void MoveFrame();
+	void TurnPad( float );
+	void TurnLot( float );
+	void InterpLot( ALG_VECTOR*, float, float );
+	void TurnVec( ALG_VECTOR*, float );
+	void CalcLotVec( ALG_VECTOR* );
+	void MoveVec( ALG_VECTOR*, float, float );
+	void CheckCommand();
+	void CheckDamage();
+	void GetDamage( float );
+	void CheckHazardBack( float, float );
+	float CalcHazardAng( ALG_VECTOR*, ALG_VECTOR*, float );
+	int32 CheckTouch();
+	void CheckCross();
+	void SwitchCamera( uint8 );
+	void ResetMatrix( ALG_MATRIX* );
+	void PlayVibration( uint8 );
+
+	// Do Actions
+	void DoControl();
+	void DoAction();		// defined here (libfrm.h)
+	void DoDash();
+	void DoArms();
+	void DoGuard();
+	void DoHold();
+	void DoHeld();			// defined here (libfrm.h)
+	void DoCross();
+	void DoDamage();
+	void DoBump();
+	void DoBlast();
+	void DoDecoy();
+	void DoJehShot();		// Jehuty Shot
+	void DoJehLaser();		// Jehuty Laser
+	void DoJehCannon();		// Jehuty Cannon
+	void DoJavelin();
+	void DoGeyser();
+	void DoBounder();
+	void DoPhalanx();
+	void DoHalberd();
+	void DoComet();
+	void DoGauntlet();
+	void DoSniper();
+	void DoMumShell();
+	void DoFlySqrShot();
+	void DoFlySqrDShot();
+	void DoFlySqrBShot();
+	void DoRebSqrShot();
+	void DoRebSqrDShot();
+	void DoRebSqrBShot();
+
+	static DG_LIGHT		lightPlayer;
+	static DG_LIGHT		lightPlayerBack;
+
+	static DG_LIGHT*	LockPlayerLight();
+	static void			UnlockPlayerLight( DG_LIGHT* );
+
+	FRM_OBJECT& operator = ( const FRM_OBJECT& );
 };
 
 #endif /* END OF FILE */

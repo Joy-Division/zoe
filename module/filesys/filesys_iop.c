@@ -5,7 +5,7 @@
  */
 #include <sys/types.h>
 #include <kernel.h>
-#include <sifcmd.h> /* for FS_FILEINFO */
+#include <sifcmd.h> // for sceSifCmdHdr
 
 #include "nousbfs.h"
 //#include "jsifman.h"
@@ -39,9 +39,9 @@ struct Work {
 	u_int	unk68;
 	int		unk6C;
 	u_int*	unk70[2];
-	int		unk78;		/* thread ID */
+	int		unk78;		// thread ID
 	int		unk7C;
-	u_char	unk80[16];	/* UNUSED */
+	u_char	unk80[16];	// UNUSED
 };
 
 struct Work work;
@@ -62,7 +62,7 @@ void LoadDaemonThread( void )
 
 		switch( work.unk7C )
 		{
-		case 0:  /* fallthrough */
+		case 0: // fallthrough
 		case 4:
 			work.unk60 = work.fileinfo.pBuf;
 
@@ -148,7 +148,7 @@ void CallBackFunc( struct Work *a0, volatile struct Work *a1 )
 
 	switch( temp->unk7C )
 	{
-	case 4: /* fallthrough */
+	case 4: // fallthrough
 	case 0:
 		if( temp->unk6C > 0 ) break;
 		temp->unk6C = -1;
@@ -180,10 +180,10 @@ int FS_StartDaemonIOP( void )
 	work.unk70[1] = AllocSysMemory( 0, 0x8000, 0 );
 	work.unk6C = -1;
 
-	param.attr         = TH_C;
-	param.entry        = LoadDaemonThread;
-	param.initPriority = 0x52;
-	param.stackSize    = 0x1000;    /* 4KB */
+	param.attr			= TH_C;
+	param.entry			= LoadDaemonThread;
+	param.initPriority	= 0x52;
+	param.stackSize		= 0x1000;	// 4KB
 	tid = CreateThread( &param );
 
 	if( tid > 0 ){

@@ -1,6 +1,8 @@
 #ifndef INCLUDED_ZOE_ENUM_H
 #define INCLUDED_ZOE_ENUM_H
 
+/*---------------------------------------------------------------------------*/
+
 // ref.default.pdb
 enum {
 	GS_REGS_PRIM,
@@ -21,6 +23,8 @@ enum {
 	GS_REGS_NOP
 };
 
+/*---------------------------------------------------------------------------*/
+
 // ref.default.pdb
 enum {
 	OPTBITFLAG_VIBRATION,
@@ -28,6 +32,8 @@ enum {
 	OPTBITFLAG_BATTLE_CAPTION,
 	OPTBITFLAG_STEREO
 };
+
+/*---------------------------------------------------------------------------*/
 
 // ref.default.pdb
 enum {
@@ -39,6 +45,8 @@ enum {
 	OPTLANG_SPANISH,
 	OPTLANG_PORTUGUESE
 };
+
+/*---------------------------------------------------------------------------*/
 
 // ref.default.pdb
 enum {

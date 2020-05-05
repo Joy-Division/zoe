@@ -14,12 +14,8 @@
 
 /*---------------------------------------------------------------------------*/
 
-
-
 unsigned short str2_master_vol = 0x3FFF;
 unsigned short str2_master_pitch = 0x1000;
-
-
 
 unsigned int spu_str2_start_ptr_r[2];
 unsigned int str2_iop_load_set[2];
@@ -253,11 +249,12 @@ int Str2SpuTrans( int a0 )
 			spu_str2_start_ptr_l[a0] = a0 * 0x2000 + 0x5020;
 			sceSdSetAddr( SD_CORE_1|(((a0*2)+20)<<1)|SD_VA_LSAX, a0*0x2000+0x5020 );
 			sceSdVoiceTrans(
-				1,                                    /* transfer channel */
-				SD_TRANS_MODE_WRITE|SD_TRANS_BY_DMA,  /* transfer mode    */
-				str2_trans_buf[a0],                   /* IOP memory addr  */
-				(u_char *)(spu_str2_start_ptr_l[a0]), /* SPU memory addr  */
-				0x0800 );                             /* transfer size    */
+				1,										// transfer channel
+				SD_TRANS_MODE_WRITE|SD_TRANS_BY_DMA,	// transfer mode
+				str2_trans_buf[a0],						// IOP memory addr
+				(u_char *)(spu_str2_start_ptr_l[a0]),	// SPU memory addr
+				0x0800									// transfer size
+			);
 			if( !str2_mono_fg[a0] ){
 				str2_play_offset[a0] = 0x0800;
 				str2_unplay_size[a0] -= 0x0800;
@@ -267,11 +264,12 @@ int Str2SpuTrans( int a0 )
 			spu_str2_start_ptr_r[a0] = a0*0x2000+0x6020;
 			sceSdSetAddr( SD_CORE_1|(((a0*2)+21)<<1)|SD_VA_LSAX, a0*0x2000+0x6020 );
 			sceSdVoiceTrans(
-				1,                                       /* transfer channel */
-				SD_TRANS_MODE_WRITE|SD_TRANS_BY_DMA,     /* transfer mode    */
-				str2_trans_buf[a0]+str2_play_offset[a0], /* IOP memory addr  */
-				(u_char *)(spu_str2_start_ptr_r[a0]),    /* SPU memory addr  */
-				0x0800 );                                /* transfer size    */
+				1,											// transfer channel
+				SD_TRANS_MODE_WRITE|SD_TRANS_BY_DMA,		// transfer mode
+				str2_trans_buf[a0]+str2_play_offset[a0],	// IOP memory addr
+				(u_char *)(spu_str2_start_ptr_r[a0]),		// SPU memory addr
+				0x0800										// transfer size
+			);
 			str2_play_offset[a0] += 0x0800;
 			str2_unplay_size[a0] -= 0x0800;
 			if( !str2_mono_fg[a0] ){
@@ -292,11 +290,12 @@ int Str2SpuTrans( int a0 )
 		if( !str2_l_r_fg[a0] ){
 			str2_trans_buf[a0][str2_play_offset[a0]+0x07F1] |= 1;
 			sceSdVoiceTrans(
-				1,                                         /* transfer channel */
-				SD_TRANS_MODE_WRITE|SD_TRANS_BY_DMA,       /* transfer mode    */
-				str2_trans_buf[a0]+str2_play_offset[a0],   /* IOP memory addr  */
-				(u_char*)(spu_str2_start_ptr_l[a0])+0x800, /* SPU memory addr  */
-				0x0800 );                                  /* transfer size    */
+				1,											// transfer channel
+				SD_TRANS_MODE_WRITE|SD_TRANS_BY_DMA,		// transfer mode
+				str2_trans_buf[a0]+str2_play_offset[a0],	// IOP memory addr
+				(u_char*)(spu_str2_start_ptr_l[a0])+0x800,	// SPU memory addr
+				0x0800										// transfer size
+			);
 			if( !str2_mono_fg[a0] ){
 				str2_play_offset[a0] += 0x0800;
 				str2_unplay_size[a0] -= 0x0800;
@@ -305,11 +304,12 @@ int Str2SpuTrans( int a0 )
 		} else {
 			str2_trans_buf[a0][str2_play_offset[a0]+0x07F1] |= 1;
 			sceSdVoiceTrans(
-				1,                                         /* transfer channel */
-				SD_TRANS_MODE_WRITE|SD_TRANS_BY_DMA,       /* transfer mode    */
-				str2_trans_buf[a0]+str2_play_offset[a0],   /* IOP memory addr  */
-				(u_char*)(spu_str2_start_ptr_r[a0])+0x800, /* SPU memory addr  */
-				0x0800 );                                  /* transfer size    */
+				1,											// transfer channel
+				SD_TRANS_MODE_WRITE|SD_TRANS_BY_DMA,		// transfer mode
+				str2_trans_buf[a0]+str2_play_offset[a0],	// IOP memory addr
+				(u_char*)(spu_str2_start_ptr_r[a0])+0x800,	// SPU memory addr
+				0x0800										// transfer size
+			);
 			str2_play_offset[a0] += 0x0800;
 			str2_unplay_size[a0] -= 0x0800;
 			str2_read_status[a0][str2_play_idx[a0]] = 0;
@@ -375,7 +375,8 @@ int Str2SpuTrans( int a0 )
 		} else {
 			sceSdSetSwitch( SD_CORE_1|SD_S_KON, 0xC00000 );
 		}
-		// the following two assignments should follow the form var1 = var2 = 0, but i get an extra instruction that way...
+		// the following two assignments should follow the form var1 = var2 = 0,
+		// but i get an extra instruction that way...
 		mute2_l_r_fg[a0] = 0;
 		spu_str2_idx[a0] = 0;
 		str2_next_idx[a0] = 0x0800;
@@ -442,19 +443,21 @@ int Str2SpuTrans( int a0 )
 				if( spu_str2_idx[a0] >= 0x0800 ){
 					if( !str2_l_r_fg[a0] ){
 						sceSdVoiceTrans(
-							1,                                       /* transfer channel */
-							SD_TRANS_MODE_WRITE|SD_TRANS_BY_DMA,     /* transfer mode    */
-							str2_trans_buf[a0]+str2_play_offset[a0], /* IOP memory addr  */
-							(u_char *)(spu_str2_start_ptr_l[a0]),    /* SPU memory addr  */
-							0x0800 );                                /* transfer size    */
+							1,											// transfer channel
+							SD_TRANS_MODE_WRITE|SD_TRANS_BY_DMA,		// transfer mode
+							str2_trans_buf[a0]+str2_play_offset[a0],	// IOP memory addr
+							(u_char *)(spu_str2_start_ptr_l[a0]),		// SPU memory addr
+							0x0800										// transfer size
+						);
 						str2_l_r_fg[a0] = 1;
 					} else {
 						sceSdVoiceTrans(
-							1,                                       /* transfer channel */
-							SD_TRANS_MODE_WRITE|SD_TRANS_BY_DMA,     /* transfer mode    */
-							str2_trans_buf[a0]+str2_play_offset[a0], /* IOP memory addr  */
-							(u_char *)(spu_str2_start_ptr_r[a0]),    /* SPU memory addr  */
-							0x0800 );                                /* transfer size    */
+							1,											// transfer channel
+							SD_TRANS_MODE_WRITE|SD_TRANS_BY_DMA,		// transfer mode
+							str2_trans_buf[a0]+str2_play_offset[a0],	// IOP memory addr
+							(u_char *)(spu_str2_start_ptr_r[a0]),		// SPU memory addr
+							0x0800										// transfer size
+						);
 						str2_next_idx[a0] = (str2_next_idx[a0] + 0x0800) & 0x0FFF;
 						str2_l_r_fg[a0] = 0;
 						if( !str2_mono_fg[a0] ){
@@ -472,20 +475,22 @@ int Str2SpuTrans( int a0 )
 					*(str2_trans_buf[a0]+str2_play_offset[a0]+0x07F1) |= 1;
 					if( !str2_l_r_fg[a0] ){
 						sceSdVoiceTrans(
-							1,                                          /* transfer channel */
-							SD_TRANS_MODE_WRITE|SD_TRANS_BY_DMA,        /* transfer mode    */
-							str2_trans_buf[a0]+str2_play_offset[a0],    /* IOP memory addr  */
-							(u_char *)(spu_str2_start_ptr_l[a0])+0x800, /* SPU memory addr  */
-							0x0800 );                                   /* transfer size    */
+							1,											// transfer channel
+							SD_TRANS_MODE_WRITE|SD_TRANS_BY_DMA,		// transfer mode
+							str2_trans_buf[a0]+str2_play_offset[a0],	// IOP memory addr
+							(u_char *)(spu_str2_start_ptr_l[a0])+0x800,	// SPU memory addr
+							0x0800										// transfer size
+						);
 						str2_l_r_fg[a0] = 1;
 					} else {
 						str2_next_idx[a0] = (str2_next_idx[a0] + 0x0800) & 0x0FFF;
 						sceSdVoiceTrans(
-							1,                                          /* transfer channel */
-							SD_TRANS_MODE_WRITE|SD_TRANS_BY_DMA,        /* transfer mode    */
-							str2_trans_buf[a0]+str2_play_offset[a0],    /* IOP memory addr  */
-							(u_char *)(spu_str2_start_ptr_r[a0])+0x800, /* SPU memory addr  */
-							0x0800 );                                   /* transfer size    */
+							1,											// transfer channel
+							SD_TRANS_MODE_WRITE|SD_TRANS_BY_DMA,		// transfer mode
+							str2_trans_buf[a0]+str2_play_offset[a0],	// IOP memory addr
+							(u_char *)(spu_str2_start_ptr_r[a0])+0x800,	// SPU memory addr
+							0x0800										// transfer size
+						);
 						str2_l_r_fg[a0] = 0;
 						str2_read_status[a0][str2_play_idx[a0]] = 0;
 						str2_play_idx[a0]++;
@@ -532,19 +537,21 @@ int Str2SpuTrans( int a0 )
 					dummy_data[0x07F1] = 2;
 					if( !mute2_l_r_fg[a0] ){
 						sceSdVoiceTrans(
-							1,                                    /* transfer channel */
-							SD_TRANS_MODE_WRITE|SD_TRANS_BY_DMA,  /* transfer mode    */
-							dummy_data,                           /* IOP memory addr  */
-							(u_char *)(spu_str2_start_ptr_l[a0]), /* SPU memory addr  */
-							0x0800 );                             /* transfer size    */
+							1,										// transfer channel
+							SD_TRANS_MODE_WRITE|SD_TRANS_BY_DMA,	// transfer mode
+							dummy_data,								// IOP memory addr
+							(u_char *)(spu_str2_start_ptr_l[a0]),	// SPU memory addr
+							0x0800									// transfer size
+						);
 						mute2_l_r_fg[a0] = 1;
 					} else {
 						sceSdVoiceTrans(
-							1,                                    /* transfer channel */
-							SD_TRANS_MODE_WRITE|SD_TRANS_BY_DMA,  /* transfer mode    */
-							dummy_data,                           /* IOP memory addr  */
-							(u_char *)(spu_str2_start_ptr_r[a0]), /* SPU memory addr  */
-							0x0800 );                             /* transfer size    */
+							1,										// transfer channel
+							SD_TRANS_MODE_WRITE|SD_TRANS_BY_DMA,	// transfer mode
+							dummy_data,								// IOP memory addr
+							(u_char *)(spu_str2_start_ptr_r[a0]),	// SPU memory addr
+							0x0800									// transfer size
+						);
 						str2_next_idx[a0] = (str2_next_idx[a0] + 0x0800) & 0x0FFF;
 						mute2_l_r_fg[a0] = 0;
 					}
@@ -554,20 +561,22 @@ int Str2SpuTrans( int a0 )
 					if( !mute2_l_r_fg[a0] ){
 						mute2_l_r_fg[a0] = 1;
 						sceSdVoiceTrans(
-							1,                                           /* transfer channel */
-							SD_TRANS_MODE_WRITE|SD_TRANS_BY_DMA,         /* transfer mode    */
-							dummy_data,                                  /* IOP memory addr  */
-							(u_char *)(spu_str2_start_ptr_l[a0])+0x0800, /* SPU memory addr  */
-							0x0800 );                                    /* transfer size    */
+							1,												// transfer channel
+							SD_TRANS_MODE_WRITE|SD_TRANS_BY_DMA,			// transfer mode
+							dummy_data,										// IOP memory addr
+							(u_char *)(spu_str2_start_ptr_l[a0])+0x0800,	// SPU memory addr
+							0x0800											// transfer size
+						);
 					} else {
 						mute2_l_r_fg[a0] = 0;
 						str2_next_idx[a0] = (str2_next_idx[a0] + 0x0800) & 0x0FFF;
 						sceSdVoiceTrans(
-							1,                                           /* transfer channel */
-							SD_TRANS_MODE_WRITE|SD_TRANS_BY_DMA,         /* transfer mode    */
-							dummy_data,                                  /* IOP memory addr  */
-							(u_char *)(spu_str2_start_ptr_r[a0])+0x0800, /* SPU memory addr  */
-							0x0800 );                                    /* transfer size    */
+							1,												// transfer channel
+							SD_TRANS_MODE_WRITE|SD_TRANS_BY_DMA,			// transfer mode
+							dummy_data,										// IOP memory addr
+							(u_char *)(spu_str2_start_ptr_r[a0])+0x0800,	// SPU memory addr
+							0x0800											// transfer size
+						);
 					}
 				}
 			}

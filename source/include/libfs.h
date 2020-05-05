@@ -17,9 +17,9 @@
 #include "libgv.h"
 #include "libev.h"
 
-/*---------------------------------------------------------------------------*
- * Common Structures
- *---------------------------------------------------------------------------*/
+//=============================================================================
+// FS Common Data Types
+//=============================================================================
 
 // ref.default.pdb
 typedef struct _FS_FILEINFO {
@@ -31,6 +31,8 @@ typedef struct _FS_FILEINFO {
 	int32	pos;
 	char	nmFile[60];
 } FS_FILEINFO;
+
+/*---------------------------------------------------------------------------*/
 
 // ref.default.pdb
 typedef struct _FS_PACKHDR {
@@ -51,6 +53,8 @@ typedef struct HDRINFO {
 	FS_FILEHDR filehdr;
 } HDRINFO;
 
+/*---------------------------------------------------------------------------*/
+
 // ref.default.pdb
 class FS_EXTEND_INFO
 {
@@ -70,9 +74,9 @@ public: //! check modifier
 	int32			nAllocType;
 };
 
-/*---------------------------------------------------------------------------*
- * FS Cache System (cache.cc)
- *---------------------------------------------------------------------------*/
+//=============================================================================
+// FS Cache System (cache.cc)
+//=============================================================================
 
 // ref.default.pdb
 class FS_CACHEMEMBER
@@ -82,6 +86,8 @@ public: //! check modifier
 	void*	pBuf;
 };
 
+/*---------------------------------------------------------------------------*/
+
 // ref.default.pdb
 class FS_CACHE
 {
@@ -90,21 +96,20 @@ public: //! check modifier
 	int32 size;
 
 private:
-	FS_CACHEMEMBER*	Find(uint32);
-	void			Shift(FS_CACHEMEMBER*);
+	FS_CACHEMEMBER* Find( uint32 );
+	void Shift( FS_CACHEMEMBER* );
 
 public:
-	void	Init(FS_CACHEMEMBER*, int32);
-	void	Set(uint32, void*);
-	void	Unset(uint32);
-	void*	Get(uint32);
+	void	Init( FS_CACHEMEMBER*, int32 );
+	void	Set( uint32, void* );
+	void	Unset( uint32 );
+	void*	Get( uint32 );
 	void	Destroy();
 };
 
-
-/*---------------------------------------------------------------------------*
- * FS Loader (loader.cc)
- *---------------------------------------------------------------------------*/
+//=============================================================================
+// FS Loader (loader.cc)
+//=============================================================================
 
 // ref.default.pdb
 class FS_LOADER:
@@ -124,24 +129,24 @@ public: //! check modifier
 	int32		nLastReadOffset;
 
 	enum STATE {
-		IDLE,
-		SYNC,
-		OPEN,
-		PACKHDR,
-		FILEHDR,
-		READ,
-		CLOSE,
-		COMP,
-		INTR,
-		RESTART
+		IDLE,		//
+		SYNC,		//
+		OPEN,		//
+		PACKHDR,	//
+		FILEHDR,	//
+		READ,		//
+		CLOSE,		//
+		COMP,		//
+		INTR,		//
+		RESTART		//
 	} state;
 
 	enum SUS_PHASE {
-		S_NOTHING,
-		S_REQUEST,
-		S_REQUEST2,
-		S_SUSPEND,
-		S_REOPEN
+		S_NOTHING,	//
+		S_REQUEST,	//
+		S_REQUEST2,	//
+		S_SUSPEND,	//
+		S_REOPEN	//
 	} phSuspend;
 
 	EV_EVENT*		pEv;
@@ -153,15 +158,15 @@ public: //! check modifier
 	FS_LOAD_INFO	Info[256];
 
 public:
-	void CallInitializer(void*, char*, uint32, int32);
+	void CallInitializer( void*, char*, uint32, int32 );
 	void InitStageLoad();
 
-	FS_LOADER(const FS_LOADER&);
+	FS_LOADER( const FS_LOADER& );
 	FS_LOADER();
 
 	void Act(); // override GV_ACTOR::Act()
 
-	int32	SetStage(EV_EVENT*);
+	int32	SetStage( EV_EVENT* );
 	void	Load();
 	int32	CheckSuspend();
 	int32	StartStage();
@@ -169,19 +174,19 @@ public:
 	int32	CheckBusy();
 	int32	CheckReading();
 	void	Restart();
-	void	RequestSetStage(EV_EVENT*, char*, int32, char**);
+	void	RequestSetStage( EV_EVENT*, char*, int32, char** );
 
 	void SuspendJob(EV_EVENT*);	// override EV_JOB::SuspendJob()
 	void WakeupJob(EV_EVENT*);	// override EV_JOB::WakeupJob()
 
 	~FS_LOADER();
 
-	FS_LOADER& operator=(const FS_LOADER&);
+	FS_LOADER& operator = ( const FS_LOADER& );
 };
 
-/*---------------------------------------------------------------------------*
- * Prototypes
- *---------------------------------------------------------------------------*/
+//=============================================================================
+// Global Functions
+//=============================================================================
 
 /* FS Daemon (fsd.cc) */
 void FS_StartDaemon();
