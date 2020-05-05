@@ -12,7 +12,7 @@
 /* Integer Types w/ Unspecified Sign                                         */
 /*===========================================================================*/
 /* These types are declared as preprocessor macros to sidestep a limitation  */
-/* of typedef aliasing in which the user becomes unable to specificy the     */
+/* of typedef aliasing in which the user becomes unable to specify the       */
 /* alias's signedness.                                                       */
 /*---------------------------------------------------------------------------*/
 
