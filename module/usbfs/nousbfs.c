@@ -44,8 +44,8 @@ int start()
 	extern libhead usbfs_entry;
 
 	if( RegisterLibraryEntries( &usbfs_entry ) )
-		return 1;
+		return NO_RESIDENT_END;
 
 	printf( "USB FILE DO NOT USE\n" );
-	return 0;
+	return RESIDENT_END;
 }
