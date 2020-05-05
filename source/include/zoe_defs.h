@@ -6,21 +6,23 @@
  *---------------------------------------------------------------------------*/
 
 #if defined(__GNUC__)
-#  define ALIGN4    __attribute__((aligned(4)))
-#  define ALIGN8    __attribute__((aligned(8)))
-#  define ALIGN16   __attribute__((aligned(16)))
-#  define ALIGN32   __attribute__((aligned(32)))
-#  define ALIGN64   __attribute__((aligned(64)))
-#  define ALIGN128  __attribute__((aligned(128)))
-#  define ALIGN(x)  __attribute__((aligned(x)))
+#define ALIGN(x)	__attribute__((aligned(x)))
+#define ALIGN8		__attribute__((aligned(1)))
+#define ALIGN16		__attribute__((aligned(2)))
+#define ALIGN32		__attribute__((aligned(4)))
+#define ALIGN64		__attribute__((aligned(8)))
+#define ALIGN128	__attribute__((aligned(16)))
+#define ALIGN256	__attribute__((aligned(32)))
+#define ALIGN512	__attribute__((aligned(64)))
 #else
-#  define ALIGN4
-#  define ALIGN8
-#  define ALIGN16
-#  define ALIGN32
-#  define ALIGN64
-#  define ALIGN128
-#  define ALIGN(x)
+#define ALIGN(x)	//__attribute__((aligned(x)))
+#define ALIGN8		//__attribute__((aligned(1)))
+#define ALIGN16		//__attribute__((aligned(2)))
+#define ALIGN32		//__attribute__((aligned(4)))
+#define ALIGN64		//__attribute__((aligned(8)))
+#define ALIGN128	//__attribute__((aligned(16)))
+#define ALIGN256	//__attribute__((aligned(32)))
+#define ALIGN512	//__attribute__((aligned(64)))
 #endif
 
 // Hack for unknown const values.
