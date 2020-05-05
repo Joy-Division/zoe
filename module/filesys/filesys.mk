@@ -40,9 +40,6 @@ OBJS =\
 
 all: $(PROGNAME)
 
-clean:
-	-rm -f $(OBJS) $(PROGNAME)
-
 $(PROGNAME): $(OBJS)
 	$(LINK.o) -o $@ $(OBJS) $(ILIBS)
 
@@ -53,3 +50,8 @@ test: $(PROGNAME)
 	@# sha1sum filesys-retail-jp.irx
 	@-sha1sum -c filesys-retail-jp.sha1
 	@rm filesys-retail-jp.irx
+
+###############################################################################
+
+clean:
+	-rm -f $(OBJS) $(PROGNAME)

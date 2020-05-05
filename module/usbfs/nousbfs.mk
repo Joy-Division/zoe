@@ -43,9 +43,6 @@ OBJS = nousbfs_entry.o nousbfs.o
 
 all: $(PROGNAME)
 
-clean:
-	-rm -f $(OBJS) $(ENTRYFILE) $(PROGNAME)
-
 $(ENTRYFILE): $(ENTRYTABLE)
 	$(ILBGEN) -d $(LIBDIR)/$(ILBFILE) -e $(ENTRYFILE) $(ENTRYTABLE)
 
@@ -59,3 +56,8 @@ test: $(PROGNAME)
 	@# sha1sum nousbfs-retail-jp.irx
 	@-sha1sum -c nousbfs-retail-jp.sha1
 	@rm nousbfs-retail-jp.irx
+
+###############################################################################
+
+clean:
+	-rm -f $(OBJS) $(ENTRYFILE) $(PROGNAME)

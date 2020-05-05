@@ -73,9 +73,6 @@ OBJS =\
 
 all: $(PROGNAME)
 
-clean:
-	-rm -f *.o $(PROGNAME)
-
 # The commented out line will suffice for regular building
 # but using a custom linkerscript requires the performed steps to be done
 # manually because iop-elf-gcc passes the options in such a way that ioplibld
@@ -93,3 +90,8 @@ test: $(PROGNAME)
 	@sha1sum retail-jp.irx
 	-@sha1sum -c retail-jp.sha1
 	@rm retail-jp.irx
+
+###############################################################################
+
+clean:
+	-rm -f *.o $(PROGNAME)
