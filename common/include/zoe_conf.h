@@ -2,19 +2,27 @@
 #define INCLUDED_ZOE_CONF_H
 
 /*===========================================================================*/
-/* Definition Check                                                          */
+/* Build Type Definition Check                                               */
 /*===========================================================================*/
 
-#if (( BUILD_SLPM65019 \
+#if (( BUILD_SLPM65018 \
+     + BUILD_SLPM65019 \
      + BUILD_SLES50111 \
      + BUILD_SLUS20148 \
+/*------------------------------*/\
      + BUILD_SLPS99999 \
      + BUILD_SLPM61002 \
      + BUILD_PCPX96611 \
-     + BUILD_USA_DEMO \
-     + BUILD_PAL_DEMO \
+     + BUILD_USA_DEMO  \
+     + BUILD_PAL_DEMO  \
+/*------------------------------*/\
      + BUILD_NEW ) != 1 )
 #error "ERROR: 0 or >1 config flags defined."
+#endif
+
+// SLPM65018 == SLPM65019
+#ifdef  BUILD_SLPM65018
+#define BUILD_SLPM65019 1
 #endif
 
 /*===========================================================================*/
