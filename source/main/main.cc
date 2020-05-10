@@ -73,7 +73,7 @@ static void SifLoad()
 		"cdrom0:\\MODULES\\NOUSBFS.IRX;1",
 		"cdrom0:\\MODULES\\IOP_MAIN.IRX;1"
 	};
-#if (ZOE_JPN)
+#if (ZOE_JAPAN)
 	//
 	// TODO: decompile
 	//
@@ -186,7 +186,7 @@ int main()
 
 #if (ZOE_DEMO_BORMAN)
 	NewInitLoad( "init", 0 );
-#else // TODO: Known for ZOE_JPN, check others
+#else // TODO: Known for ZOE_JAPAN, check others
 	// FIXME: call does not match any candidates
 	CR_SetStageLoad( "title", 1, "font.pak", 0 );
 #endif
