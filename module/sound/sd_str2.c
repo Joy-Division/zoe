@@ -37,7 +37,7 @@ unsigned int str2_unload_size[2];
 unsigned int str2_mono_offset[2];
 unsigned int str2_unplay_size[2];
 unsigned int str2_next_idx[2];
-unsigned int mute2_l_r_fg[2];
+int mute2_l_r_fg[2];
 unsigned int str2_play_counter[2];
 unsigned int str2_keyoffs;
 unsigned int str2_mute_fg[2];
@@ -375,10 +375,7 @@ int Str2SpuTrans( int a0 )
 		} else {
 			sceSdSetSwitch( SD_CORE_1|SD_S_KON, 0xC00000 );
 		}
-		// the following two assignments should follow the form var1 = var2 = 0,
-		// but i get an extra instruction that way...
-		mute2_l_r_fg[a0] = 0;
-		spu_str2_idx[a0] = 0;
+		spu_str2_idx[a0] = mute2_l_r_fg[a0] = 0;
 		str2_next_idx[a0] = 0x0800;
 		str2_status[a0]++;
 		if( !str2_unplay_size[a0] || (str2_unplay_size[a0] & 0x80000000) ){

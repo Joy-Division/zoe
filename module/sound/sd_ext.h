@@ -85,7 +85,7 @@ extern u_int str2_play_offset[2];
 extern u_int spu_str2_start_ptr_l[2];
 extern u_int spu_str2_start_ptr_r[2];
 extern u_int spu_str2_idx[2];
-extern u_int mute2_l_r_fg[2];
+extern int mute2_l_r_fg[2];
 extern u_int str2_off_ctr[2];
 extern u_int str2_next_idx[2];
 extern u_int str2_mute_fg[2];
