@@ -86,8 +86,7 @@ SECTIONS
   .lit4 : { *(.lit4) }
   PROVIDE (edata = .);
   /* changeme */
-  .sbss      : { 
-	. = ALIGN(16);
+  .sbss : {
 	id_SdInt = .;			. += 4;
 	common = .;			. += 4;
 	id_SdEELoad = .;		. += 4;
@@ -309,7 +308,6 @@ SECTIONS
 	lnr16_buf = .;			. += 0x1000;
 	lnr8_read_status = .;		. += 0x80;
 	lnr8_buf = .;			. += 0x8000;
-	*(COMMON)
   }
   . = ALIGN(32 / 8);
   PROVIDE (end = .);
@@ -352,5 +350,6 @@ SECTIONS
   /DISCARD/ : {
 	*(.scommon)
 	*(LOAD)
+	*(COMMON)
   }
 }
