@@ -143,6 +143,7 @@ int main()
 	sd_init();
 
 #if (ZOE_DEMO_BORMAN)
+	// TODO: Check this, likely NOMATCH
 	DEBUG_InitException(
 		(((0x00010000 + (s16)0x8000)
 		+ (0x00200000 + (s16)0x8000))-16)
