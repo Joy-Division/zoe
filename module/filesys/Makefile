@@ -13,7 +13,9 @@ cdbios cdbios_ee:
 	$(MAKE) -f$@.mk
 
 hdbios hdbios_ee:
-	@echo "Skipping $@ (PLACEHOLDER)"
+# Currently, the HDBIOS library cannot be decompiled,
+# as no builds of the module/interface have been released.
+	@echo "Skipping '$@' (PLACEHOLDER)"
 
 filesys:
 	$(MAKE) -f$@.mk
