@@ -26,7 +26,7 @@ no_cmd, no_cmd, no_cmd, no_cmd, no_cmd, no_cmd, no_cmd, no_cmd,
 no_cmd, no_cmd, no_cmd, no_cmd, no_cmd, no_cmd, no_cmd, no_cmd,
 no_cmd, no_cmd, no_cmd, no_cmd, no_cmd,
 
-/* --- 0x49～0x7F (COMMAND RANGE) --- */
+/* --- 0x4D～0x7F (COMMAND RANGE) --- */
 
 /* 0x4D */ at6_set,
 /* 0x4E */ at7_set,
