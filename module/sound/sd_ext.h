@@ -108,6 +108,14 @@ extern int lnr8_off_ctr;
 extern u_int spu_lnr16_idx;
 
 /* sd_str.c */
+
+/* unreferenced TGS2000 variables */
+
+extern u_int str_mute_fg;
+extern u_int ee_str_load_addr;
+
+/* end of unreferenced TGS2000 variables */
+
 extern u_int str_load_code;
 extern u_int str_first_load;
 extern u_int str_status;
@@ -168,13 +176,12 @@ extern u_int save_wvx1, save_wvx2;
 extern u_int save_efx;
 extern u_int save_mdx;
 
-char *sd_path_sd1[6];
 extern void (*cntl_tbl[128])(void);
 extern char rdm_tbl[129];
 extern u_char VIBX_TBL[44];
 extern int pant[41];
 extern u_int se_pant[65];
-extern int freq_tbl[111];
+extern int freq_tbl[108];
 extern u_int str1_use_iop;
 extern u_short str_master_vol;
 extern u_short str_master_pitch;
@@ -200,7 +207,7 @@ extern u_int sng_master_vol[32];
 extern struct unkstr16 mix_fader[32];
 extern char path_name[0x80];
 extern u_int se_pan[12];
-extern u_int pak_header[512];
+extern u_int pak_header[128];
 extern struct unkstr24 ee_addr[2];
 extern struct WAVE_W wave_header[0x200]; // this is most likely struct WAVE_W
 extern u_char sng_data[0x20000];
@@ -276,9 +283,23 @@ extern u_int fader_off_fg;
 extern u_int sd_code_read;
 extern u_int sng_pause_fg;
 
+
+
+/* unreferenced TGS2000 variables */
+
+extern u_int lnr8_fg;
+extern u_int irq_addr;
+extern u_int mem_str_fg[2]; // this might be an array of 2 in retail
+extern u_int wave_loaded;
+extern u_int se_save_code2;
+extern u_int spu_irq_counter;
+extern u_int blank_data_addr;
+
+/* end of unreferenced TGS2000 variables */
+
 /* GUESSED NAMES */
-extern u_int d1E0E4;
-extern u_int d1E0E8;
+//~ extern u_int d1E0E4;
+//~ extern u_int d1E0E8;
 
 /* se_tbl.c */
 extern struct SETBL se_tbl[128];

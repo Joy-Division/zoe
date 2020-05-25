@@ -14,8 +14,18 @@
 /*===========================================================================*/
 
 /* GUESSED NAMES */
-u_int d1E0E4; // used to be d1E0E4[0] or d1E0E4
-u_int d1E0E8; // used to be d1E0E4[1] or d1E0E8
+//~ u_int d1E0E4; // used to be d1E0E4[0] or d1E0E4
+//~ u_int d1E0E8; // used to be d1E0E4[1] or d1E0E8
+
+
+// from drv
+u_int se_vol[12];
+struct SEPLAYTBL se_request[12];
+
+// from mstr
+struct unkstr24 mem_str_w[12];
+u_char mem_str_buf[0x000A0000];
+
 
 u_int sd_print_fg;
 u_char *se_exp_table;
@@ -85,15 +95,20 @@ u_int fader_off_fg;
 u_int sd_code_read;
 u_int sng_pause_fg;
 
-/* referenced TGS2000 variables */
-// u_int se_save_code2;
 
 /* unreferenced TGS2000 variables */
-// u_int spu_irq_counter;
-// u_int blank_data_addr;
-// u_int lnr8_fg;
-// u_int irq_addr;
-// u_int mem_str_fg;
+
+u_int lnr8_fg;
+u_int irq_addr;
+u_int mem_str_fg[2]; // this might be an array of 2 in retail
+u_int wave_loaded;
+u_int se_save_code2;
+u_int spu_irq_counter;
+u_int blank_data_addr;
+
+/* end of unreferenced TGS2000 variables */
+
+/* referenced TGS2000 variables */
 
 struct SEPLAYTBL se_playing[12];
 u_int fg_rev_set[44];
@@ -109,7 +124,7 @@ u_int sng_master_vol[32];
 struct unkstr16 mix_fader[32];
 char path_name[0x80];
 u_int se_pan[12];
-u_int pak_header[512];
+u_int pak_header[128];
 struct unkstr24 ee_addr[2];
 struct WAVE_W wave_header[0x200];
 u_char sng_data[0x00020000];

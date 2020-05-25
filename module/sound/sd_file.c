@@ -62,7 +62,7 @@ void LoadPakFile( void )
 		PcmRead( pak_fp, pak_header, 0x0800 );
 		if( temp[0].unk00 ){
 			if( temp[0].unk04 != save_wvx1 && temp[0].unk04 != save_wvx2 ){
-				d1E0E4 = (temp[1].unk00 - temp[0].unk00) * 0x0800; // guessed varname
+				mem_str_fg[0] = (temp[1].unk00 - temp[0].unk00) * 0x0800; // guessed varname
 				save_wvx1 = temp[0].unk04;
 				wave_load_code = 0xFEFFFFFE;
 				wave_load_status = 1;
@@ -85,7 +85,7 @@ void LoadPakFile( void )
 	case 2:
 		if( temp[1].unk00 ){
 			if( temp[1].unk04 != save_wvx1 && temp[1].unk04 != save_wvx2 ){
-				d1E0E4 = (temp[2].unk00 - temp[1].unk00) * 0x0800; // guessed varname
+				mem_str_fg[0] = (temp[2].unk00 - temp[1].unk00) * 0x0800; // guessed varname
 				save_wvx2 = temp[1].unk04;
 				wave_load_code = 0xFEFFFFFF;
 				wave_load_status = 1;
@@ -127,7 +127,7 @@ void LoadPakFile( void )
 		if( temp[3].unk00 ){
 			if( temp[3].unk04 != save_mdx ){
 				save_mdx = temp[3].unk04;
-				d1E0E8 = 0x010000FF; // guessed varname
+				mem_str_fg[1] = 0x010000FF; // guessed varname
 				pak_load_status = 7;
 			} else if(1) {
 				pak_load_status = 9;
@@ -140,7 +140,7 @@ void LoadPakFile( void )
 		break; // UNREACHABLE
 
 	case 6:
-		if( d1E0E8 ){ // guessed varname
+		if( mem_str_fg[1] ){ // guessed varname
 			break;
 		} else {
 			pak_load_status = 8;
@@ -173,7 +173,7 @@ void LoadPakFile( void )
 #define SD_PATH_SD1_EFX1   4
 #define SD_PATH_SD1_SDX1   5
 
-char *sd_path_sd1[6] = {
+char *sd_path_cd1[6] = {
 	"\\DUMMY\\",
 	"host0:./sound/vox1/",
 	"host0:./sound/wvx1/",
@@ -286,8 +286,8 @@ int LoadWaveFile( void )
 
 	if( wave_load_code <= 0xFEFFFFFD ){
 		temp4 = 0x00018000;
-	} else if( d1E0E4 <= 0x00017FFF ){
-		temp4 = d1E0E4;
+	} else if( mem_str_fg[0] <= 0x00017FFF ){
+		temp4 = mem_str_fg[0];
 	} else {
 		temp4 = 0x00018000;
 	}
@@ -560,7 +560,7 @@ int PcmOpen( u_int code, u_int path_idx )
 	}
 
 	if( path_idx != SD_PATH_SD1_SDX1 || !path_name[0] ){
-		strcpy( path, sd_path_sd1[path_idx] );
+		strcpy( path, sd_path_cd1[path_idx] );
 	} else {
 		strcpy( path, path_name );
 	}

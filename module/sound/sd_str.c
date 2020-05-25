@@ -143,8 +143,11 @@ u_char dummy_data[2048] = {
 };
 
 /* unreferenced TGS2000 variables */
-// u_int str_mute_fg;
-// u_int ee_str_load_addr;
+
+u_int ee_str_load_addr;
+u_int str_mute_fg;
+
+/* end of unreferenced TGS2000 variables */
 
 unsigned int str_mono_offset;
 unsigned int str_counter;

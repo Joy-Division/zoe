@@ -86,7 +86,8 @@ SECTIONS
   .lit4 : { *(.lit4) }
   PROVIDE (edata = .);
   /* changeme */
-  .sbss : {
+  . = ALIGN(8);
+  .sbss ALIGN(8) : {
 	id_SdInt = .;			. += 4;
 	common = .;			. += 4;
 	id_SdEELoad = .;		. += 4;
@@ -102,7 +103,8 @@ SECTIONS
 	. = ALIGN(8);
 	rev_bit_data = .;		. += 8;
 	pak_read_fg = .;		. += 4;
-	. = ALIGN(8);
+	se_save_code2 = .;		. += 4;
+	
 	sng_fout_fg = .;		. += 4;
 	sng_status = .;			. += 4;
 	wave_load_size = .;		. += 4;
@@ -145,7 +147,8 @@ SECTIONS
 	voice_tbl = .;			. += 4;
 	skip_intro_loop = .;		. += 4;
 	pak_load_status = .;		. += 4;
-	. = ALIGN(16);
+	lnr8_fg = .;			. += 4;
+	
 	vox_on_vol = .;			. += 4;
 	sptr = .;			. += 4;
 	pak_load_code = .;		. += 4;
@@ -155,26 +158,29 @@ SECTIONS
 	se_rev_on = .;			. += 4;
 	fader_off_fg = .;		. += 4;
 	sng_syukan_vol = .;		. += 4;
-	. = ALIGN(8);
+	irq_addr = .;			. += 4;
+	
 	vox_rev_on = .;			. += 4;
 	sng_pause_fg = .;		. += 4;
 	wave_fp = .;			. += 4;
 	auto_phase_fg = .;		. += 4;
 	keyoffs = .;			. += 8;
 	. += 4;
-	d1E0E4 = .;			. += 4;
-	d1E0E8 = .;			. += 4;
+	mem_str_fg = .;			. += 8;
+	
 	se_exp_table = .;		. += 4;
 	se_header = .;			. += 4;
 	se_data = .;			. += 4;
 	sd_print_fg = .;		. += 4;
 	se_tracks = .;			. += 4;
-	. += 4;
+	
+	str_mute_fg = .;		. += 4;
 	str_mono_offset = .;		. += 4;
 	str_counter = .;		. += 4;
 	str_wait_fg = .;		. += 4;
 	str_wave_size = .;		. += 4;
-	. = ALIGN(8);
+	ee_str_load_addr = .;		. += 4;
+	
 	str_volume = .;			. += 2;
 	. = ALIGN(4);
 	str_counter_low = .;		. += 4;
@@ -203,38 +209,29 @@ SECTIONS
 	str_trans_buf = .;		. += 4;
 	str_read_idx = .;		. += 4;
 	. = ALIGN(16);
-	spu_str2_start_ptr_r = .;	. += 4;
-	. = ALIGN(8);
+	spu_str2_start_ptr_r = .;	. += 8;
 	str2_iop_load_set = .;		. += 8;
 	str2_wait_fg = .;		. += 8;
 	str2_first_load = .;		. += 8;
-	spu_str2_start_ptr_l = .;	. += 4;
-	. = ALIGN(8);
-	str2_off_ctr = .;		. += 4;
-	. = ALIGN(16);
-	str2_fp = .;			. += 4;
-	. = ALIGN(8);
+	spu_str2_start_ptr_l = .;	. += 8;
+	str2_off_ctr = .;		. += 8;
+	str2_fp = .;			. += 8;
 	str2_mono_fg = .;		. += 8;
 	str2_volume = .;		. += 4;
 	. = ALIGN(8);
 	str2_l_r_fg = .;		. += 8;
-	spu_str2_idx = .;		. += 4;
-	. = ALIGN(8);
+	spu_str2_idx = .;		. += 8;
 	str2_load_code = .;		. += 8;
 	ee2_buf_idx = .;		. += 8;
-	str2_play_offset = .;		. += 4;
-	. = ALIGN(16);
+	str2_play_offset = .;		. += 8;
 	str2_stop_fg = .;		. += 8;
 	str2_pitch = .;			. += 4;
 	. = ALIGN(16);
 	str2_unload_size = .;		. += 8;
-	str2_mono_offset = .;		. += 4;
-	. = ALIGN(16);
+	str2_mono_offset = .;		. += 8;
 	str2_unplay_size = .;		. += 8;
-	str2_next_idx = .;		. += 4;
-	. = ALIGN(16);
-	mute2_l_r_fg = .;		. += 4;
-	. = ALIGN(8);
+	str2_next_idx = .;		. += 8;
+	mute2_l_r_fg = .;		. += 8;
 	str2_play_counter = .;		. += 8;
 	str2_keyoffs = .;		. += 4;
 	. = ALIGN(8);
@@ -242,8 +239,7 @@ SECTIONS
 	str2_counter = .;		. += 8;
 	str2_status = .;		. += 8;
 	str2_trans_buf = .;		. += 8;
-	str2_play_idx = .;		. += 4;
-	. = ALIGN(16);
+	str2_play_idx = .;		. += 8;
 	str2_read_disable = .;		. += 8;
 	lnr8_read_idx = .;		. += 4;
 	lnr_volume = .;			. += 2;

@@ -6,9 +6,6 @@
 
 /*---------------------------------------------------------------------------*/
 
-u_int se_vol[12];
-struct SEPLAYTBL se_request[12];
-
 /*---------------------------------------------------------------------------*/
 
 void IntSdMain( void )
@@ -139,9 +136,9 @@ void IntSdMain( void )
 		}
 	}
 
-	if( d1E0E8 ){ // guessed varname
-		sng_load_code = d1E0E8; // guessed varname
-		d1E0E8 = 0; // guessed varname
+	if( mem_str_fg[1] ){ // guessed varname
+		sng_load_code = mem_str_fg[1]; // guessed varname
+		mem_str_fg[1] = 0; // guessed varname
 	}
 
 	switch( sng_status ){
