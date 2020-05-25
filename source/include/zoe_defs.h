@@ -44,7 +44,7 @@
 // according to .mdebug
 void dummy_printf( const char *fmt, ... );
 
-// dummy printf for non-debug builds
+// Redirect printf() for non-DEBUG builds
 //#define printf(fmt, ...)	dummy_printf(fmt, ##__VA_ARGS__)
 #define printf				dummy_printf
 
