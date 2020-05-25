@@ -73,7 +73,7 @@ static void SifLoad()
 		"cdrom0:\\MODULES\\NOUSBFS.IRX;1",
 		"cdrom0:\\MODULES\\IOP_MAIN.IRX;1"
 	};
-#if (ZOE_JAPAN)
+#if (ZOE_FINAL_JAPAN)
 	//
 	// TODO: decompile
 	//
@@ -186,8 +186,10 @@ int main()
 
 #if (ZOE_DEMO_BORMAN)
 	NewInitLoad( "init", 0 );
-#else // TODO: Known for ZOE_JAPAN, check others
-	// FIXME: call does not match any candidates
+#else
+	// TODO: Used by ZOE_FINAL_JAPAN, check others
+	// ERROR: Call does not match any candidates.
+	// Probably uses an index into a char* array.
 	CR_SetStageLoad( "title", 1, "font.pak", 0 );
 #endif
 

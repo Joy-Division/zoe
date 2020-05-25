@@ -39,7 +39,7 @@
 // Configuration Definitions
 //=============================================================================
 
-#if (ZOE_JAPAN)
+#if (ZOE_FINAL_JAPAN)
 // dummy_printf() is possibly defined in include/orgtype.h
 // according to .mdebug
 void dummy_printf( const char *fmt, ... );
@@ -48,6 +48,6 @@ void dummy_printf( const char *fmt, ... );
 //#define printf(fmt, ...)	dummy_printf(fmt, ##__VA_ARGS__)
 #define printf				dummy_printf
 
-#endif // ZOE_JAPAN
+#endif // ZOE_FINAL_JAPAN
 
 #endif /* END OF FILE */
