@@ -37,7 +37,7 @@
 // Basic error detection for build flag conflicts.
 // There is no recovery from this state; the user MUST fix it.
 
-#if (CONF_FLAG_SUM >= 2)
+#if (CONF_FLAG_SUM > 1)
 #error "ERROR: Config conflict!! 2 or more flags defined."
 #endif
 
@@ -50,12 +50,26 @@
 // manually set by the user depending on the desired configuration.
 
 #if (CONF_FLAG_SUM == 0)
-#undef  BUILD_NEW
-#define BUILD_NEW 1
+#undef  BUILD_NEW	// override if set
+#define BUILD_NEW	TRUE
 #endif
 
 // No further use.
 #undef CONF_FLAG_SUM
+
+/*---------------------------------------------------------------------------*/
+// 'USE_NOMATCH' is reserved for enabling the use of non-matching C/C++ code
+// over "naked" assembly functions required for the target binary to match.
+
+#if !(BUILD_NEW)
+#  ifdef USE_NOMATCH
+#  undef USE_NOMATCH
+#  endif
+#else
+#  ifndef USE_NOMATCH
+#  define USE_NOMATCH	TRUE
+#  endif
+#endif
 
 /*===========================================================================*/
 /* Build Type Alias Definitions                                              */
@@ -82,16 +96,8 @@
 #define ZOE_DEMO_USA		BUILD_USA_DEMO		// Jan.23,2001, PlayStation Underground
 #define ZOE_DEMO_PAL		BUILD_PAL_DEMO		// Feb.14,2001, Official PS2 Magazine
 
-#define ZOE_JAPAN			BUILD_SLPM65019		// Jan.13,2001
-#define ZOE_PAL				BUILD_SLES50111		// Jan.17,2001
-#define ZOE_USA				BUILD_SLUS20148		// Jan.30,2001
-
-/*===========================================================================*/
-/* Additional Checks & Defines                                               */
-/*===========================================================================*/
-
-//
-// PLACEHOLDER
-//
+#define ZOE_FINAL_JAPAN		BUILD_SLPM65019		// Jan.13,2001
+#define ZOE_FINAL_PAL		BUILD_SLES50111		// Jan.17,2001
+#define ZOE_FINAL_USA		BUILD_SLUS20148		// Jan.30,2001
 
 #endif /* END OF FILE */
