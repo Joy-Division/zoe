@@ -1,5 +1,5 @@
 /*
- *【 LibCM 】ver.20200504
+ *【 LibCM 】ver.20200522
  * Copyright (C) 2019 2020 J.Ingram
  * All Rights Reserved.
  */
@@ -17,46 +17,46 @@
 /*---------------------------------------------------------------------------*/
 
 #ifndef byte
-#define byte    CM_TYPE_INT8
+#define byte        CM_TYPE_INT8
 #endif
 #ifndef llong
-#define llong   long long
+#define llong       long long
 #endif
 
 /*---------------------------------------------------------------------------*/
 
 #ifndef int8
-#define int8    CM_TYPE_INT8
+#define int8        CM_TYPE_INT8
 #endif
 #ifndef int16
-#define int16   CM_TYPE_INT16
+#define int16       CM_TYPE_INT16
 #endif
 #ifndef int32
-#define int32   CM_TYPE_INT32
+#define int32       CM_TYPE_INT32
 #endif
 #ifndef int64
-#define int64   CM_TYPE_INT64
+#define int64       CM_TYPE_INT64
 #endif
 
 /*---------------------------------------------------------------------------*/
 
 #ifndef char8
-#define char8   CM_TYPE_INT8
+#define char8       CM_TYPE_INT8
 #endif
 #ifndef char16
-#define char16  CM_TYPE_INT16
+#define char16      CM_TYPE_INT16
 #endif
 #ifndef short16
-#define short16 CM_TYPE_INT16
+#define short16     CM_TYPE_INT16
 #endif
 #ifndef short32
-#define short32 CM_TYPE_INT32
+#define short32     CM_TYPE_INT32
 #endif
 #ifndef long32
-#define long32  CM_TYPE_INT32
+#define long32      CM_TYPE_INT32
 #endif
 #ifndef long64
-#define long64  CM_TYPE_INT64
+#define long64      CM_TYPE_INT64
 #endif
 
 /*===========================================================================*/
@@ -107,23 +107,23 @@ typedef unsigned CM_TYPE_INT64  ulong64,  u_long64;
 /* Floating Point Types w/ Specified Width                                   */
 /*===========================================================================*/
 
-typedef CM_TYPE_FLOAT32  float32, f32;
-typedef CM_TYPE_FLOAT64  float64, f64;
+typedef CM_TYPE_FLOAT32 float32, f32;
+typedef CM_TYPE_FLOAT64 float64, f64;
 
 #if defined(CM_HAVE_MODETF)
-typedef float floatTF  __attribute__((mode(TF)));
+typedef float floatTF   __attribute__((mode(TF)));
 #if (CM_SIZEOF_MODETF == 16)
-typedef float float128 __attribute__((mode(TF)));
-typedef float f128     __attribute__((mode(TF)));
+typedef float float128  __attribute__((mode(TF)));
+typedef float f128      __attribute__((mode(TF)));
 #define CM_HAVE_FLOAT128 1
 #endif
 #endif /* CM_HAVE_MODETF */
 
 #if defined(CM_HAVE_MODEXF)
-typedef float floatXF  __attribute__((mode(XF)));
+typedef float floatXF   __attribute__((mode(XF)));
 #if (CM_SIZEOF_MODEXF == 12)
-typedef float float96  __attribute__((mode(XF)));
-typedef float f96      __attribute__((mode(XF)));
+typedef float float96   __attribute__((mode(XF)));
+typedef float f96       __attribute__((mode(XF)));
 #define CM_HAVE_FLOAT96 1
 #endif
 #endif /* CM_HAVE_MODEXF */
@@ -133,18 +133,18 @@ typedef float f96      __attribute__((mode(XF)));
 /*===========================================================================*/
 
 #if defined(CM_HAVE_MODETI)
-typedef /******/ int int128    __attribute__((mode(TI)));
-typedef /******/ int long128   __attribute__((mode(TI)));
-typedef   signed int sint128   __attribute__((mode(TI)));
-typedef unsigned int uint128   __attribute__((mode(TI)));
-typedef   signed int slong128  __attribute__((mode(TI)));
-typedef unsigned int ulong128  __attribute__((mode(TI)));
-typedef   signed int s_int128  __attribute__((mode(TI)));
-typedef unsigned int u_int128  __attribute__((mode(TI)));
-typedef   signed int s_long128 __attribute__((mode(TI)));
-typedef unsigned int u_long128 __attribute__((mode(TI)));
-typedef   signed int s128      __attribute__((mode(TI)));
-typedef unsigned int u128      __attribute__((mode(TI)));
+typedef /******/ int int128     __attribute__((mode(TI)));
+typedef /******/ int long128    __attribute__((mode(TI)));
+typedef   signed int sint128    __attribute__((mode(TI)));
+typedef unsigned int uint128    __attribute__((mode(TI)));
+typedef   signed int slong128   __attribute__((mode(TI)));
+typedef unsigned int ulong128   __attribute__((mode(TI)));
+typedef   signed int s_int128   __attribute__((mode(TI)));
+typedef unsigned int u_int128   __attribute__((mode(TI)));
+typedef   signed int s_long128  __attribute__((mode(TI)));
+typedef unsigned int u_long128  __attribute__((mode(TI)));
+typedef   signed int s128       __attribute__((mode(TI)));
+typedef unsigned int u128       __attribute__((mode(TI)));
 #define CM_HAVE_INT128 1
 #endif /* CM_HAVE_MODETI */
 
@@ -165,14 +165,11 @@ typedef unsigned int u128      __attribute__((mode(TI)));
 #define bool64  CM_TYPE_INT64
 #endif
 
-/* These macros were copied to "cmdefs.h" to avoid
- * creating a dependency on this header or vice versa.
- */
-#ifndef TRUE       /* Duplicately defined in "cmdefs.h" */
-#define TRUE  (1)  /* Any changes must be synchronized. */
+#ifndef TRUE            /* Duplicately defined in "cmdefs.h" */
+#define TRUE    (1)     /* Any changes MUST be synchronized. */
 #endif
-#ifndef FALSE      /* Duplicately defined in "cmdefs.h" */
-#define FALSE (0)  /* Any changes must be synchronized. */
+#ifndef FALSE           /* Duplicately defined in "cmdefs.h" */
+#define FALSE   (0)     /* Any changes MUST be synchronized. */
 #endif
 
 /*===========================================================================*/

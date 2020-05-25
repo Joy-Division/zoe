@@ -1,5 +1,5 @@
 /*
- *【 LibCM 】ver.20200504
+ *【 LibCM 】ver.20200522
  * Copyright (C) 2019 2020 J.Ingram
  * All Rights Reserved.
  */
@@ -11,11 +11,11 @@
 /*===========================================================================*/
 
 #define LIBCM_VERSION_YYYY  0x2020
-#define LIBCM_VERSION_MMDD  0x0504
+#define LIBCM_VERSION_MMDD  0x0522
 
 #define LIBCM_VERSION \
-	( ((LIBCM_VERSION_YYYY << 8) & 0xFFFF0000) \
-	| ((LIBCM_VERSION_MMDD     ) & 0x0000FFFF) )
+	( ((LIBCM_VERSION_YYYY << 16) & 0xFFFF0000) \
+	| ((LIBCM_VERSION_MMDD <<  0) & 0x0000FFFF) )
 
 /* These provide the correct C data type primitive for a given width.
  * #undef and (re)#define below for any platforms/toolchains with different
@@ -287,6 +287,10 @@
 #  ifndef CM_HAVE_MODETI
 #  define CM_HAVE_MODETI 1
 #  endif
+#  ifndef CM_SIZEOF_MODETI
+#  define CM_SIZEOF_MODETI 16
+#  endif
+
 
 #  ifdef CM_HAVE_MODETF
 #  undef CM_HAVE_MODETF
@@ -327,6 +331,9 @@
 && !defined(__SNC__) /* Error:1103 */
 #  ifndef CM_HAVE_MODETI
 #  define CM_HAVE_MODETI 1
+#  endif
+#  ifndef CM_SIZEOF_MODETI
+#  define CM_SIZEOF_MODETI 16
 #  endif
 #endif
 
