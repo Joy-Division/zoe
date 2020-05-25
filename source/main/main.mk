@@ -1,9 +1,9 @@
 #
-#『ZONE OF THE ENDERS』(for PlayStation 2)
-# Copyright (C) Konami Computer Entertainment Japan
-# Codebase Restoration by Joy Division
-#
 # Makefile for Main (Test Build)
+#
+# NOTE: Temporary Makefile for testing Main.
+# Should eventually be replaced or revised once
+# the project can (re)build a complete ELF.
 #
 
 SCETOP ?= /usr/local/sce

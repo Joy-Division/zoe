@@ -1,8 +1,3 @@
-/*
- *『ZONE OF THE ENDERS』(for PlayStation 2)
- * Copyright (C) Konami Computer Entertainment Japan
- * Codebase Restoration by Joy Division
- */
 #include <stdlib.h>
 #include <string.h>
 

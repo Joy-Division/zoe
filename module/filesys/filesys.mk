@@ -1,7 +1,5 @@
 #
-#『ZONE OF THE ENDERS』File System (for PlayStation 2)
-# Copyright (C) Konami Computer Entertainment Japan
-# Codebase Restoration by Joy Division
+# Makefile for Z.O.E FILE SYSTEM
 #
 
 ifeq ($(wildcard PathDefs),)

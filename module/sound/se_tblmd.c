@@ -1,10 +1,3 @@
-/*
- * Sound Driver (for PlayStation 2) by K.Muraoka
- * Copyright (C) Konami Computer Entertainment Japan
- * Codebase Restoration by Joy Division
- */
-/* ver."ZONE OF THE ENDERS"
- */
 #include <sys/types.h>
 #include "sd_incl.h"
 
