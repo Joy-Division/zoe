@@ -1,8 +1,6 @@
 #ifndef REDIRECT_JSIFMAN_H
 #define REDIRECT_JSIFMAN_H
 
-//
-// PLACEHOLDER
-//
+#include "../jsifman/jsifman.h"
 
 #endif /* END OF FILE */

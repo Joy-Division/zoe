@@ -1,0 +1,8 @@
+#ifndef INCLUDED_JSIFMAN_H
+#define INCLUDED_JSIFMAN_H
+
+//
+// PLACEHOLDER
+//
+
+#endif /* END OF FILE */
