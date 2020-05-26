@@ -104,7 +104,6 @@ SECTIONS
 	rev_bit_data = .;		. += 8;
 	pak_read_fg = .;		. += 4;
 	se_save_code2 = .;		. += 4;
-	
 	sng_fout_fg = .;		. += 4;
 	sng_status = .;			. += 4;
 	wave_load_size = .;		. += 4;
@@ -114,7 +113,7 @@ SECTIONS
 	keyons = .;			. += 8;
 	sng_fout_term = .;		. += 8;
 	sng_kaihi_fg = .;		. += 4;
-	. = ALIGN(8);
+	wave_loaded = .;		. += 4;
 	mdata4 = .;			. += 4;
 	se_load_code = .;		. += 4;
 	key_fg = .;			. += 4;
@@ -133,13 +132,13 @@ SECTIONS
 	wave_save_code = .;		. += 4;
 	sd_code_set = .;		. += 4;
 	sng_fp = .;			. += 4;
-	. = ALIGN(16);
+	spu_irq_counter = .;		. += 4;
 	mdata1 = .;			. += 4;
 	spu_load_offset = .;		. += 4;
 	auto_env_pos = .;		. += 1;
 	. = ALIGN(4);
 	mptr = .;			. += 4;
-	. += 4;
+	blank_data_addr = .;		. += 4;
 	sng_play_code = .;		. += 4;
 	auto_env_pos2 = .;		. += 1;
 	. = ALIGN(4);
@@ -148,7 +147,6 @@ SECTIONS
 	skip_intro_loop = .;		. += 4;
 	pak_load_status = .;		. += 4;
 	lnr8_fg = .;			. += 4;
-	
 	vox_on_vol = .;			. += 4;
 	sptr = .;			. += 4;
 	pak_load_code = .;		. += 4;
@@ -159,7 +157,6 @@ SECTIONS
 	fader_off_fg = .;		. += 4;
 	sng_syukan_vol = .;		. += 4;
 	irq_addr = .;			. += 4;
-	
 	vox_rev_on = .;			. += 4;
 	sng_pause_fg = .;		. += 4;
 	wave_fp = .;			. += 4;
@@ -167,20 +164,17 @@ SECTIONS
 	keyoffs = .;			. += 8;
 	. += 4;
 	mem_str_fg = .;			. += 8;
-	
 	se_exp_table = .;		. += 4;
 	se_header = .;			. += 4;
 	se_data = .;			. += 4;
 	sd_print_fg = .;		. += 4;
 	se_tracks = .;			. += 4;
-	
 	str_mute_fg = .;		. += 4;
 	str_mono_offset = .;		. += 4;
 	str_counter = .;		. += 4;
 	str_wait_fg = .;		. += 4;
 	str_wave_size = .;		. += 4;
 	ee_str_load_addr = .;		. += 4;
-	
 	str_volume = .;			. += 2;
 	. = ALIGN(4);
 	str_counter_low = .;		. += 4;

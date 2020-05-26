@@ -8,6 +8,10 @@
 
 u_int str1_use_iop = 0;
 
+int se_tracks;
+u_int sd_print_fg;
+struct unkstr24 ee_addr[2];
+
 /*---------------------------------------------------------------------------*/
 
 int sd_set_cli( u_int a0 )

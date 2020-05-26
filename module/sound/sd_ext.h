@@ -20,32 +20,15 @@ extern u_int *sif_get_mem(void *, u_int, u_int);
 extern int id_SdInt;
 extern int id_SdEELoad;
 extern int id_SdMain;
-extern int id_SdSet;
-extern int id_HSyncTim;
+
+//~ extern int id_SdSet;
+//~ extern int id_HSyncTim;
 
 /* sd_cli.c */
-extern int se_tracks;
 
 /* sd_drv.c */
-extern int sng_status;
-extern int skip_intro_loop;
 
 /* sd_file.c */
-//~ extern u_int pak_read_fg;
-//~ extern int pak_fp;
-//~ extern u_int pak_load_code;
-//~ extern u_int save_wvx1, save_wvx2;
-//~ extern u_int d1E0E4[2];
-//~ extern u_int wave_load_status;
-//~ extern u_int save_efx;
-//~ extern u_int *se_exp_table;
-//~ extern u_int save_mdx;
-//~ extern u_int pak_header[512];
-//~ extern u_char sng_data[0x20000];
-//~ extern u_int drum_tbl[0x100];
-//~ extern u_char cdload_buf[0x18000];
-//~ extern u_char mem_str_buf[0xA0000];
-//~ extern char path_name[0x80];
 
 /* sd_ioset.c */
 
@@ -64,25 +47,26 @@ extern u_int str2_stop_fg[2];
 extern u_int str2_mono_fg[2];
 extern u_int str2_wait_fg[2];
 extern short str2_pitch[2];
-extern u_int str2_keyoffs;
-extern u_int str2_read_disable[2];
-extern int str2_fp[2];
-extern u_int str2_unload_size[2];
-extern u_int str2_unplay_size[2];
-extern u_short str2_volume[2];
-extern u_int ee2_buf_idx[2];
-extern u_char *str2_trans_buf[2];
-extern u_int str2_l_r_fg[2];
-extern u_int str2_play_idx[2];
-extern u_int str2_play_offset[2];
-extern u_int spu_str2_start_ptr_l[2];
-extern u_int spu_str2_start_ptr_r[2];
-extern u_int spu_str2_idx[2];
-extern int mute2_l_r_fg[2];
-extern u_int str2_off_ctr[2];
-extern u_int str2_next_idx[2];
-extern u_int str2_mute_fg[2];
-extern u_int str2_mono_offset[2];
+
+//~ extern u_int str2_keyoffs;
+//~ extern u_int str2_read_disable[2];
+//~ extern int str2_fp[2];
+//~ extern u_int str2_unload_size[2];
+//~ extern u_int str2_unplay_size[2];
+//~ extern u_short str2_volume[2];
+//~ extern u_int ee2_buf_idx[2];
+//~ extern u_char *str2_trans_buf[2];
+//~ extern u_int str2_l_r_fg[2];
+//~ extern u_int str2_play_idx[2];
+//~ extern u_int str2_play_offset[2];
+//~ extern u_int spu_str2_start_ptr_l[2];
+//~ extern u_int spu_str2_start_ptr_r[2];
+//~ extern u_int spu_str2_idx[2];
+//~ extern int mute2_l_r_fg[2];
+//~ extern u_int str2_off_ctr[2];
+//~ extern u_int str2_next_idx[2];
+//~ extern u_int str2_mute_fg[2];
+//~ extern u_int str2_mono_offset[2];
 
 /* sd_str3.c */
 extern u_int lnr8_load_code;
@@ -90,29 +74,30 @@ extern u_int lnr8_first_load;
 extern u_int lnr8_counter;
 extern u_int lnr8_status;
 extern u_int lnr8_stop_fg;
-extern u_int lnr_keyoffs;
-extern u_int lnr8_read_disable;
-extern int lnr8_fp;
-extern u_int lnr8_wave_size;
-extern u_int lnr8_unplay_size;
-extern u_int lnr8_unload_size;
-extern u_short lnr_volume;
-extern u_int lnr8_read_idx;
-extern u_char *lnr8_trans_buf;
-extern u_short lnr_val[2];
-extern u_int lnr8_play_idx;
-extern u_int lnr8_play_ofst;
-extern u_int lnr8_fade_vol;
-extern u_int lnr16_next_ofst;
-extern int lnr8_off_ctr;
-extern u_int spu_lnr16_idx;
+
+//~ extern u_int lnr_keyoffs;
+//~ extern u_int lnr8_read_disable;
+//~ extern int lnr8_fp;
+//~ extern u_int lnr8_wave_size;
+//~ extern u_int lnr8_unplay_size;
+//~ extern u_int lnr8_unload_size;
+//~ extern u_short lnr_volume;
+//~ extern u_int lnr8_read_idx;
+//~ extern u_char *lnr8_trans_buf;
+//~ extern u_short lnr_val[2];
+//~ extern u_int lnr8_play_idx;
+//~ extern u_int lnr8_play_ofst;
+//~ extern u_int lnr8_fade_vol;
+//~ extern u_int lnr16_next_ofst;
+//~ extern int lnr8_off_ctr;
+//~ extern u_int spu_lnr16_idx;
 
 /* sd_str.c */
 
 /* unreferenced TGS2000 variables */
 
-extern u_int str_mute_fg;
-extern u_int ee_str_load_addr;
+//~ extern u_int str_mute_fg;
+//~ extern u_int ee_str_load_addr;
 
 /* end of unreferenced TGS2000 variables */
 
@@ -123,28 +108,29 @@ extern u_int str_counter;
 extern u_int str_counter_low;
 extern u_int str_stop_fg;
 extern u_int str_wait_fg;
-extern u_int str_keyoffs;
-extern int str_fp;
-extern u_int str_wave_size;
-extern u_int str_unplay_size;
-extern u_int str_unload_size;
-extern u_short str_volume;
-extern u_short str_pitch;
-extern u_int str_mono_fg;
-extern u_char *str_trans_buf;
-extern u_int str_trans_offset;
-extern u_int str_read_idx;
-extern u_int str_start_offset;
-extern u_int str_l_r_fg;
-extern u_int str_play_idx;
-extern u_int str_play_offset;
-extern u_int spu_str_start_ptr_l;
-extern u_int spu_str_start_ptr_r;
-extern u_int mute_str_l_r_fg;
-extern u_int spu_str_idx;
-extern u_int str_next_idx;
-extern int str_off_ctr;
-extern u_int str_mono_offset;
+
+//~ extern u_int str_keyoffs;
+//~ extern int str_fp;
+//~ extern u_int str_wave_size;
+//~ extern u_int str_unplay_size;
+//~ extern u_int str_unload_size;
+//~ extern u_short str_volume;
+//~ extern u_short str_pitch;
+//~ extern u_int str_mono_fg;
+//~ extern u_char *str_trans_buf;
+//~ extern u_int str_trans_offset;
+//~ extern u_int str_read_idx;
+//~ extern u_int str_start_offset;
+//~ extern u_int str_l_r_fg;
+//~ extern u_int str_play_idx;
+//~ extern u_int str_play_offset;
+//~ extern u_int spu_str_start_ptr_l;
+//~ extern u_int spu_str_start_ptr_r;
+//~ extern u_int mute_str_l_r_fg;
+//~ extern u_int spu_str_idx;
+//~ extern u_int str_next_idx;
+//~ extern int str_off_ctr;
+//~ extern u_int str_mono_offset;
 
 /* sd_sub1.c */
 
@@ -189,6 +175,9 @@ extern u_char dummy_data[0x800];
 extern u_short str2_master_vol;
 extern u_short str2_master_pitch;
 
+extern int sng_status;
+extern int skip_intro_loop;
+extern int se_tracks;
 extern u_int se_vol[12];
 extern struct SEPLAYTBL se_request[12];
 extern struct unkstr24 mem_str_w[12];
@@ -209,7 +198,7 @@ extern char path_name[0x80];
 extern u_int se_pan[12];
 extern u_int pak_header[128];
 extern struct unkstr24 ee_addr[2];
-extern struct WAVE_W wave_header[0x200]; // this is most likely struct WAVE_W
+extern unsigned char wave_header[0x200]; // this is most likely struct WAVE_W
 extern u_char sng_data[0x20000];
 extern u_char se_data_area[0x4800];
 extern u_char cdload_buf[0x18000];
@@ -227,7 +216,7 @@ extern u_int mdata1;
 extern u_int mdata2;
 extern u_int mdata3;
 extern u_int mdata4;
-extern u_int spu_load_offset;
+extern u_long spu_load_offset;
 extern u_int song_end[2];
 extern int stop_jouchuu_se;
 extern u_char *wave_load_ptr;
@@ -237,17 +226,17 @@ extern u_int mtrack;
 extern u_int rev_off_bit[2];
 extern u_int keyons[2];
 extern struct SETBL *se_header;
-extern u_char *spu_wave_start_ptr;
+extern u_long spu_wave_start_ptr;
 extern u_int wave_load_code;
 extern u_int keyd[2];
-extern u_int wave_unload_size;
-extern u_int wave_load_status;
+extern u_long wave_unload_size;
+extern u_long wave_load_status;
 extern struct WAVE_W *voice_tbl;
 extern u_int wave_save_code;
 extern u_int se_rev_on;
 extern u_char *mptr;
 extern struct SOUND_W *sptr;
-extern u_int wave_load_size;
+extern u_long wave_load_size;
 extern u_int se_load_code;
 extern u_char *se_data;
 extern int wave_fp;

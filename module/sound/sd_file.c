@@ -25,6 +25,8 @@ u_int save_wvx1 = -1, save_wvx2 = -1;
 u_int save_efx = -1;
 u_int save_mdx = -1;
 
+u_int pak_header[128];
+
 /*---------------------------------------------------------------------------*/
 
 void LoadPakFile( void )
@@ -400,7 +402,7 @@ void WaveSpuTrans( void )
 			0,										// transfer channel
 			SD_TRANS_MODE_WRITE|SD_TRANS_BY_DMA,	// transfer mode
 			wave_load_ptr,							// IOP memory addr
-			spu_wave_start_ptr + spu_load_offset,	// SPU memory addr
+			(u_char *)spu_wave_start_ptr + spu_load_offset,	// SPU memory addr
 			wave_load_size							// transfer size
 		);
 

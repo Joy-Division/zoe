@@ -51,6 +51,7 @@ PROGNAME = iop_main.irx
 
 OBJS =\
 	iop_main.o \
+	sd_wk.o \
 	sd_file.o \
 	sd_sub1.o \
 	sd_sub2.o \
@@ -59,7 +60,6 @@ OBJS =\
 	sd_main.o \
 	sd_cli.o \
 	sd_mstr.o \
-	sd_wk.o \
 	sd_str.o \
 	sd_str2.o \
 	sd_str3.o \

@@ -7,6 +7,12 @@
 
 /*---------------------------------------------------------------------------*/
 
+u_char *se_exp_table; // file/main/cli
+struct SETBL *se_header; // main/cli
+u_char *se_data; // ioset/main/cli
+
+/*---------------------------------------------------------------------------*/
+
 void SdMain( void )
 {
 	while( 1 ){
@@ -131,7 +137,7 @@ void sd_init( void )
 	sceSdSetParam( i|SD_P_AVOLR, 0x7FFF );
 	sceSdSetCoreAttr( SD_C_SPDIF_MODE, SD_SPDIF_COPY_PROHIBIT );
 
-	spu_wave_start_ptr = (u_char *)0x20000;
+	spu_wave_start_ptr = 0x20000;
 	init_sng_work();
 	wave_load_status = 0;
 
@@ -193,7 +199,7 @@ void keyOn( u_int a0 )
 
 int sd_mem_alloc( void )
 {
-	voice_tbl = wave_header;
+	voice_tbl = (struct WAVE_W *)wave_header;
 	se_exp_table = (u_char *)se_data_area;
 	se_header = (struct SETBL *)(se_exp_table+2048);
 	se_data = (u_char *)(se_header)+4096;
