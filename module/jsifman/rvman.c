@@ -1,7 +1,7 @@
 #include <sys/types.h>
 #include <kernel.h>
 
-void rv_man_callback()
+static void rv_man_callback()
 {
 	//
 	// PLACEHOLDER
