@@ -68,9 +68,11 @@ void sif_init()
 	//
 }
 
+#if defined(__R3000__)
 int KCEJ_sifman_init()
 {
 	//
 	// PLACEHOLDER
 	//
 }
+#endif
