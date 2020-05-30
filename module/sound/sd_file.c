@@ -168,12 +168,12 @@ void LoadPakFile( void )
 
 /*---------------------------------------------------------------------------*/
 
-#define SD_PATH_SD1_DUMMY  0
-#define SD_PATH_SD1_VOX1   1
-#define SD_PATH_SD1_WVX1   2
-#define SD_PATH_SD1_MDX1   3
-#define SD_PATH_SD1_EFX1   4
-#define SD_PATH_SD1_SDX1   5
+#define SD_PATH_CD1_DUMMY	0
+#define SD_PATH_CD1_VOX1	1
+#define SD_PATH_CD1_WVX1	2
+#define SD_PATH_CD1_MDX1	3
+#define SD_PATH_CD1_EFX1	4
+#define SD_PATH_CD1_SDX1	5
 
 char *sd_path_cd1[6] = {
 	"\\DUMMY\\",
