@@ -1,9 +1,12 @@
 #include <sys/types.h>
-#include <kernel.h>
 #include <sif.h>
 #include <sifcmd.h>
 
+/* for IOP ONLY */
+#if defined(__R3000__)
+#include <kernel.h>
 ModuleInfo Module = { "KCEJ_SIF_MANAGER", 0x0101 };
+#endif /* __R3000__ */
 
 int sif_set_callback_func( u_int a0, sceSifCmdHandler a1, void *a2 )
 {
@@ -75,4 +78,4 @@ int KCEJ_sifman_init()
 	// PLACEHOLDER
 	//
 }
-#endif
+#endif /* __R3000__ */
