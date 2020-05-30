@@ -561,7 +561,7 @@ int PcmOpen( u_int code, u_int path_idx )
 		return 1;
 	}
 
-	if( path_idx != SD_PATH_SD1_SDX1 || !path_name[0] ){
+	if( path_idx != SD_PATH_CD1_SDX1 || !path_name[0] ){
 		strcpy( path, sd_path_cd1[path_idx] );
 	} else {
 		strcpy( path, path_name );
