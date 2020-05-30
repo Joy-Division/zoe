@@ -68,7 +68,7 @@ void sif_init()
 	//
 }
 
-int KCEJ_sifman_inif()
+int KCEJ_sifman_init()
 {
 	//
 	// PLACEHOLDER
