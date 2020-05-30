@@ -419,16 +419,14 @@ void WaveSpuTrans( void )
 }
 
 /*---------------------------------------------------------------------------*/
-
-/* ------------------------------------------------ */
-/* Name Format  | Type  | Content                   */
-/* -------------+-------+-------------------------- */
-/* sg%06x.mdx   | SONG  | Sequence Data (SONG)      */
-/* se%06x.efx   | SE    | Sequence Data (SE)        */
-/* vc%06x.pcm   | VOICE | ADPCM Stream              */
-/* wv%06x.wvx   | WAVE  | ADPCM Sample Bank         */
-/* pk%06x.sdx   | PACK  | SONG+SE+WAVE Container    */
-/* ------------------------------------------------ */
+/* Name Format  | Type  | Content                                            */
+/*--------------+-------+----------------------------------------------------*/
+/* sg%06x.mdx   | SONG  | Sequence Data for BGM                              */
+/* se%06x.efx   | SE    | Sequence Data for Sound Effects                    */
+/* vc%06x.pcm   | VOICE | PlayStation ADPCM Stream                           */
+/* wv%06x.wvx   | WAVE  | PlayStation ADPCM Sample Bank                      */
+/* pk%06x.sdx   | PACK  | SONG+SE+WAVE Container                             */
+/*---------------------------------------------------------------------------*/
 
 void code2name( u_int code, char *name )
 {
