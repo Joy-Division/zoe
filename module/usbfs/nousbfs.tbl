@@ -2,17 +2,35 @@
 # Export Table for KCEJ USBFS DUMMY
 #
 
+# The same library name and major/minor version
+# numbers are used to maintain ABI compatibility
+# with the actual USBFS module.
+
 Libname usbfs
 
 Version 1.1
 
 # ***** RESERVED *****
+
 Entry/2	start
 Entry	-
 Entry	-
 Entry	-
 
 # ***** ENTRIES *****
+
+# The NOUSBFS equivalents of USBFS's exported functions
+# MUST be declared in the same order, as IRX modules are
+# dynamically linked using an enumerated numeric ID.
+
+#  usbInit  → pcInit
+#  usbOpen  → pcOpen
+#  usbClose → pcClose
+#  usbRead  → pcRead
+#  usbWrite → pcWrite
+#  usbLseek → pcLseek
+#  usbPuts  → (NONE)
+
 Entry	pcInit
 Entry	pcOpen
 Entry	pcClose
