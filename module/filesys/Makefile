@@ -17,7 +17,7 @@ cdbios cdbios_ee filesys:
 hdbios hdbios_ee:
 # Currently, the HDBIOS library cannot be decompiled,
 # as no builds of the module/interface have been released.
-	@echo "*** Skipping '$@' (Unavailable)"
+	@echo "*** SKIPPING '$@' (UNAVAILABLE)"
 
 clean:
 	$(MAKE) -fcdbios.mk $@
