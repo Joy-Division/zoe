@@ -51,7 +51,8 @@
 // Configuration Definitions
 //=============================================================================
 
-#if (ZOE_FINAL_JAPAN)
+#if defined(JAPAN_RELEASE)
+
 // dummy_printf() is possibly defined in include/orgtype.h
 // according to .mdebug
 void dummy_printf( const char *fmt, ... );
@@ -61,6 +62,6 @@ void dummy_printf( const char *fmt, ... );
 //#	define printf(fmt, ...)		dummy_printf(fmt __VA_OPT__(,) __VA_ARGS__)
 #	define printf				dummy_printf
 
-#endif // ZOE_FINAL_JAPAN
+#endif // JAPAN_RELEASE
 
 #endif /* END OF FILE */

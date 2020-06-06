@@ -5,31 +5,19 @@
 /* Video Output Mode (NTSC/PAL)                                              */
 /*---------------------------------------------------------------------------*/
 
-#if !defined( BUILD_NEW )
+#define NTSC    (60)
+#define PAL     (50)
 
-#undef VMODE_NTSC	// override if set
-#undef VMODE_PAL	// override if set
+#ifndef VMODE
 
-#if ( ZOE_DEMO_PAL  )\
-||  ( ZOE_FINAL_PAL )
-#define VMODE_PAL	TRUE
+#if defined( SCEE_DEMODISC )\
+||  defined( PAL_RELEASE )
+#define VMODE	PAL
 #else
-#define VMODE_NTSC	TRUE
+#define VMODE	NTSC
 #endif
 
-#else /* !BUILD_NEW */
-
-#if defined( VMODE_NTSC )\
-&&  defined( VMODE_PAL  )
-#error "VMODE conflict!! Both NTSC & PAL have been set."
-#endif
-
-#if !defined( VMODE_NTSC )\
-&&  !defined( VMODE_PAL  )
-#define VMODE_NTSC	TRUE	// default to NTSC
-#endif
-
-#endif /* !BUILD_NEW */
+#endif /* !VMODE */
 
 /*---------------------------------------------------------------------------*/
 /* DEBUG Mode Flag                                                           */

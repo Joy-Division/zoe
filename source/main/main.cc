@@ -41,7 +41,7 @@ extern void NewDebugMode(); /* dbgmode.cc */
 
 /*---------------------------------------------------------------------------*/
 
-#if (ZOE_DEMO_BORMAN)
+#if defined(BORMAN_DEMO)
 #  define CDVD_MODE SCECdCD
 #else
 #  define CDVD_MODE SCECdDVD
@@ -68,7 +68,7 @@ static void SifLoad()
 		"cdrom0:\\MODULES\\NOUSBFS.IRX;1",
 		"cdrom0:\\MODULES\\IOP_MAIN.IRX;1"
 	};
-#if (ZOE_FINAL_JAPAN)
+#if defined(JAPAN_RELEASE)
 	//
 	// TODO: decompile
 	//
@@ -97,7 +97,7 @@ static void ResetIOP()
 	sceCdInit( SCECdINIT );
 	sceCdMmode( CDVD_MODE );
 
-#if (ZOE_DEMO_BORMAN)
+#if defined(BORMAN_DEMO)
 	printf( "IopReplaceModule %s\n", IopReplaceModule );
 #endif
 
@@ -137,7 +137,7 @@ int main()
 
 	sd_init();
 
-#if (ZOE_DEMO_BORMAN)
+#if defined(BORMAN_DEMO)
 	// TODO: Check this, likely NOMATCH
 	DEBUG_InitException(
 		(((0x00010000 + (int16)0x8000)
@@ -180,10 +180,10 @@ int main()
 
 	STRM_LoadPcmDir();
 
-#if (ZOE_DEMO_BORMAN)
+#if defined(BORMAN_DEMO)
 	NewInitLoad( "init", 0 );
 #else
-	// TODO: Used by ZOE_FINAL_JAPAN, check others
+	// TODO: Used by JAPAN_RELEASE; check others.
 	// ERROR: Call does not match any candidates.
 	// Probably uses an index into a char* array.
 	CR_SetStageLoad( "title", 1, "font.pak", 0 );
@@ -191,7 +191,7 @@ int main()
 
 	NewStartStage();
 
-#if (ZOE_DEMO_BORMAN)
+#if defined(BORMAN_DEMO)
 	NewDebugMode();
 #endif
 

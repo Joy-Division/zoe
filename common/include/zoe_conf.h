@@ -2,36 +2,31 @@
 #define INCLUDED_ZOE_CONF_H
 
 /*===========================================================================*/
-/* Build Type Definition Check                                               */
+/* Build Target Definition Check                                             */
 /*===========================================================================*/
 
 // One and ONLY ONE build flag must be passed to the preprocessor.
 // This check expects that the supplied flag resolves to 1, precisely.
-// Invoking the compiler with '-DBUILD_$(VERSION)' should accomplish this.
+// Invoking the compiler with '-D$(VERSION)' should accomplish this.
 // DO NOT MANUALLY DEFINE IT TO ANY OTHER VALUE.
 
-// SLPM65018 == SLPM65019
-#ifdef BUILD_SLPM65018
-#undef BUILD_SLPM65018
-#define BUILD_SLPM65019 1
-#endif
-
 #define CONF_FLAG_SUM \
-/*------------------------------------------------------*/\
-/* -- BUILD_$(VERSION) --       -- PROJECT STATUS --    */\
-/*------------------------------------------------------*/\
-    ( BUILD_SLPS99999           /* NOT YET SUPPORTED    */\
-    + BUILD_SLPM61002           /* NOT YET SUPPORTED    */\
-    + BUILD_PCPX96611           /* NOT YET SUPPORTED    */\
-    + BUILD_USA_DEMO            /* NOT YET SUPPORTED    */\
-    + BUILD_PAL_DEMO            /* NOT YET SUPPORTED    */\
-/*------------------------------------------------------*/\
-    + BUILD_SLPM65018           /* (SEE SLPM-65019)     */\
-    + BUILD_SLPM65019           /* IN PROGRESS          */\
-    + BUILD_SLES50111           /* NOT YET SUPPORTED    */\
-    + BUILD_SLUS20148           /* NOT YET SUPPORTED    */\
-/*------------------------------------------------------*/\
-    + BUILD_NEW )
+/*---------------------------------------------------------------------------*/\
+/* ZONE OF THE ENDERS (for PlayStation 2)                                    */\
+/*---------------------------------------------------------------------------*/\
+	( BORMAN_DEMO								/* Oct.09,2000 [SLPS-99999]  */\
+	+ DENGEKIPS_DEMO							/* Nov.11,2000 [SLPM-61002]  */\
+	+ PREPRE2_DEMO								/* Jan.17,2001 [PCPX-96611]  */\
+	+ SCEA_DEMODISC								/* Jan.23,2001 [SCUS-XXXXX]  */\
+	+ SCEE_DEMODISC								/* Feb.14,2001 [SCED-XXXXX]  */\
+/*---------------------------------------------------------------------------*/\
+	+ JAPAN_RELEASE								/* Jan.13,2001 [SLPM65018/9] */\
+	+ PAL_RELEASE								/* Jan.17,2001 [SLES-50111]  */\
+	+ USA_RELEASE								/* Jan.30,2001 [SLUS-20148]  */\
+/*---------------------------------------------------------------------------*/\
+/* for NON-MATCHING / NEW BUILDS                                             */\
+/*---------------------------------------------------------------------------*/\
+	+ NEW_BUILD )
 
 /*---------------------------------------------------------------------------*/
 // Basic error detection for build flag conflicts.
@@ -42,7 +37,7 @@
 #endif
 
 /*---------------------------------------------------------------------------*/
-// 'BUILD_NEW' is the default setting for any non-matching build of the
+// 'NEW_BUILD' is the default setting for any non-matching build of the
 // codebase, and is provided with the intent to facilitate the development
 // of modifications and ports to new systems.
 //
@@ -50,8 +45,8 @@
 // manually set by the user depending on the desired configuration.
 
 #if (CONF_FLAG_SUM == 0)
-#undef  BUILD_NEW	// override if set
-#define BUILD_NEW	TRUE
+#undef  NEW_BUILD // override if set
+#define NEW_BUILD 1
 #endif
 
 // No further use.
@@ -61,43 +56,26 @@
 // 'USE_NOMATCH' is reserved for enabling the use of non-matching C/C++ code
 // over "naked" assembly functions required for the target binary to match.
 
-#if !(BUILD_NEW)
+#if !(NEW_BUILD)
 #  ifdef USE_NOMATCH
 #  undef USE_NOMATCH
 #  endif
 #else
 #  ifndef USE_NOMATCH
-#  define USE_NOMATCH	TRUE
+#  define USE_NOMATCH 1
 #  endif
 #endif
 
 /*===========================================================================*/
-/* Build Type Alias Definitions                                              */
+/* Shared Flag Definitions                                                   */
 /*===========================================================================*/
 
-// These provide descriptive names to use in place of 'BUILD_$(VERSION)'.
-// They will resolve to 1 (TRUE) if the corresponding flag is set.
+// NOTE: Use of the $(VERSION) flags across the codebase should be kept to a
+// minimum. Ideally, they should instead toggle additional flags that can be
+// independently set for non-matching or 'NEW' builds.
+
 //
-// NOTE: In the current implementation, they are unconditionally #defined.
-// Preprocessor conditionals MUST avoid using the #ifdef/#ifndef directives.
+// PLACEHOLDER
 //
-// NOTE: Direct use of the BUILD_$(VERSION) flags and their respective aliases
-// across the codebase should be reduced as much as possible. Ideally, they
-// should instead toggle additional flags that can be independently set for
-// non-matching 'NEW' builds.
-
-/*---------------------------------------------------------------------------*/
-/* ZONE OF THE ENDERS (for PlayStation 2)                                    */
-/*---------------------------------------------------------------------------*/
-
-#define ZOE_DEMO_BORMAN		BUILD_SLPS99999		// Oct.09,2000
-#define ZOE_DEMO_DENGEKI	BUILD_SLPM61002		// Nov.11,2000, 電撃PlayStation D40
-#define ZOE_DEMO_PURE2		BUILD_PCPX96611		// Jan.17,2001, プレプレ2 Vol.1 2001.04
-#define ZOE_DEMO_USA		BUILD_USA_DEMO		// Jan.23,2001, PlayStation Underground
-#define ZOE_DEMO_PAL		BUILD_PAL_DEMO		// Feb.14,2001, Official PS2 Magazine
-
-#define ZOE_FINAL_JAPAN		BUILD_SLPM65019		// Jan.13,2001
-#define ZOE_FINAL_PAL		BUILD_SLES50111		// Jan.17,2001
-#define ZOE_FINAL_USA		BUILD_SLUS20148		// Jan.30,2001
 
 #endif /* END OF FILE */

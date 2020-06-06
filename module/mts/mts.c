@@ -3,7 +3,7 @@
 
 /*---------------------------------------------------------------------------*/
 
-#if (ZOE_DEMO_BORMAN)
+#if defined(BORMAN_DEMO)
 char MTS_SIG[] = "MTS.KCEJ($Date: 2000/07/31 06:54:23 $)\n"; //! RCS keyword
 #endif
 
