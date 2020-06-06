@@ -1,5 +1,8 @@
 #include <sys/types.h>
+
+#if defined(__R3000__)
 #include <kernel.h>
+#endif
 
 static void rv_man_callback()
 {
