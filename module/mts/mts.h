@@ -1,7 +1,7 @@
 #ifndef INCLUDED_MTS_H
 #define INCLUDED_MTS_H
 
-#include "global.h"
+#include <sys/types.h>
 
 #if defined(__cplusplus)
 extern "C" {
