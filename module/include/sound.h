@@ -3,7 +3,7 @@
 
 #if defined(__R5900__)
 #  include "../sound/sd_ee.h"
-#else /* IOP */
+#elif defined(__R3000__)
 #  include "../sound/sd_ext.h"
 #  include "../sound/sd_incl.h"
 #endif

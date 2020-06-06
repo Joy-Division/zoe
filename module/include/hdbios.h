@@ -3,7 +3,7 @@
 
 #if defined(__R5900__)
 #  include "../filesys/hdbios_ee.h"
-#else /* IOP */
+#elif defined(__R3000__)
 #  include "../filesys/hdbios.h"
 #endif
 
