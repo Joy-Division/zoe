@@ -196,6 +196,9 @@ void str_spuwr( void )
 	if( str_keyoffs ){
 		sceSdSetSwitch( SD_CORE_1|SD_S_KOFF, str_keyoffs );
 		str_keyoffs = 0;
+		#ifdef BORMAN_DEMO
+		printf("\n...STR1 Stop\n");
+		#endif
 	}
 }
 
@@ -214,6 +217,9 @@ int StartStream1( void )
 	str_fp = PcmOpen( str_load_code, 1 );
 
 	if( str_fp < 0 ){
+		#ifdef BORMAN_DEMO
+		printf("StartStream:File Open Error(%x)\n", str_load_code);
+		#endif
 		str_load_code = 0;
 		str_first_load = 0;
 		str_fp = 0;
@@ -276,6 +282,9 @@ int StartStream2( void )
 	str_fp = PcmOpen( str_load_code, 1 );
 
 	if( str_fp < 0 ){
+		#ifdef BORMAN_DEMO
+		printf("StartStream:File Open Error(%x)\n", str_load_code);
+		#endif
 		str_load_code = 0;
 		str_first_load = 0;
 		str_fp = 0;
@@ -290,15 +299,18 @@ int StartStream2( void )
 	str_wave_size |= str_header[3];
 
 	if( str_start_offset*0x1000 >= str_wave_size ){
+		#ifdef BORMAN_DEMO
+		printf("ERROR STR:str_start_offset offset=%x:wave_size=%x\n", str_start_offset*0x1000, str_wave_size);
+		#endif
 		PcmClose( str_fp );
 		str_load_code = 0;
 		str_first_load = 0;
 		str_fp = 0;
 		return -1;
 	} else {
-		//
-		// EMPTY BLOCK
-		//
+		#ifdef BORMAN_DEMO
+		printf("STR:offset=%x:wave_size=%x\n", str_start_offset*0x1000, str_wave_size);
+		#endif
 	}
 
 	str_wave_size -= str_start_offset*0x1000;
@@ -430,6 +442,9 @@ void str_load( void )
 		str_load_code = 0;
 		str_status = 0;
 		str_fp = 0;
+		#ifdef BORMAN_DEMO
+		printf("***STR Terminate***\n");
+		#endif
 		break;
 	}
 }
@@ -459,6 +474,9 @@ int StrSpuTrans( void )
 		}
 		str_tr_off();
 		str_stop_fg = 0;
+		#ifdef BORMAN_DEMO
+		printf("STR Stopped.\n");
+		#endif
 	}
 
 /* ///////////////////////////////////////////////////////////////////////// */
@@ -584,11 +602,17 @@ int StrSpuTrans( void )
 		if( !sceSdGetParam( SD_CORE_1|SD_VOICE_20|SD_VP_ENVX ) ){
 			str_off_ctr = -1;
 			str_status++;
+			#ifdef BORMAN_DEMO
+			printf("Str:Envelope Stopped\n");
+			#endif
 			break;
 		}
 		spu_str_idx = sceSdGetAddr( SD_CORE_1|SD_VOICE_20|SD_VA_NAX );
 		spu_str_idx -= 0x5020;
 		if( !(spu_str_idx < 0x1000) || (spu_str_idx & 0x80000000) ){
+			#ifdef BORMAN_DEMO
+			printf("ERROR:MemoryStreamingAddress(%x)\n", spu_str_idx);
+			#endif
 			break;
 		}
 		if( str_counter_low > spu_str_idx ){
@@ -691,6 +715,9 @@ int StrSpuTrans( void )
 					}
 				}
 			} else {
+				#ifdef BORMAN_DEMO
+				printf("CD READ Retry\n");
+				#endif
 				if( spu_str_idx >= 0x0800 ){
 					dummy_data[1] = 6;
 					dummy_data[0x07F1] = 2;

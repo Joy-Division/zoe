@@ -31,6 +31,10 @@ CFLAGS  = -Wall -G0 $(INCDIRS) -O0
 ASFLAGS = $(INCDIRS) -G0
 LDLIBS  =
 
+ifeq ($(TGS2000), 1)
+	CFLAGS += -DBORMAN_DEMO
+endif
+
 # "CL" variables for custom linker script use:
 
 CLILIBS =\

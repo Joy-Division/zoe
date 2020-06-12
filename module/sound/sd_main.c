@@ -15,6 +15,9 @@ u_char *se_data; // ioset/main/cli
 
 void SdMain( void )
 {
+	#ifdef BORMAN_DEMO
+	printf("StartThread:SdMain\n");
+	#endif
 	while( 1 ){
 		if( !pak_read_fg ){
 			SleepThread();
@@ -26,9 +29,19 @@ void SdMain( void )
 		if( pak_load_status ){
 			LoadPakFile();
 		}
+		#ifdef BORMAN_DEMO
+		if( sng_status == 1 ) {
+			if( LoadSngData( sng_load_code ) ) {
+				sng_status = 0;
+			} else {
+				sng_status = 2;
+			}
+		}
+		#else
 		if( sng_load_code ){
 			LoadSngData( sng_load_code );
 		}
+		#endif
 		if( str_status ){
 			str_load();
 		}
@@ -58,6 +71,9 @@ void SdMain( void )
 
 void SdEELoad( void )
 {
+	#ifdef BORMAN_DEMO
+	printf("StartThread:SdEELoad\n");
+	#endif
 	while( 1 ){
 		SleepThread();
 		if( lnr8_status ){
@@ -75,6 +91,10 @@ void SdEELoad( void )
 void SdInt( void )
 {
 	sd_init();
+
+	#ifdef BORMAN_DEMO
+	printf("StartThread:SdInt\n");
+	#endif
 
 	while( 1 ){
 		SleepThread();
@@ -137,6 +157,11 @@ void sd_init( void )
 	sceSdSetParam( i|SD_P_AVOLR, 0x7FFF );
 	sceSdSetCoreAttr( SD_C_SPDIF_MODE, SD_SPDIF_COPY_PROHIBIT );
 
+	#ifdef BORMAN_DEMO
+	printf("Effect 0 Address = %x - %x\n", sceSdGetAddr(0x1C00), sceSdGetAddr(0x1D00));
+	printf("Effect 1 Address = %x - %x\n", sceSdGetAddr(0x1C01), sceSdGetAddr(0x1D01));
+	#endif
+
 	spu_wave_start_ptr = 0x20000;
 	init_sng_work();
 	wave_load_status = 0;
@@ -159,10 +184,12 @@ void sd_init( void )
 		mix_fader[i].unk0C = 0x20;
 	}
 
+	#ifndef BORMAN_DEMO
 	vox_fader[1].unk00 = 0x3F;
 	vox_fader[0].unk00 = 0x3F;
 	vox_fader[1].unk08 = 0x20;
 	vox_fader[0].unk08 = 0x20;
+	#endif
 }
 
 /*---------------------------------------------------------------------------*/

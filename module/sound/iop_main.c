@@ -9,9 +9,11 @@
 
 static int com_queue[140];
 
+#ifndef BORMAN_DEMO
 char name[] = "SOUND";
 
 ModuleInfo Module = { name, 0x0101 };
+#endif
 
 int id_SdInt;
 int id_SdEELoad;
@@ -98,7 +100,11 @@ void sd_send_status( void )
 	volatile struct unkstrbig *que = (struct unkstrbig *)com_queue;
 
 	if( que->unk22C ){
-		if( sif_send_mem( (u_int *)que->unk22C, &que->unk20C, 32 ) == 0 );
+		if( sif_send_mem( (u_int *)que->unk22C, &que->unk20C, 32 ) == 0 ) {
+			#ifdef BORMAN_DEMO
+			printf("ERROR:sif_send_mem<iop_main.c>\n");
+			#endif
+		}
 	} else {
 		//
 		// EMPTY BLOCK
@@ -157,7 +163,11 @@ static void RecieveInit( int a0 )
 
 int HIntHandler( u_int a0 )
 {
-	if( iWakeupThread( id_SdInt ) );
+	if( iWakeupThread( id_SdInt ) ){
+		#ifdef BORMAN_DEMO
+		printf("ERR:IntHandler:Can'tWakeup-Sdint\n");
+		#endif
+	}
 	return 1;
 }
 
@@ -185,6 +195,10 @@ int createThread( void )
 {
 	struct ThreadParam param;
 
+	#ifdef BORMAN_DEMO
+	printf("Complete IOP SOUND SYSTEM Initialize.\n");
+	#endif
+
 	sd_mem_alloc();
 
 	param.attr         = TH_C;
@@ -193,7 +207,11 @@ int createThread( void )
 	param.stackSize    = 0x4000;	// 16KB
 	param.option       = 0;
 	id_SdMain = CreateThread( &param );
-	if( 0 >= id_SdMain ){};
+	if( 0 >= id_SdMain ){
+		#ifdef BORMAN_DEMO
+		printf("ERR:CreateThread:SdMain\n");
+		#endif
+	}
 	StartThread( id_SdMain, 0 );
 
 	param.attr         = TH_C;
@@ -202,7 +220,11 @@ int createThread( void )
 	param.stackSize    = 0x4000;	// 16KB
 	param.option       = 0;
 	id_SdEELoad = CreateThread( &param );
-	if( 0 >= id_SdEELoad ){};
+	if( 0 >= id_SdEELoad ){
+		#ifdef BORMAN_DEMO
+		printf("ERR:CreateThread:SdEELoad\n");
+		#endif
+	}
 	StartThread( id_SdEELoad, 0 );
 
 	param.attr         = TH_C;
@@ -211,7 +233,11 @@ int createThread( void )
 	param.stackSize    = 0x2000;	// 8KB
 	param.option       = 0;
 	id_SdSet = CreateThread( &param );
-	if( 0 >= id_SdSet ){};
+	if( 0 >= id_SdSet ){
+		#ifdef BORMAN_DEMO
+		printf("ERR:CreateThread:SdSet\n");
+		#endif
+	}
 	StartThread( id_SdSet, 0 );
 	RecieveInit( id_SdSet );
 
@@ -221,10 +247,21 @@ int createThread( void )
 	param.stackSize    = 0x4000;	// 16KB
 	param.option       = 0;
 	id_SdInt = CreateThread( &param );
-	if( 0 >= id_SdInt ){};
+	if( 0 >= id_SdInt ){
+		#ifdef BORMAN_DEMO
+		printf("ERR:CreateThread:SdInt\n");
+		#endif
+	}
 	StartThread( id_SdInt, 0 );
 
 	setTimer( &common );
+
+	#ifdef BORMAN_DEMO
+	printf("===>QueryMemSize=%x\n", (u_int)QueryMemSize());
+	printf("===>QueryTotalFreeMemSize=%x\n", (u_int)QueryTotalFreeMemSize());
+	printf("===>QueryMaxFreeMemSize=%x\n", (u_int)QueryMaxFreeMemSize());
+	#endif
+
 	SleepThread();
 
 	return 0;
@@ -250,7 +287,12 @@ int start()
 	param.stackSize    = 0x400;	// 1KB
 	param.option       = 0;
 	tid = CreateThread( &param );
-	if( 0 >= tid ) return NO_RESIDENT_END;
+	if( 0 >= tid ) {
+		#ifdef BORMAN_DEMO
+		printf("\nIOPERR:Can't Create Thread.\n");
+		#endif
+		return NO_RESIDENT_END;
+	}
 	StartThread( tid, 0 );
 
 	return RESIDENT_END;

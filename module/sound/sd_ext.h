@@ -196,9 +196,13 @@ extern u_int sng_master_vol[32];
 extern struct unkstr16 mix_fader[32];
 extern char path_name[0x80];
 extern u_int se_pan[12];
-extern u_int pak_header[128];
+//~ extern u_int pak_header[128];
 extern struct unkstr24 ee_addr[2];
+#ifdef BORMAN_DEMO
+extern unsigned char wave_header[0x2000]; // this is most likely struct WAVE_W
+#else
 extern unsigned char wave_header[0x200]; // this is most likely struct WAVE_W
+#endif
 extern u_char sng_data[0x20000];
 extern u_char se_data_area[0x4800];
 extern u_char cdload_buf[0x18000];

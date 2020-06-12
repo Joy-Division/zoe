@@ -74,6 +74,9 @@ int StartEEStream( u_int a0 )
 	str2_tr_off( a0 );
 
 	if( (str2_fp[a0] = EEOpen(str2_load_code[a0])) < 0 ){
+		#ifdef BORMAN_DEMO
+		printf("StartEEStream:File Open Error(%x)\n", str2_load_code[a0]);
+		#endif
 		str2_fp[a0] = str2_first_load[a0] = str2_load_code[a0] = 0;
 		str2_iop_load_set[a0] = 0;
 		return -1;
@@ -163,9 +166,9 @@ void str2_load( void )
 					str2_status[i] = 2;
 				}
 			} else {
-				//
-				// EMPTY BLOCK
-				//
+				#ifdef BORMAN_DEMO
+				printf("Waiting for EE Data Trans.(0)\n");
+				#endif
 			}
 			break;
 
@@ -174,9 +177,9 @@ void str2_load( void )
 				StrEELoad( i );
 				str2_status[i]++;
 			} else {
-				//
-				// EMPTY BLOCK
-				//
+				#ifdef BORMAN_DEMO
+				printf("Waiting for EE Data Trans.(1)\n");
+				#endif
 			}
 
 		case 2: /* fallthrough */
@@ -190,7 +193,12 @@ void str2_load( void )
 			break;
 
 		case 7:
+			#ifdef BORMAN_DEMO
+			str2_fp[i] = str2_status[i] = str2_load_code[i] = 0;
+			printf("***STR Terminate(ch=%x)***\n", i);
+			#else
 			ee_addr[i].unk10 = (u_char *)ee_addr[i].unk0C = str2_fp[i] = str2_status[i] = str2_load_code[i] = 0;
+			#endif
 			break;
 		}
 	}
@@ -202,9 +210,11 @@ int Str2SpuTrans( int a0 )
 {
 	int temp = 0, temp2 = 0, temp3, temp4;
 
+	#ifndef BORMAN_DEMO
 	if( a0 >= 2 ){
 		return 0;
 	}
+	#endif
 
 	if( str2_stop_fg[a0] && str2_status[a0] >= 3 ){
 		switch( str2_stop_fg[a0] ){
@@ -213,7 +223,9 @@ int Str2SpuTrans( int a0 )
 			sceSdSetParam( SD_CORE_1|(((a0*2)+20)<<1)|SD_VP_ADSR2, 0x0007 );
 			sceSdSetParam( SD_CORE_1|(((a0*2)+21)<<1)|SD_VP_ADSR1, 0x00FF );
 			sceSdSetParam( SD_CORE_1|(((a0*2)+21)<<1)|SD_VP_ADSR2, 0x0007 );
+			#ifndef BORMAN_DEMO
 			str2_first_load[a0] = 0;
+			#endif
 			str2_status[a0] = 8;
 			break;
 
@@ -226,11 +238,15 @@ int Str2SpuTrans( int a0 )
 		}
 		str2_tr_off(a0);
 		str2_stop_fg[a0] = 0;
-
+		#ifdef BORMAN_DEMO
+		printf("EE STR Stopped.(ch=%x)\n", a0);
+		#endif
+	#ifndef BORMAN_DEMO
 	} else if( str2_stop_fg[a0] && str2_status[a0] ){
 		str2_first_load[a0] = 0;
 		str2_status[a0] = 8;
 		str2_stop_fg[a0] = 0;
+	#endif
 	}
 
 /* ///////////////////////////////////////////////////////////////////////// */
@@ -327,8 +343,13 @@ int Str2SpuTrans( int a0 )
 							/ 0x3FFF;
 			sceSdSetParam( SD_CORE_1|(((a0*2)+20)<<1)|SD_VP_VOLL, temp3 );
 			sceSdSetParam( SD_CORE_1|(((a0*2)+20)<<1)|SD_VP_VOLR, temp4 );
+			#ifdef BORMAN_DEMO
+			sceSdSetParam( SD_CORE_1|(((a0*2)+21)<<1)|SD_VP_VOLL, (unsigned)temp3 );
+			sceSdSetParam( SD_CORE_1|(((a0*2)+21)<<1)|SD_VP_VOLR, (unsigned)temp4 );
+			#else
 			sceSdSetParam( SD_CORE_1|(((a0*2)+21)<<1)|SD_VP_VOLL, (unsigned)temp3 / 3 );
 			sceSdSetParam( SD_CORE_1|(((a0*2)+21)<<1)|SD_VP_VOLR, (unsigned)temp4 / 3 );
+			#endif
 			vox_fader[a0].unk04 = vox_fader[a0].unk00;
 			vox_fader[a0].unk0C = vox_fader[a0].unk08;
 		} else {
@@ -341,11 +362,29 @@ int Str2SpuTrans( int a0 )
 							/ 0x3FFF;
 				sceSdSetParam( SD_CORE_1|(((a0*2)+20)<<1)|SD_VP_VOLL, temp3 );
 				sceSdSetParam( SD_CORE_1|(((a0*2)+20)<<1)|SD_VP_VOLR, temp4 );
+				#ifdef BORMAN_DEMO
+				sceSdSetParam( SD_CORE_1|(((a0*2)+21)<<1)|SD_VP_VOLL, (unsigned)temp3 );
+				sceSdSetParam( SD_CORE_1|(((a0*2)+21)<<1)|SD_VP_VOLR, (unsigned)temp4 );
+				#else
 				sceSdSetParam( SD_CORE_1|(((a0*2)+21)<<1)|SD_VP_VOLL, (unsigned)temp3 / 3 );
 				sceSdSetParam( SD_CORE_1|(((a0*2)+21)<<1)|SD_VP_VOLR, (unsigned)temp4 / 3 );
+				#endif
 				vox_fader[a0].unk04 = vox_fader[a0].unk00;
 				vox_fader[a0].unk0C = vox_fader[a0].unk08;
+				#ifdef BORMAN_DEMO
+				printf("VOX(MONO): voll=%x:volr=%x\n", temp3, temp4);
+				#endif
 			} else {
+				#ifdef BORMAN_DEMO
+				sceSdSetParam( SD_CORE_1|(((a0*2)+20)<<1)|SD_VP_VOLL, (((unsigned)(str2_volume[a0]
+								* se_pant[0x3F] / 0x7F)) * str2_master_vol)
+								/ 0x3FFF );
+				sceSdSetParam( SD_CORE_1|(((a0*2)+20)<<1)|SD_VP_VOLR, 0 );
+				sceSdSetParam( SD_CORE_1|(((a0*2)+21)<<1)|SD_VP_VOLL, 0 );
+				sceSdSetParam( SD_CORE_1|(((a0*2)+21)<<1)|SD_VP_VOLR, (((unsigned)(str2_volume[a0]
+								* se_pant[0x3F] / 0x7F)) * str2_master_vol)
+								/ 0x3FFF );
+				#else
 				temp3 = temp4 = (((unsigned)(str2_volume[a0]
 								* se_pant[0x3F] / 0x7F)) * str2_master_vol)
 								/ 0x3FFF;
@@ -353,6 +392,7 @@ int Str2SpuTrans( int a0 )
 				sceSdSetParam( SD_CORE_1|(((a0*2)+20)<<1)|SD_VP_VOLR, 0 );
 				sceSdSetParam( SD_CORE_1|(((a0*2)+21)<<1)|SD_VP_VOLL, 0 );
 				sceSdSetParam( SD_CORE_1|(((a0*2)+21)<<1)|SD_VP_VOLR, temp4 );
+				#endif
 			}
 		}
 		sceSdSetParam( SD_CORE_1|(((a0*2)+20)<<1)|SD_VP_PITCH, (u_int)((u_short)str2_pitch[a0]*str2_master_pitch) / 0x1000 );
@@ -372,6 +412,9 @@ int Str2SpuTrans( int a0 )
 		str2_next_idx[a0] = 0x0800;
 		str2_status[a0]++;
 		if( !str2_unplay_size[a0] || (str2_unplay_size[a0] & 0x80000000) ){
+			#ifdef BORMAN_DEMO
+			printf("Str2SpuTrans:status=4 --> 6(%x)\n", str2_unplay_size[a0]);
+			#endif
 			str2_off_ctr[a0] = 0x1F;
 			str2_status[a0]++;
 		}
@@ -381,6 +424,9 @@ int Str2SpuTrans( int a0 )
 		if( sceSdGetParam( SD_CORE_1|(((a0*2)+20)<<1)|SD_VP_ENVX ) == 0 ){
 			str2_off_ctr[a0] = -1;
 			str2_status[a0]++;
+			#ifdef BORMAN_DEMO
+			printf("Str:Envelope Stopped\n");
+			#endif
 			break;
 		}
 		if((vox_fader[a0].unk00 != vox_fader[a0].unk04)
@@ -415,6 +461,9 @@ int Str2SpuTrans( int a0 )
 		spu_str2_idx[a0] = sceSdGetAddr( SD_CORE_1|(((a0*2)+20)<<1)|SD_VA_NAX );
 		spu_str2_idx[a0] -= 0x5020 + a0 * 0x2000;
 		if( spu_str2_idx[a0] >= 0x1000 || (spu_str2_idx[a0] & 0x80000000) ){
+			#ifdef BORMAN_DEMO
+			printf("ERROR:MemoryStreamingAddress(%x)\n", spu_str2_idx[a0]);
+			#endif
 			break;
 		}
 		if( !str2_mute_fg[a0] ){
@@ -520,7 +569,12 @@ int Str2SpuTrans( int a0 )
 					}
 				}
 			} else {
+				#ifdef BORMAN_DEMO
+				printf("EE READ Retry(ch=%x)\n", a0);
+				#endif
+				#ifndef BORMAN_DEMO
 				str2_unplay_size[a0] = str2_unload_size[a0];
+				#endif
 				str2_mute_fg[a0] = 1;
 				if( spu_str2_idx[a0] >= 0x0800 ){
 					dummy_data[1] = 6;

@@ -7,7 +7,11 @@
 
 /*---------------------------------------------------------------------------*/
 
+#ifdef BORMAN_DEMO
+u_char wave_header[0x2000]; // main
+#else
 u_char wave_header[0x200]; // main
+#endif
 u_char sng_data[0x00020000]; // file/drv
 u_char se_data_area[0x4800]; // main
 u_char cdload_buf[0x18000]; // file
@@ -96,6 +100,9 @@ int MemSpuTransWithNoLoop( u_int a0 )
 		temp3 = sceSdGetAddr( (SD_CORE_1|((a0+8)<<1)|SD_VA_NAX) );
 		temp3 -= 0x9020 + (a0*0x1000);
 		if( temp3 >= 0x1000 ){
+			#ifdef BORMAN_DEMO
+			printf("ERROR:MemoryStreamingAddress(%x)\n", temp3);
+			#endif
 			break;
 		}
 		if( temp4->unk14 == (temp3 & 0x0800) ){

@@ -19,7 +19,11 @@ struct SEPLAYTBL se_request[12];
 
 // from mstr
 struct unkstr24 mem_str_w[12];
+#ifdef BORMAN_DEMO
+u_char mem_str_buf[0x00080000];
+#else
 u_char mem_str_buf[0x000A0000];
+#endif
 
 
 
@@ -90,7 +94,11 @@ u_int sng_pause_fg;
 
 u_int lnr8_fg;
 u_int irq_addr; // also in bm
+#ifdef BORMAN_DEMO
+u_int mem_str_fg;
+#else
 u_int mem_str_fg[2]; // this might be an array of 2 in retail
+#endif
 u_int wave_loaded; // also in bm
 u_int se_save_code2; // also in bm
 u_int spu_irq_counter; // also in bm

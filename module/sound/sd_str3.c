@@ -63,6 +63,9 @@ int StartLnrEEStream( void )
 	lnr8_fp = EEOpen( lnr8_load_code );
 
 	if( lnr8_fp < 0 ){
+		#ifdef BORMAN_DEMO
+		printf("StartLnrEEStream:File Open Error(%x)\n", lnr8_load_code);
+		#endif
 		lnr8_load_code = 0;
 		lnr8_first_load = 0;
 		lnr8_fp = 0;
@@ -181,6 +184,9 @@ void lnr_load( void )
 		lnr8_load_code = 0;
 		lnr8_status = 0;
 		lnr8_fp = 0;
+		#ifdef BORMAN_DEMO
+		printf("***StrLNR8 Terminate***\n");
+		#endif
 		break;
 	}
 }
@@ -237,6 +243,9 @@ int lnrSpuTrans( void )
 		lnr8_status = 7;
 		lnr_tr_off();
 		lnr8_stop_fg = 0;
+		#ifdef BORMAN_DEMO
+		printf("StrLNR8 Stopped.\n");
+		#endif
 	}
 
 /* ///////////////////////////////////////////////////////////////////////// */
@@ -284,6 +293,9 @@ int lnrSpuTrans( void )
 		lnr16_next_ofst = 0x0800;
 		lnr8_status++;
 		if( !lnr8_unplay_size || (lnr8_unplay_size & 0x80000000) ){
+			#ifdef BORMAN_DEMO
+			printf("lnrSpuTrans:status=4 --> 6(%x)\n", lnr8_unplay_size);
+			#endif
 			lnr8_off_ctr = lnr8_wave_size / 512;
 			lnr8_status++;
 		}
@@ -298,6 +310,9 @@ int lnrSpuTrans( void )
 		spu_lnr16_idx = sceSdBlockTransStatus( 1, 0 );
 		spu_lnr16_idx = (spu_lnr16_idx & 0x00FFFFFF) - (u_int)lnr16_buf;
 		if( (spu_lnr16_idx >= 0x1000) || (spu_lnr16_idx == 0x80000000) ){
+			#ifdef BORMAN_DEMO
+			printf("ERROR:MemoryStreamingAddress(%x)\n", spu_lnr16_idx);
+			#endif
 			break;
 		}
 		if( lnr16_next_ofst == (spu_lnr16_idx & 0x0800) ){
@@ -323,6 +338,9 @@ int lnrSpuTrans( void )
 				lnr8_counter += 512;
 				lnr16_next_ofst = (lnr16_next_ofst+0x0800) & 0x0FFF;
 			} else {
+				#ifdef BORMAN_DEMO
+				printf("EE Lnr8 READ Retry\n");
+				#endif
 				lnr_trans_0( lnr16_buf+((~(spu_lnr16_idx / 0x0800) & 1)*0x0400), 0x0400 );
 				lnr16_next_ofst = (lnr16_next_ofst+0x800) & 0x0FFF;
 			}
@@ -333,6 +351,9 @@ int lnrSpuTrans( void )
 		spu_lnr16_idx = sceSdBlockTransStatus( 1, 0 );
 		spu_lnr16_idx = (spu_lnr16_idx & 0x00FFFFFF) - (u_int)lnr16_buf;
 		if( (spu_lnr16_idx >= 0x1000) || (spu_lnr16_idx & 0x80000000) ){
+			#ifdef BORMAN_DEMO
+			printf("ERROR:MemoryStreamingAddress(%x)\n", spu_lnr16_idx);
+			#endif
 			break;
 		}
 		if( lnr16_next_ofst == (spu_lnr16_idx & 0x0800) ){
