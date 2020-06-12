@@ -31,7 +31,7 @@ void IntSdMain( void )
 
 		/* Unpause Song */
 		case 0x01FFFF02:
-			snd_pause_off();
+			sng_pause_off();
 			sng_pause_fg = 0;
 			break;
 

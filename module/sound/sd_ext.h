@@ -355,7 +355,7 @@ void pan_set2(u_char a0);
 void se_off_all(void);
 void se_off_exp(void);
 void se_off(u_int a0);
-void snd_pause_off(void);
+void sng_pause_off(void);
 void sng_off(void);
 void sng_pause(void);
 void sound_off(void);

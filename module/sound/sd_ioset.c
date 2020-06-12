@@ -224,7 +224,7 @@ void sng_pause( void )
 
 /*---------------------------------------------------------------------------*/
 
-void snd_pause_off( void )
+void sng_pause_off( void )
 {
 	sceSdSetParam( SD_CORE_0|SD_P_MVOLL, 0x3FFF );
 	sceSdSetParam( SD_CORE_0|SD_P_MVOLR, 0x3FFF );
