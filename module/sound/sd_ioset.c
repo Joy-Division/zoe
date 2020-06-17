@@ -3,6 +3,7 @@
 
 #include "sd_incl.h"
 #include "sd_ext.h"
+#include "sd_debug.h"
 
 /*---------------------------------------------------------------------------*/
 
@@ -197,9 +198,7 @@ void se_off_exp( void )
 			se_off(i-32);
 		}
 	}
-	#ifdef BORMAN_DEMO
-	printf("CUT EXPANDED SE\n");
-	#endif
+	PRINTF(( "CUT EXPANDED SE\n" ));
 }
 
 /*---------------------------------------------------------------------------*/
@@ -213,9 +212,7 @@ void se_off_all( void )
 			se_off(i-32);
 		}
 	}
-	#ifdef BORMAN_DEMO
-	printf("CUT ALL SE\n");
-	#endif
+	PRINTF(( "CUT ALL SE\n" ));
 }
 
 /*---------------------------------------------------------------------------*/
@@ -264,11 +261,11 @@ void tone_set( u_int a0 )
 	if( a0 < 0x200 ){
 		wave = &(voice_tbl[a0]);
 	} else {
-		#ifdef BORMAN_DEMO
+	#ifdef BORMAN_DEMO
 		wave = &(((struct WAVE_W *)(mem_str_buf+0x7E180))[a0]);
-		#else
+	#else
 		wave = &(((struct WAVE_W *)(mem_str_buf+0x9E180))[a0]);
-		#endif
+	#endif
 	}
 
 	temp = (mtrack << 4)+4; // UNUSED

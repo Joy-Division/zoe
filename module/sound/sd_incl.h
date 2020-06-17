@@ -190,11 +190,11 @@ struct unkstr24 {
 	u_int		unk14;
 };
 
-struct unkstr16 {
+struct FADER {
 	int			unk00;
-	int			unk04;
+	int			unk04;	// vol
 	int			unk08;
-	int			unk0C;
+	int			unk0C;	// pan
 };
 
 // used by sd_file

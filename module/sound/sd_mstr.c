@@ -4,14 +4,16 @@
 
 #include "sd_incl.h"
 #include "sd_ext.h"
+#include "sd_debug.h"
 
 /*---------------------------------------------------------------------------*/
 
 #ifdef BORMAN_DEMO
-u_char wave_header[0x2000]; // main
+u_char wave_header[0x2000]; /* 8KB */
 #else
-u_char wave_header[0x200]; // main
+u_char wave_header[512];
 #endif
+
 u_char sng_data[0x00020000]; // file/drv
 u_char se_data_area[0x4800]; // main
 u_char cdload_buf[0x18000]; // file
@@ -100,9 +102,7 @@ int MemSpuTransWithNoLoop( u_int a0 )
 		temp3 = sceSdGetAddr( (SD_CORE_1|((a0+8)<<1)|SD_VA_NAX) );
 		temp3 -= 0x9020 + (a0*0x1000);
 		if( temp3 >= 0x1000 ){
-			#ifdef BORMAN_DEMO
-			printf("ERROR:MemoryStreamingAddress(%x)\n", temp3);
-			#endif
+			PRINTF(( "ERROR:MemoryStreamingAddress(%x)\n", temp3 ));
 			break;
 		}
 		if( temp4->unk14 == (temp3 & 0x0800) ){

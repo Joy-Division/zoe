@@ -188,12 +188,12 @@ extern int sd_sng_code_buf[16];
 extern u_int drum_tbl[0x100];
 extern u_int fg_syukan_off[44];
 extern struct SOUND_W sound_w[44];
-extern struct unkstr16 vox_fader[2];
+extern struct FADER vox_fader[2];
 extern struct SPU_TRACK_REG spu_tr_wk[44];
 extern int sng_fade_value[32];
 extern u_int sng_fade_time[32];
 extern u_int sng_master_vol[32];
-extern struct unkstr16 mix_fader[32];
+extern struct FADER mix_fader[32];
 extern char path_name[0x80];
 extern u_int se_pan[12];
 //~ extern u_int pak_header[128];
@@ -313,7 +313,7 @@ void setTimer(void *a0);
 /* sd_cli.c */
 int sd_set_cli(u_int a0);
 int SePlay(u_int a0);
-void sd_set(int a0);
+void sd_set(int sound_code);
 void set_sng_code_buf(u_int a0);
 
 /* sd_drv.c */
@@ -383,7 +383,7 @@ void init_mem_str_w(void);
 
 /* sd_str2.c */
 int StartEEStream(u_int a0);
-int Str2SpuTrans(int a0);
+int Str2SpuTrans(int core);
 void str2_int(void);
 void str2_load(void);
 void str2_spuwr(void);

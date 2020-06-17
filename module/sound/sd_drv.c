@@ -3,8 +3,7 @@
 
 #include "sd_incl.h"
 #include "sd_ext.h"
-
-/*---------------------------------------------------------------------------*/
+#include "sd_debug.h"
 
 /*---------------------------------------------------------------------------*/
 
@@ -27,18 +26,14 @@ void IntSdMain( void )
 		case 0x01FFFF01:
 			sng_pause_fg = 1;
 			sng_pause();
-			#ifdef BORMAN_DEMO
-			printf("SongPauseOn\n");
-			#endif
+			PRINTF(( "SongPauseOn\n" ));
 			break;
 
 		/* Unpause Song */
 		case 0x01FFFF02:
 			sng_pause_off();
 			sng_pause_fg = 0;
-			#ifdef BORMAN_DEMO
-			printf("SongPauseOff\n");
-			#endif
+			PRINTF(( "SongPauseOff\n" ));
 			break;
 
 		case 0x01FFFF03: /* fallthrough */
@@ -53,9 +48,7 @@ void IntSdMain( void )
 				}
 				sng_kaihi_fg = 0;
 			}
-			#ifdef BORMAN_DEMO
-			printf("SongFadein\n");
-			#endif
+			PRINTF(( "SongFadein\n" ));
 			break;
 
 		/* Fade Out */
@@ -64,52 +57,42 @@ void IntSdMain( void )
 		case 0x01FFFF08: /* fallthrough */
 		case 0x01FFFF09:
 			SngFadeOutP( temp );
-			#ifdef BORMAN_DEMO
-			printf("SongFadeout&Pause\n");
-			#endif
+			PRINTF(( "SongFadeout&Pause\n" ));
 			break;
+
 		case 0x01FFFF0A: /* fallthrough */
 		case 0x01FFFF0B: /* fallthrough */
 		case 0x01FFFF0C: /* fallthrough */
 		case 0x01FFFF0D:
 			SngFadeOutS( temp );
-			#ifdef BORMAN_DEMO
-			printf("SongFadeout&Stop\n");
-			#endif
+			PRINTF(( "SongFadeout&Stop\n" ));
 			break;
 
 		/* 回避モード *//* Evasion Mode */
 		case 0x01FFFF10:
 			SngKaihiP();
-			#ifdef BORMAN_DEMO
-			printf("SongKaihiMode\n");
-			#endif
+			PRINTF(( "SongKaihiMode\n" ));
 			break;
+
 		case 0x01FFFF11:
 			SngKaihiReset();
-			#ifdef BORMAN_DEMO
-			printf("SongKaihiReset\n");
-			#endif
+			PRINTF(( "SongKaihiReset\n" ));
 			break;
+
 		case 0x01FFFF12:
 			SngKaihiReset2();
-			#ifdef BORMAN_DEMO
-			printf("SongKaihiReset\n");
-			#endif
+			PRINTF(( "SongKaihiReset\n" ));
 			break;
 
 		/* 主観モード *//* First Person Mode */
 		case 0x01FFFF20:
 			sng_syukan_fg = 1;
-			#ifdef BORMAN_DEMO
-			printf("SongSyukanMode On\n");
-			#endif
+			PRINTF(( "SongSyukanMode On\n" ));
 			break;
+
 		case 0x01FFFF21:
 			sng_syukan_fg = 0;
-			#ifdef BORMAN_DEMO
-			printf("SongSyukanMode Off\n");
-			#endif
+			PRINTF(( "SongSyukanMode Off\n" ));
 			break;
 
 		/* Sound Effect Off */
@@ -118,17 +101,16 @@ void IntSdMain( void )
 
 		/* Song Off */
 		case 0x01FFFFFF:
-			#ifdef BORMAN_DEMO
+		#ifdef BORMAN_DEMO
 			sng_play_code = 0;
-			#else
+		#else
 			sng_play_code = 0xFFFFFFFF;
-			#endif
+		#endif
 			sng_off();
-			#ifdef BORMAN_DEMO
-			printf("SongStop\n");
-			#else
+			PRINTF(( "SongStop\n" ));
+		#ifndef BORMAN_DEMO
 			sng_status = 0;
-			#endif
+		#endif
 			break;
 
 		case 0xFF0000FF: skip_intro_loop = 1; break;
@@ -155,9 +137,7 @@ void IntSdMain( void )
 				if( sng_status >= 2 ) {
 				#endif
 				if( sng_data[0] < (temp & 0x0F) ){
-					#ifdef BORMAN_DEMO
-					printf("ERROR:SNG PLAY CODE(%x/%x)\n", temp, sng_data[0]);
-					#endif
+					PRINTF(( "ERROR:SNG PLAY CODE(%x/%x)\n", temp, sng_data[0] ));
 					temp = 0;
 				} else {
 					sng_status = 2;
@@ -181,47 +161,46 @@ void IntSdMain( void )
 				}
 				#ifdef BORMAN_DEMO
 				} else {
-					printf("sng_status=%x\n", sng_status);
+					PRINTF(( "sng_status=%x\n", sng_status ));
 				}
 				#endif
 			} else {
-				#ifdef BORMAN_DEMO
-				printf("SameSongHasAlreadyPlayed\n");
-				#endif
+				PRINTF(( "SameSongHasAlreadyPlayed\n" ));
 			}
 			break;
 
 		default:
 			if( sng_load_code != temp ){
 				sng_load_code = temp;
-				#ifdef BORMAN_DEMO
+			#ifdef BORMAN_DEMO
 				sng_play_code = 0;
 				sng_status = 1;
 				sng_off();
-				#endif
+			#endif
 				WakeupThread( id_SdMain );
 			}
 			break;
 		}
 	}
 
-	#ifndef BORMAN_DEMO
-	if( mem_str_fg[1] ){ // guessed varname
-		sng_load_code = mem_str_fg[1]; // guessed varname
-		mem_str_fg[1] = 0; // guessed varname
+#ifndef BORMAN_DEMO
+	if( mem_str_fg[1] ){				// guessed varname
+		sng_load_code = mem_str_fg[1];	// guessed varname
+		mem_str_fg[1] = 0;				// guessed varname
 	}
-	#endif
+#endif
 
 	switch( sng_status ){
-	#ifndef BORMAN_DEMO
-	case 1: break;
-	#endif
+#ifndef BORMAN_DEMO
+	case 1:
+		break;
+#endif
 	case 2:
-		#ifndef BORMAN_DEMO
+	#ifndef BORMAN_DEMO
 		if( sng_load_code || pak_load_status ){
 			break;
 		}
-		#endif
+	#endif
 		if( sng_play_code && sng_play_code != 0xFFFFFFFF ){
 			sng_adrs_set( sng_play_code );
 			SngFadeWkSet();
@@ -335,9 +314,7 @@ void IntSdMain( void )
 			}
 		}
 	} else {
-		#ifdef BORMAN_DEMO
-		printf(">");
-		#endif
+		PRINTF(( ">" ));
 	}
 	spuwr();
 }
@@ -429,19 +406,17 @@ int SngFadeOutS( u_int a0 )
 		}
 		sng_fadein_time = 0;
 		sng_play_code = -1;
-		#ifdef BORMAN_DEMO
-		printf("SNG FADEOUT START(status=%x)\n", sng_status);
-		#endif
+		PRINTF(( "SNG FADEOUT START(status=%x)\n", sng_status ));
 		return 0;
 	} else {
-		#ifdef BORMAN_DEMO
-		printf("SNG FADEOUT CANCELED(status=%x)\n", sng_status);
-		#else
+	#ifdef BORMAN_DEMO
+		PRINTF(( "SNG FADEOUT CANCELED(status=%x)\n", sng_status ));
+	#else
 		sng_fadein_time = 0;
 		sng_play_code = -1;
 		sng_off();
 		sng_status = 0;
-		#endif
+	#endif
 		return -1;
 	}
 }
@@ -698,13 +673,13 @@ void sng_adrs_set( u_int a0 )
 
 	a0 &= 0x0F;
 
-	#ifdef BORMAN_DEMO
+#ifdef BORMAN_DEMO
 	temp3 = sng_data[a0*4+1] << 8;
-	#else
+#else
 	temp3 = sng_data[a0*4+3] << 24;
 	temp3 += sng_data[a0*4+2] << 16;
 	temp3 += sng_data[a0*4+1] << 8;
-	#endif
+#endif
 	temp3 += sng_data[a0*4];
 
 	song_end[0] = 0;

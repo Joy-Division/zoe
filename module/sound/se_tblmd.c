@@ -77,8 +77,7 @@
 #include "se_data/start03.h"
 
 #ifndef BORMAN_DEMO
-// Unknown SE Data
-#include "se_data/unknown.h"
+#include "se_data/add_data.h"
 #endif
 
 /*===========================================================================*/
@@ -94,11 +93,11 @@ u_char se_dummy[] = { 0x00,0x00,0xFE,0xFF };
 struct SETBL se_tbl[128] = {
 	/* pri,tracks,kind,character */
 	{ 0x01, 0x01, 0x01, 0x00, { se_dummy,		se_dummy,		se_dummy	} },
-	#ifdef BORMAN_DEMO
+#ifdef BORMAN_DEMO
 	{ 0x10, 0x01, 0x01, 0x00, { burner00,		se_dummy,		se_dummy	} },
-	#else
+#else
 	{ 0x20, 0x03, 0x01, 0x00, { burner00,		burner01,		burner02	} },
-	#endif
+#endif
 	{ 0x10, 0x02, 0x01, 0x00, { beam100,		beam101,		se_dummy	} },
 	{ 0x40, 0x03, 0x01, 0x00, { megashot00,		megashot01,		megashot02	} },
 	{ 0x10, 0x02, 0x01, 0x00, { laser00,		laser01,		se_dummy	} },
@@ -136,11 +135,11 @@ struct SETBL se_tbl[128] = {
 	{ 0x30, 0x02, 0x01, 0x00, { tukami00,		tukami01,		se_dummy	} },
 	{ 0x50, 0x03, 0x01, 0x00, { buildai00,		buildai01,		buildai02	} },
 	{ 0x20, 0x02, 0x01, 0x00, { builchu00,		builchu01,		se_dummy	} },
-	#ifdef BORMAN_DEMO
+#ifdef BORMAN_DEMO
 	{ 0x20, 0x02, 0x01, 0x00, { builgla00,		builgla01,		se_dummy	} },
-	#else
+#else
 	{ 0x20, 0x03, 0x01, 0x00, { builgla00,		builgla01,		builgla02	} },
-	#endif
+#endif
 	{ 0x10, 0x02, 0x01, 0x00, { builsho00,		builsho01,		se_dummy	} },
 	{ 0x20, 0x02, 0x01, 0x00, { jaberin00,		jaberin01,		se_dummy	} },
 	{ 0x20, 0x02, 0x01, 0x00, { geyser00,		geyser01,		se_dummy	} },
@@ -160,11 +159,11 @@ struct SETBL se_tbl[128] = {
 	{ 0x10, 0x01, 0x00, 0x00, { winclo0100,		se_dummy,		se_dummy	} },
 	{ 0x10, 0x01, 0x00, 0x00, { sentak0100,		se_dummy,		se_dummy	} },
 	{ 0x10, 0x02, 0x00, 0x00, { start0100,		start0101,		se_dummy	} },
-	#ifdef BORMAN_DEMO
+#ifdef BORMAN_DEMO
 	{ 0x10, 0x01, 0x00, 0x00, { cansel0100,		se_dummy,		se_dummy	} },
-	#else
+#else
 	{ 0x10, 0x02, 0x00, 0x00, { cansel0100,		cansel0101,		se_dummy	} },
-	#endif
+#endif
 	{ 0x10, 0x02, 0x00, 0x00, { chowpn0100,		chowpn0101,		se_dummy	} },
 	{ 0x20, 0x02, 0x01, 0x00, { mamtate200,		mamtate201,		se_dummy	} },
 	{ 0x50, 0x03, 0x00, 0x00, { start0200,		start0201,		start0202	} },
@@ -178,7 +177,9 @@ struct SETBL se_tbl[128] = {
 	{ 0x30, 0x02, 0x01, 0x00, { halscr0100,		halscr0101,		se_dummy	} },
 	{ 0x10, 0x02, 0x00, 0x00, { start0300,		start0301,		se_dummy	} },
 
-	#ifdef BORMAN_DEMO
+	/* --- Additional SE Data --- */
+
+#ifdef BORMAN_DEMO
 	{ 0x01, 0x01, 0x01, 0x00, { se_dummy,		se_dummy,		se_dummy		} },
 	{ 0x01, 0x01, 0x01, 0x00, { se_dummy,		se_dummy,		se_dummy		} },
 	{ 0x01, 0x01, 0x01, 0x00, { se_dummy,		se_dummy,		se_dummy		} },
@@ -235,8 +236,7 @@ struct SETBL se_tbl[128] = {
 	{ 0x01, 0x01, 0x01, 0x00, { se_dummy,		se_dummy,		se_dummy		} },
 	{ 0x01, 0x01, 0x01, 0x00, { se_dummy,		se_dummy,		se_dummy		} },
 	{ 0x01, 0x01, 0x01, 0x00, { se_dummy,		se_dummy,		se_dummy		} }
-	#else
-	/* --- UNKNOWN SE DATA --- */
+#else
 	{ 0x10, 0x02, 0x00, 0x00, { unk_0001BC14,	unk_0001BC54,	se_dummy		} },
 	{ 0x80, 0x03, 0x00, 0x00, { unk_0001BC84,	unk_0001BD50,	unk_0001BE10	} },
 	{ 0x10, 0x01, 0x00, 0x00, { unk_0001BE68,	se_dummy,		se_dummy		} },
@@ -293,5 +293,5 @@ struct SETBL se_tbl[128] = {
 	{ 0x01, 0x01, 0x01, 0x00, { se_dummy,		se_dummy,		se_dummy		} },
 	{ 0x01, 0x01, 0x01, 0x00, { se_dummy,		se_dummy,		se_dummy		} },
 	{ 0x01, 0x01, 0x01, 0x00, { se_dummy,		se_dummy,		se_dummy		} }
-	#endif
+#endif
 };

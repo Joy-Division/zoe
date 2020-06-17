@@ -1,17 +1,5 @@
 #include <sys/types.h>
 #include "sd_incl.h"
-//~ #include "sd_ext.h"
-
-/*===========================================================================*/
-/* Initialized Data                                                          */
-/*===========================================================================*/
-
-// spu_ch_tbl
-// blank_data (appears to be the same as "dummy_data" except first and last sampleset)
-
-/*===========================================================================*/
-/* Uninitialized Data                                                        */
-/*===========================================================================*/
 
 // from drv
 u_int se_vol[12];
@@ -19,13 +7,12 @@ struct SEPLAYTBL se_request[12];
 
 // from mstr
 struct unkstr24 mem_str_w[12];
-#ifdef BORMAN_DEMO
-u_char mem_str_buf[0x00080000];
+
+#if defined(BORMAN_DEMO)
+u_char mem_str_buf[0x00080000]; /* 512KB */
 #else
-u_char mem_str_buf[0x000A0000];
+u_char mem_str_buf[0x000A0000]; /* 640KB */
 #endif
-
-
 
 int sng_status;
 int skip_intro_loop;
@@ -89,26 +76,23 @@ u_int fader_off_fg;
 u_int sd_code_read;
 u_int sng_pause_fg;
 
-
-/* unreferenced TGS2000 variables */
+/* --- Unreferenced Data --- */
 
 u_int lnr8_fg;
-u_int irq_addr; // also in bm
-#ifdef BORMAN_DEMO
+u_int irq_addr; // also in bm5thMIX
+
+#if defined(BORMAN_DEMO)
 u_int mem_str_fg;
 #else
-u_int mem_str_fg[2]; // this might be an array of 2 in retail
+u_int mem_str_fg[2];
 #endif
-u_int wave_loaded; // also in bm
-u_int se_save_code2; // also in bm
-u_int spu_irq_counter; // also in bm
-u_int blank_data_addr; // also in bm
 
-/* end of unreferenced TGS2000 variables */
+u_int wave_loaded;		// also in bm5thMIX
+u_int se_save_code2;	// also in bm5thMIX
+u_int spu_irq_counter;	// also in bm5thMIX
+u_int blank_data_addr;	// also in bm5thMIX
 
-
-
-
+/* --- End of Unreferenced Data --- */
 
 struct SEPLAYTBL se_playing[12];
 u_int fg_rev_set[44];
@@ -116,13 +100,12 @@ int sd_sng_code_buf[16];
 u_int drum_tbl[0x100];
 u_int fg_syukan_off[44];
 struct SOUND_W sound_w[44];
-struct unkstr16 vox_fader[2];
+struct FADER vox_fader[2];
 struct SPU_TRACK_REG spu_tr_wk[44];
 int sng_fade_value[32];
 u_int sng_fade_time[32];
 u_int sng_master_vol[32];
-struct unkstr16 mix_fader[32];
-
+struct FADER mix_fader[32];
 
 char path_name[0x80];
 u_int se_pan[12];
