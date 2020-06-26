@@ -15,12 +15,6 @@ New content not representative of the base games such as ports to new systems, e
 * Follow the style guide (after it's been written).
 * Always restore original symbols wherever possible.
 
-## List of Builds
-
-See [docs/disc_id.md](docs/disc_id.md) for a list of commercially released builds.
-
-See [docs/symtable.xlsx](docs/symtable.xlsx) for information on builds with debug symbols.
-
 ## Tools & Software
 
 The following tools should prove useful.
