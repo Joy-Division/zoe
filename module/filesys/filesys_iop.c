@@ -61,7 +61,7 @@ void LoadDaemonThread( void )
 		case 4:
 			work.unk60 = work.fileinfo.pBuf;
 
-			if( (work.unk6C = pcOpen( work.fileinfo.nmFile, 1 )) < 0 ){
+			if( (work.unk6C = pcOpen( work.fileinfo.nmFile, O_RDONLY )) < 0 ){
 				work.fileinfo.status = 4;
 				sif_send_mem( work.unk60, &work, 0x60 );
 				break;

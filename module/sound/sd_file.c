@@ -662,7 +662,7 @@ int PcmOpen( u_int code, u_int path_idx )
 		PRINTF(( "HDD Open:FileName=%s\n", path ));
 	}
 
-	status = pcOpen( path, 1 );
+	status = pcOpen( path, O_RDONLY );
 
 	if( status < 0 ){
 		printf( "PcmOpen Error(%x)\n", status );

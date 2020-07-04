@@ -1,6 +1,7 @@
 #ifndef INCLUDED_NOUSBFS_H
 #define INCLUDED_NOUSBFS_H
 
+#include <sys/file.h>
 #include <sys/types.h>
 
 extern int pcInit( void );
