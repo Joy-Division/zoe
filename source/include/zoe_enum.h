@@ -3,7 +3,6 @@
 
 /*---------------------------------------------------------------------------*/
 
-// ref.default.pdb
 enum {
 	GS_REGS_PRIM,
 	GS_REGS_RGBA,
@@ -25,7 +24,6 @@ enum {
 
 /*---------------------------------------------------------------------------*/
 
-// ref.default.pdb
 enum {
 	OPTBITFLAG_VIBRATION,
 	OPTBITFLAG_DEMO_CAPTION,
@@ -35,7 +33,6 @@ enum {
 
 /*---------------------------------------------------------------------------*/
 
-// ref.default.pdb
 enum {
 	OPTLANG_JAPANESE,
 	OPTLANG_ENGLISH,
@@ -48,7 +45,6 @@ enum {
 
 /*---------------------------------------------------------------------------*/
 
-// ref.default.pdb
 enum {
 	Q_EMPTY,
 	Q_WAIT,

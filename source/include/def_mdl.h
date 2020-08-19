@@ -14,69 +14,66 @@ typedef struct _DG_MATERIAL DG_MATERIAL;
 
 /*---------------------------------------------------------------------------*/
 
-// ref.default.pdb
 typedef struct _DEF_OBJ {
-	uint32			u32Flag;
-	uint16			u16nMdl;
-	uint16			u16szMdl;
-	float			lx, ly, lz;
-	float			ux, uy, uz;
+	UINT32			u32Flag;
+	UINT16			u16nMdl;
+	UINT16			u16szMdl;
+	float			lx,ly,lz;
+	float			ux,uy,uz;
 	void*			pBuf;
-	uint32			u32size;
+	UINT32			u32size;
 	DEF_TEXLIST*	pTlst;
 	float			fScale;
 } DEF_OBJ;
 
 /*---------------------------------------------------------------------------*/
 
-// ref.default.pdb
 typedef struct _DEF_STRIP {
 	DG_MATERIAL*	pmtr;
-	uint16			u16Flag;
-	uint16			u16nVert;
-	sint16*			ps16Vert;
-	sint16			s16Clut;
-	uint16			u16TBP0;
+	UINT16			u16Flag;
+	UINT16			u16nVert;
+	SINT16*			ps16Vert;
+	SINT16			s16Clut;
+	UINT16			u16TBP0;
 	void*			pTag;
-	uint32			u32pad0;
-	uint8			u8EnvFlag;
-	uint8			u8pad1;
-	sint16			s16Clut2;
-	sint16			s16Clut3;
-	uint16			u16pad2;
+	UINT32			u32pad0;
+	UINT8			u8EnvFlag;
+	UINT8			u8pad1;
+	SINT16			s16Clut2;
+	SINT16			s16Clut3;
+	UINT16			u16pad2;
 } DEF_STRIP;
 
 /*---------------------------------------------------------------------------*/
 
-// ref.default.pdb
 typedef struct _DEF_MDL {
 	FMATRIX		matLocal;
-	float		lx, ly, lz;
-	float		ux, uy, uz;
-	uint16		u16Flag;
-	sint16		s16Parent;
-	sint16		s16Child;
-	sint16		s16Sibling;
-	uint16		u16nStrip;
-	uint16		u16szStrip;
+	float		lx,ly,lz;
+	float		ux,uy,uz;
+	UINT16		u16Flag;
+	SINT16		s16Parent;
+	SINT16		s16Child;
+	SINT16		s16Sibling;
+	UINT16		u16nStrip;
+	UINT16		u16szStrip;
 	DEF_STRIP*	pStrip;
-	uint8		u8Env1;
-	uint8		u8Env2;
-	uint8		u8spType;
-	uint8		u8Env3;
+	UINT8		u8Env1;
+	UINT8		u8Env2;
+	UINT8		u8spType;
+	UINT8		u8Env3;
 } DEF_MDL;
 
 /*---------------------------------------------------------------------------*/
 
-// ref.default.pdb
 typedef struct _DEF_MDL_ENVMAP {
 	char*	pName;
-	uint32	pad0,pad1,pad2;
+	UINT32	pad0;
+	UINT32	pad1;
+	UINT32	pad2;
 } DEF_MDL_ENVMAP;
 
 /*---------------------------------------------------------------------------*/
 
-// ref.default.pdb
 typedef struct _DEF_MDL_FLOWLINE
 {
 public: //! check modifier

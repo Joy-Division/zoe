@@ -7,11 +7,11 @@
 // SLPS99999, status: MATCH, opt: -O2,-O3
 // SLPM65019, status: MATCH, opt: -O2,-O3
 
-uint32 FS_StrCode( char *str )
+UINT32 FS_StrCode( char *str )
 {
-	uint32 c;
-	sint32 n = 0;
-	uint32 id = 0;
+	UINT32 c;
+	SINT32 n = 0;
+	UINT32 id = 0;
 
 	while(( c = *str++ ))
 	{

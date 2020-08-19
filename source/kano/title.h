@@ -1,7 +1,6 @@
 #ifndef INCLUDED_TITLE_H
 #define INCLUDED_TITLE_H
 
-// ref.default.pdb
 enum {
 	T_BG_R1,
 	T_BG_R2,
@@ -18,7 +17,6 @@ enum {
 	TITLE_BG_NUM
 };
 
-// ref.default.pdb
 enum {
 	T_BUT_PSB1,
 	T_BUT_PSB2,
@@ -40,7 +38,6 @@ enum {
 	TITLE_BUT_SPR_NUM
 };
 
-// ref.default.pdb
 enum {
 	T_BUT_NG1,
 	T_BUT_LG1,

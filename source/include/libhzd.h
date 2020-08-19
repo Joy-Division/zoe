@@ -28,60 +28,57 @@ class HZD_TREE_NODE;
 // Hazard Break (break.cc, status.cc)
 //=============================================================================
 
-// ref.default.pdb
 typedef struct _HZD_BREAK_LIST {
-	bool8	blBrkFlag;
-	bool8	blRescue;
-	uint8	u8Depth;
-	uint8	u8Shaft;
-	uint32	u32BrkOffset;
+	BOOL8	blBrkFlag;
+	BOOL8	blRescue;
+	UINT8	u8Depth;
+	UINT8	u8Shaft;
+	UINT32	u32BrkOffset;
 } HZD_BREAK_LIST;
 
 /*---------------------------------------------------------------------------*/
 
-// ref.default.pdb
 class HZD_BREAK_STATUS
 {
 public: //! check modifier
-	static const int32 HZD_N_BREAK = TEMP_ZERO;
+	static const int32 HZD_N_BREAK = DEFINE_ME;
 
-	uint32			u32HZTCode;
+	UINT32			u32HZTCode;
 	HZD_TREE_NODE*	pRoot;
 	HZD_BREAK_LIST	pData[256];
-	uint32			u32nBreak;
-	uint32			u32TotalPoint;
-	uint32			u32NowPoint;
-	uint32			u32NowBreak;
+	UINT32			u32nBreak;
+	UINT32			u32TotalPoint;
+	UINT32			u32NowPoint;
+	UINT32			u32NowBreak;
 
 public:
-	int32			CheckStatus( uint32 );
-	void			SetStatus( uint32, HZD_TREE_NODE* );
-	void			CreateStatus( uint32, HZD_TREE_NODE* );
+	int32			CheckStatus( UINT32 );
+	void			SetStatus( UINT32, HZD_TREE_NODE* );
+	void			CreateStatus( UINT32, HZD_TREE_NODE* );
 	HZD_BREAK_LIST*	CreateData( HZD_TREE_NODE*, int32 );
 	void			ChangeBreak();
 	void			Link();
 	void			ChangeData( HZD_TREE_NODE* );
-	void			AddPoint( uint8 );
-	uint32			GetTotalPoint();
-	uint32			GetNowPoint();
-	uint32			GetNumber();
-	int32			GetStatus( uint32 );
-	HZD_TREE_NODE*	GetPtr( uint32 );
+	void			AddPoint( UINT8 );
+	UINT32			GetTotalPoint();
+	UINT32			GetNowPoint();
+	UINT32			GetNumber();
+	int32			GetStatus( UINT32 );
+	HZD_TREE_NODE*	GetPtr( UINT32 );
 	void			Dump();
 };
 
 /*---------------------------------------------------------------------------*/
 
-// ref.default.pdb
 class HZD_BREAK
 {
 public: //! check modifier
-	static const uint8 HZD_N_STAGE = TEMP_ZERO;
+	static const UINT8 HZD_N_STAGE = DEFINE_ME;
 
-	uint32				u32StageNo;
-	uint32				u32NowStage;
-	uint32				u32Flag;
-	bool32				bInit;
+	UINT32				u32StageNo;
+	UINT32				u32NowStage;
+	UINT32				u32Flag;
+	BOOL32				bInit;
 	HZD_BREAK_STATUS	pHZDBreak[24];
 
 public:
@@ -93,16 +90,16 @@ public:
 	HZD_BREAK_LIST*		HZD_CreateData( HZD_TREE_NODE*, int32 );
 	void				HZD_ChangeData( HZD_TREE_NODE* );
 	void				HZD_ChangeBreak();
-	void				HZD_AddData(uint8);
-	uint32				HZD_GetTotalPoint();
-	uint32				HZD_GetNowPoint();
-	uint32				HZD_GetNumber();
-	int32				HZD_GetStatus( uint32 );
-	HZD_TREE_NODE*		HZD_GetPtr( uint32 );
+	void				HZD_AddData(UINT8);
+	UINT32				HZD_GetTotalPoint();
+	UINT32				HZD_GetNowPoint();
+	UINT32				HZD_GetNumber();
+	int32				HZD_GetStatus( UINT32 );
+	HZD_TREE_NODE*		HZD_GetPtr( UINT32 );
 	void				HZD_Dump();
 	HZD_BREAK_STATUS*	GetCurrentStatus();
-	float				GetBreakStatus( uint32 );
-	HZD_BREAK_STATUS*	GetBreakList( uint32 );
+	float				GetBreakStatus( UINT32 );
+	HZD_BREAK_STATUS*	GetBreakList( UINT32 );
 
 	static HZD_BREAK* Init();
 };
@@ -111,12 +108,11 @@ public:
 // Hazard Capsule (capsule.cc)
 //=============================================================================
 
-// ref.default.pdb
 typedef struct _HZD_CAPSULE
 {
 public: //! check modifier
 	float		fRadius;
-	uint32		pad0,pad1,pad2;
+	UINT32		pad0,pad1,pad2;
 	ALG_VECTOR	vecFrontCenter;
 	ALG_VECTOR	vecRearCenter;
 
@@ -131,7 +127,6 @@ HZD_CAPSULE;
 // Hazard Gravity Field (gfield.cc)
 //=============================================================================
 
-// ref.default.pdb
 class HZD_G_DIR
 {
 public: //! check modifier
@@ -148,7 +143,6 @@ public:
 
 /*---------------------------------------------------------------------------*/
 
-// ref.default.pdb
 class HZD_G_LINE
 {
 public: //! check modifier
@@ -167,7 +161,6 @@ public:
 
 /*---------------------------------------------------------------------------*/
 
-// ref.default.pdb
 class HZD_G_ROT
 {
 public: //! check modifier
@@ -185,18 +178,17 @@ public:
 
 /*---------------------------------------------------------------------------*/
 
-// ref.default.pdb
 class HZD_GRAVITY
 {
 public: //! check modifier
-	uint8		u8Type;
+	UINT8		u8Type;
 	HZD_G_DIR	g_dir;
 	HZD_G_LINE	g_line;
 	HZD_G_ROT	g_rot;
 
 private:
 	void iGetComp( ALG_MATRIX*, ALG_VECTOR* );	// internal GetComp()
-	void iSetComp( uint8, ALG_MATRIX* );		// internal SetComp()
+	void iSetComp( UINT8, ALG_MATRIX* );		// internal SetComp()
 	void iInverse( ALG_VECTOR*, ALG_VECTOR* );	// internal Inverse()
 
 public: //! check modifier
@@ -204,7 +196,7 @@ public: //! check modifier
 
 public:
 	static void GetComp( ALG_MATRIX*, ALG_VECTOR* );
-	static void SetComp( uint8, ALG_MATRIX* );
+	static void SetComp( UINT8, ALG_MATRIX* );
 	static void Inverse( ALG_VECTOR*, ALG_VECTOR* );
 	static void Reset();
 	static void Init();
@@ -218,7 +210,6 @@ public:
 // Hazard Limit (limit.cc)
 //=============================================================================
 
-// ref.default.pdb
 class HZD_AXIS_LIMIT
 {
 public: //! check modifier
@@ -232,7 +223,6 @@ private:
 
 /*---------------------------------------------------------------------------*/
 
-// ref.default.pdb
 class HZD_CIRCLE_LIMIT
 {
 public: //! check modifier
@@ -246,7 +236,6 @@ private:
 
 /*---------------------------------------------------------------------------*/
 
-// ref.default.pdb
 class HZD_LIMIT
 {
 public: //! check modifier
@@ -257,10 +246,10 @@ public: //! check modifier
 	HZD_AXIS_LIMIT		axlTop;
 	HZD_AXIS_LIMIT		axlBottom;
 	HZD_CIRCLE_LIMIT	crlLevel;
-	bool32				bGravity;
+	BOOL32				bGravity;
 	float				fSpdGravity;
 	int32				ctrLimit[2];
-	uint8				u8Flag;
+	UINT8				u8Flag;
 
 private:
 	int32	Limit( ALG_VECTOR*, ALG_MATRIX*, int32, int32 );
@@ -287,19 +276,18 @@ public:
 // Hazard Plane
 //=============================================================================
 
-// ref.default.pdb
 class HZD_PLANE
 {
 public: //! check modifier
-	uint32			u32Flag;
+	UINT32			u32Flag;
 	HZD_TREE_NODE*	pNode;
-	uint32			pad0,pad1;
+	UINT32			pad0,pad1;
 	ALG_VECTOR		vecp[4];
 	ALG_VECTOR		vecn;
 
 public:
 	int32			BReverse();
-	uint8			AddDamage(int32);
+	UINT8			AddDamage(int32);
 	void			ChangeModel();
 	HZD_TREE_NODE*	CheckChain();
 
@@ -312,7 +300,6 @@ public:
 // Hazard Tree
 //=============================================================================
 
-// ref.default.pdb
 class HZD_TREE_NODE
 {
 public: //! check modifier
@@ -325,18 +312,18 @@ public: //! check modifier
 	HZD_TREE_NODE*	pChild;
 	HZD_TREE_NODE*	pSibling;
 	HZD_TREE_NODE*	pRef;
-	sint16			s16Mdl;
-	uint16			u16Flag;
+	SINT16			s16Mdl;
+	UINT16			u16Flag;
 	HZD_PLANE*		pPlLeaf;
 	int				nbPlane;
 	HZD_TREE_NODE*	pBreak;
-	uint8			u8Damage;
-	uint8			u8MAXDamage;
-	uint8			u8BreakFlag;
-	uint8			u8BreakPoint;
+	UINT8			u8Damage;
+	UINT8			u8MAXDamage;
+	UINT8			u8BreakFlag;
+	UINT8			u8BreakPoint;
 	HZD_TREE_NODE*	pBreakChain;
-	uint16			u16Brk;
-	uint16			u16Total;
+	UINT16			u16Brk;
+	UINT16			u16Total;
 
 public:
 	void			ChangeBreakModel();
@@ -345,7 +332,6 @@ public:
 
 /*---------------------------------------------------------------------------*/
 
-// ref.default.pdb
 class HZD_OFFSET_TREE
 {
 public: //! check modifier
@@ -374,7 +360,7 @@ public:
 // Global Functions
 //=============================================================================
 
-/* Hazard Daemon (hzdd.cc) */
+/* hzdd.cc */
 void HZD_Init();
 
 #endif /* END OF FILE */

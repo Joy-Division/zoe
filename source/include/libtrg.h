@@ -23,25 +23,24 @@ class TRG_OBJECT;
 // Item Data
 //=============================================================================
 
-// ref.default.pdb
 class ITEM_DATA
 {
 public: //! check modifier
-	uint8		u8ItemNum;
-	uint8*		pu8Item;
-	bool32		bGet;
+	UINT8		u8ItemNum;
+	UINT8*		pu8Item;
+	BOOL32		bGet;
 	TRG_OBJECT*	ptrgItem;
 
 public:
-	void		SetNum( uint8 );
-	void		SetItemData( uint8* );
-	void		SetGetFlag( sint32 );
+	void		SetNum( UINT8 );
+	void		SetItemData( UINT8* );
+	void		SetGetFlag( SINT32 );
 	void		SetTrg( TRG_OBJECT* );
-	uint8		Num();
-	uint8*		ItemData();
-	sint32		GetFlag();
+	UINT8		Num();
+	UINT8*		ItemData();
+	SINT32		GetFlag();
 	TRG_OBJECT*	Target();
-	uint8		Kind();
+	UINT8		Kind();
 };
 
 //=============================================================================
@@ -51,13 +50,13 @@ public:
 class BULLET_DATA
 {
 public: //! check modifier
-	uint8		u8Type;
+	UINT8		u8Type;
 	TRG_OBJECT*	ptrgBul;
 
 public:
-	void		SetType( uint8 );
+	void		SetType( UINT8 );
 	void		SetTrg( TRG_OBJECT* );
-	uint8		Type();
+	UINT8		Type();
 	TRG_OBJECT*	Target();
 };
 
@@ -65,25 +64,24 @@ public:
 // Target Status
 //=============================================================================
 
-// ref.default.pdb
 class TRG_STATUS
 {
 public: //! check modifier
-	uint16		u16ID;
-	uint16		u16SubID;
-	uint32		u32NameID;
-	uint8		u8Shape;
+	UINT16		u16ID;
+	UINT16		u16SubID;
+	UINT32		u32NameID;
+	UINT8		u8Shape;
 	ALG_VECTOR	vecSize;
 	float		fRadius;
 	float		fBoxRad;
-	uint8		u8Prop;
-	uint8		u8Prio;
-	uint8		u8Side;
-	uint8		u8Type;
-	uint16		u16Att;
+	UINT8		u8Prop;
+	UINT8		u8Prio;
+	UINT8		u8Side;
+	UINT8		u8Type;
+	UINT16		u16Att;
 	float		fPower;
 	ALG_MATRIX	matPos;
-	uint8		u8Level;
+	UINT8		u8Level;
 	float		fMaxArm;
 	float		fArmor;
 	void*		pvData;
@@ -98,7 +96,6 @@ public:
 // Target Object
 //=============================================================================
 
-// ref.default.pdb
 class TRG_OBJECT
 {
 public: //! check modifier
@@ -110,7 +107,7 @@ public: //! check modifier
 
 	static TRG_OBJECT*	ptrgList;
 	static TRG_OBJECT*	ptrgCurrent;
-	static uint16		u16IDIndex;
+	static UINT16		u16IDIndex;
 
 protected:
 	void PushVecSph( ALG_VECTOR* );
@@ -124,52 +121,52 @@ public:
 	TRG_OBJECT();
 	~TRG_OBJECT();
 
-	void			SetSubID( uint16 );
-	void			SetNameID( uint32 );
-	void			SetProp( uint8 );
-	void			ResetProp( uint8 );
-	void			SetPrio( uint8 );
-	void			SetSide( uint8 );
-	void			SetType( uint8 );
+	void			SetSubID( UINT16 );
+	void			SetNameID( UINT32 );
+	void			SetProp( UINT8 );
+	void			ResetProp( UINT8 );
+	void			SetPrio( UINT8 );
+	void			SetSide( UINT8 );
+	void			SetType( UINT8 );
 	void			SetMat( ALG_MATRIX* );
 	void			SetRadius( float );
 	void			SetSize( float, float, float );
-	void			SetAtt( uint16 );
-	void			ResetAtt( uint16 );
+	void			SetAtt( UINT16 );
+	void			ResetAtt( UINT16 );
 	void			SetPower( float );
 	float			Damage();
-	uint16			ID();
+	UINT16			ID();
 	void			SwapID( TRG_OBJECT* );
-	uint16			SubID();
-	uint32			NameID();
-	uint8			Prop();
-	uint8			Side();
-	uint8			Type();
-	uint16			Att();
+	UINT16			SubID();
+	UINT32			NameID();
+	UINT8			Prop();
+	UINT8			Side();
+	UINT8			Type();
+	UINT16			Att();
 	float			Radius();
 	ALG_VECTOR&		Size();
-	uint16			PowerID();
-	uint8			PushProp();
-	uint8			PowerProp();
+	UINT16			PowerID();
+	UINT8			PushProp();
+	UINT8			PowerProp();
 	ALG_MATRIX&		Mat();
 	ALG_MATRIX&		PushMat();
 	ALG_MATRIX&		PowerMat();
-	uint8			PowerType();
-	uint8			PowerSubID();
-	uint16			PushAtt();
-	uint16			PowerAtt();
+	UINT8			PowerType();
+	UINT8			PowerSubID();
+	UINT16			PushAtt();
+	UINT16			PowerAtt();
 	void			PushVector( ALG_VECTOR* );
-	void			SetLevel( uint8 );
+	void			SetLevel( UINT8 );
 	void			SetMaxArm( float );
 	void			SetArmor( float );
 	void			SetFrame( FRM_OBJECT* );
 	void			SetParty( ENE_PARTY* );
 	void			SetItem( ITEM_DATA* );
 	void			SetBullet( BULLET_DATA* );
-	uint8			Level();
+	UINT8			Level();
 	float			Armor();
 	float			MaxArm();
-	uint8			PowerLevel();
+	UINT8			PowerLevel();
 	FRM_OBJECT&		Frame();
 	FRM_OBJECT&		PowerFrame();
 	ENE_PARTY&		Party();
@@ -179,8 +176,8 @@ public:
 
 	static void			StartDaemon();
 	static void			Execute();
-	static TRG_OBJECT*	CheckID( uint16 );
-	static TRG_OBJECT*	CheckNameID( uint32 );
+	static TRG_OBJECT*	CheckID( UINT16 );
+	static TRG_OBJECT*	CheckNameID( UINT32 );
 	static void			Reset();
 	static TRG_OBJECT*	Get();
 

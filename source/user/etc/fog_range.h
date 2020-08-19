@@ -1,7 +1,6 @@
 #ifndef INCLUDED_FOG_RANGE_H
 #define INCLUDED_FOG_RANGE_H
 
-// ref.default.pdb
 class FOG_RANGE
 {
 public: //! check modifier

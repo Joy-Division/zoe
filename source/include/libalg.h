@@ -13,7 +13,6 @@ class ALG_QUATER;
 // Vector Math (vector.cc)
 //=============================================================================
 
-// ref.default.pdb
 class ALG_VECTOR
 {
 public: //! check modifier
@@ -23,26 +22,26 @@ public: //! check modifier
 	float fW;
 
 public:
-	ALG_VECTOR( float, float, float, float );
-	ALG_VECTOR( float, float, float );
+	ALG_VECTOR( float fX, float fY, float fZ, float fW );
+	ALG_VECTOR( float fX, float fY, float fZ );
 	ALG_VECTOR();
 
-	void		operator () ( float, float, float, float );
-	void		operator () ( float, float, float );
-	ALG_VECTOR&	operator =  ( float );
-	ALG_VECTOR&	operator =  ( const ALG_VECTOR& );
-	ALG_VECTOR	operator +  ( const ALG_VECTOR& );
-	ALG_VECTOR	operator -  ( const ALG_VECTOR& );
+	void		operator () ( float fX, float fY, float fZ, float fW );
+	void		operator () ( float fX, float fY, float fZ );
+	ALG_VECTOR&	operator =  ( float fScalar );
+	ALG_VECTOR&	operator =  ( const ALG_VECTOR& rvec );
+	ALG_VECTOR	operator +  ( const ALG_VECTOR& rvec );
+	ALG_VECTOR	operator -  ( const ALG_VECTOR& rvec );
 	ALG_VECTOR	operator -  ();
 	ALG_VECTOR	operator *  ( float );
-	float		operator *  ( const ALG_VECTOR& );
+	float		operator *  ( const ALG_VECTOR& rvec );
 	ALG_VECTOR	operator /  ( float );
 	int			operator == ( float );
-	int			operator == ( const ALG_VECTOR& );
+	int			operator == ( const ALG_VECTOR& rvec );
 	int			operator != ( float );
-	int			operator != ( const ALG_VECTOR& );
-	void		operator += ( const ALG_VECTOR& );
-	void		operator -= ( const ALG_VECTOR& );
+	int			operator != ( const ALG_VECTOR& rvec );
+	void		operator += ( const ALG_VECTOR& rvec );
+	void		operator -= ( const ALG_VECTOR& rvec );
 	void		operator *= ( float );
 	void		operator /= ( float );
 
@@ -69,7 +68,6 @@ public:
 // Matrix Math (matrix.cc)
 //=============================================================================
 
-// ref.default.pdb
 class ALG_MATRIX
 {
 public: //! check modifier
@@ -130,7 +128,6 @@ public:
 // Quaternion Math (quater.cc)
 //=============================================================================
 
-// ref.default.pdb
 class ALG_QUATER
 {
 public: //! check modifier

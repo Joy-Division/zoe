@@ -6,7 +6,6 @@
 //=============================================================================
 
 #if defined(__GNUC__)
-
 // Align to Boundary (in Bytes)
 #define ALIGN(x)	__attribute__((aligned(x)))
 #define ALIGN8		__attribute__((aligned(8)))
@@ -16,7 +15,6 @@
 #define ALIGN128	__attribute__((aligned(128)))
 #define ALIGN256	__attribute__((aligned(256)))
 #define ALIGN512	__attribute__((aligned(512)))
-
 // Align to Boundary (in Bits)
 //	#define ALIGN8		__attribute__((aligned(1)))
 //	#define ALIGN16		__attribute__((aligned(2)))
@@ -25,7 +23,6 @@
 //	#define ALIGN128	__attribute__((aligned(16)))
 //	#define ALIGN256	__attribute__((aligned(32)))
 //	#define ALIGN512	__attribute__((aligned(64)))
-
 #else
 #define ALIGN(x)	// NO USE if !defined(__GNUC__)
 #define ALIGN8		// NO USE if !defined(__GNUC__)
@@ -42,9 +39,8 @@
 //=============================================================================
 
 // TODO:
-// * Replace anything initialized to these macros with the real values.
-// * Delete these definitions once all instances have been replaced.
-#define TEMP_ZERO	(0)
+// * Replace anything initialized to this macro with the real values.
+// * Delete this definition once all instances have been replaced.
 #define DEFINE_ME	(0)
 
 //=============================================================================
@@ -58,9 +54,9 @@
 void dummy_printf( const char *fmt, ... );
 
 // Redirect printf() for non-DEBUG builds
-//#	define printf(fmt, ...)		dummy_printf(fmt, ##__VA_ARGS__)
-//#	define printf(fmt, ...)		dummy_printf(fmt __VA_OPT__(,) __VA_ARGS__)
-#	define printf				dummy_printf
+//#define printf(fmt, ...)	dummy_printf(fmt, ##__VA_ARGS__)
+//#define printf(fmt, ...)	dummy_printf(fmt __VA_OPT__(,) __VA_ARGS__)
+#define printf				dummy_printf
 
 #endif // JAPAN_RELEASE
 

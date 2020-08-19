@@ -6,14 +6,13 @@
 #include "zoe_types.h"
 #include "libdg.h"
 
-// ref.default.pdb
 class DEF_LIGHT
 {
 public: //! check modifier
-	int			nLight;
-	uint32		pad0;
-	uint32		pad1;
-	uint32		pad2;
+	INT32		nLight;
+	UINT32		pad0;
+	UINT32		pad1;
+	UINT32		pad2;
 	DG_LIGHT	lit[];
 
 public:

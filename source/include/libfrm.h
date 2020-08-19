@@ -23,7 +23,6 @@ class FRM_PAD;
 // Orbital Frame Common Defines
 //=============================================================================
 
-// ref.default.pdb
 enum {
 	FRM_DEMO_NORMAL,
 	FRM_DEMO_PLAY,
@@ -32,7 +31,6 @@ enum {
 
 /*---------------------------------------------------------------------------*/
 
-// ref.default.pdb
 enum {
 	FRM_NODE_HEAD,
 	FRM_NODE_UBODY,
@@ -101,7 +99,6 @@ enum {
 
 /*---------------------------------------------------------------------------*/
 
-// ref.default.pdb
 enum {
 	FRM_SEQ_IDLE_A,
 	FRM_SEQ_IDLE_G,
@@ -196,7 +193,6 @@ enum {
 
 /*---------------------------------------------------------------------------*/
 
-// ref.default.pdb
 enum {
 	FRM_TYPE_JEHUTY,	// Jehuty (default)
 	FRM_TYPE_RAPTOR,	// Raptor
@@ -209,7 +205,6 @@ enum {
 
 /*---------------------------------------------------------------------------*/
 
-// ref.default.pdb
 enum {
 	PASS_JAVELIN,
 	PASS_GEYSER,
@@ -231,7 +226,6 @@ enum {
 
 /*---------------------------------------------------------------------------*/
 
-// ref.default.pdb
 enum {
 	PROG_JAVELIN,
 	PROG_GEYSER,
@@ -258,7 +252,6 @@ enum {
 
 /*---------------------------------------------------------------------------*/
 
-// ref.default.pdb
 enum {
 	WEP_NONE,
 	WEP_JAVELIN,
@@ -278,7 +271,6 @@ enum {
 // Orbital Frame Commands
 //=============================================================================
 
-// ref.default.pdb
 enum {
 	CMD_ID_CONTROL,
 	CMD_ID_ACTION,
@@ -317,42 +309,41 @@ enum {
 
 /*---------------------------------------------------------------------------*/
 
-// ref.default.pdb
 struct CMD_TABLE {
-	void (*pfnAct)(void); // TODO: ret/arg types
-	uint16	u16ActTime[3];
-	float	fParam[ CMD_ID_NUM ];//[32];
+	void (*pfnAct)(void);
+	UINT16	u16ActTime[3];
+	float	fParam[ CMD_ID_NUM ];
 };
 
 /*---------------------------------------------------------------------------*/
 
-// ref.default.pdb
 class FRM_COMMAND
 {
 public: //! check modifier
-	bool32		bInitCmd;
-	bool32		bInitPhase[3];
-	bool32		bLockCmd;
-	bool32		bEndless;
-	uint8		u8Phase;
-	bool32		bChangePhase;
-	uint8		u8NextPhase;
-	uint16		u16Counter;
-	uint16		u16ActTime[3];
-	uint8		u8ID;
-	uint8		u8NextID;
+	BOOL32		bInitCmd;
+	BOOL32		bInitPhase[3];
+	BOOL32		bLockCmd;
+	BOOL32		bEndless;
+	UINT8		u8Phase;
+	BOOL32		bChangePhase;
+	UINT8		u8NextPhase;
+	UINT16		u16Counter;
+	UINT16		u16ActTime[3];
+	UINT8		u8ID;
+	UINT8		u8NextID;
 	FRM_OBJECT*	pfrm;
-	uint8		u8FrmType;
+	UINT8		u8FrmType;
 
-	static CMD_TABLE ctb[ CMD_ID_NUM ][ FRM_TYPE_NUM ];//[32][6];
+//	static CMD_TABLE ctb[ CMD_ID_NUM ][ FRM_TYPE_NUM ];
+	static CMD_TABLE ctb[ FRM_TYPE_NUM ][ CMD_ID_NUM ];
 
-	bool32		bCommon1;
-	bool32		bCommon2;
-	bool32		bCommon3;
-	uint8		u8Common1;
-	uint8		u8Common2;
-	sint32		s32Common1;
-	sint32		s32Common2;
+	BOOL32		bCommon1;
+	BOOL32		bCommon2;
+	BOOL32		bCommon3;
+	UINT8		u8Common1;
+	UINT8		u8Common2;
+	SINT32		s32Common1;
+	SINT32		s32Common2;
 	ALG_VECTOR	vecCommon1;
 	ALG_VECTOR	vecCommon2;
 	ALG_MATRIX	matCommon1;
@@ -361,24 +352,24 @@ public: //! check modifier
 public:
 	void	Init( FRM_OBJECT* );
 	void	Execute();
-	sint32	InitPhase( uint8 );
-	void	Set( uint8 );
-	void	Reset( uint8 );
+	SINT32	InitPhase( UINT8 );
+	void	Set( UINT8 );
+	void	Reset( UINT8 );
 	void	Update();
 	void	Lock();
 	void	Unlock();
-	void	SetPhase( uint8 );
-	void	SetCounter( uint16 );
-	uint8	ID();
-	uint8	NextID();
-	uint8	Phase();
-	uint16	Counter();
-	uint16	Time();
-	uint16	ActTime( uint8 );
+	void	SetPhase( UINT8 );
+	void	SetCounter( UINT16 );
+	UINT8	ID();
+	UINT8	NextID();
+	UINT8	Phase();
+	UINT16	Counter();
+	UINT16	Time();
+	UINT16	ActTime( UINT8 );
 	float*	GetParam();
-	sint32	GetParamNumber( uint8 );
-	float	GetParamFloat( uint8 );
-	uint32	GetParamAddr( uint8 );
+	SINT32	GetParamNumber( UINT8 );
+	float	GetParamFloat( UINT8 );
+	UINT32	GetParamAddr( UINT8 );
 
 	FRM_COMMAND();
 
@@ -389,7 +380,6 @@ public:
 // Orbital Frame Camera
 //=============================================================================
 
-// ref.default.pdb
 class FRM_CAMERA
 {
 public: //! check modifier
@@ -417,7 +407,6 @@ public:
 // Orbital Frame GamePad Input
 //=============================================================================
 
-// ref.default.pdb
 enum {
 	PAD_UP     = 0x01,
 	PAD_DOWN   = 0x02,
@@ -431,7 +420,6 @@ enum {
 
 /*---------------------------------------------------------------------------*/
 
-// ref.default.pdb
 enum {
 	PAD_UP_P,
 	PAD_DOWN_P,
@@ -447,7 +435,6 @@ enum {
 
 /*---------------------------------------------------------------------------*/
 
-// ref.default.pdb
 class FRM_PAD
 {
 public: //! check modifier
@@ -455,12 +442,12 @@ public: //! check modifier
 	float	fX2, fY2;
 	float	fStateX1, fStateY1;
 	float	fStateX2, fStateY2;
-	uint32	u32State;
-	uint32	u32Last;
-	uint32	u32On;
-	uint32	u32Press;
-	uint32	u32Release;
-	uint8	u8Press[ FRM_PAD_NUM ];//[9];
+	UINT32	u32State;
+	UINT32	u32Last;
+	UINT32	u32On;
+	UINT32	u32Press;
+	UINT32	u32Release;
+	UINT8	u8Press[ FRM_PAD_NUM ];
 
 public:
 	FRM_PAD();
@@ -470,33 +457,32 @@ public:
 	void	SetY1( float );
 	void	SetX2( float );
 	void	SetY2( float );
-	void	_SetButton( uint32, uint8, uint8 );	// prefixed with '_' by HVS?
-	void	_ResetButton( uint32, uint8 );		// prefixed with '_' by HVS?
+	void	_SetButton( UINT32, UINT8, UINT8 );	// prefixed with '_' by HVS?
+	void	_ResetButton( UINT32, UINT8 );		// prefixed with '_' by HVS?
 	float	X1();
 	float	Y1();
 	float	X2();
 	float	Y2();
-	sint32	On( uint32 );
-	sint32	Press( uint32 );
-	sint32	Release( uint32 );
-	uint8	_Force( uint8 );	// prefixed with '_' by HVS?
+	SINT32	On( UINT32 );
+	SINT32	Press( UINT32 );
+	SINT32	Release( UINT32 );
+	UINT8	_Force( UINT8 );	// prefixed with '_' by HVS?
 };
 
 //=============================================================================
 // Orbital Frame Custom Data
 //=============================================================================
 
-// ref.default.pdb
 struct FRM_CUSTOM {
-	bool32	bPadCtrl;
-	bool32	bPlayer;
-	bool32	bImmortal;
-	uint8	u8Type;
-	uint8	u8Mode;
-	uint8	u8Side;
-	uint8	u8Level;
-	uint8	u8Demo;
-	uint32	u32EndProc;
+	BOOL32	bPadCtrl;
+	BOOL32	bPlayer;
+	BOOL32	bImmortal;
+	UINT8	u8Type;
+	UINT8	u8Mode;
+	UINT8	u8Side;
+	UINT8	u8Level;
+	UINT8	u8Demo;
+	UINT32	u32EndProc;
 	float	fMaxArm;
 	float	fArmor;
 	float	fHzdRad;
@@ -519,92 +505,92 @@ struct FRM_CUSTOM {
 // Orbital Frame Object
 //=============================================================================
 
-// ref.default.pdb
-class FRM_OBJECT : public GV_ACTOR //! check modifier
+class FRM_OBJECT : public GV_ACTOR
 {
 public: //! check modifier
-	uint32		u32NameID;
-	DG_OBJPTR	pobj;
-	MT_MOTPTR	pmt;
-	HZD_CAPSULE	hzc;
-	TRG_OBJECT	trg;
-	TRG_OBJECT	trgArms;
-	TRG_OBJECT	trgGuard;
-	ALG_MATRIX	matOrg;
-	ALG_MATRIX	matAng;
-	ALG_MATRIX	matScr;
-	ALG_MATRIX	matNewScr;
-	DG_CAMERA	cam;
-	FRM_CAMERA	fcm;
-	ALG_MATRIX	matCam;
-	ALG_MATRIX	matOldCam;
-	float		fSwCamRate;
-	float		fSwCamSpd;
-	float		fFixZoom;
-	ALG_MATRIX	matFixCam;
-	ALG_MATRIX	matRotCam;
-	float		fHzdRate;
-	ALG_MATRIX	matHzdCam;
-	ALG_MATRIX	matAim;
-	ALG_VECTOR	vecSpeed;
-	float		fSpeed;
-	float		fBstRate;
-	ALG_VECTOR	vecDamage;
-	bool32		bDestroy;
-	bool32		bSubject;
-	bool32		bLastSub;
-	bool32		bPosture;
-	bool32		bSearch;
-	FRM_COMMAND	cmd;
-	FRM_CUSTOM	cus;
-	ENE_OBJECT	ene;
-	FRM_PAD		pad;
-	bool32		bNeutral;
-	bool32		bLastNeutral;
-	bool32		bNeutral2;
-	ALG_MATRIX	matPad;
-	float		fStickRate;
-	ALG_MATRIX	matComp;
-	float		fGravity;
-	uint8		u8GravUp;
-	uint8		u8GravDown;
-	float		fLevRate;
-	float		fAltitude;
-	float		fLastAlt;
-	float		fAltRate;
-	float		fAltFree;
-	bool32		bGround;
-	float		fFootL;
-	float		fFootR;
-	float		fFloat;
-	bool32		bGuard;
-	uint16		u16LotID;
-	TRG_OBJECT*	ptrgLot;
-	float		fLotDist;
-	bool32		bInfight;
-	float		fFixRate;
-	float		fSpeedRate;
-	uint16		u16LabID;
-	TRG_OBJECT*	ptrgLab;
-	bool32		bLockOn;
+	UINT32			u32NameID;
+	DG_OBJPTR		pobj;
+	MT_MOTPTR		pmt;
+	HZD_CAPSULE		hzc;
+	TRG_OBJECT		trg;
+	TRG_OBJECT		trgArms;
+	TRG_OBJECT		trgGuard;
+	ALG_MATRIX		matOrg;
+	ALG_MATRIX		matAng;
+	ALG_MATRIX		matScr;
+	ALG_MATRIX		matNewScr;
+	DG_CAMERA		cam;
+	FRM_CAMERA		fcm;
+	ALG_MATRIX		matCam;
+	ALG_MATRIX		matOldCam;
+	float			fSwCamRate;
+	float			fSwCamSpd;
+	float			fFixZoom;
+	ALG_MATRIX		matFixCam;
+	ALG_MATRIX		matRotCam;
+	float			fHzdRate;
+	ALG_MATRIX		matHzdCam;
+	ALG_MATRIX		matAim;
+	ALG_VECTOR		vecSpeed;
+	float			fSpeed;
+	float			fBstRate;
+	ALG_VECTOR		vecDamage;
+	BOOL32			bDestroy;
+	BOOL32			bSubject;
+	BOOL32			bLastSub;
+	BOOL32			bPosture;
+	BOOL32			bSearch;
+	FRM_COMMAND		cmd;
+	FRM_CUSTOM		cus;
+	ENE_OBJECT		ene;
+	FRM_PAD			pad;
+	BOOL32			bNeutral;
+	BOOL32			bLastNeutral;
+	BOOL32			bNeutral2;
+	ALG_MATRIX		matPad;
+	float			fStickRate;
+	ALG_MATRIX		matComp;
+	float			fGravity;
+	UINT8			u8GravUp;
+	UINT8			u8GravDown;
+	float			fLevRate;
+	float			fAltitude;
+	float			fLastAlt;
+	float			fAltRate;
+	float			fAltFree;
+	BOOL32			bGround;
+	float			fFootL;
+	float			fFootR;
+	float			fFloat;
+	BOOL32			bGuard;
+	UINT16			u16LotID;
+	TRG_OBJECT*		ptrgLot;
+	float			fLotDist;
+	BOOL32			bInfight;
+	float			fFixRate;
+	float			fSpeedRate;
+	UINT16			u16LabID;
+	TRG_OBJECT*		ptrgLab;
+	BOOL32			bLockOn;
 
-	static uint8 u8FrameNode[ 41 ][ FRM_TYPE_NUM ];//[41][6];
+//	static UINT8 u8FrameNode[ 41 ][ FRM_TYPE_NUM ];
+	static UINT8 u8FrameNode[ FRM_TYPE_NUM ][ 41 ];
 
 public:
 
 	FRM_OBJECT( const FRM_OBJECT & );
-	FRM_OBJECT( uint32, ALG_MATRIX*, uint8, uint8, uint8, uint8, sint32, uint32, uint8 );
+	FRM_OBJECT( UINT32, ALG_MATRIX*, UINT8, UINT8, UINT8, UINT8, SINT32, UINT32, UINT8 );
 	~FRM_OBJECT();
 
 	void Act(); // override GV_ACTOR::Act()
 
-	DG_MDL&		NodeMdl( uint8 );
-	ALG_MATRIX&	NodeMat( uint8 );
+	DG_MDL&		NodeMdl( UINT8 );
+	ALG_MATRIX&	NodeMat( UINT8 );
 
 	void ResetFrame();	// Reset Orbital Frame
 	void ResetTrg();	// Reset Target
 
-	void SetArms( uint8, float, float );
+	void SetArms( UINT8, float, float );
 	void ResetArms();
 
 	void SetGuard();
@@ -643,9 +629,9 @@ public:
 	float CalcHazardAng( ALG_VECTOR*, ALG_VECTOR*, float );
 	int32 CheckTouch();
 	void CheckCross();
-	void SwitchCamera( uint8 );
+	void SwitchCamera( UINT8 );
 	void ResetMatrix( ALG_MATRIX* );
-	void PlayVibration( uint8 );
+	void PlayVibration( UINT8 );
 
 	// Do Actions
 	void DoControl();

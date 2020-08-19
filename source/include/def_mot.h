@@ -5,25 +5,23 @@
 #include "zoe_defs.h"
 #include "zoe_types.h"
 
-// ref.default.pdb
 typedef struct _DEF_MOTION {
 	float	fFrame;
-	uint32	nbNode;
-	uint32	pad1,pad2;
+	UINT32	nbNode;
+	UINT32	pad1;
+	UINT32	pad2;
 } DEF_MOTION;
 
-// ref.default.pdb
 typedef struct _DEF_MOTION_LIST {
-	uint32	nbMotion;
+	UINT32	nbMotion;
 } DEF_MOTION_LIST;
 
-// ref.default.pdb
 typedef struct _DEF_MOTION_NODE {
-	uint16	u16Flag;
-	uint16	u16nbElm;
-	uint32	nbData;
-	uint16*	pKeyData;
-	sint16*	pMotData;
+	UINT16	u16Flag;
+	UINT16	u16nbElm;
+	UINT32	nbData;
+	UINT16*	pKeyData;
+	SINT16*	pMotData;
 } DEF_MOTION_NODE;
 
 #endif /* END OF FILE */

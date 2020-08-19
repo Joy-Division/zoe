@@ -14,7 +14,6 @@
 // FS Common Data Types
 //=============================================================================
 
-// ref.default.pdb
 typedef struct _FS_FILEINFO {
 	sceSifCmdHdr hdr;
 	int32	status;
@@ -27,20 +26,17 @@ typedef struct _FS_FILEINFO {
 
 /*---------------------------------------------------------------------------*/
 
-// ref.default.pdb
 typedef struct _FS_PACKHDR {
 	int32	nFile;
-	uint32	flag;
+	UINT32	flag;
 	int32	pad0,pad1;
 } FS_PACKHDR;
 
-// ref.default.pdb
 typedef struct _FS_FILEHDR {
 	char	nmFile[44];
 	int32	size;
 } FS_FILEHDR;
 
-// ref.default.pdb
 typedef struct HDRINFO {
 	FS_PACKHDR packhdr;
 	FS_FILEHDR filehdr;
@@ -48,7 +44,6 @@ typedef struct HDRINFO {
 
 /*---------------------------------------------------------------------------*/
 
-// ref.default.pdb
 class FS_EXTEND_INFO
 {
 public: //! check modifier
@@ -56,14 +51,13 @@ public: //! check modifier
 	char nmPack[32];
 };
 
-// ref.default.pdb
 class FS_LOAD_INFO
 {
 public: //! check modifier
 	void*			pMem;
 	FS_EXTEND_INFO*	pInfo;
-	uint32			u32Pos;
-	uint8			u8State;
+	UINT32			u32Pos;
+	UINT8			u8State;
 	int32			nAllocType;
 };
 
@@ -71,17 +65,15 @@ public: //! check modifier
 // FS Cache System (cache.cc)
 //=============================================================================
 
-// ref.default.pdb
 class FS_CACHEMEMBER
 {
 public: //! check modifier
-	uint32	u32Id;
+	UINT32	u32Id;
 	void*	pBuf;
 };
 
 /*---------------------------------------------------------------------------*/
 
-// ref.default.pdb
 class FS_CACHE
 {
 public: //! check modifier
@@ -89,14 +81,14 @@ public: //! check modifier
 	int32 size;
 
 private:
-	FS_CACHEMEMBER* Find( uint32 );
+	FS_CACHEMEMBER* Find( UINT32 );
 	void Shift( FS_CACHEMEMBER* );
 
 public:
 	void	Init( FS_CACHEMEMBER*, int32 );
-	void	Set( uint32, void* );
-	void	Unset( uint32 );
-	void*	Get( uint32 );
+	void	Set( UINT32, void* );
+	void	Unset( UINT32 );
+	void*	Get( UINT32 );
 	void	Destroy();
 };
 
@@ -104,7 +96,6 @@ public:
 // FS Loader (loader.cc)
 //=============================================================================
 
-// ref.default.pdb
 class FS_LOADER:
   public GV_ACTOR, //! check modifier
   public EV_JOB    //! check modifier
@@ -115,8 +106,8 @@ public: //! check modifier
 	int32		indx;
 	void*		pBufLoad;
 	int32		nLoadPakFile;
-	bool32		bOpen;
-	bool32		bInterrupt;
+	BOOL32		bOpen;
+	BOOL32		bInterrupt;
 	void*		pLastReadAddress;
 	int32		nLastReadSize;
 	int32		nLastReadOffset;
@@ -151,7 +142,7 @@ public: //! check modifier
 	FS_LOAD_INFO	Info[256];
 
 public:
-	void CallInitializer( void*, char*, uint32, int32 );
+	void CallInitializer( void*, char*, UINT32, int32 );
 	void InitStageLoad();
 
 	FS_LOADER( const FS_LOADER& );
@@ -181,13 +172,13 @@ public:
 // Global Functions
 //=============================================================================
 
-/* FS Daemon (fsd.cc) */
+/* fsd.cc */
 void FS_StartDaemon();
 
-/* FS Cache System (cache.cc) */
-uint32 FS_StrCode( char* str );
+/* cache.cc */
+UINT32 FS_StrCode( char* str );
 
-/* FS CDVD (cdvd.cc) */
+/* cdvd.cc */
 void FS_CdLoadDirInfo( char*, int );
 
 #endif /* END OF FILE */

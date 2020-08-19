@@ -140,8 +140,8 @@ int main()
 #if defined(BORMAN_DEMO)
 	// TODO: Check this, likely NOMATCH
 	DEBUG_InitException(
-		(((0x00010000 + (int16)0x8000)
-		+ (0x00200000 + (int16)0x8000))-16)
+		(((0x00010000 + (INT16)0x8000)
+		+ (0x00200000 + (INT16)0x8000))-16)
 	);
 #endif
 

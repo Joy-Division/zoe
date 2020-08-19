@@ -10,14 +10,13 @@
 // Effect Field
 //=============================================================================
 
-// ref.default.pdb
 class EFF_FIELD
 {
 	/* VTable */
 
 public: //! check modifier
-	int		nProcess;
-	bool32	bLock;
+	INT32	nProcess;
+	BOOL32	bLock;
 
 public:
 	EFF_FIELD( const EFF_FIELD& );

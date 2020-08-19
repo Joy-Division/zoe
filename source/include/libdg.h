@@ -46,7 +46,6 @@ class DG_VERTEX;
 // DG Common Defines
 //=============================================================================
 
-// ref.default.pdb
 enum {
 	DG_BOUND_NOTHING,
 	DG_BOUND_PART,
@@ -55,7 +54,6 @@ enum {
 
 /*---------------------------------------------------------------------------*/
 
-// ref.default.pdb
 enum {
 	DG_OBJTYPE_OBJECT,
 	DG_OBJTYPE_POLYGON,
@@ -67,22 +65,20 @@ enum {
 
 /*---------------------------------------------------------------------------*/
 
-// ref.default.pdb
 typedef struct _BLOCK_UNIT {
-	uint16 u16addrBlock;
-	uint16 u16szBlock;
+	UINT16 u16addrBlock;
+	UINT16 u16szBlock;
 } BLOCK_UNIT;
 
 /*---------------------------------------------------------------------------*/
 
-// ref.default.pdb
 typedef struct _DG_DRAW_ENV {
 	DAT128			gtag;
 	sceGsDrawEnv1	envDraw;
 	sceGsDrawEnv2	envDraw2;
 	sceGsClear		envClear;
 	sceGsZbuf		zbufResume;
-	sint64			addrZbuf1;
+	SINT64			addrZbuf1;
 	sceGsAlphaEnv	envAlpha;
 	DAT128			envTex[4];
 	DAT128			envMask;
@@ -90,24 +86,22 @@ typedef struct _DG_DRAW_ENV {
 
 /*---------------------------------------------------------------------------*/
 
-// ref.default.pdb
 typedef struct _DG_FRAMECOPY {
 	DAT128			giftag;
 	sceGsBitbltbuf	bitbltbuf;
-	uint64			u64AddrBitbltbuf;
+	UINT64			u64AddrBitbltbuf;
 	sceGsTrxpos		trxpos;
-	uint64			u64AddrTrxpos;
+	UINT64			u64AddrTrxpos;
 	sceGsTrxreg		trxreg;
-	uint64			u64AddrTrxreg;
+	UINT64			u64AddrTrxreg;
 	sceGsTrxdir		trxdir;
-	uint64			u64AddrTrxdir;
-	uint64			u64TexFlush;
-	uint64			u64AddrTexFlush;
+	UINT64			u64AddrTrxdir;
+	UINT64			u64TexFlush;
+	UINT64			u64AddrTexFlush;
 } DG_FRAMECOPY;
 
 /*---------------------------------------------------------------------------*/
 
-// ref.default.pdb
 typedef struct _DG_MATERIAL {
 	FVECTOR mtrAmbient;
 	FVECTOR mtrDiffuse;
@@ -116,18 +110,16 @@ typedef struct _DG_MATERIAL {
 
 /*---------------------------------------------------------------------------*/
 
-// ref.default.pdb
 typedef struct _DG_RESETOFFSET {
 	DAT128			giftag;
 	sceGsXyoffset	xyoffset1;
-	uint64			u64AddrXyoffset1;
+	UINT64			u64AddrXyoffset1;
 	sceGsXyoffset	xyoffset2;
-	uint64			u64AddrXyoffset2;
+	UINT64			u64AddrXyoffset2;
 } DG_RESETOFFSET;
 
 /*---------------------------------------------------------------------------*/
 
-// ref.default.pdb
 typedef struct _POLYGON_PACKET
 {
 public: //! check modifier
@@ -152,7 +144,6 @@ POLYGON_PACKET;
 
 /*---------------------------------------------------------------------------*/
 
-// ref.default.pdb
 typedef struct __SCR_WORK
 {
 public: //! check modifier
@@ -163,7 +154,7 @@ public: //! check modifier
 	ALG_VECTOR	vecFog;
 	ALG_VECTOR	vecCam;
 	float		fAlpha;
-	uint32		u32FogFarSortz;
+	UINT32		u32FogFarSortz;
 	DG_CAMERA*	pcamCurrent;
 
 public:
@@ -175,7 +166,6 @@ SCR_WORK;
 
 /*---------------------------------------------------------------------------*/
 
-// ref.default.pdb
 typedef struct __SCR_SORTWORK
 {
 public: //! check modifier
@@ -198,8 +188,7 @@ SCR_SORTWORK;
 // DG Daemon (dgd.cc)
 //=============================================================================
 
-// ref.default.pdb
-class DG_DAEMON1 : public GV_ACTOR //! check modifier
+class DG_DAEMON1 : public GV_ACTOR
 {
 public:
 	DG_DAEMON1(const DG_DAEMON1&);
@@ -214,8 +203,7 @@ public:
 
 /*---------------------------------------------------------------------------*/
 
-// ref.default.pdb
-class DG_DAEMON2 : public GV_ACTOR //! check modifier
+class DG_DAEMON2 : public GV_ACTOR
 {
 public:
 	DG_DAEMON2( const DG_DAEMON2& );
@@ -232,21 +220,20 @@ public:
 // DG Callback (callback.cc)
 //=============================================================================
 
-// ref.default.pdb
 class DG_OBJ_CALLBACK
 {
 public: //! check modifier
 	DG_OBJINFO info;
 	ALG_MATRIX matL2World;
 	ALG_MATRIX matL2Screen;
-	void (*pFunc)(void); // TODO: ret/arg types
+	INT32 (*pFunc)(void*, void*);
 	void* pData;
 
 public:
 	DG_OBJ_CALLBACK();
 
 	void Draw();
-	void SetOrder( uint32 );
+	void SetOrder( UINT32 );
 
 	DG_OBJ_CALLBACK& operator = ( const DG_OBJ_CALLBACK& );
 };
@@ -255,11 +242,10 @@ public:
 // DG Camera (camera.cc)
 //=============================================================================
 
-// ref.default.pdb
 class DG_CAMERA
 {
 public: //! check modifier
-	const int MAX_CVERT = TEMP_ZERO;
+	const INT32 MAX_CVERT = DEFINE_ME;
 
 	ALG_MATRIX	matC2World;
 	ALG_MATRIX	matW2Camera;
@@ -269,7 +255,7 @@ public: //! check modifier
 	ALG_MATRIX	matW2Clip;
 	ALG_MATRIX	matReq;
 	DAT128		vertClip[6];
-	int			nVert;
+	INT32		nVert;
 	float		ax, ay;
 	float		cx, cy;
 	float		fScrWidth;
@@ -284,11 +270,11 @@ public: //! check modifier
 	float		fFogMax;
 	float		fFogA;
 	float		fFogB;
-	uint32		u32FogCol;
-	sint16		nChanl;
-	sint8		s8Req;
-	uint8		u8Flag;
-	uint32		u32timeCalc;
+	UINT32		u32FogCol;
+	SINT16		nChanl;
+	SINT8		s8Req;
+	UINT8		u8Flag;
+	UINT32		u32timeCalc;
 
 public:
 	DG_CAMERA();
@@ -297,7 +283,7 @@ public:
 	void		Init();
 	void		SetScreen();
 	void		CalcCamera();
-	DG_CAMERA*	Set( int32 );
+	DG_CAMERA*	Set( INT32 );
 	void		Unset();
 	void		SetClipVert( float, float );
 	void		DrawClipWindow( sceVif1Packet* );
@@ -306,10 +292,10 @@ public:
 	void		SetScrz( float );
 	void		UpdateMat();
 	void		InitMat( ALG_MATRIX* );
-	int32		ProjectScreen( ALG_VECTOR*, ALG_VECTOR* );
+	INT32		ProjectScreen( ALG_VECTOR*, ALG_VECTOR* );
 	void		CalcView( ALG_VECTOR*, ALG_VECTOR*, float );
 	void		SetScrpadEnv();
-	int32		SendVu1Env( DAT128* );
+	INT32		SendVu1Env( DAT128* );
 
 	DG_CAMERA& operator = ( const DG_CAMERA& );
 };
@@ -318,7 +304,6 @@ public:
 // DG Channel (chanl.cc)
 //=============================================================================
 
-// ref.default.pdb
 enum {
 	DG_CHANL_MAIN,
 	DG_CHANL_DEMO,
@@ -327,12 +312,11 @@ enum {
 
 /*---------------------------------------------------------------------------*/
 
-// ref.default.pdb
 class DG_CHANL
 {
 public: //! check modifier
-	uint16			u16Flag;
-	uint16			u16RefChanl;
+	UINT16			u16Flag;
+	UINT16			u16RefChanl;
 	sceGsScissor	envScissor;
 	sceGsTest		envTest;
 	DG_CAMERA		camDefault;
@@ -352,13 +336,12 @@ public:
 // DG Debug Font (dbfont2.cc)
 //=============================================================================
 
-// ref.default.pdb
 class DBGFONT
 {
 public: //! check modifier
-	sint8*	pBufTop;
-	uint32	indxCur;
-	uint32	u32BufSize;
+	SINT8*	pBufTop;
+	UINT32	indxCur;
+	UINT32	u32BufSize;
 	DG_OBJ_CALLBACK call;
 	DEF_TEXLIST* pTlst;
 	float	fcurX;
@@ -372,9 +355,9 @@ public:
 	DBGFONT();
 	~DBGFONT();
 
-	void	Font_Queue( float, float, sint8*, float, float, float, float );
+	void	Font_Queue( float, float, SINT8*, float, float, float, float );
 	void	ResetBuf();
-	int32	Draw( DAT128* );
+	INT32	Draw( DAT128* );
 	void	Locate( float, float );
 	void	SetCol( float, float, float, float );
 
@@ -387,45 +370,41 @@ public:
 // DG DMA Control (dma_ctrl.cc)
 //=============================================================================
 
-// ref.default.pdb
 typedef struct _TRANS_MSK {
-	uint32 tagdma[4];
-	uint64 taggif[2];
-	uint64 zbuf[2];
-	uint64 zbuf2[2];
-	uint64 test[2];
+	UINT32 tagdma[4];
+	UINT64 taggif[2];
+	UINT64 zbuf[2];
+	UINT64 zbuf2[2];
+	UINT64 test[2];
 } TRANS_MSK;
 
 /*---------------------------------------------------------------------------*/
 
-// ref.default.pdb
 typedef struct _EFFECT_ENV {
-	uint32 tagdma[4];
-	uint64 taggif[2];
-	uint64 zbuf[2];
-	uint64 zbuf2[2];
-	uint64 test[2];
+	UINT32 tagdma[4];
+	UINT64 taggif[2];
+	UINT64 zbuf[2];
+	UINT64 zbuf2[2];
+	UINT64 test[2];
 } EFFECT_ENV;
 
 /*---------------------------------------------------------------------------*/
 
-// ref.default.pdb
 typedef struct _2D_TEST {
-	uint32 tagdma[4];
-	uint64 taggif[2];
-	uint64 zbuf[2];
-	uint64 zbuf2[2];
-	uint64 test2[2];
-	uint64 alpha[2];
+	UINT32 tagdma[4];
+	UINT64 taggif[2];
+	UINT64 zbuf[2];
+	UINT64 zbuf2[2];
+	UINT64 test2[2];
+	UINT64 alpha[2];
 } _2D_TEST;
 
 /*---------------------------------------------------------------------------*/
 
-// ref.default.pdb
 typedef struct DG_DMATASK {
-	void (**callback)(void); // TODO: ret/arg types, double ptr
-	int32		param;
-	int32		dma_type;
+	void (**callback)(INT32);
+	INT32		param;
+	INT32		dma_type;
 	sceDmaTag*	dma_ptr;
 } DG_DMATASK;
 
@@ -433,8 +412,7 @@ typedef struct DG_DMATASK {
 // DG E.Field (efield.cc)
 //=============================================================================
 
-// ref.default.pdb
-class DG_MDL_EFIELDDATA : public DG_MDL_SPECIALDATA //! check modifier
+class DG_MDL_EFIELDDATA : public DG_MDL_SPECIALDATA
 {
 public: //! check modifier
 	ALG_VECTOR	vecCol;
@@ -443,7 +421,7 @@ public: //! check modifier
 
 public:
 	void	SetMdlParam( DAT128*, DG_MDL* );
-	int32	SetMdlData( DAT128*, DG_MDL* );
+	INT32	SetMdlData( DAT128*, DG_MDL* );
 
 	DG_MDL_EFIELDDATA( const DG_MDL_EFIELDDATA& );
 	DG_MDL_EFIELDDATA();
@@ -456,12 +434,11 @@ public:
 // DG Environ Map (envmap.cc)
 //=============================================================================
 
-// ref.default.pdb
-class DG_MDL_ENVMAPDATA : public DG_MDL_SPECIALDATA //! check modifier
+class DG_MDL_ENVMAPDATA : public DG_MDL_SPECIALDATA
 {
 public:
 	void	SetMdlParam( DAT128*, DG_MDL* );
-	int32	SetMdlData( DAT128*, DG_MDL* );
+	INT32	SetMdlData( DAT128*, DG_MDL* );
 
 	DG_MDL_ENVMAPDATA( const DG_MDL_ENVMAPDATA & );
 	DG_MDL_ENVMAPDATA();
@@ -474,12 +451,11 @@ public:
 // DG Flow Env (flowenv.cc)
 //=============================================================================
 
-// ref.default.pdb
-class DG_MDL_FLOWENVDATA : public DG_MDL_FLOWLINEDATA //! check modifier
+class DG_MDL_FLOWENVDATA : public DG_MDL_FLOWLINEDATA
 {
 public:
 	void	SetMdlParam( DAT128*, DG_MDL* );
-	int32	SetMdlData( DAT128*, DG_MDL* );
+	INT32	SetMdlData( DAT128*, DG_MDL* );
 
 	DG_MDL_FLOWENVDATA( const DG_MDL_FLOWENVDATA& );
 	DG_MDL_FLOWENVDATA();
@@ -492,17 +468,16 @@ public:
 // DG Flowline (flowline.cc)
 //=============================================================================
 
-// ref.default.pdb
-class DG_MDL_FLOWLINEDATA : public DG_MDL_SPECIALDATA //! check modifier
+class DG_MDL_FLOWLINEDATA : public DG_MDL_SPECIALDATA
 {
 public: //! check modifier
 	float		fFlow;
-	uint32		u32dir;
+	UINT32		u32dir;
 	ALG_VECTOR	vecCol;
 
 public:
 	void	SetMdlParam( DAT128*, DG_MDL* );
-	int32	SetMdlData( DAT128*, DG_MDL* );
+	INT32	SetMdlData( DAT128*, DG_MDL* );
 
 	DG_MDL_FLOWLINEDATA( const DG_MDL_FLOWLINEDATA& );
 	DG_MDL_FLOWLINEDATA();
@@ -517,53 +492,51 @@ public:
 
 #if (0)
 // possibly added by HVS for the HD Edition
-// ref.default.pdb
 typedef struct CODE_CONV_TREE {
-	sint16			src;
-	sint16			dstCode;
-	int				nChild;
-	CODE_CONV_TREE* pChild;
+	SINT16			src;
+	SINT16			dstCode;
+	INT32			nChild;
+	CODE_CONV_TREE*	pChild;
 } CODE_CONV_TREE;
 #endif
 
 /*---------------------------------------------------------------------------*/
 
-// ref.default.pdb
 class DG_OBJ_FONT
 {
 private:
 	void Print2(char*);
-//	void HVSDrawGlyph(int32, int32, DG_VERTEX*&, int32&, int32, float);
+//	void HVSDrawGlyph(INT32, INT32, DG_VERTEX*&, INT32&, INT32, float);
 
 public: //! check modifier
 	DG_OBJINFO		info;
 	DG_OBJ_POLYGON	pol;
-	uint32			nTag;
+	UINT32			nTag;
 	DAT128*			pDat;
 	DG_VERTEX*		pVert;
-	int32			nVert;
+	INT32			nVert;
 	DAT128*			pBuf;
-	int32			sizeBuf;
-	uint32			u32Time;
-	bool32			bPrint;
+	INT32			sizeBuf;
+	UINT32			u32Time;
+	BOOL32			bPrint;
 	ALG_VECTOR		vecCol;
 	float			fScale;
-//	int32			m_nKernBias;	// HVS style
+//	INT32			m_nKernBias;	// HVS style
 
 public:
 	DG_OBJ_FONT();
 	~DG_OBJ_FONT();
 
-	void Init( sint8* );
-	void Init( DAT128*, int32 );
+	void Init( SINT8* );
+	void Init( DAT128*, INT32 );
 	void Locate( float, float );
 	void Draw();
-	void Print( sint8* );
+	void Print( SINT8* );
 	void SetColor( float, float, float, float );
 	void Free();
 //	void vGetTextBounds( float*, float*, float*, float* );	// HVS style
 
-	static int32 CalcBufferSize( int32*, sint8* );
+	static INT32 CalcBufferSize( INT32*, SINT8* );
 
 	DG_OBJ_FONT& operator = ( DG_OBJ_FONT& );
 };
@@ -572,13 +545,12 @@ public:
 // DG Frame (frame_dg.cc)
 //=============================================================================
 
-// ref.default.pdb
 class DG_FRAME
 {
 public: //! check modifier
 
-	static const uint32 REQ_FLIP = TEMP_ZERO;
-	static const uint32 REQ_SEND = TEMP_ZERO;
+	static const UINT32 REQ_FLIP = DEFINE_ME;
+	static const UINT32 REQ_SEND = DEFINE_ME;
 
 	enum {
 		IDLE,		// Idle
@@ -588,11 +560,11 @@ public: //! check modifier
 		SEND_COMP	// Send Complete
 	};
 
-	int32			n_task;
-	int32			end_task;
-	uint32			u32state;
-	uint32			u32ReqFlag;
-	uint128*		pBuffer;
+	INT32			n_task;
+	INT32			end_task;
+	UINT32			u32state;
+	UINT32			u32ReqFlag;
+	UINT128*		pBuffer;
 	DG_FRAME*		pOther;
 	DG_DRAW_ENV		env;
 	tGS_DISPFB1		dispfb1;
@@ -600,8 +572,8 @@ public: //! check modifier
 	tGS_PMODE		pmode;
 	tGS_DISPLAY1	display1;
 	tGS_DISPLAY2	display2;
-	uint32			u32Field;
-	uint32			u32MemID;
+	UINT32			u32Field;
+	UINT32			u32MemID;
 	DG_DMATASK		task_list[1024];
 	DG_RESETOFFSET	packetResetOffset;
 
@@ -611,12 +583,12 @@ public:
 	static void		ResetFrame();
 	static void		ResetDma();
 	static void		ClearDma();
-	static int32	CheckMake();
+	static INT32	CheckMake();
 	static void		FinishDmaTask();
 	static void		SendPacket();
 	static void		RequestSend();
 	static void		CallbackFunc();
-	static int32	DmaCheckMake();
+	static INT32	DmaCheckMake();
 
 	void SetHalfOffset();
 	void SetReferenceData();
@@ -630,7 +602,6 @@ public:
 // DG Light (light.cc)
 //=============================================================================
 
-// ref.default.pdb
 class DG_LIGHT
 {
 public: //! check modifier
@@ -642,17 +613,17 @@ public: //! check modifier
 	float		fFar2;
 	DG_LIGHT*	pPrev;
 	DG_LIGHT*	pNext;
-	uint8		u8Type;
-	uint8		u8Flag;
-	uint16		u8Pad0;		// should be "u16Pad0"
-	uint32		u8Pad1;		// should be "u32Pad1"
+	UINT8		u8Type;
+	UINT8		u8Flag;
+	UINT16		u8Pad0;		// should be "u16Pad0"
+	UINT32		u8Pad1;		// should be "u32Pad1"
 
 public:
 	DG_LIGHT();
 	~DG_LIGHT();
 
 	void		Init();
-	void		Init( uint8, ALG_VECTOR*, ALG_VECTOR*, float, float, uint8 );
+	void		Init( UINT8, ALG_VECTOR*, ALG_VECTOR*, float, float, UINT8 );
 	void		SetParam();
 	void		On();
 	void		Off();
@@ -666,7 +637,7 @@ public:
 	static void			GetAmbient( ALG_VECTOR* );
 	static void			GetStageAmbient( ALG_VECTOR* );
 	static void			SearchLight( ALG_VECTOR*);
-	static int32		SearchStageLight( ALG_VECTOR* );
+	static INT32		SearchStageLight( ALG_VECTOR* );
 	static void			GetLightMatrix( ALG_MATRIX*, ALG_VECTOR* );
 	static void			SetLightMatrix( ALG_MATRIX*, ALG_VECTOR* );
 	static void			GetStageLightMatrix( ALG_MATRIX*, ALG_MATRIX* );
@@ -682,7 +653,7 @@ public:
 	static void			PopLightEnv( DG_LIGHT** );
 
 public: //! check modifier
-	const int32 MAX_I_LIGHT = TEMP_ZERO;
+	const INT32 MAX_I_LIGHT = DEFINE_ME;
 
 	static DG_LIGHT*	plitInf[4];
 	static DG_LIGHT		litPoint;
@@ -699,7 +670,6 @@ public:
 // DG Make Packet (mkpk.cc)
 //=============================================================================
 
-// ref.default.pdb
 typedef struct _DG_MDLPACKET
 {
 public: //! check modifier
@@ -718,7 +688,6 @@ DG_MDLPACKET;
 
 /*---------------------------------------------------------------------------*/
 
-// ref.default.pdb
 typedef struct _DG_MDLPACKET_TRANS
 {
 public: //! check modifier
@@ -740,7 +709,6 @@ DG_MDLPACKET_TRANS;
 
 /*---------------------------------------------------------------------------*/
 
-// ref.default.pdb
 typedef struct _DG_OBJPACKET
 {
 public: //! check modifier
@@ -759,28 +727,27 @@ DG_OBJPACKET;
 // DG Object (obj.cc)
 //=============================================================================
 
-// ref.default.pdb
 class DG_MDL
 {
 public: //! check modifier
-	ALG_MATRIX	matLL2Local;
-	ALG_MATRIX	matLL2World;
-	ALG_VECTOR	vecCenter;
-	DG_MDL*		pmdlParent;
-	DG_MDL*		pmdlChild;
-	DG_MDL*		pmdlSibling;
-	uint32		u32Sortz;
-	uint16		u16Flag;
-	uint16		u16mdBound;
-	DEF_MDL*	pdmdl;
+	ALG_MATRIX		matLL2Local;
+	ALG_MATRIX		matLL2World;
+	ALG_VECTOR		vecCenter;
+	DG_MDL*			pmdlParent;
+	DG_MDL*			pmdlChild;
+	DG_MDL*			pmdlSibling;
+	UINT32			u32Sortz;
+	UINT16			u16Flag;
+	UINT16			u16mdBound;
+	DEF_MDL*		pdmdl;
 	DG_MDL_SPECIALDATA* pSpecial;
-	DG_MDL*		pSortNext;
-	void (*pfuncShape)(void); // TODO: ret/arg types
-	void*		pdatShape;
-	ALG_MATRIX* pmatW2Local;
-	uint8		u8bFar;
-	uint8		u8Pad;
-	DEF_TEXLIST* pTlst;
+	DG_MDL*			pSortNext;
+	INT32 (*pfuncShape)(void*, DG_MDL*, DAT128*);
+	void*			pdatShape;
+	ALG_MATRIX*		pmatW2Local;
+	UINT8			u8bFar;
+	UINT8			u8Pad;
+	DEF_TEXLIST*	pTlst;
 
 public:
 	void CalcMdlWorld();
@@ -795,7 +762,6 @@ public:
 
 /*---------------------------------------------------------------------------*/
 
-// ref.default.pdb
 class DG_OBJ
 {
 public: //! check modifier
@@ -803,23 +769,23 @@ public: //! check modifier
 	ALG_MATRIX	matL2World;
 	ALG_MATRIX	matLL2World;
 	DG_MDL*		pmdlParent;
-	int32		nbMdl
+	INT32		nbMdl
 	DEF_OBJ*	pdobj;
-	uint16		u16mdBound;
-	uint8		u8Alpha;
+	UINT16		u16mdBound;
+	UINT8		u8Alpha;
 	DG_LIGHT*	plitDir;
 	DG_MDL		mdl[];
 
 public:
-	void CalcMdlWorld( int32 );
+	void CalcMdlWorld( INT32 );
 	void CalcMdlWorld( DG_MDL* );
-	void SetFlag( uint16 );
-	void ResetFlag( uint16 );
+	void SetFlag( UINT16 );
+	void ResetFlag( UINT16 );
 	void SetEffectFlag();
 	void ResetPrecalcFlag();
 	void SetParentBox();
 	void CalcStageMatrix();
-	void SetOrder( uint32 );
+	void SetOrder( UINT32 );
 
 	DG_OBJ();
 
@@ -828,7 +794,6 @@ public:
 
 /*---------------------------------------------------------------------------*/
 
-// ref.default.pdb
 class DG_OBJPTR
 {
 public: //! check modifier
@@ -846,7 +811,6 @@ public:
 
 /*---------------------------------------------------------------------------*/
 
-// ref.default.pdb
 class DG_MDL_SPECIALDATA
 {
 	/* VTable */
@@ -860,11 +824,11 @@ public: //! check modifier
 		FLAG_ENEFIELD	= 0x08
 	};
 
-	uint8 u8Flag;
+	UINT8 u8Flag;
 
 public:
 	void	SetMdlParam( DAT128*, DG_MDL* );
-	int32	SetMdlData( DAT128*, DG_MDL* );
+	INT32	SetMdlData( DAT128*, DG_MDL* );
 	void	PreAct( DG_MDL* );
 
 	~DG_MDL_SPECIALDATA();
@@ -878,7 +842,6 @@ public:
 // DG Polygon (polygon.cc)
 //=============================================================================
 
-// ref.default.pdb
 class DG_VERTEX
 {
 public: //! check modifier
@@ -888,15 +851,15 @@ public: //! check modifier
 	float	fPad;
 	float	fR,fG,fB,fA;	// RGBA
 	float	fX,fY,fZ;		// XYZ
-	uint32	u32Kick;
+	UINT32	u32Kick;
 
 public:
 	void		SetST( float, float );
 	void		SetRGBA( float, float, float, float );
 	void		SetXYZ( ALG_VECTOR* );
 	void		SetXYZ( float, float, float );
-	void		SetAspectXYZ( ALG_VECTOR*, uint8 );
-	void		SetAspectXYZ( float, float, float, uint8 );
+	void		SetAspectXYZ( ALG_VECTOR*, UINT8 );
+	void		SetAspectXYZ( float, float, float, UINT8 );
 	void		SetKick();
 	void		SetNoKick();
 	void		Interpolate( DG_VERTEX*, DG_VERTEX*, float );
@@ -905,7 +868,6 @@ public:
 
 /*---------------------------------------------------------------------------*/
 
-// ref.default.pdb
 class DG_OBJ_POLYGON
 {
 // TODO: HVS added their own stuff for the HD Edition.
@@ -918,37 +880,37 @@ public:
 public: //! check modifier
 	DG_OBJINFO		info;
 	ALG_MATRIX		matL2World;
-	float			lx, ly, lz;
-	float			ux, uy, uz;
+	float			lx,ly,lz;
+	float			ux,uy,uz;
 	float			fPrio;
 	DEF_TEXLIST*	pTlst;
-	uint32			prim;
-	uint32			primClip;
-	uint32			nTex;
-	uint32			nVert;
-	uint16			u16mdBound;
-	sint8			s8NoDrawBuf;
-	uint8			u8DrawCtr;
+	UINT32			prim;
+	UINT32			primClip;
+	UINT32			nTex;
+	UINT32			nVert;
+	UINT16			u16mdBound;
+	SINT8			s8NoDrawBuf;
+	UINT8			u8DrawCtr;
 	DG_VERTEX*		pVert;
 	DG_VERTEX*		pVert2;
 	DAT128*			pdatPre;
 	DAT128*			pdatPost;
-	uint16			u16qwszDatPre;
-	uint16			u16qwszDatPost;
+	UINT16			u16qwszDatPre;
+	UINT16			u16qwszDatPost;
 
-//	uint16				hvsFlags;
+//	UINT16				hvsFlags;
 //	bool				m_bApplyWSOffsetsAlways;
 //	bool				m_bApplyWidescreenScale;
 //	HVS_WSPositionScale	m_oWidescreenPosScale;
 
-	uint32*			pindex[2];
-	uint32			u32NumIndices;
+	UINT32*			pindex[2];
+	UINT32			u32NumIndices;
 
 public:
-	uint32* GetIndexBuf( uint32 );
-	uint32	GetNumIndices();
-	void	SetIndexBuf( uint32* );
-	void	SetNumIndices( uint32 );
+	UINT32* GetIndexBuf( UINT32 );
+	UINT32	GetNumIndices();
+	void	SetIndexBuf( UINT32* );
+	void	SetNumIndices( UINT32 );
 
 public: //! check modifier
 //	D3DVertexBuffer	m_oInputVB;
@@ -958,12 +920,12 @@ public: //! check modifier
 public:
 	DG_OBJ_POLYGON();
 
-	void		Init( DG_VERTEX*, DG_VERTEX*, int32, uint16, uint32, uint8*, int32, uint16, DEF_TEXLIST* );
-	void		Init( DG_VERTEX*, int32, uint16, uint32, uint8*, int32, uint16, DEF_TEXLIST* );
+	void		Init( DG_VERTEX*, DG_VERTEX*, INT32, UINT16, UINT32, UINT8*, INT32, UINT16, DEF_TEXLIST* );
+	void		Init( DG_VERTEX*, INT32, UINT16, UINT32, UINT8*, INT32, UINT16, DEF_TEXLIST* );
 	void		SetPriority( float );
-	void		SetPreData( DAT128*, uint16 );
-	void		SetPostData( DAT128*, uint16 );
-	void		SetOrder( uint32 );
+	void		SetPreData( DAT128*, UINT16 );
+	void		SetPostData( DAT128*, UINT16 );
+	void		SetOrder( UINT32 );
 //	void		vSetPseudo3D( bool );
 //	void		vSetXWidescreenScale( bool, float );
 //	void		vSetWidescreenPositionScale( HVS_WSPositionScale );
@@ -982,8 +944,8 @@ public: //! check modifier
 //	int32		m_eBlurShader;
 //	bool		m_bVerticalPass;
 //	float		m_fBlurAmount;
-//	void (*m_vDrawCallback)(void);		  // placeholder ret/arg types
-//	void (*m_vSetupShaderCallback)(void); // placeholder ret/arg types
+//	void (*m_vDrawCallback)(DG_OBJ_POLYGON*);
+//	void (*m_vSetupShaderCallback)(DG_OBJ_POLYGON*);
 //	bool		m_bPseudo3D;
 
 public:
@@ -994,7 +956,6 @@ public:
 // DG Queue (que.cc)
 //=============================================================================
 
-// ref.default.pdb
 class DG_QUEUE
 {
 public: //! check modifier
@@ -1012,15 +973,14 @@ public:
 
 /*---------------------------------------------------------------------------*/
 
-// ref.default.pdb
 class DG_OBJ_QUE
 {
 public: //! check modifier
 	DG_OBJINFO	info;
 	ALG_MATRIX	matL2World;
-	float		lx, ly, lz;
-	float		ux, uy, uz;
-	uint16		u16mdBound;
+	float		lx,ly,lz;
+	float		ux,uy,uz;
+	UINT16		u16mdBound;
 	DG_OBJINFO	lnkTop;
 	DG_OBJINFO	lnkEnd;
 
@@ -1030,9 +990,9 @@ public:
 	void	Reset();
 	void	Queue( void* );
 	void	Dequeue( void* );
-	bool32	IsEmpty();
+	BOOL32	IsEmpty();
 	void	Draw();
-	void	SetOrder( uint32 );
+	void	SetOrder( UINT32 );
 	void	Iterate( void (*)(void) ); // TODO: ret/arg types
 
 	DG_OBJ_QUE& operator = ( const DG_OBJ_QUE& );
@@ -1042,8 +1002,7 @@ public:
 // DG Refraction Map (refrmap.cc)
 //=============================================================================
 
-// ref.default.pdb
-class DG_MDL_REFRACTDATA : public DG_MDL_SPECIALDATA //! check modifier
+class DG_MDL_REFRACTDATA : public DG_MDL_SPECIALDATA
 {
 public: //! check modifier
 	ALG_VECTOR	vecCol;
@@ -1052,7 +1011,7 @@ public: //! check modifier
 
 public:
 	void	SetMdlParam( DAT128*, DG_MDL* );
-	int32	SetMdlData( DAT128*, DG_MDL* );
+	INT32	SetMdlData( DAT128*, DG_MDL* );
 
 	DG_MDL_REFRACTDATA( const DG_MDL_REFRACTDATA& );
 	DG_MDL_REFRACTDATA();
@@ -1065,38 +1024,36 @@ public:
 // DG Sort (sort.cc)
 //=============================================================================
 
-// ref.default.pdb
 class DG_OBJINFO
 {
 public: //! check modifier
-	uint8		u8Type;
-	uint8		u8Chanl;
-	uint16		u16Flag;
-	uint32		u32Sortz;
+	UINT8		u8Type;
+	UINT8		u8Chanl;
+	UINT16		u16Flag;
+	UINT32		u32Sortz;
 	DG_OBJINFO*	pPrev;
 	DG_OBJINFO*	pNext;
 	DG_OBJINFO*	pSortNext;
 
 public:
-	void Init(uint8);
+	void Init( UINT8 );
 
 // *** HVS additions ***
 //	void	vSetNmObj(char*);
 //	char*	szGetNmObj();
 
 	DG_OBJINFO();
-	DG_OBJINFO( uint8 );
+	DG_OBJINFO( UINT8 );
 
 	void InstallOtag();
 	void SetEffectFlag();
-	void SetOrder( uint32 );
+	void SetOrder( UINT32 );
 };
 
 //=============================================================================
 // DG Texture (texture.cc)
 //=============================================================================
 
-// ref.default.pdb
 class DG_DYNAMIC_TEXTURE
 {
 public: //! check modifier
@@ -1105,19 +1062,18 @@ public: //! check modifier
 	DEF_CLUT	clut;
 
 public:
-	void Init( uint32, int32, int32, uint32, uint8, uint8, uint8 );
+	void Init( UINT32, INT32, INT32, UINT32, UINT8, UINT8, UINT8 );
 };
 
 /*---------------------------------------------------------------------------*/
 
-// ref.default.pdb
 class DG_TEXTURE_BUFFER
 {
 public: //! check modifier
-	uint32			u32nResi;
-	uint32			u32nNonResi;
-	uint32			u32nOnMemory;
-	bool32			bReqFlush;
+	UINT32			u32nResi;
+	UINT32			u32nNonResi;
+	UINT32			u32nOnMemory;
+	BOOL32			bReqFlush;
 	DEF_TEXLIST*	pTlstResident[400];
 	DEF_TEXLIST*	pTlstNonResident[400];
 	DEF_TEXLIST*	pTlstOnMemory[800];
@@ -1138,11 +1094,11 @@ public:
 // Global Functions
 //=============================================================================
 
-/* DG Daemon (dgd.cc) */
+/* dgd.cc */
 void DG_InitClean();
 void DG_StartDaemon();
 
-/* Debug Prim (debugprim.cc) */
+/* debugprim.cc */
 void DG_DebugPrimDaemon( int );
 
 #endif /* END OF FILE */

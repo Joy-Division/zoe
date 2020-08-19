@@ -15,8 +15,7 @@ void CR_SetStageLoad( u_char, int, char **, int );
 // CARL Edge
 //=============================================================================
 
-// ref.default.pdb
-class CR_EDGE : public GV_ACTOR //! check modifier
+class CR_EDGE : public GV_ACTOR
 {
 public: //! check modifier
 	DG_OBJ_QUE		que;
@@ -56,7 +55,6 @@ public:
 // CARL Window
 //=============================================================================
 
-// ref.default.pdb
 class CR_WINDOW
 {
 public: //! check modifier
@@ -85,7 +83,7 @@ public: //! check modifier
 	DG_VERTEX		vertArea[2];
 	DAT128			tagArea[3];
 	DAT128			tagFrame0[3];
-	int				ctr;
+	INT32			ctr;
 
 	enum STATE {
 		OPEN, CLOSE
@@ -106,27 +104,27 @@ protected:
 	void Validate();
 
 public: //! check modifier
-	static const float fWLine	= TEMP_ZERO;
-	static const float fHLine	= TEMP_ZERO;
-	static const float fHTitle	= TEMP_ZERO;
+	static const float fWLine	= DEFINE_ME;
+	static const float fHLine	= DEFINE_ME;
+	static const float fHTitle	= DEFINE_ME;
 
 public:
 	CR_WINDOW();
 	~CR_WINDOW();
 
-	void Init( int32, int32, int32, int32 );
-	void SetOffset( int32, int32 );
-	void SetPosition( int32, int32 );
-	void SetPositionWideScreen( int32, int32, int32, int32 );
-	void SetArea( int32, int32 );
+	void Init( INT32, INT32, INT32, INT32 );
+	void SetOffset( INT32, INT32 );
+	void SetPosition( INT32, INT32 );
+	void SetPositionWideScreen( INT32, INT32, INT32, INT32 );
+	void SetArea( INT32, INT32 );
 	void SetFrameColor( float, float, float, float );
 	void SetBgColor( float, float, float, float );
-	void SetOrder( uint32 );
+	void SetOrder( UINT32 );
 	void Open();
 	void Close();
 	void AnmOpen( float*, float*, float, float );
 	void AnmClose( float*, float*, float, float );
-	void SetCursor( int32, int32 );
+	void SetCursor( INT32, INT32 );
 	void Queue( void* );
 	void Dequeue( void* );
 	void SetScissor( DAT128* );

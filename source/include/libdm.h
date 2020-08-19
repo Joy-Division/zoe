@@ -27,19 +27,18 @@ class DM_PRDEMO_CAMERA;
 // Demo Common Defines
 //=============================================================================
 
-// ref.default.pdb
 enum {
-	DM_PDCFLAG_INTFIX_X      = 0x0001,
-	DM_PDCFLAG_INTFIX_Y      = 0x0002,
-	DM_PDCFLAG_INTFIX_Z      = 0x0004,
-	DM_PDCFLAG_VIEWFIX_X     = 0x0008,
-	DM_PDCFLAG_VIEWFIX_Y     = 0x0010,
-	DM_PDCFLAG_VIEWFIX_Z     = 0x0020,
-	DM_PDCFLAG_INTERP_LINEAR = 0x0040,
-	DM_PDCFLAG_INTERP_SPHERE = 0x0080,
-	DM_PDCMASK_INTERP_TYPE   = 0x00C0,
-	DM_PDCFLAG_OFF           = 0x0100,
-	DM_PDCFLAG_DATA          = 0x0200
+	DM_PDCFLAG_INTFIX_X			= 0x0001,
+	DM_PDCFLAG_INTFIX_Y			= 0x0002,
+	DM_PDCFLAG_INTFIX_Z			= 0x0004,
+	DM_PDCFLAG_VIEWFIX_X		= 0x0008,
+	DM_PDCFLAG_VIEWFIX_Y		= 0x0010,
+	DM_PDCFLAG_VIEWFIX_Z		= 0x0020,
+	DM_PDCFLAG_INTERP_LINEAR	= 0x0040,
+	DM_PDCFLAG_INTERP_SPHERE	= 0x0080,
+	DM_PDCMASK_INTERP_TYPE		= 0x00C0,
+	DM_PDCFLAG_OFF				= 0x0100,
+	DM_PDCFLAG_DATA				= 0x0200
 };
 
 //=============================================================================
@@ -69,7 +68,6 @@ class DM_RECFRAME
 // Demo Buffer
 //=============================================================================
 
-// ref.default.pdb
 class DM_BUFFER
 {
 public: //! check modifier
@@ -79,43 +77,41 @@ public: //! check modifier
 		STATE_FULL
 	};
 
-	uint16	u16Key;
-	uint8	u8State;
-	uint8	pad0;		// alignment
-	uint32	pad1;		// alignment
-	uint32	pad2;		// alignment
-	uint32	pad3;		// alignment
+	UINT16	u16Key;
+	UINT8	u8State;
+	UINT8	pad0;		// alignment
+	UINT32	pad1;		// alignment
+	UINT32	pad2;		// alignment
+	UINT32	pad3;		// alignment
 };
 
 //=============================================================================
 // Demo StreamPack
 //=============================================================================
 
-// ref.default.pdb
 class DM_STRPACK
 {
 public: //! check modifier
-	uint16 u16Id;
-	uint16 u16Frame;
-	uint32 u32Func;
-	uint32 u32szPack;
-	uint64 u64Dat;
+	UINT16 u16Id;
+	UINT16 u16Frame;
+	UINT32 u32Func;
+	UINT32 u32szPack;
+	UINT64 u64Dat;
 };
 
 //=============================================================================
 // Demo Data
 //=============================================================================
 
-// ref.default.pdb
 class DM_DATA
 {
 public: //! check modifier
-	uint16		u16szBuf;
-	uint16		u16szRead;
-	uint8		u8Flag;
-	uint8		u8State;
-	uint8		u8Current;
-	uint8		u8End;
+	UINT16		u16szBuf;
+	UINT16		u16szRead;
+	UINT8		u8Flag;
+	UINT8		u8State;
+	UINT8		u8Current;
+	UINT8		u8End;
 	int32		prevPosX;
 	int32		prevPosY;
 	int32		prevPosZ;
@@ -124,21 +120,20 @@ public: //! check modifier
 
 public:
 	DM_STRPACK*	Que( DM_STRPACK* );
-	DM_BUFFER*	GetpQue( uint8 );
-	DM_BUFFER*	SetValidQue( uint16 );
+	DM_BUFFER*	GetpQue( UINT8 );
+	DM_BUFFER*	SetValidQue( UINT16 );
 };
 
 //=============================================================================
-// Demo Frame
+// Demo Orbital Frame
 //=============================================================================
 
-// ref.default.pdb
-class DM_FRAME : public FRM_OBJECT //! check modifier
+class DM_FRAME : public FRM_OBJECT
 {
 public: //! check modifier
 	ALG_MATRIX	matCamera;
-	uint16		u16Time;
-	void (*pModulateFunc)(void); // TODO: ret/arg types
+	UINT16		u16Time;
+	void (*pModulateFunc)(DM_FRAME*, UINT16, void*);
 	void*		pArg;
 
 private:
@@ -153,17 +148,17 @@ public: //! check modifier
 	int32		id;
 
 public:
-	void Update( uint16 );
+	void Update( UINT16 );
 	void Reset();
-	void SetModulateFunc( void (*)(void), void* ); // TODO: func ptr ret/arg types
+	void SetModulateFunc( void (*pModulateFunc)(DM_FRAME*, UINT16, void*), void* );
 
 	DM_FRAME( const DM_FRAME& );
-	DM_FRAME( uint32, ALG_MATRIX*, uint8, uint8, uint8, uint8, int32, uint32, uint8 );
-	DM_FRAME( char*, uint8, ALG_MATRIX*, ALG_MATRIX* );
+	DM_FRAME( UINT32, ALG_MATRIX*, UINT8, UINT8, UINT8, UINT8, int32, UINT32, UINT8 );
+	DM_FRAME( char*, UINT8, ALG_MATRIX*, ALG_MATRIX* );
 	~DM_FRAME();
 
 public: //! check modifier
-	static sint8 s8NameCounter;
+	static SINT8 s8NameCounter;
 
 public:
 	static FRM_OBJECT& Player();
@@ -175,14 +170,13 @@ public:
 // Demo PR Camera
 //=============================================================================
 
-// ref.default.pdb
 struct DM_PRCAMERA_DATA
 {
 public: //! check modifier
 	ALG_VECTOR	vecView;
 	ALG_VECTOR	vecInterrest;
-	uint16		u16Flag;
-	uint16		u16Time;
+	UINT16		u16Flag;
+	UINT16		u16Time;
 	int32		idRefActor;
 	float		fRoll;
 	float		fAng;
@@ -195,7 +189,6 @@ public:
 
 /*---------------------------------------------------------------------------*/
 
-// ref.default.pdb
 struct DM_PRDEMO_CAMERA_RECDATA
 {
 public: //! check modifier
@@ -210,7 +203,6 @@ public:
 
 /*---------------------------------------------------------------------------*/
 
-// ref.default.pdb
 class DM_PRDEMO_CAMERA
 {
 public: //! check modifier
@@ -218,16 +210,16 @@ public: //! check modifier
 	ALG_VECTOR	vecInterrestRel;
 	ALG_VECTOR	vecViewAbs;
 	ALG_VECTOR	vecInterrestAbs;
-	uint16		u16Flag;
-	uint16		u16Time;
+	UINT16		u16Flag;
+	UINT16		u16Time;
 	float		fRoll;
 	float		fAng;
 	float		fSlantPrev;
 	float		fSlantPost;
 	ALG_MATRIX*	pmatRefCamera;
-	int32		idRefActor;
+	INT32		idRefActor;
 	DM_PRDEMO_CAMERA_RECDATA* pRecData;
-	int			nData;
+	INT32		nData;
 
 public:
 	void Calc( int32 );

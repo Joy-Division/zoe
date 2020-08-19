@@ -20,7 +20,6 @@ class GV_PAD;
 // GV Common Defines
 //=============================================================================
 
-// ref.default.pdb
 enum {
 	GV_KILL_SYSTEM = 0x01,
 	GV_KILL_LOAD   = 0x02,
@@ -31,14 +30,12 @@ enum {
 	GV_KILL_DEMO2  = 0x84
 };
 
-// ref.default.pdb
 enum {
 	GV_KILLSTATE_NOTHING,
 	GV_KILLSTATE_READY,
 	GV_KILLSTATE_REQUEST
 };
 
-// ref.default.pdb
 enum {
 	GV_LEVEL_DAEMON1,
 	GV_LEVEL_MANAGER,
@@ -52,14 +49,12 @@ enum {
 	GV_LEVEL_NUM
 };
 
-// ref.default.pdb
 enum {
 	GV_PAUSE_NOSTOP,
 	GV_PAUSE_STOP,
 	GV_PAUSE_RDERR
 };
 
-// ref.default.pdb
 enum {
 	GV_TYPE_DYNAMIC,
 	GV_TYPE_STATIC
@@ -69,33 +64,31 @@ enum {
 // GV Actor (actor.cc)
 //=============================================================================
 
-// ref.default.pdb
 struct GV_LIST {
-	uint8		u8Pause;
+	UINT8		u8Pause;
 	GV_ACTOR*	pactStart;
 	GV_ACTOR*	pactEnd;
 };
 
 /*---------------------------------------------------------------------------*/
 
-// ref.default.pdb
 class GV_ACTOR
 {
 	/* VTable */
 
 public: //! check modifier
-	uint8		u8Level;
-	uint8		u8Type;
-	uint8		u8Kill;
-	uint8		u8KillState;
+	UINT8		u8Level;
+	UINT8		u8Type;
+	UINT8		u8Kill;
+	UINT8		u8KillState;
 	GV_ACTOR*	pactPrev;
 	GV_ACTOR*	pactNext;
 
-	static uint8	u8Pause;
-	static uint8	u8NextPause;
-	static uint8	u8NextCancelPause;
-	static sint8	s8ReqKill;
-	static uint32	u32Time;
+	static UINT8	u8Pause;
+	static UINT8	u8NextPause;
+	static UINT8	u8NextCancelPause;
+	static SINT8	s8ReqKill;
+	static UINT32	u32Time;
 	static GV_LIST	list[9];
 
 private:
@@ -106,13 +99,13 @@ private:
 	static void KillExec();
 
 public: //! check modifier
-	uint32 s32SoundEmitter;
+	UINT32 s32SoundEmitter;
 
 	static float fEffect_Accum;
 
 public:
 	GV_ACTOR( const GV_ACTOR& );
-	GV_ACTOR( uint8, uint8, uint8 );
+	GV_ACTOR( UINT8, UINT8, UINT8 );
 	~GV_ACTOR();
 
 	virtual void Act(); //! check VTable
@@ -122,20 +115,20 @@ public:
 	void	Destroy();
 	void	ResetDestroy();
 	int32	CheckDestroy();
-	void	SetKillLevel(uint8);
+	void	SetKillLevel(UINT8);
 
 	static void		StartDaemon();
 	static void		Execute();
-	static void		Pause(uint32);
-	static void		CancelPause(uint32);
-	static void		Kill(uint8);
+	static void		Pause(UINT32);
+	static void		CancelPause(UINT32);
+	static void		Kill(UINT8);
 	static void		Kill2();
 //	static void		HVS_KillAll();
 	static void		Update();
-	static uint8	PauseAtt();
-	static uint8	NextPauseAtt();
-	static uint8	NextCancelPauseAtt();
-	static uint32	Time();
+	static UINT8	PauseAtt();
+	static UINT8	NextPauseAtt();
+	static UINT8	NextCancelPauseAtt();
+	static UINT32	Time();
 	static float	GetEffectScale();
 
 	GV_ACTOR& operator = ( const GV_ACTOR& );
@@ -145,8 +138,7 @@ public:
 // GV Daemon (gvd.cc)
 //=============================================================================
 
-// ref.default.pdb
-class GV_DAEMON : public GV_ACTOR //! check modifier
+class GV_DAEMON : public GV_ACTOR
 {
 public:
 	GV_DAEMON( const GV_DAEMON& );
@@ -163,7 +155,6 @@ public:
 // GV Memory (memory.cc)
 //=============================================================================
 
-// ref.default.pdb
 enum {
 	MEM_FREE_INSTANT,
 	MEM_FREE_FRAME_1,
@@ -171,13 +162,11 @@ enum {
 	MEM_FREE_NUM
 };
 
-// ref.default.pdb
 enum {
 	MEM_MODE_NORMAL,
 	MEM_MODE_INVERSE
 };
 
-// ref.default.pdb
 enum {
 	MEM_TYPE_NORMAL,
 	MEM_TYPE_RESIDENT,
@@ -187,63 +176,60 @@ enum {
 
 /*---------------------------------------------------------------------------*/
 
-// ref.default.pdb
 class GV_MEMORY
 {
 public: //! check modifier
-	uint8		u8Type;
-	uint8		u8State;
-	uint8		u8Mode;
-	uint32		u32Size;
+	UINT8		u8Type;
+	UINT8		u8State;
+	UINT8		u8Mode;
+	UINT32		u32Size;
 	GV_MEMORY*	pmemPrev;
 	GV_MEMORY*	pmemNext;
 	GV_MEMORY*	pmemFreePrev;
 	GV_MEMORY*	pmemFreeNext;
 
-	static uint8		u8FreeType;
-	static uint32		u32MaxFreeSize;
+	static UINT8		u8FreeType;
+	static UINT32		u32MaxFreeSize;
 	static GV_MEMORY*	pmemList;
 	static GV_MEMORY*	pmemFreeList;
 	static GV_MEMORY*	pmemVoidList[3];
 	static GV_MEMORY*	pmemListResident;
 	static GV_MEMORY*	pmemListNonResident;
-	static uint8		u8ModeNonResident;
+	static UINT8		u8ModeNonResident;
 
 public:
 	static void		InitSystem();
 	static void		DestroySystem();
-	static void*	Alloc( uint32, uint8 );	// "_Alloc" in default.pdb
-	static void*	Alloc( uint32 );		// "_Alloc" in default.pdb
+	static void*	Alloc( UINT32, UINT8 );	// "_Alloc" in default.pdb
+	static void*	Alloc( UINT32 );		// "_Alloc" in default.pdb
 	static void		Free( void* );
-	static void		Update( uint8 );
-//	static void		SetFreeType( uint8 );
-//	static uint8	nGetFreeType();
+	static void		Update( UINT8 );
+//	static void		SetFreeType( UINT8 );
+//	static UINT8	nGetFreeType();
 	static void		SwitchNonResidentMode();
 	static void		FreePrevMemory();
 	static void		FreeCurrentMemory();
 	static void		CheckMaxFreeSize();
 	static int32	CheckMemoryLack();
 	static int32	CheckSync();
-	static uint8	GetType( void* );
-	static uint32	GetSize( void* );
+	static UINT8	GetType( void* );
+	static UINT32	GetSize( void* );
 
 // *** HVS addition ***
-//	static uint32	nGetHVSAllocType( uint8 );
-//	static uint32	nGetHVSNonResidentModeCurrent();
-//	static uint32	nGetHVSNonResidentModePrevious();
+//	static UINT32	nGetHVSAllocType( UINT8 );
+//	static UINT32	nGetHVSNonResidentModeCurrent();
+//	static UINT32	nGetHVSNonResidentModePrevious();
 };
 
 //=============================================================================
 // GV Message (message.cc)
 //=============================================================================
 
-// ref.default.pdb
 struct GV_MSG_DATA {
-	uint8	u8Type;
-	uint32	u32Data;
+	UINT8	u8Type;
+	UINT32	u32Data;
 };
 
-// ref.default.pdb
 enum {
 	MSG_TYPE_NUMBER,
 	MSG_TYPE_FLOAT,
@@ -253,13 +239,12 @@ enum {
 
 /*---------------------------------------------------------------------------*/
 
-// ref.default.pdb
 class GV_MESSAGE
 {
 public: //! check modifier
-	uint32		u32ID;
-	uint8		u8ArgNum;
-	bool32		bReceive;
+	UINT32		u32ID;
+	UINT8		u8ArgNum;
+	BOOL32		bReceive;
 	GV_MESSAGE*	pmsgPrev;
 	GV_MESSAGE*	pmsgNext;
 	GV_MSG_DATA	msd[16];
@@ -268,29 +253,28 @@ public: //! check modifier
 	static GV_MESSAGE* pmsgCursor;
 
 public:
-	GV_MESSAGE( uint32 );
+	GV_MESSAGE( UINT32 );
 	~GV_MESSAGE();
 
 	void	SetNumber( int32 );
 	void	SetFloat( float );
 	void	SetAddr( void* );
 	void	SetString( char* );
-	int32	GetNumber( uint8 );
-	float	GetFloat( uint8 );
-	void*	GetAddr( uint8 );
-	char*	GetString( uint8 );
+	int32	GetNumber( UINT8 );
+	float	GetFloat( UINT8 );
+	void*	GetAddr( UINT8 );
+	char*	GetString( UINT8 );
 
 	static void			Update();
-	static GV_MESSAGE*	Send( uint32 );
+	static GV_MESSAGE*	Send( UINT32 );
 	static void			Reset();
-	static GV_MESSAGE*	Receive( uint32 );
+	static GV_MESSAGE*	Receive( UINT32 );
 };
 
 //=============================================================================
 // GV Pad (pad.cc)
 //=============================================================================
 
-// ref.default.pdb
 enum {
 	PAD_UDLR	= 0x000000F0,
 	PAD_ABXY	= 0xFFFFF000,	// Xbox
@@ -313,7 +297,6 @@ enum {
 	PAD_AR		= 0x00000004	// PlayStation R3
 };
 
-// ref.default.pdb
 enum {
 	PAD_R_P,
 	PAD_L_P,
@@ -330,7 +313,6 @@ enum {
 	NUM_PRESS
 };
 
-// ref.default.pdb
 enum {
 	PAD_VIB_HIGH,
 	PAD_VIB_LOW
@@ -338,68 +320,66 @@ enum {
 
 /*---------------------------------------------------------------------------*/
 
-// ref.default.pdb
 struct GV_PAD_ONE
 {
 // This class has been modified by HVS to reference the Xbox 360 pad.
 // Examine this class during decompilation and change member names to
 // reference the DualShock 2.
 
-	uint8	u8State;
-	uint8	u8IDLen;
-	uint16	u16Button;
-	uint8	u8RightX;
-	uint8	u8RightY;
-	uint8	u8LeftX;
-	uint8	u8LeftY;
-	uint8	u8PressR;
-	uint8	u8PressL;
-	uint8	u8PressU;
-	uint8	u8PressD;
-	uint8	u8PressX;	// Xbox-specific
-	uint8	u8PressA;	// Xbox-specific
-	uint8	u8PressB;	// Xbox-specific
-	uint8	u8PressY;	// Xbox-specific
-	uint8	u8PressL1;
-	uint8	u8PressR1;
-	uint8	u8PressL2;
-	uint8	u8PressR2;
-	uint32	pad0;
-	uint64	pad1;
+	UINT8	u8State;
+	UINT8	u8IDLen;
+	UINT16	u16Button;
+	UINT8	u8RightX;
+	UINT8	u8RightY;
+	UINT8	u8LeftX;
+	UINT8	u8LeftY;
+	UINT8	u8PressR;
+	UINT8	u8PressL;
+	UINT8	u8PressU;
+	UINT8	u8PressD;
+	UINT8	u8PressX;	// Xbox-specific
+	UINT8	u8PressA;	// Xbox-specific
+	UINT8	u8PressB;	// Xbox-specific
+	UINT8	u8PressY;	// Xbox-specific
+	UINT8	u8PressL1;
+	UINT8	u8PressR1;
+	UINT8	u8PressL2;
+	UINT8	u8PressR2;
+	UINT32	pad0;
+	UINT64	pad1;
 };
 
 /*---------------------------------------------------------------------------*/
 
-// ref.default.pdb
 class GV_PAD
 {
 // Examine this class during decompilation.
 // It appares that HVS has modified it somewhat.
 
 public: //! check modifier
-	uint128	u128buf[4];
-	sint8	s8X1;
-	sint8	s8Y1;
-	sint8	s8X2;
-	sint8	s8Y2;
-	uint8	u8Press[12];
-	uint8	u8PressCount[12];
-	uint16	u16State;
-	uint16	u16Last;
-	uint16	u16On;
-	uint16	u16Press;
-	uint16	u16Release;
-	uint16	u16State2;
-	uint16	u16Last2;
-	uint16	u16On2;
-	uint16	u16Press2;
-	uint16	u16Release2;
-	uint8	u8Phase;
-	uint8	u8Kind;
-	uint8	u8ActDirect[6];
-	bool8	bActChange;
+	UINT128	u128buf[4];
+	SINT8	s8X1;
+	SINT8	s8Y1;
+	SINT8	s8X2;
+	SINT8	s8Y2;
+	UINT8	u8Press[12];
+	UINT8	u8PressCount[12];
+	UINT16	u16State;
+	UINT16	u16Last;
+	UINT16	u16On;
+	UINT16	u16Press;
+	UINT16	u16Release;
+	UINT16	u16State2;
+	UINT16	u16Last2;
+	UINT16	u16On2;
+	UINT16	u16Press2;
+	UINT16	u16Release2;
+	UINT8	u8Phase;
+	UINT8	u8Kind;
+	UINT8	u8ActDirect[6];
+	BOOL8	bActChange;
 
-	static uint32 nCurrentSecondaryPort;
+	static UINT32 nCurrentSecondaryPort;
 
 	enum {
 		PH_INIT,
@@ -421,40 +401,40 @@ public:
 
 	static void Update();
 
-	sint8	X1();
-	sint8	Y1();
-	sint8	X2();
-	sint8	Y2();
-	uint16	On();
-	int32	On( uint16 );
-	uint16	Press();
-	int32	Press( uint16 );
-	uint16	Release();
-	int32	Release( uint16 );
-	uint16	On2();
-	int32	On2( uint16 );
-	uint16	Press2();
-	int32	Press2( uint16 );
-	uint16	Release2();
-	int32	Release2( uint16 );
-	uint8	_Force( uint16 );		// "_" added by HVS?
-	void	SetAct( int32, uint8 );
+	SINT8	X1();
+	SINT8	Y1();
+	SINT8	X2();
+	SINT8	Y2();
+	UINT16	On();
+	int32	On( UINT16 );
+	UINT16	Press();
+	int32	Press( UINT16 );
+	UINT16	Release();
+	int32	Release( UINT16 );
+	UINT16	On2();
+	int32	On2( UINT16 );
+	UINT16	Press2();
+	int32	Press2( UINT16 );
+	UINT16	Release2();
+	int32	Release2( UINT16 );
+	UINT8	_Force( UINT16 );		// "_" added by HVS?
+	void	SetAct( int32, UINT8 );
 
 	static void	ResetCurrentSecondaryPort();
 	static int	nGetCurrentSecondaryPort(); // HVS?
 
 public: //! check modifier
 
-// *** HVS addition (?) ***
-	bool	mbPressureSensitive;
-	bool	mbSensorSupported;
-	bool	mbSupportsVibration;
-	int		mbActive;
-	bool	mbYAxisInvert;
-	bool	mbVibration;
+// *** HVS addition ***
+//	bool	mbPressureSensitive;
+//	bool	mbSensorSupported;
+//	bool	mbSupportsVibration;
+//	int		mbActive;
+//	bool	mbYAxisInvert;
+//	bool	mbVibration;
 
 // *** HVS addition ***
-//	uint32			m_nLastFrame;
+//	UINT32			m_nLastFrame;
 //	bool			m_bReassigned;
 //	bool			m_bSemiReassigned;
 //	bool			m_bConnected;

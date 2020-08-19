@@ -8,16 +8,15 @@
 
 /*---------------------------------------------------------------------------*/
 
-// ref.default.pdb
 class BRK_DAT
 {
 public: //! check modifier
 	ALG_VECTOR*	pPos;	//
 	ALG_VECTOR	SP;		//
-	uint8		F;		//
+	UINT8		F;		//
 
 public:
-	sint32	Check_Low( float );
+	BOOL32	Check_Low( float );
 	void	SP_Add( float, ALG_VECTOR* );
 	void	SP_Add( float );
 	void	Axis_Fall( ALG_MATRIX* );
@@ -30,7 +29,6 @@ public:
 
 /*---------------------------------------------------------------------------*/
 
-// ref.default.pdb
 class BRK_FRM
 {
 public: //! check modifier
@@ -39,10 +37,10 @@ public: //! check modifier
 	ALG_VECTOR	vecP;	//
 	ALG_VECTOR	SP;		//
 	float		G;		//
-	uint16		FON;	//
-	uint8		N;		//
-	uint8		u8EF;	//
-	bool32		bL;		//
+	UINT16		FON;	//
+	UINT8		N;		//
+	UINT8		u8EF;	//
+	BOOL32		bL;		//
 
 public:
 	ALG_MATRIX SP_ADD();

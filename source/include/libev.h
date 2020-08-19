@@ -21,39 +21,35 @@ class EV_DAEMON;
 // Basic Event
 //=============================================================================
 
-// ref.default.pdb
 class EV_EVENT
 {
 public: //! check modifier
-	uint32	u32AddrProc;
-	void (*pFunc)(void); // TODO: ret/arg types
-	uint8	u8Prio;
-	uint8	u8Flag;
-	uint16	u16Resource;
-	uint16	u16Timer;
-	uint16	u16ID;
-	uint8	u8User[4];
+	UINT32	u32AddrProc;
+	void (*pFunc)(EV_EVENT*);
+	UINT8	u8Prio;
+	UINT8	u8Flag;
+	UINT16	u16Resource;
+	UINT16	u16Timer;
+	UINT16	u16ID;
+	UINT8	u8User[4];
 	DAT128	datUser;
 
 public:
 	void GetScnEvent( int32 );
-	void Set( void (*)(void), uint8, uint16, uint8, uint16, uint16 ); // TODO: func ptr ret/arg types
-	void UnlockResource( uint16 );
+	void Set( void (*)(EV_EVENT*), UINT8, UINT16, UINT8, UINT16, UINT16 );
+	void UnlockResource( UINT16 );
 };
 
 //=============================================================================
 // Event Job
 //=============================================================================
 
-// ref.default.pdb
 class EV_JOB
 {
-	/* VTable */
-
 public:
-	virtual void SuspendJob( EV_EVENT* );
-	virtual void WakeupJob( EV_EVENT* );
-	virtual void StopJob( EV_EVENT* ); //! check VTable
+	virtual void SuspendJob( EV_EVENT* pEv );
+	virtual void WakeupJob( EV_EVENT* pEv );
+	virtual void StopJob( EV_EVENT* pEv );
 
 	EV_JOB( const EV_JOB& );
 	EV_JOB();
@@ -65,14 +61,13 @@ public:
 // Event Linked List
 //=============================================================================
 
-// ref.default.pdb
-class EV_EVENTLIST : public EV_EVENT //! check modifier
+class EV_EVENTLIST : public EV_EVENT
 {
 public: //! check modifier
 	EV_EVENTLIST*	pPrev;
 	EV_EVENTLIST*	pNext;
-	uint16			u16State;
-	bool16			bReset;		// bool16 for alignment
+	UINT16			u16State;
+	BOOL16			bReset;		// BOOL16 for alignment
 	SCN_THREAD*		pThread;
 	EV_JOB*			pJob;
 
@@ -88,12 +83,11 @@ public:
 // Event Daemon
 //=============================================================================
 
-// ref.default.pdb
-class EV_DAEMON : public GV_ACTOR //! check modifier
+class EV_DAEMON : public GV_ACTOR
 {
 public: //! check modifier
 
-	static const int32 QUE_LENGTH = TEMP_ZERO;
+	static const int32 QUE_LENGTH = DEFINE_ME;
 
 	EV_EVENTLIST que[32];
 
@@ -102,14 +96,14 @@ private:
 
 public: //! check modifier
 	EV_JOB	jbDefault;
-	bool32	bReset;
+	BOOL32	bReset;
 
 private:
 	void ExecReset();
 
 public: //! check modifier
-	uint16			u16UseRes;
-	uint16			u16SusRes;
+	UINT16			u16UseRes;
+	UINT16			u16SusRes;
 	EV_EVENTLIST*	pEvCurrent;
 
 public:
@@ -130,7 +124,7 @@ public:
 // Global Functions
 //=============================================================================
 
-/* EV Daemon (evd.cc) */
+/* evd.cc */
 void EV_StartDaemon();
 
 #endif /* END OF FILE */

@@ -5,7 +5,7 @@
 // Global Functions
 //=============================================================================
 
-/* MC Daemon (mcd2.cc) */
+/* mcd2.cc */
 void MC_StartDaemon( void );
 
 #endif /* END OF FILE */

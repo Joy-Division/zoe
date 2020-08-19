@@ -16,7 +16,6 @@ class STRM_DATACONSUMER;
 // Stream Common Defines
 //=============================================================================
 
-// ref.default.pdb
 enum {
 /* 0x0 */ STRM_DATANUM_JIMAKU,			// 字幕 // Subtitles
 /* 0x1 */ STRM_DATANUM_PCM,				// VAG ADPCM
@@ -39,13 +38,12 @@ enum {
 // Stream Ring Buffer
 //=============================================================================
 
-// ref.default.pdb
 class STRM_RING_AREA
 {
 public: //! check modifier
 	int32	indxTop;
 	int32	size;
-	uint8*	pBufTop;
+	UINT8*	pBufTop;
 	int32	sizeBuf;
 
 public:
@@ -56,7 +54,6 @@ public:
 
 /*---------------------------------------------------------------------------*/
 
-// ref.default.pdb
 class STRM_RING_BUFFER
 {
 public: //! check modifier
@@ -79,22 +76,18 @@ public:
 	void	PutFree( int32 );
 	void*	GetTop();
 	int32	GetBufferSize();
-	void	SetArea( STRM_RING_AREA*, uint8*, int32 );
+	void	SetArea( STRM_RING_AREA*, UINT8*, int32 );
 };
 
 //=============================================================================
 // Stream Data Consumer
 //=============================================================================
 
-// ref.default.pdb
-class STRM_DATACONSUMER : public STRM_RING_BUFFER //! check modifier
+class STRM_DATACONSUMER : public STRM_RING_BUFFER
 {
-	/* VTable */
-
 public: //! check modifier
 
-/* typedef (function *) */
-/* TODO: create replacement, ret/arg types */
+	typedef STRM_DATACONSUMER* (*NEWFUNC)(sceMpeg*);
 
 	enum PHASE {
 		INIT1,		//
@@ -110,13 +103,13 @@ public: //! check modifier
 		END			//
 	};
 
-	static const int32 TIMEOUT_INIT = TEMP_ZERO;
+	static const int32 TIMEOUT_INIT = DEFINE_ME;
 
 	void*				pBuf;
 	STRM_RING_BUFFER*	pRingRead;
 	int32				sizeExtend;
 	PHASE				ph;
-	bool32				bPackMem;
+	BOOL32				bPackMem;
 	int32				ctrInitTimeout;
 
 public:
@@ -132,12 +125,12 @@ public:
 	int32	CbData( sceMpeg*, sceMpegCbDataStr* );
 
 public: //! check modifier
-	static void (*pNewfunc[13])(void); // TODO: ret/arg types
+	static void (*pNewfunc[13])(sceMpeg*);
 	static char*	pnmFile;
-	static bool32	bStrEnd;
+	static BOOL32	bStrEnd;
 
 public:
-	static void SetFunc( int32, void(*)(void) ); // TODO: func ptr ret/arg types
+	static void SetFunc( int32, void(*)(sceMpeg*) );
 
 	STRM_DATACONSUMER& operator = ( const STRM_DATACONSUMER& );
 };
@@ -146,7 +139,7 @@ public:
 // Global Functions
 //=============================================================================
 
-/* CDVD Stream System (streamcd.cc) */
+/* streamcd.cc */
 void STRM_LoadPcmDir();
 
 #endif /* END OF FILE */

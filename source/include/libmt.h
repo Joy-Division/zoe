@@ -25,22 +25,21 @@ class MT_MOTPTR;
 // Motion Node
 //=============================================================================
 
-// ref.default.pdb
 class MT_NODE
 {
 public: //! check modifier
 	ALG_QUATER			quat;
 	ALG_VECTOR			pos;
 	ALG_VECTOR			scl;
-	uint16				u16nStream;
-	uint16				u16nData;
+	UINT16				u16nStream;
+	UINT16				u16nData;
 	DEF_MOTION_NODE*	pmnode;
-	uint16				u16PrevFlag;
-	uint16				pad1;
-	uint32				pad2;
+	UINT16				u16PrevFlag;
+	UINT16				pad1;
+	UINT32				pad2;
 
 public:
-	void Init( uint8 );
+	void Init( UINT8 );
 	void Update( DG_MDL*, MT_STREAM* );
 
 	MT_NODE();
@@ -52,17 +51,16 @@ public:
 // Motion Sequence
 //=============================================================================
 
-// ref.default.pdb
 class MT_SEQUENCE
 {
 public: //! check modifier
 	int32		nMot;
 	DEF_MOTION*	pMot;
-	uint16		u16StreamFlag;
-	uint16		u16Counter;
-	uint16		u16Type;
-	uint8		u8Level;
-	uint8		u8Next;
+	UINT16		u16StreamFlag;
+	UINT16		u16Counter;
+	UINT16		u16Type;
+	UINT8		u8Level;
+	UINT8		u8Next;
 	float		fspdPlay;
 	float		fspdInt;
 
@@ -74,22 +72,21 @@ public:
 // Motion Stream
 //=============================================================================
 
-// ref.default.pdb
 class MT_STREAM
 {
 public: //! check modifier
 	float			fFrame;
 	float			fdFrame;
-	uint16			u16State;
+	UINT16			u16State;
 	float			fRate;
 	float			fdRate;
-	sint16			s16Counter;
+	SINT16			s16Counter;
 	MT_SEQUENCE*	pSeq;
-	uint32			pad1,pad2;
+	UINT32			pad1,pad2;
 
 public:
 	void	Init();
-	uint32	Update();
+	UINT32	Update();
 	void	Stop();
 };
 
@@ -97,14 +94,13 @@ public:
 // Motion Table
 //=============================================================================
 
-// ref.default.pdb
 class MT_TABLE
 {
 public: //! check modifier
 	char*				nmFile;
 	DEF_MOTION_LIST*	pmlst;
 	int32				nbNs;
-	uint8*				pNs;
+	UINT8*				pNs;
 	int32				nbSeq;
 	MT_SEQUENCE*		pSeq;
 	int32				pad0,pad1,pad2;
@@ -117,13 +113,12 @@ public:
 // Motion Class
 //=============================================================================
 
-// ref.default.pdb
 class MT_MOTION
 {
 public: //! check modifier
 	DG_OBJ*		pobj;
 	MT_TABLE*	ptabMot;
-	uint32		u32Flag;
+	UINT32		u32Flag;
 	MT_STREAM	stream[2];
 	MT_NODE		node[];
 
@@ -146,7 +141,6 @@ public:
 // Motion Pointer
 //=============================================================================
 
-// ref.default.pdb
 class MT_MOTPTR
 {
 public: //! check modifier
@@ -166,7 +160,7 @@ public:
 // Global Functions
 //=============================================================================
 
-/* Motion Manager (motman.c) */
+/* motman.c */
 void MT_Init();
 
 #endif /* END OF FILE */
