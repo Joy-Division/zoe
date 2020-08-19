@@ -329,9 +329,9 @@ int LoadWaveFile( void )
 	if( wave_fp < 0 ){
 		wave_fp = 0;
 
-	#ifdef BORMAN_DEMO
 		PRINTF(( "LoadWaveFile:File Open Error(%x)\n", wave_load_code ));
-	#else
+
+	#ifndef BORMAN_DEMO
 		// Wait for 4 V-blanks
 		WaitVblankStart(); WaitVblankEnd(); // 1st interval
 		WaitVblankStart(); WaitVblankEnd(); // 2nd interval
