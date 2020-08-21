@@ -188,7 +188,7 @@ extern int sd_sng_code_buf[16];
 extern u_int drum_tbl[0x100];
 extern u_int fg_syukan_off[44];
 extern struct SOUND_W sound_w[44];
-extern struct FADER vox_fader[2];
+extern struct VOX_FADER vox_fader[2];
 extern struct SPU_TRACK_REG spu_tr_wk[44];
 extern int sng_fade_value[32];
 extern u_int sng_fade_time[32];

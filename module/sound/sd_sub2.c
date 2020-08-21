@@ -572,9 +572,9 @@ void vol_i_move( void )
 void at1_set( void )
 {
 	if( sptr->unkE4 != auto_env_pos && sptr->unkE4 != auto_phase_fg ){
-		mix_fader[mtrack].unk08 = (mdata2 << 8) + mdata2;
-		mix_fader[mtrack].unk04 = mix_fader[mtrack].unk08;
-		mix_fader[mtrack].unk00 = 0;
+		mix_fader[mtrack].vol_target = (mdata2 << 8) + mdata2;
+		mix_fader[mtrack].vol_current = mix_fader[mtrack].vol_target;
+		mix_fader[mtrack].vol_step = 0;
 	}
 
 	sptr->unkE9 = mdata2;

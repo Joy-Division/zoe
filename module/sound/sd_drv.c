@@ -206,14 +206,14 @@ void IntSdMain( void )
 			SngFadeWkSet();
 			if( fader_off_fg ){
 				for( i = 0 ; i < 32 ; i++ ){
-					mix_fader[i].unk04 = mix_fader[i].unk08 = 0;
-					mix_fader[i].unk00 = 0;
+					mix_fader[i].vol_current = mix_fader[i].vol_target = 0;
+					mix_fader[i].vol_step = 0;
 				}
 				fader_off_fg = 0;
 			} else {
 				for( i = 0 ; i < 32 ; i++ ){
-					mix_fader[i].unk04 = mix_fader[i].unk08 = 0xFFFF;
-					mix_fader[i].unk00 = 0;
+					mix_fader[i].vol_current = mix_fader[i].vol_target = 0xFFFF;
+					mix_fader[i].vol_step = 0;
 				}
 			}
 			sng_status = 3;
@@ -429,22 +429,22 @@ int SngKaihiP( void )
 
 	if( !sng_kaihi_fg ){
 		for( i = 0 ; i < 16 ; i++ ){
-			mix_fader[i].unk08 = 0;
-			mix_fader[i].unk00 = (mix_fader[i].unk08 - mix_fader[i].unk04) / 1200;
+			mix_fader[i].vol_target = 0;
+			mix_fader[i].vol_step = (mix_fader[i].vol_target - mix_fader[i].vol_current) / 1200;
 		}
 		for( i = 16 ; i < 32 ; i++ ){
-			mix_fader[i].unk08 = 0xFFFF;
-			mix_fader[i].unk00 = (mix_fader[i].unk08 - mix_fader[i].unk04) / 1000;
+			mix_fader[i].vol_target = 0xFFFF;
+			mix_fader[i].vol_step = (mix_fader[i].vol_target - mix_fader[i].vol_current) / 1000;
 		}
 		sng_kaihi_fg = 1;
 	} else {
 		for( i = 0 ; i < 16 ; i++ ){
-			mix_fader[i].unk08 = 0xFFFF;
-			mix_fader[i].unk00 = (mix_fader[i].unk08 - mix_fader[i].unk04) / 100;
+			mix_fader[i].vol_target = 0xFFFF;
+			mix_fader[i].vol_step = (mix_fader[i].vol_target - mix_fader[i].vol_current) / 100;
 		}
 		for( i = 16 ; i < 32 ; i++ ){
-			mix_fader[i].unk08 = 0;
-			mix_fader[i].unk00 = (mix_fader[i].unk08 - mix_fader[i].unk04) / 400;
+			mix_fader[i].vol_target = 0;
+			mix_fader[i].vol_step = (mix_fader[i].vol_target - mix_fader[i].vol_current) / 400;
 		}
 		sng_kaihi_fg = 0;
 	}
@@ -458,14 +458,14 @@ void SngKaihiReset( void )
 	int i;
 
 	for( i = 0 ; i < 16 ; i++ ){
-		mix_fader[i].unk04 = 0xFFFF;
-		mix_fader[i].unk08 = 0xFFFF;
-		mix_fader[i].unk00 = 0;
+		mix_fader[i].vol_current = 0xFFFF;
+		mix_fader[i].vol_target = 0xFFFF;
+		mix_fader[i].vol_step = 0;
 	}
 	for( i = 16 ; i < 32 ; i++ ){
-		mix_fader[i].unk04 = 0;
-		mix_fader[i].unk08 = 0;
-		mix_fader[i].unk00 = 0;
+		mix_fader[i].vol_current = 0;
+		mix_fader[i].vol_target = 0;
+		mix_fader[i].vol_step = 0;
 	}
 	sng_kaihi_fg = 0;
 }
@@ -477,14 +477,14 @@ void SngKaihiReset2( void )
 	int i;
 
 	for( i = 0 ; i < 16 ; i++ ){
-		mix_fader[i].unk04 = 0;
-		mix_fader[i].unk08 = 0;
-		mix_fader[i].unk00 = 0;
+		mix_fader[i].vol_current = 0;
+		mix_fader[i].vol_target = 0;
+		mix_fader[i].vol_step = 0;
 	}
 	for( i = 16 ; i < 32 ; i++ ){
-		mix_fader[i].unk04 = 0xFFFF;
-		mix_fader[i].unk08 = 0xFFFF;
-		mix_fader[i].unk00 = 0;
+		mix_fader[i].vol_current = 0xFFFF;
+		mix_fader[i].vol_target = 0xFFFF;
+		mix_fader[i].vol_step = 0;
 	}
 	sng_kaihi_fg = 0;
 }
@@ -618,21 +618,21 @@ void SngFadeInt( void )
 			} else {
 				temp -= temp2;
 			}
-			if( mix_fader[i].unk04 != mix_fader[i].unk08 ){
-				mix_fader[i].unk04 += mix_fader[i].unk00;
-				if( mix_fader[i].unk00 >= 0 ){
-					if( (u_int)mix_fader[i].unk04 > mix_fader[i].unk08 ){
-						mix_fader[i].unk04 = mix_fader[i].unk08;
-						mix_fader[i].unk00 = 0;
+			if( mix_fader[i].vol_current != mix_fader[i].vol_target ){
+				mix_fader[i].vol_current += mix_fader[i].vol_step;
+				if( mix_fader[i].vol_step >= 0 ){
+					if( (u_int)mix_fader[i].vol_current > mix_fader[i].vol_target ){
+						mix_fader[i].vol_current = mix_fader[i].vol_target;
+						mix_fader[i].vol_step = 0;
 					}
 				} else {
-					if( mix_fader[i].unk04 < mix_fader[i].unk08 ){
-						mix_fader[i].unk04 = mix_fader[i].unk08;
-						mix_fader[i].unk00 = 0;
+					if( mix_fader[i].vol_current < mix_fader[i].vol_target ){
+						mix_fader[i].vol_current = mix_fader[i].vol_target;
+						mix_fader[i].vol_step = 0;
 					}
 				}
 			}
-			temp = (temp * mix_fader[i].unk04) / 65535;
+			temp = (temp * mix_fader[i].vol_current) / 65535;
 			sng_master_vol[i] = temp;
 		}
 	}

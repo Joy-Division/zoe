@@ -166,24 +166,24 @@ void sd_init( void )
 	}
 
 	for( i = 0 ; i < 16 ; i++ ){
-		mix_fader[i].unk04 = 0xFFFF;
-		mix_fader[i].unk08 = 0xFFFF;
-		mix_fader[i].unk00 = 0;
-		mix_fader[i].unk0C = 0x20;
+		mix_fader[i].vol_current = 0xFFFF;
+		mix_fader[i].vol_target = 0xFFFF;
+		mix_fader[i].vol_step = 0;
+		mix_fader[i].pan_value = 0x20;
 	}
 
 	for( i = 16 ; i < 32 ; i++ ){
-		mix_fader[i].unk04 = 0;
-		mix_fader[i].unk08 = 0;
-		mix_fader[i].unk00 = 0;
-		mix_fader[i].unk0C = 0x20;
+		mix_fader[i].vol_current = 0;
+		mix_fader[i].vol_target = 0;
+		mix_fader[i].vol_step = 0;
+		mix_fader[i].pan_value = 0x20;
 	}
 
 #ifndef BORMAN_DEMO
-	vox_fader[1].unk00 = 0x3F;
-	vox_fader[0].unk00 = 0x3F;
-	vox_fader[1].unk08 = 0x20;
-	vox_fader[0].unk08 = 0x20;
+	vox_fader[1].vol_target = 0x3F;
+	vox_fader[0].vol_target = 0x3F;
+	vox_fader[1].pan_target = 0x20;
+	vox_fader[0].pan_target = 0x20;
 #endif
 }
 

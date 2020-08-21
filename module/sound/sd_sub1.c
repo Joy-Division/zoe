@@ -676,18 +676,18 @@ void fader_automation1( void )
 		}
 
 		if( auto_phase_fg ){
-			mix_fader[mtrack].unk08 = temp;
-			if( mix_fader[mtrack].unk08 == mix_fader[mtrack].unk04 ){
-				mix_fader[mtrack].unk00 = 0;
+			mix_fader[mtrack].vol_target = temp;
+			if( mix_fader[mtrack].vol_target == mix_fader[mtrack].vol_current ){
+				mix_fader[mtrack].vol_step = 0;
 			} else {
 				if( temp2 ){
-					mix_fader[mtrack].unk00 = (mix_fader[mtrack].unk08 - mix_fader[mtrack].unk04) / (temp2 * 10);
-					if( mix_fader[mtrack].unk00 == 0 ){
-						mix_fader[mtrack].unk00 = 1;
+					mix_fader[mtrack].vol_step = (mix_fader[mtrack].vol_target - mix_fader[mtrack].vol_current) / (temp2 * 10);
+					if( mix_fader[mtrack].vol_step == 0 ){
+						mix_fader[mtrack].vol_step = 1;
 					}
 				} else {
-					mix_fader[mtrack].unk04 = mix_fader[mtrack].unk08;
-					mix_fader[mtrack].unk00 = 0;
+					mix_fader[mtrack].vol_current = mix_fader[mtrack].vol_target;
+					mix_fader[mtrack].vol_step = 0;
 				}
 			}
 		}
@@ -744,19 +744,19 @@ void fader_automation2( void )
 		}
 
 		temp2 = 1;
-		mix_fader[mtrack].unk08 = temp;
+		mix_fader[mtrack].vol_target = temp;
 
-		if( mix_fader[mtrack].unk08 == mix_fader[mtrack].unk04 ){
-			mix_fader[mtrack].unk00 = 0;
+		if( mix_fader[mtrack].vol_target == mix_fader[mtrack].vol_current ){
+			mix_fader[mtrack].vol_step = 0;
 		} else {
 			if( temp2 ){
-				mix_fader[mtrack].unk00 = (mix_fader[mtrack].unk08 - mix_fader[mtrack].unk04) / (temp2 * 10);
-				if( !mix_fader[mtrack].unk00 ){
-					mix_fader[mtrack].unk00 = 1;
+				mix_fader[mtrack].vol_step = (mix_fader[mtrack].vol_target - mix_fader[mtrack].vol_current) / (temp2 * 10);
+				if( !mix_fader[mtrack].vol_step ){
+					mix_fader[mtrack].vol_step = 1;
 				}
 			} else {
-				mix_fader[mtrack].unk04 = mix_fader[mtrack].unk08;
-				mix_fader[mtrack].unk00 = 0;
+				mix_fader[mtrack].vol_current = mix_fader[mtrack].vol_target;
+				mix_fader[mtrack].vol_step = 0;
 			}
 		}
 	}

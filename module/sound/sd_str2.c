@@ -332,8 +332,8 @@ int Str2SpuTrans( int core )
 			break;
 		}
 		if( sound_mono_fg ){
-			voll = volr = (((((unsigned)(str2_volume[core] * vox_fader[core].unk00) / 0x3F)
-							* se_pant[64 - vox_fader[core].unk08]) / 0x7F) * str2_master_vol)
+			voll = volr = (((((unsigned)(str2_volume[core] * vox_fader[core].vol_target) / 0x3F)
+							* se_pant[64 - vox_fader[core].pan_target]) / 0x7F) * str2_master_vol)
 							/ 0x3FFF;
 			sceSdSetParam( SD_CORE_1|(((core*2)+20)<<1)|SD_VP_VOLL, voll );
 			sceSdSetParam( SD_CORE_1|(((core*2)+20)<<1)|SD_VP_VOLR, volr );
@@ -344,15 +344,15 @@ int Str2SpuTrans( int core )
 			sceSdSetParam( SD_CORE_1|(((core*2)+21)<<1)|SD_VP_VOLL, (unsigned)voll / 3 );
 			sceSdSetParam( SD_CORE_1|(((core*2)+21)<<1)|SD_VP_VOLR, (unsigned)volr / 3 );
 		#endif
-			vox_fader[core].unk04 = vox_fader[core].unk00;
-			vox_fader[core].unk0C = vox_fader[core].unk08;
+			vox_fader[core].vol_current = vox_fader[core].vol_target;
+			vox_fader[core].pan_current = vox_fader[core].pan_target;
 		} else {
 			if( str2_mono_fg[core] ){
-				voll = (((((unsigned)(str2_volume[core] * vox_fader[core].unk00) / 0x3F)
-							* se_pant[64 - vox_fader[core].unk08]) / 0x7F) * str2_master_vol)
+				voll = (((((unsigned)(str2_volume[core] * vox_fader[core].vol_target) / 0x3F)
+							* se_pant[64 - vox_fader[core].pan_target]) / 0x7F) * str2_master_vol)
 							/ 0x3FFF;
-				volr = (((((unsigned)(str2_volume[core] * vox_fader[core].unk00) / 0x3F)
-							* se_pant[vox_fader[core].unk08]) / 0x7F) * str2_master_vol)
+				volr = (((((unsigned)(str2_volume[core] * vox_fader[core].vol_target) / 0x3F)
+							* se_pant[vox_fader[core].pan_target]) / 0x7F) * str2_master_vol)
 							/ 0x3FFF;
 				sceSdSetParam( SD_CORE_1|(((core*2)+20)<<1)|SD_VP_VOLL, voll );
 				sceSdSetParam( SD_CORE_1|(((core*2)+20)<<1)|SD_VP_VOLR, volr );
@@ -363,8 +363,8 @@ int Str2SpuTrans( int core )
 				sceSdSetParam( SD_CORE_1|(((core*2)+21)<<1)|SD_VP_VOLL, (unsigned)voll / 3 );
 				sceSdSetParam( SD_CORE_1|(((core*2)+21)<<1)|SD_VP_VOLR, (unsigned)volr / 3 );
 			#endif
-				vox_fader[core].unk04 = vox_fader[core].unk00;
-				vox_fader[core].unk0C = vox_fader[core].unk08;
+				vox_fader[core].vol_current = vox_fader[core].vol_target;
+				vox_fader[core].pan_current = vox_fader[core].pan_target;
 				PRINTF(( "VOX(MONO): voll=%x:volr=%x\n", voll, volr ));
 			} else {
 			#ifdef BORMAN_DEMO
@@ -413,32 +413,32 @@ int Str2SpuTrans( int core )
 			PRINTF(( "Str:Envelope Stopped\n" ));
 			break;
 		}
-		if((vox_fader[core].unk00 != vox_fader[core].unk04)
-		|| (vox_fader[core].unk08 != vox_fader[core].unk0C)){
+		if((vox_fader[core].vol_target != vox_fader[core].vol_current)
+		|| (vox_fader[core].pan_target != vox_fader[core].pan_current)){
 			if( sound_mono_fg ){
-				voll = volr = (((((unsigned)(str2_volume[core] * vox_fader[core].unk00) / 0x3F)
+				voll = volr = (((((unsigned)(str2_volume[core] * vox_fader[core].vol_target) / 0x3F)
 								* se_pant[0x20]) / 0x7F) * str2_master_vol)
 								/ 0x3FFF;
 				sceSdSetParam( SD_CORE_1|(((core*2)+20)<<1)|SD_VP_VOLL, voll );
 				sceSdSetParam( SD_CORE_1|(((core*2)+20)<<1)|SD_VP_VOLR, volr );
 				sceSdSetParam( SD_CORE_1|(((core*2)+21)<<1)|SD_VP_VOLL, voll );
 				sceSdSetParam( SD_CORE_1|(((core*2)+21)<<1)|SD_VP_VOLR, volr );
-				vox_fader[core].unk04 = vox_fader[core].unk00;
-				vox_fader[core].unk0C = vox_fader[core].unk08;
+				vox_fader[core].vol_current = vox_fader[core].vol_target;
+				vox_fader[core].pan_current = vox_fader[core].pan_target;
 			} else {
 				if( str2_mono_fg[core] ){
-					voll = (((((unsigned)(str2_volume[core] * vox_fader[core].unk00) / 0x3F)
-								* se_pant[0x40 - vox_fader[core].unk08]) / 0x7F) * str2_master_vol)
+					voll = (((((unsigned)(str2_volume[core] * vox_fader[core].vol_target) / 0x3F)
+								* se_pant[0x40 - vox_fader[core].pan_target]) / 0x7F) * str2_master_vol)
 								/ 0x3FFF;
-					volr = (((((unsigned)(str2_volume[core] * vox_fader[core].unk00) / 0x3F)
-								* se_pant[vox_fader[core].unk08]) / 0x7F) * str2_master_vol)
+					volr = (((((unsigned)(str2_volume[core] * vox_fader[core].vol_target) / 0x3F)
+								* se_pant[vox_fader[core].pan_target]) / 0x7F) * str2_master_vol)
 								/ 0x3FFF;
 					sceSdSetParam( SD_CORE_1|(((core*2)+20)<<1)|SD_VP_VOLL, voll );
 					sceSdSetParam( SD_CORE_1|(((core*2)+20)<<1)|SD_VP_VOLR, volr );
 					sceSdSetParam( SD_CORE_1|(((core*2)+21)<<1)|SD_VP_VOLL, voll );
 					sceSdSetParam( SD_CORE_1|(((core*2)+21)<<1)|SD_VP_VOLR, volr );
-					vox_fader[core].unk04 = vox_fader[core].unk00;
-					vox_fader[core].unk0C = vox_fader[core].unk08;
+					vox_fader[core].vol_current = vox_fader[core].vol_target;
+					vox_fader[core].pan_current = vox_fader[core].pan_target;
 				}
 			}
 		}

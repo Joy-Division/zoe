@@ -334,7 +334,7 @@ void vol_set( u_int a0 )
 	}
 
 	if( sptr->panmod == 2 && mtrack < 32 ){
-		temp = mix_fader[mtrack].unk0C;
+		temp = mix_fader[mtrack].pan_value;
 		if( sound_mono_fg ){
 			temp = 32;
 		}

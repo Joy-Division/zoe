@@ -175,25 +175,73 @@ void sd_set( int sound_code )
 	}
 
 	if( sound_code == 0xFF000002 ){
-		PRINTF(("\n\n*** FADER VOLUME STATUS ***\n" ));
-		PRINTF(("CH00=%2x:CH01=%2x:CH02=%2x:CH03=%2x",   mix_fader[0x00].unk04, mix_fader[0x01].unk04, mix_fader[0x02].unk04, mix_fader[0x03].unk04 ));
-		PRINTF(("CH04=%2x:CH05=%2x:CH06=%2x:CH07=%2x\n", mix_fader[0x04].unk04, mix_fader[0x05].unk04, mix_fader[0x06].unk04, mix_fader[0x07].unk04 ));
-		PRINTF(("CH08=%2x:CH09=%2x:CH0A=%2x:CH0B=%2x",   mix_fader[0x08].unk04, mix_fader[0x09].unk04, mix_fader[0x0A].unk04, mix_fader[0x0B].unk04 ));
-		PRINTF(("CH0C=%2x:CH0D=%2x:CH0E=%2x:CH0F=%2x\n", mix_fader[0x0C].unk04, mix_fader[0x0D].unk04, mix_fader[0x0E].unk04, mix_fader[0x0F].unk04 ));
-		PRINTF(("CH10=%2x:CH11=%2x:CH12=%2x:CH13=%2x",   mix_fader[0x10].unk04, mix_fader[0x11].unk04, mix_fader[0x12].unk04, mix_fader[0x13].unk04 ));
-		PRINTF(("CH14=%2x:CH15=%2x:CH16=%2x:CH17=%2x\n", mix_fader[0x14].unk04, mix_fader[0x15].unk04, mix_fader[0x16].unk04, mix_fader[0x17].unk04 ));
-		PRINTF(("CH18=%2x:CH19=%2x:CH1A=%2x:CH1B=%2x",   mix_fader[0x18].unk04, mix_fader[0x19].unk04, mix_fader[0x1A].unk04, mix_fader[0x1B].unk04 ));
-		PRINTF(("CH1C=%2x:CH1D=%2x:CH1E=%2x:CH1F=%2x\n", mix_fader[0x1C].unk04, mix_fader[0x1D].unk04, mix_fader[0x1E].unk04, mix_fader[0x1F].unk04 ));
+		PRINTF(( "\n\n*** FADER VOLUME STATUS ***\n" ));
 
-		PRINTF(("\n*** FADER PAN STATUS ***\n" ));
-		PRINTF(("CH00=%2x:CH01=%2x:CH02=%2x:CH03=%2x",   mix_fader[0x00].unk0C, mix_fader[0x01].unk0C, mix_fader[0x02].unk0C, mix_fader[0x03].unk0C ));
-		PRINTF(("CH04=%2x:CH05=%2x:CH06=%2x:CH07=%2x\n", mix_fader[0x04].unk0C, mix_fader[0x05].unk0C, mix_fader[0x06].unk0C, mix_fader[0x07].unk0C ));
-		PRINTF(("CH08=%2x:CH09=%2x:CH0A=%2x:CH0B=%2x",   mix_fader[0x08].unk0C, mix_fader[0x09].unk0C, mix_fader[0x0A].unk0C, mix_fader[0x0B].unk0C ));
-		PRINTF(("CH0C=%2x:CH0D=%2x:CH0E=%2x:CH0F=%2x\n", mix_fader[0x0C].unk0C, mix_fader[0x0D].unk0C, mix_fader[0x0E].unk0C, mix_fader[0x0F].unk0C ));
-		PRINTF(("CH10=%2x:CH11=%2x:CH12=%2x:CH13=%2x",   mix_fader[0x10].unk0C, mix_fader[0x11].unk0C, mix_fader[0x12].unk0C, mix_fader[0x13].unk0C ));
-		PRINTF(("CH14=%2x:CH15=%2x:CH16=%2x:CH17=%2x\n", mix_fader[0x14].unk0C, mix_fader[0x15].unk0C, mix_fader[0x16].unk0C, mix_fader[0x17].unk0C ));
-		PRINTF(("CH18=%2x:CH19=%2x:CH1A=%2x:CH1B=%2x",   mix_fader[0x18].unk0C, mix_fader[0x19].unk0C, mix_fader[0x1A].unk0C, mix_fader[0x1B].unk0C ));
-		PRINTF(("CH1C=%2x:CH1D=%2x:CH1E=%2x:CH1F=%2x\n", mix_fader[0x1C].unk0C, mix_fader[0x1D].unk0C, mix_fader[0x1E].unk0C, mix_fader[0x1F].unk0C ));
+		PRINTF(( "CH00=%2x:CH01=%2x:CH02=%2x:CH03=%2x",
+			mix_fader[0x00].vol_current, mix_fader[0x01].vol_current,
+			mix_fader[0x02].vol_current, mix_fader[0x03].vol_current ));
+
+		PRINTF(( "CH04=%2x:CH05=%2x:CH06=%2x:CH07=%2x\n",
+			mix_fader[0x04].vol_current, mix_fader[0x05].vol_current,
+			mix_fader[0x06].vol_current, mix_fader[0x07].vol_current ));
+
+		PRINTF(( "CH08=%2x:CH09=%2x:CH0A=%2x:CH0B=%2x",
+			mix_fader[0x08].vol_current, mix_fader[0x09].vol_current,
+			mix_fader[0x0A].vol_current, mix_fader[0x0B].vol_current ));
+
+		PRINTF(( "CH0C=%2x:CH0D=%2x:CH0E=%2x:CH0F=%2x\n",
+			mix_fader[0x0C].vol_current, mix_fader[0x0D].vol_current,
+			mix_fader[0x0E].vol_current, mix_fader[0x0F].vol_current ));
+
+		PRINTF(( "CH10=%2x:CH11=%2x:CH12=%2x:CH13=%2x",
+			mix_fader[0x10].vol_current, mix_fader[0x11].vol_current,
+			mix_fader[0x12].vol_current, mix_fader[0x13].vol_current ));
+
+		PRINTF(( "CH14=%2x:CH15=%2x:CH16=%2x:CH17=%2x\n",
+			mix_fader[0x14].vol_current, mix_fader[0x15].vol_current,
+			mix_fader[0x16].vol_current, mix_fader[0x17].vol_current ));
+
+		PRINTF(( "CH18=%2x:CH19=%2x:CH1A=%2x:CH1B=%2x",
+			mix_fader[0x18].vol_current, mix_fader[0x19].vol_current,
+			mix_fader[0x1A].vol_current, mix_fader[0x1B].vol_current ));
+
+		PRINTF(( "CH1C=%2x:CH1D=%2x:CH1E=%2x:CH1F=%2x\n",
+			mix_fader[0x1C].vol_current, mix_fader[0x1D].vol_current,
+			mix_fader[0x1E].vol_current, mix_fader[0x1F].vol_current ));
+
+		PRINTF(( "\n*** FADER PAN STATUS ***\n" ));
+
+		PRINTF(( "CH00=%2x:CH01=%2x:CH02=%2x:CH03=%2x",
+			mix_fader[0x00].pan_value, mix_fader[0x01].pan_value,
+			mix_fader[0x02].pan_value, mix_fader[0x03].pan_value ));
+
+		PRINTF(( "CH04=%2x:CH05=%2x:CH06=%2x:CH07=%2x\n",
+			mix_fader[0x04].pan_value, mix_fader[0x05].pan_value,
+			mix_fader[0x06].pan_value, mix_fader[0x07].pan_value ));
+
+		PRINTF(( "CH08=%2x:CH09=%2x:CH0A=%2x:CH0B=%2x",
+			mix_fader[0x08].pan_value, mix_fader[0x09].pan_value,
+			mix_fader[0x0A].pan_value, mix_fader[0x0B].pan_value ));
+
+		PRINTF(( "CH0C=%2x:CH0D=%2x:CH0E=%2x:CH0F=%2x\n",
+			mix_fader[0x0C].pan_value, mix_fader[0x0D].pan_value,
+			mix_fader[0x0E].pan_value, mix_fader[0x0F].pan_value ));
+
+		PRINTF(( "CH10=%2x:CH11=%2x:CH12=%2x:CH13=%2x",
+			mix_fader[0x10].pan_value, mix_fader[0x11].pan_value,
+			mix_fader[0x12].pan_value, mix_fader[0x13].pan_value ));
+
+		PRINTF(( "CH14=%2x:CH15=%2x:CH16=%2x:CH17=%2x\n",
+			mix_fader[0x14].pan_value, mix_fader[0x15].pan_value,
+			mix_fader[0x16].pan_value, mix_fader[0x17].pan_value ));
+
+		PRINTF(( "CH18=%2x:CH19=%2x:CH1A=%2x:CH1B=%2x",
+			mix_fader[0x18].pan_value, mix_fader[0x19].pan_value,
+			mix_fader[0x1A].pan_value, mix_fader[0x1B].pan_value ));
+
+		PRINTF(( "CH1C=%2x:CH1D=%2x:CH1E=%2x:CH1F=%2x\n",
+			mix_fader[0x1C].pan_value, mix_fader[0x1D].pan_value,
+			mix_fader[0x1E].pan_value, mix_fader[0x1F].pan_value ));
 	}
 
 	if( sd_print_fg ){
@@ -312,8 +360,8 @@ void sd_set( int sound_code )
 			str2_counter[1] = 0;
 			str2_play_counter[1] = 0;
 		#ifdef BORMAN_DEMO
-			vox_fader[1].unk00 = 0x3F;
-			vox_fader[1].unk08 = 0x20;
+			vox_fader[1].vol_target = 0x3F;
+			vox_fader[1].pan_target = 0x20;
 		#endif
 			ee_addr[1].unk10 = 0;
 			ee_addr[1].unk0C = 0;
@@ -339,8 +387,8 @@ void sd_set( int sound_code )
 			str2_counter[0] = 0;
 			str2_play_counter[0] = 0;
 		#ifdef BORMAN_DEMO
-			vox_fader[0].unk00 = 0x3F;
-			vox_fader[0].unk08 = 0x20;
+			vox_fader[0].vol_target = 0x3F;
+			vox_fader[0].pan_target = 0x20;
 		#endif
 			ee_addr[0].unk10 = 0;
 			ee_addr[0].unk0C = 0;
@@ -362,25 +410,30 @@ void sd_set( int sound_code )
 	if( (sound_code & 0xFF000000) == 0xFB000000 ){
 		if( sound_code <= 0xFB1F3F3F ){
 			temp.u = (int)(sound_code & 0x1F0000) >> 16;
-			mix_fader[temp.u].unk0C = (int)(sound_code & 0x3F00) >> 8;
-			mix_fader[temp.u].unk08
+			mix_fader[temp.u].pan_value = (int)(sound_code & 0x3F00) >> 8;
+			mix_fader[temp.u].vol_target
 				= ((sound_code & 0x3F) << 10)
 				+ ((sound_code & 0x3F) << 4)
 				+ ((int)(sound_code & 0x3F) >> 2);
-			mix_fader[temp.u].unk04 = mix_fader[temp.u].unk08;
-			mix_fader[temp.u].unk00 = 0;
+			mix_fader[temp.u].vol_current = mix_fader[temp.u].vol_target;
+			mix_fader[temp.u].vol_step = 0;
 		#ifdef BORMAN_DEMO
 			if( sd_print_fg ){
-				PRINTF(( "Fader:Pan=%x:Vol=%x\n", mix_fader[temp.u].unk0C, mix_fader[temp.u].unk04 ));
+				PRINTF(( "Fader:Pan=%x:Vol=%x\n",
+					mix_fader[temp.u].pan_value,
+					mix_fader[temp.u].vol_current ));
 			}
 		#endif
 		} else {
 			if( (sound_code & 0xFF0000) == 0xFE0000 || (sound_code & 0xFF0000) == 0xFF0000 ){
 				temp.u = (int)(sound_code & 0x10000) >> 16;
-				vox_fader[temp.u].unk00 = sound_code & 0x3F;
-				vox_fader[temp.u].unk08 = (int)(sound_code & 0x3F00) >> 8;
+				vox_fader[temp.u].vol_target = sound_code & 0x3F;
+				vox_fader[temp.u].pan_target = (int)(sound_code & 0x3F00) >> 8;
 				if( sd_print_fg ){
-					PRINTF(( "VoxFader:Code=%x:Ch=%x:Pan=%x:Vol=%x\n", sound_code, temp.u, vox_fader[temp.u].unk08, vox_fader[temp.u].unk00 ));
+					PRINTF(( "VoxFader:Code=%x:Ch=%x:Pan=%x:Vol=%x\n",
+						sound_code, temp.u,
+						vox_fader[temp.u].pan_target,
+						vox_fader[temp.u].vol_target ));
 				}
 			}
 		}
@@ -389,10 +442,10 @@ void sd_set( int sound_code )
 
 	if( sound_code > 0xFBFFFFFF && sound_code <= 0xFC1F3FFF ){
 		temp.u = (int)(sound_code & 0x1F0000) >> 16;
-		mix_fader[temp.u].unk0C = (int)(sound_code & 0x3F00) >> 8;
+		mix_fader[temp.u].pan_value = (int)(sound_code & 0x3F00) >> 8;
 	#ifdef BORMAN_DEMO
 		if( sd_print_fg ){
-			PRINTF(( "Fader:Pan=%x\n", mix_fader[temp.u].unk0C ));
+			PRINTF(( "Fader:Pan=%x\n", mix_fader[temp.u].pan_value ));
 		}
 	#endif
 		goto end;
@@ -400,22 +453,22 @@ void sd_set( int sound_code )
 
 	if( sound_code > 0xFCFFFFFF && sound_code <= 0xFD1F3FFF ){
 		temp.u = (int)(sound_code & 0x1F0000) >> 16;
-		mix_fader[temp.u].unk08
+		mix_fader[temp.u].vol_target
 			= ((sound_code & 0x3F00) << 2)
 			+ ((int)(sound_code & 0x3F00) >> 4)
 			+ ((int)(sound_code & 0x3F00) >> 10);
-		if( mix_fader[temp.u].unk08 == mix_fader[temp.u].unk04 ){
-			mix_fader[temp.u].unk00 = 0;
+		if( mix_fader[temp.u].vol_target == mix_fader[temp.u].vol_current ){
+			mix_fader[temp.u].vol_step = 0;
 		} else if( sound_code & 0xFF ){
-			mix_fader[temp.u].unk00
-				= (mix_fader[temp.u].unk08 - mix_fader[temp.u].unk04)
+			mix_fader[temp.u].vol_step
+				= (mix_fader[temp.u].vol_target - mix_fader[temp.u].vol_current)
 				/ ((int)(sound_code & 0xFF)*10);
-			if( !mix_fader[temp.u].unk00 ){
-				mix_fader[temp.u].unk00 = 1;
+			if( !mix_fader[temp.u].vol_step ){
+				mix_fader[temp.u].vol_step = 1;
 			}
 		} else {
-			mix_fader[temp.u].unk04 = mix_fader[temp.u].unk08;
-			mix_fader[temp.u].unk00 = 0;
+			mix_fader[temp.u].vol_current = mix_fader[temp.u].vol_target;
+			mix_fader[temp.u].vol_step = 0;
 		}
 		goto end;
 	}

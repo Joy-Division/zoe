@@ -100,7 +100,7 @@ int sd_sng_code_buf[16];
 u_int drum_tbl[0x100];
 u_int fg_syukan_off[44];
 struct SOUND_W sound_w[44];
-struct FADER vox_fader[2];
+struct VOX_FADER vox_fader[2];
 struct SPU_TRACK_REG spu_tr_wk[44];
 int sng_fade_value[32];
 u_int sng_fade_time[32];

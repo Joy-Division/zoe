@@ -31,6 +31,8 @@ struct WAVE_W {
 	u_char		dec_vol;
 };
 
+/*---------------------------------------------------------------------------*/
+
 struct SPU_TRACK_REG {
 	u_short		vol_l;			// volume left
 	u_short		vol_r;			// volume right
@@ -52,6 +54,8 @@ struct SPU_TRACK_REG {
 	int			env3_fg;		// envelope 3 flag
 };
 
+/*---------------------------------------------------------------------------*/
+
 struct SETBL {
 	u_char		pri;
 	u_char		tracks;
@@ -67,6 +71,8 @@ struct SEPLAYTBL {
 	u_char		*addr;
 	u_long		code;
 };
+
+/*---------------------------------------------------------------------------*/
 
 struct SOUND_W {
 	u_char		*mpointer;
@@ -190,12 +196,23 @@ struct unkstr24 {
 	u_int		unk14;
 };
 
+/*---------------------------------------------------------------------------*/
+
 struct FADER {
-	int			unk00;
-	int			unk04;	// vol
-	int			unk08;
-	int			unk0C;	// pan
+	int			vol_step;		// fade step
+	int			vol_current;	// current volume
+	int			vol_target;		// target volume
+	int			pan_value;		// channel pan
 };
+
+struct VOX_FADER {
+	int			vol_target;		// target volume
+	int			vol_current;	// current volume
+	int			pan_target;		// target pan
+	int			pan_current;	// current pan
+};
+
+/*---------------------------------------------------------------------------*/
 
 // used by sd_file
 // some kind of tiny header struct for sdx files?
