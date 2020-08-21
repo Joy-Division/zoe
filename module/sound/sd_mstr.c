@@ -6,14 +6,7 @@
 #include "sd_ext.h"
 #include "sd_debug.h"
 
-/*---------------------------------------------------------------------------*/
-
-#ifdef BORMAN_DEMO
 u_char wave_header[0x2000]; /* 8KB */
-#else
-u_char wave_header[512];
-#endif
-
 u_char sng_data[0x00020000]; // file/drv
 u_char se_data_area[0x4800]; // main
 u_char cdload_buf[0x18000]; // file
