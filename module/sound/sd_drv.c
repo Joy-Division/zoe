@@ -184,9 +184,9 @@ void IntSdMain( void )
 	}
 
 #ifndef BORMAN_DEMO
-	if( mem_str_fg[1] ){				// guessed varname
-		sng_load_code = mem_str_fg[1];	// guessed varname
-		mem_str_fg[1] = 0;				// guessed varname
+	if( mem_str_fg ){				// guessed varname
+		sng_load_code = mem_str_fg;	// guessed varname
+		mem_str_fg = 0;				// guessed varname
 	}
 #endif
 

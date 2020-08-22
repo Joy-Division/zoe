@@ -81,16 +81,18 @@ u_int sng_pause_fg;
 u_int lnr8_fg;
 u_int irq_addr; // also in bm5thMIX
 
-#if defined(BORMAN_DEMO)
-u_int mem_str_fg;
-#else
-u_int mem_str_fg[2];
+#if !defined(BORMAN_DEMO)
+u_int ue_;	// unused
+u_int um_;	// used in retail
 #endif
 
-u_int wave_loaded;		// also in bm5thMIX
+u_int mem_str_fg;	// used in retail
+
+u_int wave_loaded;	// also in bm5thMIX
 u_int se_save_code2;	// also in bm5thMIX
 u_int spu_irq_counter;	// also in bm5thMIX
 u_int blank_data_addr;	// also in bm5thMIX
+
 
 /* --- End of Unreferenced Data --- */
 

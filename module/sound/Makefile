@@ -78,12 +78,7 @@ all: $(PROGNAME)
 # manually because iop-elf-gcc passes the options in such a way that ioplibld
 # makes things break
 $(PROGNAME): $(OBJS)
-	@#~ $(LINK.o) -o $@ $(OBJS) $(ILIBS)
-	$(ILBLD) -s $(CLSTUB).s $(CLLIBS) $(OBJS) -lgcc : $(CLILIBS)
-	$(AS) $(CLSTUB).s -o $(CLSTUB).o
-	$(LD) -EL -dc -r -T ldscript.txt -o $(CLREL) $(CLLIBS) $(OBJS) $(CLSTUB).o -lgcc
-	$(IFIXUP) -r $(PROGNAME) $(CLREL)
-	rm $(CLREL) $(CLSTUB).{s,o}
+	$(LINK.o) -o $@ $(OBJS) $(ILIBS)
 
 test: $(PROGNAME)
 	@$(IFIXUP) -o retail-jp.irx $(PROGNAME)

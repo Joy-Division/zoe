@@ -26,11 +26,7 @@ u_int save_wvx1 = -1, save_wvx2 = -1;
 u_int save_efx = -1;
 u_int save_mdx = -1;
 
-#ifdef BORMAN_DEMO
 u_int pak_header[512]; /* 2KB */
-#else
-u_int pak_header[128]; /* 0.5KB */
-#endif
 
 /*---------------------------------------------------------------------------*/
 
@@ -81,7 +77,7 @@ void LoadPakFile( void )
 		if( temp[0].unk00 ){
 			if( temp[0].unk04 != save_wvx1 && temp[0].unk04 != save_wvx2 ){
 			#ifndef BORMAN_DEMO
-				mem_str_fg[0] = (temp[1].unk00 - temp[0].unk00) * 0x0800; // guessed varname
+				um_ = (temp[1].unk00 - temp[0].unk00) * 0x0800; // guessed varname
 			#endif
 				save_wvx1 = temp[0].unk04;
 			#ifdef BORMAN_DEMO
@@ -116,7 +112,7 @@ void LoadPakFile( void )
 		if( temp[1].unk00 ){
 			if( temp[1].unk04 != save_wvx1 && temp[1].unk04 != save_wvx2 ){
 			#ifndef BORMAN_DEMO
-				mem_str_fg[0] = (temp[2].unk00 - temp[1].unk00) * 0x0800; // guessed varname
+				um_ = (temp[2].unk00 - temp[1].unk00) * 0x0800; // guessed varname
 			#endif
 				save_wvx2 = temp[1].unk04;
 			#ifdef BORMAN_DEMO
@@ -178,7 +174,7 @@ void LoadPakFile( void )
 				}
 				#else
 				save_mdx = temp[3].unk04;
-				mem_str_fg[1] = 0x010000FF; // guessed varname
+				mem_str_fg = 0x010000FF; // guessed varname
 				pak_load_status = 7;
 				#endif
 			} else if(1) {
@@ -200,7 +196,7 @@ void LoadPakFile( void )
 	#ifdef BORMAN_DEMO
 		if( !sng_load_code ){
 	#else
-		if( mem_str_fg[1] ){
+		if( mem_str_fg ){
 	#endif
 			break;
 		} else {
@@ -348,8 +344,8 @@ int LoadWaveFile( void )
 #else
 	if( wave_load_code <= 0xFEFFFFFD ){
 		temp4 = 0x00018000;
-	} else if( mem_str_fg[0] <= 0x00017FFF ){
-		temp4 = mem_str_fg[0];
+	} else if( um_ <= 0x00017FFF ){
+		temp4 = um_;
 	} else {
 		temp4 = 0x00018000;
 	}

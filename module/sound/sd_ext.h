@@ -278,7 +278,14 @@ extern u_int sng_pause_fg;
 
 extern u_int lnr8_fg;
 extern u_int irq_addr;
-extern u_int mem_str_fg[2]; // this might be an array of 2 in retail
+
+#if !defined(BORMAN_DEMO)
+extern u_int ue_;
+extern u_int um_;
+#endif
+
+extern u_int mem_str_fg;
+
 extern u_int wave_loaded;
 extern u_int se_save_code2;
 extern u_int spu_irq_counter;
