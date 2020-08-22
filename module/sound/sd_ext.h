@@ -280,8 +280,8 @@ extern u_int lnr8_fg;
 extern u_int irq_addr;
 
 #if !defined(BORMAN_DEMO)
-extern u_int ue_;
-extern u_int um_;
+extern u_int ue_;	// 029c034e (0ecc:30)
+extern u_int um_;	// 025e432f (0f12:1f)
 #endif
 
 extern u_int mem_str_fg;
