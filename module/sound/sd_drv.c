@@ -101,14 +101,14 @@ void IntSdMain( void )
 
 		/* Song Off */
 		case 0x01FFFFFF:
-		#ifdef BORMAN_DEMO
+		#if (defined BORMAN_DEMO || defined DENGEKI_DEMO)
 			sng_play_code = 0;
 		#else
 			sng_play_code = 0xFFFFFFFF;
 		#endif
 			sng_off();
 			PRINTF(( "SongStop\n" ));
-		#ifndef BORMAN_DEMO
+		#if !(defined BORMAN_DEMO || defined DENGEKI_DEMO)
 			sng_status = 0;
 		#endif
 			break;
@@ -133,7 +133,7 @@ void IntSdMain( void )
 		case 0x1000008:
 			if( sng_play_code != temp ){
 				/* more ifdef here */
-				#ifdef BORMAN_DEMO
+				#if (defined BORMAN_DEMO || defined DENGEKI_DEMO)
 				if( sng_status >= 2 ) {
 				#endif
 				if( sng_data[0] < (temp & 0x0F) ){
@@ -159,7 +159,7 @@ void IntSdMain( void )
 					auto_env_pos = 0;
 					skip_intro_loop = 0;
 				}
-				#ifdef BORMAN_DEMO
+				#if (defined BORMAN_DEMO || defined DENGEKI_DEMO)
 				} else {
 					PRINTF(( "sng_status=%x\n", sng_status ));
 				}
@@ -172,7 +172,7 @@ void IntSdMain( void )
 		default:
 			if( sng_load_code != temp ){
 				sng_load_code = temp;
-			#ifdef BORMAN_DEMO
+			#if (defined BORMAN_DEMO || defined DENGEKI_DEMO)
 				sng_play_code = 0;
 				sng_status = 1;
 				sng_off();
@@ -183,7 +183,7 @@ void IntSdMain( void )
 		}
 	}
 
-#ifndef BORMAN_DEMO
+#if !(defined BORMAN_DEMO || defined DENGEKI_DEMO)
 	if( mem_str_fg ){				// guessed varname
 		sng_load_code = mem_str_fg;	// guessed varname
 		mem_str_fg = 0;				// guessed varname
@@ -191,9 +191,11 @@ void IntSdMain( void )
 #endif
 
 	switch( sng_status ){
-#ifndef BORMAN_DEMO
+#if !defined BORMAN_DEMO
 	case 1:
+	#if !defined DENGEKI_DEMO
 		break;
+	#endif
 #endif
 	case 2:
 	#ifndef BORMAN_DEMO
@@ -411,7 +413,7 @@ int SngFadeOutS( u_int a0 )
 	} else {
 	#ifdef BORMAN_DEMO
 		PRINTF(( "SNG FADEOUT CANCELED(status=%x)\n", sng_status ));
-	#else
+	#elif !defined DENGEKI_DEMO
 		sng_fadein_time = 0;
 		sng_play_code = -1;
 		sng_off();

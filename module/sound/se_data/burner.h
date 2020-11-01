@@ -9,7 +9,7 @@ u_char burner00[] = {
 	0x32,0x50,0x00,0xE4,0x00,0x00,0xFE,0xFF
 };
 
-#if !defined(BORMAN_DEMO)
+#if !(defined(BORMAN_DEMO) || defined(DENGEKI_DEMO))
 u_char burner01[] = {
 #if defined(PAL_RELEASE)
 	0x00,0x01,0x7E,0xD0,0x00,0x00,0xB4,0xD5,
@@ -45,6 +45,6 @@ u_char burner02[] = {
 	0x00,0x00,0xFE,0xFF
 #endif
 };
-#endif // !BORMAN_DEMO
+#endif // !(BORMAN_DEMO || DENGEKI_DEMO)
 
 #endif /* END OF FILE */

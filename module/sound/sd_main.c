@@ -29,7 +29,7 @@ void SdMain( void )
 		if( pak_load_status ){
 			LoadPakFile();
 		}
-	#ifdef BORMAN_DEMO
+	#if (defined BORMAN_DEMO || defined DENGEKI_DEMO)
 		if( sng_status == 1 ) {
 			if( LoadSngData( sng_load_code ) ) {
 				sng_status = 0;

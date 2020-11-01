@@ -10,7 +10,9 @@
 
 static int com_queue[140];
 
-#ifndef BORMAN_DEMO
+#ifdef DENGEKI_DEMO
+ModuleInfo Module = { "KCEJ_SOUND_DRIVER", 0x0101 };
+#elif !defined BORMAN_DEMO
 char name[] = "SOUND";
 
 ModuleInfo Module = { name, 0x0101 };

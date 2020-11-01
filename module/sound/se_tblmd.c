@@ -78,6 +78,7 @@
 
 #if !defined(BORMAN_DEMO)
 #include "se_data/nonm072.h"
+#if !defined(DENGEKI_DEMO)
 #include "se_data/nonm073.h"
 #include "se_data/nonm074.h"
 #include "se_data/nonm075.h"
@@ -128,6 +129,7 @@
 #include "se_data/nonm117.h"
 #include "se_data/nonm118.h"
 #include "se_data/nonm122.h"
+#endif // !DENGEKI_DEMO
 #endif // !BORMAN_DEMO
 
 /*===========================================================================*/
@@ -143,7 +145,7 @@ u_char se_dummy[] = { 0x00,0x00,0xFE,0xFF };
 struct SETBL se_tbl[128] = {
 	/* pri,tracks,kind,character */
 	{ 0x01, 0x01, 0x01, 0x00, { se_dummy,	se_dummy,	se_dummy	} },//0
-#if defined(BORMAN_DEMO)
+#if defined(BORMAN_DEMO) || defined(DENGEKI_DEMO)
 	{ 0x10, 0x01, 0x01, 0x00, { burner00,	se_dummy,	se_dummy	} },
 #else
 	{ 0x20, 0x03, 0x01, 0x00, { burner00,	burner01,	burner02	} },
@@ -185,7 +187,7 @@ struct SETBL se_tbl[128] = {
 	{ 0x30, 0x02, 0x01, 0x00, { tukami00,	tukami01,	se_dummy	} },
 	{ 0x50, 0x03, 0x01, 0x00, { buildai00,	buildai01,	buildai02	} },
 	{ 0x20, 0x02, 0x01, 0x00, { builchu00,	builchu01,	se_dummy	} },
-#if defined(BORMAN_DEMO)
+#if defined(BORMAN_DEMO) || defined(DENGEKI_DEMO)
 	{ 0x20, 0x02, 0x01, 0x00, { builgla00,	builgla01,	se_dummy	} },
 #else
 	{ 0x20, 0x03, 0x01, 0x00, { builgla00,	builgla01,	builgla02	} },
@@ -209,7 +211,7 @@ struct SETBL se_tbl[128] = {
 	{ 0x10, 0x01, 0x00, 0x00, { winclo0100,	se_dummy,	se_dummy	} },
 	{ 0x10, 0x01, 0x00, 0x00, { sentak0100,	se_dummy,	se_dummy	} },
 	{ 0x10, 0x02, 0x00, 0x00, { start0100,	start0101,	se_dummy	} },
-#if defined(BORMAN_DEMO)
+#if defined(BORMAN_DEMO) || defined(DENGEKI_DEMO)
 	{ 0x10, 0x01, 0x00, 0x00, { cansel0100,	se_dummy,	se_dummy	} },
 #else
 	{ 0x10, 0x02, 0x00, 0x00, { cansel0100,	cansel0101,	se_dummy	} },
@@ -229,8 +231,12 @@ struct SETBL se_tbl[128] = {
 
 	/* --- Additional SE Data --- */
 
+#if defined(BORMAN_DEMO) || defined(DENGEKI_DEMO)
 #if defined(BORMAN_DEMO)
 	{ 0x01, 0x01, 0x01, 0x00, { se_dummy,	se_dummy,	se_dummy	} },
+#else
+	{ 0x10, 0x02, 0x00, 0x00, { nonm07200,	nonm07201,	se_dummy	} },//72
+#endif
 	{ 0x01, 0x01, 0x01, 0x00, { se_dummy,	se_dummy,	se_dummy	} },
 	{ 0x01, 0x01, 0x01, 0x00, { se_dummy,	se_dummy,	se_dummy	} },
 	{ 0x01, 0x01, 0x01, 0x00, { se_dummy,	se_dummy,	se_dummy	} },
@@ -343,5 +349,5 @@ struct SETBL se_tbl[128] = {
 	{ 0x01, 0x01, 0x01, 0x00, { se_dummy,	se_dummy,	se_dummy	} },
 	{ 0x01, 0x01, 0x01, 0x00, { se_dummy,	se_dummy,	se_dummy	} },
 	{ 0x01, 0x01, 0x01, 0x00, { se_dummy,	se_dummy,	se_dummy	} }//127
-#endif // BORMAN_DEMO
+#endif // BORMAN_DEMO || DENGEKI_DEMO
 };

@@ -421,7 +421,7 @@ void sd_set( int sound_code )
 				+ ((int)(sound_code & 0x3F) >> 2);
 			mix_fader[temp.u].vol_current = mix_fader[temp.u].vol_target;
 			mix_fader[temp.u].vol_step = 0;
-		#ifdef BORMAN_DEMO
+		#if (defined BORMAN_DEMO || defined DENGEKI_DEMO)
 			if( sd_print_fg ){
 				PRINTF(( "Fader:Pan=%x:Vol=%x\n",
 					mix_fader[temp.u].pan_value,
@@ -447,7 +447,7 @@ void sd_set( int sound_code )
 	if( sound_code > 0xFBFFFFFF && sound_code <= 0xFC1F3FFF ){
 		temp.u = (int)(sound_code & 0x1F0000) >> 16;
 		mix_fader[temp.u].pan_value = (int)(sound_code & 0x3F00) >> 8;
-	#ifdef BORMAN_DEMO
+	#if (defined BORMAN_DEMO || defined DENGEKI_DEMO)
 		if( sd_print_fg ){
 			PRINTF(( "Fader:Pan=%x\n", mix_fader[temp.u].pan_value ));
 		}

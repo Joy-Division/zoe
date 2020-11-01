@@ -81,8 +81,10 @@ u_int sng_pause_fg;
 u_int lnr8_fg;
 u_int irq_addr; // also in bm5thMIX
 
-#if !defined(BORMAN_DEMO)
+#if !(defined BORMAN_DEMO || defined DENGEKI_DEMO)
 u_int ue_;	// 029c034e (0ecc:30), unused
+#endif
+#if !defined BORMAN_DEMO
 u_int um_;	// 025e432f (0f12:1f), used in retail
 #endif
 

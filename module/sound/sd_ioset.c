@@ -327,7 +327,7 @@ void vol_set( u_int a0 )
 {
 	u_int temp, temp2;
 
-	if( !(a0 < sptr->dec_vol) ){
+	if( a0 >= sptr->dec_vol ){
 		a0 -= sptr->dec_vol;
 	} else {
 		a0 = 0;

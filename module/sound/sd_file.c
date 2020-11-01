@@ -69,14 +69,29 @@ void LoadPakFile( void )
 		pak_read_fg = 1;
 		PcmRead( pak_fp, pak_header, 0x0800 );
 
-		PRINTF(( "%X %X\n", temp[0].unk00, temp[0].unk04 ));
-		PRINTF(( "%X %X\n", temp[1].unk00, temp[1].unk04 ));
-		PRINTF(( "%X %X\n", temp[2].unk00, temp[2].unk04 ));
-		PRINTF(( "%X %X\n", temp[3].unk00, temp[3].unk04 ));
+		#if (defined BORMAN_DEMO || defined DENGEKI_DEMO)
+		printf( "%X %X\n", temp[0].unk00, temp[0].unk04 );
+		printf( "%X %X\n", temp[1].unk00, temp[1].unk04 );
+		printf( "%X %X\n", temp[2].unk00, temp[2].unk04 );
+		printf( "%X %X\n", temp[3].unk00, temp[3].unk04 );
+		#endif
 
 		if( temp[0].unk00 ){
 			if( temp[0].unk04 != save_wvx1 && temp[0].unk04 != save_wvx2 ){
-			#ifndef BORMAN_DEMO
+			#ifdef DENGEKI_DEMO
+				if( temp[1].unk00 ) {
+					mem_str_fg = (temp[1].unk00 - temp[0].unk00) * 0x0800; // guessed varname
+				}
+				else if( temp[2].unk00 ) {
+					mem_str_fg = (temp[2].unk00 - temp[0].unk00) * 0x0800; // guessed varname
+				}
+				else if( temp[3].unk00 ) {
+					mem_str_fg = (temp[3].unk00 - temp[0].unk00) * 0x0800; // guessed varname
+				}
+				else {
+					mem_str_fg = 0x18000;
+				}
+			#elif !defined BORMAN_DEMO
 				um_ = (temp[1].unk00 - temp[0].unk00) * 0x0800; // guessed varname
 			#endif
 				save_wvx1 = temp[0].unk04;
@@ -84,7 +99,7 @@ void LoadPakFile( void )
 				wave_load_code = 0xF7FFFFFE;
 			#else
 				wave_load_code = 0xFEFFFFFE;
-				#endif
+			#endif
 				wave_load_status = 1;
 				pak_load_status = 2;
 			} else {
@@ -93,7 +108,7 @@ void LoadPakFile( void )
 				PRINTF(( "PAK Load:wvx1 is already Loaded! Skipped!\n" ));
 			}
 		} else {
-		#ifdef BORMAN_DEMO
+		#if (defined BORMAN_DEMO || defined DENGEKI_DEMO)
 			pak_load_status = 3;
 		#else
 			pak_load_status = 9;
@@ -111,7 +126,17 @@ void LoadPakFile( void )
 	case 2:
 		if( temp[1].unk00 ){
 			if( temp[1].unk04 != save_wvx1 && temp[1].unk04 != save_wvx2 ){
-			#ifndef BORMAN_DEMO
+			#ifdef DENGEKI_DEMO
+				if( temp[2].unk00 ) {
+					mem_str_fg = (temp[2].unk00 - temp[1].unk00) * 0x0800; // guessed varname
+				}
+				else if( temp[3].unk00 ) {
+					mem_str_fg = (temp[3].unk00 - temp[1].unk00) * 0x0800; // guessed varname
+				}
+				else {
+					mem_str_fg = 0x18000;
+				}
+			#elif !defined BORMAN_DEMO
 				um_ = (temp[2].unk00 - temp[1].unk00) * 0x0800; // guessed varname
 			#endif
 				save_wvx2 = temp[1].unk04;
@@ -128,7 +153,7 @@ void LoadPakFile( void )
 				PRINTF(( "PAK Load:wvx2 is already Loaded! Skipped!\n" ));
 			}
 		} else {
-		#ifdef BORMAN_DEMO
+		#if (defined BORMAN_DEMO || defined DENGEKI_DEMO)
 			pak_load_status = 5;
 		#else
 			pak_load_status = 9;
@@ -163,7 +188,7 @@ void LoadPakFile( void )
 	case 5:
 		if( temp[3].unk00 ){
 			if( temp[3].unk04 != save_mdx ){
-				#ifdef BORMAN_DEMO
+				#if (defined BORMAN_DEMO || DENGEKI_DEMO)
 				if(!sd_sng_code_buf[sd_code_set]) {
 					save_mdx = temp[3].unk04;
 					sd_sng_code_buf[sd_code_set] = 0x10000FF;
@@ -187,13 +212,13 @@ void LoadPakFile( void )
 			PRINTF(( "PAK Load:No mdx data...Skipped!\n" ));
 			break;
 		}
-	#ifdef BORMAN_DEMO
+	#if (defined BORMAN_DEMO || defined DENGEKI_DEMO)
 		pak_load_status = 7;
 	#endif
 		break;
 
 	case 6:
-	#ifdef BORMAN_DEMO
+	#if (defined BORMAN_DEMO || defined DENGEKI_DEMO)
 		if( !sng_load_code ){
 	#else
 		if( mem_str_fg ){
@@ -344,8 +369,13 @@ int LoadWaveFile( void )
 #else
 	if( wave_load_code <= 0xFEFFFFFD ){
 		temp4 = 0x00018000;
+#ifdef DENGEKI_DEMO
+	} else if( mem_str_fg <= 0x00017FFF ){
+		temp4 = mem_str_fg;
+#else
 	} else if( um_ <= 0x00017FFF ){
 		temp4 = um_;
+#endif
 	} else {
 		temp4 = 0x00018000;
 	}
@@ -400,7 +430,7 @@ int LoadWaveFile( void )
 				wave_load_size = wave_unload_size;
 				wave_unload_size = 0;
 			}
-		#ifndef BORMAN_DEMO
+		#if !(defined BORMAN_DEMO || defined DENGEKI_DEMO)
 			else {
 			}
 		#endif
@@ -581,8 +611,16 @@ void code2name( u_int code, char *name )
 		}
 		/* --- MDX+EFX+WVX Container --- */
 		if( code > 0xFE7FFFFF && code <= 0xFEFFFFFF ){
+			#if defined USA_RELEASE
+			name[ 0] = 'u';
+			name[ 1] = 's';
+			#elif defined PAL_RELEASE
+			name[ 0] = 'e';
+			name[ 1] = 'u';
+			#else // JAPAN_RELEASE
 			name[ 0] = 'p';
 			name[ 1] = 'k';
+			#endif
 			name[ 2] = num2char( (code >> 20) & 0x07 ); // NOTICE
 			name[ 3] = num2char( (code >> 16) & 0x0F );
 			name[ 4] = num2char( (code >> 12) & 0x0F );
@@ -641,7 +679,9 @@ int PcmOpen( u_int code, u_int path_idx )
 	if( pak_cd_read_fg ){
 		cdOpen();
 		pakcd_pos = pak_load_code;
-		PRINTF(( "pak cd read start %d\n", pakcd_pos ));
+		#if (defined BORMAN_DEMO || defined DENGEKI_DEMO)
+		printf( "pak cd read start %d\n", pakcd_pos );
+		#endif
 		return 1;
 	}
 
@@ -704,7 +744,9 @@ int PcmLseek( int a0, u_int a1, u_int a2 )
 	if( pak_cd_read_fg ){
 		if( a2 == 1 ){
 			pakcd_pos += a1 >> 11;
-			PRINTF(( "seek to %d\n", pakcd_pos ));
+			#if (defined BORMAN_DEMO || defined DENGEKI_DEMO)
+			printf( "seek to %d\n", pakcd_pos );
+			#endif
 		}
 		return a0;
 	}
@@ -770,7 +812,7 @@ int EERead( u_int a0, u_int *a1, u_int a2, u_int a3 )
 {
 	u_int *temp3;
 	struct unkstr24 *temp2;
-#ifndef BORMAN_DEMO
+#if !(defined BORMAN_DEMO || defined DENGEKI_DEMO)
 	u_int temp = 0;
 #endif
 
@@ -792,7 +834,7 @@ int EERead( u_int a0, u_int *a1, u_int a2, u_int a3 )
 	temp3 = sif_get_mem(a1, temp2->unk04 << 4, a3);
 
 	while( 1 ){
-	#ifndef BORMAN_DEMO
+	#if !(defined BORMAN_DEMO || defined DENGEKI_DEMO)
 		DelayThread( 0x2710 );
 	#endif
 
@@ -800,7 +842,7 @@ int EERead( u_int a0, u_int *a1, u_int a2, u_int a3 )
 			break;
 		}
 
-	#ifndef BORMAN_DEMO
+	#if !(defined BORMAN_DEMO || defined DENGEKI_DEMO)
 		temp++;
 		if( !(temp & 0xFFFF) ){
 			//

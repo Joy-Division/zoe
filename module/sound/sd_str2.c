@@ -188,7 +188,7 @@ void str2_load( void )
 			break;
 
 		case 7:
-		#ifdef BORMAN_DEMO
+		#if (defined BORMAN_DEMO || defined DENGEKI_DEMO)
 			str2_fp[i] = str2_status[i] = str2_load_code[i] = 0;
 			PRINTF(( "***STR Terminate(ch=%x)***\n", i ));
 		#else
@@ -206,7 +206,7 @@ int Str2SpuTrans( int core )
 	int temp = 0, temp2 = 0;
 	int voll, volr;
 
-#ifndef BORMAN_DEMO
+#if !(defined BORMAN_DEMO || defined DENGEKI_DEMO)
 	if( core >= 2 ){
 		return 0;
 	}
@@ -219,7 +219,7 @@ int Str2SpuTrans( int core )
 			sceSdSetParam( SD_CORE_1|(((core*2)+20)<<1)|SD_VP_ADSR2, 0x0007 );
 			sceSdSetParam( SD_CORE_1|(((core*2)+21)<<1)|SD_VP_ADSR1, 0x00FF );
 			sceSdSetParam( SD_CORE_1|(((core*2)+21)<<1)|SD_VP_ADSR2, 0x0007 );
-		#ifndef BORMAN_DEMO
+		#if !(defined BORMAN_DEMO || defined DENGEKI_DEMO)
 			str2_first_load[core] = 0;
 		#endif
 			str2_status[core] = 8;
@@ -235,7 +235,7 @@ int Str2SpuTrans( int core )
 		str2_tr_off(core);
 		str2_stop_fg[core] = 0;
 		PRINTF(( "EE STR Stopped.(ch=%x)\n", core ));
-#ifndef BORMAN_DEMO
+#if !(defined BORMAN_DEMO || defined DENGEKI_DEMO)
 	} else if( str2_stop_fg[core] && str2_status[core] ){
 		str2_first_load[core] = 0;
 		str2_status[core] = 8;
@@ -552,7 +552,7 @@ int Str2SpuTrans( int core )
 				}
 			} else {
 				PRINTF(( "EE READ Retry(ch=%x)\n", core ));
-			#ifndef BORMAN_DEMO
+			#if !(defined BORMAN_DEMO || defined DENGEKI_DEMO)
 				str2_unplay_size[core] = str2_unload_size[core];
 			#endif
 				str2_mute_fg[core] = 1;

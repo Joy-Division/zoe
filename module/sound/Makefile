@@ -50,22 +50,6 @@ else
 	CHECKFILE = jp.sha1
 endif
 
-# "CL" variables for custom linker script use:
-
-CLILIBS =\
-libsd.ilb \
-$(LIBDIR)/jsifman.ilb \
-$(LIBDIR)/usbfs.ilb \
-$(LIBDIR)/cdbios.ilb \
-$(IOPLIBDIR)/iop.ilb
-
-CLLIBS =\
--L$(SCETOP)/iop/gcc/lib/gcc-lib/mipsel-scei-elfl/2.8.1 \
--L$(SCETOP)/iop/gcc/mipsel-scei-elfl/lib
-
-CLSTUB = zoesound_ilb_stub
-CLREL = zoesound_iop_rel.o
-
 PROGNAME = iop_main.irx
 
 OBJS =\
@@ -88,10 +72,6 @@ OBJS =\
 
 all: $(PROGNAME)
 
-# The commented out line will suffice for regular building
-# but using a custom linkerscript requires the performed steps to be done
-# manually because iop-elf-gcc passes the options in such a way that ioplibld
-# makes things break
 $(PROGNAME): $(OBJS)
 	$(LINK.o) -o $@ $(OBJS) $(ILIBS)
 

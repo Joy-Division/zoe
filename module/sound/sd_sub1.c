@@ -165,7 +165,8 @@ int tx_read( void )
 {
 	int i, temp2 = 0;
 
-	for( i = 1 ; i ; ){
+	i = 1;
+	while(i){
 		temp2++;
 		if(temp2 == 256) return 1;
 		mdata1 = mptr[3];
