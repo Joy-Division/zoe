@@ -14,6 +14,8 @@ IOPINCDIR = $(SCETOP)/iop/gcc/mipsel-scei-elfl/include
 IOPLIBDIR = $(SCETOP)/iop/gcc/mipsel-scei-elfl/lib
 IOPMODDIR = $(SCETOP)/iop/modules
 
+CHECKSUM = sha1sum -c
+
 ###############################################################################
 
 INCDIR = ../include
@@ -28,11 +30,24 @@ ILIBS =\
 -ilb=$(LIBDIR)/cdbios.ilb
 
 CFLAGS  = -Wall -G0 $(INCDIRS) -O0
-ASFLAGS = $(INCDIRS) -G0
+ASFLAGS = $(INCDIRS)
 LDLIBS  =
 
-ifeq ($(TGS2000), 1)
+ifeq ($(VERSION), TGS2000)
 	CFLAGS += -DBORMAN_DEMO
+	CHECKFILE = tgs2000.sha1
+else ifeq ($(VERSION), DENGEKI)
+	CFLAGS += -DDENGEKI_DEMO
+	CHECKFILE = dengeki.sha1
+else ifeq ($(VERSION), EU)
+	CFLAGS += -DPAL_RELEASE
+	CHECKFILE = eu.sha1
+else ifeq ($(VERSION), US)
+	CFLAGS += -DUSA_RELEASE
+	CHECKFILE = us.sha1
+else
+	CFLAGS += -DJAPAN_RELEASE
+	CHECKFILE = jp.sha1
 endif
 
 # "CL" variables for custom linker script use:
@@ -81,10 +96,10 @@ $(PROGNAME): $(OBJS)
 	$(LINK.o) -o $@ $(OBJS) $(ILIBS)
 
 test: $(PROGNAME)
-	@$(IFIXUP) -o retail-jp.irx $(PROGNAME)
-	@sha1sum retail-jp.irx
-	-@sha1sum -c retail-jp.sha1
-	@rm retail-jp.irx
+	@$(IFIXUP) -o strip-$(PROGNAME) $(PROGNAME)
+	@sha1sum strip-$(PROGNAME)
+	-@$(CHECKSUM) checksums/$(CHECKFILE)
+	@rm strip-$(PROGNAME)
 
 ###############################################################################
 
