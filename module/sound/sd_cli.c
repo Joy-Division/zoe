@@ -28,71 +28,65 @@ int SePlay( u_int a0 )
 	int temp, temp2, temp3;
 	u_int temp4;
 	int temp5, temp6;
-
-	// TODO: test struct SEPLAYTBL
-	u_char pri;
-	u_char kind;
-	u_char character;
-	u_char *addr;
-	u_int code;
+	struct SEPLAYTBL se_play;
 
 	temp3 = song_end[1] >> 8;
 
 	for( temp2 = 0 ; temp2 < 12 ; temp2++ ){
 		if( temp3 & 1 ){
-			se_playing[temp2].code = 0;
-			se_playing[temp2].pri = 0;
+			se_playing[temp2].code      = 0;
+			se_playing[temp2].pri       = 0;
 			se_playing[temp2].character = 0;
 		}
 		temp3 >>= 1;
 	}
 
 	temp5 = a0 & 0x07FF;
-	code = a0;
+	se_play.code = a0;
 
 	if( temp5 < 0x0100 ){
-		se_tracks = se_tbl[temp5].tracks;
-		character = se_tbl[temp5].character;
+		se_tracks         = se_tbl[temp5].tracks;
+		se_play.character = se_tbl[temp5].character;
 	}else{
 		temp6 = se_exp_table[temp5-0x0100];
 		if( temp6 == 0xFF ){
 			PRINTF(( "ERR:se_exp_table offset(%x)\n", temp5 & 0x07FF ));
 			return -1;
 		}
-		se_tracks = se_header[temp6].tracks;
-		character = se_header[temp6].character;
+		se_tracks         = se_header[temp6].tracks;
+		se_play.character = se_header[temp6].character;
 	}
 
 	for( temp4 = 0 ; temp4 < se_tracks ; temp4++ ){
 		if( temp5 < 0x0100 ){
-			pri = se_tbl[temp5].pri;
-			kind = se_tbl[temp5].kind;
-			addr = se_tbl[temp5].addr[temp4];
+			se_play.pri  = se_tbl[temp5].pri;
+			se_play.kind = se_tbl[temp5].kind;
+			se_play.addr = se_tbl[temp5].addr[temp4];
 		}else{
-			pri = se_header[temp6].pri;
-			kind = se_header[temp6].kind;
+			se_play.pri  = se_header[temp6].pri;
+			se_play.kind = se_header[temp6].kind;
 			// note to self, pointer + pointer is bad, pointer + int is ok
-			addr = se_data + (u_int)(se_header[temp6].addr[temp4]);
+			se_play.addr = se_data + (u_int)(se_header[temp6].addr[temp4]);
 		}
 
 		temp = 0x0100;
 		temp3 = 0;
 
 		for( temp2 = 0 ; temp2 < 12 ; temp2++ ){
-			if( ((se_playing[temp2].code & 0x07FF) == (code & 0x07FF)) && !se_request[temp2].code ){
+			if( ((se_playing[temp2].code & 0x07FF) == (se_play.code & 0x07FF)) && !se_request[temp2].code ){
 				temp = 0;
 				temp3 = temp2;
 				break;
-			} else if( ((se_request[temp2].code & 0x07FF) == (code & 0x07FF)) && !temp4 ){
+			}else if( ((se_request[temp2].code & 0x07FF) == (se_play.code & 0x07FF)) && !temp4 ){
 				se_tracks = 0;
 				return 0;
 			}
-			if( character ){
-				if( se_playing[temp2].character == character ){
+			if( se_play.character ){
+				if( se_playing[temp2].character == se_play.character ){
 					temp = 0;
 					temp3 = temp2;
 					break;
-				} else if( se_request[temp2].character == character ){
+				}else if( se_request[temp2].character == se_play.character ){
 					temp = 0;
 					temp3 = temp2;
 					break;
@@ -121,26 +115,27 @@ int SePlay( u_int a0 )
 						}
 					}
 				}
-				if( (pri % 100) >= (temp % 100) ){
+				if( (se_play.pri % 100) >= (temp % 100) ){
 					PRINTF(( "***SE Priority:%x > (%x or %x)***\n",
-						code & 0x7FF, (u_int)se_playing[temp3].code & 0x7FF,
+						se_play.code & 0x7FF, (u_int)se_playing[temp3].code & 0x7FF,
 						(u_int)se_request[temp3].code & 0x7FF ));
 				}
 			}
 		}
-		if( pri >= temp ){
-			se_request[temp3].pri = pri;
-			se_request[temp3].kind = kind;
-			se_request[temp3].character = character;
-			character = 0;
-			se_request[temp3].addr = addr;
-			se_request[temp3].code = code;
+		if( se_play.pri >= temp ){
+			se_request[temp3].pri       = se_play.pri;
+			se_request[temp3].kind      = se_play.kind;
+			se_request[temp3].character = se_play.character;
+			se_play.character = 0;
+			se_request[temp3].addr      = se_play.addr;
+			se_request[temp3].code      = se_play.code;
 
-			if( pri == 0xFF ){
+			if( se_play.pri == 0xFF ){
 				stop_jouchuu_se = 0;
 			}
 		}else{ /* test if this also matches retail instead of the if above! */
-			PRINTF(( "SECan'tPlay:LowPriority(code=%x:pri=%x)\n", code & 0x7FF, pri ));
+			PRINTF(( "SECan'tPlay:LowPriority(code=%x:pri=%x)\n",
+				se_play.code & 0x7FF, se_play.pri ));
 		}
 	}
 	se_tracks = 0;
