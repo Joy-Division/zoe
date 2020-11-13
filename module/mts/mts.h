@@ -8,10 +8,9 @@ extern "C" {
 #endif
 
 /*===========================================================================*/
-/* Definitions                                                               */
+/* Macro & Type Defines                                                      */
 /*===========================================================================*/
 
-// ref.default.pdb
 typedef struct {
 	int value;
 	int mask;
@@ -20,13 +19,11 @@ typedef struct {
 } MTS_EVENTFLAG;
 
 /*===========================================================================*/
-/* Global Functions                                                          */
+/* Public Functions                                                          */
 /*===========================================================================*/
 
-/*---------------------------------------------------------------------------*/
-// MTS Main (mts.c)
-
-#if 0 // TODO
+/* mts.c */
+#if (0)
 MTS_SetExceptionCallback();
 MTS_GetThreadId();
 MTS_ExitThread();
@@ -35,35 +32,26 @@ MTS_BootThread();
 MTS_Panic();
 #endif
 
-/*---------------------------------------------------------------------------*/
-// MTS Exception (exception.c)
-
+/* exception.c */
+//DEBUG_SetExceptionCallback();
+//DEBUG_ExceptionCallback();
 void DEBUG_InitException( u_int );
+//MTS_SetPrintFunc();
 int cprintf( char *format, ... );
 int printf( char *format, ... );
+//excep_printf();
 
-#if (0) // TODO
-DEBUG_SetExceptionCallback();
-DEBUG_ExceptionCallback();
-MTS_SetPrintFunc();
-excep_printf();
+/* exception_in.s */
+#if (0)
+DEBUG_ExceptionIn();
 #endif
 
-/*---------------------------------------------------------------------------*/
-// MTS Stack Check (stackcheck.c)
-
-#if (0) // TODO
+/* stackcheck.c */
+#if (0)
 DEBUG_SetStackCheck();
 DEBUG_get_stack_size();
 DEBUG_ReleaseStack();
 DEBUG_GetStackUseSize();
-#endif
-
-/*---------------------------------------------------------------------------*/
-// MTS Exception (exception_in.s)
-
-#if (0) // TODO
-DEBUG_ExceptionIn();
 #endif
 
 #if defined(__cplusplus)
