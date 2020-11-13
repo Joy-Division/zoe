@@ -1,5 +1,5 @@
 #
-# Makefile for IOP SOUND
+# Makefile for KCEJ SOUND DRIVER
 #
 
 ifeq ($(wildcard PathDefs),)
