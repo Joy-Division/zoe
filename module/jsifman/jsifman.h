@@ -4,6 +4,10 @@
 #include <sys/types.h>
 #include <sifcmd.h>
 
+#if defined(__cplusplus)
+extern "C" {
+#endif
+
 /* libmain.c */
 int sif_set_callback_func( u_int a0, sceSifCmdHandler a1, void *a2 );
 void sif_send_packet_and_data();
@@ -23,5 +27,9 @@ void sif_rv_return_value();
 void i_sif_rv_return_value();
 void sif_rv_release_queue();
 u_int *sif_get_mem( void *a0, u_int a1, u_int a2 );
+
+#if defined(__cplusplus)
+}
+#endif
 
 #endif /* END OF FILE */
