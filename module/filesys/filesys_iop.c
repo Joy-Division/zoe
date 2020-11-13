@@ -16,7 +16,7 @@ extern u_int *sif_get_mem( void *, u_int, u_int );
 
 ModuleInfo Module = { "ZOE_FILESYS", 0x0101 };
 
-// ref."default.pdb"
+// from LibFS, DO NOT CHANGE!!
 typedef struct _FS_FILEINFO {
 	sceSifCmdHdr hdr;
 	int		status;
@@ -31,9 +31,9 @@ struct Work {
 	FS_FILEINFO fileinfo;
 	int		unk60;
 	int		unk64;
-	u_int	unk68;
-	int		unk6C;
-	u_int*	unk70[2];
+	u_int	unk68;		// UNUSED
+	int		unk6C;		// fd
+	u_int*	unk70[2];	// mem ptr
 	int		unk78;		// thread ID
 	int		unk7C;
 	u_char	unk80[16];	// UNUSED
@@ -47,7 +47,7 @@ void LoadDaemonThread( void )
 {
 	int temp20;
 	int temp1C;
-	int temp18;
+	int temp18;		// count
 	int temp14;
 	int temp10;
 
@@ -72,7 +72,7 @@ void LoadDaemonThread( void )
 			if( !work.unk7C ){
 				pcLseek( work.unk6C, 0, 0 );
 				work.fileinfo.pos = 0;
-			} else {
+			}else{
 				pcLseek( work.unk6C, work.fileinfo.pos, 0 );
 			}
 
@@ -175,17 +175,17 @@ int FS_StartDaemonIOP( void )
 	work.unk70[1] = AllocSysMemory( 0, 0x8000, 0 );
 	work.unk6C = -1;
 
-	param.attr			= TH_C;
-	param.entry			= LoadDaemonThread;
-	param.initPriority	= 0x52;
-	param.stackSize		= 0x1000;	// 4KB
+	param.attr         = TH_C;
+	param.entry        = LoadDaemonThread;
+	param.initPriority = 0x52;
+	param.stackSize    = 0x1000;	// 4KB
 	tid = CreateThread( &param );
 
 	if( tid > 0 ){
 		work.unk78 = tid;
 		StartThread( tid, 0 );
 		sif_set_callback_func( 2, CallBackFunc, &work );
-	} else {
+	}else{
 		return NO_RESIDENT_END;
 	}
 	return RESIDENT_END;
