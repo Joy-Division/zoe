@@ -5,11 +5,9 @@
 extern "C" {
 #endif
 
-/* (cdbios_ee.c) */
 void cdbios_init( void );
 
-#if 0 // TODO
-cdbios_callback();
+#if (0)
 cdbios_get_status();
 cdbios_get_read_size();
 cdbios_callback_read();
@@ -19,7 +17,6 @@ cdbios_preseek();
 cdbios_get_time();
 cdbios_get_filepos();
 cdbios_set_hd_file();
-send_iop();
 #endif
 
 #if defined(__cplusplus)
