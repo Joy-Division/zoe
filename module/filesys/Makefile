@@ -1,27 +1,55 @@
 #
-# Convenience Makefile
+# Makefile for Z.O.E FILE SYSTEM
 #
 
-TARGETS =\
-	cdbios cdbios_ee \
-	hdbios hdbios_ee \
-	filesys
+ifeq ($(wildcard PathDefs),)
+PathDefs:
+	iop-path-setup > PathDefs || (rm -f PathDefs ; exit 1)
+endif
+include PathDefs
 
-.PHONY: all clean $(TARGETS)
+SCETOP ?= /usr/local/sce
+SCEINCDIR = $(SCETOP)/common/include
+IOPINCDIR = $(SCETOP)/iop/gcc/mipsel-scei-elfl/include
+IOPLIBDIR = $(SCETOP)/iop/gcc/mipsel-scei-elfl/lib
+IOPMODDIR = $(SCETOP)/iop/modules
 
-all: $(TARGETS)
+###############################################################################
 
-cdbios cdbios_ee filesys:
-	$(MAKE) -f$@.mk
+INCDIR = ../include
+LIBDIR = ../lib
 
-hdbios hdbios_ee:
-# Currently, the HDBIOS library cannot be decompiled,
-# as no builds of the module/interface have been released.
-	@echo "*** SKIPPING '$@' (UNAVAILABLE)"
+INCDIRS = -I$(INCDIR) -I$(SCEINCDIR)
+
+ILIBS =\
+-ilb=$(LIBDIR)/jsifman.ilb \
+-ilb=$(LIBDIR)/usbfs.ilb
+
+CFLAGS  = -Wall -G0 $(INCDIRS) -O0
+ASFLAGS = $(INCDIRS) -G0
+LDFLAGS  = -e FS_StartDaemonIOP
+
+PROGNAME = filesys.irx
+
+OBJS =\
+	filesys_iop.o
+
+###############################################################################
+
+all: $(PROGNAME)
+
+$(PROGNAME): $(OBJS)
+	$(LINK.o) -o $@ $(OBJS) $(ILIBS)
+
+# Stripping of the IRX is required for checksum comparisons
+# as the symbol table is virtually impossible to reproduce.
+test: $(PROGNAME)
+	@$(IFIXUP) -o filesys-retail-jp.irx $(PROGNAME)
+	@# sha1sum filesys-retail-jp.irx
+	@-sha1sum -c filesys-retail-jp.sha1
+	@rm filesys-retail-jp.irx
+
+###############################################################################
 
 clean:
-	$(MAKE) -fcdbios.mk $@
-	$(MAKE) -fcdbios_ee.mk $@
-#	$(MAKE) -fhdbios.mk $@
-#	$(MAKE) -fhdbios_ee.mk $@
-	$(MAKE) -ffilesys.mk $@
+	-rm -f $(OBJS) $(PROGNAME)
