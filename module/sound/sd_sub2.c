@@ -101,7 +101,7 @@ void pan_move( void )
 		sptr->panad = -(((-temp2) << 8) / mdata2);
 		if( sptr->panad < -0x07F0 )
 			sptr->panad = -0x07F0;
-	} else {
+	}else{
 		sptr->panad = (temp2 << 8) / mdata2;
 		if( sptr->panad > 0x07F0 )
 			sptr->panad = 0x07F0;
@@ -119,17 +119,17 @@ void vib_set( void )
 		if( sptr->vibcad < 32 ){
 			sptr->vib_tc_ofst = 1;
 			sptr->vibcad = sptr->vibcad << 3;
-		} else {
+		}else{
 			sptr->vib_tc_ofst = 2;
 			sptr->vibcad = sptr->vibcad << 2;
 		}
-	} else {
+	}else{
 		if( (char)sptr->vibcad >= 0 ){
 			sptr->vib_tc_ofst = 4;
 			sptr->vibcad = sptr->vibcad << 1;
-		} else if( ((u_char)sptr->vibcad) != 0xFF ){
+		}else if( ((u_char)sptr->vibcad) != 0xFF ){
 			sptr->vib_tc_ofst = 8;
-		} else {
+		}else{
 			sptr->vib_tc_ofst = 16;
 		}
 	}
@@ -175,7 +175,7 @@ void lp1_end( void )
 			skip_intro_loop++;
 			goto end; // return; also works for -O0
 		}
-	} else {
+	}else{
 		if( stop_jouchuu_se && !mdata2 ){
 			sptr->lp1_vol = 0;
 			sptr->lp1_freq = 0;
@@ -188,7 +188,7 @@ void lp1_end( void )
 		sptr->lp1_vol += (char)mdata3;
 		sptr->lp1_freq += (char)mdata4 << 3;
 		mptr = sptr->lp1_addr;
-	} else {
+	}else{
 		sptr->lp1_vol = 0;
 		sptr->lp1_freq = 0;
 	}
@@ -228,7 +228,7 @@ void l3e_set( void )
 {
 	if( sptr->lp3_addr ){
 		mptr = sptr->lp3_addr;
-	} else {
+	}else{
 		block_end();
 	}
 }
@@ -261,7 +261,7 @@ void tempo_move( void )
 
 		if( sptr->tmpad < -0x07F0 )
 			sptr->tmpad = -0x07F0;
-	} else {
+	}else{
 		if( temp > 127 )
 			temp = 127;
 
@@ -311,7 +311,7 @@ void vol_move( void )
 		sptr->pvoad = -(-temp / sptr->pvoc);
 		if( sptr->pvoad < -0x07F0 )
 			sptr->pvoad = -0x07F0;
-	} else {
+	}else{
 		sptr->pvoad = temp / sptr->pvoc;
 		if( sptr->pvoad > 0x07F0 )
 			sptr->pvoad = 0x07F0;
@@ -382,7 +382,7 @@ void eon_set( void )
 			rev_on_bit[1] |= keyd[1];
 			rev_bit_data[1] |= keyd[1];
 		}
-	} else {
+	}else{
 		rev_on_bit[0] |= keyd[0];
 		rev_on_bit[1] |= keyd[1];
 		rev_bit_data[0] |= keyd[0];
@@ -399,7 +399,7 @@ void eof_set( void )
 			rev_off_bit[1] |= keyd[1];
 			rev_bit_data[1] &= ~keyd[1];
 		}
-	} else {
+	}else{
 		rev_off_bit[0] |= keyd[0];
 		rev_off_bit[1] |= keyd[1];
 		rev_bit_data[0] &= ~keyd[0];
@@ -441,7 +441,7 @@ void env_set( void )
 {
 	if( mdata2 ){
 		spu_tr_wk[mtrack].a_mode = 0x8000;
-	} else {
+	}else{
 		spu_tr_wk[mtrack].a_mode = 0;
 	}
 
@@ -458,7 +458,7 @@ void env_set( void )
 
 	if( mdata4 ){
 		spu_tr_wk[mtrack].r_mode = 32;
-	} else {
+	}else{
 		spu_tr_wk[mtrack].r_mode = 0;
 	}
 
@@ -560,7 +560,7 @@ void vol_i_move( void )
 		work->pvoad = -(-temp2 / work->pvoc);
 		if( work->pvoad < -0x07F0 )
 			work->pvoad = -0x07F0;
-	} else {
+	}else{
 		work->pvoad = temp2 / work->pvoc;
 		if( work->pvoad > 0x07F0 )
 			work->pvoad = 0x07F0;
@@ -596,7 +596,7 @@ void at1_set( void )
 		sptr->unkF7 = 0;
 		sptr->unkF0 = mdata2;
 		sptr->unkF8 = 0;
-	} else {
+	}else{
 		sptr->unkEA = mdata2;
 		sptr->unkF2 = 0xFF;
 		sptr->unkEB = mdata2;
@@ -633,7 +633,7 @@ void at2_set( void )
 		sptr->unkF7 = 0;
 		sptr->unkF0 = mdata2;
 		sptr->unkF8 = 0;
-	} else {
+	}else{
 		sptr->unkEA = mdata2;
 		sptr->unkF2 = mdata3;
 		sptr->unkEB = mdata2;
@@ -668,7 +668,7 @@ void at3_set( void )
 		sptr->unkF7 = 0;
 		sptr->unkF0 = mdata2;
 		sptr->unkF8 = 0;
-	} else {
+	}else{
 		sptr->unkEB = mdata2;
 		sptr->unkF3 = mdata3;
 		sptr->unkEC = mdata2;
@@ -699,7 +699,7 @@ void at4_set( void )
 		sptr->unkF7 = 0;
 		sptr->unkF0 = mdata2;
 		sptr->unkF8 = 0;
-	} else {
+	}else{
 		sptr->unkEC = mdata2;
 		sptr->unkF4 = mdata3;
 		sptr->unkED = mdata2;
@@ -726,7 +726,7 @@ void at5_set( void )
 		sptr->unkF7 = 0;
 		sptr->unkF0 = mdata2;
 		sptr->unkF8 = 0;
-	} else {
+	}else{
 		sptr->unkED = mdata2;
 		sptr->unkF5 = mdata3;
 		sptr->unkEE = mdata2;
@@ -749,7 +749,7 @@ void at6_set( void )
 		sptr->unkF7 = 0;
 		sptr->unkF0 = mdata2;
 		sptr->unkF8 = 0;
-	} else {
+	}else{
 		sptr->unkEE = mdata2;
 		sptr->unkF6 = mdata3;
 		sptr->unkEF = mdata2;
@@ -768,7 +768,7 @@ void at7_set( void )
 		sptr->unkF7 = mdata3;
 		sptr->unkF0 = mdata2;
 		sptr->unkF8 = 0;
-	} else {
+	}else{
 		sptr->unkEF = mdata2;
 		sptr->unkF7 = mdata3;
 		sptr->unkF0 = mdata2;
@@ -809,7 +809,5 @@ void flg_set( void )
 
 void no_cmd( void )
 {
-	//
-	// EMPTY FUNCTION
-	//
+	/* DUMMY COMMAND */
 }

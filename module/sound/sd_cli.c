@@ -53,7 +53,7 @@ int SePlay( u_int a0 )
 	if( temp5 < 0x0100 ){
 		se_tracks = se_tbl[temp5].tracks;
 		character = se_tbl[temp5].character;
-	} else {
+	}else{
 		temp6 = se_exp_table[temp5-0x0100];
 		if( temp6 == 0xFF ){
 			PRINTF(( "ERR:se_exp_table offset(%x)\n", temp5 & 0x07FF ));
@@ -68,7 +68,7 @@ int SePlay( u_int a0 )
 			pri = se_tbl[temp5].pri;
 			kind = se_tbl[temp5].kind;
 			addr = se_tbl[temp5].addr[temp4];
-		} else {
+		}else{
 			pri = se_header[temp6].pri;
 			kind = se_header[temp6].kind;
 			// note to self, pointer + pointer is bad, pointer + int is ok
@@ -114,7 +114,7 @@ int SePlay( u_int a0 )
 							temp = se_playing[temp2].pri;
 							temp3 = temp2;
 						}
-					} else {
+					}else{
 						if( se_request[temp2].pri <= temp ){
 							temp = se_request[temp2].pri;
 							temp3 = temp2;
@@ -139,7 +139,7 @@ int SePlay( u_int a0 )
 			if( pri == 0xFF ){
 				stop_jouchuu_se = 0;
 			}
-		} else { /* test if this also matches retail instead of the if above! */
+		}else{ /* test if this also matches retail instead of the if above! */
 			PRINTF(( "SECan'tPlay:LowPriority(code=%x:pri=%x)\n", code & 0x7FF, pri ));
 		}
 	}
@@ -154,7 +154,7 @@ void set_sng_code_buf( u_int a0 )
 	if( !sd_sng_code_buf[sd_code_set] ){
 		sd_sng_code_buf[sd_code_set] = a0;
 		sd_code_set = (sd_code_set + 1) & 0x0F;
-	} else {
+	}else{
 		PRINTF(( "***TooMuchBGMSoundCode(%x)***\n", a0 ));
 	}
 }
@@ -252,8 +252,8 @@ void sd_set( int sound_code )
 		PRINTF(( "SdCode=%x\n", sound_code ));
 	}
 
-	if( !(sound_code & 0xFF000000) ) {
-		if( !(sound_code & 0x07FF) ) {
+	if( !(sound_code & 0xFF000000) ){
+		if( !(sound_code & 0x07FF) ){
 			goto end;
 		}
 		SePlay( sound_code );
@@ -295,10 +295,10 @@ void sd_set( int sound_code )
 				str_counter = 0;
 				str_status = 1;
 				WakeupThread( id_SdMain );
-			} else {
+			}else{
 				PRINTF(( "SdSet:Same Stream is Already Played.(code=%x)\n", str_load_code ));
 			}
-		} else {
+		}else{
 			if( lnr8_status ){
 				lnr8_stop_fg = 1;
 			}
@@ -348,10 +348,10 @@ void sd_set( int sound_code )
 			ee_addr[1].unk0C = 0;
 			lnr8_status = 1;
 			lnr8_counter = 0;
-		} else {
+		}else{
 			if( (sound_code & 0xFF0000) == 0x10000 ){
 				str2_mono_fg[1] = 1;
-			} else {
+			}else{
 				str2_mono_fg[1] = 0;
 			}
 			str2_pitch[1] = (int)((sound_code & 0xFFFF) * 4096) / 48000;
@@ -379,7 +379,7 @@ void sd_set( int sound_code )
 		if( !str1_use_iop ){
 			if( (sound_code & 0xFF0000) == 0x10000 ){
 				str2_mono_fg[0] = 1;
-			} else {
+			}else{
 				str2_mono_fg[0] = 0;
 			}
 			str2_pitch[0] = (int)((sound_code & 0xFFFF) * 4096) / 48000;
@@ -428,7 +428,7 @@ void sd_set( int sound_code )
 					mix_fader[temp.u].vol_current ));
 			}
 		#endif
-		} else {
+		}else{
 			if( (sound_code & 0xFF0000) == 0xFE0000 || (sound_code & 0xFF0000) == 0xFF0000 ){
 				temp.u = (int)(sound_code & 0x10000) >> 16;
 				vox_fader[temp.u].vol_target = sound_code & 0x3F;
@@ -463,14 +463,14 @@ void sd_set( int sound_code )
 			+ ((int)(sound_code & 0x3F00) >> 10);
 		if( mix_fader[temp.u].vol_target == mix_fader[temp.u].vol_current ){
 			mix_fader[temp.u].vol_step = 0;
-		} else if( sound_code & 0xFF ){
+		}else if( sound_code & 0xFF ){
 			mix_fader[temp.u].vol_step
 				= (mix_fader[temp.u].vol_target - mix_fader[temp.u].vol_current)
 				/ ((int)(sound_code & 0xFF)*10);
 			if( !mix_fader[temp.u].vol_step ){
 				mix_fader[temp.u].vol_step = 1;
 			}
-		} else {
+		}else{
 			mix_fader[temp.u].vol_current = mix_fader[temp.u].vol_target;
 			mix_fader[temp.u].vol_step = 0;
 		}
@@ -481,14 +481,14 @@ void sd_set( int sound_code )
 		pak_cd_read_fg = 0;
 		if( sound_code <= 0xFE7FFFFF ){
 		#ifdef BORMAN_DEMO
-			if(wave_save_code != sound_code && se_save_code2 != sound_code) {
+			if(wave_save_code != sound_code && se_save_code2 != sound_code){
 		#endif
 			wave_load_code = sound_code;
 			wave_load_status = 1;
 		#ifdef BORMAN_DEMO
 			}
 		#endif
-		} else {
+		}else{
 			pak_load_code = sound_code;
 			pak_load_status = 1;
 		}
@@ -516,7 +516,7 @@ void sd_set( int sound_code )
 				if( str_status ){
 					str_stop_fg = 1;
 				}
-			} else {
+			}else{
 				if( str2_status[0] ){
 					str2_stop_fg[0] = 1;
 				}
@@ -527,7 +527,7 @@ void sd_set( int sound_code )
 		case 0xFF00000B:
 			if( str1_use_iop ){
 				str_wait_fg = 1;
-			} else {
+			}else{
 				str2_wait_fg[0] = 1;
 			}
 			PRINTF(( "*** STR WAIT ***\n" ));
@@ -536,7 +536,7 @@ void sd_set( int sound_code )
 		case 0xFF00000C:
 			if( str1_use_iop ){
 				str_wait_fg = 0;
-			} else {
+			}else{
 				str2_wait_fg[0] = 0;
 			}
 			PRINTF(( "*** STR WAIT OFF (START) ***\n" ));
@@ -547,7 +547,7 @@ void sd_set( int sound_code )
 				if( str_status ){
 					str_stop_fg = 2;
 				}
-			} else if( str2_status[0] ){
+			}else if( str2_status[0] ){
 				str2_stop_fg[0] = 2;
 			}
 			break;

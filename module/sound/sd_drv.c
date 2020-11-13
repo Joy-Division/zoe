@@ -15,7 +15,7 @@ void IntSdMain( void )
 		temp = sd_sng_code_buf[sd_code_read];
 		sd_sng_code_buf[sd_code_read] = 0;
 		sd_code_read = (sd_code_read+1) & 0x0F;
-	} else {
+	}else{
 		temp = 0;
 	}
 
@@ -43,7 +43,7 @@ void IntSdMain( void )
 				sng_fout_fg = 0;
 				if( sng_status < 3 ){
 					sng_fadein_fg = temp;
-				} else {
+				}else{
 					SngFadeIn( temp );
 				}
 				sng_kaihi_fg = 0;
@@ -134,12 +134,12 @@ void IntSdMain( void )
 			if( sng_play_code != temp ){
 				/* more ifdef here */
 				#if (defined BORMAN_DEMO || defined DENGEKI_DEMO)
-				if( sng_status >= 2 ) {
+				if( sng_status >= 2 ){
 				#endif
 				if( sng_data[0] < (temp & 0x0F) ){
 					PRINTF(( "ERROR:SNG PLAY CODE(%x/%x)\n", temp, sng_data[0] ));
 					temp = 0;
-				} else {
+				}else{
 					sng_status = 2;
 					if( sng_play_code == 0xFFFFFFFF ){
 						for( i = 0 ; i < 32 ; i++ ){
@@ -160,11 +160,11 @@ void IntSdMain( void )
 					skip_intro_loop = 0;
 				}
 				#if (defined BORMAN_DEMO || defined DENGEKI_DEMO)
-				} else {
+				}else{
 					PRINTF(( "sng_status=%x\n", sng_status ));
 				}
 				#endif
-			} else {
+			}else{
 				PRINTF(( "SameSongHasAlreadyPlayed\n" ));
 			}
 			break;
@@ -184,9 +184,9 @@ void IntSdMain( void )
 	}
 
 #if !(defined BORMAN_DEMO || defined DENGEKI_DEMO)
-	if( mem_str_fg ){				// guessed varname
-		sng_load_code = mem_str_fg;	// guessed varname
-		mem_str_fg = 0;				// guessed varname
+	if( mem_str_fg ){
+		sng_load_code = mem_str_fg;
+		mem_str_fg = 0;
 	}
 #endif
 
@@ -212,7 +212,7 @@ void IntSdMain( void )
 					mix_fader[i].vol_step = 0;
 				}
 				fader_off_fg = 0;
-			} else {
+			}else{
 				for( i = 0 ; i < 32 ; i++ ){
 					mix_fader[i].vol_current = mix_fader[i].vol_target = 0xFFFF;
 					mix_fader[i].vol_step = 0;
@@ -232,7 +232,7 @@ void IntSdMain( void )
 				if( song_end[0] & keyd[0] ){
 					continue;
 				}
-			} else {
+			}else{
 				keyd[0] = 0;
 				keyd[1] = (1 << (mtrack-24));
 				if( song_end[1] & keyd[1] ){
@@ -243,13 +243,13 @@ void IntSdMain( void )
 			if( !sptr->mpointer ){
 				song_end[0] |= keyd[0];
 				song_end[1] |= keyd[1];
-			} else {
+			}else{
 				mptr = sptr->mpointer;
 				if( sound_sub() ){
 					song_end[0] |= keyd[0];
 					song_end[1] |= keyd[1];
 					sptr->mpointer = 0;
-				} else {
+				}else{
 					sptr->mpointer = mptr;
 				}
 			}
@@ -277,7 +277,7 @@ void IntSdMain( void )
 		if( se_tracks <= 1 && se_request[mtrack-32].code ){
 			se_off( mtrack-32 );
 			se_adrs_set( mtrack-32 );
-		} else {
+		}else{
 			keyd[0] = 0;
 			keyd[1] = (1 << (mtrack-0x18));
 			if( song_end[1] & keyd[1] ){
@@ -286,12 +286,12 @@ void IntSdMain( void )
 			sptr = &sound_w[mtrack];
 			if( !sptr->mpointer ){
 				song_end[1] |= keyd[1];
-			} else {
+			}else{
 				mptr = sptr->mpointer;
 				if( sound_sub() ){
 					song_end[1] |= keyd[1];
 					sptr->mpointer = 0;
-				} else {
+				}else{
 					sptr->mpointer = mptr;
 				}
 			}
@@ -306,7 +306,7 @@ void IntSdMain( void )
 		if( wave_load_status == 2 || wave_load_status == 4 ){
 			WaveSpuTrans();
 			WakeupThread( id_SdMain );
-		} else {
+		}else{
 			for( mtrack = 32 ; mtrack < 44 ; mtrack++ ){
 				keyd[0] = 0;
 				keyd[1] = (1 << (mtrack-0x18));
@@ -315,7 +315,7 @@ void IntSdMain( void )
 				}
 			}
 		}
-	} else {
+	}else{
 		PRINTF(( ">" ));
 	}
 	spuwr();
@@ -366,7 +366,7 @@ int SngFadeOutP( u_int a0 )
 				if( !((sng_fout_term[0] >> i) & 1) ){
 					sng_fade_time[i] = temp;
 				}
-			} else {
+			}else{
 				if( !((sng_fout_term[1] >> (i-24)) & 1) ){
 					sng_fade_time[i] = temp;
 				}
@@ -374,7 +374,7 @@ int SngFadeOutP( u_int a0 )
 		}
 		sng_fadein_time = 0;
 		return 0;
-	} else {
+	}else{
 		return -1;
 	}
 }
@@ -400,7 +400,7 @@ int SngFadeOutS( u_int a0 )
 				if( !((sng_fout_term[0] >> i) & 1) ){
 					sng_fade_time[i] = temp;
 				}
-			} else {
+			}else{
 				if( !((sng_fout_term[1] >> (i - 0x18)) & 1) ){
 					sng_fade_time[i] = temp;
 				}
@@ -410,7 +410,7 @@ int SngFadeOutS( u_int a0 )
 		sng_play_code = -1;
 		PRINTF(( "SNG FADEOUT START(status=%x)\n", sng_status ));
 		return 0;
-	} else {
+	}else{
 	#ifdef BORMAN_DEMO
 		PRINTF(( "SNG FADEOUT CANCELED(status=%x)\n", sng_status ));
 	#elif !defined DENGEKI_DEMO
@@ -439,7 +439,7 @@ int SngKaihiP( void )
 			mix_fader[i].vol_step = (mix_fader[i].vol_target - mix_fader[i].vol_current) / 1000;
 		}
 		sng_kaihi_fg = 1;
-	} else {
+	}else{
 		for( i = 0 ; i < 16 ; i++ ){
 			mix_fader[i].vol_target = 0xFFFF;
 			mix_fader[i].vol_step = (mix_fader[i].vol_target - mix_fader[i].vol_current) / 100;
@@ -505,7 +505,7 @@ void SngFadeWkSet( void )
 		for( i = 0 ; i < 32 ; i++ ){
 			sng_fade_value[i] = 0;
 		}
-	} else {
+	}else{
 		switch( sng_fadein_fg ){
 		case 0x01FFFF03:
 		case 0x01FFFF04:
@@ -541,7 +541,7 @@ void SngFadeInt( void )
 					if( sng_fade_value[i] >= 0x10000 ){
 						if( i < 0x18 ){
 							sng_fout_term[0] |= (1 << i);
-						} else {
+						}else{
 							sng_fout_term[1] |= (1 << (i-0x18));
 						}
 						sng_fade_value[i] = 0x10000;
@@ -550,15 +550,15 @@ void SngFadeInt( void )
 					if( sng_fout_term[0] == 0x00FFFFFF && sng_fout_term[1] == 0xFF ){
 						if( sng_play_code == 0xFFFFFFFF ){
 							sng_status = 4;
-						} else {
+						}else{
 							sng_fout_fg = 1;
 						}
-					} else {
+					}else{
 						sng_fout_fg = 0;
 					}
 				}
 			}
-		} else {
+		}else{
 			if( (str_load_code && str_status) || (str2_load_code[0] && str2_status[0]) || (str2_load_code[1] && str2_status[1]) ){
 				if( vox_on_vol < 0x6000 ){
 					vox_on_vol += 0xF5;
@@ -566,7 +566,7 @@ void SngFadeInt( void )
 						vox_on_vol = 0x6000;
 					}
 				}
-			} else {
+			}else{
 				if( vox_on_vol ){
 					vox_on_vol -= 0x7A;
 					if( vox_on_vol < 0 ){
@@ -578,7 +578,7 @@ void SngFadeInt( void )
 				for( i = 0 ; i < 32 ; i++ ){
 					if( sng_fade_value[i] <= sng_fadein_time ){
 						sng_fade_value[i] = 0;
-					} else {
+					}else{
 						sng_fade_value[i] -= sng_fadein_time;
 					}
 					temp6 |= sng_fade_value[i];
@@ -595,7 +595,7 @@ void SngFadeInt( void )
 					sng_syukan_vol = 0x5000;
 				}
 			}
-		} else {
+		}else{
 			if( sng_syukan_vol ){
 				sng_syukan_vol -= 0x66;
 				if( sng_syukan_vol < 0 ){
@@ -607,17 +607,17 @@ void SngFadeInt( void )
 			temp = 0x10000;
 			if( (sng_syukan_vol >= vox_on_vol) && !fg_syukan_off[i] ){
 				temp3 = sng_syukan_vol;
-			} else {
+			}else{
 				temp3 = vox_on_vol;
 			}
 			if( sng_fade_value[i] > temp3 ){
 				temp2 = sng_fade_value[i];
-			} else {
+			}else{
 				temp2 = temp3;
 			}
 			if( temp < temp2 ){
 				temp = 0;
-			} else {
+			}else{
 				temp -= temp2;
 			}
 			if( mix_fader[i].vol_current != mix_fader[i].vol_target ){
@@ -627,7 +627,7 @@ void SngFadeInt( void )
 						mix_fader[i].vol_current = mix_fader[i].vol_target;
 						mix_fader[i].vol_step = 0;
 					}
-				} else {
+				}else{
 					if( mix_fader[i].vol_current < mix_fader[i].vol_target ){
 						mix_fader[i].vol_current = mix_fader[i].vol_target;
 						mix_fader[i].vol_step = 0;
@@ -644,9 +644,7 @@ void SngFadeInt( void )
 
 void SngTempoInt( void )
 {
-	//
-	// EMPTY FUNCTION
-	//
+	/* EMPTY PROC */
 }
 
 /*---------------------------------------------------------------------------*/
@@ -695,10 +693,10 @@ void sng_adrs_set( u_int a0 )
 		if( temp4 ){
 			sound_w[i].mpointer = sng_data + temp4;
 			sng_track_init( &sound_w[i] );
-		} else {
+		}else{
 			if( i < 24 ){
 				song_end[0] |= (1 << i);
-			} else {
+			}else{
 				song_end[1] |= (1 << (i-24));
 			}
 		}
@@ -734,7 +732,7 @@ void se_adrs_set( u_int a0 )
 		if( se_rev_on ){
 			rev_on_bit[1] |= (1 << (a0+8));
 			rev_bit_data[1] |= (1 << (a0+8));
-		} else {
+		}else{
 			rev_off_bit[1] |= (1 << (a0+8));
 			rev_bit_data[1] &= ~(1 << (a0+8));
 		}
@@ -775,9 +773,7 @@ void sng_track_init( struct SOUND_W *work )
 	work->tmpd		= 1;
 	work->tmp		= 0xFF;
 	work->tmpc		= 0;
-/* ************************* */
-/* Addition for PS2 IOP ver. */
-/* ************************* */
+
 	work->unkD4		= 0;
 	work->unkD9		= 1;
 	work->unkE0		= 0;

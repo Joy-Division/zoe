@@ -58,6 +58,7 @@ u_int pak_load_status;
 u_int pak_read_fg;
 int pak_fp;
 u_int pak_load_code;
+
 int sng_fp;
 int fx_sound_code;
 int sng_fadein_time;
@@ -76,27 +77,22 @@ u_int fader_off_fg;
 u_int sd_code_read;
 u_int sng_pause_fg;
 
-/* --- Unreferenced Data --- */
+u_int lnr8_fg;			// UNUSED
+u_int irq_addr;			// UNUSED
 
-u_int lnr8_fg;
-u_int irq_addr; // also in bm5thMIX
-
-#if !(defined BORMAN_DEMO || defined DENGEKI_DEMO)
-u_int ue_;	// 029c034e (0ecc:30), unused
+#if !(defined(BORMAN_DEMO)||defined(DENGEKI_DEMO))
+u_int ue_;	// 029c034e (0ecc:30), UNUSED
 #endif
-#if !defined BORMAN_DEMO
-u_int um_;	// 025e432f (0f12:1f), used in retail
+#if !defined(BORMAN_DEMO)
+u_int um_;	// 025e432f (0f12:1f)
 #endif
 
-u_int mem_str_fg;	// used in retail
+u_int mem_str_fg;
 
-u_int wave_loaded;	// also in bm5thMIX
-u_int se_save_code2;	// also in bm5thMIX
-u_int spu_irq_counter;	// also in bm5thMIX
-u_int blank_data_addr;	// also in bm5thMIX
-
-
-/* --- End of Unreferenced Data --- */
+u_int wave_loaded;		// UNUSED
+u_int se_save_code2;
+u_int spu_irq_counter;	// UNUSED
+u_int blank_data_addr;	// UNUSED
 
 struct SEPLAYTBL se_playing[12];
 u_int fg_rev_set[44];

@@ -11,8 +11,7 @@
 unsigned short str_master_vol = 0x3FFF;
 unsigned short str_master_pitch = 0x1000;
 
-/* 2KB of silent VAG ADPCM */
-u_char dummy_data[2048] = {
+u_char dummy_data[2048] = { // 2KB of silent PlayStation ADPCM
 	0x0C,0x02,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,
 	0x0C,0x02,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,
 	0x0C,0x02,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,
@@ -143,12 +142,8 @@ u_char dummy_data[2048] = {
 	0x0C,0x02,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,
 };
 
-/* unreferenced TGS2000 variables */
-
-u_int ee_str_load_addr;
-u_int str_mute_fg;
-
-/* end of unreferenced TGS2000 variables */
+u_int ee_str_load_addr;	// UNUSED
+u_int str_mute_fg;		// UNUSED
 
 unsigned int str_mono_offset;
 unsigned int str_counter;
@@ -241,7 +236,7 @@ int StartStream1( void )
 
 	if( str_header[8] == 1 ){
 		str_mono_fg = 1;
-	} else {
+	}else{
 		str_mono_fg = 0;
 	}
 
@@ -250,7 +245,7 @@ int StartStream1( void )
 
 	if( str_unload_size > temp ){
 		str_unload_size -= temp;
-	} else {
+	}else{
 		str_unload_size = 0;
 	}
 
@@ -300,7 +295,7 @@ int StartStream2( void )
 		str_first_load = 0;
 		str_fp = 0;
 		return -1;
-	} else {
+	}else{
 		PRINTF(( "STR:offset=%x:wave_size=%x\n", str_start_offset*0x1000, str_wave_size ));
 	}
 
@@ -314,7 +309,7 @@ int StartStream2( void )
 
 	if( str_header[8] == 1 ){
 		str_mono_fg = 1;
-	} else {
+	}else{
 		str_mono_fg = 0;
 	}
 
@@ -324,13 +319,13 @@ int StartStream2( void )
 
 	if( str_unload_size > temp ){
 		str_unload_size -= temp;
-	} else {
+	}else{
 		str_unload_size = 0;
 	}
 
 	str_trans_offset = 0;
 
-	for( i = 0 ; i < 8 ; i++) {
+	for( i = 0 ; i < 8 ; i++){
 		str_read_status[i] = 1;
 	}
 
@@ -344,7 +339,7 @@ int StartStream( void )
 {
 	if( str_start_offset ){
 		return StartStream2();
-	} else {
+	}else{
 		return StartStream1();
 	}
 }
@@ -390,7 +385,7 @@ void StrCdLoad( void )
 					if( str_trans_offset >= 0x8000 ){
 						str_trans_offset = 0;
 					}
-				} else {
+				}else{
 					temp = PcmRead( str_fp, str_trans_buf+str_trans_offset, 0x4000 );
 					for( j = 0 ; j < 4 ; j++ ){
 						str_read_status[str_read_idx+j] = 1;
@@ -415,7 +410,7 @@ void str_load( void )
 	case 0:
 		if( StartStream() ){
 			str_status = 0;
-		} else {
+		}else{
 			str_l_r_fg = 0;
 			str_status = 2;
 		}
@@ -466,7 +461,7 @@ int StrSpuTrans( void )
 		PRINTF(( "STR Stopped.\n" ));
 	}
 
-/* ///////////////////////////////////////////////////////////////////////// */
+///////////////////////////////////////////////////////////////////////////////
 	switch( str_status-2 ){
 	case 0:
 		if( !str_l_r_fg ){
@@ -486,7 +481,7 @@ int StrSpuTrans( void )
 				str_unplay_size -= 0x0800;
 			}
 			str_l_r_fg = 1;
-		} else {
+		}else{
 			spu_str_start_ptr_r = 0x6020;
 			sceSdSetAddr( SD_CORE_1|SD_VOICE_21|SD_VA_LSAX, 0x6020 );
 			sceSdVoiceTrans(
@@ -507,7 +502,7 @@ int StrSpuTrans( void )
 		}
 		temp = 1;
 		break;
-/* ///////////////////////////////////////////////////////////////////////// */
+///////////////////////////////////////////////////////////////////////////////
 	case 1:
 		if( !str_unplay_size || (str_unplay_size & 0x80000000) ){
 			str_status++;
@@ -526,7 +521,7 @@ int StrSpuTrans( void )
 				str_unplay_size -= 0x0800;
 			}
 			str_l_r_fg = 1;
-		} else {
+		}else{
 			str_trans_buf[str_play_offset+0x07F1] = str_trans_buf[str_play_offset+0x07F1] | 1;
 			sceSdVoiceTrans(
 				1,										// transfer channel
@@ -544,7 +539,7 @@ int StrSpuTrans( void )
 		}
 		temp = 1;
 		break;
-/* ///////////////////////////////////////////////////////////////////////// */
+///////////////////////////////////////////////////////////////////////////////
 	case 2:
 		if( str_first_load ){
 			str_first_load = 0;
@@ -555,7 +550,7 @@ int StrSpuTrans( void )
 		if( sound_mono_fg ){
 			sceSdSetParam( SD_CORE_1|SD_VOICE_20|SD_VP_VOLL, (((str_volume * se_pant[0x20]) >> 7) * str_master_vol) / 0x3FFF );
 			sceSdSetParam( SD_CORE_1|SD_VOICE_20|SD_VP_VOLR, (((str_volume * se_pant[0x20]) >> 7) * str_master_vol) / 0x3FFF );
-		} else {
+		}else{
 			sceSdSetParam( SD_CORE_1|SD_VOICE_20|SD_VP_VOLL, (((str_volume * se_pant[0x3F]) >> 7) * str_master_vol) / 0x3FFF );
 			sceSdSetParam( SD_CORE_1|SD_VOICE_20|SD_VP_VOLR, 0 );
 		}
@@ -566,7 +561,7 @@ int StrSpuTrans( void )
 		if( sound_mono_fg ){
 			sceSdSetParam( SD_CORE_1|SD_VOICE_21|SD_VP_VOLL, (((str_volume*se_pant[0x20]) >> 7)*str_master_vol) / 0x3FFF );
 			sceSdSetParam( SD_CORE_1|SD_VOICE_21|SD_VP_VOLR, (((str_volume*se_pant[0x20]) >> 7)*str_master_vol) / 0x3FFF );
-		} else {
+		}else{
 			sceSdSetParam( SD_CORE_1|SD_VOICE_21|SD_VP_VOLL, 0 );
 			sceSdSetParam( SD_CORE_1|SD_VOICE_21|SD_VP_VOLR, (((str_volume*se_pant[0x3F]) >> 7)*str_master_vol) / 0x3FFF );
 		}
@@ -584,7 +579,7 @@ int StrSpuTrans( void )
 			str_status++;
 		}
 		break;
-/* ///////////////////////////////////////////////////////////////////////// */
+///////////////////////////////////////////////////////////////////////////////
 	case 3:
 		if( !sceSdGetParam( SD_CORE_1|SD_VOICE_20|SD_VP_ENVX ) ){
 			str_off_ctr = -1;
@@ -618,7 +613,7 @@ int StrSpuTrans( void )
 							0x0800									// transfer size
 						);
 						str_l_r_fg = 1;
-					} else {
+					}else{
 						sceSdVoiceTrans(
 							1,										// transfer channel
 							SD_TRANS_MODE_WRITE|SD_TRANS_BY_DMA,	// transfer mode
@@ -639,7 +634,7 @@ int StrSpuTrans( void )
 							str_mono_offset = 1;
 						}
 					}
-				} else {
+				}else{
 					*(str_trans_buf+str_play_offset+0x07F1) |= 1;
 					if( !str_l_r_fg ){
 						sceSdVoiceTrans(
@@ -650,7 +645,7 @@ int StrSpuTrans( void )
 							0x0800									// transfer size
 						);
 						str_l_r_fg = 1;
-					} else {
+					}else{
 						str_next_idx = (str_next_idx+0x0800) & 0x0FFF;
 						sceSdVoiceTrans(
 							1,										// transfer channel
@@ -670,7 +665,7 @@ int StrSpuTrans( void )
 						}
 					}
 				}
-				if( str_mono_fg ) {
+				if( str_mono_fg ){
 					if( str_mono_offset ){
 						str_play_offset += 0x0800;
 						if( str_play_offset == 0x8000 ){
@@ -678,26 +673,26 @@ int StrSpuTrans( void )
 						}
 						if( str_unplay_size > 0x0800 ){
 							str_unplay_size -= 0x0800;
-						} else {
+						}else{
 							str_off_ctr = 0x1F;
 							str_play_offset = 0;
 							str_status++;
 						}
 					}
-				} else {
+				}else{
 					str_play_offset += 0x0800;
 					if( str_play_offset == 0x8000 ){
 						str_play_offset = 0;
 					}
 					if( str_unplay_size > 0x0800 ){
 						str_unplay_size -= 0x0800;
-					} else {
+					}else{
 						str_off_ctr = 0x1F;
 						str_play_offset = 0;
 						str_status++;
 					}
 				}
-			} else {
+			}else{
 				PRINTF(( "CD READ Retry\n" ));
 				if( spu_str_idx >= 0x0800 ){
 					dummy_data[1] = 6;
@@ -711,7 +706,7 @@ int StrSpuTrans( void )
 							0x0800									// transfer size
 						);
 						mute_str_l_r_fg = 1;
-					} else {
+					}else{
 						sceSdVoiceTrans(
 							1,										// transfer channel
 							SD_TRANS_MODE_WRITE|SD_TRANS_BY_DMA,	// transfer mode
@@ -722,7 +717,7 @@ int StrSpuTrans( void )
 						str_next_idx = (str_next_idx+0x0800) & 0x0FFF;
 						mute_str_l_r_fg = 0;
 					}
-				} else {
+				}else{
 					dummy_data[1] = 2;
 					dummy_data[0x07F1] = 3;
 					if( !mute_str_l_r_fg ){
@@ -734,7 +729,7 @@ int StrSpuTrans( void )
 							(u_char *)spu_str_start_ptr_l+0x800,	// SPU memory addr
 							0x0800									// transfer size
 						);
-					} else {
+					}else{
 						mute_str_l_r_fg = 0;
 						str_next_idx = (str_next_idx+0x800) & 0x0FFF;
 						sceSdVoiceTrans(
@@ -749,7 +744,7 @@ int StrSpuTrans( void )
 			}
 		}
 		break;
-/* ///////////////////////////////////////////////////////////////////////// */
+///////////////////////////////////////////////////////////////////////////////
 	case 4:
 		str_counter_low += 0x80;
 		if( str_counter_low >= 0x1000 ){
@@ -761,7 +756,7 @@ int StrSpuTrans( void )
 			str_status++;
 		}
 		break;
-/* ///////////////////////////////////////////////////////////////////////// */
+///////////////////////////////////////////////////////////////////////////////
 	case 5:
 		str_counter_low += 0x80;
 		if( str_counter_low >= 0x1000 ){

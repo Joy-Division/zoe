@@ -8,9 +8,9 @@
 
 /*---------------------------------------------------------------------------*/
 
-u_char *se_exp_table; // file/main/cli
-struct SETBL *se_header; // main/cli
-u_char *se_data; // ioset/main/cli
+u_char *se_exp_table;
+struct SETBL *se_header;
+u_char *se_data;
 
 /*---------------------------------------------------------------------------*/
 
@@ -21,7 +21,7 @@ void SdMain( void )
 	while( 1 ){
 		if( !pak_read_fg ){
 			SleepThread();
-		} else {
+		}else{
 			// Wait for V-blank
 			WaitVblankStart();
 			WaitVblankEnd();
@@ -30,10 +30,10 @@ void SdMain( void )
 			LoadPakFile();
 		}
 	#if (defined BORMAN_DEMO || defined DENGEKI_DEMO)
-		if( sng_status == 1 ) {
-			if( LoadSngData( sng_load_code ) ) {
+		if( sng_status == 1 ){
+			if( LoadSngData( sng_load_code ) ){
 				sng_status = 0;
-			} else {
+			}else{
 				sng_status = 2;
 			}
 		}
@@ -52,7 +52,7 @@ void SdMain( void )
 		case 1:
 			if( LoadWaveFile() ){
 				wave_load_status = 0;
-			} else {
+			}else{
 				wave_load_status = 2;
 			}
 			break;
@@ -128,7 +128,7 @@ void sd_init( void )
 		if( i == 0 ){
 			sceSdSetParam( i|SD_P_MMIX, 0x0FFF );
 			sceSdSetAddr( i|SD_A_EEA, 0x0001FFFF );
-		} else {
+		}else{
 			sceSdSetParam( i|SD_P_MMIX, 0x0FFC );
 			sceSdSetAddr( i|SD_A_EEA, 0x001FFFFF );
 		}
@@ -201,7 +201,7 @@ void keyOff( u_int a0 )
 {
 	if( a0 < 24 ){
 		sceSdSetSwitch( SD_CORE_0|SD_S_KOFF, 1 << a0 );
-	} else {
+	}else{
 		sceSdSetSwitch( SD_CORE_1|SD_S_KOFF, 1 << (a0-24) );
 	}
 }
@@ -212,7 +212,7 @@ void keyOn( u_int a0 )
 {
 	if( a0 < 24 ){
 		sceSdSetSwitch( SD_CORE_0|SD_S_KON, 1 << a0 );
-	} else {
+	}else{
 		sceSdSetSwitch( SD_CORE_1|SD_S_KON, 1 << (a0-24) );
 	}
 }

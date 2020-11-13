@@ -7,9 +7,9 @@
 #include "sd_debug.h"
 
 u_char wave_header[0x2000]; /* 8KB */
-u_char sng_data[0x00020000]; // file/drv
-u_char se_data_area[0x4800]; // main
-u_char cdload_buf[0x18000]; // file
+u_char sng_data[0x00020000];
+u_char se_data_area[0x4800];
+u_char cdload_buf[0x18000];
 
 /*---------------------------------------------------------------------------*/
 
@@ -34,7 +34,7 @@ int MemSpuTransWithNoLoop( u_int a0 )
 	a0 -= 32;
 	temp4 = &mem_str_w[a0];
 
-/* ///////////////////////////////////////////////////////////////////////// */
+///////////////////////////////////////////////////////////////////////////////
 	switch( (temp4->unk00 & 0xF)-2 ){
 	case 0:
 		temp4->unk04 = temp4->unk08 = voice_tbl[temp4->unk0C+1].addr - voice_tbl[temp4->unk0C].addr;
@@ -55,11 +55,11 @@ int MemSpuTransWithNoLoop( u_int a0 )
 		temp4->unk00++;
 		temp2 = 1;
 		break;
-/* ///////////////////////////////////////////////////////////////////////// */
+///////////////////////////////////////////////////////////////////////////////
 	case 1:
 		if( !temp4->unk08 || temp4->unk08 & 0x80000000 ){
 			temp4->unk00++;
-		} else {
+		}else{
 			if( temp4->unk08 > 0x0800 && temp4->unk10[0x07F1] != 1 ){
 				temp4->unk10[0x07F1] |= 3;
 			}
@@ -76,7 +76,7 @@ int MemSpuTransWithNoLoop( u_int a0 )
 			temp2 = 1;
 		}
 		break;
-/* ///////////////////////////////////////////////////////////////////////// */
+///////////////////////////////////////////////////////////////////////////////
 	case 2:
 		sceSdSetAddr( SD_CORE_1|((a0+8)<<1)|SD_VA_SSA, a0*0x1000+0x9020 );
 		keyon();
@@ -86,7 +86,7 @@ int MemSpuTransWithNoLoop( u_int a0 )
 			temp4->unk00++;
 		}
 		break;
-/* ///////////////////////////////////////////////////////////////////////// */
+///////////////////////////////////////////////////////////////////////////////
 	case 3:
 		temp5 = sceSdGetParam( SD_CORE_1|((a0+8)<<1)|SD_VP_ENVX );
 		if( !temp5 ){
@@ -109,7 +109,7 @@ int MemSpuTransWithNoLoop( u_int a0 )
 					0x0800									// transfer size
 				);
 				temp4->unk14 = 0;
-			} else {
+			}else{
 				if( temp4->unk08 > 0x0800 && temp4->unk10[0x07F1] != 1 ){
 					temp4->unk10[0x07F1] |= 3;
 				}
@@ -125,20 +125,20 @@ int MemSpuTransWithNoLoop( u_int a0 )
 			temp4->unk10 += 0x0800;
 			if( temp4->unk08 > 0x0800 ){
 				temp4->unk08 -= 0x0800;
-			} else {
+			}else{
 				temp4->unk00++;
 			}
-		} else {
+		}else{
 			//
 			// EMPTY BLOCK
 			//
 		}
 		break;
-/* ///////////////////////////////////////////////////////////////////////// */
+///////////////////////////////////////////////////////////////////////////////
 	case 4:
 		temp4->unk00++;
 		break;
-/* ///////////////////////////////////////////////////////////////////////// */
+///////////////////////////////////////////////////////////////////////////////
 	case 5:
 		break;
 	}

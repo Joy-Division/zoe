@@ -28,8 +28,6 @@ u_int se_pant[65] = {
 	0x3FFF
 };
 
-// beat_mania_pan_table
-
 int freq_tbl[108] = {
 	0x010B,0x011B,0x012C,0x013E,0x0151,0x0165,0x017A,0x0191,
 	0x01A9,0x01C2,0x01DD,0x01F9,0x0217,0x0237,0x0259,0x027D,
@@ -47,11 +45,7 @@ int freq_tbl[108] = {
 	0x00D4,0x00E1,0x00EE,0x00FC
 };
 
-
-/* unreferenced TGS2000 variables */
-u_char send_timer[16] = {0};
-
-
+u_char send_timer[16] = {0};	// UNUSED
 
 /*---------------------------------------------------------------------------*/
 
@@ -82,7 +76,7 @@ void spuwr( void )
 			if( i < 24 ){
 				sceSdSetParam( SD_CORE_0|(i<<1)|SD_VP_VOLL, spu_tr_wk[i].vol_l );
 				sceSdSetParam( SD_CORE_0|(i<<1)|SD_VP_VOLR, spu_tr_wk[i].vol_r );
-			} else {
+			}else{
 				sceSdSetParam( SD_CORE_1|((i-24)<<1)|SD_VP_VOLL, spu_tr_wk[i].vol_l );
 				sceSdSetParam( SD_CORE_1|((i-24)<<1)|SD_VP_VOLR, spu_tr_wk[i].vol_r );
 			}
@@ -91,7 +85,7 @@ void spuwr( void )
 		if( spu_tr_wk[i].pitch_fg ){
 			if( i < 24 ){
 				sceSdSetParam( SD_CORE_0|(i<<1)|SD_VP_PITCH, spu_tr_wk[i].pitch );
-			} else {
+			}else{
 				sceSdSetParam( SD_CORE_1|((i-24)<<1)|SD_VP_PITCH, spu_tr_wk[i].pitch );
 			}
 			spu_tr_wk[i].pitch_fg = 0;
@@ -99,7 +93,7 @@ void spuwr( void )
 		if( spu_tr_wk[i].addr_fg ){
 			if( i < 24 ){
 				sceSdSetAddr( SD_CORE_0|(i<<1)|SD_VA_SSA, spu_tr_wk[i].addr+(u_int)spu_wave_start_ptr );
-			} else {
+			}else{
 				sceSdSetAddr( SD_CORE_1|((i-24)<<1)|SD_VA_SSA, spu_tr_wk[i].addr+(u_int)spu_wave_start_ptr );
 			}
 			spu_tr_wk[i].addr_fg = 0;
@@ -112,7 +106,7 @@ void spuwr( void )
 				sceSdSetParam( SD_CORE_0|(i<<1)|SD_VP_ADSR2,
 					SD_ADSR2(spu_tr_wk[i].s_mode, spu_tr_wk[i].sr, spu_tr_wk[i].r_mode, spu_tr_wk[i].rr)
 				);
-			} else {
+			}else{
 				sceSdSetParam( SD_CORE_1|((i-24)<<1)|SD_VP_ADSR1,
 					SD_ADSR1(spu_tr_wk[i].a_mode, spu_tr_wk[i].ar, spu_tr_wk[i].dr, spu_tr_wk[i].sl)
 				);
@@ -260,7 +254,7 @@ void tone_set( u_int a0 )
 
 	if( a0 < 0x200 ){
 		wave = &(voice_tbl[a0]);
-	} else {
+	}else{
 	#ifdef BORMAN_DEMO
 		wave = &(((struct WAVE_W *)(mem_str_buf+0x7E180))[a0]);
 	#else
@@ -276,7 +270,7 @@ void tone_set( u_int a0 )
 
 	if( wave->a_mode ){
 		spu_tr_wk[mtrack].a_mode = 0x8000;
-	} else {
+	}else{
 		spu_tr_wk[mtrack].a_mode = 0;
 	}
 
@@ -297,7 +291,7 @@ void tone_set( u_int a0 )
 
 	if( wave->r_mode ){
 		spu_tr_wk[mtrack].r_mode = 32;
-	} else {
+	}else{
 		spu_tr_wk[mtrack].r_mode = 0;
 	}
 
@@ -329,7 +323,7 @@ void vol_set( u_int a0 )
 
 	if( a0 >= sptr->dec_vol ){
 		a0 -= sptr->dec_vol;
-	} else {
+	}else{
 		a0 = 0;
 	}
 
@@ -342,7 +336,7 @@ void vol_set( u_int a0 )
 		spu_tr_wk[mtrack].vol_r = (((a0 * se_pant[temp]) / 127) * sng_master_vol[mtrack]) >> 16;
 		spu_tr_wk[mtrack].vol_l = (((a0 * se_pant[64-temp]) / 127) * sng_master_vol[mtrack]) >> 16;
 		spu_tr_wk[mtrack].vol_fg = 1;
-	} else {
+	}else{
 		if( mtrack < 32 || !(se_playing[mtrack-32].kind) ){
 			temp = sptr->pand >> 8;
 			if( temp >= 41 ){
@@ -355,12 +349,12 @@ void vol_set( u_int a0 )
 			if( mtrack < 32 ){
 				spu_tr_wk[mtrack].vol_r = (((a0 * pant[temp]) / 127) * sng_master_vol[mtrack]) >> 16;
 				spu_tr_wk[mtrack].vol_l = (((a0 * pant[40-temp]) / 127) * sng_master_vol[mtrack]) >> 16;
-			} else {
+			}else{
 				spu_tr_wk[mtrack].vol_r = (a0 * pant[temp]) / 127;
 				spu_tr_wk[mtrack].vol_l = (a0 * pant[40-temp]) / 127;
 			}
 			spu_tr_wk[mtrack].vol_fg = 1;
-		} else {
+		}else{
 			a0 = ((a0+1) * se_vol[mtrack-32]) >> 6;
 			temp = se_pan[mtrack-32];
 			if( sound_mono_fg ){

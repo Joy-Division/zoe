@@ -50,7 +50,7 @@ void str2_tr_off( u_int a0 )
 {
 	if( !a0 ){
 		str2_keyoffs |= 0x300000;
-	} else {
+	}else{
 		str2_keyoffs |= 0xC00000;
 	}
 }
@@ -94,7 +94,7 @@ int StartEEStream( u_int a0 )
 
 	if( str2_unload_size[a0] > temp ){
 		str2_unload_size[a0] -= temp;
-	} else {
+	}else{
 		str2_unload_size[a0] = 0;
 	}
 
@@ -132,7 +132,7 @@ void StrEELoad( u_int a0 )
 						ee2_buf_idx[a0] = (ee2_buf_idx[a0]+1) & 1;
 						str2_unload_size[a0] -= 0x4000;
 					}
-				} else {
+				}else{
 					temp = EERead( str2_fp[a0], (uint *)(a0*0x8000+eeload2_buf+ee2_buf_idx[a0]*0x4000), ee2_buf_idx[a0], 0x4000 );
 					if( temp ){
 						for( j = 0 ; j < 4 ; j++ ){
@@ -160,11 +160,11 @@ void str2_load( void )
 			if( ee_addr[i].unk0C ){
 				if( StartEEStream( i ) ){
 					str2_status[i] = 0;
-				} else {
+				}else{
 					str2_l_r_fg[i] = 0;
 					str2_status[i] = 2;
 				}
-			} else {
+			}else{
 				PRINTF(( "Waiting for EE Data Trans.(0)\n" ));
 			}
 			break;
@@ -173,7 +173,7 @@ void str2_load( void )
 			if( ee_addr[i].unk0C > 1 ){
 				StrEELoad( i );
 				str2_status[i]++;
-			} else {
+			}else{
 				PRINTF(( "Waiting for EE Data Trans.(1)\n" ));
 			}
 
@@ -236,14 +236,14 @@ int Str2SpuTrans( int core )
 		str2_stop_fg[core] = 0;
 		PRINTF(( "EE STR Stopped.(ch=%x)\n", core ));
 #if !(defined BORMAN_DEMO || defined DENGEKI_DEMO)
-	} else if( str2_stop_fg[core] && str2_status[core] ){
+	}else if( str2_stop_fg[core] && str2_status[core] ){
 		str2_first_load[core] = 0;
 		str2_status[core] = 8;
 		str2_stop_fg[core] = 0;
 #endif
 	}
 
-/* ///////////////////////////////////////////////////////////////////////// */
+///////////////////////////////////////////////////////////////////////////////
 	switch( str2_status[core]-3 ){
 	case 0:
 		if( !str2_l_r_fg[core] ){
@@ -263,7 +263,7 @@ int Str2SpuTrans( int core )
 				str2_unplay_size[core] -= 0x0800;
 			}
 			str2_l_r_fg[core] = 1;
-		} else {
+		}else{
 			spu_str2_start_ptr_r[core] = core*0x2000+0x6020;
 			sceSdSetAddr( SD_CORE_1|(((core*2)+21)<<1)|SD_VA_LSAX, core*0x2000+0x6020 );
 			sceSdVoiceTrans(
@@ -285,7 +285,7 @@ int Str2SpuTrans( int core )
 		}
 		temp = 1;
 		break;
-/* ///////////////////////////////////////////////////////////////////////// */
+///////////////////////////////////////////////////////////////////////////////
 	case 1:
 		if( !str2_unplay_size[core] || (str2_unplay_size[core] & 0x80000000) ){
 			str2_status[core]++;
@@ -304,7 +304,7 @@ int Str2SpuTrans( int core )
 				str2_unplay_size[core] -= 0x0800;
 			}
 			str2_l_r_fg[core] = 1;
-		} else {
+		}else{
 			str2_trans_buf[core][str2_play_offset[core]+0x07F1] |= 1;
 			sceSdVoiceTrans(
 				1,												// transfer channel
@@ -323,7 +323,7 @@ int Str2SpuTrans( int core )
 		}
 		temp = 1;
 		break;
-/* ///////////////////////////////////////////////////////////////////////// */
+///////////////////////////////////////////////////////////////////////////////
 	case 2:
 		if( str2_first_load[core] ){
 			str2_first_load[core] = 0;
@@ -346,7 +346,7 @@ int Str2SpuTrans( int core )
 		#endif
 			vox_fader[core].vol_current = vox_fader[core].vol_target;
 			vox_fader[core].pan_current = vox_fader[core].pan_target;
-		} else {
+		}else{
 			if( str2_mono_fg[core] ){
 				voll = (((((unsigned)(str2_volume[core] * vox_fader[core].vol_target) / 0x3F)
 							* se_pant[64 - vox_fader[core].pan_target]) / 0x7F) * str2_master_vol)
@@ -366,7 +366,7 @@ int Str2SpuTrans( int core )
 				vox_fader[core].vol_current = vox_fader[core].vol_target;
 				vox_fader[core].pan_current = vox_fader[core].pan_target;
 				PRINTF(( "VOX(MONO): voll=%x:volr=%x\n", voll, volr ));
-			} else {
+			}else{
 			#ifdef BORMAN_DEMO
 				sceSdSetParam( SD_CORE_1|(((core*2)+20)<<1)|SD_VP_VOLL,
 					(((unsigned)(str2_volume[core] * se_pant[0x3F] / 0x7F)) * str2_master_vol) / 0x3FFF );
@@ -393,7 +393,7 @@ int Str2SpuTrans( int core )
 		sceSdSetParam( SD_CORE_1|(((core*2)+21)<<1)|SD_VP_ADSR2, 0x0007 );
 		if( !core ){
 			sceSdSetSwitch( SD_CORE_1|SD_S_KON, 0x300000 );
-		} else {
+		}else{
 			sceSdSetSwitch( SD_CORE_1|SD_S_KON, 0xC00000 );
 		}
 		spu_str2_idx[core] = mute2_l_r_fg[core] = 0;
@@ -405,7 +405,7 @@ int Str2SpuTrans( int core )
 			str2_status[core]++;
 		}
 		break;
-/* ///////////////////////////////////////////////////////////////////////// */
+///////////////////////////////////////////////////////////////////////////////
 	case 3:
 		if( sceSdGetParam( SD_CORE_1|(((core*2)+20)<<1)|SD_VP_ENVX ) == 0 ){
 			str2_off_ctr[core] = -1;
@@ -425,7 +425,7 @@ int Str2SpuTrans( int core )
 				sceSdSetParam( SD_CORE_1|(((core*2)+21)<<1)|SD_VP_VOLR, volr );
 				vox_fader[core].vol_current = vox_fader[core].vol_target;
 				vox_fader[core].pan_current = vox_fader[core].pan_target;
-			} else {
+			}else{
 				if( str2_mono_fg[core] ){
 					voll = (((((unsigned)(str2_volume[core] * vox_fader[core].vol_target) / 0x3F)
 								* se_pant[0x40 - vox_fader[core].pan_target]) / 0x7F) * str2_master_vol)
@@ -471,7 +471,7 @@ int Str2SpuTrans( int core )
 							0x0800											// transfer size
 						);
 						str2_l_r_fg[core] = 1;
-					} else {
+					}else{
 						sceSdVoiceTrans(
 							1,												// transfer channel
 							SD_TRANS_MODE_WRITE|SD_TRANS_BY_DMA,			// transfer mode
@@ -492,7 +492,7 @@ int Str2SpuTrans( int core )
 							str2_mono_offset[core] = 1;
 						}
 					}
-				} else {
+				}else{
 					*(str2_trans_buf[core]+str2_play_offset[core]+0x07F1) |= 1;
 					if( !str2_l_r_fg[core] ){
 						sceSdVoiceTrans(
@@ -503,7 +503,7 @@ int Str2SpuTrans( int core )
 							0x0800											// transfer size
 						);
 						str2_l_r_fg[core] = 1;
-					} else {
+					}else{
 						str2_next_idx[core] = (str2_next_idx[core] + 0x0800) & 0x0FFF;
 						sceSdVoiceTrans(
 							1,												// transfer channel
@@ -531,26 +531,26 @@ int Str2SpuTrans( int core )
 						}
 						if( str2_unplay_size[core] > 0x0800 ){
 							str2_unplay_size[core] -= 0x0800;
-						} else {
+						}else{
 							str2_off_ctr[core] = 0x1F;
 							str2_play_offset[core] = 0;
 							str2_status[core]++;
 						}
 					}
-				} else {
+				}else{
 					str2_play_offset[core] += 0x0800;
 					if( str2_play_offset[core] == 0x8000 ){
 						str2_play_offset[core] = 0;
 					}
 					if( str2_unplay_size[core] > 0x0800 ){
 						str2_unplay_size[core] -= 0x0800;
-					} else {
+					}else{
 						str2_off_ctr[core] = 0x1F;
 						str2_play_offset[core] = 0;
 						str2_status[core]++;
 					}
 				}
-			} else {
+			}else{
 				PRINTF(( "EE READ Retry(ch=%x)\n", core ));
 			#if !(defined BORMAN_DEMO || defined DENGEKI_DEMO)
 				str2_unplay_size[core] = str2_unload_size[core];
@@ -568,7 +568,7 @@ int Str2SpuTrans( int core )
 							0x0800									// transfer size
 						);
 						mute2_l_r_fg[core] = 1;
-					} else {
+					}else{
 						sceSdVoiceTrans(
 							1,										// transfer channel
 							SD_TRANS_MODE_WRITE|SD_TRANS_BY_DMA,	// transfer mode
@@ -579,7 +579,7 @@ int Str2SpuTrans( int core )
 						str2_next_idx[core] = (str2_next_idx[core] + 0x0800) & 0x0FFF;
 						mute2_l_r_fg[core] = 0;
 					}
-				} else {
+				}else{
 					dummy_data[1] = 2;
 					dummy_data[0x07F1] = 3;
 					if( !mute2_l_r_fg[core] ){
@@ -591,7 +591,7 @@ int Str2SpuTrans( int core )
 							(u_char *)(spu_str2_start_ptr_l[core])+0x0800,	// SPU memory addr
 							0x0800											// transfer size
 						);
-					} else {
+					}else{
 						mute2_l_r_fg[core] = 0;
 						str2_next_idx[core] = (str2_next_idx[core] + 0x0800) & 0x0FFF;
 						sceSdVoiceTrans(
@@ -606,7 +606,7 @@ int Str2SpuTrans( int core )
 			}
 		}
 		break;
-/* ///////////////////////////////////////////////////////////////////////// */
+///////////////////////////////////////////////////////////////////////////////
 	case 4:
 		str2_counter[core] += 0x80;
 		if( --str2_off_ctr[core] == -2 ){
@@ -614,7 +614,7 @@ int Str2SpuTrans( int core )
 			str2_status[core]++;
 		}
 		break;
-/* ///////////////////////////////////////////////////////////////////////// */
+///////////////////////////////////////////////////////////////////////////////
 	case 5:
 		str2_counter[core] += 0x80;
 		temp2 = 1;
@@ -630,7 +630,7 @@ void str2_int( void )
 	if( sceSdVoiceTransStatus( 1, SD_TRANS_STATUS_CHECK ) == 1 ){
 		if( Str2SpuTrans( 0 ) ){
 			WakeupThread( id_SdEELoad );
-		} else if( Str2SpuTrans(1) ){
+		}else if( Str2SpuTrans(1) ){
 			WakeupThread( id_SdEELoad );
 		}
 	}

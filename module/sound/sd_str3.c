@@ -84,7 +84,7 @@ int StartLnrEEStream( void )
 
 	if( lnr8_unload_size > temp ){
 		lnr8_unload_size -= temp;
-	} else {
+	}else{
 		lnr8_unload_size = 0;
 	}
 
@@ -99,7 +99,7 @@ int StartLnrEEStream( void )
 
 		if( lnr8_unload_size > temp ){
 			lnr8_unload_size -= temp;
-		} else {
+		}else{
 			lnr8_unload_size = 0;
 		}
 	}
@@ -138,7 +138,7 @@ void LnrEELoad( void )
 						lnr8_read_idx = (lnr8_read_idx+1) & 1;
 						lnr8_unload_size -= 0x4000;
 					}
-				} else {
+				}else{
 					temp = EERead( lnr8_fp, (u_int *)(lnr8_buf+lnr8_read_idx*0x4000), lnr8_read_idx, 0x4000 );
 					if( temp ){
 						for( j = 0 ; j < 16 ; j++ ){
@@ -163,7 +163,7 @@ void lnr_load( void )
 		if( ee_addr[1].unk0C >= 2 || (ee_addr[1].unk0C && ee_addr[1].unk14 <= 0x4000) ){
 			if( StartLnrEEStream() ){
 				lnr8_status = 0;
-			} else {
+			}else{
 				lnr8_status = 2;
 			}
 		}
@@ -243,7 +243,7 @@ int lnrSpuTrans( void )
 		PRINTF(( "StrLNR8 Stopped.\n" ));
 	}
 
-/* ///////////////////////////////////////////////////////////////////////// */
+///////////////////////////////////////////////////////////////////////////////
 	switch( lnr8_status-2 ){
 	case 0:
 		lnr8_play_idx = 0;
@@ -258,7 +258,7 @@ int lnrSpuTrans( void )
 		lnr8_status++;
 		temp = 1;
 		break;
-/* ///////////////////////////////////////////////////////////////////////// */
+///////////////////////////////////////////////////////////////////////////////
 	case 1:
 		if( !lnr8_unplay_size || (lnr8_unplay_size & 0x80000000) ){
 			lnr8_status++;
@@ -272,7 +272,7 @@ int lnrSpuTrans( void )
 		lnr8_status++;
 		temp = 1;
 		break;
-/* ///////////////////////////////////////////////////////////////////////// */
+///////////////////////////////////////////////////////////////////////////////
 	case 2:
 		if( lnr8_first_load ){
 			lnr8_first_load = 0;
@@ -293,7 +293,7 @@ int lnrSpuTrans( void )
 			lnr8_status++;
 		}
 		break;
-/* ///////////////////////////////////////////////////////////////////////// */
+///////////////////////////////////////////////////////////////////////////////
 	case 3:
 		if( lnr8_fade_vol < 3 ){
 			sceSdSetParam( SD_CORE_1|SD_P_BVOLL, lnr8_fade_vol * 32767 / 2 );
@@ -316,7 +316,7 @@ int lnrSpuTrans( void )
 				}
 				if( lnr8_unplay_size > 0x0400 ){
 					lnr8_unplay_size -= 0x0400;
-				} else {
+				}else{
 					lnr8_off_ctr = 64;
 					lnr8_play_ofst = 0;
 					lnr8_status++;
@@ -328,14 +328,14 @@ int lnrSpuTrans( void )
 				}
 				lnr8_counter += 512;
 				lnr16_next_ofst = (lnr16_next_ofst+0x0800) & 0x0FFF;
-			} else {
+			}else{
 				PRINTF(( "EE Lnr8 READ Retry\n" ));
 				lnr_trans_0( lnr16_buf+((~(spu_lnr16_idx / 0x0800) & 1)*0x0400), 0x0400 );
 				lnr16_next_ofst = (lnr16_next_ofst+0x800) & 0x0FFF;
 			}
 		}
 		break;
-/* ///////////////////////////////////////////////////////////////////////// */
+///////////////////////////////////////////////////////////////////////////////
 	case 4:
 		spu_lnr16_idx = sceSdBlockTransStatus( 1, 0 );
 		spu_lnr16_idx = (spu_lnr16_idx & 0x00FFFFFF) - (u_int)lnr16_buf;
@@ -352,7 +352,7 @@ int lnrSpuTrans( void )
 			lnr8_status++;
 		}
 		break;
-/* ///////////////////////////////////////////////////////////////////////// */
+///////////////////////////////////////////////////////////////////////////////
 	case 5:
 		lnr8_counter += 512;
 		temp2 = 1;

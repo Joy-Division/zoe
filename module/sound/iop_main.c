@@ -10,11 +10,10 @@
 
 static int com_queue[140];
 
-#ifdef DENGEKI_DEMO
+#if defined(DENGEKI_DEMO)
 ModuleInfo Module = { "KCEJ_SOUND_DRIVER", 0x0101 };
-#elif !defined BORMAN_DEMO
+#elif !defined(BORMAN_DEMO)
 char name[] = "SOUND";
-
 ModuleInfo Module = { name, 0x0101 };
 #endif
 
@@ -66,7 +65,7 @@ void sd_set_status( void )
 
 	if( sng_load_code || pak_load_status ){
 		flags |= 0x0001;
-	} else {
+	}else{
 		for( i = 0 ; i < 16 ; i++ ){
 			if( sd_sng_code_buf[i] > 0x01000000 ){
 				flags |= 0x0001;
@@ -80,13 +79,13 @@ void sd_set_status( void )
 
 	if( str_status ){
 		com_queue[133] = str_counter | str_counter_low;
-	} else {
+	}else{
 		com_queue[133] = str2_counter[0];
 	}
 
 	if( str2_status[1] ){
 		com_queue[134] = str2_counter[1];
-	} else {
+	}else{
 		com_queue[134] = lnr8_counter;
 	}
 
@@ -106,7 +105,7 @@ void sd_send_status( void )
 		if( sif_send_mem( (u_int *)que->unk22C, &que->unk20C, 32 ) == 0 ){
 			PRINTF(( "ERROR:sif_send_mem<iop_main.c>\n" ));
 		}
-	} else {
+	}else{
 		//
 		// EMPTY BLOCK
 		//
@@ -121,7 +120,7 @@ static void sif_callback_func( struct unkstr24 *a0, volatile struct unkstrbig *a
 
 	if( !a0->unk0C ){
 		temp->unk22C = (u_int)a0[0].unk10;
-	} else {
+	}else{
 		temp->unk000[temp->unk204].unk04 = a0[0].unk0C;
 		temp->unk204 = (temp->unk204+1) % 64;
 		iWakeupThread( temp->unk208 );
@@ -274,7 +273,7 @@ int start()
 	param.stackSize    = 0x400;	// 1KB
 	param.option       = 0;
 	tid = CreateThread( &param );
-	if( 0 >= tid ) {
+	if( 0 >= tid ){
 		PRINTF(( "\nIOPERR:Can't Create Thread.\n" ));
 		return NO_RESIDENT_END;
 	}

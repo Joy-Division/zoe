@@ -18,8 +18,7 @@ extern void cdClose();
 
 static unsigned int pakcd_pos;
 
-/* Unreferenced Data */
-u_int gsize = 0;
+u_int gsize = 0;	// UNUSED
 
 u_int pak_cd_read_fg = 0;
 u_int save_wvx1 = -1, save_wvx2 = -1;
@@ -61,7 +60,7 @@ void LoadPakFile( void )
 
 			PRINTF(( "LoadPakFile:File Open Error(%x)\n", pak_load_code ));
 			break;
-		} else {
+		}else{
 			//
 			// EMPTY BLOCK
 			//
@@ -79,20 +78,20 @@ void LoadPakFile( void )
 		if( temp[0].unk00 ){
 			if( temp[0].unk04 != save_wvx1 && temp[0].unk04 != save_wvx2 ){
 			#ifdef DENGEKI_DEMO
-				if( temp[1].unk00 ) {
-					mem_str_fg = (temp[1].unk00 - temp[0].unk00) * 0x0800; // guessed varname
+				if( temp[1].unk00 ){
+					mem_str_fg = (temp[1].unk00 - temp[0].unk00) * 0x0800;
 				}
-				else if( temp[2].unk00 ) {
-					mem_str_fg = (temp[2].unk00 - temp[0].unk00) * 0x0800; // guessed varname
+				else if( temp[2].unk00 ){
+					mem_str_fg = (temp[2].unk00 - temp[0].unk00) * 0x0800;
 				}
-				else if( temp[3].unk00 ) {
-					mem_str_fg = (temp[3].unk00 - temp[0].unk00) * 0x0800; // guessed varname
+				else if( temp[3].unk00 ){
+					mem_str_fg = (temp[3].unk00 - temp[0].unk00) * 0x0800;
 				}
-				else {
+				else{
 					mem_str_fg = 0x18000;
 				}
 			#elif !defined BORMAN_DEMO
-				um_ = (temp[1].unk00 - temp[0].unk00) * 0x0800; // guessed varname
+				um_ = (temp[1].unk00 - temp[0].unk00) * 0x0800;
 			#endif
 				save_wvx1 = temp[0].unk04;
 			#ifdef BORMAN_DEMO
@@ -102,12 +101,12 @@ void LoadPakFile( void )
 			#endif
 				wave_load_status = 1;
 				pak_load_status = 2;
-			} else {
+			}else{
 				PcmLseek( pak_fp, (temp[1].unk00 - temp[0].unk00) * 0x0800, 1 );
 				pak_load_status = 3;
 				PRINTF(( "PAK Load:wvx1 is already Loaded! Skipped!\n" ));
 			}
-		} else {
+		}else{
 		#if (defined BORMAN_DEMO || defined DENGEKI_DEMO)
 			pak_load_status = 3;
 		#else
@@ -127,17 +126,17 @@ void LoadPakFile( void )
 		if( temp[1].unk00 ){
 			if( temp[1].unk04 != save_wvx1 && temp[1].unk04 != save_wvx2 ){
 			#ifdef DENGEKI_DEMO
-				if( temp[2].unk00 ) {
-					mem_str_fg = (temp[2].unk00 - temp[1].unk00) * 0x0800; // guessed varname
+				if( temp[2].unk00 ){
+					mem_str_fg = (temp[2].unk00 - temp[1].unk00) * 0x0800;
 				}
-				else if( temp[3].unk00 ) {
-					mem_str_fg = (temp[3].unk00 - temp[1].unk00) * 0x0800; // guessed varname
+				else if( temp[3].unk00 ){
+					mem_str_fg = (temp[3].unk00 - temp[1].unk00) * 0x0800;
 				}
-				else {
+				else{
 					mem_str_fg = 0x18000;
 				}
 			#elif !defined BORMAN_DEMO
-				um_ = (temp[2].unk00 - temp[1].unk00) * 0x0800; // guessed varname
+				um_ = (temp[2].unk00 - temp[1].unk00) * 0x0800;
 			#endif
 				save_wvx2 = temp[1].unk04;
 			#ifdef BORMAN_DEMO
@@ -147,12 +146,12 @@ void LoadPakFile( void )
 			#endif
 				wave_load_status = 1;
 				pak_load_status = 4;
-			} else {
+			}else{
 				PcmLseek( pak_fp, (temp[2].unk00 - temp[1].unk00) * 0x0800, 1 );
 				pak_load_status = 5;
 				PRINTF(( "PAK Load:wvx2 is already Loaded! Skipped!\n" ));
 			}
-		} else {
+		}else{
 		#if (defined BORMAN_DEMO || defined DENGEKI_DEMO)
 			pak_load_status = 5;
 		#else
@@ -175,11 +174,11 @@ void LoadPakFile( void )
 				se_load_code = 0x02FFFFFF;
 				PcmRead( pak_fp, se_exp_table, (temp[3].unk00 - temp[2].unk00) * 0x0800 );
 				se_load_code = 0;
-			} else {
+			}else{
 				PcmLseek( pak_fp, (temp[3].unk00 - temp[2].unk00) * 0x0800, 1 );
 				PRINTF(( "PAK Load:efx is already Loaded! Skipped!\n" ));
 			}
-		} else {
+		}else{
 			PRINTF(( "PAK Load:No efx data...Skipped!\n" ));
 		}
 		pak_load_status = 6;
@@ -189,25 +188,25 @@ void LoadPakFile( void )
 		if( temp[3].unk00 ){
 			if( temp[3].unk04 != save_mdx ){
 				#if (defined BORMAN_DEMO || DENGEKI_DEMO)
-				if(!sd_sng_code_buf[sd_code_set]) {
+				if(!sd_sng_code_buf[sd_code_set]){
 					save_mdx = temp[3].unk04;
 					sd_sng_code_buf[sd_code_set] = 0x10000FF;
 					sd_code_set = (sd_code_set + 1) & 0xF;
-				} else {
+				}else{
 					PRINTF(( "***TooMuchBGMSoundCode(LoadPakFile)***\n" ));
 					break;
 				}
 				#else
 				save_mdx = temp[3].unk04;
-				mem_str_fg = 0x010000FF; // guessed varname
+				mem_str_fg = 0x010000FF;
 				pak_load_status = 7;
 				#endif
-			} else if(1) {
+			}else if(1){
 				pak_load_status = 9;
 				PRINTF(( "PAK Load:mdx is already Loaded! Skipped!\n" ));
 				break;
 			}
-		} else {
+		}else{
 			pak_load_status = 9;
 			PRINTF(( "PAK Load:No mdx data...Skipped!\n" ));
 			break;
@@ -224,7 +223,7 @@ void LoadPakFile( void )
 		if( mem_str_fg ){
 	#endif
 			break;
-		} else {
+		}else{
 			pak_load_status = 8;
 		}
 		break;
@@ -232,7 +231,7 @@ void LoadPakFile( void )
 	case 7:
 		if( sng_load_code ){
 			break;
-		} else {
+		}else{
 			pak_load_status = 9;
 		}
 		break;
@@ -316,11 +315,11 @@ void set_voice_tbl( u_int *a0, u_int a1, u_int a2 )
 
 	for( temp = a2/16; temp < a1/16; temp++ ){
 		temp3 = a0[temp*4];
-		if( !temp2 ) {
+		if( !temp2 ){
 			if( temp3 < temp4 ){
 				temp2 = 1;
 				break;
-			} else {
+			}else{
 				temp4 = temp3;
 			}
 		}
@@ -370,13 +369,13 @@ int LoadWaveFile( void )
 	if( wave_load_code <= 0xFEFFFFFD ){
 		temp4 = 0x00018000;
 #ifdef DENGEKI_DEMO
-	} else if( mem_str_fg <= 0x00017FFF ){
+	}else if( mem_str_fg <= 0x00017FFF ){
 		temp4 = mem_str_fg;
 #else
-	} else if( um_ <= 0x00017FFF ){
+	}else if( um_ <= 0x00017FFF ){
 		temp4 = um_;
 #endif
-	} else {
+	}else{
 		temp4 = 0x00018000;
 	}
 	PcmRead( wave_fp, cdload_buf, temp4 );
@@ -410,7 +409,7 @@ int LoadWaveFile( void )
 
 	if( (0x00017FE0 - temp2) < wave_unload_size ){
 		wave_load_size = 0x00017FE0 - temp2;
-	} else {
+	}else{
 		wave_load_size = wave_unload_size;
 	}
 
@@ -425,13 +424,13 @@ int LoadWaveFile( void )
 				PcmRead( wave_fp, cdload_buf, 0x18000 );
 				wave_load_size = 0x00018000;
 				wave_unload_size -= 0x00018000;
-			} else if( wave_unload_size ){
+			}else if( wave_unload_size ){
 				PcmRead( wave_fp, cdload_buf, wave_unload_size );
 				wave_load_size = wave_unload_size;
 				wave_unload_size = 0;
 			}
 		#if !(defined BORMAN_DEMO || defined DENGEKI_DEMO)
-			else {
+			else{
 			}
 		#endif
 			memcpy( mem_str_buf+temp3, cdload_buf, wave_load_size );
@@ -473,13 +472,13 @@ void WaveCdLoad( void )
 		wave_load_size = 0x00018000;
 		wave_unload_size -= 0x00018000;
 		wave_load_status = 2;
-	} else if( wave_unload_size ){
+	}else if( wave_unload_size ){
 		PcmRead( wave_fp, cdload_buf, wave_unload_size );
 		wave_load_ptr = cdload_buf;
 		wave_load_size = wave_unload_size;
 		wave_unload_size = 0;
 		wave_load_status = 2;
-	} else {
+	}else{
 		wave_load_status = 0;
 		PcmClose( wave_fp );
 		PRINTF(( "Complete Load Wave:%x\n", wave_load_code ));
@@ -505,7 +504,7 @@ void WaveSpuTrans( void )
 
 		if( result < 0 ){
 			PRINTF(( "ERROR:SPU TRANSFER.\n" ));
-		} else {
+		}else{
 			PRINTF(( "SPU Trans Base=%x Offset=%x Size=%x\n",
 				(u_int)spu_wave_start_ptr, (u_int)spu_load_offset, result ));
 			spu_load_offset += wave_load_size;
@@ -576,7 +575,7 @@ void code2name( u_int code, char *name )
 		name[10] = 'f';
 		name[11] = 'x';
 		name[12] = 0;
-	} else {
+	}else{
 		/* --- ADPCM Stream --- */
 		if( code > 0xEFFFFFFF && code <= 0xF0FFFFFF ){
 			name[ 0] = 'v';
@@ -644,7 +643,7 @@ char num2char( u_int num )
 
 	if( num < 10 ){
 		num += 0x30; /* '0'～'9' */
-	} else {
+	}else{
 		num += 0x57; /* 'a'～'f' */
 	}
 	return num;
@@ -687,7 +686,7 @@ int PcmOpen( u_int code, u_int path_idx )
 
 	if( path_idx != SD_PATH_CD1_SDX1 || !path_name[0] ){
 		strcpy( path, sd_path_cd1[path_idx] );
-	} else {
+	}else{
 		strcpy( path, path_name );
 	}
 
@@ -793,9 +792,9 @@ int EEOpen( int code )
 
 	if( (code & 0xFF000000) == 0xF5000000 ){
 		fd = 1;
-	} else if( (code & 0xFF000000) == 0xF4000000 ){
+	}else if( (code & 0xFF000000) == 0xF4000000 ){
 		fd = 2;
-	} else {
+	}else{
 		PRINTF(( "ERROR:EEOpen:(SdCode=%x)\n", code ));
 	}
 

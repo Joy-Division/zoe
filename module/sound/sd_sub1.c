@@ -24,7 +24,6 @@ no_cmd, no_cmd, no_cmd, no_cmd, no_cmd,
 /* 0x4D */ at6_set,
 /* 0x4E */ at7_set,
 /* 0x4F */ at8_set,
-
 /* 0x50 */ tempo_set,
 /* 0x51 */ tempo_move,
 /* 0x52 */ sno_set,
@@ -41,7 +40,6 @@ no_cmd, no_cmd, no_cmd, no_cmd, no_cmd,
 /* 0x5D */ pan_set,
 /* 0x5E */ pan_move,
 /* 0x5F */ trans_set,
-
 /* 0x60 */ detune_set,
 /* 0x61 */ vib_set,
 /* 0x62 */ vib_change,
@@ -58,7 +56,6 @@ no_cmd, no_cmd, no_cmd, no_cmd, no_cmd,
 /* 0x6D */ kakko_start,
 /* 0x6E */ kakko_end,
 /* 0x6F */ xon_set,
-
 /* 0x70 */ vol_i_move,
 /* 0x71 */ env_set,
 /* 0x72 */ rest_set,
@@ -113,7 +110,7 @@ int sound_sub( void )
 					sptr->ngc = 1;
 					fx_sound_code++;
 				}
-			} else {
+			}else{
 				if( sound_w[(sptr->unkD8 & 0x1F) & 0xFF].unkE1 ){
 					sptr->unkE0 = 1;
 					mptr = sptr->unkDC;
@@ -126,7 +123,7 @@ int sound_sub( void )
 
 	if( sptr->unkD4 && !sptr->unkE0 ){
 		sptr->tmpd &= 0xFF;
-	} else {
+	}else{
 		key_fg = 0;
 		if( sptr->tmpd >= 256 ){
 			sptr->tmpd &= 0xFF;
@@ -136,21 +133,21 @@ int sound_sub( void )
 					keyoff();
 					return 1;
 				}
-			} else {
+			}else{
 				keych();
 			}
 			tempo_ch();
 			bendch();
 			vol_compute();
 			fader_automation1();
-		} else {
+		}else{
 			note_cntl();
 		}
 		fader_automation2();
 		if( key_fg ){
 			if( sptr->snos < 256 ){
 				keyon();
-			} else {
+			}else{
 				mem_str_w[mtrack-32].unk00 = 2;
 			}
 		}
@@ -184,7 +181,7 @@ int tx_read( void )
 			if( mdata1 == 0xDA || mdata1 == 0xDB ){
 				i = 0;
 			}
-		} else {
+		}else{
 			if( sptr->ngg < 0x64 && mdata4 ){
 				key_fg = 1;
 			}
@@ -232,7 +229,7 @@ void note_compute( void )
 	if( mdata1 >= 0x48 ){
 		drum_set( mdata1 );
 		temp = 0x24;
-	} else {
+	}else{
 		temp = mdata1;
 	}
 
@@ -259,11 +256,11 @@ void note_compute( void )
 			temp = sptr->swpd;
 			if( sptr->swss > 0x7F00 ){
 				sptr->swpd += 0x10000 - (sptr->swss & 0xFFFF);
-			} else {
+			}else{
 				sptr->swpd -= sptr->swss;
 			}
 			swpadset( temp );
-		} else {
+		}else{
 			sptr->swpm = sptr->swpd;
 			sptr->swpd = temp2;
 		}
@@ -283,7 +280,7 @@ void swpadset( int a0 )
 
 		if( a0 < 0 ){
 			a0 = 0;
-		} else if( a0 >= 0x6000 ){
+		}else if( a0 >= 0x6000 ){
 			a0 = 0x5FFF;
 		}
 
@@ -293,7 +290,7 @@ void swpadset( int a0 )
 		if( a0 < 0 ){
 			a0 = -a0 / temp;
 			sptr->swpad = -a0;
-		} else {
+		}else{
 			sptr->swpad = a0 / temp;
 		}
 	}
@@ -308,7 +305,7 @@ void vol_compute( void )
 	if( sptr->pvoc ){
 		if( !(--sptr->pvoc & 0xFF) ){
 			sptr->pvod = sptr->pvom << 8;
-		} else {
+		}else{
 			sptr->pvod += sptr->pvoad;
 		}
 	}
@@ -318,16 +315,16 @@ void vol_compute( void )
 				sptr->trec += sptr->trecad;
 				if( sptr->trec < 0 ){
 					temp = sptr->tred * -sptr->trec;
-				} else if( sptr->trec == 0 ){
+				}else if( sptr->trec == 0 ){
 					temp = 1;
-				} else {
+				}else{
 					temp = sptr->tred * sptr->trec;
 				}
-			} else {
+			}else{
 				sptr->trehc++;
 				temp = 0;
 			}
-		} else {
+		}else{
 			temp = 0;
 		}
 		volxset( (temp >> 8) & 0xFF );
@@ -342,7 +339,7 @@ void pan_generate( void )
 	if( sptr->panc ){
 		if( !((char)--sptr->panc) ){
 			sptr->pand = sptr->panm;
-		} else {
+		}else{
 			sptr->pand += sptr->panad;
 		}
 		sptr->panf = sptr->pand >> 8;
@@ -381,14 +378,14 @@ void keych( void )
 	if( sptr->swpc ){
 		if( sptr->swphc ){
 			sptr->swphc--;
-		} else {
+		}else{
 			if( !sptr->swsk ){
 				if( !(--sptr->swpc) ){
 					sptr->swpd = sptr->swpm;
-				} else {
+				}else{
 					sptr->swpd += sptr->swpad;
 				}
-			} else {
+			}else{
 				por_compute();
 			}
 			temp3 = 1;
@@ -400,13 +397,13 @@ void keych( void )
 	if( sptr->vibdm ){
 		if( sptr->vibhc != sptr->vibhs ){
 			sptr->vibhc++;
-		} else {
+		}else{
 			if( sptr->vibcc == sptr->vibcs ){
 				sptr->vibd = sptr->vibdm;
-			} else {
+			}else{
 				if( sptr->vibcc ){
 					sptr->vibd += sptr->vibad;
-				} else {
+				}else{
 					sptr->vibd = sptr->vibad;
 				}
 				sptr->vibcc++;
@@ -451,9 +448,9 @@ void por_compute( void )
 			temp = 1;
 		}
 		temp = -temp;
-	} else if( temp == 0 ){
+	}else if( temp == 0 ){
 		sptr->swpc = 0;
-	} else {
+	}else{
 		temp3 = temp & 0xFF;
 		temp2 = temp >> 8;
 		temp3 = (sptr->swsc * temp3) >> 8;
@@ -480,7 +477,7 @@ int vib_compute( void )
 	if( 0x7FFF >= sptr->vibd ){
 		temp = (sptr->vibd >> 7) & 0xFE;
 		temp = (temp * temp2) >> 8;
-	} else {
+	}else{
 		temp = ((sptr->vibd >> 8) & 0x7F) + 2;
 		temp = (temp * temp2) >> 1;
 	}
@@ -506,7 +503,7 @@ int vib_generate( char a0 )
 		temp2 = (u_char)temp2 >> 2;
 		temp3 = ((sptr->vibd >> 8) & 0xFF) * temp2;
 		temp3 = -temp3;
-	} else {
+	}else{
 		temp2 = (u_char)a0 << 1;
 		if( temp2 < 0 ){
 			temp2 = -temp2;
@@ -552,9 +549,9 @@ void note_cntl( void )
 		sptr->trec += ((u_int)(sptr->trecad * temp) >> 8);
 		if( sptr->trec < 0 ){
 			temp6 = sptr->tred * -(sptr->trec);
-		} else if( sptr->trec == 0 ){
+		}else if( sptr->trec == 0 ){
 			temp6 = 1;
-		} else {
+		}else{
 			temp6 = sptr->tred * sptr->trec;
 		}
 		volxset( (temp6 >> 8) & 0xFF );
@@ -567,7 +564,7 @@ void note_cntl( void )
 		temp4 = 1;
 		if( !sptr->swsk ){
 			sptr->swpd += sptr->swpad;
-		} else {
+		}else{
 			por_compute();
 		}
 		temp5 = sptr->swpd;
@@ -624,7 +621,7 @@ void tempo_ch( void )
 	if( sptr->tmpc ){
 		if( !(--sptr->tmpc) ){
 			sptr->tmpw = sptr->tmpm << 8;
-		} else {
+		}else{
 			sptr->tmpw += sptr->tmpad;
 		}
 		sptr->tmp = sptr->tmpw >> 8;
@@ -644,7 +641,7 @@ void volxset( u_char a0 )
 
 	if( temp < 0 ){
 		temp = 0;
-	} else if( temp >= 128 ){
+	}else if( temp >= 128 ){
 		temp = 0x7F;
 	}
 
@@ -680,13 +677,13 @@ void fader_automation1( void )
 			mix_fader[mtrack].vol_target = temp;
 			if( mix_fader[mtrack].vol_target == mix_fader[mtrack].vol_current ){
 				mix_fader[mtrack].vol_step = 0;
-			} else {
+			}else{
 				if( temp2 ){
 					mix_fader[mtrack].vol_step = (mix_fader[mtrack].vol_target - mix_fader[mtrack].vol_current) / (temp2 * 10);
 					if( mix_fader[mtrack].vol_step == 0 ){
 						mix_fader[mtrack].vol_step = 1;
 					}
-				} else {
+				}else{
 					mix_fader[mtrack].vol_current = mix_fader[mtrack].vol_target;
 					mix_fader[mtrack].vol_step = 0;
 				}
@@ -712,35 +709,35 @@ void fader_automation2( void )
 
 		if( sptr->unkE4 <= sptr->unkF1 ){
 			temp = (sptr->unkE9 << 8) + sptr->unkE9;
-		} else if( sptr->unkE4 <= sptr->unkF2 ){
+		}else if( sptr->unkE4 <= sptr->unkF2 ){
 			temp = (sptr->unkE4 - sptr->unkF1) * (sptr->unkEA - sptr->unkE9);
 			temp = ((temp << 8) + temp) / (sptr->unkF2 - sptr->unkF1);
 			temp += (sptr->unkE9 << 8) + sptr->unkE9;
-		} else if( sptr->unkE4 <= sptr->unkF3 ){
+		}else if( sptr->unkE4 <= sptr->unkF3 ){
 			temp = (sptr->unkE4 - sptr->unkF2) * (sptr->unkEB - sptr->unkEA);
 			temp = ((temp << 8) + temp) / (sptr->unkF3 - sptr->unkF2);
 			temp += (sptr->unkEA << 8) + sptr->unkEA;
-		} else if( sptr->unkE4 <= sptr->unkF4 ){
+		}else if( sptr->unkE4 <= sptr->unkF4 ){
 			temp = (sptr->unkE4 - sptr->unkF3) * (sptr->unkEC - sptr->unkEB);
 			temp = ((temp << 8) + temp) / (sptr->unkF4 - sptr->unkF3);
 			temp += (sptr->unkEB << 8) + sptr->unkEB;
-		} else if( sptr->unkE4 <= sptr->unkF5 ){
+		}else if( sptr->unkE4 <= sptr->unkF5 ){
 			temp = (sptr->unkE4 - sptr->unkF4) * (sptr->unkED - sptr->unkEC);
 			temp = ((temp << 8) + temp) / (sptr->unkF5 - sptr->unkF4);
 			temp += (sptr->unkEC << 8) + sptr->unkEC;
-		} else if( sptr->unkE4 <= sptr->unkF6 ){
+		}else if( sptr->unkE4 <= sptr->unkF6 ){
 			temp = (sptr->unkE4 - sptr->unkF5) * (sptr->unkEE - sptr->unkED);
 			temp = ((temp << 8) + temp) / (sptr->unkF6 - sptr->unkF5);
 			temp += (sptr->unkED << 8) + sptr->unkED;
-		} else if( sptr->unkE4 <= sptr->unkF7 ){
+		}else if( sptr->unkE4 <= sptr->unkF7 ){
 			temp = (sptr->unkE4 - sptr->unkF6) * (sptr->unkEF - sptr->unkEE);
 			temp = ((temp << 8) + temp) / (sptr->unkF7 - sptr->unkF6);
 			temp += (sptr->unkEE << 8) + sptr->unkEE;
-		} else if( sptr->unkE4 <= sptr->unkF8 ){
+		}else if( sptr->unkE4 <= sptr->unkF8 ){
 			temp = (sptr->unkE4 - sptr->unkF7) * (sptr->unkF0 - sptr->unkEF);
 			temp = ((temp << 8) + temp) / (sptr->unkF8 - sptr->unkF7);
 			temp += (sptr->unkEF << 8) + sptr->unkEF;
-		} else {
+		}else{
 			temp = (sptr->unkF0 << 8) + sptr->unkF0;
 		}
 
@@ -749,13 +746,13 @@ void fader_automation2( void )
 
 		if( mix_fader[mtrack].vol_target == mix_fader[mtrack].vol_current ){
 			mix_fader[mtrack].vol_step = 0;
-		} else {
+		}else{
 			if( temp2 ){
 				mix_fader[mtrack].vol_step = (mix_fader[mtrack].vol_target - mix_fader[mtrack].vol_current) / (temp2 * 10);
 				if( !mix_fader[mtrack].vol_step ){
 					mix_fader[mtrack].vol_step = 1;
 				}
-			} else {
+			}else{
 				mix_fader[mtrack].vol_current = mix_fader[mtrack].vol_target;
 				mix_fader[mtrack].vol_step = 0;
 			}

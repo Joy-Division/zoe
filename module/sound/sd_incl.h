@@ -147,9 +147,7 @@ struct SOUND_W {
 	char		macro;
 	char		micro;
 	u_short		rrd;
-/* ************************* */
-/* Addition for PS2 IOP ver. */
-/* ************************* */
+
 	u_int		unkD4;
 	u_char		unkD8;
 	u_char		unkD9;	// padding?
