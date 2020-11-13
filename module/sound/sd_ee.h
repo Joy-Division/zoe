@@ -5,9 +5,12 @@
 extern "C" {
 #endif
 
-int  sd_init( void );   // TODO: check types
-void sd_set_cli( int ); // TODO: check types
-int  sd_status( void ); // TODO: check types
+// TODO: Determine argument/return types,
+// and fix the following provisional declarations.
+
+int  sd_init( void );
+void sd_set_cli( int );
+int  sd_status( void );
 
 #if defined(__cplusplus)
 }

@@ -1,4 +1,3 @@
-#include "global.h"
 #include "sd_ee.h"
 
 #if (0) // TODO
