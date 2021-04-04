@@ -406,8 +406,8 @@ void StrCdLoad( void )
 
 void str_load( void )
 {
-	switch( str_status-1 ){
-	case 0:
+	switch( str_status ){
+	case 1:
 		if( StartStream() ){
 			str_status = 0;
 		}else{
@@ -415,15 +415,15 @@ void str_load( void )
 			str_status = 2;
 		}
 		break;
-	case 1: /* fallthrough */
 	case 2: /* fallthrough */
 	case 3: /* fallthrough */
-	case 4:
+	case 4: /* fallthrough */
+	case 5:
 		StrCdLoad();
 		break;
-	case 5:
-		break;
 	case 6:
+		break;
+	case 7:
 		PcmClose( str_fp );
 		str_load_code = 0;
 		str_status = 0;
@@ -462,8 +462,8 @@ int StrSpuTrans( void )
 	}
 
 ///////////////////////////////////////////////////////////////////////////////
-	switch( str_status-2 ){
-	case 0:
+	switch( str_status ){
+	case 2:
 		if( !str_l_r_fg ){
 			str_play_idx = 0;
 			str_play_offset = 0;
@@ -503,7 +503,7 @@ int StrSpuTrans( void )
 		temp = 1;
 		break;
 ///////////////////////////////////////////////////////////////////////////////
-	case 1:
+	case 3:
 		if( !str_unplay_size || (str_unplay_size & 0x80000000) ){
 			str_status++;
 		}
@@ -540,7 +540,7 @@ int StrSpuTrans( void )
 		temp = 1;
 		break;
 ///////////////////////////////////////////////////////////////////////////////
-	case 2:
+	case 4:
 		if( str_first_load ){
 			str_first_load = 0;
 		}
@@ -580,7 +580,7 @@ int StrSpuTrans( void )
 		}
 		break;
 ///////////////////////////////////////////////////////////////////////////////
-	case 3:
+	case 5:
 		if( !sceSdGetParam( SD_CORE_1|SD_VOICE_20|SD_VP_ENVX ) ){
 			str_off_ctr = -1;
 			str_status++;
@@ -745,7 +745,7 @@ int StrSpuTrans( void )
 		}
 		break;
 ///////////////////////////////////////////////////////////////////////////////
-	case 4:
+	case 6:
 		str_counter_low += 0x80;
 		if( str_counter_low >= 0x1000 ){
 			str_counter += 0x1000;
@@ -757,7 +757,7 @@ int StrSpuTrans( void )
 		}
 		break;
 ///////////////////////////////////////////////////////////////////////////////
-	case 5:
+	case 7:
 		str_counter_low += 0x80;
 		if( str_counter_low >= 0x1000 ){
 			str_counter += 0x1000;

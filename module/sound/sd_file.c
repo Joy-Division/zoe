@@ -33,8 +33,8 @@ void LoadPakFile( void )
 {
 	struct unkstr08 *temp = (struct unkstr08 *)pak_header;
 
-	switch( pak_load_status-1 ){
-	case 0:
+	switch( pak_load_status ){
+	case 1:
 		if( pak_read_fg ){
 			PRINTF(( "ERROR:PAK File Already Opened.\n" ));
 			if( pak_fp ){
@@ -116,13 +116,13 @@ void LoadPakFile( void )
 		}
 		break;
 
-	case 1:
+	case 2:
 		if( !wave_load_status ){
 			pak_load_status = 3;
 		}
 		break;
 
-	case 2:
+	case 3:
 		if( temp[1].unk00 ){
 			if( temp[1].unk04 != save_wvx1 && temp[1].unk04 != save_wvx2 ){
 			#ifdef DENGEKI_DEMO
@@ -161,13 +161,13 @@ void LoadPakFile( void )
 		}
 		break;
 
-	case 3:
+	case 4:
 		if( !wave_load_status ){
 			pak_load_status = 5;
 		}
 		break;
 
-	case 4:
+	case 5:
 		if( temp[2].unk00 ){
 			if( temp[2].unk04 != save_efx ){
 				save_efx = temp[2].unk04;
@@ -184,7 +184,7 @@ void LoadPakFile( void )
 		pak_load_status = 6;
 		break;
 
-	case 5:
+	case 6:
 		if( temp[3].unk00 ){
 			if( temp[3].unk04 != save_mdx ){
 				#if (defined BORMAN_DEMO || DENGEKI_DEMO)
@@ -216,7 +216,7 @@ void LoadPakFile( void )
 	#endif
 		break;
 
-	case 6:
+	case 7:
 	#if (defined BORMAN_DEMO || defined DENGEKI_DEMO)
 		if( !sng_load_code ){
 	#else
@@ -228,7 +228,7 @@ void LoadPakFile( void )
 		}
 		break;
 
-	case 7:
+	case 8:
 		if( sng_load_code ){
 			break;
 		}else{
@@ -236,7 +236,7 @@ void LoadPakFile( void )
 		}
 		break;
 
-	case 8:
+	case 9:
 		pak_read_fg = 0;
 		PcmClose( pak_fp );
 		pak_fp = 0;

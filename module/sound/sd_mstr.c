@@ -35,8 +35,8 @@ int MemSpuTransWithNoLoop( u_int a0 )
 	temp4 = &mem_str_w[a0];
 
 ///////////////////////////////////////////////////////////////////////////////
-	switch( (temp4->unk00 & 0xF)-2 ){
-	case 0:
+	switch( (temp4->unk00 & 0xF) ){
+	case 2:
 		temp4->unk04 = temp4->unk08 = voice_tbl[temp4->unk0C+1].addr - voice_tbl[temp4->unk0C].addr;
 		temp4->unk10 = mem_str_buf+voice_tbl[temp4->unk0C].addr;
 		temp4->unk10[17] = 0;
@@ -56,7 +56,7 @@ int MemSpuTransWithNoLoop( u_int a0 )
 		temp2 = 1;
 		break;
 ///////////////////////////////////////////////////////////////////////////////
-	case 1:
+	case 3:
 		if( !temp4->unk08 || temp4->unk08 & 0x80000000 ){
 			temp4->unk00++;
 		}else{
@@ -77,7 +77,7 @@ int MemSpuTransWithNoLoop( u_int a0 )
 		}
 		break;
 ///////////////////////////////////////////////////////////////////////////////
-	case 2:
+	case 4:
 		sceSdSetAddr( SD_CORE_1|((a0+8)<<1)|SD_VA_SSA, a0*0x1000+0x9020 );
 		keyon();
 		temp4->unk14 = 0x0800;
@@ -87,7 +87,7 @@ int MemSpuTransWithNoLoop( u_int a0 )
 		}
 		break;
 ///////////////////////////////////////////////////////////////////////////////
-	case 3:
+	case 5:
 		temp5 = sceSdGetParam( SD_CORE_1|((a0+8)<<1)|SD_VP_ENVX );
 		if( !temp5 ){
 			temp4->unk00++;
@@ -135,11 +135,11 @@ int MemSpuTransWithNoLoop( u_int a0 )
 		}
 		break;
 ///////////////////////////////////////////////////////////////////////////////
-	case 4:
+	case 6:
 		temp4->unk00++;
 		break;
 ///////////////////////////////////////////////////////////////////////////////
-	case 5:
+	case 7:
 		break;
 	}
 	return temp2;

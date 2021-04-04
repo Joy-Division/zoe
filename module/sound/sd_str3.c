@@ -158,8 +158,8 @@ void LnrEELoad( void )
 
 void lnr_load( void )
 {
-	switch( lnr8_status-1 ){
-	case 0:
+	switch( lnr8_status ){
+	case 1:
 		if( ee_addr[1].unk0C >= 2 || (ee_addr[1].unk0C && ee_addr[1].unk14 <= 0x4000) ){
 			if( StartLnrEEStream() ){
 				lnr8_status = 0;
@@ -169,17 +169,17 @@ void lnr_load( void )
 		}
 		break;
 
-	case 1: /* fallthrough */
 	case 2: /* fallthrough */
 	case 3: /* fallthrough */
-	case 4:
+	case 4: /* fallthrough */
+	case 5:
 		LnrEELoad();
 		break;
 
-	case 5:
+	case 6:
 		break;
 
-	case 6:
+	case 7:
 		lnr8_load_code = 0;
 		lnr8_status = 0;
 		lnr8_fp = 0;
@@ -244,8 +244,8 @@ int lnrSpuTrans( void )
 	}
 
 ///////////////////////////////////////////////////////////////////////////////
-	switch( lnr8_status-2 ){
-	case 0:
+	switch( lnr8_status ){
+	case 2:
 		lnr8_play_idx = 0;
 		lnr8_play_ofst = 0;
 		lnr_trans_init();
@@ -259,7 +259,7 @@ int lnrSpuTrans( void )
 		temp = 1;
 		break;
 ///////////////////////////////////////////////////////////////////////////////
-	case 1:
+	case 3:
 		if( !lnr8_unplay_size || (lnr8_unplay_size & 0x80000000) ){
 			lnr8_status++;
 		}
@@ -273,7 +273,7 @@ int lnrSpuTrans( void )
 		temp = 1;
 		break;
 ///////////////////////////////////////////////////////////////////////////////
-	case 2:
+	case 4:
 		if( lnr8_first_load ){
 			lnr8_first_load = 0;
 		}
@@ -294,7 +294,7 @@ int lnrSpuTrans( void )
 		}
 		break;
 ///////////////////////////////////////////////////////////////////////////////
-	case 3:
+	case 5:
 		if( lnr8_fade_vol < 3 ){
 			sceSdSetParam( SD_CORE_1|SD_P_BVOLL, lnr8_fade_vol * 32767 / 2 );
 			sceSdSetParam( SD_CORE_1|SD_P_BVOLR, lnr8_fade_vol * 32767 / 2 );
@@ -336,7 +336,7 @@ int lnrSpuTrans( void )
 		}
 		break;
 ///////////////////////////////////////////////////////////////////////////////
-	case 4:
+	case 6:
 		spu_lnr16_idx = sceSdBlockTransStatus( 1, 0 );
 		spu_lnr16_idx = (spu_lnr16_idx & 0x00FFFFFF) - (u_int)lnr16_buf;
 		if( (spu_lnr16_idx >= 0x1000) || (spu_lnr16_idx & 0x80000000) ){
@@ -353,7 +353,7 @@ int lnrSpuTrans( void )
 		}
 		break;
 ///////////////////////////////////////////////////////////////////////////////
-	case 5:
+	case 7:
 		lnr8_counter += 512;
 		temp2 = 1;
 		break;

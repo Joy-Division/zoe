@@ -155,8 +155,8 @@ void str2_load( void )
 	int i;
 
 	for( i = 0 ; i < 2 ; i++ ){
-		switch( str2_status[i]-1 ){
-		case 0:
+		switch( str2_status[i] ){
+		case 1:
 			if( ee_addr[i].unk0C ){
 				if( StartEEStream( i ) ){
 					str2_status[i] = 0;
@@ -169,7 +169,7 @@ void str2_load( void )
 			}
 			break;
 
-		case 1:
+		case 2:
 			if( ee_addr[i].unk0C > 1 ){
 				StrEELoad( i );
 				str2_status[i]++;
@@ -177,17 +177,17 @@ void str2_load( void )
 				PRINTF(( "Waiting for EE Data Trans.(1)\n" ));
 			}
 
-		case 2: /* fallthrough */
 		case 3: /* fallthrough */
 		case 4: /* fallthrough */
-		case 5:
+		case 5: /* fallthrough */
+		case 6:
 			StrEELoad( i );
 			break;
 
-		case 6:
+		case 7:
 			break;
 
-		case 7:
+		case 8:
 		#if (defined BORMAN_DEMO || defined DENGEKI_DEMO)
 			str2_fp[i] = str2_status[i] = str2_load_code[i] = 0;
 			PRINTF(( "***STR Terminate(ch=%x)***\n", i ));
@@ -244,8 +244,8 @@ int Str2SpuTrans( int core )
 	}
 
 ///////////////////////////////////////////////////////////////////////////////
-	switch( str2_status[core]-3 ){
-	case 0:
+	switch( str2_status[core] ){
+	case 3:
 		if( !str2_l_r_fg[core] ){
 			str2_play_idx[core] = 0;
 			str2_play_offset[core] = 0;
@@ -286,7 +286,7 @@ int Str2SpuTrans( int core )
 		temp = 1;
 		break;
 ///////////////////////////////////////////////////////////////////////////////
-	case 1:
+	case 4:
 		if( !str2_unplay_size[core] || (str2_unplay_size[core] & 0x80000000) ){
 			str2_status[core]++;
 		}
@@ -324,7 +324,7 @@ int Str2SpuTrans( int core )
 		temp = 1;
 		break;
 ///////////////////////////////////////////////////////////////////////////////
-	case 2:
+	case 5:
 		if( str2_first_load[core] ){
 			str2_first_load[core] = 0;
 		}
@@ -406,7 +406,7 @@ int Str2SpuTrans( int core )
 		}
 		break;
 ///////////////////////////////////////////////////////////////////////////////
-	case 3:
+	case 6:
 		if( sceSdGetParam( SD_CORE_1|(((core*2)+20)<<1)|SD_VP_ENVX ) == 0 ){
 			str2_off_ctr[core] = -1;
 			str2_status[core]++;
@@ -607,7 +607,7 @@ int Str2SpuTrans( int core )
 		}
 		break;
 ///////////////////////////////////////////////////////////////////////////////
-	case 4:
+	case 7:
 		str2_counter[core] += 0x80;
 		if( --str2_off_ctr[core] == -2 ){
 			str2_tr_off( core );
@@ -615,7 +615,7 @@ int Str2SpuTrans( int core )
 		}
 		break;
 ///////////////////////////////////////////////////////////////////////////////
-	case 5:
+	case 8:
 		str2_counter[core] += 0x80;
 		temp2 = 1;
 		break;
