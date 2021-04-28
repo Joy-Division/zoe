@@ -9,7 +9,7 @@
 #define KEN3			5
 #define BREAK			6
 #define DEF				7
-#define TATE2			8
+#define TATE2			8		// 盾２
 #define KENKEN			9
 #define KENUK3			10
 #define BAK				11
@@ -62,7 +62,7 @@
 #define START01			58
 #define CANSEL01		59
 #define CHOWPN01		60
-#define MAMTATE2		61
+#define MAMTATE2		61		// マミーヘッド盾２
 #define START02			62
 #define SE_DUMMY_063	63
 #define RECOCH01		64
@@ -117,11 +117,11 @@
 #define NONAME_113		113
 #define NONAME_114		114
 #define NONAME_115		115
-#define NONAME_116		116		// JABERIN ver.2
+#define NONAME_116		116		// JABERIN (COPY)
 #define NONAME_117		117
 #define NONAME_118		118
-#define NONAME_119		119		// TAME2 ver.2
-#define NONAME_120		120		// CANON ver.2
+#define NONAME_119		119		// TAME2 (COPY)
+#define NONAME_120		120		// CANON (COPY)
 #define NONAME_121		121
 #define NONAME_122		122
 #define SE_DUMMY_123	123
